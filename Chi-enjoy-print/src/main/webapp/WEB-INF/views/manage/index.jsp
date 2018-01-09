@@ -11,17 +11,17 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="public/css/font.css">
-	<link rel="stylesheet" href="public/css/xadmin.css">
+    <link rel="stylesheet" href="/public/css/font.css">
+	<link rel="stylesheet" href="/public/css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="public/js/xadmin.js"></script>
+    <script src="/public/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/public/js/xadmin.js"></script>
 
 </head>
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="./index.html">智享打印</a></div>
+        <div class="logo"><a href="#">智享打印</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -30,11 +30,11 @@
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="./login.html">退出</a></dd>
+              <dd><a onclick="x_admin_show('切换帐号','/logout')">切换帐号</a></dd>
+              <dd><a href="/logout">退出</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item to-index"><a href="javascript:void(0)">前台首页</a></li>
+    
         </ul>
         
     </div>
@@ -52,39 +52,39 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="Classification.html">
+                        <a _href="/sys/manage/classification">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>分类管理</cite>
                             
                         </a>
                     </li >
                     <li>
-                        <a _href="member.html">
+                        <a _href="/sys/manage/member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>A类列表</cite>
 
                     </a>
                     </li>
                     <li>
-                        <a _href="A-file.html">
+                        <a _href="/sys/manage/member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>B类列表</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="D-file.html">
+                        <a _href="/sys/manage/member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>C类列表</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="D-file.html">
+                        <a _href="/sys/manage/member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>D类列表</cite>
                         </a>
                     </li>
                     <li>
-                        <a _href="D-file.html">
+                        <a _href="/sys/manage/member">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>E类列表</cite>
 
@@ -115,7 +115,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="DeviceList.html">
+                        <a _href="/sys/manage/deviceList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>设备列表</cite>
                         </a>
@@ -189,7 +189,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src="welcome.html" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src="/sys/manage/welcome" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>
