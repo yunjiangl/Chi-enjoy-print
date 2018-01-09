@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exqoo.mapper.SysOrderMapper">
+  <resultMap id="BaseResultMap" type="com.exqoo.entity.SysOrder">
+    <id column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="service_fee" jdbcType="DECIMAL" property="serviceFee" />
+    <result column="print_fee" jdbcType="DECIMAL" property="printFee" />
+    <result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="pay_date" jdbcType="TIMESTAMP" property="payDate" />
+    <result column="client_id" jdbcType="BIGINT" property="clientId" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="file_size" jdbcType="VARCHAR" property="fileSize" />
+    <result column="file_color" jdbcType="TINYINT" property="fileColor" />
+    <result column="file_plural" jdbcType="TINYINT" property="filePlural" />
+    <result column="file_id" jdbcType="BIGINT" property="fileId" />
+  </resultMap>
+  
+</mapper>
