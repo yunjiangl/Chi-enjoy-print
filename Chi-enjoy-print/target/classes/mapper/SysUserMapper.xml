@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exqoo.dao.SysUserDao">
+	<resultMap id="BaseResultMap" type="com.exqoo.entity.SysUser">
+		<id column="user_id" jdbcType="BIGINT" property="userId" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="opeanId" jdbcType="VARCHAR" property="opeanid" />
+		<result column="wechat" jdbcType="VARCHAR" property="wechat" />
+		<result column="location" jdbcType="VARCHAR" property="location" />
+		<result column="working_life" jdbcType="VARCHAR" property="workingLife" />
+		<result column="org" jdbcType="VARCHAR" property="org" />
+		<result column="areas_of_expertise_id" jdbcType="BIGINT"
+			property="areasOfExpertiseId" />
+		<result column="certificate_url" jdbcType="VARCHAR" property="certificateUrl" />
+		<result column="sex" jdbcType="TINYINT" property="sex" />
+		<result column="ip" jdbcType="VARCHAR" property="ip" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.exqoo.entity.SysUser">
+		<result column="remarks" jdbcType="LONGVARCHAR" property="remarks" />
+	</resultMap>
+</mapper>

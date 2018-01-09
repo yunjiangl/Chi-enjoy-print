@@ -2,20 +2,31 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_user_role")
 public class SysUserRole implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "id")
     private Long id;
 
     /**
      * 用户ID
      */
+	@Column(name = "user_id")
     private Long userId;
 
     /**
      * 角色ID
      */
+	@Column(name = "role_id")
     private Long roleId;
 
     private static final long serialVersionUID = 1L;

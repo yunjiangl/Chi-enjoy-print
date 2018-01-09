@@ -3,45 +3,61 @@ package com.exqoo.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_file")
 public class SysFile implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "id")
     private Long id;
 
     /**
      * 文件的标题
      */
+	@Column(name = "file_title")
     private String fileTitle;
 
     /**
      * 文件类别id
      */
+	@Column(name = "file_sort_id")
     private Long fileSortId;
 
     /**
      * 文件的打印次数
      */
+	@Column(name = "file_print_count")
     private Long filePrintCount;
 
     /**
      * 文件的后缀
      */
+	@Column(name = "file_suffix")
     private String fileSuffix;
 
     /**
      * 文件的存放路径
      */
+	@Column(name = "file_url")
     private String fileUrl;
 
     /**
      * 文件的页数
      */
+	@Column(name = "file_pages")
     private Integer filePages;
 
     /**
      * 文件的创建时间
      */
+	@Column(name = "creat_date")
     private Date creatDate;
 
     private static final long serialVersionUID = 1L;

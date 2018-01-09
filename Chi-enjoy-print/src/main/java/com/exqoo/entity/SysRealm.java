@@ -2,20 +2,31 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_realm")
 public class SysRealm implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "id")
     private Long id;
 
     /**
      * 权限的名字
      */
+	@Column(name = "realm_name")
     private String realmName;
 
     /**
      * 授权(多个用逗号分隔，如：user:list,user:create)
      */
+	@Column(name = "perms")
     private String perms;
 
     private static final long serialVersionUID = 1L;

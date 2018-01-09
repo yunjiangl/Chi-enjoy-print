@@ -2,20 +2,31 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_role_reaml")
 public class SysRoleReaml implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "id")
     private Long id;
 
     /**
      * 角色id
      */
+	@Column(name = "role_id")
     private Long roleId;
 
     /**
      * 权限id
      */
+	@Column(name = "realm_id")
     private Long realmId;
 
     private static final long serialVersionUID = 1L;

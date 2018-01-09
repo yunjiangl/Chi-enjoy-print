@@ -3,25 +3,37 @@ package com.exqoo.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_role")
 public class SysRole implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "role_id")
     private Long roleId;
 
     /**
      * 角色名称
      */
+	@Column(name = "role_name")
     private String roleName;
 
     /**
      * 创建时间
      */
+	@Column(name = "create_time")
     private Date createTime;
 
     /**
      * 状态（0：禁用 1：启用）
      */
+	@Column(name = "status")
     private Byte status;
 
     private static final long serialVersionUID = 1L;

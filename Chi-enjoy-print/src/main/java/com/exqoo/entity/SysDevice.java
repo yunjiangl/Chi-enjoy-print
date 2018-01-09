@@ -2,45 +2,61 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_device")
 public class SysDevice implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "device_id")
     private Long deviceId;
 
     /**
      * 设备编号
      */
+	@Column(name = "device_code")
     private String deviceCode;
 
     /**
      * 设备地址
      */
+	@Column(name = "device_address")
     private String deviceAddress;
 
     /**
      * 设备详细地址
      */
+	@Column(name = "device_detailed_address")
     private String deviceDetailedAddress;
 
     /**
      * 线下管理员
      */
+	@Column(name = "offline_admin")
     private String offlineAdmin;
 
     /**
      * 线下管理员联系电话
      */
+	@Column(name = "admin_phone_num")
     private String adminPhoneNum;
 
     /**
      * 设备状态
      */
+	@Column(name = "status")
     private Byte status;
 
     /**
      * 设备的位置
      */
+	@Column(name = "position")
     private String position;
 
     private static final long serialVersionUID = 1L;

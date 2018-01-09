@@ -2,15 +2,26 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_areas_of_expertise")
 public class SysAreasOfExpertise implements Serializable {
+	
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "areas_of_expertise_id")
     private Long areasOfExpertiseId;
 
     /**
      * 擅长领域名字
      */
+	@Column(name = "areas_of_expertise_name")
     private String areasOfExpertiseName;
 
     private static final long serialVersionUID = 1L;

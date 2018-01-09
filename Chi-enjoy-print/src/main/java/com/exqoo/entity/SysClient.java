@@ -2,22 +2,36 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_client")
 public class SysClient implements Serializable {
+	
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "client_id")
     private Long clientId;
 
     /**
      * 客户的名字
      */
+	@Column(name = "client_name")
     private String clientName;
 
+	
+	@Column(name = "open_id")
     private Integer openId;
 
     /**
      * 用户联系电话
      */
+	@Column(name = "client_phone")
     private String cilentPhone;
 
     private static final long serialVersionUID = 1L;

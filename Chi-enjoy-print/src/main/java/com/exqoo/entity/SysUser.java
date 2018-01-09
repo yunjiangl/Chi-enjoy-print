@@ -3,90 +3,115 @@ package com.exqoo.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_user")
 public class SysUser implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "user_id")
     private Long userId;
 
     /**
      * 用户名
      */
+	@Column(name = "username")
     private String username;
 
     /**
      * 密码
      */
+	@Column(name = "password")
     private String password;
 
     /**
      * 邮箱
      */
+	@Column(name = "email")
     private String email;
 
     /**
      * 手机号
      */
+	@Column(name = "mobile")
     private String mobile;
 
     /**
      * 状态  0：禁用   1：正常
      */
+	@Column(name = "status")
     private Byte status;
 
     /**
      * 创建时间
      */
+	@Column(name = "create_time")
     private Date createTime;
 
     /**
      * 与微信相关的opeanId
      */
+	@Column(name = "opeanId")
     private String opeanid;
 
     /**
      * 微信号
      */
+	@Column(name = "wechat")
     private String wechat;
 
     /**
      * 所在地
      */
+	@Column(name = "location")
     private String location;
 
     /**
      * 工作年限
      */
+	@Column(name = "working_life")
     private String workingLife;
 
     /**
      * 机构
      */
+	@Column(name = "org")
     private String org;
 
     /**
      * 擅长领域id
      */
+	@Column(name = "areas_of_expertise_id")
     private Long areasOfExpertiseId;
 
     /**
      * 证书url
      */
+	@Column(name = "certificate_url")
     private String certificateUrl;
 
     /**
      * 用户的性别（0：男 1：女）
      */
+	@Column(name = "sex")
     private Byte sex;
 
     /**
      * 用户的上次登陆ip
      */
+	@Column(name = "ip")
     private String ip;
 
     /**
      * 备注
      */
+	@Column(name = "remarks")
     private String remarks;
 
     private static final long serialVersionUID = 1L;

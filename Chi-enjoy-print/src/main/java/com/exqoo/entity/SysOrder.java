@@ -1,73 +1,94 @@
-package com.exqoo.entity;
+	package com.exqoo.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_order")
 public class SysOrder implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "order_id")
     private Long orderId;
 
     /**
      * 律师服务费用
      */
+	@Column(name = "service_fee")
     private BigDecimal serviceFee;
 
     /**
      * 打印费用
      */
+	@Column(name = "print_fee")
     private BigDecimal printFee;
 
     /**
      * 支付方式（0：微信支付 1：其他）
      */
+	@Column(name = "pay_method")
     private String payMethod;
 
     /**
      * 支付状态（0：未支付 1：支付）
      */
+	@Column(name = "status")
     private Byte status;
 
     /**
      * 支付时间
      */
+	@Column(name = "pay_date")
     private Date payDate;
 
     /**
      * 订单的客户
      */
+	@Column(name = "client_id")
     private Long clientId;
 
     /**
      * 设备的id
      */
+	@Column(name = "device_id")
     private Long deviceId;
 
     /**
      * 律师的id
      */
+	@Column(name = "user_id")
     private Long userId;
 
     /**
      * 文件纸张类型,默认A4
      */
+	@Column(name = "file_size")
     private String fileSize;
 
     /**
      * 文件打印的颜色（0：黑白 1：彩色）
      */
+	@Column(name = "file_color")
     private Byte fileColor;
 
     /**
      * 文件的单双面（0：单面 1：双面）
      */
+	@Column(name = "file_plural")
     private Byte filePlural;
 
     /**
      * 文件的id
      */
+	@Column(name = "file_id")
     private Long fileId;
 
     private static final long serialVersionUID = 1L;

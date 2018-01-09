@@ -3,45 +3,61 @@ package com.exqoo.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_income")
 public class SysIncome implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "id")
     private Long id;
 
     /**
      * A类文件收益百分比
      */
+	@Column(name = "a_income")
     private Double aIncome;
 
     /**
      * B类文件收益百分比
      */
+	@Column(name = "b_income")
     private Double bIncome;
 
     /**
      * C类文件收益百分比
      */
+	@Column(name = "c_income")
     private Double cIncome;
 
     /**
      * D类文件收益百分比
      */
+	@Column(name = "d_income")
     private Double dIncome;
 
     /**
      * E类文件收益
      */
+	@Column(name = "e_income")
     private Double eIncome;
 
     /**
      * 黑白页收费
      */
+	@Column(name = "black")
     private BigDecimal black;
 
     /**
      * 彩色也收费
      */
+	@Column(name = "color")
     private BigDecimal color;
 
     private static final long serialVersionUID = 1L;

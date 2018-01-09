@@ -2,25 +2,37 @@ package com.exqoo.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author 
  */
+@Table(name = "sys_file_sort")
 public class SysFileSort implements Serializable {
+	@Id
+	@GeneratedValue(generator = "JDBC")
+	@Column(name = "id")
     private Long id;
 
     /**
      * 上级类别的id，一级类别为0
      */
+	@Column(name = "parent_id")
     private Long parentId;
 
     /**
      * 文件类别的名字
      */
+	@Column(name = "sort_name")
     private String sortName;
 
     /**
      * 文件分类的级别（有1 2 3 三个级别）
      */
+	@Column(name = "sort_level")
     private Integer sortLevel;
 
     private static final long serialVersionUID = 1L;
