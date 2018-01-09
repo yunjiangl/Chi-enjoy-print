@@ -77,23 +77,13 @@ public class SysLoginController {
 		return R.ok();
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String loginPage() {
-		return "manage/login";
-	}
-	
-	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index() {
-		return "manage/index";
-	}
-
 	/**
 	 * 退出
 	 */
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout() {
 		ShiroUtils.logout();
-		return "redirect:login.html";
+		return "redirect:/login";
 	}
 
 }
