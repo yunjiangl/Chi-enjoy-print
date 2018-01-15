@@ -10,6 +10,7 @@ import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.exqoo.dao.SysRealmDao;
 import com.exqoo.dao.SysUserDao;
@@ -98,10 +99,20 @@ public class SysUserServiceImpl implements SysUserService {
 
 	}
 
+	@Transactional
 	@Override
-	public int updatePassword(Long userId, String password, String newPassword) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePasswordAndEmail(Long userId, String password, String newPassword, String email) {
+
+		SysUser user = sysUserDao.selectByPrimaryKey(userId);
+
+		if (user.getPassword() != password) {
+			return 0;
+		}
+
+		user.setPassword(newPassword);
+		user.setEmail(email);
+
+		return sysUserDao.updateByPrimaryKey(user);
 	}
 
 }

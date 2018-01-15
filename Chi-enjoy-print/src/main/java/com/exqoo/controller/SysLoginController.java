@@ -1,11 +1,18 @@
 package com.exqoo.controller;
 
-import com.exqoo.utils.R;
-import com.exqoo.utils.ShiroUtils;
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-import org.apache.shiro.authc.*;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +21,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import com.exqoo.service.SysUserService;
+import com.exqoo.utils.R;
+import com.exqoo.utils.ShiroUtils;
+import com.exqoo.utils.validator.Assert;
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.Producer;
 
 /**
  * 登录相关
  * 
  */
 @Controller
-public class SysLoginController {
+public class SysLoginController extends AbstractController {
 	@Autowired
 	private Producer producer;
+
+	@Autowired
+	private SysUserService sysUserService;
 
 	@RequestMapping("captcha.jpg")
 	public void captcha(HttpServletResponse response) throws ServletException, IOException {
@@ -75,6 +85,29 @@ public class SysLoginController {
 		}
 
 		return R.ok();
+	}
+
+	@RequestMapping(value = "pwdAndEmail", method = RequestMethod.POST)
+	public R passwordAndEmail(String password, String newPassword, String email) {
+
+		Assert.isBlank(newPassword, "新密码不为能空");
+
+		// sha256加密
+		password = new Sha256Hash(password).toHex();
+		// sha256加密
+		newPassword = new Sha256Hash(newPassword).toHex();
+
+		// 更新密码
+		int count = sysUserService.updatePasswordAndEmail(getUserId(), password, newPassword, email);
+		if (count == 0) {
+			return R.error("原密码不正确");
+		}
+
+		// 退出
+		ShiroUtils.logout();
+
+		return R.ok();
+
 	}
 
 	/**
