@@ -114,5 +114,15 @@ public class SysUserServiceImpl implements SysUserService {
 
 		return sysUserDao.updateByPrimaryKey(user);
 	}
+	/**
+	 * 查询律师组数据
+	 */
+
+	@Override
+	public List<SysUser> selectUserLawyerById(Long roleId) {
+		// TODO Auto-generated method stub
+		return sysUserDao.selectUserLawyerById(roleId);
+	}
+	
 
 }

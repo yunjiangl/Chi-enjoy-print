@@ -113,7 +113,12 @@ public class SysUser implements Serializable {
      */
 	@Column(name = "remarks")
     private String remarks;
-
+	
+	/**
+	 * 昵称
+	 */
+	@Column(name="nickname")
+	private String nickname;
     private static final long serialVersionUID = 1L;
 
     public Long getUserId() {
@@ -253,6 +258,14 @@ public class SysUser implements Serializable {
 	public void setWorkingLife(String workingLife) {
 		this.workingLife = workingLife;
 	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	@Override
 	public int hashCode() {
@@ -381,8 +394,10 @@ public class SysUser implements Serializable {
 				+ ", mobile=" + mobile + ", status=" + status + ", createTime=" + createTime + ", opeanid=" + opeanid
 				+ ", wechat=" + wechat + ", location=" + location + ", workingLife=" + workingLife + ", org=" + org
 				+ ", areasOfExpertiseId=" + areasOfExpertiseId + ", certificateUrl=" + certificateUrl + ", sex=" + sex
-				+ ", ip=" + ip + ", remarks=" + remarks + "]";
+				+ ", ip=" + ip + ", remarks=" + remarks + ", nickname=" + nickname + "]";
 	}
+
+	
 
    
    
