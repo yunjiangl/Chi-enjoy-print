@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.exqoo.mapper.SysAreasOfExpertiseMapper">
-  <resultMap id="BaseResultMap" type="com.exqoo.entity.SysAreasOfExpertise">
-    <id column="areas_of_expertise_id" jdbcType="BIGINT" property="areasOfExpertiseId" />
-    <result column="areas_of_expertise_name" jdbcType="VARCHAR" property="areasOfExpertiseName" />
-  </resultMap>
-  
-</mapper>
