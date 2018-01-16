@@ -103,7 +103,7 @@ var vm = new Vue({
 			    dataType: "json",
 			    success: function(result){
 					if(result.code == 0){//登录成功
-						parent.location.href = '/index';
+						parent.location.href = '/sys/manage/index';
 					}else{
 						vm.error = true;
 						vm.errorMsg = result.msg;

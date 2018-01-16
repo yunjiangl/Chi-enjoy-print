@@ -7,8 +7,14 @@ import java.util.Set;
 import com.exqoo.entity.SysUser;
 
 /**
- * 系统用户
  * 
+ * @ClassName:  SysUserService   
+ * @Description:TODO(这里用一句话描述这个类的作用)   
+ * @author: 郭晓朋 
+ * @date:   2018年1月16日 上午11:30:40   
+ *     
+ * @Copyright: 2018 
+ *
  */
 public interface SysUserService {
 

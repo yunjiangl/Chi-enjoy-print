@@ -1,36 +1,47 @@
 /*
-添加用户组和修改用户组
+娣诲姞鐢ㄦ埛缁勫拰淇敼鐢ㄦ埛缁�
  */
-.saveuser,.updateuser{
+ .saveuser{
 	width: 80%;
 	display: none;
 	margin: auto;
 }
-.saveuser input{
+.updateuser{
+	width: 35%;
+	margin: 80px auto;
+}
+.updateuser tt{
+	margin-left: 37%;
+}
+
+.saveuser,.updateuser input{
 	width: 320px;
 	height: 35px;
 	float: right;
 	margin: 0 0 26px 0;
 }
-.saveuser .layui-input-inline{
+.saveuser,.updateuser .layui-input-inline{
 	width: 320px;
 	height: 35px;
 	float: right;
 	display: inline;
 	margin: 0 0 30px 0;
 }
-.saveuser font{
+.saveuser,.updateuser font{
 	float: left;
 	font-size: 22px;
 }
-.saveuser .ft{
+.saveuser,.updateuser .ft{
 	margin: 35px 0 0 65px;
 }
-.saveuser tt{
-	margin-left: 15%;
+.saveuser,.updateuser tt{
+	margin-left: 35%;
+}
+.saveuser,.updateuser tt a{
+	margin-right: 10px;
 }
 /*
-设置权限
+璁剧疆鏉冮檺
  */
 .select{
 	padding: 30px;
