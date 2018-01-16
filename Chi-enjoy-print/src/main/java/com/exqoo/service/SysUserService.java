@@ -77,4 +77,8 @@ public interface SysUserService {
 	 * 律师组禁用功能
 	 */
 	Integer updateLawyerUser(Long userId);
+	/**
+	 * 通过昵称查找数据
+	 */
+	List<SysUser> selectNikeNameUser(String nikeName);
 }
