@@ -15,7 +15,7 @@ public class ManagePageController {
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "login";
+		return "manage/login";
 	}
 
 	/**
