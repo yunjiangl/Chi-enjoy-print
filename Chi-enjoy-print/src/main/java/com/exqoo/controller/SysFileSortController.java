@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,12 +29,10 @@ public class SysFileSortController {
 	 * @return
 	 */
 	@RequestMapping("/select")
-	public String load(){
+	public String load(Model model){
 		List<SysFileSort> list=sysFileSortService.selectAll();
-		for (SysFileSort sysFileSort : list) {
-			System.out.println(sysFileSort.getSortName());
-		}
-		return null;
+		model.addAttribute("list", list);
+		return "manage/Classification";
 	}
 	
 
@@ -75,7 +74,5 @@ public class SysFileSortController {
 		int a =sysFileSortService.update(sysFileSort);
 		return "forward:/index";
 	}
-	
-	
 	
 }

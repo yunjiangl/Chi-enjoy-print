@@ -52,10 +52,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="/sys/manage/classification">
+                        <a _href="/fileSort/select">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>分类管理</cite>
-                            
+                            <cite>分类管理</cite>   
                         </a>
                     </li >
                     <li>

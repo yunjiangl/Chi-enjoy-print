@@ -68,4 +68,9 @@ public interface SysUserService {
 	 * @Param email 邮箱
 	 */
 	int updatePasswordAndEmail(Long userId, String password, String newPassword, String email);
+	
+	/**
+	 * 查询律师组数据
+	 */
+	List<SysUser> selectUserLawyerById(Long roleId);
 }
