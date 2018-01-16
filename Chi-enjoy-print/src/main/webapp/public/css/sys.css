@@ -1,0 +1,62 @@
+/*
+添加用户组和修改用户组
+ */
+.saveuser,.updateuser{
+	width: 80%;
+	display: none;
+	margin: auto;
+}
+.saveuser input{
+	width: 320px;
+	height: 35px;
+	float: right;
+	margin: 0 0 26px 0;
+}
+.saveuser .layui-input-inline{
+	width: 320px;
+	height: 35px;
+	float: right;
+	display: inline;
+	margin: 0 0 30px 0;
+}
+.saveuser font{
+	float: left;
+	font-size: 22px;
+}
+.saveuser .ft{
+	margin: 35px 0 0 65px;
+}
+.saveuser tt{
+	margin-left: 15%;
+}
+/*
+设置权限
+ */
+.select{
+	padding: 30px;
+}
+.select h4{
+	font-size: 18px;
+}
+.select .content ul li{
+	float: left;
+	width: 32%;
+}
+.select .content ul li h4{
+	float: left;
+	margin: 15px 20px 0 0;
+}
+.select .content ul li .file,.device,.user-manage,.Order{
+	float: left;
+	font-size: 16px;
+}
+.select .content ul li input{
+	margin: 20px 10px 0 0px;
+}
+.bto-btn{
+	margin-top: 30px;
+	text-align: center;
+}
+.bto-btn a{
+	margin-right: 30px;
+}
