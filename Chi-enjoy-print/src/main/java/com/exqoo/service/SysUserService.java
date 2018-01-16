@@ -73,4 +73,8 @@ public interface SysUserService {
 	 * 查询律师组数据
 	 */
 	List<SysUser> selectUserLawyerById(Long roleId);
+	/**
+	 * 律师组禁用功能
+	 */
+	Integer updateLawyerUser(Long userId);
 }

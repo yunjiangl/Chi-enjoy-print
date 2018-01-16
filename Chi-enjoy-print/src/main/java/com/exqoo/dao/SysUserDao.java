@@ -12,7 +12,11 @@ import tk.mybatis.mapper.common.Mapper;
 public interface SysUserDao extends Mapper<SysUser> {
 		
 	/**
-	 * 查询律师组数据
+	 * 查询管理组数据
 	 */
 	List<SysUser> selectUserLawyerById(Long roleId);
+	/**
+	 * 禁用功能
+	 */
+	Integer updateLawyerUser(Long userId);
 }

@@ -60,4 +60,8 @@
 	sys_role.role_id = sys_user_role.role_id AND
 	sys_role.role_id=#{roleId}
 	</select>
+	
+	<update id="updateLawyerUser">
+		update sys_user set status='0' where user_id=#{userId}
+	</update>
 </mapper>

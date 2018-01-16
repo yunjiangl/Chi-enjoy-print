@@ -27,12 +27,34 @@ public class SysRoleServiceImpl implements SysRoleService {
 	}
 
 	/**
-	 * 查询用户组管理数据
+	 * 单行查询
 	 */
 
 	@Override
 	public SysRole selectRoleById(Long roleId) {
 		return sysRoleDao.selectByPrimaryKey(roleId);
 	}
+	/**
+	 * 添加用户组
+	 */
+
+	@Override
+	public Integer insertRoll(SysRole sysRole) {
+		// TODO Auto-generated method stub
+		return sysRoleDao.insert(sysRole);
+	}
+	
+	/**
+	 * 修改数据
+	 */
+	@Override
+	public Integer updateRole(SysRole sysRole) {
+		// TODO Auto-generated method stub
+		return sysRoleDao.updateByPrimaryKey(sysRole);
+	}
+	
+	
+	
+	
 
 }

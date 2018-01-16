@@ -16,7 +16,15 @@ public interface SysRoleService {
 	List<SysRole> selectRoleAll();
 
 	/**
-	 * 查询用户组管理数据
+	 * 单行查询
 	 */
 	SysRole selectRoleById(Long roleId);
+	/**
+	 * 添加用户组
+	 */
+	Integer insertRoll(SysRole sysRole);
+	/**
+	 * 修改数据
+	 */
+	Integer updateRole(SysRole sysRole);
 }
