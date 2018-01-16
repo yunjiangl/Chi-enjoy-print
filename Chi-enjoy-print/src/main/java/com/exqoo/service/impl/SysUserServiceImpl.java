@@ -132,6 +132,17 @@ public class SysUserServiceImpl implements SysUserService {
 		// TODO Auto-generated method stub
 		return sysUserDao.updateLawyerUser(userId);
 	}
+	/**
+	 * 通过昵称查找数据
+	 */
+
+	@Override
+	public List<SysUser> selectNikeNameUser(String nikeName) {
+		SysUser user = new SysUser();
+		user.setNickname(nikeName);
+		return sysUserDao.select(user);
+	}
+	
 	
 	
 
