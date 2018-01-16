@@ -8,6 +8,8 @@ package com.exqoo.service;
  * @date 2018年1月16日 上午10:55:53
  *
  */
-public interface SysDevice {
+public interface SysDeviceService {
 
+	public String add(SysDevice);
+	
 }
