@@ -38,6 +38,17 @@ spring:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss   
 
+#redis
+  redis:
+    host: 119.29.27.129
+    password: admin
+    port: 6379
+    pool:
+      max-idle: 8
+      min-idle: 0
+      max-active: 8
+      max-wait: -1
+    timeout: 0
 #日志
 logging:
   config: classpath:logback-spring.xml
