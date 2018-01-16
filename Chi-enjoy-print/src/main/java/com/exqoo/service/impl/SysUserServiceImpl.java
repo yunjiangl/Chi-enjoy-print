@@ -123,6 +123,16 @@ public class SysUserServiceImpl implements SysUserService {
 		// TODO Auto-generated method stub
 		return sysUserDao.selectUserLawyerById(roleId);
 	}
+	/**
+	 * 律师组禁用功能
+	 */
+
+	@Override
+	public Integer updateLawyerUser(Long userId) {
+		// TODO Auto-generated method stub
+		return sysUserDao.updateLawyerUser(userId);
+	}
+	
 	
 
 }
