@@ -7,6 +7,20 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
-  
+  <select id="selectDim" resultType="com.exqoo.entity.SysRole">
+  		select * from sys_role where 1=1
+  		<if test="#{roleName} != null">
+			 AND role_name like #{roleName} 
+		</if>
+		<if test="#{status} != null">
+			 AND status like #{status} 
+		</if>
+		<if test="#{roleName} != null">
+			 AND role_name like #{roleName} 
+		</if>
+		<if test="#{time1}!=null and #{time2}!=null">
+			 AND create_time BETWEEN #{time1} and #{time2}
+		</if>
+  </select>
   
 </mapper>

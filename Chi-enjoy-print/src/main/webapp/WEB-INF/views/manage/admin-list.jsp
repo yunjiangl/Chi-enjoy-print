@@ -74,9 +74,9 @@
 					<td>禁用</td>
 					</c:if>
 					<td>${rl.createTime }</td>
-					<td><a href="user-power.html" class="layui-btn">设置权限</a></td>
+					<td><a href="/sys/jurisdiction" class="layui-btn">设置权限</a></td>
 					<td>
-						<a href="/sys/updateUser?roleId=${rl.roleId }" class="layui-btn modify">修改</a>
+						<a href="/sys/updateRole?roleId=${rl.roleId }" class="layui-btn modify">修改</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -94,7 +94,7 @@
 
 	<!-- 添加用户  -->
 	<!-- saveuser start -->
-	<div class="saveuser">
+	<div class="saveuser" style="display: none;">
 		<form action="/sys/insertRole" method="get">
 			<font>用户组名称：</font><input type="" name="roleName" class="layui-input"><br>
 			<font class="ft">状态：</font>

@@ -78,13 +78,39 @@ public class SysRoleController {
 	 * 修改数据
 	 */
 	@RequestMapping(value="/sys/updateRole")
-	public String updateRole() {
+	public String updateRole(Model model,@RequestParam("roleId") Long roleId) {
+		SysRole sysRole=sysRoleService.selectRoleById(roleId);
+		model.addAttribute("sysRole", sysRole);
+		//SysRole sysRole=new SysRole();
+		//sysRole.setRoleId(6L);
+		//sysRole.setRoleName("hello1");
+		//sysRole.setStatus((byte) 1);
+		//sysRole.setCreateTime(new Date());
+		//sysRoleService.updateRole(sysRole);
+		return "/manage/updateUser";
+	}
+	@RequestMapping(value="/sys/updateData")
+	public String updateData(Model model,@RequestParam("roleId") Long roleId,
+										 @RequestParam("roleName") String roleName,
+										 @RequestParam("status") Byte status,
+										 @RequestParam("createTime") Date createTime) {
+		
 		SysRole sysRole=new SysRole();
-		sysRole.setRoleId(6L);
-		sysRole.setRoleName("hello1");
-		sysRole.setStatus((byte) 1);
-		sysRole.setCreateTime(new Date());
+		sysRole.setRoleId(roleId);
+		sysRole.setRoleName(roleName);
+		sysRole.setStatus(status);
+		sysRole.setCreateTime(createTime);
 		sysRoleService.updateRole(sysRole);
-		return null;
+		List<SysRole> list=sysRoleService.selectRoleAll();
+		model.addAttribute("RoleList", list);
+		return "/manage/admin-list";
+	}
+	/**
+	 * 跳转设置权限
+	 */
+	@RequestMapping(value="/sys/jurisdiction")
+	public String jurisdiction() {
+		
+		return "/manage/user-power";
 	}
 }

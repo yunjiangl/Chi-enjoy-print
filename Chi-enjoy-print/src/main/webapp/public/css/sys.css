@@ -2,12 +2,12 @@
 娣诲姞鐢ㄦ埛缁勫拰淇敼鐢ㄦ埛缁�
  */
  .saveuser{
-	width: 80%;
+	width: 100%;
 	display: none;
 	margin: auto;
 }
 .updateuser{
-	width: 35%;
+	width: 500px;
 	margin: 80px auto;
 }
 .updateuser tt{

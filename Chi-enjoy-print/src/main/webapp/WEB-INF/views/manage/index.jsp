@@ -153,7 +153,7 @@
                         </a>
                     </li >
                     <li>
-                        <a _href="admin-rule.html">
+                        <a _href="/sys/selectUserLawyerById">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>律师用户管理</cite>
                         </a>
