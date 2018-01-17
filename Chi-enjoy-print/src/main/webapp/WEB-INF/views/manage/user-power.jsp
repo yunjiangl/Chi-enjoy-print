@@ -86,7 +86,7 @@
 			</ul>
 			<div style="clear: both;"></div>
 			<div class="bto-btn">
-				<a href="admin-list.html" class="layui-btn">返回</a>
+				<a href="/sys/selectRoleAll" class="layui-btn">返回</a>
 				<button type="submit" class="layui-btn">保存</button>
 			</div>
 		</form>	

@@ -17,7 +17,16 @@ import com.exqoo.dao.SysUserDao;
 import com.exqoo.entity.SysRealm;
 import com.exqoo.entity.SysUser;
 import com.exqoo.service.SysUserService;
-
+/**
+ * 
+ * @ClassName:  SysUserServiceImpl   
+ * @Description:TODO(这里用一句话描述这个类的作用)   
+ * @author: 郭晓朋 
+ * @date:   2018年1月16日 上午11:30:28   
+ *     
+ * @Copyright: 2018 
+ *
+ */
 @Service
 public class SysUserServiceImpl implements SysUserService {
 

@@ -129,7 +129,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="admin-list.html">
+                        <a _href="/sys/selectRoleAll">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>用户组管理</citie>
                         </a>
@@ -153,7 +153,7 @@
                         </a>
                     </li >
                     <li>
-                        <a _href="admin-rule.html">
+                        <a _href="/sys/selectUserLawyerById">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>律师用户管理</cite>
                         </a>
