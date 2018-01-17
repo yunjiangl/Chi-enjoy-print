@@ -1,5 +1,10 @@
 package com.exqoo.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.exqoo.entity.SysDevice;
+
 /**
  * 
  * @ClassName: SysDevice
@@ -10,6 +15,20 @@ package com.exqoo.service;
  */
 public interface SysDeviceService {
 
-	public String add(SysDevice);
-	
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加设备信息
+	 * @Param sysDevice
+	 * @Param nickName
+	 */
+	public int add(SysDevice sysDevice, String nickName);
+
+	/**
+	 * 
+	 * @Title: list
+	 * @Description: 设备列表
+	 */
+	public List list(Map<String, Object> map);
+
 }

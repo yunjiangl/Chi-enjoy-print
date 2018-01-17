@@ -53,7 +53,7 @@ public class SysLogAspect {
 		
 		//请求的参数
 		Object[] args = joinPoint.getArgs();
-		String params = JSON.toJSONString(args[0]);
+		String params = JSON.toJSONString(args);
 		sysLog.setParams(params);
 		
 		//获取request

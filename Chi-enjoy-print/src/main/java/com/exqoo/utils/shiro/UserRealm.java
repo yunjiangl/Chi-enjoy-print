@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.exqoo.entity.SysUser;
 import com.exqoo.service.SysUserService;
+import com.exqoo.utils.annotation.SysLog;
 
 /**
  * 认证
@@ -33,7 +34,9 @@ public class UserRealm extends AuthorizingRealm {
 	 * 授权(验证权限时调用)
 	 */
 	@Override
+	@SysLog
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		System.out.println("权限认证方法：MyShiroRealm.doGetAuthorizationInfo()");
 		SysUser user = (SysUser) principals.getPrimaryPrincipal();
 		Long userId = user.getUserId();
 
