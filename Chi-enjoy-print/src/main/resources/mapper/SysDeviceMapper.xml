@@ -66,7 +66,49 @@
 				order by ${sidx} ${order}
 			</when>
 			<otherwise>
-				order by user_id desc
+				order by sys_device.device_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="selectTotal" resultType="int">
+		SELECT count(*) FROM
+		sys_device
+		LEFT JOIN sys_user_dev
+		ON
+		sys_user_dev.device_id = sys_device.device_id
+		LEFT JOIN sys_user ON
+		sys_user_dev.user_id = sys_user.user_id
+		<where>
+			<if test="deviceCode != null and deviceCode.trim() != ''">
+				and a.device_code like
+				concat('%',#{deviceCode},'%')
+			</if>
+			<if test="nickName != null and nickName.trim() != ''">
+				and c.nickName like concat('%',#{nickName},'%')
+			</if>
+			<if test="deviceAddress != null and deviceAddress.trim() != ''">
+				and a.device_address like
+				concat('%',#{deviceAddress},'%')
+			</if>
+			<if test="status != null and status.trim() != ''">
+				and a.'status' like
+				concat('%',#{status},'%')
+			</if>
+			<if test="startTime != null and endTime != null">
+				and a.'creaDate' between #{startTime} and
+				#{endTime}
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by sys_device.device_id desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">

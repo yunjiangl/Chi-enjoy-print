@@ -22,4 +22,6 @@ public interface SysDeviceDao extends Mapper<SysDevice>{
 	
 	List<SysDevice> queryList(Map<String, Object> map);
 
+	int selectTotal(Map<String, Object> params);
+
 }

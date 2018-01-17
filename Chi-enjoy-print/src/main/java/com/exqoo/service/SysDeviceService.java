@@ -17,7 +17,7 @@ public interface SysDeviceService {
 
 	/**
 	 * 
-	 * @Title: add
+	 * @Title: add 返回0代表失败，返回1代表成功
 	 * @Description: 添加设备信息
 	 * @Param sysDevice
 	 * @Param nickName
@@ -29,6 +29,14 @@ public interface SysDeviceService {
 	 * @Title: list
 	 * @Description: 设备列表
 	 */
-	public List list(Map<String, Object> map);
+	public List<SysDevice> list(Map<String, Object> map);
+	
+	/**
+	 * 
+	* @param params 
+	 * @Title: queryTotal 
+	* @Description: 查询数据总数
+	 */
+	public int queryTotal(Map<String, Object> params);
 
 }
