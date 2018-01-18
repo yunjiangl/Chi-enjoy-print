@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.exqoo.entity.SysUser;
 import com.exqoo.service.SysUserService;
@@ -48,9 +49,10 @@ public class SysUserController {
 	 * 查询后台组数据
 	 */
 	@RequestMapping(value="/sys/selectUserBackStageById",method=RequestMethod.GET)
-	public String selectUserBackStageById() {
+	public String selectUserBackStageById(@RequestParam("userId") Long userId) {
+		System.out.println(userId);
 		//需要传入参数
-		List<SysUser> list=sysUserService.selectUserLawyerById(3L);
+		//List<SysUser> list=sysUserService.selectUserLawyerById(3L);
 		
 		return null;
 	}
