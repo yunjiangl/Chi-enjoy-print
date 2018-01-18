@@ -1,5 +1,8 @@
 package com.exqoo.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.exqoo.entity.SysDevice;
@@ -16,5 +19,9 @@ import tk.mybatis.mapper.common.Mapper;
  */
 @Repository
 public interface SysDeviceDao extends Mapper<SysDevice>{
+	
+	List<SysDevice> queryList(Map<String, Object> map);
+
+	int selectTotal(Map<String, Object> params);
 
 }

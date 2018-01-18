@@ -1,183 +1,236 @@
 package com.exqoo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 
 /**
- * @author 
+ * @author
  */
 @Table(name = "sys_device")
 public class SysDevice implements Serializable {
 	@Id
 	@GeneratedValue(generator = "JDBC")
 	@Column(name = "device_id")
-    private Long deviceId;
+	private Long deviceId;
 
-    /**
-     * 设备编号
-     */
+	/**
+	 * 设备编号
+	 */
 	@Column(name = "device_code")
-    private String deviceCode;
+	private String deviceCode;
 
-    /**
-     * 设备地址
-     */
+	/**
+	 * 设备地址
+	 */
 	@Column(name = "device_address")
-    private String deviceAddress;
+	private String deviceAddress;
 
-    /**
-     * 设备详细地址
-     */
+	/**
+	 * 设备详细地址
+	 */
 	@Column(name = "device_detailed_address")
-    private String deviceDetailedAddress;
+	private String deviceDetailedAddress;
 
-    /**
-     * 线下管理员
-     */
+	/**
+	 * 线下管理员
+	 */
 	@Column(name = "offline_admin")
-    private String offlineAdmin;
+	private String offlineAdmin;
 
-    /**
-     * 线下管理员联系电话
-     */
+	/**
+	 * 线下管理员联系电话
+	 */
 	@Column(name = "admin_phone_num")
-    private String adminPhoneNum;
+	private String adminPhoneNum;
 
-    /**
-     * 设备状态
-     */
+	/**
+	 * 设备状态
+	 */
 	@Column(name = "status")
-    private Byte status;
+	private Byte status;
 
-    /**
-     * 设备的位置
-     */
+	/**
+	 * 设备的位置
+	 */
 	@Column(name = "position")
-    private String position;
+	private String position;
 
-    private static final long serialVersionUID = 1L;
+	@Column(name = "create_date")
+	private Date createDate;
+	
+	@Transient
+	private SysUser sysUser;
+	
+	public SysUser getSysUser() {
+		return sysUser;
+	}
 
-    public Long getDeviceId() {
-        return deviceId;
-    }
+	public void setSysUser(SysUser sysUser) {
+		this.sysUser = sysUser;
+	}
 
-    public void setDeviceId(Long deviceId) {
-        this.deviceId = deviceId;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public String getDeviceCode() {
-        return deviceCode;
-    }
+	public Long getDeviceId() {
+		return deviceId;
+	}
 
-    public void setDeviceCode(String deviceCode) {
-        this.deviceCode = deviceCode;
-    }
+	public void setDeviceId(Long deviceId) {
+		this.deviceId = deviceId;
+	}
 
-    public String getDeviceAddress() {
-        return deviceAddress;
-    }
+	public String getDeviceCode() {
+		return deviceCode;
+	}
 
-    public void setDeviceAddress(String deviceAddress) {
-        this.deviceAddress = deviceAddress;
-    }
+	public void setDeviceCode(String deviceCode) {
+		this.deviceCode = deviceCode;
+	}
 
-    public String getDeviceDetailedAddress() {
-        return deviceDetailedAddress;
-    }
+	public String getDeviceAddress() {
+		return deviceAddress;
+	}
 
-    public void setDeviceDetailedAddress(String deviceDetailedAddress) {
-        this.deviceDetailedAddress = deviceDetailedAddress;
-    }
+	public void setDeviceAddress(String deviceAddress) {
+		this.deviceAddress = deviceAddress;
+	}
 
-    public String getOfflineAdmin() {
-        return offlineAdmin;
-    }
+	public String getDeviceDetailedAddress() {
+		return deviceDetailedAddress;
+	}
 
-    public void setOfflineAdmin(String offlineAdmin) {
-        this.offlineAdmin = offlineAdmin;
-    }
+	public void setDeviceDetailedAddress(String deviceDetailedAddress) {
+		this.deviceDetailedAddress = deviceDetailedAddress;
+	}
 
-    public String getAdminPhoneNum() {
-        return adminPhoneNum;
-    }
+	public String getOfflineAdmin() {
+		return offlineAdmin;
+	}
 
-    public void setAdminPhoneNum(String adminPhoneNum) {
-        this.adminPhoneNum = adminPhoneNum;
-    }
+	public void setOfflineAdmin(String offlineAdmin) {
+		this.offlineAdmin = offlineAdmin;
+	}
 
-    public Byte getStatus() {
-        return status;
-    }
+	public String getAdminPhoneNum() {
+		return adminPhoneNum;
+	}
 
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
+	public void setAdminPhoneNum(String adminPhoneNum) {
+		this.adminPhoneNum = adminPhoneNum;
+	}
 
-    public String getPosition() {
-        return position;
-    }
+	public Byte getStatus() {
+		return status;
+	}
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        SysDevice other = (SysDevice) that;
-        return (this.getDeviceId() == null ? other.getDeviceId() == null : this.getDeviceId().equals(other.getDeviceId()))
-            && (this.getDeviceCode() == null ? other.getDeviceCode() == null : this.getDeviceCode().equals(other.getDeviceCode()))
-            && (this.getDeviceAddress() == null ? other.getDeviceAddress() == null : this.getDeviceAddress().equals(other.getDeviceAddress()))
-            && (this.getDeviceDetailedAddress() == null ? other.getDeviceDetailedAddress() == null : this.getDeviceDetailedAddress().equals(other.getDeviceDetailedAddress()))
-            && (this.getOfflineAdmin() == null ? other.getOfflineAdmin() == null : this.getOfflineAdmin().equals(other.getOfflineAdmin()))
-            && (this.getAdminPhoneNum() == null ? other.getAdminPhoneNum() == null : this.getAdminPhoneNum().equals(other.getAdminPhoneNum()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getPosition() == null ? other.getPosition() == null : this.getPosition().equals(other.getPosition()));
-    }
+	public String getPosition() {
+		return position;
+	}
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
-        result = prime * result + ((getDeviceCode() == null) ? 0 : getDeviceCode().hashCode());
-        result = prime * result + ((getDeviceAddress() == null) ? 0 : getDeviceAddress().hashCode());
-        result = prime * result + ((getDeviceDetailedAddress() == null) ? 0 : getDeviceDetailedAddress().hashCode());
-        result = prime * result + ((getOfflineAdmin() == null) ? 0 : getOfflineAdmin().hashCode());
-        result = prime * result + ((getAdminPhoneNum() == null) ? 0 : getAdminPhoneNum().hashCode());
-        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getPosition() == null) ? 0 : getPosition().hashCode());
-        return result;
-    }
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", deviceId=").append(deviceId);
-        sb.append(", deviceCode=").append(deviceCode);
-        sb.append(", deviceAddress=").append(deviceAddress);
-        sb.append(", deviceDetailedAddress=").append(deviceDetailedAddress);
-        sb.append(", offlineAdmin=").append(offlineAdmin);
-        sb.append(", adminPhoneNum=").append(adminPhoneNum);
-        sb.append(", status=").append(status);
-        sb.append(", position=").append(position);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((adminPhoneNum == null) ? 0 : adminPhoneNum.hashCode());
+		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
+		result = prime * result + ((deviceAddress == null) ? 0 : deviceAddress.hashCode());
+		result = prime * result + ((deviceCode == null) ? 0 : deviceCode.hashCode());
+		result = prime * result + ((deviceDetailedAddress == null) ? 0 : deviceDetailedAddress.hashCode());
+		result = prime * result + ((deviceId == null) ? 0 : deviceId.hashCode());
+		result = prime * result + ((offlineAdmin == null) ? 0 : offlineAdmin.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SysDevice other = (SysDevice) obj;
+		if (adminPhoneNum == null) {
+			if (other.adminPhoneNum != null)
+				return false;
+		} else if (!adminPhoneNum.equals(other.adminPhoneNum))
+			return false;
+		if (createDate == null) {
+			if (other.createDate != null)
+				return false;
+		} else if (!createDate.equals(other.createDate))
+			return false;
+		if (deviceAddress == null) {
+			if (other.deviceAddress != null)
+				return false;
+		} else if (!deviceAddress.equals(other.deviceAddress))
+			return false;
+		if (deviceCode == null) {
+			if (other.deviceCode != null)
+				return false;
+		} else if (!deviceCode.equals(other.deviceCode))
+			return false;
+		if (deviceDetailedAddress == null) {
+			if (other.deviceDetailedAddress != null)
+				return false;
+		} else if (!deviceDetailedAddress.equals(other.deviceDetailedAddress))
+			return false;
+		if (deviceId == null) {
+			if (other.deviceId != null)
+				return false;
+		} else if (!deviceId.equals(other.deviceId))
+			return false;
+		if (offlineAdmin == null) {
+			if (other.offlineAdmin != null)
+				return false;
+		} else if (!offlineAdmin.equals(other.offlineAdmin))
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "SysDevice [deviceId=" + deviceId + ", deviceCode=" + deviceCode + ", deviceAddress=" + deviceAddress
+				+ ", deviceDetailedAddress=" + deviceDetailedAddress + ", offlineAdmin=" + offlineAdmin
+				+ ", adminPhoneNum=" + adminPhoneNum + ", status=" + status + ", position=" + position + ", createDate="
+				+ createDate + ", sysUser=" + sysUser + "]";
+	}
+
+	
+
 }

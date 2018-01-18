@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="/public/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="public/css/all-skins.min.css">
-  <link rel="stylesheet" href="public/css/main.css">
+  <link rel="stylesheet" href="/public/css/all-skins.min.css">
+  <link rel="stylesheet" href="/public/css/main.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -68,12 +68,12 @@
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-<script src="public/libs/jquery.min.js"></script>
-<script src="public/libs/vue.min.js"></script>
-<script src="public/libs/bootstrap.min.js"></script>
-<script src="public/libs/jquery.slimscroll.min.js"></script>
-<script src="public/libs/fastclick.min.js"></script>
-<script src="public/libs/app.js"></script>
+<script src="/public/libs/jquery.min.js"></script>
+<script src="/public/libs/vue.min.js"></script>
+<script src="/public/libs/bootstrap.min.js"></script>
+<script src="/public/libs/jquery.slimscroll.min.js"></script>
+<script src="/public/libs/fastclick.min.js"></script>
+<script src="/public/libs/app.js"></script>
 <script type="text/javascript">
 var vm = new Vue({
 	el:'#rrapp',

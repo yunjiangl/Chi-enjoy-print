@@ -15,6 +15,21 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/public/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/js/xadmin.js"></script>
+    
+    
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/public/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/public/plugins/jqgrid/ui.jqgrid-bootstrap.css">
+	<link rel="stylesheet" href="/public/plugins/ztree/css/metroStyle/metroStyle.css">
+	<link rel="stylesheet" href="/public/css/main.css">
+	<script src="/public/libs/jquery.min.js"></script>
+	<script src="/public/plugins/layer/layer.js"></script>
+	<script src="/public/libs/bootstrap.min.js"></script>
+	<script src="/public/libs/vue.min.js"></script>
+	<script src="/public/plugins/jqgrid/grid.locale-cn.js"></script>
+	<script src="/public/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+	<script src="/public/plugins/ztree/jquery.ztree.all.min.js"></script>
+	<script src="/public/js/common.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -51,67 +66,9 @@
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
     </xblock>
-    <table class="layui-table">
-        <thead>
-        <tr>
-            <th>
-                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-                全选
-            </th>
-            <th>ID</th>
-            <th>标题</th>
-            <th>用户名</th>
-            <th>操作</th>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-                <button class="layui-btn">删除</button>
-                <button class="layui-btn">查看</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-                <button class="layui-btn">删除</button>
-                <button class="layui-btn">查看</button>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-                <button class="layui-btn">删除</button>
-                <button class="layui-btn">查看</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
-    </div>
+    <table id="jqGrid"></table>
+	<div id="jqGridPager"></div>
+    
 
 </div>
 <script>
@@ -183,6 +140,7 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();</script>
+<script src="/public/js/deviceList.js"></script>
 </body>
 
 </html>
