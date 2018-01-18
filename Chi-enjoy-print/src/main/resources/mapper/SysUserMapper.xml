@@ -39,7 +39,7 @@
 	sys_user.create_time,
 	sys_user.remarks,
 	sys_user.opeanId,
-	sys_user.wechat,
+	sys_user.wechat,   
 	sys_user.location,
 	sys_user.working_life,
 	sys_user.org,
@@ -63,5 +63,12 @@
 	
 	<update id="updateLawyerUser">
 		update sys_user set status='0' where user_id=#{userId}
+	</update>
+	
+	<update id="updateBackstage">
+		update sys_user set username=#{username},
+		nickname=#{nickname},password=#{password},
+		email=#{email},status=#{status},remarks=#{remarks} 
+		where user_id=#{userId}
 	</update>
 </mapper>

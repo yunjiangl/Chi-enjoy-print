@@ -19,4 +19,8 @@ public interface SysUserDao extends Mapper<SysUser> {
 	 * 禁用功能
 	 */
 	Integer updateLawyerUser(Long userId);
+	/**
+	 * 用户后台数据修改
+	 */
+	Integer updateBackstage(SysUser sysUser);
 }
