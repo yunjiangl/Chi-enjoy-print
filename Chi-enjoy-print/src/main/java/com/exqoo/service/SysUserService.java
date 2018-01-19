@@ -87,4 +87,12 @@ public interface SysUserService {
 	 * 通过昵称查找数据
 	 */
 	List<SysUser> selectNikeNameUser(String nikeName);
+	/**
+	 * 单行查询后台数据
+	 */
+	SysUser selectUserById(Long userId);
+	/**
+	 * 后台数据修改
+	 */
+	Integer updateBackstage(SysUser sysUser);
 }

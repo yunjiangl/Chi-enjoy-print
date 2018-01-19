@@ -151,6 +151,26 @@ public class SysUserServiceImpl implements SysUserService {
 		user.setNickname(nikeName);
 		return sysUserDao.select(user);
 	}
+	/**
+	 * 单行查询后台数据
+	 */
+
+	@Override
+	public SysUser selectUserById(Long userId) {
+		// TODO Auto-generated method stub
+		return sysUserDao.selectByPrimaryKey(userId);
+	}
+	/**
+	 * 后台数据修改
+	 */
+
+	@Override
+	public Integer updateBackstage(SysUser sysUser) {
+		// TODO Auto-generated method stub
+		return sysUserDao.updateBackstage(sysUser);
+	}
+	
+	
 	
 	
 	
