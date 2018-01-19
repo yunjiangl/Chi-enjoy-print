@@ -3,7 +3,7 @@ package com.exqoo.controller;
 import java.util.Date;
 import java.util.List;
 
-
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +50,8 @@ public class SysRoleController {
 		SysRole sysRole=new SysRole();
 		sysRole.setRoleName(roleName);
 		sysRole.setStatus(status);
-		sysRole.setCreateTime(new Date());
+		Date time=new Date();
+		sysRole.setCreateTime(time+"");
 		sysRoleService.insertRoll(sysRole);
 		List<SysRole> list=sysRoleService.selectRoleAll();
 		model.addAttribute("RoleList", list);
@@ -93,7 +94,7 @@ public class SysRoleController {
 	public String updateData(Model model,@RequestParam("roleId") Long roleId,
 										 @RequestParam("roleName") String roleName,
 										 @RequestParam("status") Byte status,
-										 @RequestParam("createTime") Date createTime) {
+										 @RequestParam("createTime") String createTime) {
 		
 		SysRole sysRole=new SysRole();
 		sysRole.setRoleId(roleId);
@@ -112,5 +113,17 @@ public class SysRoleController {
 	public String jurisdiction() {
 		
 		return "/manage/user-power";
+	}
+	/**
+	 * 模糊查询
+	 */
+	@RequestMapping(value="/sys/selectDim")
+	public String selectDim(Model model,@Param("roleName") String roleName,
+										@Param("status") Byte status,
+										@Param("time1") String time1,
+										@Param("time2") String time2) {
+		List<SysRole> list=sysRoleService.selectDim(roleName, status, time1, time2);
+		model.addAttribute("RoleList", list);
+		return "/manage/admin-list";
 	}
 }

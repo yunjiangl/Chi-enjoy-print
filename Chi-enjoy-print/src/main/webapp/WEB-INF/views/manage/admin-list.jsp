@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>智享打印-后台管理端</title>
@@ -19,6 +18,12 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="/public/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/js/xadmin.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/demo/demo.css ">
+<script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.min.js "></script>
+<script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
@@ -35,19 +40,19 @@
 	</div>
 	<div class="x-body">
 		<div class="layui-row">
-			<form class="layui-form layui-col-md12 x-so layui-form-pane">
-				<input class="layui-input" placeholder="用户组名称" name="cate_name">
+			<form class="layui-form layui-col-md12 x-so layui-form-pane" action="/sys/selectDim">
+				<input class="layui-input" placeholder="用户组名称" name="roleName">
+				
 				<div class="layui-input-inline">
-					<select name="cateid">
-						<option>请选择状态</option>
-						<option>可用</option>
-						<option>禁用</option>
+					<select name="status">
+						<option value="1">可用</option>
+						<option value="0">禁用</option>
 					</select>
 				</div>
-				<input class="layui-input" type="date" placeholder="创建时间"
-					name="cate_name"> 至 <input class="layui-input" type="date"
-					placeholder="创建时间" name="cate_name">
-				<button class="layui-btn" lay-submit="" lay-filter="sreach">查询</button>
+				<input class="layui-input easyui-datetimebox led" placeholder="创建时间" name="time1" style="width:190px;">
+				至
+          		<input class="layui-input easyui-datetimebox led" placeholder="创建时间" name="time2" style="width:190px;" >
+				<input class="layui-btn" lay-submit=" " lay-filter="sreach" type="submit" value="查询">
 			</form>
 			<button class="layui-btn organize" onclick="groups1()">添加用户组</button>
 		</div>

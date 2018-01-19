@@ -2,6 +2,7 @@ package com.exqoo.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.exqoo.entity.SysUser;
@@ -23,4 +24,12 @@ public interface SysUserDao extends Mapper<SysUser> {
 	 * 用户后台数据修改
 	 */
 	Integer updateBackstage(SysUser sysUser);
+	/**
+	 * 后台组模糊查询
+	 */
+	List<SysUser> BackstageDim(@Param("username") String username,
+			   				   @Param("status") Byte status,
+			   				   @Param("time1") String time1,
+			   				   @Param("time2") String time2,
+			   				   @Param("roleId") Long roleId);
 }

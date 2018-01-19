@@ -169,6 +169,16 @@ public class SysUserServiceImpl implements SysUserService {
 		// TODO Auto-generated method stub
 		return sysUserDao.updateBackstage(sysUser);
 	}
+	/**
+	 * 后台数据模糊查询
+	 */
+
+	@Override
+	public List<SysUser> BackstageDim(String username, Byte status, String time1, String time2,Long roleId) {
+		// TODO Auto-generated method stub
+		return sysUserDao.BackstageDim(username, status, time1, time2, roleId);
+	}
+	
 	
 	
 	

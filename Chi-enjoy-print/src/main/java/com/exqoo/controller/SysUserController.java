@@ -2,6 +2,7 @@ package com.exqoo.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ public class SysUserController {
 
 	@Autowired
 	private SysUserService sysUserService;
+	
 	/**
 	 * 查询律师组数据
 	 * @return
@@ -101,6 +103,41 @@ public class SysUserController {
 		model.addAttribute("UserList", list);
 		return "/manage/admin-role";
 	}
+	/**
+	 * 后台组模糊查询
+	 */
+	@RequestMapping(value="/sys/BackstageDim")
+	public String BackstageDim(Model model,@RequestParam("username") String username,
+										   @RequestParam("status") Byte status,
+										   @RequestParam("time1") String time1,
+										   @RequestParam("time2") String time2) {
+		Long roleId=3L;
+		System.out.println(username);
+		System.out.println(status);
+		System.out.println(time1);
+		System.out.println(time2);
+		List<SysUser> list=sysUserService.BackstageDim(username, status, time1, time2,roleId);
+		model.addAttribute("UserList", list);
+		return "/manage/admin-role";
+	}
+	/**
+	 * 后台数据增添
+	 */
+	@RequestMapping(value="/sys/BackstageInsert")
+	public String BackstageInsert() {
+		
+		return "/manage/update-background-user";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 查询前台组数据
 	 */

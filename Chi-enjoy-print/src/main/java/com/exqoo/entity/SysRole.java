@@ -28,7 +28,7 @@ public class SysRole implements Serializable {
      * 创建时间
      */
 	@Column(name = "create_time")
-    private Date createTime;
+    private String createTime;
 
     /**
      * 状态（0：禁用 1：启用）
@@ -54,11 +54,11 @@ public class SysRole implements Serializable {
         this.roleName = roleName;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

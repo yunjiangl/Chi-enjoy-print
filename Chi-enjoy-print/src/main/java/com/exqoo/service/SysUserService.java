@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 import com.exqoo.entity.SysUser;
 
 /**
@@ -95,4 +96,8 @@ public interface SysUserService {
 	 * 后台数据修改
 	 */
 	Integer updateBackstage(SysUser sysUser);
+	/**
+	 * 后台数据模糊查询
+	 */
+	List<SysUser> BackstageDim(String username,Byte status,String time1,String time2,Long roleId);
 }

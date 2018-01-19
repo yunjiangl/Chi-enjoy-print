@@ -1,5 +1,6 @@
 package com.exqoo.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -51,6 +52,15 @@ public class SysRoleServiceImpl implements SysRoleService {
 	public Integer updateRole(SysRole sysRole) {
 		// TODO Auto-generated method stub
 		return sysRoleDao.updateByPrimaryKey(sysRole);
+	}
+	/**
+	 * 模糊查询
+	 */
+
+	@Override
+	public List<SysRole> selectDim(String roleName, Byte status, String time1, String time2) {
+		// TODO Auto-generated method stub
+		return sysRoleDao.selectDim(roleName, status, time1, time2);
 	}
 	
 	
