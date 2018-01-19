@@ -1,0 +1,41 @@
+.ui-jqgrid {
+	font-size: 16px;
+}
+
+.ui-jqgrid-view {
+	font-size: 16px;
+}
+
+.address {
+	height: 20px;	
+}
+
+.ui-jqgrid .ui-jqgrid-htable th {
+	height: 28px;
+	font-size: 16px;
+	text-align: center;
+}
+
+.ui-th-ltr {
+	font-size: 16px;
+}
+
+.ui-jqgrid .ui-jqgrid-pager {
+	height: 28px;
+	font-size: 16px;
+}
+
+.ui-jqgrid .ui-pg-input {
+	font-size: 16px;
+	height: 20px;
+}
+
+.ui-jqgrid .i-pg-selbox {
+	font-size: 16px;
+	height: 20px;
+}
+
+.ui-jqgrid tr.ui-row-ltr td {
+	text-align: center;
+	font-size: 16px;
+}

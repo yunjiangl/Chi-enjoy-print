@@ -7,13 +7,13 @@ import com.exqoo.utils.ShiroUtils;
 import com.exqoo.utils.annotation.SysLog;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +50,8 @@ public class SysLogAspect {
 
 		}
 
+		logger.info("请求的时间：" + new Date());
+
 		// 请求的方法名
 		String className = joinPoint.getTarget().getClass().getName();
 		String methodName = signature.getName();
@@ -72,4 +74,8 @@ public class SysLogAspect {
 		sysLog.setCreateDate(new Date());
 	}
 
+	@After("logPointCut()")
+	public void afterLog() {
+		logger.info("请求结束");
+	}
 }

@@ -23,23 +23,24 @@
 	<select id="queryList" resultType="com.exqoo.entity.SysDevice"
 		resultMap="BaseResultMap">
 		SELECT
-		sys_device.device_id,
-		sys_device.device_code,
-		sys_device.device_address,
-		sys_device.device_detailed_address,
-		sys_device.offline_admin,
-		sys_device.admin_phone_num,
-		sys_device.`status`,
-		sys_device.position,
-		sys_device.create_date,
-		sys_user.user_id,
-		sys_user.nickname
+		a.device_id,
+		a.device_code,
+		a.device_address,
+		a.device_detailed_address,
+		a.offline_admin,
+		a.admin_phone_num,
+		a.`status`,
+		a.position,
+		a.create_date,
+		c.user_id,
+		c.nickname
 		FROM
-		sys_device
+		sys_device AS a
 		LEFT JOIN sys_user_dev
-		ON sys_user_dev.device_id = sys_device.device_id
-		LEFT JOIN sys_user ON
-		sys_user_dev.user_id = sys_user.user_id
+		ON sys_user_dev.device_id =
+		a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
 		<where>
 			<if test="deviceCode != null and deviceCode.trim() != ''">
 				and a.device_code like
@@ -49,14 +50,14 @@
 				and c.nickName like concat('%',#{nickName},'%')
 			</if>
 			<if test="deviceAddress != null and deviceAddress.trim() != ''">
-				and a.device_address like
+				and a.device_detailed_address like
 				concat('%',#{deviceAddress},'%')
 			</if>
 			<if test="status != null and status.trim() != ''">
-				and a.'status' like
-				concat('%',#{status},'%')
+				and a.`status` = #{status}
 			</if>
-			<if test="startTime != null and endTime != null">
+			<if
+				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">
 				and a.'creaDate' between #{startTime} and
 				#{endTime}
 			</if>
@@ -66,7 +67,7 @@
 				order by ${sidx} ${order}
 			</when>
 			<otherwise>
-				order by sys_device.device_id desc
+				order by a.device_id desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
@@ -76,12 +77,12 @@
 
 	<select id="selectTotal" resultType="int">
 		SELECT count(*) FROM
-		sys_device
+		sys_device AS a
 		LEFT JOIN sys_user_dev
 		ON
-		sys_user_dev.device_id = sys_device.device_id
-		LEFT JOIN sys_user ON
-		sys_user_dev.user_id = sys_user.user_id
+		sys_user_dev.device_id = a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
 		<where>
 			<if test="deviceCode != null and deviceCode.trim() != ''">
 				and a.device_code like
@@ -91,14 +92,14 @@
 				and c.nickName like concat('%',#{nickName},'%')
 			</if>
 			<if test="deviceAddress != null and deviceAddress.trim() != ''">
-				and a.device_address like
+				and a.device_detailed_address like
 				concat('%',#{deviceAddress},'%')
 			</if>
 			<if test="status != null and status.trim() != ''">
-				and a.'status' like
-				concat('%',#{status},'%')
+				and a.`status` = #{status}
 			</if>
-			<if test="startTime != null and endTime != null">
+			<if
+				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">
 				and a.'creaDate' between #{startTime} and
 				#{endTime}
 			</if>
@@ -108,12 +109,60 @@
 				order by ${sidx} ${order}
 			</when>
 			<otherwise>
-				order by sys_device.device_id desc
+				order by a.device_id desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
+	</select>
+
+	<select id="selectByDeviceHsot" resultType="com.exqoo.entity.SysDevice"
+		resultMap="BaseResultMap">
+		SELECT
+		a.device_id,
+		a.device_code,
+		a.device_address,
+		a.device_detailed_address,
+		a.offline_admin,
+		a.admin_phone_num,
+		a.`status`,
+		a.position,
+		a.create_date,
+		c.user_id,
+		c.nickname
+		FROM
+		sys_device AS a
+		LEFT JOIN sys_user_dev
+		ON sys_user_dev.device_id =
+		a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
+		WHERE c.nickname = #{deviceHost}
+	</select>
+	
+	<select id="selectBysysDeviceDao" resultType="com.exqoo.entity.SysDevice"
+		resultMap="BaseResultMap">
+		SELECT
+		a.device_id,
+		a.device_code,
+		a.device_address,
+		a.device_detailed_address,
+		a.offline_admin,
+		a.admin_phone_num,
+		a.`status`,
+		a.position,
+		a.create_date,
+		c.user_id,
+		c.nickname
+		FROM
+		sys_device AS a
+		LEFT JOIN sys_user_dev
+		ON sys_user_dev.device_id =
+		a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
+		WHERE a.device_id = #{deviceId}
 	</select>
 
 </mapper>

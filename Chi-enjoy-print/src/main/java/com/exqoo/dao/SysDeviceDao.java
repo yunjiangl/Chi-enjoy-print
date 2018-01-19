@@ -24,4 +24,8 @@ public interface SysDeviceDao extends Mapper<SysDevice>{
 
 	int selectTotal(Map<String, Object> params);
 
+	SysDevice selectByDeviceHsot(String deviceHost);
+
+	SysDevice selectBysysDeviceDao(Long deviceId);
+
 }

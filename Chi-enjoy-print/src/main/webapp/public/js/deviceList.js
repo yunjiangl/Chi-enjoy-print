@@ -1,4 +1,5 @@
 $(function() {
+
 	$("#jqGrid")
 			.jqGrid(
 					{
@@ -8,44 +9,53 @@ $(function() {
 								{
 									label : '设备ID',
 									name : 'deviceId',
-									index : "device_id",
+									index : "a.device_id",
 									width : 45,
 									key : true
 								},
 								{
 									label : '设备编码',
 									name : 'deviceCode',
-									index : "device_code",
+									index : "a.device_code",
 									width : 75
 								},
 								{
 									label : '设备物主',
-									name : 'sysuser.nickname',
-									index : "nickname",
+									name : 'sysUser.nickname',
+									index : "a.nickname",
 									width : 75
 								},
 								{
 									label : '审核状态',
 									name : 'status',
-									index : "status",
+									index : "a.status",
 									width : 75,
 									formatter : function(value, options, row) {
-										return value === 0 ? '<span class="label label-danger">禁用</span>'
-												: '<span class="label label-success">通过</span>';
+										return value === 1 ? '通过' : '禁用';
 									}
-								}, {
+								},
+								{
 									label : '设备地址',
 									name : 'deviceDetailedAddress',
-									index : "device_detailed_address",
+									index : "a.device_detailed_address",
 									width : 75
-								}, {
+								},
+								{
 									label : '添加时间',
 									name : 'createDate',
-									index : "create_date",
+									index : "a.create_date",
 									width : 75
+								},
+								{
+									label : '操作',
+									width : 75,
+									formatter : function(options, row) {
+										return '<button class="layui-btn">禁用</span>'
+												+ '<button class="layui-btn">审核</span>';
+									}
 								} ],
 						viewrecords : true,
-						height : 385,
+						height : "80%",
 						rowNum : 10,
 						rowList : [ 10, 30, 50 ],
 						rownumbers : true,
@@ -74,60 +84,39 @@ $(function() {
 });
 
 var vm = new Vue({
-	el : '#rrapp',
+	el : '.rrapp',
 	data : {
 		q : {
-			fileName : null
+			deviceCode : null,
+			nickname : null,
+			deviceDetailedAddress : null,
+			status : null,
+			startTime : null,
+			endTime : null,
 		},
 		showList : true,
 		title : null
 	},
 	methods : {
 		query : function() {
+			console.log("test3");
 			vm.reload();
 		},
-		down : function() {
-			var fileId = getSelectedRow();
-			if (fileId == null) {
-				return;
-			}
-			console.log(fileId);
-			window.open("/sys/file/downLoad?fileId=" + fileId);
-			/*
-			 * $.ajax({ type : "POST", url : "/sys/file/downLoad", async :
-			 * false, data : JSON.stringify(fileId) });
-			 */
-
-		},
-		del : function() {
-			var fileIds = getSelectedRows();
-			if (fileIds == null) {
-				return;
-			}
-
-			confirm('确定要删除选中的记录？', function() {
-				$.ajax({
-					type : "POST",
-					url : "/sys/file/delete",
-					data : JSON.stringify(fileIds),
-					success : function(r) {
-						if (r.code == 0) {
-							alert('操作成功', function(index) {
-								vm.reload();
-							});
-						} else {
-							alert(r.msg);
-						}
-					}
-				});
-			});
-		},
 		reload : function(event) {
+			var startTime = $("#time1").val();
+			var endTime = $("#time2").val();
+			console.log('teset');
+			console.log(startTime);
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam', 'page');
 			$("#jqGrid").jqGrid('setGridParam', {
 				postData : {
-
+					'deviceCode' : vm.q.deviceCode,
+					'nickName' : vm.q.nickname,
+					'deviceAddress' : vm.q.deviceDetailedAddress,
+					'status' : vm.q.status,
+					'startTime' : startTimee,
+					'endTime' : endTime
 				},
 				page : page
 			}).trigger("reloadGrid");

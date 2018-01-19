@@ -28,7 +28,7 @@ public class ManagePageController {
 	 */
 	@RequestMapping(value = "sys/manage/index", method = RequestMethod.GET)
 	@RequiresPermissions("sys:manage:index")
-	@SysLog
+	@SysLog("首页")
 	public String index() {
 		return "manage/index";
 	}
@@ -75,6 +75,18 @@ public class ManagePageController {
 	@RequiresPermissions("sys:manage:deviceList")
 	public String deviceList() {
 		return "manage/DeviceList";
+	}
+	
+	@SysLog("添加页面")
+	@RequestMapping(value = "sys/manage/device/addPage", method = RequestMethod.GET)
+	public String addDevicePage() {
+		return "manage/addDevice";
+	}
+	
+	@SysLog("订单列表页面")
+	@RequestMapping(value = "sys/manage/order/listPage", method = RequestMethod.GET)
+	public String orderPage() {
+		return "manage/orderList";
 	}
 
 }

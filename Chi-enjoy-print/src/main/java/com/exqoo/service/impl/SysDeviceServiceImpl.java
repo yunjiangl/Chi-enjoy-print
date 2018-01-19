@@ -76,5 +76,15 @@ public class SysDeviceServiceImpl implements SysDeviceService {
 		return sysDeviceDao.selectTotal(params);
 	}
 
+	@Override
+	public SysDevice queryByDeviceHsot(String deviceHost) {
+		return sysDeviceDao.selectByDeviceHsot(deviceHost);
+	}
+
+	@Override
+	public SysDevice queryByDeviceId(Long deviceId) {
+		return sysDeviceDao.selectBysysDeviceDao(deviceId);
+	}
+
 	
 }

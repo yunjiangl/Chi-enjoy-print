@@ -30,13 +30,27 @@ public interface SysDeviceService {
 	 * @Description: 设备列表
 	 */
 	public List<SysDevice> list(Map<String, Object> map);
+
+	/**
+	 * 
+	 * @param params
+	 * @Title: queryTotal
+	 * @Description: 查询数据总数
+	 */
+	public int queryTotal(Map<String, Object> params);
+
+	/**
+	 * 
+	 * @Title: queryByDeviceHsot
+	 * @Description: 通过设备物主查询设备信息
+	 */
+	public SysDevice queryByDeviceHsot(String deviceHost);
 	
 	/**
 	 * 
-	* @param params 
-	 * @Title: queryTotal 
-	* @Description: 查询数据总数
+	* @Title: queryByDeviceId 
+	* @Description: 通过设备id查询物主信息
 	 */
-	public int queryTotal(Map<String, Object> params);
+	public SysDevice queryByDeviceId(Long deviceId);
 
 }
