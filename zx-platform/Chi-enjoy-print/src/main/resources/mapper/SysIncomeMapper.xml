@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exqoo.mapper.SysIncomeMapper">
+  <resultMap id="BaseResultMap" type="com.exqoo.entity.SysIncome">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="a_income" jdbcType="DOUBLE" property="aIncome" />
+    <result column="b_income" jdbcType="DOUBLE" property="bIncome" />
+    <result column="c_income" jdbcType="DOUBLE" property="cIncome" />
+    <result column="d_income" jdbcType="DOUBLE" property="dIncome" />
+    <result column="e_income" jdbcType="DOUBLE" property="eIncome" />
+    <result column="black" jdbcType="DECIMAL" property="black" />
+    <result column="color" jdbcType="DECIMAL" property="color" />
+  </resultMap>
+  
+</mapper>

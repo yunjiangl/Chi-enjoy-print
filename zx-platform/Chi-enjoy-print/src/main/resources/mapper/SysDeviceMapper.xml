@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exqoo.dao.SysDeviceDao">
+
+	<resultMap type="com.exqoo.entity.SysDevice" id="BaseResultMap">
+		<id column="device_id" jdbcType="BIGINT" property="deviceId" />
+		<result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
+		<result column="device_address" jdbcType="VARCHAR" property="deviceAddress" />
+		<result column="device_detailed_address" jdbcType="VARCHAR"
+			property="deviceDetailedAddress" />
+		<result column="offline_admin" jdbcType="VARCHAR" property="offlineAdmin" />
+		<result column="admin_phone_num" jdbcType="VARCHAR" property="adminPhoneNum" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="position" jdbcType="VARCHAR" property="position" />
+		<result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+		<!-- 关联的物主信息 -->
+		<association property="sysUser" javaType="com.exqoo.entity.SysUser">
+			<id column="user_id" jdbcType="BIGINT" property="userId" />
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+	</resultMap>
+
+	<select id="queryList" resultType="com.exqoo.entity.SysDevice"
+		resultMap="BaseResultMap">
+		SELECT
+		a.device_id,
+		a.device_code,
+		a.device_address,
+		a.device_detailed_address,
+		a.offline_admin,
+		a.admin_phone_num,
+		a.`status`,
+		a.position,
+		a.create_date,
+		c.user_id,
+		c.nickname
+		FROM
+		sys_device AS a
+		LEFT JOIN sys_user_dev
+		ON sys_user_dev.device_id =
+		a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
+		<where>
+			<if test="deviceCode != null and deviceCode.trim() != ''">
+				and a.device_code like
+				concat('%',#{deviceCode},'%')
+			</if>
+			<if test="nickName != null and nickName.trim() != ''">
+				and c.nickName like concat('%',#{nickName},'%')
+			</if>
+			<if test="deviceAddress != null and deviceAddress.trim() != ''">
+				and a.device_detailed_address like
+				concat('%',#{deviceAddress},'%')
+			</if>
+			<if test="status != null and status.trim() != ''">
+				and a.`status` = #{status}
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">
+				and a.'creaDate' between #{startTime} and
+				#{endTime}
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by a.device_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="selectTotal" resultType="int">
+		SELECT count(*) FROM
+		sys_device AS a
+		LEFT JOIN sys_user_dev
+		ON
+		sys_user_dev.device_id = a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
+		<where>
+			<if test="deviceCode != null and deviceCode.trim() != ''">
+				and a.device_code like
+				concat('%',#{deviceCode},'%')
+			</if>
+			<if test="nickName != null and nickName.trim() != ''">
+				and c.nickName like concat('%',#{nickName},'%')
+			</if>
+			<if test="deviceAddress != null and deviceAddress.trim() != ''">
+				and a.device_detailed_address like
+				concat('%',#{deviceAddress},'%')
+			</if>
+			<if test="status != null and status.trim() != ''">
+				and a.`status` = #{status}
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">
+				and a.'creaDate' between #{startTime} and
+				#{endTime}
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by a.device_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="selectByDeviceHsot" resultType="com.exqoo.entity.SysDevice"
+		resultMap="BaseResultMap">
+		SELECT
+		a.device_id,
+		a.device_code,
+		a.device_address,
+		a.device_detailed_address,
+		a.offline_admin,
+		a.admin_phone_num,
+		a.`status`,
+		a.position,
+		a.create_date,
+		c.user_id,
+		c.nickname
+		FROM
+		sys_device AS a
+		LEFT JOIN sys_user_dev
+		ON sys_user_dev.device_id =
+		a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
+		WHERE c.nickname = #{deviceHost}
+	</select>
+	
+	<select id="selectBysysDeviceDao" resultType="com.exqoo.entity.SysDevice"
+		resultMap="BaseResultMap">
+		SELECT
+		a.device_id,
+		a.device_code,
+		a.device_address,
+		a.device_detailed_address,
+		a.offline_admin,
+		a.admin_phone_num,
+		a.`status`,
+		a.position,
+		a.create_date,
+		c.user_id,
+		c.nickname
+		FROM
+		sys_device AS a
+		LEFT JOIN sys_user_dev
+		ON sys_user_dev.device_id =
+		a.device_id
+		LEFT JOIN sys_user AS c ON
+		sys_user_dev.user_id = c.user_id
+		WHERE a.device_id = #{deviceId}
+	</select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exqoo.dao.SysRoleDao">
+  <resultMap id="BaseResultMap" type="com.exqoo.entity.SysRole">
+    <id column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <select id="selectDim" resultType="com.exqoo.entity.SysRole">
+  		select * from sys_role where 1=1
+  		<if test="roleName != null and roleName.trim() !=''">
+			 AND role_name like CONCAT('%',#{roleName},'%')
+		</if>
+		<if test="status != null">
+			 AND status =#{status} 
+		</if>
+		<if test="time1!=null and time2!=null and time1.trim()!='' and time2.trim()!='' ">
+			 AND create_time BETWEEN #{time1} and #{time2}
+		</if>
+  </select>
+  
+</mapper>

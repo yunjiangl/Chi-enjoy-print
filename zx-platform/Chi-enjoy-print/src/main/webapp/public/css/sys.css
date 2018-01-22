@@ -1,0 +1,73 @@
+/*
+娣诲姞鐢ㄦ埛缁勫拰淇敼鐢ㄦ埛缁�
+ */
+ .saveuser{
+	width: 100%;
+	display: none;
+	margin: auto;
+}
+.updateuser{
+	width: 500px;
+	margin: 80px auto;
+}
+.updateuser tt{
+	margin-left: 37%;
+}
+
+.saveuser,.updateuser input{
+	width: 320px;
+	height: 35px;
+	float: right;
+	margin: 0 0 26px 0;
+}
+.saveuser,.updateuser .layui-input-inline{
+	width: 320px;
+	height: 35px;
+	float: right;
+	display: inline;
+	margin: 0 0 30px 0;
+}
+.saveuser,.updateuser font{
+	float: left;
+	font-size: 22px;
+}
+.saveuser,.updateuser .ft{
+	margin: 35px 0 0 65px;
+}
+.saveuser,.updateuser tt{
+	margin-left: 35%;
+}
+.saveuser,.updateuser tt a{
+	margin-right: 10px;
+}
+/*
+璁剧疆鏉冮檺
+ */
+.select{
+	padding: 30px;
+}
+.select h4{
+	font-size: 18px;
+}
+.select .content ul li{
+	float: left;
+	width: 32%;
+}
+.select .content ul li h4{
+	float: left;
+	margin: 15px 20px 0 0;
+}
+.select .content ul li .file,.device,.user-manage,.Order{
+	float: left;
+	font-size: 16px;
+}
+.select .content ul li input{
+	margin: 20px 10px 0 0px;
+}
+.bto-btn{
+	margin-top: 30px;
+	text-align: center;
+}
+.bto-btn a{
+	margin-right: 30px;
+}

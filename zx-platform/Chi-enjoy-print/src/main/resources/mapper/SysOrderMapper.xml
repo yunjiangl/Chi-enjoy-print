@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exqoo.dao.SysOrderDao">
+	<resultMap id="BaseResultMap" type="com.exqoo.entity.SysOrder">
+		<id column="order_id" jdbcType="BIGINT" property="orderId" />
+		<result column="service_fee" jdbcType="DECIMAL" property="serviceFee" />
+		<result column="print_fee" jdbcType="DECIMAL" property="printFee" />
+		<result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="pay_date" jdbcType="TIMESTAMP" property="payDate" />
+		<result column="client_id" jdbcType="BIGINT" property="clientId" />
+		<result column="device_id" jdbcType="BIGINT" property="deviceId" />
+		<result column="user_id" jdbcType="BIGINT" property="userId" />
+		<result column="file_size" jdbcType="VARCHAR" property="fileSize" />
+		<result column="file_color" jdbcType="TINYINT" property="fileColor" />
+		<result column="file_plural" jdbcType="TINYINT" property="filePlural" />
+		<result column="file_id" jdbcType="BIGINT" property="fileId" />
+		<result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+		<result column="print_count" property="printCount" />
+		<!-- 关联的设备信息 -->
+		<association property="sysDevice" javaType="com.exqoo.entity.SysDevice">
+			<id column="device_id" jdbcType="BIGINT" property="deviceId" />
+			<result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
+			<result column="offline_admin" jdbcType="VARCHAR" property="offlineAdmin" />
+			<result column="admin_phone_num" jdbcType="VARCHAR" property="adminPhoneNum" />
+		</association>
+		<!-- 关联的律师信息 -->
+		<association property="sysUser" javaType="com.exqoo.entity.SysUser">
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<!-- 关联的文件信息 -->
+		<association property="sysFile" javaType="com.exqoo.entity.SysFile">
+			<result column="file_title" jdbcType="VARCHAR" property="fileTitle" />
+			<result column="file_suffix" jdbcType="VARCHAR" property="fileSuffix" />
+			<result column="file_pages" jdbcType="INTEGER" property="filePages" />
+		</association>
+		<!-- 关联的客户信息 -->
+		<association property="sysClient" javaType="com.exqoo.entity.SysClient">
+			<result column="client_name" jdbcType="VARCHAR" property="clientName" />
+			<result column="cilent_phone" jdbcType="VARCHAR" property="cilentPhone" />
+		</association>
+	</resultMap>
+
+	<select id="queryList" resultType="com.exqoo.entity.SysOrder"
+		resultMap="BaseResultMap">
+		SELECT DISTINCT
+			sys_order.order_id,
+			sys_order.service_fee,
+			sys_order.print_fee,
+			sys_order.pay_method,
+			sys_order.`status`,
+			sys_order.pay_date,
+			sys_order.file_size,
+			sys_order.file_color,
+			sys_order.file_plural,
+			sys_order.order_code,
+			sys_order.print_count,
+			sys_file.file_title,
+			sys_file.file_suffix,
+			sys_file.file_pages,
+			sys_user.nickname,
+			sys_client.client_name,
+			sys_client.cilent_phone,
+			sys_device.device_code,
+			sys_device.offline_admin,
+			sys_device.admin_phone_num,
+			sys_device.device_id
+		FROM
+			sys_order
+		INNER JOIN sys_user ON sys_order.user_id = sys_user.user_id
+		INNER JOIN
+		sys_device ON sys_order.device_id = sys_device.device_id
+		INNER JOIN
+		sys_client ON sys_order.client_id = sys_client.client_id
+		INNER JOIN
+		sys_file ON sys_order.file_id = sys_file.id
+		<where>
+			<if test="deviceCode != null and deviceCode.trim() != ''">
+				and sys_device.device_code like
+				concat('%',#{deviceCode},'%')
+			</if>
+			<if test="deviceHost != null and deviceHost.trim() != ''">
+				and sys_device.device_id = #{deviceHost}
+			</if>
+			<if test="nickName != null and nickName.trim() != ''">
+				and sys_user.nickName like concat('%',#{nickName},'%')
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">
+				and sys_order.'creaDate' between #{startTime} and
+				#{endTime}
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by sys_order.order_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+	<select id="selectTotal" resultType="int">
+		SELECT count(*) FROM
+		sys_order
+		INNER JOIN sys_user ON sys_order.user_id = sys_user.user_id
+		INNER JOIN
+		sys_device ON sys_order.device_id = sys_device.device_id
+		INNER JOIN
+		sys_client ON sys_order.client_id = sys_client.client_id
+		INNER JOIN
+		sys_file ON sys_order.file_id = sys_file.id
+		<where>
+			<if test="deviceCode != null and deviceCode.trim() != ''">
+				and sys_device.device_code like
+				concat('%',#{deviceCode},'%')
+			</if>
+			<if test="deviceHost != null and deviceHost.trim() != ''">
+				and sys_device.device_id = #{deviceHost}
+			</if>
+			<if test="nickName != null and nickName.trim() != ''">
+				and sys_user.nickName like concat('%',#{nickName},'%')
+			</if>
+			<if
+				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">
+				and sys_order.'creaDate' between #{startTime} and
+				#{endTime}
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by sys_order.order_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+</mapper>
