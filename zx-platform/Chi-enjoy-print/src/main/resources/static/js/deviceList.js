@@ -103,10 +103,11 @@ var vm = new Vue({
 			vm.reload();
 		},
 		reload : function(event) {
-			var startTime = $("#time1").val();
-			var endTime = $("#time2").val();
+			var startTime = $(".combo-value").eq(0).val();
+			var endTime = $(".combo-value").eq(1).val();
 			console.log('teset');
 			console.log(startTime);
+			console.log(endTime);
 			vm.showList = true;
 			var page = $("#jqGrid").jqGrid('getGridParam', 'page');
 			$("#jqGrid").jqGrid('setGridParam', {
@@ -115,7 +116,7 @@ var vm = new Vue({
 					'nickName' : vm.q.nickname,
 					'deviceAddress' : vm.q.deviceDetailedAddress,
 					'status' : vm.q.status,
-					'startTime' : startTimee,
+					'startTime' : startTime,
 					'endTime' : endTime
 				},
 				page : page

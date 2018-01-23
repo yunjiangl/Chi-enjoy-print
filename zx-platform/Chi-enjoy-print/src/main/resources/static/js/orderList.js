@@ -12,6 +12,7 @@ $(function() {
 		}, {
 			label : '设备物主',
 			name : 'sysDevice.sysUser.nickname',
+			sortable: false,
 			width : 75
 		}, {
 			label : '设备编号',
@@ -41,6 +42,7 @@ $(function() {
 		}, {
 			label : '支付金额',
 			name : 'payMoney',
+			sortable: false,
 			width : 75
 		}, {
 			label : '支付方式',
@@ -110,14 +112,18 @@ var vm = new Vue({
 		},
 		reload : function(event) {
 			vm.showList = true;
+			var startTime = $(".combo-value").eq(0).val();
+			var endTime = $(".combo-value").eq(1).val();
+			console.log(startTime);
+			console.log(endTime);
 			var page = $("#jqGrid").jqGrid('getGridParam', 'page');
 			$("#jqGrid").jqGrid('setGridParam', {
 				postData : {
 					'deviceCode' : vm.q.deviceCode,
 					'deviceHost' : vm.q.deviceHost,
 					'nickName' : vm.q.nickname,
-					'startTime' : vm.q.startTime,
-					'endTime' : vm.q.endTime
+					'startTime' : startTime,
+					'endTime' : endTime
 				},
 				page : page
 			}).trigger("reloadGrid");
