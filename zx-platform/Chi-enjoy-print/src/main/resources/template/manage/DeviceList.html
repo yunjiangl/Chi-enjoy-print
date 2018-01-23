@@ -8,28 +8,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/public/css/font.css">
-    <link rel="stylesheet" href="/public/css/xadmin.css">
-    <link rel="stylesheet" href="/public/lib/layui/css/modules/layer/default/layer.css">
+    <link rel="stylesheet" th:href="@{/static/css/font.css}">
+    <link rel="stylesheet" th:href="@{/static/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/layui/css/modules/layer/default/layer.css}">
   	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/public/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/static/lib/layui/layui.js}" charset="utf-8"></script>
    
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/public/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/public/plugins/jqgrid/ui.jqgrid-bootstrap.css">
-	<link rel="stylesheet" href="/public/plugins/ztree/css/metroStyle/metroStyle.css">
-	<link rel="stylesheet" href="/public/css/main.css">
-	<link rel="stylesheet" href="/public/css/deviceList.css">
-	<link rel="stylesheet" type="text/css" href="/public/css/devicelist-manage.css">
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/static/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/jqgrid/ui.jqgrid-bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/ztree/css/metroStyle/metroStyle.css}">
+	<link rel="stylesheet" th:href="@{/static/css/main.css}">
+	<link rel="stylesheet" th:href="@{/static/css/deviceList.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/static/css/devicelist-manage.css}">
 	
-	<script src="/public/plugins/layer/layer.js"></script>
-	<script src="/public/libs/bootstrap.min.js"></script>
-	<script src="/public/libs/vue.min.js"></script>
-	<script src="/public/plugins/jqgrid/grid.locale-cn.js"></script>
-	<script src="/public/plugins/jqgrid/jquery.jqGrid.min.js"></script>
-	<script src="/public/plugins/ztree/jquery.ztree.all.min.js"></script>
-	 <script type="text/javascript" src="/public/js/xadmin.js"></script>
-	<script src="/public/js/common.js"></script>
+	<script th:src="@{/static/plugins/layer/layer.js}"></script>
+	<script th:src="@{/static/libs/bootstrap.min.js}"></script>
+	<script th:src="@{/static/libs/vue.min.js}"></script>
+	<script th:src="@{/static/plugins/jqgrid/grid.locale-cn.js}"></script>
+	<script th:src="@{/static/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
+	<script th:src="@{/static/plugins/ztree/jquery.ztree.all.min.js}"></script>
+	 <script type="text/javascript" th:src="@{/static/js/xadmin.js}"></script>
+	<script th:src="@{/static/js/common.js}"></script>
 	
 	<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/icon.css">
@@ -103,8 +103,8 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();</script>
-<script src="/public/plugins/jqgrid/jquery.jqGrid.min.js"></script>
-<script src="/public/js/deviceList.js"></script>
+<script th:src="@{/static/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/static/js/deviceList.js}"></script>
 <script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
 </body>
