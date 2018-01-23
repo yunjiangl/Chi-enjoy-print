@@ -4,28 +4,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>订单列表</title>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="/public/css/font.css">
-    <link rel="stylesheet" href="/public/css/xadmin.css">
-    <link rel="stylesheet" href="/public/lib/layui/css/modules/layer/default/layer.css">
+    <link rel="stylesheet" th:href="@{/static/css/font.css}">
+    <link rel="stylesheet" th:href="@{/static/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/layui/css/modules/layer/default/layer.css}">
   	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/public/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/static/lib/layui/layui.js}" charset="utf-8"></script>
 
-	<link rel="stylesheet" href="/public/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/public/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/public/plugins/jqgrid/ui.jqgrid-bootstrap.css">
-	<link rel="stylesheet" href="/public/plugins/ztree/css/metroStyle/metroStyle.css">
-	<link rel="stylesheet" href="/public/css/main.css">
-	<link rel="stylesheet" href="/public/css/deviceList.css">
-	 <link rel="stylesheet" type="text/css" href="/public/css/devicelist-manage.css">
+	<link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/static/css/font-awesome.min.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/jqgrid/ui.jqgrid-bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/static/plugins/ztree/css/metroStyle/metroStyle.css}">
+	<link rel="stylesheet" th:href="@{/static/css/main.css}">
+	<link rel="stylesheet" th:href="@{/static/css/deviceList.css}">
+	 <link rel="stylesheet" type="text/css" th:href="@{/static/css/devicelist-manage.css}">
 	
-	<script src="/public/plugins/layer/layer.js"></script>
-	<script src="/public/libs/bootstrap.min.js"></script>
-	<script src="/public/libs/vue.min.js"></script>
-	<script src="/public/plugins/jqgrid/grid.locale-cn.js"></script>
-	<script src="/public/plugins/jqgrid/jquery.jqGrid.min.js"></script>
-	<script src="/public/plugins/ztree/jquery.ztree.all.min.js"></script>
-	<script type="text/javascript" src="/public/js/xadmin.js"></script>
-	<script src="/public/js/common.js"></script>
+	<script th:src="@{/static/plugins/layer/layer.js}"></script>
+	<script th:src="@{/static/libs/bootstrap.min.js}"></script>
+	<script th:src="@{/static/libs/vue.min.js}"></script>
+	<script th:src="@{/static/plugins/jqgrid/grid.locale-cn.js}"></script>
+	<script th:src="@{/static/plugins/jqgrid/jquery.jqGrid.min.js}"></script>
+	<script th:src="@{/static/plugins/ztree/jquery.ztree.all.min.js}"></script>
+	<script type="text/javascript" th:src="@{/static/js/xadmin.js}"></script>
+	<script th:src="@{/static/js/common.js}"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -47,6 +47,6 @@
 	<table id="jqGrid"></table>
 	<div id="jqGridPager"></div>
 </div>
-<script src="/public/js/orderList.js"></script>
+<script th:src="@{/static/js/orderList.js}"></script>
 </body>
 </html>
