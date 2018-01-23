@@ -15,12 +15,12 @@
 	<link rel="stylesheet" href="/public/css/xadmin.css">
 	<link rel="stylesheet" type="text/css" href="/public/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/public/css/user-manage.css">
+	    <link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/demo/demo.css ">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="/public/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/public/js/xadmin.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/demo/demo.css ">
 <script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.min.js "></script>
 <script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
@@ -51,7 +51,7 @@
 				</div>
 				<input class="layui-input easyui-datetimebox led" placeholder="创建时间" name="time1" style="width:190px;">
 				至
-          		<input class="layui-input easyui-datetimebox led" placeholder="创建时间" name="time2" style="width:190px;" >
+          		<input class="layui-input easyui-datetimebox led" placeholder="创建时间" name="time2" style="width:190px;" > 
 				<input class="layui-btn" lay-submit=" " lay-filter="sreach" type="submit" value="查询">
 			</form>
 			<button class="layui-btn organize" onclick="groups1()">添加用户组</button>
@@ -102,35 +102,63 @@
 		<form action="/sys/insertRole" method="get">
 			<font>用户组名称：</font><input type="" name="roleName" class="layui-input"><br>
 			<font class="ft">状态：</font>
-			<div class="layui-input-inline">
+			<div class="layui-input-inline select-input">
 				<select name="status" value="请选择状态">
 					<option value="1">可用</option>
 					<option value="0">禁用</option>
 				</select>
 			</div>
+			<div style="clear:both;"></div>
+			<font>创建时间:</font><div id="date1" class="layui-input date1"></div>
 			<div style="clear: both;"></div>
-			<tt>
-				<button class="layui-btn"><a href="/sys/selectRoleAll">返回</a></button>
+			<tt style="margin-top: 20px;">
+				<a href="/sys/selectRoleAll" class="layui-btn">返回</a>
 				<button class="layui-btn" type="submit">保存</button>
 			</tt>
 		</form>
 	</div>
 
 	<!-- saveuser end -->
+<script type="text/javascript">
+    function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+    document.getElementById("date1").innerHTML=currentdate;
+}setInterval("getNowFormatDate()",1000);
+ 
+ 
+ 
+</script>
+<a href="javascript:void(0)" onclick="getNowFormatDate()">点我查看当前时间</a>
 
-	<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../layer/layer.js"></script> -->
+<div id="date1">adad</div>
+
+	 <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../layer/layer.js"></script>  -->
 	<script type="text/javascript">
 $('.organize').on("click",function(){
 	layer.open({
 		type:1,
 		title:'添加用户组',
-		area:['600px','360px'],
+		area:['600px','420px'],
 		shadeClose:true,
 		shad:[0.8,'#855'],
 		content:$(".saveuser")
 	});
 });
+
 </script>
 	<script type="text/javascript">
 /* $('.modify').on("click",function(roleId){
@@ -145,6 +173,15 @@ $('.organize').on("click",function(){
 	});
 }); */
 </script>
-	
+<script>
+	laydate({
+    elem: '.validatebox-text',
+    format: 'YYYY/MM/DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
+    festival: true,
+    istoday: true,
+    start: laydate.now(0, "YYYY/MM/DD hh:00:00"),
+    istime: true,
+	});
+</script>
 </body>
 </html>

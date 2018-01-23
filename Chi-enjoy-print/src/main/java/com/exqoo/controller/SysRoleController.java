@@ -51,6 +51,9 @@ public class SysRoleController {
 		sysRole.setRoleName(roleName);
 		sysRole.setStatus(status);
 		Date time=new Date();
+		/**
+		 * 此处有BUG  时间问题
+		 */
 		sysRole.setCreateTime(time+"");
 		sysRoleService.insertRoll(sysRole);
 		List<SysRole> list=sysRoleService.selectRoleAll();
