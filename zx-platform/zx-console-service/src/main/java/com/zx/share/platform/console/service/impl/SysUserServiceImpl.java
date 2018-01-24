@@ -7,16 +7,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.exqoo.dao.SysRealmDao;
 import com.exqoo.dao.SysUserDao;
-import com.exqoo.entity.SysRealm;
-import com.exqoo.entity.SysUser;
-import com.exqoo.service.SysUserService;
+import com.zx.share.platform.console.service.SysUserService;
+import com.zx.share.platform.wechat.model.SysRealm;
+import com.zx.share.platform.wechat.model.SysUser;
 /**
  * 
  * @ClassName:  SysUserServiceImpl   
@@ -28,7 +28,7 @@ import com.exqoo.service.SysUserService;
  *
  */
 @Service
-public class SysUserServiceImpl implements SysUserService {
+public class SysUserServiceImpl implements SysUserService{
 
 	@Autowired
 	private SysRealmDao sysRealmDao;

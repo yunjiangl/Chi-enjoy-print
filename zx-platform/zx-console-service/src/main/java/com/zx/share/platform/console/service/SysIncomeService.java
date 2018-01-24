@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.service;
 
-import ccom.zx.share.platform.zxbean.SysIncome;
+import com.zx.share.platform.wechat.model.SysIncome;
 
 /**
  * 

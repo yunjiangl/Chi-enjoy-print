@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exqoo.dao.SysIncomeDao;
-import com.exqoo.entity.SysIncome;
-import com.exqoo.service.SysIncomeService;
+import com.zx.share.platform.console.service.SysIncomeService;
+import com.zx.share.platform.wechat.model.SysIncome;
 
 /**
  * 

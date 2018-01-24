@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-import com.zx.share.platform.zxbean.SysUser;
+import com.zx.share.platform.wechat.model.SysUser;
 
 /**
  * 

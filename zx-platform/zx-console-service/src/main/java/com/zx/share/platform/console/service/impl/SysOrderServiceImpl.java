@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exqoo.dao.SysOrderDao;
-import com.exqoo.entity.SysDevice;
-import com.exqoo.entity.SysOrder;
-import com.exqoo.service.SysDeviceService;
-import com.exqoo.service.SysOrderService;
+import com.zx.share.platform.console.service.SysDeviceService;
+import com.zx.share.platform.console.service.SysOrderService;
+import com.zx.share.platform.wechat.model.SysDevice;
+import com.zx.share.platform.wechat.model.SysOrder;
 
 /**
  * 

@@ -2,7 +2,7 @@ package com.zx.share.platform.console.service;
 
 import java.util.List;
 
-import com.zx.share.platform.zxbean.SysFile;
+import com.zx.share.platform.wechat.model.SysFile;
 
 /**
  * com.zx.share.platform.zxservice

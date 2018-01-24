@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exqoo.dao.SysFileDao;
-import com.exqoo.entity.SysFile;
-import com.exqoo.service.SysFileService;
+import com.zx.share.platform.console.service.SysFileService;
+import com.zx.share.platform.wechat.model.SysFile;
 
 
 /**

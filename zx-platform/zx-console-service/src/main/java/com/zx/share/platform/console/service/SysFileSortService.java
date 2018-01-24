@@ -2,7 +2,7 @@ package com.zx.share.platform.console.service;
 
 import java.util.List;
 
-import com.zx.share.platform.zxbean.SysFileSort;
+import com.zx.share.platform.wechat.model.SysFileSort;
 
 /**
  * 

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exqoo.dao.SysUserDevDao;
-import com.exqoo.entity.SysUserDev;
-import com.exqoo.service.SysUserDevService;
+import com.zx.share.platform.console.service.SysUserDevService;
+import com.zx.share.platform.wechat.model.SysUserDev;
 
 /**
  * 

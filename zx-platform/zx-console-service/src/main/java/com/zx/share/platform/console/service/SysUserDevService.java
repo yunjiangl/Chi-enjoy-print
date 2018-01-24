@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.service;
 
-import com.zx.share.platform.zxbean.SysUserDev;
+import com.zx.share.platform.wechat.model.SysUserDev;
 
 /**
  * 

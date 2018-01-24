@@ -3,7 +3,7 @@ package com.zx.share.platform.console.service;
 import java.util.List;
 import java.util.Map;
 
-import com.zx.share.platform.zxbean.SysDevice;
+import com.zx.share.platform.wechat.model.SysDevice;
 
 /**
  * 

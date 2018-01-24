@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exqoo.dao.SysFileSortDao;
-import com.exqoo.entity.SysFileSort;
-import com.exqoo.service.SysFileSortService;
+import com.zx.share.platform.console.service.SysFileSortService;
+import com.zx.share.platform.wechat.model.SysFileSort;
 
 /**
  * 

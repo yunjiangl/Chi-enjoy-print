@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.exqoo.dao.SysDeviceDao;
-import com.exqoo.entity.SysDevice;
-import com.exqoo.entity.SysUser;
-import com.exqoo.entity.SysUserDev;
-import com.exqoo.service.SysDeviceService;
-import com.exqoo.service.SysUserDevService;
-import com.exqoo.service.SysUserService;
+import com.zx.share.platform.console.service.SysDeviceService;
+import com.zx.share.platform.console.service.SysUserDevService;
+import com.zx.share.platform.console.service.SysUserService;
+import com.zx.share.platform.wechat.model.SysDevice;
+import com.zx.share.platform.wechat.model.SysUser;
+import com.zx.share.platform.wechat.model.SysUserDev;
 
 /**
  * 

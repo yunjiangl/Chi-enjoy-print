@@ -1,16 +1,13 @@
 package com.zx.share.platform.console.service.impl;
 
-import java.util.Date;
 import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.exqoo.dao.SysRoleDao;
-import com.exqoo.entity.SysRole;
-import com.exqoo.service.SysRoleService;
+import com.zx.share.platform.console.service.SysRoleService;
+import com.zx.share.platform.wechat.model.SysRole;
 
 @Service
 public class SysRoleServiceImpl implements SysRoleService {

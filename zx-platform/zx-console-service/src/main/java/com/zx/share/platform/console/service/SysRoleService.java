@@ -1,11 +1,10 @@
 package com.zx.share.platform.console.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.zx.share.platform.zxbean.SysRole;
+import com.zx.share.platform.wechat.model.SysRole;
 /**
  * 
  * @ClassName:  SysRoleService   
