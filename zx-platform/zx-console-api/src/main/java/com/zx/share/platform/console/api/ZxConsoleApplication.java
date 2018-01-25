@@ -65,5 +65,4 @@ public class ZxConsoleApplication {
 	@Autowired
 	private TypeResolver typeResolver;
 
-
 }
