@@ -1,13 +1,10 @@
-package com.zx.share.platform.bean;
+package com.zx.share.platform.bean.sys;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import com.zx.share.platform.bean.IdEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
@@ -17,21 +14,11 @@ import lombok.EqualsAndHashCode;
 /**
  * @author 
  */
-@Table(name="sys_user_role")
+@Entity
+@Table(name="sys_role_permission")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysUserRole implements Serializable {
-	@Id
-	@GeneratedValue(generator = "JDBC")
-	@Column(name = "id")
-    private Long id;
-
-    /**
-     * 用户ID
-     */
-    @NotEmpty
-    @Column(name = "user_id")
-    private Long userId;
+public class SysRolePermission  extends IdEntity {
 
     /**
      * 角色ID
@@ -39,6 +26,13 @@ public class SysUserRole implements Serializable {
     @NotEmpty
     @Column(name = "role_id")
     private Long roleId;
+
+    /**
+     * 权限id
+     */
+    @NotEmpty
+    @Column(name = "permission_id")
+    private Long permissionId;
 
     /**
      * 创建时间
@@ -54,5 +48,5 @@ public class SysUserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    
+   
 }

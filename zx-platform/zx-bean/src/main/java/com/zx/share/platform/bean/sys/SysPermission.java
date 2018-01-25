@@ -1,11 +1,10 @@
-package com.zx.share.platform.bean;
+package com.zx.share.platform.bean.sys;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import com.zx.share.platform.bean.IdEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
@@ -15,17 +14,12 @@ import lombok.EqualsAndHashCode;
 /**
  * @author 
  */
+@Entity
 @Table(name="sys_permission")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysPermission implements Serializable {
-    /**
-     * 主键
-     */
-	@Id
-	@GeneratedValue(generator = "JDBC")
-	@Column(name = "id")
-    private Long id;
+public class SysPermission extends IdEntity {
+
 
     /**
      * 资源名称

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 /**
  * 与session相关的配置信息。
  *
- * Created by fenggang on 7/28/17.
+ *
+ * @author fenggang
+ * @date 7/28/17
  */
 public class SessionConfig {
 

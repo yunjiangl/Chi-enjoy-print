@@ -9,7 +9,9 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Created by fenggang on 7/28/17.
+ *
+ * @author fenggang
+ * @date 7/28/17
  */
 public class MySession implements Serializable {
 

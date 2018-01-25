@@ -1,11 +1,10 @@
-package com.zx.share.platform.bean;
+package com.zx.share.platform.bean.sys;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import com.zx.share.platform.bean.IdEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
@@ -15,14 +14,11 @@ import lombok.EqualsAndHashCode;
 /**
  * @author 
  */
+@Entity
 @Table(name="sys_dictionary")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class SysDictionary implements Serializable {
-	@Id
-	@GeneratedValue(generator = "JDBC")
-	@Column(name = "id")
-    private Long id;
+public class SysDictionary extends IdEntity {
 
     /**
      * 类型

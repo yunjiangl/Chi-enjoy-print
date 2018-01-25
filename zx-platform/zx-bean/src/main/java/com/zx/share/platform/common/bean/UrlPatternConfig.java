@@ -6,7 +6,9 @@ import java.util.List;
 /**
  * url匹配模式
  * <p>
- * Created by fenggang on 7/28/17.
+ *
+ * @author fenggang
+ * @date 7/28/17
  */
 public class UrlPatternConfig implements Serializable {
 
