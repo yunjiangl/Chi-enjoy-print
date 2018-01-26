@@ -43,7 +43,7 @@ public class SysUser implements Serializable {
     /**
      * 真实姓名
      */
-	@Column(name = "realName")
+	@Column(name = "real_name")
     private String realName;
 
     /**
@@ -55,7 +55,7 @@ public class SysUser implements Serializable {
     /**
      * 手机号
      */
-	@Column(name = "mobilePhone")
+	@Column(name = "mobile_phone")
     private String mobilePhone;
 
     /**
@@ -67,37 +67,37 @@ public class SysUser implements Serializable {
     /**
      * 账号是否锁定，1：锁定，0未锁定
      */
-	@Column(name = "isLock")
+	@Column(name = "is_lock")
     private Boolean isLock;
 
     /**
      * 账号是否删除，1：删除，0未删除
      */
-	@Column(name = "isDel")
+	@Column(name = "is_del")
     private Boolean isDel;
 
     /**
      * 是否是超级管理员
      */
-	@Column(name = "isAdmin")
+	@Column(name = "is_admin")
     private Boolean isAdmin;
 
     /**
      * 最近一次登录时间
      */
-	@Column(name = "loginTime")
+	@Column(name = "login_time")
     private Date loginTime;
 
     /**
      * 创建时间
      */
-	@Column(name = "createTime")
+	@Column(name = "create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
-	@Column(name = "modifyTime")
+	@Column(name = "modify_time")
     private Date modifyTime;
 
     private static final long serialVersionUID = 1L;

@@ -46,7 +46,7 @@ public class SysDictionary implements Serializable {
     /**
      * 父级
      */
-	@Column(name = "parentId")
+	@Column(name = "parent_id")
     private Long parentId;
 
     /**
@@ -70,25 +70,25 @@ public class SysDictionary implements Serializable {
     /**
      * 创建时间
      */
-	@Column(name = "createTime")
+	@Column(name = "create_time")
     private Date createTime;
 
     /**
      * 创建人
      */
-	@Column(name = "createId")
+	@Column(name = "create_id")
     private Long createId;
 
     /**
      * 修改时间
      */
-	@Column(name = "updateTime")
+	@Column(name = "update_time")
     private Date updateTime;
 
     /**
      * 修改人
      */
-	@Column(name = "updateId")
+	@Column(name = "update_id")
     private Integer updateId;
 
     private static final long serialVersionUID = 1L;

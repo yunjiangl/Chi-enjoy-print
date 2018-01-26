@@ -49,19 +49,19 @@ public class SysPermission implements Serializable {
     /**
      * 父节点id
      */
-	@Column(name = "parentId")
+	@Column(name = "parent_id")
     private Long parentId;
 
     /**
      * 父节点名称
      */
-	@Column(name = "parentName")
+	@Column(name = "parent_name")
     private String parentName;
 
     /**
      * 父节点id列表串，用/分割
      */
-	@Column(name = "parentIds")
+	@Column(name = "parent_ids")
     private String parentIds;
 
     /**
@@ -79,19 +79,19 @@ public class SysPermission implements Serializable {
     /**
      * 账号是否锁定，1：锁定，0未锁定
      */
-	@Column(name = "isLock")
+	@Column(name = "is_lock")
     private Boolean isLock;
 
     /**
      * 创建时间
      */
-	@Column(name = "createTime")
+	@Column(name = "create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
-	@Column(name = "modifyTime")
+	@Column(name = "modify_time")
     private Date modifyTime;
 
     private static final long serialVersionUID = 1L;

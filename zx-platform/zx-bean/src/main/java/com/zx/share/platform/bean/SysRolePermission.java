@@ -23,26 +23,26 @@ public class SysRolePermission implements Serializable {
      * 角色ID
      */
     @NotEmpty
-    @Column(name = "roleId")
+    @Column(name = "role_id")
     private Long roleId;
 
     /**
      * 权限id
      */
     @NotEmpty
-    @Column(name = "permissionId")
+    @Column(name = "permission_id")
     private Long permissionId;
 
     /**
      * 创建时间
      */
-    @Column(name = "createTime")
+    @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 更新时间
      */
-    @Column(name = "modifyTime")
+    @Column(name = "modify_time")
     private Date modifyTime;
 
     private static final long serialVersionUID = 1L;
