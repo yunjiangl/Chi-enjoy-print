@@ -15,7 +15,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.9.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -25,14 +25,14 @@
 		<lombok.version>1.16.14</lombok.version>
 		<fastjson.version>1.2.7</fastjson.version>
 	</properties>
-    
-    <modules>
-        <module>zx-bean</module>
-        <module>zx-wechat-service</module>
-        <module>zx-wechat-api</module>
+
+	<modules>
+		<module>zx-bean</module>
+		<module>zx-wechat-service</module>
+		<module>zx-wechat-api</module>
 		<module>zx-console-service</module>
-        <module>zx-console-api</module>
-    </modules>
+		<module>zx-console-api</module>
+	</modules>
 
 	<dependencies>
 		<dependency>
@@ -48,13 +48,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- json工具  start-->
+		<!-- json工具 start -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
-		<!-- json工具  end-->
+		<!-- json工具 end -->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
