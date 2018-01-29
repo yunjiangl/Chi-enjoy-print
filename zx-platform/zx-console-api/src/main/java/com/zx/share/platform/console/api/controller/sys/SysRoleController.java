@@ -1,4 +1,4 @@
-package com.zx.share.platform.console.api.controller;
+package com.zx.share.platform.console.api.controller.sys;
 
 import java.util.HashMap;
 import java.util.List;
