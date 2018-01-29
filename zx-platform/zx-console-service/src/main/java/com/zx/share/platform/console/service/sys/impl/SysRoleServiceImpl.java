@@ -24,4 +24,40 @@ public class SysRoleServiceImpl implements SysRoleService{
 		// TODO Auto-generated method stub
 		return sysRoleMapper.selectAll();
 	}
+	
+	/**
+	 * 单行查询
+	 */
+
+	@Override
+	public SysRole selectRoleById(Long roleId) {
+		return sysRoleMapper.selectByPrimaryKey(roleId);
+	}
+	/**
+	 * 添加用户组
+	 */
+
+	@Override
+	public Integer insertRoll(SysRole sysRole) {
+		// TODO Auto-generated method stub
+		return sysRoleMapper.insert(sysRole);
+	}
+	
+	/**
+	 * 修改数据
+	 */
+	@Override
+	public Integer updateRole(SysRole sysRole) {
+		// TODO Auto-generated method stub
+		return sysRoleMapper.updateByPrimaryKey(sysRole);
+	}
+	/**
+	 * 模糊查询
+	 */
+
+	@Override
+	public List<SysRole> selectDim(String roleName, Byte status, String time1, String time2) {
+		// TODO Auto-generated method stub
+		return sysRoleMapper.selectDim(roleName, status, time1, time2);
+	}
 }
