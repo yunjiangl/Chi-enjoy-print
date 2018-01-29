@@ -1,4 +1,4 @@
-package com.zx.share.platform.console.service;
+package com.zx.share.platform.console.service.sys;
 
 import java.util.List;
 

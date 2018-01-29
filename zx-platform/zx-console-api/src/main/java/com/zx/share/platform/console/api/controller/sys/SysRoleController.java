@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zx.share.platform.bean.sys.SysRole;
-import com.zx.share.platform.console.service.SysRoleService;
+import com.zx.share.platform.console.service.sys.SysRoleService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 
 import io.swagger.annotations.Api;

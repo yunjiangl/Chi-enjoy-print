@@ -1,4 +1,4 @@
-package com.zx.share.platform.console.service.impl;
+package com.zx.share.platform.console.service.sys.impl;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.console.mapper.SysRoleMapper;
-import com.zx.share.platform.console.service.SysRoleService;
+import com.zx.share.platform.console.service.sys.SysRoleService;
 
 @Service
 public class SysRoleServiceImpl implements SysRoleService{
