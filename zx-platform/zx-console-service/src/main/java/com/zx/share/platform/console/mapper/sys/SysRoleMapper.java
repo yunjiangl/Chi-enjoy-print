@@ -1,4 +1,4 @@
-package com.zx.share.platform.console.mapper;
+package com.zx.share.platform.console.mapper.sys;
 
 
 import org.springframework.stereotype.Repository;
