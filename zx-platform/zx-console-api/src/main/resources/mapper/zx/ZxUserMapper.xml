@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.bean.mapper.ZxUserMapper">
+  <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="portrait" jdbcType="VARCHAR" property="portrait" />
+    <result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="union_id" jdbcType="VARCHAR" property="unionId" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+  </resultMap>
+  
+</mapper>

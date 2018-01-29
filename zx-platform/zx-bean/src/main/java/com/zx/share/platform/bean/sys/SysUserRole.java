@@ -1,12 +1,14 @@
 package com.zx.share.platform.bean.sys;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.zx.share.platform.bean.IdEntity;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
