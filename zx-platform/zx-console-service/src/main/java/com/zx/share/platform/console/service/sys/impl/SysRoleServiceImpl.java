@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.service.sys.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,8 @@ public class SysRoleServiceImpl implements SysRoleService{
 	 */
 
 	@Override
-	public List<SysRole> selectDim(String roleName, Byte status, String time1, String time2) {
+	public List<SysRole> selectDim(String name, String perms, Date time1, Date time2) {
 		// TODO Auto-generated method stub
-		return sysRoleMapper.selectDim(roleName, status, time1, time2);
+		return sysRoleMapper.selectDim(name, perms, time1, time2);
 	}
 }

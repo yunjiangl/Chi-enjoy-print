@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.service.sys;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -29,8 +30,8 @@ public interface SysRoleService {
 	/**
 	 * 模糊查询
 	 */
-	List<SysRole> selectDim(@Param("roleName") String roleName,
-							@Param("status") Byte status,
-							@Param("time1") String time1,
-							@Param("time2") String time2);
+	List<SysRole> selectDim(@Param("name") String name,
+						    @Param("perms") String perms,
+						    @Param("time1") Date  time1,
+						    @Param("time2") Date time2);
 }

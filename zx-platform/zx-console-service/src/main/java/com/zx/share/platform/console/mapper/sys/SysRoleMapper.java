@@ -1,6 +1,7 @@
 package com.zx.share.platform.console.mapper.sys;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -11,6 +12,11 @@ import com.zx.share.platform.common.mapper.PlatFormMapper;
 
 @Repository
 public interface SysRoleMapper extends PlatFormMapper<SysRole>{
+	
+	/**
+	 * 查詢用戶组管理数据
+	 */
+	List<SysRole> selectRoleAll();
 	/**
 	 * 模糊查詢
 	 * @param roleName
@@ -19,8 +25,8 @@ public interface SysRoleMapper extends PlatFormMapper<SysRole>{
 	 * @param time2
 	 * @return
 	 */
-	List<SysRole> selectDim(@Param("roleName") String roleName,
-							@Param("status") Byte status,
-							@Param("time1") String  time1,
-							@Param("time2") String time2);
+	List<SysRole> selectDim(@Param("name") String name,
+							@Param("perms") String perms,
+							@Param("time1") Date  time1,
+							@Param("time2") Date time2);
 }
