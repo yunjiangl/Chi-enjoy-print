@@ -18,11 +18,8 @@
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
   </resultMap>
   <!-- 模糊查詢 -->
-<<<<<<< HEAD
+
   <select id="selectDim" resultType="SysRole" resultMap="BaseResultMap">
-=======
-  <select id="selectDim" resultType="com.zx.share.platform.bean.sys.SysRole">
->>>>>>> 2c009075925e46ff149ba9b38866ce2590329fb6
   		select * from sys_role where 1=1
   		<if test="name != null and name.trim() !=''">
 			 AND name like CONCAT('%',#{name},'%')
