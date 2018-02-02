@@ -99,6 +99,12 @@ public class SysUser extends IdEntity {
      */
 	@Column(name = "modify_time")
     private Date modifyTime;
+	
+	/**
+	 * 备注
+	 */
+	@Column(name="comment")
+	private String comment;
 
     private static final long serialVersionUID = 1L;
 

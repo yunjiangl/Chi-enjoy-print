@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zx.share.platform.bean.sys.SysRole;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.service.sys.SysRoleService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,12 +37,10 @@ public class SysRoleController {
 	@RequestMapping(value = "/sys/selectRoleAll", method = RequestMethod.GET)
 	@ApiOperation(value = "获取用户組管理列表", notes = "用户組管理")
 	@ACSPermissions(permissions = "role:list")
-	public ResponseEntity<Map<String, Object>> selectRoleAll() {
+	public DefaultResopnseBean<List<SysRole>> selectRoleAll() {
 		List<SysRole> list = sysRoleService.selectRoleAll();
-		list.get(0).getModifyTime();
-		Map<String, Object> map = new HashMap<>();
-		map.put("data", list);
-		return ResponseEntity.ok(map);
+		
+		return new DefaultResopnseBean<List<SysRole>>("成功",200,list);
 	}
 	
 	/**
@@ -49,11 +49,9 @@ public class SysRoleController {
 	@RequestMapping(value="/sys/selectRoleById",method=RequestMethod.GET)
 	@ApiOperation(value="获取用户组管理单行数据", notes="用户组管理")
 	@ACSPermissions(permissions = "role:Sysrole")
-	public  ResponseEntity<Map<String, Object>> selectRoleById(@RequestParam("roleId") Long roleId){
+	public  DefaultResopnseBean<Object> selectRoleById(@RequestParam("roleId") Long roleId){
 		SysRole sysRole=sysRoleService.selectRoleById(roleId);
-		Map<String, Object> map = new HashMap<>();
-		map.put("singleRole", sysRole);
-		return ResponseEntity.ok(map);
+		return new DefaultResopnseBean<Object>("成功",200,sysRole);
 		
 	}
 	/**
@@ -65,7 +63,7 @@ public class SysRoleController {
 	@RequestMapping(value="/sys/insertRoll",method=RequestMethod.POST)
 	@ApiOperation(value="添加用户组管理数据",notes="用户组管理")
 	@ACSPermissions(permissions = "role:Integer")
-	public ResponseEntity<Map<String, Object>> insertRoll(@RequestParam("name") String name,
+	public DefaultResopnseBean<Object> insertRoll(@RequestParam("name") String name,
 														  @RequestParam("perms") String perms,
 														  @RequestParam("remark") String remark){
 		SysRole sysRole=new SysRole();
@@ -74,9 +72,7 @@ public class SysRoleController {
 		sysRole.setName(name);
 		sysRole.setPerms(perms);
 		Integer insertRoleInt=sysRoleService.insertRoll(sysRole);
-		Map<String, Object> map = new HashMap<>();
-		map.put("insertRole", insertRoleInt);
-		return ResponseEntity.ok(map);
+		return new DefaultResopnseBean<Object>("成功",200,insertRoleInt);
 	}
 	/**
 	 * 修改用户组管理数据
@@ -89,7 +85,7 @@ public class SysRoleController {
 	@RequestMapping(value="/sys/updateRole",method=RequestMethod.POST)
 	@ApiOperation(value="修改用户组管理数据",notes="用户组管理")
 	@ACSPermissions(permissions = "role:Integer")
-	public ResponseEntity<Map<String, Object>> updateRole(@RequestParam("id") Long id,
+	public DefaultResopnseBean<Object> updateRole(@RequestParam("id") Long id,
 														  @RequestParam("name") String name,
 														  @RequestParam("perms") String perms,
 														  @RequestParam("remark") String remark,
@@ -102,9 +98,7 @@ public class SysRoleController {
 		sysRole.setPerms(perms);
 		sysRole.setModifyTime(new Date());
 		Integer updateRoleInt=sysRoleService.updateRole(sysRole);
-		Map<String, Object> map = new HashMap<>();
-		map.put("insertRole", updateRoleInt);
-		return ResponseEntity.ok(map);
+		return new DefaultResopnseBean<Object>("成功",200,updateRoleInt);
 	}
 	/**
 	 * 用户组管理条件式查询（模糊查询）
@@ -120,10 +114,8 @@ public class SysRoleController {
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "perms", value = "当前用户组状态（可用，禁用）", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time1", value = "开始时间", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time2", value = "截至时间）", required = false)})
-	public ResponseEntity<Map<String, Object>> selectDim(String name,String perms,Date time1,Date time2){
+	public DefaultResopnseBean<List<SysRole>> selectDim(String name,String perms,Date time1,Date time2){
 		List<SysRole> list=sysRoleService.selectDim(name, perms, time1, time2);
-		Map<String, Object> map = new HashMap<>();
-		map.put("singleList", list);
-		return ResponseEntity.ok(map);
+		return new DefaultResopnseBean<List<SysRole>>("成功",200,list);
 	}
 }

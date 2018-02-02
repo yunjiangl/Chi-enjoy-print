@@ -16,6 +16,7 @@
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
   </resultMap>
   <!-- 模糊查詢 -->
 

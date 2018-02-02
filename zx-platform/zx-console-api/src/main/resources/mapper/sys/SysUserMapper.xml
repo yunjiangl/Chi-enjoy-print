@@ -16,6 +16,7 @@
     <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
   </resultMap>
  <!-- 查询出全部未删除的后台用户管理数据 -->
  <select id="selectUserAll" resultType="SysUser" resultMap="BaseResultMap">
@@ -34,5 +35,12 @@
 	sys_role.id=#{roleId}
 	
  </select>
+ <!-- 修改后台用户管理数据 -->
+ <update id="updateUserById">
+ 		
+ 		update sys_user u,sys_user_role r set u.username=#{userName},u.salt=#{salt},u.password=#{password},u.email=#{email},u.is_lock=#{isLock},u.comment=#{comment},r.role_id=#{roleId} 
+ 		where u.id=r.user_id and u.id=#{id}
+ 		
+ </update>
   
 </mapper>

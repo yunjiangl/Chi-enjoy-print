@@ -1,4 +1,4 @@
-package com.zx.share.platform.console.api.controller;
+ package com.zx.share.platform.console.api.controller;
 
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;

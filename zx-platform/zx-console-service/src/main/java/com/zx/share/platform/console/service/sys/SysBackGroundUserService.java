@@ -11,4 +11,9 @@ public interface SysBackGroundUserService {
 	 * @return
 	 */
 	List<SysUser> selectUserAll(Long roleId);
+	
+	/**
+	 * 修改后台用户管理数据
+	 */
+	Integer updateUserById(Long id,String userName,String salt,String password,String email,Boolean isLock,String comment,Long roleId);
 }
