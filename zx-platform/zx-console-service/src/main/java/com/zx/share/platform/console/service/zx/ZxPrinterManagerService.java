@@ -2,8 +2,9 @@ package com.zx.share.platform.console.service.zx;
 
 import java.util.Map;
 
-import com.github.pagehelper.PageInfo;
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 /**
  * 
@@ -24,7 +25,7 @@ public interface ZxPrinterManagerService {
 	 * @param hostname
 	 *            设备物主
 	 */
-	public Map<String, Object> add(ZxPrinterManager zxPM);
+	public DefaultResopnseBean<Object> add(ZxPrinterManager zxPM);
 
 	/**
 	 * 
@@ -32,5 +33,12 @@ public interface ZxPrinterManagerService {
 	 * @Description: 设备列表
 	 * @Param query 查询参数
 	 */
-	public PageInfo list(Map<String, Object> params);
+	public DefaultResopnseBean<PageResponseBean<ZxPrinterManager>> list(Map<String, Object> params);
+
+	/**
+	 * 
+	 * @Title: queryByZcPMId
+	 * @Description: 查询单个设备信息（多表查询）
+	 */
+	public DefaultResopnseBean<Object> queryByZxPMId(Long id);
 }

@@ -1,9 +1,5 @@
 package com.zx.share.platform.console.service.zx;
 
-import java.util.List;
-
-import com.zx.share.platform.bean.zx.ZxUser;
-
 /**
  * 
  * @ClassName: ZxUserMapperService

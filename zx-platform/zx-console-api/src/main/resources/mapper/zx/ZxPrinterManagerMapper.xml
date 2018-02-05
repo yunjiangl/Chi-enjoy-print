@@ -26,6 +26,7 @@
 		</association>
 		<association property="zxUserPrinter"
 			javaType="com.zx.share.platform.bean.zx.ZxUserPrinter">
+			 <id column="up_id" jdbcType="BIGINT" property="id" />
 			<result column="status" jdbcType="INTEGER" property="status" />
 		</association>
 	</resultMap>
@@ -50,13 +51,17 @@
 			zx_printer_manager.manager_name,
 			zx_printer_manager.manager_phone,
 			zx_user_printer.`status`,
-			zx_user.nickname
+			zx_user.nickname,
+			zx_user_printer.id as up_id
 		FROM
 		zx_printer_manager
 		LEFT JOIN zx_user_printer ON zx_user_printer.zx_printer_id =
 		zx_printer_manager.id
 		LEFT JOIN zx_user ON zx_user_printer.zx_user_id = zx_user.id
 		<where>
+			<if test="zxPMId != null and zxPMId != 0">
+				and zx_printer_manager.id = #{zxPMId}
+			</if>
 			<if test="printerCode != null and printerCode.trim() != ''">
 				and zx_printer_manager.printer_code like
 				concat('%',#{printerCode},'%')

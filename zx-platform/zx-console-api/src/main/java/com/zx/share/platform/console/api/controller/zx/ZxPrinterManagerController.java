@@ -3,16 +3,17 @@ package com.zx.share.platform.console.api.controller.zx;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.console.service.zx.ZxPrinterManagerService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -45,8 +46,10 @@ public class ZxPrinterManagerController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "body", dataType = "ZxPrinterManager", name = "zxPM", value = "设备信息", required = true) })
 	@ACSPermissions(permissions = "zx:pm:add")
-	public Map<String, Object> add(@RequestBody ZxPrinterManager zxPM) {
-		return zxPrinterManagerService.add(zxPM);
+	public DefaultResopnseBean<Object> add(@RequestBody ZxPrinterManager zxPM) {
+		
+		 
+		 return  zxPrinterManagerService.add(zxPM);
 	}
 
 	/**
@@ -59,8 +62,21 @@ public class ZxPrinterManagerController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "查询信息", required = true) })
 	@ACSPermissions(permissions = "zx:pm:list")
-	public PageInfo list(@RequestBody Map<String, Object> params) {
-		System.out.println(params);
+	public DefaultResopnseBean<PageResponseBean<ZxPrinterManager>> list(@RequestBody Map<String, Object> params) {
 		return zxPrinterManagerService.list(params);
+	}
+	
+	/**
+	 * 
+	 * @Title: info
+	 * @Description: 设备信息
+	 */
+	@RequestMapping(value = "info/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "设备信息", notes = "设备信息")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "path", dataType = "Long", name = "id", value = "设备id", required = true) })
+	@ACSPermissions(permissions = "zx:pm:info")
+	public DefaultResopnseBean<Object> info(@PathVariable(name = "id") Long id){
+		return zxPrinterManagerService.queryByZxPMId(id);
 	}
 }
