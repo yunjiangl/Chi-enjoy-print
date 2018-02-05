@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.api.controller.sys;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
@@ -58,5 +60,36 @@ public class SysBackGroundUserController {
 															  String comment,Long roleId){
 		Integer updateUserInt=sysBackGroundUserService.updateUserById(id, userName, salt, password, email, isLock, comment, roleId);
 		return new DefaultResopnseBean<Object>("成功",200,updateUserInt);
+	}
+	/**
+	 * 刪除后台用户管理数据
+	 * 
+	 * 修改后台数据is_del
+	 */
+	@RequestMapping(value="/sys/deleteUserById",method=RequestMethod.GET)
+	@ApiOperation(value="删除后台用户管理数据",notes="用户组管理")
+	@ACSPermissions(permissions = "role:Integer")
+	public DefaultResopnseBean<Object> deleteUserById(@RequestParam("userId") Long userId){
+		
+		Integer deleteUserInt=sysBackGroundUserService.deleteUserById(userId);
+		return new DefaultResopnseBean<Object>("成功",200,deleteUserInt);
+	}
+	/**
+	 * 用户组管理条件式查询（模糊查询）
+	 * name 查询用户组的名字
+	 * perms 当前用户组状态（可用，禁用）
+	 * time1 开始时间
+	 * time2 结束时间
+	 */
+	@RequestMapping(value="/sys/selectUserDim",method=RequestMethod.POST)
+	@ApiOperation(value="模糊查询后台用户组管理数据",notes="用户组管理")
+	@ACSPermissions(permissions = "role:list")
+	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "name", value = "查询用户组的名字", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "perms", value = "当前用户组状态（可用，禁用）", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time1", value = "开始时间", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time2", value = "截至时间）", required = false)})
+	public DefaultResopnseBean<List<SysUser>> selectUserDim(String name,String perms,Date time1,Date time2){
+		List<SysUser> list=sysBackGroundUserService.selectUserDim(name, perms, time1, time2);
+		return new DefaultResopnseBean<List<SysUser>>("成功",200,list);
 	}
 }

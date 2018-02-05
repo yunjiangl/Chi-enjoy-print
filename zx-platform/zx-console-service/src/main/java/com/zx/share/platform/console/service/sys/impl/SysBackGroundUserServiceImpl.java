@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.service.sys.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.mapper.sys.SysBackGroundUserMapper;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
@@ -44,6 +46,24 @@ public class SysBackGroundUserServiceImpl implements SysBackGroundUserService {
 		params.put("comment", comment);
 		params.put("roleId", roleId);
 		return sysBackGroundUserMapper.updateUserById(params);
+	}
+	
+	/**
+	 * 刪除后台用户管理数据
+	 */
+	@Override
+	public Integer deleteUserById(Long userId) {
+		// TODO Auto-generated method stub
+		return sysBackGroundUserMapper.deleteUserById(userId);
+	}
+	/**
+	 * 模糊查询
+	 */
+
+	@Override
+	public List<SysUser> selectUserDim(String name, String perms, Date time1, Date time2) {
+		// TODO Auto-generated method stub
+		return sysBackGroundUserMapper.selectUserDim(name, perms, time1, time2);
 	}
 
 }
