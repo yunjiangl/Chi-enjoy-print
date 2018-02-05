@@ -3,6 +3,7 @@ package com.zx.share.platform.console.service.zx.impl;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
@@ -19,6 +20,7 @@ import com.zx.share.platform.util.response.DefaultResopnseBean;
  * @date 2018年2月3日 上午10:48:07
  *
  */
+@Service
 public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService {
 
 	@Autowired
