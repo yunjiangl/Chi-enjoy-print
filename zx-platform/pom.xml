@@ -33,6 +33,7 @@
 		<module>zx-wechat-api</module>
 		<module>zx-console-service</module>
 		<module>zx-console-api</module>
+		<module>zx-wechat-pay-api</module>
 	</modules>
 
 	<dependencies>
