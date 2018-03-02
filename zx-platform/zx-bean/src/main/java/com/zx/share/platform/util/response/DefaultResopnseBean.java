@@ -24,7 +24,11 @@ public class DefaultResopnseBean<T> implements Serializable {
 	private Integer code = 200;
 	@ApiModelProperty(value = "返回数据结果集")
 	private T data;
-	
+
+	public void jsonFill(Integer code,String message){
+		this.message = message;
+		this.code = code;
+	}
 	public static DefaultResopnseBean<?> clone(String message,Integer code,Object object){
 		return new DefaultResopnseBean<>(message, code, object);
 	}

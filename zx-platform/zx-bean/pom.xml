@@ -54,6 +54,27 @@
 			<artifactId>commons-lang</artifactId>
 			<version>${commons.lang.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>bcprov-ext-jdk15on-154</groupId>
+			<artifactId>bcprov-ext-jdk15on-154</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/bcprov-ext-jdk15on-154.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>bcprov-jdk15on-154</groupId>
+			<artifactId>bcprov-jdk15on-154</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/bcprov-jdk15on-154.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 </project>
