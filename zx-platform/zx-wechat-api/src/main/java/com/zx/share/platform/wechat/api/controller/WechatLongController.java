@@ -31,7 +31,7 @@ import java.util.Date;
 @Api(value = "/wechat", produces = "application/json", description = "微信登录接口")
 @Controller
 @RequestMapping("/wechat")
-public class WechatLongController {
+public class WechatLongController extends BaseController{
 
     @Autowired
     private WeChatLoginService weChatLoginService;
@@ -52,6 +52,7 @@ public class WechatLongController {
                                                                         @ApiParam("encryptedData用户信息（明文,加密数据") @RequestParam("encryptedData") String encryptedData,
                                                                         @ApiParam("iv 加密算法的初始向量") @RequestParam("iv") String iv,
                                                                         HttpServletRequest request, HttpServletResponse response) throws IOException {
+        servletPath = request.getServletPath();
         DefaultResopnseBean<WxLoginResponseVo> responseData = new DefaultResopnseBean<>();
         //获取sessionKey
         WxAppletAuthVo wxAppletAuthVo = weChatLoginService.getAppletSessionKey(APPLET_APP_ID, APPLET_SECRET, code, GrantType.AUTHORIZATION_CODE);

@@ -1,5 +1,6 @@
 package com.zx.share.platform.util.response;
 
+import com.zx.share.platform.constants.ErrorsEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -29,6 +30,12 @@ public class DefaultResopnseBean<T> implements Serializable {
 		this.message = message;
 		this.code = code;
 	}
+
+	public void jsonFill(ErrorsEnum errorsEnum){
+		this.message = errorsEnum.label;
+		this.code = errorsEnum.code;
+	}
+
 	public static DefaultResopnseBean<?> clone(String message,Integer code,Object object){
 		return new DefaultResopnseBean<>(message, code, object);
 	}
