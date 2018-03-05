@@ -28,7 +28,7 @@ import java.util.Date;
  * @author fenggang
  * @date 18/3/2
  */
-@Api(value = "/user", produces = "application/json", description = "微信登录接口")
+@Api(value = "/wechat", produces = "application/json", description = "微信登录接口")
 @Controller
 @RequestMapping("/wechat")
 public class WechatLongController {
