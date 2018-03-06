@@ -19,7 +19,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class ZxUserPrinterApply extends IdEntity {
    
-
 	@Column(name = "zx_user_id")
     private Long zxUserId;
 
