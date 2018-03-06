@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.wechat.mapper.order.ZxOrderMapper">
+  <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="pay_id" jdbcType="BIGINT" property="payId" />
+    <result column="pay_code" jdbcType="VARCHAR" property="payCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="printer_id" jdbcType="BIGINT" property="printerId" />
+    <result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+    <result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode" />
+    <result column="order_user_id" jdbcType="BIGINT" property="orderUserId" />
+  </resultMap>
+  
+</mapper>

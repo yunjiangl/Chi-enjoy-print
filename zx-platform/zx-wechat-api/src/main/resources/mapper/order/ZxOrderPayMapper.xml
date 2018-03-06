@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.wechat.mapper.order.ZxOrderPayMapper">
+  <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxOrderPay">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_code" jdbcType="VARCHAR" property="payCode" />
+    <result column="pay_status" jdbcType="INTEGER" property="payStatus" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+  </resultMap>
+  
+</mapper>
