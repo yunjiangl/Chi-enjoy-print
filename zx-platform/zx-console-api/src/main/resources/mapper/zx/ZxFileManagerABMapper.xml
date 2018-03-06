@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.console.mapper.zx.ZxFileManagerABMapper">
+  <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxFileManagerAB">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="file_code" jdbcType="VARCHAR" property="fileCode" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="category_id" jdbcType="BIGINT" property="categoryId" />
+    <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+    <result column="file_num" jdbcType="INT" property="fileNum" />
+    <result column="abstracts" jdbcType="LONGTEXT" property="abstracts" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_id" jdbcType="INT" property="createId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="INT" property="updateId" />
+  </resultMap>
+  
+</mapper>
