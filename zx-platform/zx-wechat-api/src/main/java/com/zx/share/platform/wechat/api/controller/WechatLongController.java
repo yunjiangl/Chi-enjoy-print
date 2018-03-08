@@ -2,10 +2,15 @@ package com.zx.share.platform.wechat.api.controller;
 
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.GrantType;
+import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.WeChatUserInfoVo;
 import com.zx.share.platform.vo.WxAppletAuthVo;
 import com.zx.share.platform.vo.WxLoginResponseVo;
+import com.zx.share.platform.vo.user.UserRequestBean;
+import com.zx.share.platform.vo.user.UserResultBean;
+import com.zx.share.platform.wechat.api.config.WeChatConfig;
+import com.zx.share.platform.wechat.service.UserService;
 import com.zx.share.platform.wechat.service.WeChatLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,14 +40,10 @@ public class WechatLongController extends BaseController{
 
     @Autowired
     private WeChatLoginService weChatLoginService;
-
-
-    private static final String MOBILE_APP_ID = "";
-    private static final String MOBILE_SECRET = "";
-
-    //小程序
-    private static final String APPLET_APP_ID = "";
-    private static final String APPLET_SECRET = "";
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private WeChatConfig weChatConfig;
 
     @ApiOperation(value = "微信小程序微信登录接口", notes = "微信小程序微信登录接口")
     @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
@@ -53,9 +54,10 @@ public class WechatLongController extends BaseController{
                                                                         @ApiParam("iv 加密算法的初始向量") @RequestParam("iv") String iv,
                                                                         HttpServletRequest request, HttpServletResponse response) throws IOException {
         servletPath = request.getServletPath();
+        String sessionToken = request.getSession().getId();
         DefaultResopnseBean<WxLoginResponseVo> responseData = new DefaultResopnseBean<>();
         //获取sessionKey
-        WxAppletAuthVo wxAppletAuthVo = weChatLoginService.getAppletSessionKey(APPLET_APP_ID, APPLET_SECRET, code, GrantType.AUTHORIZATION_CODE);
+        WxAppletAuthVo wxAppletAuthVo = weChatLoginService.getAppletSessionKey(weChatConfig.getLoginAppId(), weChatConfig.getLoginAppSecret(), code, GrantType.AUTHORIZATION_CODE);
         if (wxAppletAuthVo == null) {
             responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "授权码无效/访问微信验证服务器失败");
             return responseData;
@@ -67,15 +69,58 @@ public class WechatLongController extends BaseController{
             return responseData;
         }
 
-        //如果没有openID，unionId，重新获取一下
+        UserResultBean userResultBean = userService.findByUnionId(appletUserInfo.getUnionId());
 
+        if (userResultBean == null) {
+            UserRequestBean userSaveBean = new UserRequestBean();
+            userSaveBean.setCity(appletUserInfo.getCity());
+            userSaveBean.setProvince(appletUserInfo.getProvince());
+            userSaveBean.setOpenId(appletUserInfo.getOpenId());
+            userSaveBean.setCountry(appletUserInfo.getCountry());
+            userSaveBean.setUnionId(appletUserInfo.getUnionId());
+            userSaveBean.setHeadImgUrl(appletUserInfo.getHeadImgUrl());
+            userSaveBean.setNickName(appletUserInfo.getNickName());
+            userSaveBean.setSex(appletUserInfo.getSex());
+            userSaveBean.setAccessToken(sessionToken);
+            userService.save(userSaveBean);
+
+            userResultBean = new UserResultBean();
+
+        }else {
+            //每次登录都更新sessionKey，头像和用户名
+            UserRequestBean userSaveBean = new UserRequestBean();
+            userSaveBean.setUserCode(userResultBean.getUserCode());
+            userSaveBean.setHeadImgUrl(appletUserInfo.getHeadImgUrl());
+            userSaveBean.setWxSessionKey(wxAppletAuthVo.getSessionKey());
+            userSaveBean.setAccessToken(sessionToken);
+            userResultBean.setPortrait(userSaveBean.getHeadImgUrl());
+            userService.update(userSaveBean);
+        }
+
+        //如果没有openID，unionId，重新获取一下
+        if(userResultBean!=null && StringUtil.isBlank(userResultBean.getUnionId())){
+            UserRequestBean userSaveBean = new UserRequestBean();
+            userSaveBean.setUserCode(userResultBean.getUserCode());
+            userSaveBean.setUnionId(appletUserInfo.getUnionId());
+            userSaveBean.setAccessToken(sessionToken);
+            userService.update(userSaveBean);
+        }
 
         //如果用户创建失败
-
+        if(userResultBean==null){
+            responseData.jsonFill(ErrorsEnum.SYSTEM_BUSINESS_ERROR);
+            return responseData;
+        }
 
         //获取到用户信息
-        WxLoginResponseVo wxLoginResponseVo = new WxLoginResponseVo();
-
+        WxLoginResponseVo loginResultBean = new WxLoginResponseVo();
+        loginResultBean.setAccessToken(sessionToken);
+        loginResultBean.setMobile(userResultBean.getMobile());
+        loginResultBean.setNickName(userResultBean.getUnionId());
+        loginResultBean.setUserCode(userResultBean.getUserCode());
+        loginResultBean.setHeadImageUrl(userResultBean.getPortrait());
+        //放入返回对象
+        responseData.setData(loginResultBean);
         //登录信息写入缓存
 
         return responseData;

@@ -105,18 +105,7 @@ public class SercurityService {
 
 	private String getSessionId(HttpServletRequest request) throws NeedLoginException {
 
-		Cookie[] cookies = request.getCookies();
-		String sessionId = request.getSession().getId();
-//		if ((cookies != null) && (cookies.length > 0)) {
-//			for (Cookie cookie : cookies) {
-//				String name = cookie.getName();
-//				String value = cookie.getValue();
-//				if (SessionConfig.DEFAULT_SESSION_COOKIE_NAME.equals(name)) {
-//					sessionId = value;
-//					break;
-//				}
-//			}
-//		}
+		String sessionId = request.getHeader("X-ACCESS-TOKEN");
 
 		if (StringUtils.isEmpty(sessionId)) {
 			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN_STATUS);

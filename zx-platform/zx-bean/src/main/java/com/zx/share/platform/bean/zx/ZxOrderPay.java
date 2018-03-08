@@ -20,10 +20,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ZxOrderPay extends IdEntity {
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Long id;
     
     @Column(name = "pay_code")
     private String payCode;

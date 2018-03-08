@@ -22,6 +22,9 @@ import java.time.LocalDate;
 
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
+/**
+ * @author fenggang
+ */
 @EnableSwagger2
 @SpringBootApplication
 @MapperScan(basePackages = "com.zx.share.platform.wechat.mapper")
@@ -38,7 +41,7 @@ public class ZxWeChatApiApplication {
 	 */
 	@Bean
 	public Docket generateApi() {
-		Docket docket = new Docket( DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+		Docket docket = new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
 				.apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
 				.paths(PathSelectors.any()).build().pathMapping("/")
 				.directModelSubstitute(LocalDate.class, String.class)
@@ -55,7 +58,7 @@ public class ZxWeChatApiApplication {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfo("系统接口", "wechat-api  系统接口", "0.0.1",
+		return new ApiInfo("系统接口", "wechat-api  系统接口,所有请求都需带上X-ACCESS-TOKEN请求头，这个数据值是重登了接口返回的accessToken，拿不到就传一个空", "0.0.1",
 				"", "", "", "");
 	}
 

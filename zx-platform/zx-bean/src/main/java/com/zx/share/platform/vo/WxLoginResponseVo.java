@@ -1,7 +1,6 @@
 package com.zx.share.platform.vo;
 
 import com.zx.share.platform.bean.zx.ZxUser;
-import com.zx.share.platform.util.StringUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -15,8 +14,8 @@ public class WxLoginResponseVo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2215108177069764671L;
-	@ApiModelProperty(value="用户id")
-    private Long id;
+	@ApiModelProperty(value="用户Code")
+    private String userCode;
 	@ApiModelProperty(value="token")
     private String accessToken;
     @ApiModelProperty("手机号")
@@ -27,27 +26,15 @@ public class WxLoginResponseVo implements Serializable {
     private String sex;
 	@ApiModelProperty("头像url")
     private String headImageUrl;
-    @ApiModelProperty("是否绑定手机号（2-绑定，1-未绑定）")
-	private Integer binding = 2;
 
     public WxLoginResponseVo() {
     }
 
     public WxLoginResponseVo(ZxUser user) {
-        this.id = user.getId();
+        this.userCode = user.getUserCode();
         this.nickName = user.getNickname();
         this.mobile=user.getMobile();
-        this.binding = StringUtil.isBlank(user.getMobile())?1:2;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getAccessToken() {
         return accessToken;
     }
@@ -80,19 +67,19 @@ public class WxLoginResponseVo implements Serializable {
         this.headImageUrl = headImageUrl;
     }
 
-    public Integer getBinding() {
-        return binding;
-    }
-
-    public void setBinding(Integer binding) {
-        this.binding = binding;
-    }
-
     public String getMobile() {
         return mobile;
     }
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 }

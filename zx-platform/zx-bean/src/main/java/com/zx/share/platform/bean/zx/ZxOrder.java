@@ -20,10 +20,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ZxOrder extends IdEntity {
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private Long id;
 
     /**
      * 订单code

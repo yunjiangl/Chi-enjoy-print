@@ -1,13 +1,17 @@
-package com.zx.share.platform.vo;
-
+package com.zx.share.platform.vo.user;
 
 import java.io.Serializable;
 
 /**
+ * Created by fenggang on 18/3/5.
+ *
  * @author fenggang
+ * @date 18/3/5
  */
-public class WeChatUserInfoVo implements Serializable {
-    private static final long serialVersionUID = 2370276930155142226L;
+public class UserRequestBean implements Serializable {
+
+    private static final long serialVersionUID = 6550902499897485844L;
+    private String userCode;
     private String openId;
     private String nickName;
     private int sex;
@@ -16,6 +20,16 @@ public class WeChatUserInfoVo implements Serializable {
     private String country;
     private String headImgUrl;
     private String unionId;
+    private String wxSessionKey;
+    private String accessToken;
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
 
     public String getOpenId() {
         return openId;
@@ -79,5 +93,21 @@ public class WeChatUserInfoVo implements Serializable {
 
     public void setUnionId(String unionId) {
         this.unionId = unionId;
+    }
+
+    public String getWxSessionKey() {
+        return wxSessionKey;
+    }
+
+    public void setWxSessionKey(String wxSessionKey) {
+        this.wxSessionKey = wxSessionKey;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 }

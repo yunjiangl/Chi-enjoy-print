@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.wechat.mapper.UserMapper">
+
+    <resultMap id="userResultBean" type="com.zx.share.platform.vo.user.UserResultBean">
+        <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+        <result column="union_id" property="unionId" jdbcType="VARCHAR"/>
+        <result column="open_id" property="openId" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findByUnionId" resultMap="userResultBean">
+        select user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
+
+    </insert>
+
+    <update id="update" parameterType="com.zx.share.platform.vo.user.UserRequestBean">
+
+    </update>
+
+
+</mapper>
