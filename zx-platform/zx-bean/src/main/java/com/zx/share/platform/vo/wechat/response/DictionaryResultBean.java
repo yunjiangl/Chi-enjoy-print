@@ -1,4 +1,4 @@
-package com.zx.share.platform.wechat.api.controller.response;
+package com.zx.share.platform.vo.wechat.response;
 
 import io.swagger.annotations.ApiModel;
 
