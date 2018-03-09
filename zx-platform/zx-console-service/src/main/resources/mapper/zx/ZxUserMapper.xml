@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zx.share.platform.console.mapper.zx.ZxUserMapper">
-  <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxUser">
+  <resultMap id="Map" type="com.zx.share.platform.bean.zx.ZxUser">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="user_code" jdbcType="VARCHAR" property="userCode" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />

@@ -7,12 +7,12 @@
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
     <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
-    <result column="file_num" jdbcType="INT" property="fileNum" />
-    <result column="abstracts" jdbcType="LONGTEXT" property="abstracts" />
+    <result column="file_num" jdbcType="INTEGER" property="fileNum" />
+    <result column="abstracts" jdbcType="LONGVARCHAR" property="abstracts" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="create_id" jdbcType="INT" property="createId" />
+    <result column="create_id" jdbcType="INTEGER" property="createId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="update_id" jdbcType="INT" property="updateId" />
+    <result column="update_id" jdbcType="INTEGER" property="updateId" />
   </resultMap>
   
 </mapper>
