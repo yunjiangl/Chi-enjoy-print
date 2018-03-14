@@ -32,8 +32,8 @@
 			<artifactId>mapper-spring-boot-starter</artifactId>
 			<version>1.1.7</version>
 		</dependency>
-		
-		<!--pagehelper-->
+
+		<!--pagehelper -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -75,6 +75,29 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/../lib/bcprov-jdk15on-154.jar</systemPath>
 		</dependency>
+
+		<dependency>
+			<groupId>itextpdf-5.5.9</groupId>
+			<artifactId>itextpdf-5.5.9</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/itextpdf-5.5.9.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>aspose-words-15.8.0-jdk16</groupId>
+			<artifactId>aspose-words-15.8.0-jdk16</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/aspose-words-15.8.0-jdk16.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

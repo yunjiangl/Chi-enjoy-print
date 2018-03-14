@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 
 
 @Entity
-@Table(name="zx_file_manage_cde")
+@Table(name="zx_file_manager_cde")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ZxFileManagerCDE extends IdEntity{
