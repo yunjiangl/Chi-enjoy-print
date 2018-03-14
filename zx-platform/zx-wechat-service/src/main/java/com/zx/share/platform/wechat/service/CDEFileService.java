@@ -36,10 +36,4 @@ public interface CDEFileService {
 	 */
 	DefaultResopnseBean<Object> add(ZxFileManagerCDE file, MultipartFile multipartFile);
 
-	/**
-	 * 
-	 * @Title: queryByFileId
-	 * @Description: 通过文件id查询文件信息
-	 */
-	DefaultResopnseBean<ZxFileManagerCDE> queryByFileId(Long id);
 }
