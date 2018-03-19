@@ -22,6 +22,7 @@ public class BaseController {
 
     protected String servletPath = "";
     protected Logger logger = LoggerFactory.getLogger(getClass());
+    protected final static String USER_LOGIN_CACHE_KEY = "ZX_USER_LOGIN_";
 
 
     /**

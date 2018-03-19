@@ -62,19 +62,6 @@ public class LoginValidationInterceptor extends HandlerInterceptorAdapter {
 					// 设置运营人员ID
 					request.setAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER, user);
 
-					// 3、判断用户权限
-//					if (!StringUtil.isBlank(acsPermissions.permissions())) {
-//						// 获取所有权限
-//						if (StringUtil.isBlank(user.getPermissions())) {
-//							throwException(ErrorsEnum.SYSTEM_USER_PERMISSIONS.code,
-//									ErrorsEnum.SYSTEM_USER_PERMISSIONS.label);
-//						}
-//						if (user.getPermissions().indexOf(acsPermissions.permissions()) < 0) {
-//							throwException(ErrorsEnum.SYSTEM_USER_PERMISSIONS.code,
-//									ErrorsEnum.SYSTEM_USER_PERMISSIONS.label);
-//						}
-//					}
-
 				}
 			}
 			return true;

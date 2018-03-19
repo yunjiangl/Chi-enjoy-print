@@ -182,7 +182,9 @@ public class WechatLongController extends BaseController{
         loginResultBean.setHeadImageUrl(userResultBean.getPortrait());
         //放入返回对象
         responseData.setData(loginResultBean);
+
         //登录信息写入缓存
+
         return responseData;
     }
 }

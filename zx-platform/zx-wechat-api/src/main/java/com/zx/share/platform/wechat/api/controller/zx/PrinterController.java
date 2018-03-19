@@ -2,11 +2,14 @@ package com.zx.share.platform.wechat.api.controller.zx;
 
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
+import com.zx.share.platform.vo.wechat.request.PrinterQueryBean;
 import com.zx.share.platform.vo.wechat.response.PrinterResultBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
+import com.zx.share.platform.wechat.service.PrinterService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,12 +30,17 @@ import java.util.List;
 @RequestMapping("/printer")
 public class PrinterController extends BaseController {
 
+    @Autowired
+    private PrinterService printerService;
+
     @ApiOperation(value = "所有打印机接口", notes = "所有打印机接口")
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     @ResponseBody
     public DefaultResopnseBean<List<PrinterResultBean>> all(HttpServletRequest request){
         servletPath = request.getServletPath();
         DefaultResopnseBean<List<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        List<PrinterResultBean> resultBeanList = printerService.all();
+        resopnseBean.setData(resultBeanList);
         return  resopnseBean;
     }
 
@@ -44,6 +52,9 @@ public class PrinterController extends BaseController {
                                                                          HttpServletRequest request){
         servletPath = request.getServletPath();
         DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        PrinterQueryBean queryBean = new PrinterQueryBean();
+        PageResponseBean<PrinterResultBean> pageResultBean = printerService.query(queryBean);
+        resopnseBean.setData(pageResultBean);
         return  resopnseBean;
     }
 
@@ -55,6 +66,9 @@ public class PrinterController extends BaseController {
                                                                HttpServletRequest request){
         servletPath = request.getServletPath();
         DefaultResopnseBean<List<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        PrinterQueryBean queryBean = new PrinterQueryBean();
+        List<PrinterResultBean> resultBeanList = printerService.nearby(queryBean);
+        resopnseBean.setData(resultBeanList);
         return  resopnseBean;
     }
 
@@ -66,6 +80,9 @@ public class PrinterController extends BaseController {
                                                                           HttpServletRequest request){
         servletPath = request.getServletPath();
         DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        PrinterQueryBean queryBean = new PrinterQueryBean();
+        PageResponseBean<PrinterResultBean> pageResultBean = printerService.query(queryBean);
+        resopnseBean.setData(pageResultBean);
         return  resopnseBean;
     }
 
@@ -77,6 +94,9 @@ public class PrinterController extends BaseController {
                                                                        HttpServletRequest request){
         servletPath = request.getServletPath();
         DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        PrinterQueryBean queryBean = new PrinterQueryBean();
+        PageResponseBean<PrinterResultBean> pageResultBean = printerService.my(queryBean);
+        resopnseBean.setData(pageResultBean);
         return  resopnseBean;
     }
 }

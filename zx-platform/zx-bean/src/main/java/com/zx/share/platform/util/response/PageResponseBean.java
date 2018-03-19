@@ -1,5 +1,6 @@
 package com.zx.share.platform.util.response;
 
+import com.zx.share.platform.common.bean.PageRequestBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -55,6 +56,15 @@ public class PageResponseBean<T> implements Serializable {
 
   public PageResponseBean() {
     super();
+  }
+
+  public PageResponseBean(PageRequestBean bean, Integer count) {
+    this.totalElements=count;
+    this.totalPages=(int) Math.ceil(count.doubleValue()/bean.getPageSize());
+    this.last = totalPages == bean.getPage();
+    this.first = bean.getPage() == 1;
+    this.number = bean.getPage();
+    this.numberOfElements = bean.getPageSize();
   }
 
   public List<T> getContent() {

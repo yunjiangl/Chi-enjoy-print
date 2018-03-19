@@ -5,9 +5,11 @@ import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +32,7 @@ public class PayController extends BaseController {
     @ApiOperation(value = "支付接口", notes = "支付接口")
     @RequestMapping(value = "/account",method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<String> accountPay(HttpServletRequest request, HttpServletResponse response){
+    public DefaultResopnseBean<String> accountPay(@ApiParam("订单code")@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
         DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
         return resopnseBean;

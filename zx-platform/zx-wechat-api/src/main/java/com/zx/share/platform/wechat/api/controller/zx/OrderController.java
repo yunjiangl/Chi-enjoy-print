@@ -2,6 +2,7 @@ package com.zx.share.platform.wechat.api.controller.zx;
 
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
+import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
 import com.zx.share.platform.vo.wechat.response.OrderResultBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
 import io.swagger.annotations.Api;
@@ -30,7 +31,7 @@ public class OrderController extends BaseController {
     @ApiOperation(value = "保存订单信息接口", notes = "保存订单信息接口")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<String> save(HttpServletRequest request) {
+    public DefaultResopnseBean<String> save(OrderSaveBean saveBean,HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
         return resopnseBean;
@@ -39,7 +40,7 @@ public class OrderController extends BaseController {
     @ApiOperation(value = "获取订单信息接口", notes = "获取订单信息接口")
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ResponseBody
-    public DefaultResopnseBean<OrderResultBean> get(HttpServletRequest request) {
+    public DefaultResopnseBean<OrderResultBean> get(@RequestParam("code") String code, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<OrderResultBean> resopnseBean = new DefaultResopnseBean<>();
         return resopnseBean;
@@ -48,7 +49,7 @@ public class OrderController extends BaseController {
     @ApiOperation(value = "取消订单信息接口", notes = "取消订单信息接口")
     @RequestMapping(value = "/cancel", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<String> cancel(@ApiParam("订单code") @RequestParam("orderCode") String orderCode,
+    public DefaultResopnseBean<String> cancel(@ApiParam("订单code") @RequestParam("code") String code,
                                               HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();

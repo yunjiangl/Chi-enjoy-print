@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.wechat.mapper.PrinterMapper">
+
+
+    <resultMap id="printerResultBean" type="com.zx.share.platform.vo.wechat.response.PrinterResultBean">
+        <result column="printer_code" property="code" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="arae" property="area" jdbcType="VARCHAR"/>
+        <result column="address" property="name" jdbcType="VARCHAR"/>
+        <result column="manager_name" property="managerName" jdbcType="VARCHAR"/>
+        <result column="manager_phone" property="managerPhone" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+    </resultMap>
+
+
+    <sql id="selectSql">
+        printer_code,name,province,city,area,address,manager_name,manager_phone,longitude,latitude
+    </sql>
+
+    <select id="all" resultMap="printerResultBean">
+        select <include refid="selectSql"/> from zx_printer_manager
+    </select>
+
+    <select id="page" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
+        select <include refid="selectSql"/> from zx_printer_manager
+    </select>
+
+    <select id="pageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
+        select count(1) from zx_printer_manager
+    </select>
+
+    <select id="nearby" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
+        select <include refid="selectSql"/> from zx_printer_manager
+    </select>
+
+</mapper>

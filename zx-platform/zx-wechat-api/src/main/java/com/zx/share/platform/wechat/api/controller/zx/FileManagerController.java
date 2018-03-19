@@ -1,20 +1,29 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
+import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.constants.FileQuerySuffixEnum;
+import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.wechat.response.FileResultBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
+import com.zx.share.platform.wechat.service.CDEFileService;
 import com.zx.share.platform.wechat.service.FileManagerService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +41,10 @@ public class FileManagerController extends BaseController {
 
     @Autowired
     private FileManagerService fileManagerService;
+
+    @Autowired
+    private CDEFileService service;
+
 
     @ApiOperation(value = "A类文件接口", notes = "A类文件接口")
     @RequestMapping(value = "/a/page", method = {RequestMethod.GET})
@@ -60,4 +73,35 @@ public class FileManagerController extends BaseController {
         resopnseBean.setData(pageResponseBean);
         return resopnseBean;
     }
+
+	/**
+	 * @Title: list
+	 * @Description: 文件列表
+	 */
+	@RequestMapping(value = "/c/list", method = RequestMethod.GET)
+	@ApiOperation(value = "c文件列表", notes = "律师上传文件列表")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "categoryId", value = "文件类型", required = true),
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "userId", value = "用户id", required = true), })
+	@ResponseBody
+	public DefaultResopnseBean<List<ZxFileManagerCDE>> listC(Long categoryId, Long userId) {
+
+		return service.list(categoryId, userId);
+	}
+
+	/**
+	 * @Title: list
+	 * @Description: 文件列表
+	 */
+	@RequestMapping(value = "/d/list", method = RequestMethod.GET)
+	@ApiOperation(value = "d文件列表", notes = "用户上传文件列表")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "categoryId", value = "文件类型", required = true),
+			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "userId", value = "用户id", required = true), })
+	@ResponseBody
+	public DefaultResopnseBean<List<ZxFileManagerCDE>> listD(Long categoryId, Long userId) {
+
+		return service.list(categoryId, userId);
+	}
+
 }

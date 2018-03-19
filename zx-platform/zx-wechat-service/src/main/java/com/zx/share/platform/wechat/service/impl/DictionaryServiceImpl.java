@@ -22,6 +22,6 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public List<DictionaryResultBean> findType(String type, Long parentId) {
-        return dictionaryMapper.findType(type,parentId);
+        return dictionaryMapper.findTypeList(type,parentId);
     }
 }
