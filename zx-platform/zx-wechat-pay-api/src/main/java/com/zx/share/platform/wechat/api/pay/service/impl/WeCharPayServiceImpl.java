@@ -80,4 +80,9 @@ public class WeCharPayServiceImpl implements WeCharPayService {
             return null;
         }
     }
+
+    @Override
+    public Map<String, Object> payUnifiedorder(String body, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type) {
+        return creditCardPay.payUnifiedorder(body,detail,total_fee,ip,out_trade_no,openid,trade_type);
+    }
 }

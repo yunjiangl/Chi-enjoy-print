@@ -34,7 +34,7 @@ public class ZxOrder extends IdEntity {
      * 订单状态
      */
     @Column(name = "status")
-    private String status;
+    private Integer status;
 
     /**
      * 订单编号
@@ -92,6 +92,12 @@ public class ZxOrder extends IdEntity {
     
     @Column(name = "order_user_id")
     private Long orderUserId;
+
+    @Column(name = "order_amount")
+    private Double amount;
+
+    @Column(name = "remark")
+    private String remark;
 
     private static final long serialVersionUID = 1L;
 }

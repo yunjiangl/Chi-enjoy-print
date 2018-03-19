@@ -29,6 +29,11 @@
 			<artifactId>zx-bean</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zx.share.platform</groupId>
+			<artifactId>zx-wechat-pay-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>

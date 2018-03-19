@@ -6,7 +6,6 @@ import com.zx.share.platform.wechat.api.pay.payapi.AccountPay;
 import com.zx.share.platform.wechat.api.pay.payapi.CreditCardPay;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 /**
  * Created by fenggang on 18/2/27.

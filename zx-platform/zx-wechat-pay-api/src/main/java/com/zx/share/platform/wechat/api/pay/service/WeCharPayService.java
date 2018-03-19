@@ -1,5 +1,7 @@
 package com.zx.share.platform.wechat.api.pay.service;
 
+import com.zx.share.platform.wechat.api.pay.model.WxConfig;
+
 import java.util.Map;
 
 /**
@@ -26,4 +28,17 @@ public interface WeCharPayService {
     Map<String,Object> accountPay(int amount, String openId);
 
     Map<String,Object> getOpenId(String code);
+
+    /**
+     * 统一下单
+     * @param body
+     * @param detail
+     * @param total_fee
+     * @param ip
+     * @param out_trade_no
+     * @param openid
+     * @param trade_type
+     * @return
+     */
+    public Map<String, Object> payUnifiedorder(String body, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type);
 }

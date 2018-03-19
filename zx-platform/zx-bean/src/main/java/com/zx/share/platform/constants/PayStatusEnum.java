@@ -8,7 +8,13 @@ package com.zx.share.platform.constants;
  */
 public enum PayStatusEnum {
 
-    ZX_PAY_STATUS_XX(1,"");
+    ZX_PAY_STATUS_SUCCESS(1,"支付成功"),
+    ZX_PAY_STATUS_REFUND(2,"转入退款"),
+    ZX_PAY_STATUS_NOTPAY(3,"未支付"),
+    ZX_PAY_STATUS_CLOSED(4,"已关闭"),
+    ZX_PAY_STATUS_REVOKED(5,"已撤销"),
+    ZX_PAY_STATUS_USERPAYING(6,"用户支付中"),
+    ZX_PAY_STATUS_PAYERROR(7,"支付失败(其他原因，如银行返回失败)");
 
     public int code;
     public String label;

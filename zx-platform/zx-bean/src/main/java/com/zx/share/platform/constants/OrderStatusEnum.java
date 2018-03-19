@@ -8,7 +8,12 @@ package com.zx.share.platform.constants;
  */
 public enum OrderStatusEnum {
 
-    ZX_ORDER_STATUS_XX(1,"");
+    ZX_ORDER_STATUS_NOTOK(0,"未确认订单"),
+    ZX_ORDER_STATUS_NOTPAY(1,"未支付"),
+    ZX_ORDER_STATUS_USERPAYING(2,"支付中"),
+    ZX_ORDER_STATUS_CLOSE(3,"订单关闭"),
+    ZX_ORDER_STATUS_PAYERROR(4,"支付失败"),
+    ZX_ORDER_STATUS_PAYSUCCESS(5,"支付成功");
 
     public int code;
     public String label;

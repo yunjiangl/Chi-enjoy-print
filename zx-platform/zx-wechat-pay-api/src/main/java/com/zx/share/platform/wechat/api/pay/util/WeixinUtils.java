@@ -18,10 +18,10 @@ public class WeixinUtils {
 //     * @param total_fee 价格（单位：分）
 //     * @param ip        ip
 //     */
-    public static Map<String, Object> payUnifiedorder(WxConfig config, String name, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type) {
+    public static Map<String, Object> payUnifiedorder(WxConfig config, String body, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type) {
 
         UnifiedorderPayReqData unifiedorderPayReqData = new UnifiedorderPayReqData(config.getKey(),
-                config.getAppId(), config.getMchId(), "", name, detail, "",
+                config.getAppId(), config.getMchId(), "", body, detail, "",
                 out_trade_no, "", total_fee, ip, "", "", "",
                 config.getNotifyUrl(), trade_type, "", openid);
         String postDataXML = unifiedorderPayReqData.toXml();
