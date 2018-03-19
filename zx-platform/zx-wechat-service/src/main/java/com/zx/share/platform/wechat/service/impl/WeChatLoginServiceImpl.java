@@ -71,7 +71,14 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
                 authVo.setRefreshToken(object.getString("refresh_token"));
                 authVo.setOpenId(object.getString("openid"));
                 authVo.setScope(object.getString("scope"));
-                authVo.setUnionId(object.getString("unionid"));
+                try {
+                    authVo.setUnionId(object.getString("unionid"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    logger.error("第三方微信登录获取微信用户信息失败");
+                    logger.error(object.toString());
+                    //return null;
+                }
 
                 return authVo;
             }
@@ -106,14 +113,14 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
                 }
                 JSONObject object = new JSONObject(builder.toString().trim());
 
-                String unionId;
+                String unionId=null;
                 try {
                     unionId = object.getString("unionid");
                 } catch (Exception e) {
                     e.printStackTrace();
                     logger.error("第三方微信登录获取微信用户信息失败");
                     logger.error(object.toString());
-                    return null;
+                    //return null;
                 }
 
                 WeChatUserInfoVo weChatUserInfoVo = new WeChatUserInfoVo();
@@ -209,7 +216,13 @@ public class WeChatLoginServiceImpl implements WeChatLoginService {
                 weChatUserInfoVo.setCountry(userInfoJSON.getString("country"));
                 weChatUserInfoVo.setSex(userInfoJSON.getInt("gender"));
                 weChatUserInfoVo.setOpenId(userInfoJSON.getString("openId"));
-                weChatUserInfoVo.setUnionId(userInfoJSON.getString("unionId"));
+                try {
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    logger.error("第三方微信登录获取微信用户信息失败");
+                    logger.error(userInfoJSON.toString());
+                    //return null;
+                }
                 weChatUserInfoVo.setHeadImgUrl(userInfoJSON.getString("avatarUrl"));
 
                 return weChatUserInfoVo;

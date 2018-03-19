@@ -15,6 +15,10 @@
         select user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
     </select>
 
+    <select id="findByOpenId" resultMap="userResultBean">
+        select user_code,username,mobile,union_id,open_id,password from zx_user where open_id=#{0,jdbcType=VARCHAR}
+    </select>
+
     <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
 
     </insert>

@@ -8,7 +8,9 @@ package com.zx.share.platform.constants;
  */
 public enum FileQuerySuffixEnum {
 
-    ZX_FILE_QUERY_SUFFIX_AB(1,"ab"), ZX_FILE_QUERY_SUFFIX_CDE(2,"cde");
+    ZX_FILE_QUERY_SUFFIX_A(1,"ab"), ZX_FILE_QUERY_SUFFIX_B(2,"ab"),
+    ZX_FILE_QUERY_SUFFIX_C(3,"cde"), ZX_FILE_QUERY_SUFFIX_D(4,"cde"),
+    ZX_FILE_QUERY_SUFFIX_E(5,"cde");
 
     public int code;
     public String label;

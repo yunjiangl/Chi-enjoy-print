@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResultBean findByUnionId(String unionId) {
-        return userMapper.findByUnionId(unionId);
+        return userMapper.findByOpenId(unionId);
     }
 
     @Override

@@ -17,6 +17,8 @@ public interface UserMapper extends PlatFormMapper<ZxPrinterManager> {
 
     UserResultBean findByUnionId(String unionId);
 
+    UserResultBean findByOpenId(String openId);
+
     Integer save(UserRequestBean bean);
 
     Integer update(UserRequestBean bean);

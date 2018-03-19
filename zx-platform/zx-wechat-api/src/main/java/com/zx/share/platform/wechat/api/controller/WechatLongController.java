@@ -4,6 +4,7 @@ import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.GrantType;
 import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.vo.WeChatOAuthVo;
 import com.zx.share.platform.vo.WeChatUserInfoVo;
 import com.zx.share.platform.vo.WxAppletAuthVo;
 import com.zx.share.platform.vo.WxLoginResponseVo;
@@ -69,7 +70,7 @@ public class WechatLongController extends BaseController{
             return responseData;
         }
 
-        UserResultBean userResultBean = userService.findByUnionId(appletUserInfo.getUnionId());
+        UserResultBean userResultBean = userService.findByUnionId(appletUserInfo.getOpenId());
 
         if (userResultBean == null) {
             UserRequestBean userSaveBean = new UserRequestBean();
@@ -123,6 +124,65 @@ public class WechatLongController extends BaseController{
         responseData.setData(loginResultBean);
         //登录信息写入缓存
 
+        return responseData;
+    }
+
+    @ApiOperation(value = "微信用户登录", notes = "微信用户登录")
+    @RequestMapping(value = "/loginByWeChat", method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public DefaultResopnseBean<WxLoginResponseVo> loginByWeChat(@ApiParam("appId") @RequestParam("appId") String appId,
+                                                         @ApiParam("code 授权码") @RequestParam("code") String code,
+                                                         HttpServletRequest request, HttpServletResponse response) throws Exception {
+        servletPath = request.getServletPath();
+        String sessionToken = request.getSession().getId();
+        DefaultResopnseBean<WxLoginResponseVo> responseData = new DefaultResopnseBean<>();
+        WeChatOAuthVo weChatOAuthVo = weChatLoginService.getAccessToken(weChatConfig.getLoginAppId(), weChatConfig.getLoginAppSecret(), code, GrantType.AUTHORIZATION_CODE);
+        if (null == weChatOAuthVo) {
+            responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "微信OAuth失败");
+            return responseData;
+        }
+
+        UserResultBean userResultBean = userService.findByUnionId(weChatOAuthVo.getOpenId());
+
+        if (userResultBean == null) {
+            //获取微信用户信息
+            WeChatUserInfoVo appletUserInfo = weChatLoginService.getUserInfo(weChatOAuthVo.getAccessToken(), weChatOAuthVo.getOpenId());
+            if (null == appletUserInfo) {
+                responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "获取微信用户信息失败");
+                return responseData;
+            }
+            UserRequestBean userSaveBean = new UserRequestBean();
+            userSaveBean.setCity(appletUserInfo.getCity());
+            userSaveBean.setProvince(appletUserInfo.getProvince());
+            userSaveBean.setOpenId(appletUserInfo.getOpenId());
+            userSaveBean.setCountry(appletUserInfo.getCountry());
+            userSaveBean.setUnionId(appletUserInfo.getUnionId());
+            userSaveBean.setHeadImgUrl(appletUserInfo.getHeadImgUrl());
+            userSaveBean.setNickName(appletUserInfo.getNickName());
+            userSaveBean.setSex(appletUserInfo.getSex());
+            userSaveBean.setAccessToken(sessionToken);
+            userService.save(userSaveBean);
+
+            userResultBean = new UserResultBean();
+
+        }
+
+        //如果用户创建失败
+        if(userResultBean==null){
+            responseData.jsonFill(ErrorsEnum.SYSTEM_BUSINESS_ERROR);
+            return responseData;
+        }
+
+        //获取到用户信息
+        WxLoginResponseVo loginResultBean = new WxLoginResponseVo();
+        loginResultBean.setAccessToken(sessionToken);
+        loginResultBean.setMobile(userResultBean.getMobile());
+        loginResultBean.setNickName(userResultBean.getUnionId());
+        loginResultBean.setUserCode(userResultBean.getUserCode());
+        loginResultBean.setHeadImageUrl(userResultBean.getPortrait());
+        //放入返回对象
+        responseData.setData(loginResultBean);
+        //登录信息写入缓存
         return responseData;
     }
 }

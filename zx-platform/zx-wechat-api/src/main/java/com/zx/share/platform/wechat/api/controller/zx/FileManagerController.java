@@ -41,7 +41,7 @@ public class FileManagerController extends BaseController {
                                                                            @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
                                                                            HttpServletRequest request, HttpServletResponse response) {
         servletPath = request.getServletPath();
-        PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_AB.label, categoryCode, page, pageSize);
+        PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_A.label, categoryCode, page, pageSize);
         DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
         resopnseBean.setData(pageResponseBean);
         return resopnseBean;
@@ -55,7 +55,7 @@ public class FileManagerController extends BaseController {
                                                                            @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
                                                                            HttpServletRequest request, HttpServletResponse response) {
         servletPath = request.getServletPath();
-        PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_CDE.label, categoryCode, page, pageSize);
+        PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_B.label, categoryCode, page, pageSize);
         DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
         resopnseBean.setData(pageResponseBean);
         return resopnseBean;
