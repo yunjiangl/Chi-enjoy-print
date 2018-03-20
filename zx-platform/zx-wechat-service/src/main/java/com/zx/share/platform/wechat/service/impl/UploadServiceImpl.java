@@ -2,6 +2,7 @@ package com.zx.share.platform.wechat.service.impl;
 
 import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.util.Excel2Pdf;
 import com.zx.share.platform.util.GetPdfpage;
 import com.zx.share.platform.util.Word2PdfUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
@@ -67,14 +68,19 @@ public class UploadServiceImpl implements UploadService {
             String suffix = multipartFile.getOriginalFilename()
                     .substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1);
 
-            // 读取文件打印页数
+            // 读取pdf文件打印页数
             if ("pdf".equals(suffix)) {
                 file.setFileNum(GetPdfpage.getPdfPage(fileURL));
             }
 
-            // 读取文件打印页数
+            // 读取word文件打印页数
             if ("doc".equals(suffix) || "docx".equals(suffix)) {
                 file.setFileNum(GetPdfpage.getPdfPage(Word2PdfUtil.doc2pdf(fileURL)));
+            }
+            
+            // 读取Excel文件打印页数
+            if("xls".equals(suffix)||"xlsx".equals(suffix)) {
+            	file.setFileNum(GetPdfpage.getPdfPage(Excel2Pdf.excel2pdf(fileURL)));
             }
 
         } catch (FileNotFoundException e) {
