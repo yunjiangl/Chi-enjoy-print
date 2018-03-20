@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public UserResultBean findByUnionId(String unionId) {
+    public UserResultBean findByOpenId(String unionId) {
         return userMapper.findByOpenId(unionId);
     }
 

@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiModel;
 public class OrderQueryBean extends PageRequestBean {
 
     private Integer orderType;
+    private Integer userType;
 
     public void setOrderType(Integer orderType) {
         this.orderType = orderType;
@@ -20,5 +21,13 @@ public class OrderQueryBean extends PageRequestBean {
 
     public Integer getOrderType() {
         return orderType;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 }

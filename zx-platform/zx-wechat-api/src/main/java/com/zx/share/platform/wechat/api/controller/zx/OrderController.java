@@ -38,16 +38,30 @@ public class OrderController extends BaseController {
     @ApiOperation(value = "保存订单信息接口", notes = "保存订单信息接口")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<String> save(OrderSaveBean saveBean,HttpServletRequest request) {
+    public DefaultResopnseBean<String> save(@ApiParam("客户code") @RequestParam("customerCode") String customerCode,
+                                            @ApiParam("律师code") @RequestParam("attorneyCode") String attorneyCode,
+                                            @ApiParam("打印机code") @RequestParam("printerCode") String printerCode,
+                                            @ApiParam("文件code") @RequestParam("fileCodes") String fileCodes,
+                                            @ApiParam("纸张类型") @RequestParam("paperType") Long paperType,
+                                            @ApiParam("打印数量") @RequestParam("printerNum") Integer printerNum,
+                                            @ApiParam("纸张颜色") @RequestParam("paperColcor") Long paperColcor,
+                                            @ApiParam("纸张使用") @RequestParam("paperUsage") Long paperUsage,HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
         return resopnseBean;
     }
 
-    @ApiOperation(value = "保存订单打印文件接口", notes = "保存订单打印文件接口")
-    @RequestMapping(value = "/save/file", method = RequestMethod.POST)
+    @ApiOperation(value = "修改订单接口", notes = "修改订单接口")
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<String> saveFile(OrderFileSaveBean saveBean, HttpServletRequest request) {
+    public DefaultResopnseBean<String> update(@ApiParam("客户code") @RequestParam("customerCode") String customerCode,
+                                              @ApiParam("律师code") @RequestParam("attorneyCode") String attorneyCode,
+                                              @ApiParam("打印机code") @RequestParam("printerCode") String printerCode,
+                                              @ApiParam("文件code") @RequestParam("fileCodes") String fileCodes,
+                                              @ApiParam("纸张类型") @RequestParam("paperType") Long paperType,
+                                              @ApiParam("打印数量") @RequestParam("printerNum") Integer printerNum,
+                                              @ApiParam("纸张颜色") @RequestParam("paperColcor") Long paperColcor,
+                                              @ApiParam("纸张使用") @RequestParam("paperUsage") Long paperUsage, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
         return resopnseBean;

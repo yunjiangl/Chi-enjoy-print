@@ -11,7 +11,7 @@ import com.zx.share.platform.vo.user.UserResultBean;
  */
 public interface UserService {
 
-    UserResultBean findByUnionId(String unionId);
+    UserResultBean findByOpenId(String unionId);
 
     Integer save(UserRequestBean bean);
 

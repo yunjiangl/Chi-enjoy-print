@@ -21,6 +21,8 @@ public class UserResultBean implements Serializable {
     private String mobile;
     private String password;
     private String portrait;
+    private Integer userType;
+    private Integer userStatus;
 
     public String getUserCode() {
         return userCode;
@@ -76,5 +78,21 @@ public class UserResultBean implements Serializable {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 }
