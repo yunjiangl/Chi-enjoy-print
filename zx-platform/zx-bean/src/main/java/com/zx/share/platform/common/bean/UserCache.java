@@ -13,8 +13,9 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserToken implements Serializable {
+public class UserCache implements Serializable {
 
+	private Long id;
 	private Integer status;
 	private String name;
 	private String permissions;

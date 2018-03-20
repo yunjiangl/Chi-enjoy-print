@@ -1,11 +1,16 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
 import com.alibaba.fastjson.JSON;
+import com.zx.share.platform.common.bean.SessionConfig;
+import com.zx.share.platform.common.bean.UserCache;
+import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
+import com.zx.share.platform.wechat.service.ZxOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,19 +34,26 @@ import java.io.InputStreamReader;
 @RequestMapping("/pay")
 public class PayController extends BaseController {
 
-    @ApiOperation(value = "支付接口", notes = "支付接口")
+    @Autowired
+    private ZxOrderService zxOrderService;
+
+    @ApiOperation(value = "支付下单接口", notes = "支付下单接口")
     @RequestMapping(value = "/account",method = RequestMethod.POST)
     @ResponseBody
     public DefaultResopnseBean<String> accountPay(@ApiParam("订单code")@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
         DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
+        UserCache user = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        if(user==null){
+            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+        }
         return resopnseBean;
     }
 
-    @ApiOperation(value = "支付后回调接口", notes = "支付后回调接口")
-    @RequestMapping(value = "/callback")
+    @ApiOperation(value = "自动支付后回调接口", notes = "支付后回调接口")
+    @RequestMapping(value = "/automation/callback")
     @ResponseBody
-    public DefaultResopnseBean callback(HttpServletRequest request, HttpServletResponse response){
+    public DefaultResopnseBean<Object> automation(HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
         response.setContentType("text/html");
         response.setCharacterEncoding("gb2312");
@@ -78,6 +90,17 @@ public class PayController extends BaseController {
 
             }
         }
+        return null;
+    }
+
+
+
+    @ApiOperation(value = "手动支付后回调接口", notes = "支付后回调接口")
+    @RequestMapping(value = "/manual/callback")
+    @ResponseBody
+    public DefaultResopnseBean<Object> manual(HttpServletRequest request, HttpServletResponse response){
+        servletPath = request.getServletPath();
+
         return null;
     }
 }

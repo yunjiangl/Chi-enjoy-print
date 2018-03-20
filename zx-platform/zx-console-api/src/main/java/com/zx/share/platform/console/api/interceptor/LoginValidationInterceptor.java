@@ -1,7 +1,7 @@
 package com.zx.share.platform.console.api.interceptor;
 
 import com.zx.share.platform.common.bean.SessionConfig;
-import com.zx.share.platform.common.bean.UserToken;
+import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.common.service.SercurityService;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.exception.BusinessException;
@@ -57,7 +57,7 @@ public class LoginValidationInterceptor extends HandlerInterceptorAdapter {
 					}
 					logger.info("接口【{}】请求开始登录验证", request.getServletPath());
 					sercurityService.sessionValidation(request);
-					UserToken user = sercurityService.getUserToken(request);
+					UserCache user = sercurityService.getUserToken(request);
 					logger.info("用户【" + user.getName() + "】操作了接口：【{}】", request.getServletPath());
 					// 设置运营人员ID
 					request.setAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER, user);

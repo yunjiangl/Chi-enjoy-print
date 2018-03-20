@@ -1,6 +1,6 @@
 package com.zx.share.platform.common.service;
 
-import com.zx.share.platform.common.bean.UserToken;
+import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.constants.OCSKeys;
 import com.zx.share.platform.exception.BusinessException;
@@ -115,7 +115,7 @@ public class TokenCacheService {
 	 * @param request
 	 * @param user
 	 */
-	public void cacheUser(HttpServletRequest request, UserToken user) {
+	public void cacheUser(HttpServletRequest request, UserCache user) {
 		String key = getUserCacheKey(request);
 		memcachedService.set(key, USER_EXP_KEY, user);
 	}
@@ -128,13 +128,13 @@ public class TokenCacheService {
 	 * @param request
 	 * @return
 	 */
-	public UserToken getCacheUser(HttpServletRequest request) throws Exception {
+	public UserCache getCacheUser(HttpServletRequest request) throws Exception {
 		String key = getUserCacheKey(request);
 		Object obj = memcachedService.get(key);
 		if (obj == null) {
-			throwException(ErrorsEnum.SYSTEM_NOT_LOGIN_STATUS.code,ErrorsEnum.SYSTEM_NOT_LOGIN_STATUS.label);
+			throwException(ErrorsEnum.SYSTEM_NOT_LOGIN.code,ErrorsEnum.SYSTEM_NOT_LOGIN.label);
 		}
-		UserToken user = (UserToken) obj;
+		UserCache user = (UserCache) obj;
 		if (user != null) {
 			memcachedService.set(key, USER_EXP_KEY, user);
 			if(user.getStatus()!=1){
