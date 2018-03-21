@@ -1,10 +1,11 @@
 package com.zx.share.platform.wechat.mapper;
 
-import com.zx.share.platform.bean.zx.ZxPrinterManager;
+import org.springframework.stereotype.Repository;
+
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 import com.zx.share.platform.vo.user.UserRequestBean;
 import com.zx.share.platform.vo.user.UserResultBean;
-import org.springframework.stereotype.Repository;
 
 /**
  * Created by fenggang on 18/3/5.
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @date 18/3/5
  */
 @Repository
-public interface UserMapper extends PlatFormMapper<ZxPrinterManager> {
+public interface UserMapper extends PlatFormMapper<ZxUser> {
 
     UserResultBean findByUnionId(String unionId);
 

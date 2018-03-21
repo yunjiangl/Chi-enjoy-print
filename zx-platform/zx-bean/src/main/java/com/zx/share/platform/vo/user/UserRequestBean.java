@@ -130,4 +130,5 @@ public class UserRequestBean implements Serializable {
     public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
     }
+
 }

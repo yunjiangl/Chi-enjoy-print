@@ -12,20 +12,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author 
+ * @author
  */
 @Entity
-@Table(name="zx_user")
+@Table(name = "zx_user")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ZxUser extends IdEntity {
-    
 
-    
 	private static final long serialVersionUID = 7554327871995326455L;
-
+	
 	@Column(name = "user_code")
-	private String userCode;
+    private String userCode;
 
 	@Column(name = "mobile")
     private String mobile;
@@ -72,5 +70,25 @@ public class ZxUser extends IdEntity {
 	@Column(name = "user_type")
     private Integer userType;
 
-   
+    /**
+     * 用户状态（1-微信刚登陆，2-绑定手机号）
+     */
+	@Column(name = "user_status")
+    private Integer userStatus;
+
+	@Column(name = "age")
+    private Integer age;
+
+	@Column(name = "wechat_id")
+    private String wechatId;
+
+	@Column(name = "province")
+    private String province;
+
+	@Column(name = "city")
+    private String city;
+
+	@Column(name = "area")
+    private String area;
+
 }

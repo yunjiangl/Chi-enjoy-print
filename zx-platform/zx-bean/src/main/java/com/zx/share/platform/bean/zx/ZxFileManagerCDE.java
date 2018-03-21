@@ -56,7 +56,7 @@ public class ZxFileManagerCDE extends IdEntity{
 	private Date createTime;
 	
 	@Column(name = "create_id")
-	private int createId;
+	private Long createId;
 	
 	@Column(name = "update_time")
 	private Date updateTime;
