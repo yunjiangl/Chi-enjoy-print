@@ -7,7 +7,6 @@ import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.tools.jstat.Token;
 
 /**
  * Created by fenggang on 18/3/5.
