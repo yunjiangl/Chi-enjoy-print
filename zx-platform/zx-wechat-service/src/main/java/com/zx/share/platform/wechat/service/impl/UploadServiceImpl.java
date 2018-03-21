@@ -1,21 +1,25 @@
 package com.zx.share.platform.wechat.service.impl;
 
-import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
-import com.zx.share.platform.constants.ErrorsEnum;
-import com.zx.share.platform.util.Excel2Pdf;
-import com.zx.share.platform.util.GetPdfpage;
-import com.zx.share.platform.util.Word2PdfUtil;
-import com.zx.share.platform.util.response.DefaultResopnseBean;
-import com.zx.share.platform.wechat.mapper.file.CDEFileMapper;
-import com.zx.share.platform.wechat.service.UploadService;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.util.Date;
+import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
+import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.util.Excel2Pdf;
+import com.zx.share.platform.util.GetPdfpage;
+import com.zx.share.platform.util.Word2PdfUtil;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.wechat.service.UploadService;
 
 /**
  * Created by fenggang on 18/3/19.
@@ -71,16 +75,19 @@ public class UploadServiceImpl implements UploadService {
             // 读取pdf文件打印页数
             if ("pdf".equals(suffix)) {
                 file.setFileNum(GetPdfpage.getPdfPage(fileURL));
+               // file.setCategoryId(categoryId); 设置文件分类id
             }
 
             // 读取word文件打印页数
             if ("doc".equals(suffix) || "docx".equals(suffix)) {
                 file.setFileNum(GetPdfpage.getPdfPage(Word2PdfUtil.doc2pdf(fileURL)));
+             // file.setCategoryId(categoryId); 设置文件分类id
             }
             
             // 读取Excel文件打印页数
             if("xls".equals(suffix)||"xlsx".equals(suffix)) {
             	file.setFileNum(GetPdfpage.getPdfPage(Excel2Pdf.excel2pdf(fileURL)));
+            	// file.setCategoryId(categoryId); 设置文件分类id
             }
 
         } catch (FileNotFoundException e) {
@@ -92,9 +99,7 @@ public class UploadServiceImpl implements UploadService {
 
         file.setFileName(multipartFile.getOriginalFilename());
         file.setFileUrl(fileURL);
-
-        // 设置文件创建者id
-        // file.setCreateId(createId);
+        
         file.setCreateTime(new Date());
 
         CDEFileMapper.insertSelective(file);

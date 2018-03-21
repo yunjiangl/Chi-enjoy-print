@@ -39,10 +39,33 @@ public class DictionaryController extends BaseController {
         resopnseBean.setData(list);
         return resopnseBean;
     }
+
     @ApiOperation(value = "根据code获取单个字典信息接口", notes = "根据code获取单个字典信息接口")
     @RequestMapping(value = "/get",method = RequestMethod.GET)
     public void get(@RequestParam("code") String code,HttpServletRequest request){
         servletPath = request.getServletPath();
 
+    }
+
+    @ApiOperation(value = "获取A文件类型接口", notes = "获取A文件类型接口")
+    @RequestMapping(value = "/a/list",method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultResopnseBean<List<DictionaryResultBean>> lista(HttpServletRequest request){
+        servletPath = request.getServletPath();
+        List<DictionaryResultBean> list = null;
+        DefaultResopnseBean<List<DictionaryResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        resopnseBean.setData(list);
+        return resopnseBean;
+    }
+
+    @ApiOperation(value = "获取A文件类型接口", notes = "获取A文件类型接口")
+    @RequestMapping(value = "/b/list",method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultResopnseBean<List<DictionaryResultBean>> listb(HttpServletRequest request){
+        servletPath = request.getServletPath();
+        List<DictionaryResultBean> list = null;
+        DefaultResopnseBean<List<DictionaryResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        resopnseBean.setData(list);
+        return resopnseBean;
     }
 }
