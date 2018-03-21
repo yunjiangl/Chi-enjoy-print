@@ -1,5 +1,7 @@
 package com.zx.share.platform.vo.user;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -22,6 +24,8 @@ public class UserRequestBean implements Serializable {
     private String unionId;
     private String wxSessionKey;
     private String accessToken;
+    private Integer userType;
+    private Integer userStatus;
 
     public String getUserCode() {
         return userCode;
@@ -109,5 +113,21 @@ public class UserRequestBean implements Serializable {
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
     }
 }

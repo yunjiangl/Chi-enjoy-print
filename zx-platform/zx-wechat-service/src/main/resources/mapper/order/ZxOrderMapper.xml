@@ -31,7 +31,7 @@
 
 
     <select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxOrder"
-            resultMap="BaseResultMap">
+            resultMap="baseResultMap">
 
 	</select>
 

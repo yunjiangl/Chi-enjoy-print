@@ -9,10 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import sun.util.calendar.BaseCalendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,9 +30,9 @@ public class DictionaryController extends BaseController {
     private DictionaryService dictionaryService;
 
     @ApiOperation(value = "获取文件类型接口", notes = "获取文件类型接口")
-    @RequestMapping(value = "/list/{pId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     @ResponseBody
-    public DefaultResopnseBean<List<DictionaryResultBean>> list(@PathVariable Long pId, HttpServletRequest request){
+    public DefaultResopnseBean<List<DictionaryResultBean>> list(@RequestParam("pId") Long pId, HttpServletRequest request){
         servletPath = request.getServletPath();
         List<DictionaryResultBean> list = dictionaryService.findType(DictionaryKeys.ZX_FILE_TYPES,pId);
         DefaultResopnseBean<List<DictionaryResultBean>> resopnseBean = new DefaultResopnseBean<>();
@@ -43,8 +40,8 @@ public class DictionaryController extends BaseController {
         return resopnseBean;
     }
     @ApiOperation(value = "根据code获取单个字典信息接口", notes = "根据code获取单个字典信息接口")
-    @RequestMapping(value = "/get/{code}",method = RequestMethod.GET)
-    public void get(@PathVariable String code,HttpServletRequest request){
+    @RequestMapping(value = "/get",method = RequestMethod.GET)
+    public void get(@RequestParam("code") String code,HttpServletRequest request){
         servletPath = request.getServletPath();
 
     }

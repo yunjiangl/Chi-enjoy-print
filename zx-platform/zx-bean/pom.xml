@@ -91,6 +91,14 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/../lib/aspose-words-15.8.0-jdk16.jar</systemPath>
 		</dependency>
+		
+		<dependency>
+			<groupId>aspose-cells-8.5.2</groupId>
+			<artifactId>aspose-cells-8.5.2</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/aspose-cells-8.5.2.jar</systemPath>
+		</dependency>
 
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>

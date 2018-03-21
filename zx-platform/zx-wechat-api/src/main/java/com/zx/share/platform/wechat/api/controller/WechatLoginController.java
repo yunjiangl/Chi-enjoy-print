@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Created by fenggang on 18/3/2.
@@ -37,7 +36,7 @@ import java.util.Date;
 @Api(value = "/wechat", produces = "application/json", description = "微信登录接口")
 @Controller
 @RequestMapping("/wechat")
-public class WechatLongController extends BaseController{
+public class WechatLoginController extends BaseController{
 
     @Autowired
     private WeChatLoginService weChatLoginService;
@@ -70,7 +69,7 @@ public class WechatLongController extends BaseController{
             return responseData;
         }
 
-        UserResultBean userResultBean = userService.findByUnionId(appletUserInfo.getOpenId());
+        UserResultBean userResultBean = userService.findByOpenId(appletUserInfo.getOpenId());
 
         if (userResultBean == null) {
             UserRequestBean userSaveBean = new UserRequestBean();
@@ -83,6 +82,8 @@ public class WechatLongController extends BaseController{
             userSaveBean.setNickName(appletUserInfo.getNickName());
             userSaveBean.setSex(appletUserInfo.getSex());
             userSaveBean.setAccessToken(sessionToken);
+            userSaveBean.setUserStatus(1);
+            userSaveBean.setUserType(1);
             userService.save(userSaveBean);
 
             userResultBean = new UserResultBean();
@@ -99,10 +100,11 @@ public class WechatLongController extends BaseController{
         }
 
         //如果没有openID，unionId，重新获取一下
-        if(userResultBean!=null && StringUtil.isBlank(userResultBean.getUnionId())){
+        if(userResultBean!=null && StringUtil.isBlank(userResultBean.getOpenId())){
             UserRequestBean userSaveBean = new UserRequestBean();
             userSaveBean.setUserCode(userResultBean.getUserCode());
             userSaveBean.setUnionId(appletUserInfo.getUnionId());
+            userSaveBean.setOpenId(userResultBean.getOpenId());
             userSaveBean.setAccessToken(sessionToken);
             userService.update(userSaveBean);
         }
@@ -120,6 +122,8 @@ public class WechatLongController extends BaseController{
         loginResultBean.setNickName(userResultBean.getUnionId());
         loginResultBean.setUserCode(userResultBean.getUserCode());
         loginResultBean.setHeadImageUrl(userResultBean.getPortrait());
+        loginResultBean.setUserType(userResultBean.getUserType());
+        loginResultBean.setUserStatus(userResultBean.getUserStatus());
         //放入返回对象
         responseData.setData(loginResultBean);
         //登录信息写入缓存
@@ -142,7 +146,7 @@ public class WechatLongController extends BaseController{
             return responseData;
         }
 
-        UserResultBean userResultBean = userService.findByUnionId(weChatOAuthVo.getOpenId());
+        UserResultBean userResultBean = userService.findByOpenId(weChatOAuthVo.getOpenId());
 
         if (userResultBean == null) {
             //获取微信用户信息
@@ -161,6 +165,8 @@ public class WechatLongController extends BaseController{
             userSaveBean.setNickName(appletUserInfo.getNickName());
             userSaveBean.setSex(appletUserInfo.getSex());
             userSaveBean.setAccessToken(sessionToken);
+            userSaveBean.setUserStatus(1);
+            userSaveBean.setUserType(1);
             userService.save(userSaveBean);
 
             userResultBean = new UserResultBean();
@@ -180,6 +186,8 @@ public class WechatLongController extends BaseController{
         loginResultBean.setNickName(userResultBean.getUnionId());
         loginResultBean.setUserCode(userResultBean.getUserCode());
         loginResultBean.setHeadImageUrl(userResultBean.getPortrait());
+        loginResultBean.setUserType(userResultBean.getUserType());
+        loginResultBean.setUserStatus(userResultBean.getUserStatus());
         //放入返回对象
         responseData.setData(loginResultBean);
 

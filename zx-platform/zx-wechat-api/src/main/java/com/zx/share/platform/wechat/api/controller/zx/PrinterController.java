@@ -108,4 +108,14 @@ public class PrinterController extends BaseController {
         resopnseBean.setData(pageResultBean);
         return  resopnseBean;
     }
+
+    @ApiOperation(value = "打印机关联律师接口", notes = "打印机关联律师")
+    @RequestMapping(value = "/attorney",method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultResopnseBean<List<?>> attorney(@ApiParam("打印机code") @RequestParam("printerCode") String printerCode,
+                                        HttpServletRequest request){
+        servletPath = request.getServletPath();
+        DefaultResopnseBean<List<?>> resopnseBean = new DefaultResopnseBean<>();
+        return  resopnseBean;
+    }
 }

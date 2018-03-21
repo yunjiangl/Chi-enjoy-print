@@ -3,12 +3,11 @@ package com.zx.share.platform.common.service;
 import com.alibaba.fastjson.JSONObject;
 import com.zx.share.platform.common.bean.MySession;
 import com.zx.share.platform.common.bean.SessionConfig;
-import com.zx.share.platform.common.bean.UserToken;
+import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.exception.NeedLoginException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -27,7 +26,7 @@ public class SercurityService {
 	@Resource
 	MemcachedService memUtils;
 
-	public void saveSession(HttpServletRequest request, HttpServletResponse response, UserToken user) {
+	public String saveSession(HttpServletRequest request, HttpServletResponse response, UserCache user) {
 
 //		Cookie[] cookies = request.getCookies();
 		String sessionId = request.getSession().getId();
@@ -52,6 +51,8 @@ public class SercurityService {
 //		cookie.setMaxAge(-1);
 //		response.addCookie(cookie);
 
+		return sessionId;
+
 	}
 
 	public void cleanSession(HttpServletRequest request) throws NeedLoginException {
@@ -70,16 +71,16 @@ public class SercurityService {
 		MySession session = memUtils.getSession(sessionId);
 
 		if (session == null || session.getAttribute(SessionConfig.DEFAULT_OPERATOR_REQUEST_ATTRIBUTE_NAME) == null) {
-			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN_STATUS);
+			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN);
 		}
 
 		return session;
 	}
 
-	public UserToken getUserToken(HttpServletRequest request) throws NeedLoginException {
+	public UserCache getUserToken(HttpServletRequest request) throws NeedLoginException {
 		MySession session = getSession(request);
 		Object obj = session.getAttribute(SessionConfig.DEFAULT_OPERATOR_REQUEST_ATTRIBUTE_NAME);
-		return JSONObject.parseObject(obj.toString(), UserToken.class);
+		return JSONObject.parseObject(obj.toString(), UserCache.class);
 	}
 
 	public void sessionValidation(HttpServletRequest request) throws NeedLoginException {
@@ -90,7 +91,7 @@ public class SercurityService {
 		MySession session = memUtils.getSession(sessionId);
 		if (session == null || session.getAttribute(SessionConfig.DEFAULT_OPERATOR_REQUEST_ATTRIBUTE_NAME) == null) {
 			logger.debug("Session is out of time");
-			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN_STATUS);
+			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN);
 		}
 
 	}
@@ -108,7 +109,7 @@ public class SercurityService {
 		String sessionId = request.getHeader("X-ACCESS-TOKEN");
 
 		if (StringUtils.isEmpty(sessionId)) {
-			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN_STATUS);
+			throw new NeedLoginException(ErrorsEnum.SYSTEM_NOT_LOGIN);
 		}
 
 		return sessionId;
@@ -121,7 +122,7 @@ public class SercurityService {
 	 * com.idailycar.ops.service.SercurityService#refreshSession(com.idailycar.ops.domain.Operator,
 	 * javax.servlet.http.HttpServletRequest)
 	 */
-	public void refreshSession(UserToken user, HttpServletRequest request) throws NeedLoginException {
+	public void refreshSession(UserCache user, HttpServletRequest request) throws NeedLoginException {
 
 		// 找到当前session
 		MySession session = getSession(request);

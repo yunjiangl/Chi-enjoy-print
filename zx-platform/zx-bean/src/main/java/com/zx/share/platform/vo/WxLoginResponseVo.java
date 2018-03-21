@@ -22,10 +22,16 @@ public class WxLoginResponseVo implements Serializable {
     private String mobile;
 	@ApiModelProperty("昵称")
     private String nickName;
-	@ApiModelProperty("性别")
-    private String sex;
+    @ApiModelProperty("性别")
+    private Integer grad;
+    @ApiModelProperty("年龄")
+    private Integer age;
 	@ApiModelProperty("头像url")
     private String headImageUrl;
+	@ApiModelProperty("用户类型（1-普通用户，2-律师）")
+	private Integer userType;
+    @ApiModelProperty("用户状态（1-微信刚登陆，2-绑定手机号）")
+    private Integer userStatus;
 
     public WxLoginResponseVo() {
     }
@@ -51,14 +57,6 @@ public class WxLoginResponseVo implements Serializable {
         this.nickName = nickName;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
     public String getHeadImageUrl() {
         return headImageUrl;
     }
@@ -81,5 +79,37 @@ public class WxLoginResponseVo implements Serializable {
 
     public void setUserCode(String userCode) {
         this.userCode = userCode;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
+    public Integer getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Integer userStatus) {
+        this.userStatus = userStatus;
+    }
+
+    public Integer getGrad() {
+        return grad;
+    }
+
+    public void setGrad(Integer grad) {
+        this.grad = grad;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

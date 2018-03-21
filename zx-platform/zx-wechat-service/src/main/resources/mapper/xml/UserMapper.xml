@@ -9,14 +9,16 @@
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="INTEGER"/>
+        <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="findByUnionId" resultMap="userResultBean">
-        select user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
+        select user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
     </select>
 
     <select id="findByOpenId" resultMap="userResultBean">
-        select user_code,username,mobile,union_id,open_id,password from zx_user where open_id=#{0,jdbcType=VARCHAR}
+        select user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where open_id=#{0,jdbcType=VARCHAR}
     </select>
 
     <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
