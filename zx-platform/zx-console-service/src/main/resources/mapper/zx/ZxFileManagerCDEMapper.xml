@@ -16,5 +16,4 @@
     <result column="manager_id" jdbcType="BIGINT" property="managerId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
   </resultMap>
-  
 </mapper>

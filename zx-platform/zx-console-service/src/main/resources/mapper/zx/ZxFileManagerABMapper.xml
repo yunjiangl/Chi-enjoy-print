@@ -15,4 +15,33 @@
     <result column="update_id" jdbcType="INTEGER" property="updateId" />
   </resultMap>
   
+  
+  	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
+		resultMap="BaseResultMap">
+		SELECT
+		zx_file_manager_ab.id,
+		zx_file_manager_ab.file_code,
+		zx_file_manager_ab.file_name,
+		zx_file_manager_ab.category_id,
+		zx_file_manager_ab.file_url,
+		zx_file_manager_ab.file_num,
+		zx_file_manager_ab.abstracts,
+		zx_file_manager_ab.create_time,
+		zx_file_manager_ab.create_id,
+		zx_file_manager_ab.update_time,
+		zx_file_manager_ab.update_id,
+		zx_file_manager_ab.category_code
+		FROM
+		zx_file_manager_ab
+
+		<where>
+			<if test="fileName != null and fileName.trim() != ''">
+				and zx_file_manager_ab.file_name like
+				concat('%',#{fileName},'%')
+			</if>
+			<if test="categoryId != null and categoryId != 0">
+				and zx_printer_manager.id = #{categoryId}
+			</if>
+		</where>
+	</select>
 </mapper>
