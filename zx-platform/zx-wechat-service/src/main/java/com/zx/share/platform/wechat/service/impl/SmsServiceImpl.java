@@ -67,6 +67,7 @@ public class SmsServiceImpl implements SmsService {
         }
     }
 
+    @Override
     public boolean smsCode(String templateCode,String mobiles,String signName,String templateParam) throws Exception {
         //初始化ascClient,暂时不支持多region（请勿修改）
         IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", smsConfig.getSmsAccessKeyId(), smsConfig.getSmsAccessKeySecret());

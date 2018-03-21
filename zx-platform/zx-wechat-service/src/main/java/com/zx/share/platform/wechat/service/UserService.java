@@ -16,4 +16,7 @@ public interface UserService {
     Integer save(UserRequestBean bean);
 
     Integer update(UserRequestBean bean);
+
+    String registerCode(String mobile);
+    String forgetpasswordCode(String mobile);
 }
