@@ -11,5 +11,10 @@ import com.zx.share.platform.vo.wechat.response.FileResultBean;
  */
 public interface FileManagerService {
 
-    PageResponseBean<FileResultBean> pageList(String suffix,String categoryCode, int page, int pageSize);
+    PageResponseBean<FileResultBean> pageabList(String suffix,String categoryCode, int page, int pageSize);
+
+
+    PageResponseBean<FileResultBean> pagecdeList(String suffix,String categoryCode, int page, int pageSize);
+
+    FileResultBean details(String code);
 }

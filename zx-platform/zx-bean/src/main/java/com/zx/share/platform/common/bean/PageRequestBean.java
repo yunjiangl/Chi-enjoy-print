@@ -42,6 +42,11 @@ public class PageRequestBean implements Serializable {
 	}
 
 	public void setPage(Integer page) {
+		if(page==null){
+			page = DEFAULT_PAGE;
+	}else if(page.equals(0) || page==0){
+			page = DEFAULT_PAGE;
+	}
 		this.page = page;
 	}
 
@@ -53,6 +58,9 @@ public class PageRequestBean implements Serializable {
 	}
 
 	public void setPageSize(Integer pageSize) {
+		if(pageSize==null){
+			pageSize = DEFAULT_SIZE;
+		}
 		this.pageSize = pageSize;
 	}
 
