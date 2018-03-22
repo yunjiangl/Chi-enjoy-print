@@ -4,6 +4,7 @@ import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.user.UserRequestBean;
 import com.zx.share.platform.vo.user.UserResultBean;
+import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 
 /**
@@ -18,7 +19,7 @@ public interface UserService {
 
 	Integer save(UserRequestBean bean);
 
-	Integer update(UserRequestBean bean);
+	Integer update(UserUpdateBean bean);
 
 	Integer update(ZxUser user);
 

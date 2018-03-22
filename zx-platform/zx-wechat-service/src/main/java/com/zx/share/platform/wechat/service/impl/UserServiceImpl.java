@@ -1,5 +1,11 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import com.zx.share.platform.common.service.MemcachedService;
+import com.zx.share.platform.constants.OCSKeys;
+import com.zx.share.platform.util.StringUtil;
+import com.zx.share.platform.vo.wechat.request.UserAttorneyDomain;
+import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
+import com.zx.share.platform.vo.wechat.response.AttorneyDetailsBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +19,10 @@ import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.service.SmsService;
 import com.zx.share.platform.wechat.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fenggang on 18/3/5.
@@ -29,6 +39,8 @@ public class UserServiceImpl implements UserService {
 	private TokenCacheService tokenCacheService;
 	@Autowired
 	private SmsService smsService;
+	@Autowired
+	private MemcachedService memcachedService;
 
 	@Override
 	public UserResultBean findByOpenId(String unionId) {
@@ -40,9 +52,35 @@ public class UserServiceImpl implements UserService {
 		return userMapper.save(bean);
 	}
 
+	@Transactional(readOnly = false)
 	@Override
-	public Integer update(UserRequestBean bean) {
-		return null;
+	public Integer update(UserUpdateBean bean) {
+		userMapper.update(bean);
+		ZxUser user = this._findCode(bean.getUserCode());
+		bean.setUserId(user.getId());
+		userMapper.deleteAttorney(bean.getUserCode());
+		userMapper.saveAttorney(bean);
+		userMapper.deleteAttorneyDomain(bean.getUserCode());
+		String domain = bean.getDomains();
+		if(StringUtil.isNotBlank(domain)){
+			List<UserAttorneyDomain> domainList = new ArrayList<>();
+			String[] domains = domain.split(",");
+			for (String domainCode:domains){
+				UserAttorneyDomain saveDomain = new UserAttorneyDomain();
+				saveDomain.setUserCode(bean.getUserCode());
+				saveDomain.setUserId(bean.getUserId());
+				saveDomain.setDomainCode(domainCode);
+
+				domainList.add(saveDomain);
+			}
+
+			if(domainList!=null && !domainList.isEmpty()){
+				userMapper.saveAttorneyDomain(domainList);
+				//匹配关系
+				userMapper.updateAttorneyDomain(bean.getUserCode());
+			}
+		}
+		return 1;
 	}
 
 	@Override
@@ -61,6 +99,13 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
+	}
+
+	private ZxUser _findCode(String code){
+		ZxUser record = new ZxUser();
+		record.setUserCode(code);
+		ZxUser user = userMapper.selectOne(record);
+		return user;
 	}
 
 	@Override
@@ -98,7 +143,7 @@ public class UserServiceImpl implements UserService {
 
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
 
-		if ("code".equals(tokenCacheService.getCacheforgetPasswordCode(user.getMobile()))) {
+		if (code.equals(tokenCacheService.getCacheforgetPasswordCode(user.getMobile()))) {
 			// 验证码正确
 			resopnseBean.setCode(ErrorsEnum.SUCCESS.code);
 			resopnseBean.setMessage(ErrorsEnum.SUCCESS.label);
@@ -112,6 +157,21 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDetailsBean details(String userCode) {
-		return null;
+		String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
+		Object obj = memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
+		UserDetailsBean resultBean = null;
+		if(obj==null){
+			resultBean = userMapper.findByCode(userCode);
+			AttorneyDetailsBean attorney = userMapper.findByAttorney(userCode);
+			if(attorney!=null){
+				List<String> domains = userMapper.findByAttorneyDomains(userCode);
+				attorney.setDomainList(domains);
+				resultBean.setAttorney(attorney);
+			}
+			memcachedService.set(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
+		}else{
+			 resultBean = (UserDetailsBean)obj;
+		}
+		return resultBean;
 	}
 }

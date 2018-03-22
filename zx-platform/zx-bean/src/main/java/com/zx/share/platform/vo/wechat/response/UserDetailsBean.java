@@ -27,7 +27,7 @@ public class UserDetailsBean implements Serializable {
     @ApiModelProperty("年龄")
     private Integer age;
     @ApiModelProperty("头像url")
-    private String headImageUrl;
+    private String portrait;
     @ApiModelProperty("用户类型（1-普通用户，2-律师）")
     private Integer userType;
     @ApiModelProperty("用户状态（1-微信刚登陆，2-绑定手机号）")
@@ -84,14 +84,6 @@ public class UserDetailsBean implements Serializable {
         this.age = age;
     }
 
-    public String getHeadImageUrl() {
-        return headImageUrl;
-    }
-
-    public void setHeadImageUrl(String headImageUrl) {
-        this.headImageUrl = headImageUrl;
-    }
-
     public Integer getUserType() {
         return userType;
     }
@@ -114,5 +106,13 @@ public class UserDetailsBean implements Serializable {
 
     public void setAttorney(AttorneyDetailsBean attorney) {
         this.attorney = attorney;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 }
