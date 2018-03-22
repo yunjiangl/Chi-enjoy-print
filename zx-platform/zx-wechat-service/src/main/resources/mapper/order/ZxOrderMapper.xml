@@ -1,57 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zx.share.platform.wechat.mapper.order.ZxOrderMapper">
-    <resultMap id="baseResultMap" type="com.zx.share.platform.bean.zx.ZxOrder">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="order_code" jdbcType="VARCHAR" property="orderCode"/>
-        <result column="file_url" jdbcType="VARCHAR" property="fileUrl"/>
-        <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="order_num" jdbcType="VARCHAR" property="orderNum"/>
-        <result column="pay_time" jdbcType="TIMESTAMP" property="payTime"/>
-        <result column="pay_id" jdbcType="BIGINT" property="payId"/>
-        <result column="pay_code" jdbcType="VARCHAR" property="payCode"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="create_id" jdbcType="BIGINT" property="createId"/>
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="update_id" jdbcType="BIGINT" property="updateId"/>
-        <result column="printer_id" jdbcType="BIGINT" property="printerId"/>
-        <result column="printer_code" jdbcType="VARCHAR" property="printerCode"/>
-        <result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode"/>
-        <result column="order_user_id" jdbcType="BIGINT" property="orderUserId"/>
-    </resultMap>
+	<resultMap id="baseResultMap" type="com.zx.share.platform.bean.zx.ZxOrder">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+		<result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+		<result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+		<result column="pay_id" jdbcType="BIGINT" property="payId" />
+		<result column="pay_code" jdbcType="VARCHAR" property="payCode" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_id" jdbcType="BIGINT" property="createId" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="update_id" jdbcType="BIGINT" property="updateId" />
+		<result column="printer_id" jdbcType="BIGINT" property="printerId" />
+		<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+		<result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode" />
+		<result column="order_user_id" jdbcType="BIGINT" property="orderUserId" />
+		<result column="order_amount" jdbcType="DOUBLE" property="orderAmount" />
+		<result column="attorney_id" jdbcType="BIGINT" property="attorneyId" />
+		<result column="attorney_code" jdbcType="VARCHAR" property="attorneyCode" />
+		<result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+	</resultMap>
 
-    <resultMap id="orderResultBean" type="com.zx.share.platform.vo.wechat.response.OrderResultBean">
-        <result column="order_code" jdbcType="VARCHAR" property="orderCode"/>
-        <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="order_num" jdbcType="VARCHAR" property="orderNum"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="printer_code" jdbcType="VARCHAR" property="printerCode"/>
-        <result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode"/>
-    </resultMap>
+	<resultMap id="orderResultBean"
+		type="com.zx.share.platform.vo.wechat.response.OrderResultBean">
+		<result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+		<result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode" />
+	</resultMap>
+
+	<resultMap type="com.zx.share.platform.bean.zx.ZxOrder" id="lawyer"
+		extends="baseResultMap">
+		<association property="zxUser"
+			javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<association property="zxPrinterManager"
+			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+			<result column="name" jdbcType="VARCHAR" property="name" />
+		</association>
+	</resultMap>
 
 
-    <select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxOrder"
-            resultMap="baseResultMap">
+	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxOrder"
+		resultMap="baseResultMap">
 
 	</select>
 
-    <select id="findByOrderCode" resultMap="baseResultMap">
-        select order_code,status,order_num,pay_time,pay_code,pay_status from zx_order where order_code = #{0,jdbcType=VARCHAR}
-    </select>
+	<select id="findByOrderCode" resultMap="baseResultMap">
+		select
+		order_code,status,order_num,pay_time,pay_code,pay_status from
+		zx_order
+		where order_code = #{0,jdbcType=VARCHAR}
+	</select>
 
-    <select id="getOrderCode" resultMap="orderResultBean">
-        select order_code,status,order_num,create_time,printer_code,order_user_code from zx_order where order_code = #{0,jdbcType=VARCHAR}
-    </select>
+	<select id="getOrderCode" resultMap="orderResultBean">
+		select
+		order_code,status,order_num,create_time,printer_code,order_user_code
+		from zx_order where order_code = #{0,jdbcType=VARCHAR}
+	</select>
 
-    <update id="updateOrderStatus">
-        update zx_order set status=#{1,jdbcType=INTEGER} where order_code = #{0,jdbcType=VARCHAR}
-    </update>
+	<update id="updateOrderStatus">
+		update zx_order set status=#{1,jdbcType=INTEGER}
+		where order_code =
+		#{0,jdbcType=VARCHAR}
+	</update>
 
-    <select id="page" resultMap="orderResultBean" parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
-        select order_code,status,order_num,create_time,printer_code,order_user_code from zx_order
-    </select>
+	<select id="page" resultMap="orderResultBean"
+		parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
+		select
+		order_code,status,order_num,create_time,printer_code,order_user_code
+		from zx_order
+	</select>
 
-    <select id="pageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
-        select count(1) from zx_order
-    </select>
+	<select id="pageCount" resultType="java.lang.Integer"
+		parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
+		select count(1) from zx_order
+	</select>
+
+	<select id="attorney" resultMap="lawyer">
+		SELECT
+		zx_order.pay_time,
+		zx_order.order_num,
+		zx_order.order_amount,
+		zx_user.nickname,
+		zx_printer_manager.`name`,
+		zx_order.printer_code,
+		zx_order.order_code
+		FROM
+		zx_order
+		INNER JOIN zx_user ON
+		zx_order.order_user_id = zx_user.id
+		INNER JOIN
+		zx_printer_manager ON
+		zx_order.printer_id =
+		zx_printer_manager.id
+		<where>
+			<if test="nameOrCode != null and nameOrCode.trim() != ''">
+				zx_printer_manager.`name` LIKE
+				concat('%',#{nameOrCode},'%') OR
+				zx_order.printer_code LIKE
+				concat('%',#{nameOrCode},'%')
+			</if>
+			<if test="time != null">
+				AND zx_order.pay_time LIKE concat('%',#{time},'%')
+			</if>
+			<if test="time == null">
+				AND DATE_FORMAT(zx_order.pay_time,'%Y%m') =
+				DATE_FORMAT(CURDATE(
+				),'%Y%m')
+			</if>
+		</where>
+	</select>
 </mapper>

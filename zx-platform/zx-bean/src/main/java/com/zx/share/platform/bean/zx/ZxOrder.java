@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
 
@@ -100,4 +101,10 @@ public class ZxOrder extends IdEntity {
     private String remark;
 
     private static final long serialVersionUID = 1L;
+    
+    @Transient
+    private ZxUser zxUser;
+    
+    @Transient
+    private ZxPrinterManager zxPrinterManager;
 }

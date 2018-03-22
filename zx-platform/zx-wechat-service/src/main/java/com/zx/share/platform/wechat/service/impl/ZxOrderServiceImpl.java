@@ -1,29 +1,30 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.github.pagehelper.PageHelper;
+import com.zx.share.platform.bean.zx.ZxOrder;
 import com.zx.share.platform.bean.zx.ZxOrderPay;
 import com.zx.share.platform.constants.OrderStatusEnum;
 import com.zx.share.platform.constants.PayStatusEnum;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.wechat.request.OrderFileSaveBean;
 import com.zx.share.platform.vo.wechat.request.OrderQueryBean;
 import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
 import com.zx.share.platform.vo.wechat.response.OrderResultBean;
 import com.zx.share.platform.wechat.api.pay.service.WeCharPayService;
-import com.zx.share.platform.wechat.mapper.order.ZxOrderPayMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Service;
-
-import com.github.pagehelper.PageHelper;
-import com.zx.share.platform.bean.zx.ZxOrder;
-import com.zx.share.platform.util.response.DefaultResopnseBean;
-import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.wechat.mapper.order.ZxOrderMapper;
+import com.zx.share.platform.wechat.mapper.order.ZxOrderPayMapper;
 import com.zx.share.platform.wechat.service.ZxOrderService;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ZxOrderServiceImpl implements ZxOrderService {
@@ -34,7 +35,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	private ZxOrderPayMapper zxOrderPayMapper;
 	@Autowired
 	private WeCharPayService weCharPayService;
-	
+
 	@Override
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> list(Map<String, Object> params) {
 		// TODO Auto-generated method stub
@@ -49,10 +50,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	@Override
 	public Map<String, Object> payUnifiedorder(String orderCode) {
 		ZxOrder zxOrder = zxOrderMapper.findByOrderCode(orderCode);
-		if(zxOrder!=null){
+		if (zxOrder != null) {
 			Date date = new Date();
-			Map<String,Object> payMap = weCharPayService.payUnifiedorder("","",zxOrder.getAmount().intValue(),
-					"ip",orderCode,"openid","JSAPI");
+			Map<String, Object> payMap = weCharPayService.payUnifiedorder("", "", zxOrder.getAmount().intValue(), "ip",
+					orderCode, "openid", "JSAPI");
 
 			ZxOrderPay orderPay = new ZxOrderPay();
 			orderPay.setCreateTime(date);
@@ -97,16 +98,28 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Override
 	public int cancel(String orderCode) {
-		return zxOrderMapper.updateOrderStatus(orderCode,OrderStatusEnum.ZX_ORDER_STATUS_CLOSE.code);
+		return zxOrderMapper.updateOrderStatus(orderCode, OrderStatusEnum.ZX_ORDER_STATUS_CLOSE.code);
 	}
 
 	@Override
 	public PageResponseBean<OrderResultBean> page(OrderQueryBean queryBean) {
 		Integer count = zxOrderMapper.pageCount(queryBean);
 		List<OrderResultBean> resultBeans = zxOrderMapper.page(queryBean);
-		PageResponseBean<OrderResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
+		PageResponseBean<OrderResultBean> pageResponseBean = new PageResponseBean<>(queryBean, count);
 		pageResponseBean.setContent(resultBeans);
 		return pageResponseBean;
+	}
+
+	@Override
+	public List<ZxOrder> attorney(Map<String, Object> param) {
+		Date date = (Date) param.get("time");
+		if (date != null) {
+			SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String dateTime = time.format(date);
+			StringUtils.substringBeforeLast(dateTime, "-");
+			param.put("time", dateTime);
+		}
+		return zxOrderMapper.attorney(param);
 	}
 
 }
