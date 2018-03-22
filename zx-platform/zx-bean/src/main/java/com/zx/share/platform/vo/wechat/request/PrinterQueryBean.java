@@ -16,6 +16,7 @@ public class PrinterQueryBean extends PageRequestBean {
     private Double longitude;
     private Double latitude;
     private Long userId;
+    private String printerCode;
 
     public Double getLongitude() {
         return longitude;
@@ -39,5 +40,13 @@ public class PrinterQueryBean extends PageRequestBean {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getPrinterCode() {
+        return printerCode;
+    }
+
+    public void setPrinterCode(String printerCode) {
+        this.printerCode = printerCode;
     }
 }

@@ -23,4 +23,7 @@ public interface DictionaryService {
     List<DictionaryResultBean> lista();
 
     List<DictionaryResultBean> listb();
+
+    List<DictionaryResultBean> domain();
+
 }

@@ -37,4 +37,12 @@
         select <include refid="selectSql"/> from zx_printer_manager
     </select>
 
+    <select id="attorneyPage" resultType="java.lang.String" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
+        select user_code from zx_user_printer where printer_code = #{printerCode}
+    </select>
+
+    <select id="attorneyPage" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
+        select count(1) from zx_user_printer where printer_code = #{printerCode}
+    </select>
+
 </mapper>

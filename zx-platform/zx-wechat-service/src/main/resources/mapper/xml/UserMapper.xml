@@ -22,11 +22,40 @@
     </select>
 
     <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
-
+        insert into zx_user(
+            user_code,
+            open_id,
+            username,
+            age,
+            province,
+            city,
+            portrait,
+            user_type,
+            user_status
+        )
+        values(
+            #{userCode},
+            #{openId},
+            #{nickName},
+            #{sex},
+            #{province},
+            #{city},
+            #{headImgUrl},
+            #{userType},
+            #{userStatus}
+        )
     </insert>
 
     <update id="update" parameterType="com.zx.share.platform.vo.user.UserRequestBean">
-
+        update zx_user set user_code=#{userCode},
+            open_id=#{openId},
+            username=#{nickName},
+            age=#{sex},
+            province=#{province},
+            city=#{city},
+            portrait=#{headImgUrl},
+            user_type=#{userType},
+            user_status=#{userStatus}  where user_code = {userCode}
     </update>
 
 

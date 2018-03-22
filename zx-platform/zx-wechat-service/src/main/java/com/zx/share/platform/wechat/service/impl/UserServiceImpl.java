@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,8 +50,8 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			int code = (int) (Math.random() * 9999) + 1000; // 随机生成五位数验证码
-			smsService.smsCode("SMS_1000000", mobile, "智享打印",
-					"{\"name\":\"Tom\", \"code\":\"" + Integer.toString(code) + "\"}");
+			smsService.smsCode("SMS_127158214", mobile, "小刚",
+					"{ \"code\":\"" + Integer.toString(code) + "\"}");
 			tokenCacheService.cacheRegisterCode(mobile, Integer.toString(code));
 			System.out.println("验证码：" + code);
 
@@ -70,8 +71,8 @@ public class UserServiceImpl implements UserService {
 		ZxUser user = userMapper.selectOne(record);
 		try {
 			int code = (int) (Math.random() * 9999) + 1000; // 随机生成五位数验证码
-			smsService.smsCode("SMS_1000000", user.getMobile(), "智享打印",
-					"{\"name\":\"Tom\", \"code\":\"" + Integer.toString(code) + "\"}");
+			smsService.smsCode("SMS_127158214", user.getMobile(), "小刚",
+					"{ \"code\":\"" + Integer.toString(code) + "\"}");
 			tokenCacheService.cacheforgetPasswordCode(user.getMobile(), Integer.toString(code));
 			System.out.println("验证码：" + code);
 			return Integer.toString(code);
@@ -107,5 +108,10 @@ public class UserServiceImpl implements UserService {
 			resopnseBean.setMessage("验证码错误");
 		}
 		return resopnseBean;
+	}
+
+	@Override
+	public UserDetailsBean details(String userCode) {
+		return null;
 	}
 }

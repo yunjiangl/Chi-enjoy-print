@@ -63,6 +63,6 @@ public class FileManagerServiceImpl implements FileManagerService {
         }else{
             resultBean = fileManagerMapper.detailscde(code);
         }
-        return null;
+        return resultBean;
     }
 }

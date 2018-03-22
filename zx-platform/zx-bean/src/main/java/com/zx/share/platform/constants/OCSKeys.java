@@ -78,4 +78,15 @@ public class OCSKeys {
    */
   public static final int ZX_USER_REGISTER_TIME_KEY = 60 * 60 * 24 * 30;
 
+  /**
+   * 用户信息缓存key
+   *
+   */
+  public static final String ZX_USER_DETAILS_CACHE_KEY = "ZX_USER_DETAILS_CACHE_KEY_";
+  /**
+   * 用户信息缓存key 时间
+   *
+   */
+  public static final int ZX_USER_DETAILS_CACHE_KEY_EXP_KEY = 60 * 60 * 24 * 30;
+
 }

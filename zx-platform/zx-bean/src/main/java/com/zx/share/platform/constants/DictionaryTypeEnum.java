@@ -9,7 +9,8 @@ package com.zx.share.platform.constants;
 public enum DictionaryTypeEnum {
 
     ZX_DICTIONARY_TYPE_FILE_A(1,"zx_file_type_a"),
-    ZX_DICTIONARY_TYPE_FILE_B(2,"zx_file_type_b");
+    ZX_DICTIONARY_TYPE_FILE_B(2,"zx_file_type_b"),
+    ZX_DICTIONARY_TYPE_ATTORNEY_DOMAIN(3,"zx_attorney_domain");
 
     public int code;
     public String label;
