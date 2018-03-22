@@ -68,4 +68,15 @@ public class DictionaryController extends BaseController {
         resopnseBean.setData(list);
         return resopnseBean;
     }
+
+    @ApiOperation(value = "获取律师领域接口", notes = "获取律师领域接口")
+    @RequestMapping(value = "/domain/list",method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultResopnseBean<List<DictionaryResultBean>> domain(HttpServletRequest request){
+        servletPath = request.getServletPath();
+        List<DictionaryResultBean> list = dictionaryService.domain();
+        DefaultResopnseBean<List<DictionaryResultBean>> resopnseBean = new DefaultResopnseBean<>();
+        resopnseBean.setData(list);
+        return resopnseBean;
+    }
 }

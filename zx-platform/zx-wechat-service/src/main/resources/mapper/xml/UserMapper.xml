@@ -13,6 +13,27 @@
         <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
     </resultMap>
 
+    <resultMap id="userDetailsBean" type="com.zx.share.platform.vo.wechat.response.UserDetailsBean">
+        <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+        <result column="open_id" property="openId" jdbcType="VARCHAR"/>
+        <result column="username" property="nickName" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="user_type" property="userType" jdbcType="INTEGER"/>
+        <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
+        <result column="grad" property="grad" jdbcType="INTEGER"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="portrait" property="portrait" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="attorneyDetailsBean" type="com.zx.share.platform.vo.wechat.response.AttorneyDetailsBean">
+        <result column="work_year" property="workYear" jdbcType="VARCHAR"/>
+        <result column="work_org" property="workOrg" jdbcType="VARCHAR"/>
+        <result column="work_num" property="workNum" jdbcType="VARCHAR"/>
+        <result column="identity_card_img" property="identityCardImg" jdbcType="VARCHAR"/>
+        <result column="attorney_card_img" property="attorneyCardImg" jdbcType="VARCHAR"/>
+        <result column="check_img" property="checkImg" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <select id="findByUnionId" resultMap="userResultBean">
         select user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
     </select>
@@ -22,12 +43,105 @@
     </select>
 
     <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
-
+        insert into zx_user(
+            user_code,
+            open_id,
+            username,
+            age,
+            province,
+            city,
+            portrait,
+            user_type,
+            user_status
+        )
+        values(
+            #{userCode},
+            #{openId},
+            #{nickName},
+            #{sex},
+            #{province},
+            #{city},
+            #{headImgUrl},
+            #{userType},
+            #{userStatus}
+        )
     </insert>
 
-    <update id="update" parameterType="com.zx.share.platform.vo.user.UserRequestBean">
-
+    <update id="update" parameterType="com.zx.share.platform.vo.wechat.request.UserUpdateBean">
+        update zx_user set user_code=#{userCode}
+        <if test="wechatId!=null">
+            ,wechat_id=#{}
+        </if>
+        <if test="mobile!=null">
+            ,mobile=#{mobile}
+        </if>
+        <if test="portrait!=null">
+            ,portrait=#{portrait}
+        </if>
+        <if test="age!=null">
+            ,age=#{age}
+        </if>
+        <if test="province!=null">
+            ,province=#{province}
+        </if>
+        <if test="city!=null">
+            ,city=#{city}
+        </if>
+        <if test="area!=null">
+            ,area=#{area}
+        </if>
+        <if test="address!=null">
+            ,address=#{address}
+        </if>
+        where user_code = {userCode}
     </update>
 
 
+    <delete id="deleteAttorney">
+        delete from zx_user_attorney where user_code=#{code}
+    </delete>
+
+    <delete id="deleteAttorneyDomain">
+        delete from zx_user_attorney_domain where user_code=#{code}
+    </delete>
+
+    <insert id="saveAttorney" parameterType="com.zx.share.platform.vo.wechat.request.UserUpdateBean">
+
+          insert into zx_user_attorney(user_id,user_code,work_year,work_num,work_org,identity_card_img,attorney_card_img,check_img)
+          values(
+            #{userId},
+            #{userCode},
+            #{workYear},
+            #{workNum},
+            #{workOrg},
+            #{identityCardImg},
+            #{attorneyCardImg},
+            #{checkImg}
+          )
+
+    </insert>
+    <insert id="saveAttorneyDomain" parameterType="java.util.List">
+        insert into zx_user_attorney_domain(user_id,user_code,domain_id,domain_code)
+         values
+        <foreach collection="list" item="bean" separator=",">
+        (#{bean.userId},#{bean.userCode},#{bean.domainId},#{bean.domainCode})
+
+        </foreach>
+    </insert>
+
+    <update id="updateAttorneyDomain">
+        update zx_user_attorney_domain a join sys_dictionary d on a.domain_code=d.`code` set a.domain_id=d.id where a.user_code=#{code,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findByCode" resultMap="userDetailsBean">
+        select user_type,user_status,user_code,username,mobile,union_id,open_id,age,grad,portrait from zx_user where user_code=#{code,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <select id="findByCode" resultMap="attorneyDetailsBean">
+        select user_id,user_code,work_year,work_num,work_org,identity_card_img,attorney_card_img,check_img from zx_user_attorney where user_code=#{code,jdbcType=VARCHAR} limit 1
+    </select>
+
+    <select id="findByCode" resultType="java.lang.String">
+        select d.`name` from zx_user_attorney_domain a join sys_dictionary d on a.domain_code=d.`code` where a.user_code= #{code,jdbcType=VARCHAR}
+    </select>
 </mapper>

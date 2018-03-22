@@ -35,4 +35,9 @@ public class DictionaryServiceImpl implements DictionaryService {
     public List<DictionaryResultBean> listb() {
         return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label);
     }
+
+    @Override
+    public List<DictionaryResultBean> domain() {
+        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_ATTORNEY_DOMAIN.label);
+    }
 }

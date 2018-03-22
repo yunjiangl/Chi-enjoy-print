@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.wechat.mapper.FileManagerMapper">
+
+    <resultMap id="fileResultBean" type="com.zx.share.platform.vo.wechat.response.FileResultBean">
+        <result column="file_code" jdbcType="VARCHAR" property="fileNode" />
+        <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+        <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+        <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+        <result column="file_num" jdbcType="INTEGER" property="fileNum" />
+        <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+        <result column="manager_code" jdbcType="VARCHAR" property="managerCode" />
+    </resultMap>
+
+    <select id="pageListab" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
+        select file_code,file_num,file_name,category_code from zx_file_manager_ab
+    </select>
+
+    <select id="pageCountab" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
+        select count(1) from zx_file_manager_ab
+    </select>
+
+    <select id="pageListcde" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
+        select file_code,file_num,file_name,category_code,user_code,manager_code from zx_file_manager_cer
+    </select>
+
+    <select id="pageCountcde" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
+        select count(1) from zx_file_manager_cde
+    </select>
+
+    <select id="detailsab" resultMap="fileResultBean">
+        select file_code,file_num,file_name,category_code,abstracts from zx_file_manager_ab where file_code = #{code}
+    </select>
+
+    <select id="detailscde" resultMap="fileResultBean">
+        select file_code,file_num,file_name,category_code,user_code,manager_code,abstracts from zx_file_manager_cde where file_code = #{code}
+    </select>
+
+</mapper>

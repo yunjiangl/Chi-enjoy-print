@@ -29,4 +29,7 @@ public interface PrinterMapper extends PlatFormMapper<ZxPrinterManager> {
 //
 //    List<PrinterResultBean> my(PrinterQueryBean bean);
 //    Integer myCount(PrinterQueryBean bean);
+
+    List<String> attorneyPage(PrinterQueryBean bean);
+    Integer attorneyPageCount(PrinterQueryBean bean);
 }

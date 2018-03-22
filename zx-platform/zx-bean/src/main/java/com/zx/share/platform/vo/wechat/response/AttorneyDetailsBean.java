@@ -3,6 +3,7 @@ package com.zx.share.platform.vo.wechat.response;
 import io.swagger.annotations.ApiModel;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by fenggang on 18/3/20.
@@ -12,4 +13,14 @@ import java.io.Serializable;
  */
 @ApiModel
 public class AttorneyDetailsBean implements Serializable {
+
+    private List<String> domainList;
+
+    public List<String> getDomainList() {
+        return domainList;
+    }
+
+    public void setDomainList(List<String> domainList) {
+        this.domainList = domainList;
+    }
 }
