@@ -52,18 +52,18 @@ public class DictionaryController extends BaseController {
     @ResponseBody
     public DefaultResopnseBean<List<DictionaryResultBean>> lista(HttpServletRequest request){
         servletPath = request.getServletPath();
-        List<DictionaryResultBean> list = null;
+        List<DictionaryResultBean> list = dictionaryService.lista();
         DefaultResopnseBean<List<DictionaryResultBean>> resopnseBean = new DefaultResopnseBean<>();
         resopnseBean.setData(list);
         return resopnseBean;
     }
 
-    @ApiOperation(value = "获取A文件类型接口", notes = "获取A文件类型接口")
+    @ApiOperation(value = "获取B文件类型接口", notes = "获取B文件类型接口")
     @RequestMapping(value = "/b/list",method = RequestMethod.GET)
     @ResponseBody
     public DefaultResopnseBean<List<DictionaryResultBean>> listb(HttpServletRequest request){
         servletPath = request.getServletPath();
-        List<DictionaryResultBean> list = null;
+        List<DictionaryResultBean> list = dictionaryService.listb();
         DefaultResopnseBean<List<DictionaryResultBean>> resopnseBean = new DefaultResopnseBean<>();
         resopnseBean.setData(list);
         return resopnseBean;

@@ -23,5 +23,8 @@ public interface DictionaryMapper extends PlatFormMapper<SysDictionary> {
      * @param parentId
      * @return
      */
-    List<DictionaryResultBean> findTypeList(@Param("type") String type, @Param("parentId") Long parentId);
+    List<DictionaryResultBean> findTypePIdList(@Param("type") String type, @Param("parentId") Long parentId);
+
+
+    List<DictionaryResultBean> findTypeList(@Param("type") String type);
 }

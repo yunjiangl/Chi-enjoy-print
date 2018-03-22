@@ -19,4 +19,8 @@ public interface DictionaryService {
      * @return
      */
     List<DictionaryResultBean> findType(String type,Long parentId);
+
+    List<DictionaryResultBean> lista();
+
+    List<DictionaryResultBean> listb();
 }

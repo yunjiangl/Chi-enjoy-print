@@ -7,8 +7,12 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="findType" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
+    <select id="findTypePIdList" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
         select code,name from sys_dictionary where type=#{type} and parent_id=#{parentId} and status=1
+    </select>
+
+    <select id="findType" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
+        select code,name from sys_dictionary where type=#{type} and status=1
     </select>
 
 </mapper>

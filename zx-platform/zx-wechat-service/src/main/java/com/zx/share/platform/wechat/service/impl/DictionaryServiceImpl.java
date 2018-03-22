@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import com.zx.share.platform.constants.DictionaryTypeEnum;
 import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
 import com.zx.share.platform.wechat.mapper.DictionaryMapper;
 import com.zx.share.platform.wechat.service.DictionaryService;
@@ -22,6 +23,16 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public List<DictionaryResultBean> findType(String type, Long parentId) {
-        return dictionaryMapper.findTypeList(type,parentId);
+        return dictionaryMapper.findTypePIdList(type,parentId);
+    }
+
+    @Override
+    public List<DictionaryResultBean> lista() {
+        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label);
+    }
+
+    @Override
+    public List<DictionaryResultBean> listb() {
+        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label);
     }
 }
