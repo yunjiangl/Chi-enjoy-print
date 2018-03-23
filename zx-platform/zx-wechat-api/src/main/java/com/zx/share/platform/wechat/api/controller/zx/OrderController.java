@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -129,6 +130,19 @@ public class OrderController extends BaseController {
 		List<ZxOrder> data = zxOrderService.attorney(param);
 
 		DefaultResopnseBean<List<ZxOrder>> resopnseBean = new DefaultResopnseBean<List<ZxOrder>>();
+		resopnseBean.setData(data);
+		return resopnseBean;
+	}
+	
+	@ApiOperation(value = "律师完成订单详细信息", notes = "律师完成订单详细信息")
+	@RequestMapping(value = "/info/{code}", method = RequestMethod.GET)
+	@ResponseBody
+	public DefaultResopnseBean<ZxOrder> Orderinfo(@ApiParam("订单code")@PathVariable("code") String code, HttpServletRequest request){
+		
+		servletPath = request.getServletPath();
+		
+		ZxOrder data = zxOrderService.orderInfo(code);		
+		DefaultResopnseBean<ZxOrder> resopnseBean = new DefaultResopnseBean<ZxOrder>();
 		resopnseBean.setData(data);
 		return resopnseBean;
 	}

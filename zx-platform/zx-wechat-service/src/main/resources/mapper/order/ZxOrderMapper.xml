@@ -46,6 +46,36 @@
 		</association>
 	</resultMap>
 
+	<resultMap type="com.zx.share.platform.bean.zx.ZxOrder" id="orderInfo"
+		extends="baseResultMap">
+		<association property="zxUser"
+			javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<association property="zxPrinterManager"
+			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="address" property="address" jdbcType="VARCHAR" />
+			<result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+			<result column="manager_phone" property="managerPhone"
+				jdbcType="VARCHAR" />
+		</association>
+		<association property="zxOrderPrinterFile"
+			javaType="com.zx.share.platform.bean.zx.ZxOrderPrinterFile">
+			<result column="printer_num" property="printerNum" jdbcType="INTEGER" />
+			<result column="paper_type" property="paperType" jdbcType="BIGINT" />
+			<result column="paper_colcor" property="paperColcor" jdbcType="BIGINT" />
+		</association>
+		<association property="zxFileManagerAB"
+			javaType="com.zx.share.platform.bean.zx.ZxFileManagerAB">
+			<result column="ab_name" property="fileName" jdbcType="VARCHAR" />
+		</association>
+		<association property="zxFileManagerCDE"
+			javaType="com.zx.share.platform.bean.zx.ZxFileManagerCDE">
+			<result column="cde_name" property="fileName" jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+
 
 	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxOrder"
 		resultMap="baseResultMap">
@@ -116,5 +146,43 @@
 				),'%Y%m')
 			</if>
 		</where>
+	</select>
+
+	<select id="selectByCode">
+		SELECT
+		zx_order.pay_time,
+		zx_order.order_num,
+		zx_order.order_amount,
+		zx_user.nickname,
+		zx_printer_manager.`name`,
+		zx_order.printer_code,
+		zx_order.order_code,
+		zx_printer_manager.address,
+		zx_printer_manager.manager_name,
+		zx_printer_manager.manager_phone,
+		zx_order_printer_file.printer_num,
+		zx_order_printer_file.paper_colcor,
+		zx_order_printer_file.paper_type,
+		zx_file_manager_cde.file_name AS
+		cde_name,
+		zx_file_manager_ab.file_name AS ab_name
+		FROM
+		zx_order
+		INNER JOIN
+		zx_user ON zx_order.order_user_id = zx_user.id
+		INNER JOIN
+		zx_printer_manager ON zx_order.printer_id =
+		zx_printer_manager.id
+		INNER
+		JOIN zx_order_printer_file ON zx_order.id =
+		zx_order_printer_file.order_id
+		INNER JOIN zx_file_manager_ab ON
+		zx_order_printer_file.file_code =
+		zx_file_manager_ab.file_code
+		INNER
+		JOIN zx_file_manager_cde ON zx_order_printer_file.file_code =
+		zx_file_manager_cde.file_code
+		WHERE
+		zx_order.order_code = #{code}
 	</select>
 </mapper>

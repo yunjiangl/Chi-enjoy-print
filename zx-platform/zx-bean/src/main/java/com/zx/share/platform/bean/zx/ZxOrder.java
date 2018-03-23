@@ -14,97 +14,106 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author 
+ * @author
  */
 @Entity
-@Table(name="zx_order")
+@Table(name = "zx_order")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ZxOrder extends IdEntity {
 
-    /**
-     * 订单code
-     */
-    @Column(name = "order_code")
-    private String orderCode;
-    
-    @Column(name = "file_url")
-    private String fileUrl;
+	/**
+	 * 订单code
+	 */
+	@Column(name = "order_code")
+	private String orderCode;
 
-    /**
-     * 订单状态
-     */
-    @Column(name = "status")
-    private Integer status;
+	@Column(name = "file_url")
+	private String fileUrl;
 
-    /**
-     * 订单编号
-     */
-    @Column(name = "order_num")
-    private String orderNum;
+	/**
+	 * 订单状态
+	 */
+	@Column(name = "status")
+	private Integer status;
 
-    /**
-     * 支付时间
-     */
-    @Column(name = "pay_time")
-    private Date payTime;
+	/**
+	 * 订单编号
+	 */
+	@Column(name = "order_num")
+	private String orderNum;
 
-    /**
-     * 支付id
-     */
-    @Column(name = "pay_id")
-    private Long payId;
+	/**
+	 * 支付时间
+	 */
+	@Column(name = "pay_time")
+	private Date payTime;
 
-    /**
-     * 支付code
-     */
-    @Column(name = "pay_code")
-    private String payCode;
-    
-    @Column(name = "create_time")
-    private Date createTime;
-    
-    @Column(name = "create_id")
-    private Long createId;
-    
-    @Column(name = "update_time")
-    private Date updateTime;
-    
-    @Column(name = "update_id")
-    private Long updateId;
+	/**
+	 * 支付id
+	 */
+	@Column(name = "pay_id")
+	private Long payId;
 
-    /**
-     * 打印机id
-     */
-    @Column(name = "printer_id")
-    private Long printerId;
+	/**
+	 * 支付code
+	 */
+	@Column(name = "pay_code")
+	private String payCode;
 
-    /**
-     * 打印机code
-     */
-    @Column(name = "printer_code")
-    private String printerCode;
+	@Column(name = "create_time")
+	private Date createTime;
 
-    /**
-     * 订单人code
-     */
-    @Column(name = "order_user_code")
-    private String orderUserCode;
-    
-    @Column(name = "order_user_id")
-    private Long orderUserId;
+	@Column(name = "create_id")
+	private Long createId;
 
-    @Column(name = "order_amount")
-    private Double amount;
+	@Column(name = "update_time")
+	private Date updateTime;
 
-    @Column(name = "remark")
-    private String remark;
+	@Column(name = "update_id")
+	private Long updateId;
 
-    private static final long serialVersionUID = 1L;
-    
-    @Transient
-    private ZxUser zxUser;
-    
-    @Transient
-    private ZxPrinterManager zxPrinterManager;
+	/**
+	 * 打印机id
+	 */
+	@Column(name = "printer_id")
+	private Long printerId;
+
+	/**
+	 * 打印机code
+	 */
+	@Column(name = "printer_code")
+	private String printerCode;
+
+	/**
+	 * 订单人code
+	 */
+	@Column(name = "order_user_code")
+	private String orderUserCode;
+
+	@Column(name = "order_user_id")
+	private Long orderUserId;
+
+	@Column(name = "order_amount")
+	private Double amount;
+
+	@Column(name = "remark")
+	private String remark;
+
+	private static final long serialVersionUID = 1L;
+
+	@Transient
+	private ZxUser zxUser;
+
+	@Transient
+	private ZxPrinterManager zxPrinterManager;
+
+	@Transient
+	private ZxOrderPrinterFile zxOrderPrinterFile;
+
+	@Transient
+	private ZxFileManagerAB zxFileManagerAB;
+
+	@Transient
+	private ZxFileManagerCDE zxFileManagerCDE;
 }

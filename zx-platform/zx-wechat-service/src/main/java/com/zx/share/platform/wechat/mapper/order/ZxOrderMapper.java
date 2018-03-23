@@ -32,4 +32,6 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 	Integer pageCount(OrderQueryBean queryBean);
 
 	List<ZxOrder> attorney(Map<String, Object> param);
+
+	ZxOrder selectByCode(String code);
 }

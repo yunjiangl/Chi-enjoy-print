@@ -50,12 +50,42 @@ public class ZxOrderPrinterFile extends IdEntity {
      */
     @Column(name = "file_type")
     private String fileType;
-    
+
     @Column(name = "create_time")
     private Date createTime;
-    
+
     @Column(name = "create_id")
     private Long createId;
+
+    /**
+     * 页数
+     */
+    @Column(name = "file_paper")
+    private Integer filePaper;
+
+    /**
+     * 打印数量
+     */
+    @Column(name = "printer_num")
+    private Integer printerNum;
+
+    /**
+     * 纸张类型
+     */
+    @Column(name = "paper_type")
+    private Long paperType;
+
+    /**
+     * 纸张颜色
+     */
+    @Column(name = "paper_colcor")
+    private Long paperColcor;
+
+    /**
+     * 纸张使用
+     */
+    @Column(name = "paper_usage")
+    private Long paperUsage;
 
     private static final long serialVersionUID = 1L;
 }

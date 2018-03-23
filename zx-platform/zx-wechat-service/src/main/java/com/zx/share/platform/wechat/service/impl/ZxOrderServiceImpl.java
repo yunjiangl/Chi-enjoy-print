@@ -122,4 +122,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 		return zxOrderMapper.attorney(param);
 	}
 
+	@Override
+	public ZxOrder orderInfo(String code) {
+		
+		return zxOrderMapper.selectByCode(code);
+	}
+
 }

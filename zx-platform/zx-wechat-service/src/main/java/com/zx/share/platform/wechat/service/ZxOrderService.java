@@ -75,4 +75,6 @@ public interface ZxOrderService {
 	PageResponseBean<OrderResultBean> page(OrderQueryBean queryBean);
 
 	List<ZxOrder> attorney(Map<String, Object> param);
+	
+	ZxOrder orderInfo(String code);
 }
