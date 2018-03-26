@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.zx.share.platform.bean.zx.ZxOrder;
@@ -25,34 +26,38 @@ public interface ZxOrderService {
 
 	/**
 	 * 订单支付下单
+	 * 
 	 * @param orderCode
 	 * @return
 	 */
-	Map<String,Object> payUnifiedorder(String orderCode);
-
+	Map<String, Object> payUnifiedorder(String orderCode);
 
 	/**
 	 * 手动支付回调
+	 * 
 	 * @param map
 	 * @return
 	 */
-	Map<String,Object> paycallback_manual(Map<String,Object> map);
+	Map<String, Object> paycallback_manual(Map<String, Object> map);
 
 	/**
 	 * 自动支付回调
+	 * 
 	 * @param map
 	 * @return
 	 */
-	Map<String,Object> paycallback_automation(Map<String,Object> map);
+	Map<String, Object> paycallback_automation(Map<String, Object> map);
 
 	/**
 	 * 订单生成
+	 * 
 	 * @return
 	 */
 	int saveOrder(OrderSaveBean orderSaveBean);
 
 	/**
 	 * 订单打印文件修改
+	 * 
 	 * @return
 	 */
 	int updateOrderFile(OrderFileSaveBean fileSaveBean);
@@ -61,10 +66,15 @@ public interface ZxOrderService {
 
 	/**
 	 * 关闭订单
+	 * 
 	 * @param orderCode
 	 * @return
 	 */
 	int cancel(String orderCode);
 
 	PageResponseBean<OrderResultBean> page(OrderQueryBean queryBean);
+
+	List<ZxOrder> attorney(Map<String, Object> param);
+	
+	ZxOrder orderInfo(String code);
 }

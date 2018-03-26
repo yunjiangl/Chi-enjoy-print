@@ -1,21 +1,22 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.common.service.MemcachedService;
 import com.zx.share.platform.constants.OCSKeys;
 import com.zx.share.platform.util.response.PageResponseBean;
-import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.vo.wechat.request.PrinterQueryBean;
 import com.zx.share.platform.vo.wechat.response.PrinterResultBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.mapper.PrinterMapper;
 import com.zx.share.platform.wechat.service.PrinterService;
-import net.spy.memcached.MemcachedClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by fenggang on 18/3/19.
@@ -85,4 +86,13 @@ public class PrinterServiceImpl implements PrinterService {
         pageResponseBean.setContent(resultBeans);
         return pageResponseBean;
     }
+
+	@Override
+	public ZxPrinterManager prinerInfo(String code) {
+		ZxPrinterManager record = new ZxPrinterManager();
+		record.setPrinterCode(code);
+		
+		return printerMapper.selectOne(record);
+	}
+
 }

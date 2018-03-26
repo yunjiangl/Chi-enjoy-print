@@ -11,7 +11,6 @@ import com.zx.share.platform.bean.zx.ZxOrder;
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 
-
 @Repository
 public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 
@@ -25,8 +24,14 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 	ZxOrder findByOrderCode(String orderCode);
 
 	OrderResultBean getOrderCode(String orderCode);
-	int updateOrderStatus(String orderCode,Integer status);
+
+	int updateOrderStatus(String orderCode, Integer status);
 
 	List<OrderResultBean> page(OrderQueryBean queryBean);
+
 	Integer pageCount(OrderQueryBean queryBean);
+
+	List<ZxOrder> attorney(Map<String, Object> param);
+
+	ZxOrder selectByCode(String code);
 }
