@@ -93,6 +93,9 @@
         <if test="address!=null">
             ,address=#{address}
         </if>
+        <if test="openId != null">
+            ,open_id=#{openId}
+        </if>
         where user_code = {userCode}
     </update>
 
@@ -143,5 +146,9 @@
 
     <select id="findByCode" resultType="java.lang.String">
         select d.`name` from zx_user_attorney_domain a join sys_dictionary d on a.domain_code=d.`code` where a.user_code= #{code,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findMaxId" resultType="java.lang.Long">
+        select max(id) from zx_user where user_code like #{code,jdbcType=VARCAHR}
     </select>
 </mapper>

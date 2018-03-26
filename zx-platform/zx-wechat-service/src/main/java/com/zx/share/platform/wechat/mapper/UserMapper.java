@@ -46,4 +46,6 @@ public interface UserMapper extends PlatFormMapper<ZxUser> {
 
     List<String> findByAttorneyDomains(@Param("code") String code);
 
+    Long findMaxId(@Param("code") String code);
+
 }

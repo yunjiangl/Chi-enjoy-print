@@ -32,6 +32,8 @@ public class UserUpdateBean implements Serializable {
     private String workOrg;
     private String workYear;
     private String domains;
+    private String unionId;
+    private String openId;
 
     public String getUserCode() {
         return userCode;
@@ -167,5 +169,21 @@ public class UserUpdateBean implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getUnionId() {
+        return unionId;
+    }
+
+    public void setUnionId(String unionId) {
+        this.unionId = unionId;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 }

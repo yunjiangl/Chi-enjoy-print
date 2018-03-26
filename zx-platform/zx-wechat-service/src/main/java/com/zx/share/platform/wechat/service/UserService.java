@@ -19,6 +19,8 @@ public interface UserService {
 
 	Integer save(UserRequestBean bean);
 
+	Integer update(UserRequestBean bean);
+
 	Integer update(UserUpdateBean bean);
 
 	Integer update(ZxUser user);
@@ -31,4 +33,6 @@ public interface UserService {
 
 
 	UserDetailsBean details(String userCode);
+
+	String findMaxId(String userCode);
 }

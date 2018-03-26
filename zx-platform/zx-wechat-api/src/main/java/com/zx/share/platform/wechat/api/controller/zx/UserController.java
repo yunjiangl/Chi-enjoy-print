@@ -1,5 +1,8 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
+import com.zx.share.platform.common.bean.SessionConfig;
+import com.zx.share.platform.common.bean.UserCache;
+import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
@@ -38,8 +41,12 @@ public class UserController extends BaseController {
     @ResponseBody
     public DefaultResopnseBean<UserDetailsBean> info(HttpServletRequest request) {
         servletPath = request.getServletPath();
-        String code = "";
         DefaultResopnseBean<UserDetailsBean> resopnseBean = new DefaultResopnseBean<>();
+        UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        if (user == null) {
+            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+        }
+        String code = user.getUserCode();
         resopnseBean.setData(userService.details(code));
         return resopnseBean;
     }
@@ -58,20 +65,23 @@ public class UserController extends BaseController {
     @ApiOperation(value = "用户信息修改", notes = "用户信息修改")
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<Object> update(@ApiParam("用户code") @RequestParam("userCode") String userCode,
-                                                       @ApiParam("微信号") @RequestParam("wechatId") String wechatId,
-                                                       @ApiParam("手机号") @RequestParam("mobile") String mobile,
-                                                       @ApiParam("头像") @RequestParam("portrait") String portrait,
-                                                       @ApiParam("性别（1-男，2-女）") @RequestParam("age") Integer age,
-                                                       @ApiParam("省") @RequestParam("province") String province,
-                                                       @ApiParam("市") @RequestParam("city") String city,
-                                                       @ApiParam("区") @RequestParam("area") String area,
-                                                       @ApiParam("地址") @RequestParam("address") String address,HttpServletRequest request) {
+    public DefaultResopnseBean<Object> update(@ApiParam("微信号") @RequestParam("wechatId") String wechatId,
+                                              @ApiParam("手机号") @RequestParam("mobile") String mobile,
+                                              @ApiParam("头像") @RequestParam("portrait") String portrait,
+                                              @ApiParam("性别（1-男，2-女）") @RequestParam("age") Integer age,
+                                              @ApiParam("省") @RequestParam("province") String province,
+                                              @ApiParam("市") @RequestParam("city") String city,
+                                              @ApiParam("区") @RequestParam("area") String area,
+                                              @ApiParam("地址") @RequestParam("address") String address, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+        UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        if (user == null) {
+            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+        }
         UserUpdateBean updateBean = new UserUpdateBean();
         updateBean.setAddress(address);
-        updateBean.setUserCode(userCode);
+        updateBean.setUserCode(user.getUserCode());
         updateBean.setWechatId(wechatId);
         updateBean.setAge(age);
         updateBean.setMobile(mobile);
@@ -87,27 +97,30 @@ public class UserController extends BaseController {
     @ApiOperation(value = "律师信息修改", notes = "律师信息修改")
     @RequestMapping(value = "/attorney/update", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<Object> attorneyUpdat(@ApiParam("用户code") @RequestParam("userCode") String userCode,
-                              @ApiParam("微信号") @RequestParam("wechatId") String wechatId,
-                              @ApiParam("手机号") @RequestParam("mobile") String mobile,
-                              @ApiParam("头像") @RequestParam("portrait") String portrait,
-                              @ApiParam("性别（1-男，2-女）") @RequestParam("age") Integer age,
-                              @ApiParam("省") @RequestParam("province") String province,
-                              @ApiParam("市") @RequestParam("city") String city,
-                              @ApiParam("区") @RequestParam("area") String area,
-                              @ApiParam("地址") @RequestParam("address") String address,
-                              @ApiParam("审核图片") @RequestParam("checkImg") String checkImg,
-                              @ApiParam("资格证图片") @RequestParam("attorneyCardImg") String attorneyCardImg,
-                              @ApiParam("身份证图片") @RequestParam("identityCardImg") String identityCardImg,
-                              @ApiParam("执业证号") @RequestParam("workNum") String workNum,
-                              @ApiParam("执业机构") @RequestParam("workOrg") String workOrg,
-                              @ApiParam("执业年限") @RequestParam("workYear") String workYear,
-                              @ApiParam("领域（多个领域之间用英文逗号分隔）") @RequestParam("domains") String domains, HttpServletRequest request) {
+    public DefaultResopnseBean<Object> attorneyUpdat(@ApiParam("微信号") @RequestParam("wechatId") String wechatId,
+                                                     @ApiParam("手机号") @RequestParam("mobile") String mobile,
+                                                     @ApiParam("头像") @RequestParam("portrait") String portrait,
+                                                     @ApiParam("性别（1-男，2-女）") @RequestParam("age") Integer age,
+                                                     @ApiParam("省") @RequestParam("province") String province,
+                                                     @ApiParam("市") @RequestParam("city") String city,
+                                                     @ApiParam("区") @RequestParam("area") String area,
+                                                     @ApiParam("地址") @RequestParam("address") String address,
+                                                     @ApiParam("审核图片") @RequestParam("checkImg") String checkImg,
+                                                     @ApiParam("资格证图片") @RequestParam("attorneyCardImg") String attorneyCardImg,
+                                                     @ApiParam("身份证图片") @RequestParam("identityCardImg") String identityCardImg,
+                                                     @ApiParam("执业证号") @RequestParam("workNum") String workNum,
+                                                     @ApiParam("执业机构") @RequestParam("workOrg") String workOrg,
+                                                     @ApiParam("执业年限") @RequestParam("workYear") String workYear,
+                                                     @ApiParam("领域（多个领域之间用英文逗号分隔）") @RequestParam("domains") String domains, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+        UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        if (user == null) {
+            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+        }
         UserUpdateBean updateBean = new UserUpdateBean();
         updateBean.setAddress(address);
-        updateBean.setUserCode(userCode);
+        updateBean.setUserCode(user.getUserCode());
         updateBean.setWechatId(wechatId);
         updateBean.setAge(age);
         updateBean.setMobile(mobile);

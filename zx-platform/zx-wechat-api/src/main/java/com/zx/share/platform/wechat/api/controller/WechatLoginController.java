@@ -1,6 +1,8 @@
 package com.zx.share.platform.wechat.api.controller;
 
 import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.constants.UserSourceEnum;
+import com.zx.share.platform.util.CodeBuilderUtil;
 import com.zx.share.platform.util.GrantType;
 import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
@@ -73,7 +75,10 @@ public class WechatLoginController extends BaseController{
 
         if (userResultBean == null) {
             UserRequestBean userSaveBean = new UserRequestBean();
+            String userCode = UserSourceEnum.ZX_USER_SOURCE_WECHAT.label+"0000";
+            String id = userService.findMaxId(userCode);
             userSaveBean.setCity(appletUserInfo.getCity());
+            userSaveBean.setUserCode(CodeBuilderUtil.userCode(UserSourceEnum.ZX_USER_SOURCE_WECHAT.label,"0000",id));
             userSaveBean.setProvince(appletUserInfo.getProvince());
             userSaveBean.setOpenId(appletUserInfo.getOpenId());
             userSaveBean.setCountry(appletUserInfo.getCountry());
@@ -156,7 +161,10 @@ public class WechatLoginController extends BaseController{
                 return responseData;
             }
             UserRequestBean userSaveBean = new UserRequestBean();
+            String userCode = UserSourceEnum.ZX_USER_SOURCE_WECHAT.label+"0000";
+            String id = userService.findMaxId(userCode);
             userSaveBean.setCity(appletUserInfo.getCity());
+            userSaveBean.setUserCode(CodeBuilderUtil.userCode(UserSourceEnum.ZX_USER_SOURCE_WECHAT.label,"0000",id));
             userSaveBean.setProvince(appletUserInfo.getProvince());
             userSaveBean.setOpenId(appletUserInfo.getOpenId());
             userSaveBean.setCountry(appletUserInfo.getCountry());

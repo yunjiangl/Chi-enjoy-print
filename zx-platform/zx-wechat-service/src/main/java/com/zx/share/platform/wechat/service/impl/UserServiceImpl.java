@@ -47,9 +47,21 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findByOpenId(unionId);
 	}
 
+	@Transactional(readOnly = false)
 	@Override
 	public Integer save(UserRequestBean bean) {
 		return userMapper.save(bean);
+	}
+
+	@Transactional(readOnly = false)
+	@Override
+	public Integer update(UserRequestBean bean) {
+		UserUpdateBean userSaveBean = new UserUpdateBean();
+		userSaveBean.setUserCode(bean.getUserCode());
+		userSaveBean.setUnionId(bean.getUnionId());
+		userSaveBean.setOpenId(bean.getOpenId());
+		userSaveBean.setPortrait(bean.getHeadImgUrl());
+		return userMapper.update(userSaveBean);
 	}
 
 	@Transactional(readOnly = false)
@@ -173,5 +185,12 @@ public class UserServiceImpl implements UserService {
 			 resultBean = (UserDetailsBean)obj;
 		}
 		return resultBean;
+	}
+
+	@Override
+	public String findMaxId(String userCode) {
+		Long id = userMapper.findMaxId(userCode+"%");
+
+		return id==null || id==0 ?"0":id.toString();
 	}
 }
