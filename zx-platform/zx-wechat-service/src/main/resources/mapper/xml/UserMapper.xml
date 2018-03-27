@@ -70,7 +70,7 @@
     <update id="update" parameterType="com.zx.share.platform.vo.wechat.request.UserUpdateBean">
         update zx_user set user_code=#{userCode}
         <if test="wechatId!=null">
-            ,wechat_id=#{}
+            ,wechat_id=#{wechatId}
         </if>
         <if test="mobile!=null">
             ,mobile=#{mobile}
@@ -96,7 +96,7 @@
         <if test="openId != null">
             ,open_id=#{openId}
         </if>
-        where user_code = {userCode}
+        where user_code = #{userCode}
     </update>
 
 
