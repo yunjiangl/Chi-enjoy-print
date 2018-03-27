@@ -106,6 +106,9 @@ public class ZxOrder extends IdEntity {
 	private ZxUser zxUser;
 
 	@Transient
+	private ZxUser lawyer;
+	
+	@Transient
 	private ZxPrinterManager zxPrinterManager;
 
 	@Transient
