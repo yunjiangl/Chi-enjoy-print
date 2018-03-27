@@ -105,7 +105,46 @@ public class SysUser extends IdEntity {
 	 */
 	@Column(name="comment")
 	private String comment;
-
+	
+	/**
+	 * 开户行
+	 */
+	@Column(name="opening_bank")
+	private String openingBank;
+	
+	/**
+	 * 收款账号省份
+	 */
+	@Column(name="province")
+	private String province;
+	
+	/**
+	 * 收款账号城市
+	 */
+	@Column(name="city")
+	private String city;
+	
+	/**
+	 * 收款账号地区吗
+	 */
+	@Column(name="region")
+	private String region;
+	
+	/**
+	 * 收款账号
+	 */
+	@Column(name="account_number")
+	private String accountNumber;
+	
+	/**
+	 * 收款名称
+	 */
+	@Column(name="account_name")
+	private String accountName;
+	
+	
+	
+	
     private static final long serialVersionUID = 1L;
 
   

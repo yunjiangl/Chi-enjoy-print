@@ -1,14 +1,18 @@
 package com.zx.share.platform.console.service.zx;
 
-/**
- * 
- * @ClassName: ZxUserMapperService
- * @Description: 微信用户业务接口类
- * @author 芸江
- * @date 2018年1月30日 上午10:57:35
- *
- */
+import java.util.List;
+
+import com.zx.share.platform.bean.zx.ZxUser;
+
+
 public interface ZxUserMapperService {
-
-
+	
+	/**
+	 * 设备管理添加线上管理员遍历
+	 */
+	List<ZxUser> selectOnlineAdmin();
+	/**
+	 * 设备列表添加线上管理员查看功能 
+	 */
+	ZxUser selectOnlineAdminById(Long id);
 }

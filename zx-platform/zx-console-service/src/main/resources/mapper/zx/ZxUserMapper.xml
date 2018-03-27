@@ -16,5 +16,44 @@
     <result column="union_id" jdbcType="VARCHAR" property="unionId" />
     <result column="user_type" jdbcType="INTEGER" property="userType" />
   </resultMap>
-  
+  <!-- 设备列表添加线上管理员 -->
+  <select id="selectOnlineAdmin" resultType="ZxUser" resultMap="Map">
+  		SELECT
+  		zx_user.id,
+		zx_user.username,
+		zx_user_printer.`status`,
+		zx_user_printer.create_time,
+		zx_user_attorney.domain
+		FROM
+		zx_user ,
+		zx_user_printer ,
+		zx_user_attorney
+		WHERE
+		zx_user_printer.user_id = zx_user.id AND
+		zx_user.id = zx_user_attorney.user_id AND
+		zx_user_printer.status=0
+  </select>
+  <!-- 设备列表添加线上管理员查看功能 -->
+  <select id="selectOnlineAdminById" resultType="ZxUser" resultMap="Map">
+  		SELECT
+  		zx_user.id,
+		zx_user.username,
+		zx_user_printer.`status`,
+		zx_user_printer.create_time,
+		zx_user_attorney.domain
+		FROM
+		zx_user ,
+		zx_user_printer ,
+		zx_user_attorney
+		WHERE
+		zx_user_printer.user_id = zx_user.id AND
+		zx_user.id = zx_user_attorney.user_id AND
+		zx_user_printer.status=0 AND
+		zx_user.id=#{id}
+		
+  </select>
+  <!-- 设备列表添加线上管理员模糊查询 -->
+  <select id="" resultType="ZxUser" resultMap="Map">
+  		
+  </select>
 </mapper>

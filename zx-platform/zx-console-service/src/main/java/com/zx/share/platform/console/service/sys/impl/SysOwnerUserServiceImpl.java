@@ -13,6 +13,8 @@ import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.mapper.sys.SysBackGroundUserMapper;
 import com.zx.share.platform.console.mapper.sys.SysFrontDeskUserMapper;
 import com.zx.share.platform.console.mapper.sys.SysOwnerUserMapper;
+import com.zx.share.platform.console.mapper.zx.ZxUserMapper;
+import com.zx.share.platform.console.mapper.zx.ZxUserPrinterMapper;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysOwnerUserService;
@@ -22,7 +24,9 @@ public class SysOwnerUserServiceImpl implements SysOwnerUserService {
 
 	@Autowired
 	private SysOwnerUserMapper SysOwnerUserMapper;
-
+	
+	@Autowired
+	private ZxUserPrinterMapper zxUserPrinterMapper;
 	/**
 	 * 查询出全部未删除的前台用户管理数据
 	 * 
@@ -68,5 +72,51 @@ public class SysOwnerUserServiceImpl implements SysOwnerUserService {
 		params.put("comment", comment);
 		params.put("roleId", roleId);
 		return SysOwnerUserMapper.updateOwnerUserById(params);
+	}
+	
+	/**
+	 * 物主端修改密码邮箱
+	 */
+	@Override
+	public Integer updateOwerById(String username, String password, String email) {
+		// TODO Auto-generated method stub
+		return SysOwnerUserMapper.updateOwerById(username, password, email);
+	}
+	
+	/**
+	 * 添加物主端收款信息
+	 */
+	@Override
+	public Integer updateBank(String openingBank, String province, String city, String region, String accountNumber,
+			String accountName,String userName) {
+		// TODO Auto-generated method stub
+		return SysOwnerUserMapper.updateBank(openingBank, province, city, region, accountNumber, accountName,userName);
+	}
+	
+	/**
+	 * 查询全部设备列表
+	 */
+	@Override
+	public List<SysUser> selectOwerList() {
+		// TODO Auto-generated method stub
+		return SysOwnerUserMapper.selectOwerList();
+	}
+	
+	/**
+	 * 设备列表禁用功能
+	 */
+	@Override
+	public Integer updateOwenByCode(String printerCode) {
+		// TODO Auto-generated method stub
+		return zxUserPrinterMapper.updateOwenByCode(printerCode);
+	}
+	
+	/**
+	 * 查询设备列表单行
+	 */
+	@Override
+	public SysUser selectOwerByCode(String printerCode) {
+		// TODO Auto-generated method stub
+		return SysOwnerUserMapper.selectOwerByCode(printerCode);
 	}
 }

@@ -11,5 +11,8 @@
     <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
     <result column="check_id" jdbcType="BIGINT" property="checkId" />
   </resultMap>
- 
+  <!-- 设备列表禁用 -->
+  <update id="updateOwenByCode">
+  		update zx_user_printer set status=1 where printer_code=#{printerCode}
+  </update>
 </mapper>

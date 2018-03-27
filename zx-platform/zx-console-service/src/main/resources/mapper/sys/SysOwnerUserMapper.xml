@@ -17,6 +17,12 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="opening_bank" jdbcType="VARCHAR" property="openingBank" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="account_number" jdbcType="VARCHAR" property="accountNumber" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
   </resultMap>
   
   <!-- 查询出全部未删除的物主用户管理数据 -->
@@ -76,4 +82,58 @@
  		where u.id=r.user_id and u.id=#{id}
  		
  </update>
+ <update id="updateOwerById">
+ 		update sys_user set password=#{password},email=#{email}
+ 		where username=#{username}
+ </update>
+ <insert id="updateBank">
+ 		update sys_user SET opening_bank=#{openingBank},province=#{province},
+		city=#{city},region=#{region},account_number=#{accountNumber},account_name=#{accountName}
+		where username=#{userName}
+ </insert>
+ 
+ <!-- 设备列表List -->
+ <select id="selectOwerList" resultType="SysUser">
+ 		SELECT
+		zx_user_printer.printer_code,
+		sys_user.username,
+		zx_user_printer.`status`,
+		zx_printer_manager.address,
+		zx_printer_manager.create_time,
+		zx_printer_manager.manager_name,
+		zx_printer_manager.manager_phone
+		FROM
+		zx_user_printer ,
+		sys_user ,
+		zx_printer_manager
+		WHERE
+		sys_user.id = zx_user_printer.user_id AND
+		zx_user_printer.printer_code = zx_printer_manager.printer_code AND
+		zx_user_printer.status=0
+
+ </select>
+<!-- 设备列表单行查看 -->
+<select id="selectOwerByCode" resultType="SysUser">
+		SELECT
+		zx_user_printer.printer_code,
+		sys_user.username,
+		zx_user_printer.`status`,
+		zx_printer_manager.address,
+		zx_printer_manager.create_time,
+		zx_printer_manager.manager_name,
+		zx_printer_manager.manager_phone
+		FROM
+		zx_user_printer ,
+		sys_user ,
+		zx_printer_manager
+		WHERE
+		sys_user.id = zx_user_printer.user_id AND
+		zx_user_printer.printer_code = zx_printer_manager.printer_code AND
+		zx_user_printer.status=0 AND
+		zx_user_printer.printer_code=#{printerCode}
+</select>
+<!-- 修改物主端设备列表 -->
+<update id="updateOwerByCode">
+		
+</update>
 </mapper>
