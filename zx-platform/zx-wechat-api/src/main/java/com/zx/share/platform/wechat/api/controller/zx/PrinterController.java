@@ -175,10 +175,10 @@ public class PrinterController extends BaseController {
 			HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<Object>();
-		if (!zxUserPrinterService.out(code, request)) {
-			resopnseBean.setCode(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code);
-			resopnseBean.setMessage(ErrorsEnum.SYSTEM_CUSTOM_ERROR.label);
-		}
+//		if (!zxUserPrinterService.out(code, request)) {
+//			resopnseBean.setCode(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code);
+//			resopnseBean.setMessage(ErrorsEnum.SYSTEM_CUSTOM_ERROR.label);
+//		}
 		return resopnseBean;
 	}
 }
