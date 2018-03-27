@@ -129,6 +129,7 @@ public class WechatLoginController extends BaseController{
         loginResultBean.setHeadImageUrl(userResultBean.getPortrait());
         loginResultBean.setUserType(userResultBean.getUserType());
         loginResultBean.setUserStatus(userResultBean.getUserStatus());
+        loginResultBean.setNickName(userResultBean.getUsername());
         //放入返回对象
         responseData.setData(loginResultBean);
         //登录信息写入缓存

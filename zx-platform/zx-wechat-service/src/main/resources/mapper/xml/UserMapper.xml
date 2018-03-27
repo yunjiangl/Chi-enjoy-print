@@ -70,7 +70,7 @@
     <update id="update" parameterType="com.zx.share.platform.vo.wechat.request.UserUpdateBean">
         update zx_user set user_code=#{userCode}
         <if test="wechatId!=null">
-            ,wechat_id=#{}
+            ,wechat_id=#{wechatId}
         </if>
         <if test="mobile!=null">
             ,mobile=#{mobile}
@@ -96,7 +96,7 @@
         <if test="openId != null">
             ,open_id=#{openId}
         </if>
-        where user_code = {userCode}
+        where user_code = #{userCode}
     </update>
 
 
@@ -140,15 +140,15 @@
         select user_type,user_status,user_code,username,mobile,union_id,open_id,age,grad,portrait from zx_user where user_code=#{code,jdbcType=VARCHAR} limit 1
     </select>
 
-    <select id="findByCode" resultMap="attorneyDetailsBean">
+    <select id="findByAttorney" resultMap="attorneyDetailsBean">
         select user_id,user_code,work_year,work_num,work_org,identity_card_img,attorney_card_img,check_img from zx_user_attorney where user_code=#{code,jdbcType=VARCHAR} limit 1
     </select>
 
-    <select id="findByCode" resultType="java.lang.String">
+    <select id="findByAttorneyDomains" resultType="java.lang.String">
         select d.`name` from zx_user_attorney_domain a join sys_dictionary d on a.domain_code=d.`code` where a.user_code= #{code,jdbcType=VARCHAR}
     </select>
 
     <select id="findMaxId" resultType="java.lang.Long">
-        select max(id) from zx_user where user_code like #{code,jdbcType=VARCAHR}
+        select max(id) from zx_user where user_code like #{code,jdbcType=VARCHAR}
     </select>
 </mapper>

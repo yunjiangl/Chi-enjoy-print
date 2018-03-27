@@ -41,7 +41,7 @@
         select user_code from zx_user_printer where printer_code = #{printerCode}
     </select>
 
-    <select id="attorneyPage" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
+    <select id="attorneyPageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select count(1) from zx_user_printer where printer_code = #{printerCode}
     </select>
 
