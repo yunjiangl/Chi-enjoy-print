@@ -43,8 +43,9 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 
 		try {
 			UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
-			printerApply.setZxPrinterId(printer.getId());
-			printerApply.setZxUserId(userCache.getId());
+			
+			printerApply.setUserId(userCache.getId());
+			printerApply.setPrinterId(printer.getId());
 			printerApply.setCreateTime(new Date());
 			printerApply.setStatus(0);
 			printerApply.setCreateId(userCache.getId());
