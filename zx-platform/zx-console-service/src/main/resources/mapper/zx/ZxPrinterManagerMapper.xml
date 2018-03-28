@@ -20,9 +20,9 @@
 		<result column="manager_name" jdbcType="VARCHAR" property="managerName" />
 		<result column="manager_phone" jdbcType="VARCHAR" property="managerPhone" />
 		<!-- 关联的物主信息 -->
-		<association property="zxUser"
-			javaType="com.zx.share.platform.bean.zx.ZxUser">
-			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		<association property="sysUser"
+			javaType="com.zx.share.platform.bean.sys.SysUser">
+			<result column="real_name" jdbcType="VARCHAR" property="realName" />
 		</association>
 		<association property="zxUserPrinter"
 			javaType="com.zx.share.platform.bean.zx.ZxUserPrinter">
@@ -36,7 +36,6 @@
 		SELECT DISTINCT
 		zx_printer_manager.id,
 		zx_printer_manager.printer_code,
-		zx_printer_manager.`name`,
 		zx_printer_manager.longitude,
 		zx_printer_manager.latitude,
 		zx_printer_manager.province,
@@ -51,13 +50,13 @@
 		zx_printer_manager.manager_name,
 		zx_printer_manager.manager_phone,
 		zx_user_printer.`status`,
-		zx_user.nickname,
-		zx_user_printer.id as up_id
+		zx_user_printer.id AS up_id,
+		sys_user.real_name
 		FROM
 		zx_printer_manager
-		LEFT JOIN zx_user_printer ON zx_user_printer.printer_id =
+		INNER JOIN zx_user_printer ON zx_user_printer.printer_id =
 		zx_printer_manager.id
-		LEFT JOIN zx_user ON zx_user_printer.user_id = zx_user.id
+		INNER JOIN sys_user ON zx_printer_manager.create_id = sys_user.id
 		<where>
 			<if test="zxPMId != null and zxPMId != 0">
 				and zx_printer_manager.id = #{zxPMId}
@@ -67,7 +66,7 @@
 				concat('%',#{printerCode},'%')
 			</if>
 			<if test="nickname != null and nickname.trim() != ''">
-				and zx_user.nickname like concat('%',#{nickname},'%')
+				and sys_user.real_name like concat('%',#{nickname},'%')
 			</if>
 			<if test="address != null and address.trim() != ''">
 				and zx_printer_manager.address like

@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -107,7 +108,10 @@ public class ZxOrder extends IdEntity {
 
 	@Transient
 	private ZxUser lawyer;
-	
+
+	@Transient
+	private SysUser sysUser;
+
 	@Transient
 	private ZxPrinterManager zxPrinterManager;
 
