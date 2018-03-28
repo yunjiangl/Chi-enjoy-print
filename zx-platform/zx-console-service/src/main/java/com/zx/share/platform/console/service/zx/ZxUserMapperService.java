@@ -15,4 +15,5 @@ public interface ZxUserMapperService {
 	 * 设备列表添加线上管理员查看功能 
 	 */
 	ZxUser selectOnlineAdminById(Long id);
+
 }

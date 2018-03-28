@@ -20,4 +20,5 @@ public interface ZxUserMapper extends PlatFormMapper<ZxUser>{
 	 * 设备列表添加线上管理员查看功能 
 	 */
 	ZxUser selectOnlineAdminById(@Param("id") Long id);
+
 }

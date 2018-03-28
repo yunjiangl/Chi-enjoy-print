@@ -56,4 +56,5 @@
   <select id="" resultType="ZxUser" resultMap="Map">
   		
   </select>
+
 </mapper>
