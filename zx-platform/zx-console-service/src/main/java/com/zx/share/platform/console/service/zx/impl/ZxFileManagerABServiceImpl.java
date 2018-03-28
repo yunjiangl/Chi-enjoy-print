@@ -16,9 +16,8 @@ import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 
-
 @Service
-public class ZxFileManagerABServiceImpl implements ZxFileManagerABService{
+public class ZxFileManagerABServiceImpl implements ZxFileManagerABService {
 
 	@Autowired
 	private ZxFileManagerABMapper zxFileManagerABMapper;
@@ -35,7 +34,7 @@ public class ZxFileManagerABServiceImpl implements ZxFileManagerABService{
 		Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
 		Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
 		PageHelper.startPage(pageNum, pageSize, true);
-		List<ZxFileManagerAB> list = zxFileManagerABMapper.queryList(params);	
+		List<ZxFileManagerAB> list = zxFileManagerABMapper.queryList(params);
 		PageInfo pageInfo = new PageInfo(list);
 		PageResponseBean<ZxFileManagerAB> data = new PageResponseBean<ZxFileManagerAB>();
 		data.setFirst(pageInfo.isIsFirstPage());
@@ -52,6 +51,7 @@ public class ZxFileManagerABServiceImpl implements ZxFileManagerABService{
 
 	@Override
 	public DefaultResopnseBean<Object> delete(Long id) {
+
 		zxFileManagerABMapper.deleteByPrimaryKey(id);
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
