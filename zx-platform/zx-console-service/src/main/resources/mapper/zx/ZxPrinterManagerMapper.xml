@@ -26,7 +26,7 @@
 		</association>
 		<association property="zxUserPrinter"
 			javaType="com.zx.share.platform.bean.zx.ZxUserPrinter">
-			 <id column="up_id" jdbcType="BIGINT" property="id" />
+			<id column="up_id" jdbcType="BIGINT" property="id" />
 			<result column="status" jdbcType="INTEGER" property="status" />
 		</association>
 	</resultMap>
@@ -34,30 +34,30 @@
 	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxPrinterManager"
 		resultMap="BaseResultMap">
 		SELECT DISTINCT
-			zx_printer_manager.id,
-			zx_printer_manager.printer_code,
-			zx_printer_manager.`name`,
-			zx_printer_manager.longitude,
-			zx_printer_manager.latitude,
-			zx_printer_manager.province,
-			zx_printer_manager.city,
-			zx_printer_manager.area,
-			zx_printer_manager.address,
-			zx_printer_manager.remark,
-			zx_printer_manager.create_id,
-			zx_printer_manager.create_time,
-			zx_printer_manager.update_id,
-			zx_printer_manager.update_time,
-			zx_printer_manager.manager_name,
-			zx_printer_manager.manager_phone,
-			zx_user_printer.`status`,
-			zx_user.nickname,
-			zx_user_printer.id as up_id
+		zx_printer_manager.id,
+		zx_printer_manager.printer_code,
+		zx_printer_manager.`name`,
+		zx_printer_manager.longitude,
+		zx_printer_manager.latitude,
+		zx_printer_manager.province,
+		zx_printer_manager.city,
+		zx_printer_manager.area,
+		zx_printer_manager.address,
+		zx_printer_manager.remark,
+		zx_printer_manager.create_id,
+		zx_printer_manager.create_time,
+		zx_printer_manager.update_id,
+		zx_printer_manager.update_time,
+		zx_printer_manager.manager_name,
+		zx_printer_manager.manager_phone,
+		zx_user_printer.`status`,
+		zx_user.nickname,
+		zx_user_printer.id as up_id
 		FROM
 		zx_printer_manager
-		LEFT JOIN zx_user_printer ON zx_user_printer.zx_printer_id =
+		LEFT JOIN zx_user_printer ON zx_user_printer.printer_id =
 		zx_printer_manager.id
-		LEFT JOIN zx_user ON zx_user_printer.zx_user_id = zx_user.id
+		LEFT JOIN zx_user ON zx_user_printer.user_id = zx_user.id
 		<where>
 			<if test="zxPMId != null and zxPMId != 0">
 				and zx_printer_manager.id = #{zxPMId}

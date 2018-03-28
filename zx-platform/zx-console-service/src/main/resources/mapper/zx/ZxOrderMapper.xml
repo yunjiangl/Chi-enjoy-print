@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.console.mapper.zx.ZxOrderMapper">
+	<resultMap id="baseResultMap" type="com.zx.share.platform.bean.zx.ZxOrder">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+		<result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+		<result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+		<result column="pay_id" jdbcType="BIGINT" property="payId" />
+		<result column="pay_code" jdbcType="VARCHAR" property="payCode" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_id" jdbcType="BIGINT" property="createId" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="update_id" jdbcType="BIGINT" property="updateId" />
+		<result column="printer_id" jdbcType="BIGINT" property="printerId" />
+		<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+		<result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode" />
+		<result column="order_user_id" jdbcType="BIGINT" property="orderUserId" />
+		<result column="order_amount" jdbcType="DOUBLE" property="orderAmount" />
+		<result column="attorney_id" jdbcType="BIGINT" property="attorneyId" />
+		<result column="attorney_code" jdbcType="VARCHAR" property="attorneyCode" />
+		<result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+	</resultMap>
+
+
+	<resultMap type="com.zx.share.platform.bean.zx.ZxOrder" id="orderList"
+		extends="baseResultMap">
+		<association property="lawyer"
+			javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="lawyer_nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<association property="zxUser"
+			javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<association property="zxPrinterManager"
+			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+		</association>
+	</resultMap>
+
+	<resultMap type="com.zx.share.platform.bean.zx.ZxOrder" id="orderInfo"
+		extends="baseResultMap">
+		<association property="lawyer"
+			javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="lawyer_nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<association property="zxUser"
+			javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
+		<association property="zxPrinterManager"
+			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+			<result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+			<result column="manager_phone" property="managerPhone"
+				jdbcType="VARCHAR" />
+		</association>
+		<association property="zxOrderPrinterFile"
+			javaType="com.zx.share.platform.bean.zx.ZxOrderPrinterFile">
+			<result column="file_paper" property="filePaper" jdbcType="INTEGER" />
+			<result column="printer_num" property="printerNum" jdbcType="INTEGER" />
+			<result column="paper_type" property="paperType" jdbcType="INTEGER" />
+			<result column="paper_colcor" property="paperColcor" jdbcType="BIGINT" />
+			<result column="paper_usage" property="paperUsage" jdbcType="BIGINT" />
+		</association>
+		<association property="zxFileManagerAB"
+			javaType="com.zx.share.platform.bean.zx.ZxFileManagerAB">
+			<result column="ab_name" property="fileName" jdbcType="VARCHAR" />
+		</association>
+		<association property="zxFileManagerCDE"
+			javaType="com.zx.share.platform.bean.zx.ZxFileManagerCDE">
+			<result column="cde_name" property="fileName" jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+
+	<select id="queryList" resultMap="orderList">
+		SELECT
+		zx_order.id,
+		zx_order.pay_time,
+		zx_order.order_num,
+		zx_printer_manager.`name`,
+		zx_user.nickname,
+		lawyer.nickname AS
+		lawyer_nickname,
+		zx_printer_manager.printer_code,
+		zx_order.order_amount
+		FROM
+		zx_order
+		INNER JOIN zx_printer_manager ON zx_order.printer_id =
+		zx_printer_manager.id
+		INNER JOIN zx_user ON zx_order.order_user_id =
+		zx_user.id
+		INNER JOIN zx_user AS lawyer ON zx_order.attorney_id =
+		lawyer.id
+		<where>
+			<if test="printCode != null and printCode.trim() != ''">
+				and zx_printer_manager.printer_code like
+				concat('%',#{printCode},'%')
+			</if>
+			<if test="printName != null and printName.trim() != ''">
+				and zx_printer_manager.`name` like
+				concat('%',#{printName},'%')
+			</if>
+			<if test="lawyerName != null and lawyerName.trim() != ''">
+				and lawyer.nickname like
+				concat('%',#{lawyerName},'%')
+			</if>
+			<if test="time1 != null and time2 != null">
+				and zx_order.pay_time between #{time1} and
+				#{time2}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryByOrderId" resultMap="orderInfo">
+		SELECT
+		zx_order.pay_time,
+		zx_order.order_num,
+		zx_printer_manager.`name`,
+		zx_user.nickname,
+		lawyer.nickname AS lawyer_nickname,
+		zx_printer_manager.printer_code,
+		zx_order.order_amount,
+		zx_printer_manager.manager_name,
+		zx_printer_manager.manager_phone,
+		zx_order_printer_file.paper_usage,
+		zx_order_printer_file.paper_colcor,
+		zx_order_printer_file.paper_type,
+		zx_order_printer_file.printer_num,
+		zx_order_printer_file.file_paper,
+		zx_file_manager_cde.file_name AS cde_name,
+		zx_file_manager_ab.file_name AS ab_name
+		FROM
+		zx_order
+		INNER JOIN
+		zx_printer_manager ON zx_order.printer_id =
+		zx_printer_manager.id
+		INNER
+		JOIN zx_user ON zx_order.order_user_id = zx_user.id
+		INNER JOIN zx_user
+		AS lawyer ON zx_order.attorney_id = lawyer.id
+		INNER JOIN
+		zx_order_printer_file ON zx_order_printer_file.order_id =
+		zx_order.id
+		INNER JOIN zx_file_manager_cde ON zx_order_printer_file.file_id =
+		zx_file_manager_cde.id
+		INNER JOIN zx_file_manager_ab ON
+		zx_order_printer_file.file_id =
+		zx_file_manager_ab.id
+		WHERE
+		zx_order.id =
+		#{id}
+	</select>
+
+</mapper>

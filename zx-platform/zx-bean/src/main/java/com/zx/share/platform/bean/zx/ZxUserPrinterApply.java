@@ -11,36 +11,35 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author 
+ * @author
  */
 @Entity
-@Table(name="zx_user_printer_apply")
+@Table(name = "zx_user_printer_apply")
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class ZxUserPrinterApply extends IdEntity {
-   
-	@Column(name = "zx_user_id")
-    private Long zxUserId;
 
-	@Column(name = "zx_printer_id")
-    private Long zxPrinterId;
+	@Column(name = "user_id")
+	private Long userId;
+
+	@Column(name = "printer_id")
+	private Long printerId;
 
 	@Column(name = "status")
-    private Integer status;
+	private Integer status;
 
 	@Column(name = "create_time")
-    private Date createTime;
+	private Date createTime;
 
 	@Column(name = "create_id")
-    private Long createId;
+	private Long createId;
 
 	@Column(name = "check_time")
-    private Date checkTime;
+	private Date checkTime;
 
 	@Column(name = "check_id")
-    private Long checkId;
+	private Long checkId;
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    
 }
