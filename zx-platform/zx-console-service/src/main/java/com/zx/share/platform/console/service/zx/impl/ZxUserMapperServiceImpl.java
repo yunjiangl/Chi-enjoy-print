@@ -40,6 +40,40 @@ public class ZxUserMapperServiceImpl implements ZxUserMapperService {
 		// TODO Auto-generated method stub
 		return zxUserMapper.selectOnlineAdminById(id);
 	}
+	/**
+	 * 设备管理线上管理员遍历分页
+	 */
+	@Override
+	public DefaultResopnseBean<PageResponseBean<ZxUser>> selectAdminByPage(Map<String, Object> params) {
+		Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
+		Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
+		PageHelper.startPage(pageNum, pageSize, true);
+		List<ZxUser> list = zxUserMapper.selectAdminByPage(params);
+
+		PageInfo pageInfo = new PageInfo(list);
+
+		PageResponseBean<ZxUser> data = new PageResponseBean<ZxUser>();
+
+		data.setFirst(pageInfo.isIsFirstPage());
+		data.setLast(pageInfo.isIsLastPage());
+		data.setNumber(pageInfo.getPageNum());
+		data.setNumberOfElements(pageInfo.getPageSize());
+		data.setSize(pageInfo.getSize());
+		data.setTotalPages(pageInfo.getPages());
+		data.setTotalElements(pageInfo.getTotal());
+		data.setContent(pageInfo.getList());
+
+		return new DefaultResopnseBean<PageResponseBean<ZxUser>>(ErrorsEnum.SUCCESS.label,
+				ErrorsEnum.SUCCESS.code, data);
+	}
+	/**
+	 * 设备管理线上管理员查看接口
+	 */
+	@Override
+	public ZxUser selectZxAdminById(Long id) {
+		// TODO Auto-generated method stub
+		return zxUserMapper.selectZxAdminById(id);
+	}
 	
 
 
