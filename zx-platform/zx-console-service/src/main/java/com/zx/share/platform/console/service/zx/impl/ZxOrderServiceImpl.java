@@ -8,10 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zx.share.platform.bean.sys.SysDictionary;
+import com.zx.share.platform.bean.zx.ZxFileManagerAB;
+import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.bean.zx.ZxOrder;
+import com.zx.share.platform.console.mapper.DictionaryMapper;
+import com.zx.share.platform.console.mapper.zx.ZxFileManagerABMapper;
+import com.zx.share.platform.console.mapper.zx.ZxFileManagerCDEMapper;
 import com.zx.share.platform.console.mapper.zx.ZxOrderMapper;
 import com.zx.share.platform.console.service.zx.ZxOrderService;
 import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 
@@ -26,6 +33,15 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Autowired
 	private ZxOrderMapper zxOrderMapper;
+
+	@Autowired
+	private DictionaryMapper dictionaryMapper;
+
+	@Autowired
+	private ZxFileManagerABMapper zxFileManagerABMapper;
+
+	@Autowired
+	private ZxFileManagerCDEMapper zxFileManagerCDEMapper;
 
 	@Override
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> list(Map<String, Object> param) {
@@ -58,7 +74,27 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Override
 	public ZxOrder orderInfo(Long id) {
-		return zxOrderMapper.queryByOrderId(id);
+		ZxOrder zxOrder = zxOrderMapper.queryByOrderId(id);
+		SysDictionary record = new SysDictionary();
+
+		record.setId(Long.valueOf(zxOrder.getZxOrderPrinterFile().getFileType()));
+
+		SysDictionary sysDictionary = dictionaryMapper.selectByPrimaryKey(record);
+
+		// 判断订单文件
+		if (StringUtil.isNotBlank(sysDictionary) && "fileAB".equals(sysDictionary.getCode())) {
+
+			ZxFileManagerAB ab = new ZxFileManagerAB();
+			ab.setId(zxOrder.getZxOrderPrinterFile().getFileId());
+			zxOrder.setZxFileManagerAB(zxFileManagerABMapper.selectByPrimaryKey(ab));
+
+		} else if (StringUtil.isNotBlank(sysDictionary) && "fileCDE".equals(sysDictionary.getCode())) {
+
+			ZxFileManagerCDE cde = new ZxFileManagerCDE();
+			cde.setId(zxOrder.getZxOrderPrinterFile().getFileId());
+			zxOrder.setZxFileManagerCDE(zxFileManagerCDEMapper.selectByPrimaryKey(cde));
+		}
+		return zxOrder;
 	}
 
 }

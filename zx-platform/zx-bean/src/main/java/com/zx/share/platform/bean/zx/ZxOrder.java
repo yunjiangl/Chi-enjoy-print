@@ -96,7 +96,7 @@ public class ZxOrder extends IdEntity {
 	private Long orderUserId;
 
 	@Column(name = "order_amount")
-	private Double amount;
+	private Double orderAmount;
 
 	@Column(name = "remark")
 	private String remark;
