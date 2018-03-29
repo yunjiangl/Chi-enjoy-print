@@ -41,4 +41,14 @@ public interface ZxPrinterManagerService {
 	 * @Description: 查询单个设备信息（多表查询）
 	 */
 	public DefaultResopnseBean<Object> queryByZxPMId(Long id);
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 修改设备
+	 * @param zxPM
+	 *            设备信息
+	 * @param hostname
+	 *            设备物主
+	 */
+	public DefaultResopnseBean<Object> update(ZxPrinterManager zxPM);
 }

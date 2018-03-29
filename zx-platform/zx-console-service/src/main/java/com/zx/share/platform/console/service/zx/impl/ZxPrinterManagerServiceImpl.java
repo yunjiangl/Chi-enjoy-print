@@ -76,5 +76,21 @@ public class ZxPrinterManagerServiceImpl implements ZxPrinterManagerService {
 
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, data);
 	}
+	
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 修改设备
+	 * @param zxPM
+	 *            设备信息
+	 * @param hostname
+	 *            设备物主
+	 */
+	@Override
+	public DefaultResopnseBean<Object> update(ZxPrinterManager zxPM) {
+		zxPM.setCreateTime(new Date());
+		zxPrinterManagerMapper.updateByPrimaryKey(zxPM);
+		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+	}
 
 }

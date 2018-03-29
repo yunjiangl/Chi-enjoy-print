@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.zx.ZxOrder;
+import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysOwnerUserService;
 import com.zx.share.platform.console.service.zx.ZxOrderService;
+import com.zx.share.platform.console.service.zx.ZxPrinterManagerService;
 import com.zx.share.platform.console.service.zx.ZxUserMapperService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
@@ -42,6 +45,8 @@ public class OwnerController {
 	private ZxUserMapperService zxUserMapperService;
 	@Autowired
 	private ZxOrderService zxOrderService;
+	@Autowired
+	private ZxPrinterManagerService zxPrinterManagerService;
 	
 	/**
 	 * 物主端修改密码邮箱
@@ -185,6 +190,38 @@ public class OwnerController {
 		
 		return resopnseBean;
 	}
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 添加设备
+	 */
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@ApiOperation(value = "添加打印机设备", notes = "添加打印机设备")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "body", dataType = "ZxPrinterManager", name = "zxPM", value = "设备信息", required = true) })
+	@ACSPermissions(permissions = "zx:pm:add")
+	public DefaultResopnseBean<Object> add(@RequestBody ZxPrinterManager zxPM) {
+		
+		 
+		 return  zxPrinterManagerService.add(zxPM);
+	}
+	
+	/**
+	 * 
+	 * @Title: update
+	 * @Description: 修改设备
+	 */
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@ApiOperation(value = "修改打印机设备", notes = "修改打印机设备")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "body", dataType = "ZxPrinterManager", name = "zxPM", value = "设备信息", required = true) })
+	@ACSPermissions(permissions = "zx:pm:update")
+	public DefaultResopnseBean<Object> update(@RequestBody ZxPrinterManager zxPM) {
+		
+		 
+		 return  zxPrinterManagerService.update(zxPM);
+	}
+	
 	/*
 	*//**
 	 * 禁用物主用户管理数据
