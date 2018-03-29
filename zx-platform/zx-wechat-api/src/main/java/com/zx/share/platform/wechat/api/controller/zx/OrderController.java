@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zx.share.platform.bean.zx.ZxOrder;
+import com.zx.share.platform.common.bean.UserCache;
+import com.zx.share.platform.common.service.TokenCacheService;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.wechat.request.OrderQueryBean;
@@ -41,6 +43,9 @@ public class OrderController extends BaseController {
 
 	@Autowired
 	private ZxOrderService zxOrderService;
+
+	@Autowired
+	private TokenCacheService tokenCacheService;
 
 	@ApiOperation(value = "保存订单信息接口", notes = "保存订单信息接口")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -120,12 +125,14 @@ public class OrderController extends BaseController {
 	public DefaultResopnseBean<List<ZxOrder>> attorney(
 			@ApiParam(value = "设备物主/设备编码") @RequestParam(name = "nameOrCode", required = false) String nameOrCode,
 			@ApiParam(value = "订单完成时间") @RequestParam(name = "time", required = false) Date time,
-			HttpServletRequest request) {
+			HttpServletRequest request) throws Exception {
 		servletPath = request.getServletPath();
+		UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
 
 		Map<String, Object> param = new HashMap<>();
 		param.put("nameOrCode", nameOrCode);
 		param.put("time", time);
+		param.put("attorneyId", userCache.getId());
 
 		List<ZxOrder> data = zxOrderService.attorney(param);
 
@@ -133,15 +140,16 @@ public class OrderController extends BaseController {
 		resopnseBean.setData(data);
 		return resopnseBean;
 	}
-	
+
 	@ApiOperation(value = "律师完成订单详细信息", notes = "律师完成订单详细信息")
 	@RequestMapping(value = "/info/{code}", method = RequestMethod.GET)
 	@ResponseBody
-	public DefaultResopnseBean<ZxOrder> Orderinfo(@ApiParam("订单code")@PathVariable("code") String code, HttpServletRequest request){
-		
+	public DefaultResopnseBean<ZxOrder> Orderinfo(@ApiParam("订单code") @PathVariable("code") String code,
+			HttpServletRequest request) {
+
 		servletPath = request.getServletPath();
-		
-		ZxOrder data = zxOrderService.orderInfo(code);		
+
+		ZxOrder data = zxOrderService.orderInfo(code);
 		DefaultResopnseBean<ZxOrder> resopnseBean = new DefaultResopnseBean<ZxOrder>();
 		resopnseBean.setData(data);
 		return resopnseBean;

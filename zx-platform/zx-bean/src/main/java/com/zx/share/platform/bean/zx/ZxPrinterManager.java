@@ -10,6 +10,7 @@ import javax.persistence.Transient;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.zx.share.platform.bean.IdEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -87,4 +88,7 @@ public class ZxPrinterManager extends IdEntity {
 	
 	@Transient
 	private ZxUserPrinter zxUserPrinter;
+	
+	@Transient
+	private SysUser sysUser;
 }

@@ -31,13 +31,16 @@
 			javaType="com.zx.share.platform.bean.zx.ZxUser">
 			<result column="lawyer_nickname" jdbcType="VARCHAR" property="nickname" />
 		</association>
+		<association property="sysUser"
+			javaType="com.zx.share.platform.bean.sys.SysUser">
+			<result column="real_name" jdbcType="VARCHAR" property="realName" />
+		</association>
 		<association property="zxUser"
 			javaType="com.zx.share.platform.bean.zx.ZxUser">
 			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
 		</association>
 		<association property="zxPrinterManager"
 			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
-			<result column="name" jdbcType="VARCHAR" property="name" />
 			<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
 		</association>
 	</resultMap>
@@ -52,9 +55,12 @@
 			javaType="com.zx.share.platform.bean.zx.ZxUser">
 			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
 		</association>
+		<association property="sysUser"
+			javaType="com.zx.share.platform.bean.sys.SysUser">
+			<result column="real_name" jdbcType="VARCHAR" property="realName" />
+		</association>
 		<association property="zxPrinterManager"
 			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
-			<result column="name" jdbcType="VARCHAR" property="name" />
 			<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
 			<result column="manager_name" property="managerName" jdbcType="VARCHAR" />
 			<result column="manager_phone" property="managerPhone"
@@ -62,19 +68,13 @@
 		</association>
 		<association property="zxOrderPrinterFile"
 			javaType="com.zx.share.platform.bean.zx.ZxOrderPrinterFile">
+			<result column="file_id" property="fileId" jdbcType="BIGINT" />
+			<result column="file_type" property="fileType" jdbcType="VARCHAR" />
 			<result column="file_paper" property="filePaper" jdbcType="INTEGER" />
 			<result column="printer_num" property="printerNum" jdbcType="INTEGER" />
 			<result column="paper_type" property="paperType" jdbcType="INTEGER" />
 			<result column="paper_colcor" property="paperColcor" jdbcType="BIGINT" />
 			<result column="paper_usage" property="paperUsage" jdbcType="BIGINT" />
-		</association>
-		<association property="zxFileManagerAB"
-			javaType="com.zx.share.platform.bean.zx.ZxFileManagerAB">
-			<result column="ab_name" property="fileName" jdbcType="VARCHAR" />
-		</association>
-		<association property="zxFileManagerCDE"
-			javaType="com.zx.share.platform.bean.zx.ZxFileManagerCDE">
-			<result column="cde_name" property="fileName" jdbcType="VARCHAR" />
 		</association>
 	</resultMap>
 
@@ -83,27 +83,29 @@
 		zx_order.id,
 		zx_order.pay_time,
 		zx_order.order_num,
-		zx_printer_manager.`name`,
 		zx_user.nickname,
-		lawyer.nickname AS
-		lawyer_nickname,
+		lawyer.nickname AS lawyer_nickname,
 		zx_printer_manager.printer_code,
-		zx_order.order_amount
+		zx_order.order_amount,
+		sys_user.real_name
 		FROM
 		zx_order
-		INNER JOIN zx_printer_manager ON zx_order.printer_id =
+		INNER JOIN zx_printer_manager ON
+		zx_order.printer_id =
 		zx_printer_manager.id
-		INNER JOIN zx_user ON zx_order.order_user_id =
-		zx_user.id
-		INNER JOIN zx_user AS lawyer ON zx_order.attorney_id =
-		lawyer.id
+		INNER JOIN sys_user ON
+		zx_printer_manager.create_id = sys_user.id
+		INNER JOIN zx_user ON
+		zx_order.order_user_id = zx_user.id
+		INNER JOIN zx_user AS lawyer ON
+		zx_order.attorney_id = lawyer.id
 		<where>
 			<if test="printCode != null and printCode.trim() != ''">
 				and zx_printer_manager.printer_code like
 				concat('%',#{printCode},'%')
 			</if>
 			<if test="printName != null and printName.trim() != ''">
-				and zx_printer_manager.`name` like
+				and sys_user.real_name like
 				concat('%',#{printName},'%')
 			</if>
 			<if test="lawyerName != null and lawyerName.trim() != ''">
@@ -121,7 +123,6 @@
 		SELECT
 		zx_order.pay_time,
 		zx_order.order_num,
-		zx_printer_manager.`name`,
 		zx_user.nickname,
 		lawyer.nickname AS lawyer_nickname,
 		zx_printer_manager.printer_code,
@@ -133,25 +134,22 @@
 		zx_order_printer_file.paper_type,
 		zx_order_printer_file.printer_num,
 		zx_order_printer_file.file_paper,
-		zx_file_manager_cde.file_name AS cde_name,
-		zx_file_manager_ab.file_name AS ab_name
+		sys_user.real_name,
+		zx_order_printer_file.file_id,
+		zx_order_printer_file.file_type
 		FROM
 		zx_order
-		INNER JOIN
-		zx_printer_manager ON zx_order.printer_id =
+		INNER JOIN zx_order_printer_file ON zx_order.id =
+		zx_order_printer_file.order_id
+		INNER JOIN zx_printer_manager ON
+		zx_order.printer_id =
 		zx_printer_manager.id
-		INNER
-		JOIN zx_user ON zx_order.order_user_id = zx_user.id
-		INNER JOIN zx_user
-		AS lawyer ON zx_order.attorney_id = lawyer.id
-		INNER JOIN
-		zx_order_printer_file ON zx_order_printer_file.order_id =
-		zx_order.id
-		INNER JOIN zx_file_manager_cde ON zx_order_printer_file.file_id =
-		zx_file_manager_cde.id
-		INNER JOIN zx_file_manager_ab ON
-		zx_order_printer_file.file_id =
-		zx_file_manager_ab.id
+		INNER JOIN sys_user ON
+		zx_printer_manager.create_id = sys_user.id
+		INNER JOIN zx_user ON
+		zx_order.order_user_id = zx_user.id
+		INNER JOIN zx_user AS lawyer ON
+		zx_order.attorney_id = lawyer.id
 		WHERE
 		zx_order.id =
 		#{id}

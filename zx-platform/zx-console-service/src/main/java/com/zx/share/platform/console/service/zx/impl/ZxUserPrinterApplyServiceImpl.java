@@ -99,9 +99,9 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 		ZxUserPrinter zxUP = new ZxUserPrinter();
 		//zxUP.setCreateId(createId);
 		zxUP.setCreateTime(new Date());
-		zxUP.setPrinterId(zxUserPrinterApply.getZxPrinterId());
+		zxUP.setPrinterId(zxUserPrinterApply.getPrinterId());
 		zxUP.setStatus(1);
-		zxUP.setUserId(zxUserPrinterApply.getZxUserId());
+		zxUP.setUserId(zxUserPrinterApply.getUserId());
 		zxUserPrinterApplyService.add(zxUP);
 		
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);

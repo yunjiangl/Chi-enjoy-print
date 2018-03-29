@@ -3,13 +3,13 @@
 <mapper namespace="com.zx.share.platform.console.mapper.zx.ZxUserPrinterApplyMapper">
   <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="zx_user_id" jdbcType="BIGINT" property="zxUserId" />
-    <result column="zx_printer_id" jdbcType="BIGINT" property="zxPrinterId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="printer_id" jdbcType="BIGINT" property="printerId" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="create_id" jdbcType="BIGINT" property="createId" />
     <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
     <result column="check_id" jdbcType="BIGINT" property="checkId" />
+    <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   
   	<select id="selectNewsList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply"

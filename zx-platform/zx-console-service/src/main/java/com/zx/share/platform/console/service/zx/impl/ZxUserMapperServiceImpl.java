@@ -40,6 +40,8 @@ public class ZxUserMapperServiceImpl implements ZxUserMapperService {
 		// TODO Auto-generated method stub
 		return zxUserMapper.selectOnlineAdminById(id);
 	}
+	
+
 
 	
 

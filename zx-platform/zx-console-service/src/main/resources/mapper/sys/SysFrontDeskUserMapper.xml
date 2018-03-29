@@ -49,7 +49,7 @@
  
  <!-- 模糊查詢 -->
 
-  <select id="selectFrontDesUserDim" resultType="SysUser" resultMap="BaseResultMap">
+  <select id="selectFrontDeskUserDim" resultType="SysUser" resultMap="BaseResultMap">
 	SELECT * FROM
 	sys_user
 	INNER JOIN sys_user_role ON
@@ -65,13 +65,13 @@
 	sys_user.is_del='0' AND
 	sys_role.id=3
   		<if test="name != null and name.trim() !=''">
-			 AND name like CONCAT('%',#{name},'%')
+			 AND sys_user.real_name like CONCAT('%',#{name},'%')
 		</if>
 		<if test="perms != null">
-			 AND perms =#{perms} 
+			 AND sys_role.perms =#{perms} 
 		</if>
 		<if test="time1!=null and time2!=null and time1.trim()!='' and time2.trim()!='' ">
-			 AND create_time BETWEEN #{time1} and #{time2}
+			 AND sys_user.create_time BETWEEN #{time1} and #{time2}
 		</if>
   </select> 
 </mapper>
