@@ -144,10 +144,12 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 		SysDictionary record = new SysDictionary();
 
-		record.setId(Long.valueOf(zxOrder.getZxOrderPrinterFile().getFileType()));
+		if (StringUtil.isNotBlank(zxOrder)) {
+			record.setId(Long.valueOf(zxOrder.getZxOrderPrinterFile().getFileType()));
+		}
 
 		SysDictionary sysDictionary = dictionaryMapper.selectByPrimaryKey(record);
-		
+
 		// 判断订单文件
 		if (StringUtil.isNotBlank(sysDictionary) && "fileAB".equals(sysDictionary.getCode())) {
 

@@ -77,7 +77,9 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 		ZxOrder zxOrder = zxOrderMapper.queryByOrderId(id);
 		SysDictionary record = new SysDictionary();
 
-		record.setId(Long.valueOf(zxOrder.getZxOrderPrinterFile().getFileType()));
+		if (StringUtil.isNotBlank(zxOrder)) {
+			record.setId(Long.valueOf(zxOrder.getZxOrderPrinterFile().getFileType()));
+		}
 
 		SysDictionary sysDictionary = dictionaryMapper.selectByPrimaryKey(record);
 
