@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.zx.share.platform.bean.zx.ZxUserPrinter;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.console.mapper.zx.ZxUserPrinterApplyMapper;
 import com.zx.share.platform.console.service.zx.ZxUserPrinterApplyService;
+import com.zx.share.platform.console.service.zx.ZxUserPrinterService;
 import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 /**
  * 
@@ -25,6 +29,9 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 
 	@Autowired
 	private ZxUserPrinterApplyMapper zxUserPrinterApplyMapper;
+	
+	@Autowired
+	private ZxUserPrinterService zxUserPrinterApplyService;
 
 	@Transactional
 	@Override
@@ -68,6 +75,36 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 		ZxUserPrinterApply data = zxUserPrinterApplyMapper.selectOne(zxUPA);
 
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, data);
+	}
+
+	@Override
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(String userName,int status) {
+			zxUserPrinterApplyMapper.selectNewsList(userName,status);
+		return new DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>>(ErrorsEnum.SUCCESS.label,
+				ErrorsEnum.SUCCESS.code, null);
+	}
+
+	@Transactional
+	@Override
+	public DefaultResopnseBean<Object> addNews(int Id) {
+		ZxUserPrinterApply zxUserPrinterApply= zxUserPrinterApplyMapper.selectByPrimaryKey(Id);
+		if(StringUtil.isNotBlank(zxUserPrinterApply)) {
+			zxUserPrinterApply.setStatus(1);
+		}
+		zxUserPrinterApplyMapper.updateByPrimaryKey(zxUserPrinterApply);
+		
+		
+		
+		// 添加设备线上管理员
+		ZxUserPrinter zxUP = new ZxUserPrinter();
+		//zxUP.setCreateId(createId);
+		zxUP.setCreateTime(new Date());
+		zxUP.setPrinterId(zxUserPrinterApply.getZxPrinterId());
+		zxUP.setStatus(1);
+		zxUP.setUserId(zxUserPrinterApply.getZxUserId());
+		zxUserPrinterApplyService.add(zxUP);
+		
+		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
 
 }

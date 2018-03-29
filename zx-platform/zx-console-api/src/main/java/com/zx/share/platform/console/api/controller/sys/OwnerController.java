@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,13 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
+import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysOwnerUserService;
 import com.zx.share.platform.console.service.zx.ZxUserMapperService;
+import com.zx.share.platform.console.service.zx.ZxUserPrinterApplyService;
+import com.zx.share.platform.console.service.zx.ZxUserPrinterService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,6 +41,10 @@ public class OwnerController {
 	private SysOwnerUserService sysOwnerUserService;
 	@Autowired
 	private ZxUserMapperService zxUserMapperService;
+	@Autowired
+	private ZxUserPrinterApplyService zxUserPrinterApplyService;
+	@Autowired
+	private ZxUserPrinterService ZxUserPrinterService;
 	
 	/**
 	 * 物主端修改密码邮箱
@@ -178,4 +188,33 @@ public class OwnerController {
 		Integer updateUserInt=sysOwnerUserService.updateOwnerUserById(id, userName, salt, password, email, isLock, comment, roleId);
 		return new DefaultResopnseBean<Object>("成功",200,updateUserInt);
 	}*/
+	
+	/**
+	 * 
+	 * @Title: list
+	 * @Description: 消息通知查询
+	 */
+	@RequestMapping(value="/sys/selectOnlineAdminById",method=RequestMethod.GET)
+	@ApiOperation(value = "消息通知查询", notes = "消息通知查询")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "查询信息", required = true) })
+	@ACSPermissions(permissions = "user:news")
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(@RequestBody String userName,@RequestBody int status) {
+		return zxUserPrinterApplyService.selectNewsList(userName,status);
+	}
+	
+	/**
+	 * 
+	 * @Title: addNews
+	 * @Description: 接收消息通知
+	 */
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@ApiOperation(value = "接收消息通知", notes = "接收消息通知")
+	@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "body", dataType = "ZxPrinterManager", name = "zxPM", value = "设备信息", required = true) })
+	@ACSPermissions(permissions = "user:addNews")
+	public DefaultResopnseBean<Object> addNews(@RequestBody int Id) {
+		
+		 return  zxUserPrinterApplyService.addNews(Id);
+	}
 }

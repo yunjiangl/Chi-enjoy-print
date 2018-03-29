@@ -12,4 +12,25 @@
     <result column="check_id" jdbcType="BIGINT" property="checkId" />
   </resultMap>
   
+  	<select id="selectNewsList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply"
+		resultMap="BaseResultMap">
+			SELECT
+			zx_user_printer_apply.user_id,
+			zx_user_printer_apply.`status`,
+			zx_user.username
+			FROM
+			zx_user_printer_apply,
+			zx_user
+		<where>
+			<if test="userName != null and userName.trim() != ''">
+				and zx_user.username
+				like
+				concat('%',#{userName},'%')
+			</if>
+			<if test="status != null and status.trim() != ''">
+				and zx_user_printer.`status` = #{status}
+			</if>
+		</where>
+	</select>
+  
 </mapper>
