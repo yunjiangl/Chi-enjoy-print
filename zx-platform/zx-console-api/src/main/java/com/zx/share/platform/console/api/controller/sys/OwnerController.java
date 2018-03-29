@@ -6,26 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.PathVariable;
-
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
-
 import com.zx.share.platform.bean.zx.ZxOrder;
-
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
-import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
-import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysOwnerUserService;
 import com.zx.share.platform.console.service.zx.ZxOrderService;
 import com.zx.share.platform.console.service.zx.ZxPrinterManagerService;
@@ -322,7 +314,7 @@ public class OwnerController {
 	 * @Title: list
 	 * @Description: 消息通知查询
 	 */
-	@RequestMapping(value = "/sys/selectOnlineAdminById", method = RequestMethod.GET)
+	@RequestMapping(value = "/sys/selectNewsList", method = RequestMethod.GET)
 	@ApiOperation(value = "消息通知查询", notes = "消息通知查询")
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "查询信息", required = true) })
@@ -337,7 +329,7 @@ public class OwnerController {
 	 * @Title: addNews
 	 * @Description: 接收消息通知
 	 */
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@RequestMapping(value = "addNews", method = RequestMethod.POST)
 	@ApiOperation(value = "接收消息通知", notes = "接收消息通知")
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "body", dataType = "ZxPrinterManager", name = "zxPM", value = "设备信息", required = true) })
