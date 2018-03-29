@@ -151,28 +151,17 @@
 		sys_user.real_name
 		FROM
 		zx_order
-		INNER JOIN
-		zx_printer_manager ON zx_order.printer_id =
+		INNER JOIN zx_printer_manager ON zx_order.printer_id =
 		zx_printer_manager.id
-		INNER
-		JOIN zx_user ON zx_order.order_user_id =
-		zx_user.id
-		INNER JOIN zx_user
-		AS lawyer ON zx_order.attorney_id =
-		lawyer.id
-		INNER JOIN
-		zx_order_printer_file ON
-		zx_order_printer_file.order_id =
+		INNER JOIN sys_user ON zx_printer_manager.create_id = sys_user.id
+		INNER JOIN zx_user ON zx_order.order_user_id = zx_user.id
+		INNER JOIN zx_user AS lawyer ON zx_order.attorney_id = lawyer.id
+		INNER JOIN zx_order_printer_file ON zx_order_printer_file.order_id =
 		zx_order.id
-		INNER JOIN
-		zx_file_manager_cde ON zx_order_printer_file.file_id =
+		INNER JOIN zx_file_manager_cde ON zx_order_printer_file.file_id =
 		sys_user.id
-		INNER JOIN zx_file_manager_ab ON
-		zx_order_printer_file.file_id =
+		INNER JOIN zx_file_manager_ab ON zx_order_printer_file.file_id =
 		zx_file_manager_ab.id
-		INNER JOIN
-		sys_user ON
-		zx_printer_manager.create_id = sys_user.id
 		WHERE
 		zx_order.id =
 		#{id}
