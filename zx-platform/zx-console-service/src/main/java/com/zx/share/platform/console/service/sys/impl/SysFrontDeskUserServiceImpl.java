@@ -1,7 +1,6 @@
 package com.zx.share.platform.console.service.sys.impl;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,11 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
-import com.zx.share.platform.console.mapper.sys.SysBackGroundUserMapper;
 import com.zx.share.platform.console.mapper.sys.SysFrontDeskUserMapper;
-import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;

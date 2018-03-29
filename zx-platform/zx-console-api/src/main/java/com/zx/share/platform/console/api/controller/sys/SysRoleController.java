@@ -17,11 +17,13 @@ import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.service.sys.SysRoleService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @Api("用户組管理接口")
@@ -37,10 +39,15 @@ public class SysRoleController {
 	@RequestMapping(value = "/sys/selectRoleAll", method = RequestMethod.GET)
 	@ApiOperation(value = "获取用户組管理列表", notes = "用户組管理")
 	@ACSPermissions(permissions = "role:list")
-	public DefaultResopnseBean<List<SysRole>> selectRoleAll() {
-		List<SysRole> list = sysRoleService.selectRoleAll();
+	public DefaultResopnseBean<PageResponseBean<SysRole>> selectRoleAll(@ApiParam("第几页") @RequestParam(name = "page", required = false) Integer page,
+			@ApiParam("每页多少条") @RequestParam(name = "pageSize", required = false) Integer pageSize) {
 		
-		return new DefaultResopnseBean<List<SysRole>>("成功",200,list);
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("page", page);
+		param.put("pageSize", pageSize);
+		
+		
+		return sysRoleService.selectRoleAll(param);
 	}
 	
 	/**
@@ -86,14 +93,11 @@ public class SysRoleController {
 	@ApiOperation(value="修改用户组管理数据",notes="用户组管理")
 	@ACSPermissions(permissions = "role:Integer")
 	public DefaultResopnseBean<Object> updateRole(@RequestParam("id") Long id,
-														  @RequestParam("name") String name,
-														  @RequestParam("perms") String perms,
-														  @RequestParam("remark") String remark,
-														  @RequestParam("createTime") Date createTime){
+												  @RequestParam("name") String name,
+												  @RequestParam("perms") String perms){
 		SysRole sysRole=new SysRole();
-		sysRole.setCreateTime(createTime);
+		sysRole.setCreateTime(new Date());
 		sysRole.setId(id);
-		sysRole.setRemark(remark);
 		sysRole.setName(name);
 		sysRole.setPerms(perms);
 		sysRole.setModifyTime(new Date());
