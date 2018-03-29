@@ -1,8 +1,11 @@
 package com.zx.share.platform.console.service.zx;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 
 public interface ZxUserMapperService {
