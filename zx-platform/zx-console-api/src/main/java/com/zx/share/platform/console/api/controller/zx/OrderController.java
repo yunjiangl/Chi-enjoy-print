@@ -50,8 +50,8 @@ public class OrderController {
 			@ApiParam("设备编码") @RequestParam(name = "printCode", required = false) String printCode,
 			@ApiParam("设备物主") @RequestParam(name = "printName", required = false) String printName,
 			@ApiParam("律师用户名") @RequestParam(name = "lawyerName", required = false) String lawyerName,
-			@ApiParam("订单支付时间1") @RequestParam(name = "time1", required = false) Date time1,
-			@ApiParam("订单支付时间2") @RequestParam(name = "time2", required = false) Date time2) {
+			@ApiParam("订单支付时间1") @RequestParam(name = "time1", required = false) String time1,
+			@ApiParam("订单支付时间2") @RequestParam(name = "time2", required = false) String time2) {
 		
 		Map<String, Object> param = new HashMap<String, Object>();
 		
