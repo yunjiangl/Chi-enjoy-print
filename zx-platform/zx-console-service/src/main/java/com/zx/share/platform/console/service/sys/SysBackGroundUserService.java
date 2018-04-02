@@ -29,8 +29,16 @@ public interface SysBackGroundUserService {
 	/**
 	 * 模糊查询
 	 */
-	List<SysUser> selectUserDim(@Param("name") String name,
-						    @Param("perms") String perms,
-						    @Param("time1") Date  time1,
-						    @Param("time2") Date time2);
+	List<SysUser> selectUserDim(String name, boolean isLock, Date time1, Date time2);
+	/**
+	 * 后台用户管理增添用户
+	 */
+	Integer insertUsers(String userName,String realName,String password,String email,Boolean isLock,String comment);
+	
+	/**
+	 * 单行查询
+	 */
+	SysUser Select(String userName);
+
+	
 }

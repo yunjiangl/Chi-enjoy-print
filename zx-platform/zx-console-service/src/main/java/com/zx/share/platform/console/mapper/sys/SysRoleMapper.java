@@ -29,4 +29,10 @@ public interface SysRoleMapper extends PlatFormMapper<SysRole>{
 							@Param("perms") String perms,
 							@Param("time1") Date  time1,
 							@Param("time2") Date time2);
+	/**
+	 * 增添数据
+	 */
+	Integer insertRole(@Param("userId") Long userId,
+						@Param("roleId") Long roleId,
+						@Param("createTime") Date createTime);
 }

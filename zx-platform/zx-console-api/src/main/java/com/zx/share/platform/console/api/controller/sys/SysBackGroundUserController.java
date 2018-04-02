@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
+import com.zx.share.platform.console.service.sys.SysRoleService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 
@@ -29,6 +30,8 @@ public class SysBackGroundUserController {
 
 	@Autowired
 	private SysBackGroundUserService sysBackGroundUserService;
+	@Autowired
+	private SysRoleService sysRoleService;
 	
 	/**
 	 * 询出全部未删除的后台用户管理数据
@@ -61,6 +64,32 @@ public class SysBackGroundUserController {
 		Integer updateUserInt=sysBackGroundUserService.updateUserById(id, userName, salt, password, email, isLock, comment, roleId);
 		return new DefaultResopnseBean<Object>("成功",200,updateUserInt);
 	}
+	
+	/**
+	 * 增添后台用户管理数据
+	 */
+	@RequestMapping(value="/sys/insertUsers",method=RequestMethod.POST)
+	@ApiOperation(value="增添后台用户管理数据",notes="后台用户管理")
+	@ACSPermissions(permissions = "user:Integer")
+	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "userName", value = "用户名", required = true),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "realName", value = "昵称", required = true),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "password", value = "密码", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "email", value = "邮箱", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "Boolean", name = "isLock", value = "状态", required = true),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "comment", value = "备注", required = true),
+						@ApiImplicitParam(paramType = "query", dataType = "Long", name = "roleId", value = "所属用户组", required = true)})
+	public DefaultResopnseBean<Object> insertUsers(String userName,String realName,String password,String email,Boolean isLock,
+															  String comment,Long roleId){
+		
+		Integer updateUserInt=sysBackGroundUserService.insertUsers(userName, realName, password, email, isLock, comment);
+		SysUser sysUser=sysBackGroundUserService.Select(userName);
+		Long userId=sysUser.getId();
+		System.out.println(userId);
+		System.out.println(roleId);
+		Date createTime=new Date();
+		sysRoleService.insertRole(userId, roleId, createTime);
+		return new DefaultResopnseBean<Object>("成功",200,updateUserInt);
+	}
 	/**
 	 * 刪除后台用户管理数据
 	 * 
@@ -81,15 +110,15 @@ public class SysBackGroundUserController {
 	 * time1 开始时间
 	 * time2 结束时间
 	 */
-	@RequestMapping(value="/sys/selectUserDim",method=RequestMethod.POST)
+	@RequestMapping(value="/sys/selectUserDim",method=RequestMethod.GET)
 	@ApiOperation(value="模糊查询后台用户组管理数据",notes="用户组管理")
 	@ACSPermissions(permissions = "role:list")
 	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "name", value = "查询用户组的名字", required = false),
-						@ApiImplicitParam(paramType = "query", dataType = "String", name = "perms", value = "当前用户组状态（可用，禁用）", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "Boolean", name = "isLock", value = "当前用户组状态（可用，禁用）", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time1", value = "开始时间", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time2", value = "截至时间）", required = false)})
-	public DefaultResopnseBean<List<SysUser>> selectUserDim(String name,String perms,Date time1,Date time2){
-		List<SysUser> list=sysBackGroundUserService.selectUserDim(name, perms, time1, time2);
+	public DefaultResopnseBean<List<SysUser>> selectUserDim(String name,Boolean isLock,Date time1,Date time2){
+		List<SysUser> list=sysBackGroundUserService.selectUserDim(name, isLock, time1, time2);
 		return new DefaultResopnseBean<List<SysUser>>("成功",200,list);
 	}
 }

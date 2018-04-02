@@ -38,5 +38,8 @@
 			 AND create_time BETWEEN #{time1} and #{time2}
 		</if>
   </select>
-  
+  <!-- 增添数据 -->
+  <insert id="insertRole">
+  		insert into sys_user_role(user_id,role_id,create_time) values(#{userId},#{roleId},#{createTime})
+  </insert>
 </mapper>

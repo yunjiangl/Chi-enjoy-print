@@ -38,4 +38,8 @@ public interface SysRoleService {
 						    @Param("perms") String perms,
 						    @Param("time1") Date  time1,
 						    @Param("time2") Date time2);
+	/**
+	 * 增添数据
+	 */
+	Integer insertRole(Long userId,Long roleId,Date createTime);
 }

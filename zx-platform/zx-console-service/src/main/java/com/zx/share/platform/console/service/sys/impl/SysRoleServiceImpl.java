@@ -88,4 +88,13 @@ public class SysRoleServiceImpl implements SysRoleService{
 		resopnseBean.setMessage(ErrorsEnum.SUCCESS.label);
 		return resopnseBean;
 	}
+	/**
+	 * 增添数据
+	 */
+	@Override
+	public Integer insertRole(Long userId, Long roleId, Date createTime) {
+		// TODO Auto-generated method stub
+		return sysRoleMapper.insertRole(userId, roleId, createTime);
+	}
+	
 }

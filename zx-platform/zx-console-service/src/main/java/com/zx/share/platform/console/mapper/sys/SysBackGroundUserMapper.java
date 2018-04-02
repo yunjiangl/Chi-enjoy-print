@@ -40,7 +40,20 @@ public interface SysBackGroundUserMapper extends PlatFormMapper<SysUser> {
 	 * @return
 	 */
 	List<SysUser> selectUserDim(@Param("name") String name,
-							@Param("perms") String perms,
+							@Param("isLock") Boolean isLock,
 							@Param("time1") Date  time1,
 							@Param("time2") Date time2);
+	/**
+	 * 后台用户管理增添用户
+	 */
+	Integer insertUsers(@Param("userName") String userName,
+						@Param("realName") String realName,
+						@Param("password") String password,
+						@Param("email") String email,
+						@Param("isLock") Boolean isLock,
+						@Param("comment") String comment);
+	/**
+	 * 单行查询
+	 */
+	SysUser Select(@Param("userName") String userName);
 }

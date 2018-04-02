@@ -61,9 +61,30 @@ public class SysBackGroundUserServiceImpl implements SysBackGroundUserService {
 	 */
 
 	@Override
-	public List<SysUser> selectUserDim(String name, String perms, Date time1, Date time2) {
+	public List<SysUser> selectUserDim(String name, boolean isLock, Date time1, Date time2) {
 		// TODO Auto-generated method stub
-		return sysBackGroundUserMapper.selectUserDim(name, perms, time1, time2);
+		return sysBackGroundUserMapper.selectUserDim(name, isLock, time1, time2);
 	}
+	/**
+	 * 后台用户管理增添用户
+	 */
+	@Override
+	public Integer insertUsers(String userName, String realName, String password, String email, Boolean isLock,
+			String comment) {
+		// TODO Auto-generated method stub
+		return sysBackGroundUserMapper.insertUsers(userName, realName, password, email, isLock, comment);
+	}
+	
+	/**
+	 * 单行查询
+	 */
+	@Override
+	public SysUser Select(String userName) {
+		// TODO Auto-generated method stub
+		return sysBackGroundUserMapper.Select(userName);
+	}
+	
+	
+	
 
 }
