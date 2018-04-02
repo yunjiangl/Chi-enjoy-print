@@ -23,11 +23,12 @@ public class FileManagerServiceImpl implements FileManagerService {
     private FileManagerMapper fileManagerMapper;
 
     @Override
-    public PageResponseBean<FileResultBean> pageabList(String suffix, String categoryCode, int page, int pageSize) {
+    public PageResponseBean<FileResultBean> pageabList(String suffix, String categoryCode, int page, int pageSize,String query) {
         FileQueryBean queryBean = new FileQueryBean();
         queryBean.setPage(page);
         queryBean.setPageSize(pageSize);
         queryBean.setCategoryCode(categoryCode);
+        queryBean.setQuery(query);
         queryBean.setSuffix(suffix);
 
         List<FileResultBean> resultBeans = fileManagerMapper.pageListab(queryBean);
@@ -39,11 +40,12 @@ public class FileManagerServiceImpl implements FileManagerService {
     }
 
     @Override
-    public PageResponseBean<FileResultBean> pagecdeList(String suffix, String categoryCode, int page, int pageSize) {
+    public PageResponseBean<FileResultBean> pagecdeList(String suffix, String categoryCode, int page, int pageSize,String query) {
         FileQueryBean queryBean = new FileQueryBean();
         queryBean.setPage(page);
         queryBean.setPageSize(pageSize);
         queryBean.setCategoryCode(categoryCode);
+        queryBean.setQuery(query);
         queryBean.setSuffix(suffix);
 
         List<FileResultBean> resultBeans = fileManagerMapper.pageListcde(queryBean);

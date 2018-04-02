@@ -26,11 +26,31 @@
     </select>
 
     <select id="page" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
-        select <include refid="selectSql"/> from zx_printer_manager
+        select <include refid="selectSql"/> from zx_printer_manager where 1=1
+        <if test="userCode!=null and userCode!=''">
+            AND user_code = #{userCode}
+        </if>
+        <if test="longitude!=null and longitude!=''">
+            AND longitude BETWEEN #{startLongitude} AND #{endLongitude}
+        </if>
+        <if test="latitude!=null and latitude!=''">
+            AND latitude BETWEEN #{startLatitude} AND #{endLatitude}
+        </if>
+
+        limit #{currentSize},#{pageSize}
     </select>
 
     <select id="pageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
-        select count(1) from zx_printer_manager
+        select count(1) from zx_printer_manager where 1=1
+        <if test="userCode!=null and userCode!=''">
+            AND user_code = #{userCode}
+        </if>
+        <if test="longitude!=null and longitude!=''">
+            AND longitude BETWEEN #{startLongitude} AND #{endLongitude}
+        </if>
+        <if test="latitude!=null and latitude!=''">
+            AND latitude BETWEEN #{startLatitude} AND #{endLatitude}
+        </if>
     </select>
 
     <select id="nearby" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
@@ -39,6 +59,8 @@
 
     <select id="attorneyPage" resultType="java.lang.String" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select user_code from zx_user_printer where printer_code = #{printerCode}
+
+        limit #{currentSize},#{pageSize}
     </select>
 
     <select id="attorneyPageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">

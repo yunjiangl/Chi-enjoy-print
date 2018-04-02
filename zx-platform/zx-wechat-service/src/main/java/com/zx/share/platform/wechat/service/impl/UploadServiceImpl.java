@@ -5,8 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.zx.share.platform.util.DateUtil;
+import com.zx.share.platform.util.file.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -48,7 +51,7 @@ public class UploadServiceImpl implements UploadService {
             targetFile.mkdirs();
         }
 
-        String fileURL = filePath + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
+        String fileURL = this._getFilePath(filePath,file.getUserId().toString()) + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
 
         try {
 
@@ -105,6 +108,15 @@ public class UploadServiceImpl implements UploadService {
         CDEFileMapper.insertSelective(file);
 
         return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+    }
+
+    //按照类型，年月日区分文件夹
+    private String _getFilePath(String filePath,String userId){
+        StringBuffer newFilePath = new StringBuffer(filePath+userId+File.separator);
+        newFilePath.append(File.separator+DateUtil.getDateString(new Date()));
+        newFilePath.append(File.separator);
+        FileUtil.isExistDir(newFilePath.toString());
+        return newFilePath.toString();
     }
 
 }

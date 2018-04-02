@@ -1,6 +1,7 @@
 package com.zx.share.platform.vo.wechat.response;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
@@ -15,8 +16,20 @@ public class FileResultBean implements Serializable {
 
     private static final long serialVersionUID = -5964152037114320669L;
 
+    @ApiModelProperty(value = "fileCode")
     private String fileCode;
-    private String filePage;
+    @ApiModelProperty(value = "文件名")
+    private String fileName;
+    @ApiModelProperty(value = "分类code")
+    private String categoryCode;
+    @ApiModelProperty(value = "地址")
+    private String fileUrl;
+    @ApiModelProperty(value = "页数")
+    private Integer fileNum;
+    @ApiModelProperty(value = "客户code")
+    private String userCode;
+    @ApiModelProperty(value = "管理员code")
+    private String managerCode;
 
     public String getFileCode() {
         return fileCode;
@@ -26,11 +39,51 @@ public class FileResultBean implements Serializable {
         this.fileCode = fileCode;
     }
 
-    public String getFilePage() {
-        return filePage;
+    public String getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setFilePage(String filePage) {
-        this.filePage = filePage;
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+
+    public Integer getFileNum() {
+        return fileNum;
+    }
+
+    public void setFileNum(Integer fileNum) {
+        this.fileNum = fileNum;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public String getManagerCode() {
+        return managerCode;
+    }
+
+    public void setManagerCode(String managerCode) {
+        this.managerCode = managerCode;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

@@ -1,6 +1,7 @@
 package com.zx.share.platform.vo.wechat.request;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,24 +16,43 @@ import java.io.Serializable;
 @ApiModel
 public class UserUpdateBean implements Serializable {
 
+    @ApiModelProperty(value = "")
     private Long userId;
+    @ApiModelProperty(value = "")
     private String userCode;
+    @ApiModelProperty(value = "")
     private String wechatId;
+    @ApiModelProperty(value = "")
     private String mobile;
+    @ApiModelProperty(value = "")
     private String portrait;
+    @ApiModelProperty(value = "")
     private Integer age;
+    @ApiModelProperty(value = "")
     private String province;
+    @ApiModelProperty(value = "")
     private String city;
+    @ApiModelProperty(value = "")
     private String area;
+    @ApiModelProperty(value = "")
     private String address;
+    @ApiModelProperty(value = "")
     private String checkImg;
+    @ApiModelProperty(value = "")
     private String attorneyCardImg;
+    @ApiModelProperty(value = "")
     private String identityCardImg;
+    @ApiModelProperty(value = "")
     private String workNum;
+    @ApiModelProperty(value = "")
     private String workOrg;
+    @ApiModelProperty(value = "")
     private String workYear;
+    @ApiModelProperty(value = "")
     private String domains;
+    @ApiModelProperty(value = "")
     private String unionId;
+    @ApiModelProperty(value = "")
     private String openId;
 
     public String getUserCode() {

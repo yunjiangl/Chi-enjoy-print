@@ -1,6 +1,7 @@
 package com.zx.share.platform.vo.wechat.request;
 
 import com.zx.share.platform.common.bean.PageRequestBean;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,10 +14,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PrinterQueryBean extends PageRequestBean {
     private static final long serialVersionUID = 7636921007615846343L;
 
+    @ApiModelProperty(value = "经度")
     private Double longitude;
+    @ApiModelProperty(value = "纬度")
     private Double latitude;
+    @ApiModelProperty(value = "用户id")
     private Long userId;
+    @ApiModelProperty(value = "用户code")
+    private String userCode;
+    @ApiModelProperty(value = "打印机code")
     private String printerCode;
+
+
+    @ApiModelProperty(value = "开始经度")
+    private Double startLongitude;
+    @ApiModelProperty(value = "开始纬度")
+    private Double startLatitude;
+
+    @ApiModelProperty(value = "结束经度")
+    private Double endLongitude;
+    @ApiModelProperty(value = "结束纬度")
+    private Double endLatitude;
 
     public Double getLongitude() {
         return longitude;
@@ -48,5 +66,45 @@ public class PrinterQueryBean extends PageRequestBean {
 
     public void setPrinterCode(String printerCode) {
         this.printerCode = printerCode;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public Double getStartLongitude() {
+        return startLongitude;
+    }
+
+    public void setStartLongitude(Double startLongitude) {
+        this.startLongitude = startLongitude;
+    }
+
+    public Double getStartLatitude() {
+        return startLatitude;
+    }
+
+    public void setStartLatitude(Double startLatitude) {
+        this.startLatitude = startLatitude;
+    }
+
+    public Double getEndLongitude() {
+        return endLongitude;
+    }
+
+    public void setEndLongitude(Double endLongitude) {
+        this.endLongitude = endLongitude;
+    }
+
+    public Double getEndLatitude() {
+        return endLatitude;
+    }
+
+    public void setEndLatitude(Double endLatitude) {
+        this.endLatitude = endLatitude;
     }
 }

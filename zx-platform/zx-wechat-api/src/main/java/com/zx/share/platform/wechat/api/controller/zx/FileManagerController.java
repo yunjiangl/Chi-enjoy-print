@@ -2,6 +2,7 @@ package com.zx.share.platform.wechat.api.controller.zx;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,12 +49,13 @@ public class FileManagerController extends BaseController {
     @ApiOperation(value = "A类文件接口", notes = "A类文件接口")
     @RequestMapping(value = "/a/page", method = {RequestMethod.GET})
     @ResponseBody
-    public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListA(@ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
-                                                                           @ApiParam("第几页") @RequestParam("page") Integer page,
+    public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListA(@ApiParam("查询内容") @RequestParam("query") String query,
+																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+																		   @ApiParam("第几页") @RequestParam("page") Integer page,
                                                                            @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
                                                                            HttpServletRequest request, HttpServletResponse response) {
         servletPath = request.getServletPath();
-        PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageabList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_A.label, categoryCode, page, pageSize);
+        PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageabList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_A.label, categoryCode, page, pageSize, query);
         DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
         resopnseBean.setData(pageResponseBean);
         return resopnseBean;
@@ -62,12 +64,13 @@ public class FileManagerController extends BaseController {
 	@ApiOperation(value = "B类文件接口", notes = "B类文件接口")
 	@RequestMapping(value = "/b/page", method = {RequestMethod.GET})
 	@ResponseBody
-	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListB(@ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListB(@ApiParam("查询内容") @RequestParam("query") String query,
+																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
 																		   @ApiParam("第几页") @RequestParam("page") Integer page,
 																		   @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
 																		   HttpServletRequest request, HttpServletResponse response) {
 		servletPath = request.getServletPath();
-		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageabList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_B.label, categoryCode, page, pageSize);
+		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pageabList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_B.label, categoryCode, page, pageSize, query);
 		DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		resopnseBean.setData(pageResponseBean);
 		return resopnseBean;
@@ -76,12 +79,13 @@ public class FileManagerController extends BaseController {
 	@ApiOperation(value = "C类文件接口", notes = "C类文件接口")
 	@RequestMapping(value = "/c/page", method = {RequestMethod.GET})
 	@ResponseBody
-	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListC(@ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListC(@ApiParam("查询内容") @RequestParam("query") String query,
+																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
 																		   @ApiParam("第几页") @RequestParam("page") Integer page,
 																		   @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
 																		   HttpServletRequest request, HttpServletResponse response) {
 		servletPath = request.getServletPath();
-		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pagecdeList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_C.label, categoryCode, page, pageSize);
+		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pagecdeList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_C.label, categoryCode, page, pageSize, query);
 		DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		resopnseBean.setData(pageResponseBean);
 		return resopnseBean;
@@ -90,12 +94,13 @@ public class FileManagerController extends BaseController {
 	@ApiOperation(value = "D类文件接口", notes = "D类文件接口")
 	@RequestMapping(value = "/d/page", method = {RequestMethod.GET})
 	@ResponseBody
-	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListD(@ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListD(@ApiParam("查询内容") @RequestParam("query") String query,
+																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
 																		   @ApiParam("第几页") @RequestParam("page") Integer page,
 																		   @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
 																		   HttpServletRequest request, HttpServletResponse response) {
 		servletPath = request.getServletPath();
-		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pagecdeList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_D.label, categoryCode, page, pageSize);
+		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pagecdeList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_D.label, categoryCode, page, pageSize, query);
 		DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		resopnseBean.setData(pageResponseBean);
 		return resopnseBean;
@@ -104,12 +109,13 @@ public class FileManagerController extends BaseController {
 	@ApiOperation(value = "E类文件接口", notes = "E类文件接口")
 	@RequestMapping(value = "/e/page", method = {RequestMethod.GET})
 	@ResponseBody
-	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListE(@ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListE(@ApiParam("查询内容") @RequestParam("query") String query,
+																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
 																		   @ApiParam("第几页") @RequestParam("page") Integer page,
 																		   @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
 																		   HttpServletRequest request, HttpServletResponse response) {
 		servletPath = request.getServletPath();
-		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pagecdeList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_E.label, categoryCode, page, pageSize);
+		PageResponseBean<FileResultBean> pageResponseBean = fileManagerService.pagecdeList(FileQuerySuffixEnum.ZX_FILE_QUERY_SUFFIX_E.label, categoryCode, page, pageSize, query);
 		DefaultResopnseBean<PageResponseBean<FileResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		resopnseBean.setData(pageResponseBean);
 		return resopnseBean;
