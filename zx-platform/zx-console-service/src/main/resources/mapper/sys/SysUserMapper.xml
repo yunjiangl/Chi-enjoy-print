@@ -72,13 +72,13 @@
 	sys_user.is_del='0' AND
 	sys_role.id=2
   		<if test="name != null and name.trim() !=''">
-			 AND name like CONCAT('%',#{name},'%')
+			 AND sys_user.username like CONCAT('%',#{name},'%')
 		</if>
 		<if test="isLock != null">
-			 AND is_lock =#{isLock} 
+			 AND sys_user.is_lock =#{isLock} 
 		</if>
 		<if test="time1!=null and time2!=null and time1.trim()!='' and time2.trim()!='' ">
-			 AND create_time BETWEEN #{time1} and #{time2}
+			 AND sys_user.create_time BETWEEN #{time1} and #{time2}
 		</if>
   </select> 
   
