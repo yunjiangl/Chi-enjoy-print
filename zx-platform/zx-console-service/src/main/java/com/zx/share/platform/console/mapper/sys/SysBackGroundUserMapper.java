@@ -51,6 +51,7 @@ public interface SysBackGroundUserMapper extends PlatFormMapper<SysUser> {
 						@Param("password") String password,
 						@Param("email") String email,
 						@Param("isLock") Boolean isLock,
+						@Param("isDel") Boolean isDel,
 						@Param("comment") String comment);
 	/**
 	 * 单行查询

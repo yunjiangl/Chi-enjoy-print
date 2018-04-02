@@ -77,12 +77,13 @@ public class SysBackGroundUserController {
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "password", value = "密码", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "email", value = "邮箱", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "Boolean", name = "isLock", value = "状态", required = true),
+						@ApiImplicitParam(paramType = "query", dataType = "Boolean", name = "isDel", value = "删除状态(falase显示true不显示)", required = true),
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "comment", value = "备注", required = true),
 						@ApiImplicitParam(paramType = "query", dataType = "Long", name = "roleId", value = "所属用户组", required = true)})
-	public DefaultResopnseBean<Object> insertUsers(String userName,String realName,String password,String email,Boolean isLock,
+	public DefaultResopnseBean<Object> insertUsers(String userName,String realName,String password,String email,Boolean isLock,Boolean isDel,
 															  String comment,Long roleId){
 		
-		Integer updateUserInt=sysBackGroundUserService.insertUsers(userName, realName, password, email, isLock, comment);
+		Integer updateUserInt=sysBackGroundUserService.insertUsers(userName, realName, password, email, isLock, isDel,comment);
 		SysUser sysUser=sysBackGroundUserService.Select(userName);
 		Long userId=sysUser.getId();
 		System.out.println(userId);

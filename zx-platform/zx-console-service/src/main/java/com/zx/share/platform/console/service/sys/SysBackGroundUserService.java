@@ -33,7 +33,7 @@ public interface SysBackGroundUserService {
 	/**
 	 * 后台用户管理增添用户
 	 */
-	Integer insertUsers(String userName,String realName,String password,String email,Boolean isLock,String comment);
+	Integer insertUsers(String userName,String realName,String password,String email,Boolean isLock,Boolean isDel,String comment);
 	
 	/**
 	 * 单行查询

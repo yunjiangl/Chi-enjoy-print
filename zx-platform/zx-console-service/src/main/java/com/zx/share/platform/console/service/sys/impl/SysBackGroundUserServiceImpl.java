@@ -69,10 +69,10 @@ public class SysBackGroundUserServiceImpl implements SysBackGroundUserService {
 	 * 后台用户管理增添用户
 	 */
 	@Override
-	public Integer insertUsers(String userName, String realName, String password, String email, Boolean isLock,
+	public Integer insertUsers(String userName, String realName, String password, String email, Boolean isLock,Boolean isDel,
 			String comment) {
 		// TODO Auto-generated method stub
-		return sysBackGroundUserMapper.insertUsers(userName, realName, password, email, isLock, comment);
+		return sysBackGroundUserMapper.insertUsers(userName, realName, password, email, isLock,isDel, comment);
 	}
 	
 	/**
