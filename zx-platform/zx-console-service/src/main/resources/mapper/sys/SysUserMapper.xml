@@ -73,11 +73,12 @@
 	sys_role.id=2
   		<if test="name != null and name.trim() !=''">
 			 AND sys_user.username like CONCAT('%',#{name},'%')
+			 
 		</if>
 		<if test="isLock != null">
 			 AND sys_user.is_lock =#{isLock} 
 		</if>
-		<if test="time1!=null and time2!=null and time1.trim()!='' and time2.trim()!='' ">
+		<if test="time1!=null and time2!=null ">
 			 AND sys_user.create_time BETWEEN #{time1} and #{time2}
 		</if>
   </select> 

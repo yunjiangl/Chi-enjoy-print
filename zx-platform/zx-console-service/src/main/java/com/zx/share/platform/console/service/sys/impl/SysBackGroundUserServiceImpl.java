@@ -61,7 +61,7 @@ public class SysBackGroundUserServiceImpl implements SysBackGroundUserService {
 	 */
 
 	@Override
-	public List<SysUser> selectUserDim(String name, boolean isLock, Date time1, Date time2) {
+	public List<SysUser> selectUserDim(String name, Boolean isLock, Date time1, Date time2) {
 		// TODO Auto-generated method stub
 		return sysBackGroundUserMapper.selectUserDim(name, isLock, time1, time2);
 	}

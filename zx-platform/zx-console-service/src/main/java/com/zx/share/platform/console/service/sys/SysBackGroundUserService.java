@@ -29,7 +29,7 @@ public interface SysBackGroundUserService {
 	/**
 	 * 模糊查询
 	 */
-	List<SysUser> selectUserDim(String name, boolean isLock, Date time1, Date time2);
+	List<SysUser> selectUserDim(String name, Boolean isLock, Date time1, Date time2);
 	/**
 	 * 后台用户管理增添用户
 	 */
