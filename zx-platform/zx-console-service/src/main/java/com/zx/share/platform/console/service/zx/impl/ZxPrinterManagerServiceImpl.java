@@ -88,8 +88,8 @@ public class ZxPrinterManagerServiceImpl implements ZxPrinterManagerService {
 	 */
 	@Override
 	public DefaultResopnseBean<Object> update(ZxPrinterManager zxPM) {
-		zxPM.setCreateTime(new Date());
-		zxPrinterManagerMapper.updateByPrimaryKey(zxPM);
+		zxPM.setUpdateTime(new Date());
+		zxPrinterManagerMapper.updateByPrimaryKeySelective(zxPM);
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
 

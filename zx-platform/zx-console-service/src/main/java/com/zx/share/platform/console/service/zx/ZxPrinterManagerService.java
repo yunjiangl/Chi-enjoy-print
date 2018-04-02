@@ -26,6 +26,7 @@ public interface ZxPrinterManagerService {
 	 *            设备物主
 	 */
 	public DefaultResopnseBean<Object> add(ZxPrinterManager zxPM);
+	
 
 	/**
 	 * 

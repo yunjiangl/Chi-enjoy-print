@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUser;
@@ -44,7 +45,8 @@ public class ZxUserMapperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "管理员信息", required = true) })
 	@ACSPermissions(permissions = "zx:um:list")
-	public DefaultResopnseBean<PageResponseBean<ZxUser>> selectOnlineAdminByPage(@RequestBody Map<String, Object> params){
+	@ResponseBody
+	public DefaultResopnseBean<PageResponseBean<ZxUser>> selectOnlineAdminByPage(Map<String, Object> params){
 		return zxUserMapperService.selectAdminByPage(params);
 	}
 	
@@ -57,8 +59,9 @@ public class ZxUserMapperController {
 	@ApiOperation(value="设备列表添加线上管理员列表查看接口",notes="selectOnlineAdminById")
 	@ACSPermissions(permissions = "zx:um:info")
 	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Long", name = "id", value = "管理员id", required = true)})
-	public DefaultResopnseBean<List<ZxUser>> selectOnlineAdminById(Long id){
+	@ResponseBody
+	public DefaultResopnseBean<ZxUser> selectOnlineAdminById(Long id){
 		ZxUser selectAdminById = zxUserMapperService.selectOnlineAdminById(id);
-		return new DefaultResopnseBean<List<ZxUser>>("成功",200,(List<ZxUser>)selectAdminById);
+		return new DefaultResopnseBean<ZxUser>("成功",200,selectAdminById);
 	}
 }

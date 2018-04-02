@@ -19,6 +19,7 @@
 		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 		<result column="manager_name" jdbcType="VARCHAR" property="managerName" />
 		<result column="manager_phone" jdbcType="VARCHAR" property="managerPhone" />
+		<result column="status" jdbcType="BOOLEAN" javaType="boolean" property="status" />
 		<!-- 关联的物主信息 -->
 		<association property="sysUser"
 			javaType="com.zx.share.platform.bean.sys.SysUser">
