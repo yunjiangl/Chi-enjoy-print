@@ -34,12 +34,12 @@ public class SysBackGroundUserServiceImpl implements SysBackGroundUserService {
 	 * 修改后台用户管理数据
 	 */
 	@Override
-	public Integer updateUserById(Long id, String userName, String salt, String password, String email, Boolean isLock,
+	public Integer updateUserById(Long id, String userName, String realName, String password, String email, Boolean isLock,
 			String comment, Long roleId) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", id);
 		params.put("userName", userName);
-		params.put("salt", salt);
+		params.put("realName", realName);
 		params.put("password", password);
 		params.put("email", email);
 		params.put("isLock", isLock);

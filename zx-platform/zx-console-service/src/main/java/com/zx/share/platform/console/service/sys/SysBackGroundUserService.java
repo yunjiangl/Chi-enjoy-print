@@ -19,7 +19,7 @@ public interface SysBackGroundUserService {
 	/**
 	 * 修改后台用户管理数据
 	 */
-	Integer updateUserById(Long id,String userName,String salt,String password,String email,Boolean isLock,String comment,Long roleId);
+	Integer updateUserById(Long id,String userName,String realName,String password,String email,Boolean isLock,String comment,Long roleId);
 	
 	/**
 	 * 刪除后台用户管理数据

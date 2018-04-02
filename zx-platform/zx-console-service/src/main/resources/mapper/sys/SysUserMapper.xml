@@ -44,7 +44,7 @@
  <!-- 修改后台用户管理数据 -->
  <update id="updateUserById">
  		
- 		update sys_user u,sys_user_role r set u.username=#{userName},u.salt=#{salt},u.password=#{password},u.email=#{email},u.is_lock=#{isLock},u.comment=#{comment},r.role_id=#{roleId} 
+ 		update sys_user u,sys_user_role r set u.username=#{userName},u.real_name=#{realName},u.password=#{password},u.email=#{email},u.is_lock=#{isLock},u.comment=#{comment},r.role_id=#{roleId} 
  		where u.id=r.user_id and u.id=#{id}
  		
  </update>

@@ -54,15 +54,15 @@ public class SysBackGroundUserController {
 	@ACSPermissions(permissions = "user:Integer")
 	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Long", name = "id", value = "当前用户组ID", required = true),
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "userName", value = "用户名", required = true),
-						@ApiImplicitParam(paramType = "query", dataType = "String", name = "salt", value = "昵称", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "realName", value = "昵称", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "password", value = "密码", required = true),
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "email", value = "邮箱", required = false),
 						@ApiImplicitParam(paramType = "query", dataType = "Boolean", name = "isLock", value = "状态", required = true),
 						@ApiImplicitParam(paramType = "query", dataType = "String", name = "comment", value = "备注", required = true),
 						@ApiImplicitParam(paramType = "query", dataType = "Long", name = "roleId", value = "所属用户组", required = true)})
-	public DefaultResopnseBean<Object> updateUserById(Long id,String userName,String salt,String password,String email,Boolean isLock,
+	public DefaultResopnseBean<Object> updateUserById(Long id,String userName,String realName,String password,String email,Boolean isLock,
 															  String comment,Long roleId){
-		Integer updateUserInt=sysBackGroundUserService.updateUserById(id, userName, salt, password, email, isLock, comment, roleId);
+		Integer updateUserInt=sysBackGroundUserService.updateUserById(id, userName, realName, password, email, isLock, comment, roleId);
 		return new DefaultResopnseBean<Object>("成功",200,updateUserInt);
 	}
 	
