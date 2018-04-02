@@ -1,6 +1,7 @@
 package com.zx.share.platform.vo.wechat.response;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,11 +15,17 @@ import java.util.Date;
 @ApiModel
 public class OrderResultBean implements Serializable {
 
+    @ApiModelProperty(value = "订单code")
     private String orderCode;
+    @ApiModelProperty(value = "")
     private Integer status;
+    @ApiModelProperty(value = "订单编号")
     private String orderNum;
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
+    @ApiModelProperty(value = "打印机code")
     private String printerCode;
+    @ApiModelProperty(value = "订单用户")
     private String orderUserCode;
 
     public String getOrderCode() {

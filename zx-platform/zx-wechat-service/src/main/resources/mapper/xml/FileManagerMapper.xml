@@ -3,7 +3,7 @@
 <mapper namespace="com.zx.share.platform.wechat.mapper.FileManagerMapper">
 
     <resultMap id="fileResultBean" type="com.zx.share.platform.vo.wechat.response.FileResultBean">
-        <result column="file_code" jdbcType="VARCHAR" property="fileNode" />
+        <result column="file_code" jdbcType="VARCHAR" property="fileCode" />
         <result column="file_name" jdbcType="VARCHAR" property="fileName" />
         <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
         <result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
@@ -13,19 +13,47 @@
     </resultMap>
 
     <select id="pageListab" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
-        select file_code,file_num,file_name,category_code from zx_file_manager_ab
+        select file_code,file_num,file_name,category_code from zx_file_manager_ab WHERE 1=1
+        <if test="categoryCode!=null and categoryCode!=''">
+            AND category_code = #{categoryCode}
+        </if>
+        <if test="query!=null and query!=''">
+            AND file_name like #{query,jdbcType=VARCHAR}
+        </if>
+
+        limit #{currentSize},#{pageSize}
     </select>
 
     <select id="pageCountab" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
-        select count(1) from zx_file_manager_ab
+        select count(1) from zx_file_manager_ab WHERE 1=1
+        <if test="categoryCode!=null and categoryCode!=''">
+            AND category_code = #{categoryCode}
+        </if>
+        <if test="query!=null and query!=''">
+            AND file_name like #{query,jdbcType=VARCHAR}
+        </if>
     </select>
 
     <select id="pageListcde" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
-        select file_code,file_num,file_name,category_code,user_code,manager_code from zx_file_manager_cer
+        select file_code,file_num,file_name,category_code,user_code,manager_code from zx_file_manager_cer WHERE 1=1
+        <if test="categoryCode!=null and categoryCode!=''">
+            AND category_code = #{categoryCode}
+        </if>
+        <if test="query!=null and query!=''">
+            AND file_name like #{query,jdbcType=VARCHAR}
+        </if>
+
+        limit #{currentSize},#{pageSize}
     </select>
 
     <select id="pageCountcde" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
-        select count(1) from zx_file_manager_cde
+        select count(1) from zx_file_manager_cde WHERE 1=1
+        <if test="categoryCode!=null and categoryCode!=''">
+            AND category_code = #{categoryCode}
+        </if>
+        <if test="query!=null and query!=''">
+            AND file_name like #{query,jdbcType=VARCHAR}
+        </if>
     </select>
 
     <select id="detailsab" resultMap="fileResultBean">

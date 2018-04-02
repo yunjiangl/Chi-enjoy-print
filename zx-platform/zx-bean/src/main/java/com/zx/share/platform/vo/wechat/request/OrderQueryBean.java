@@ -2,6 +2,7 @@ package com.zx.share.platform.vo.wechat.request;
 
 import com.zx.share.platform.common.bean.PageRequestBean;
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Created by fenggang on 18/3/19.
@@ -12,7 +13,9 @@ import io.swagger.annotations.ApiModel;
 @ApiModel
 public class OrderQueryBean extends PageRequestBean {
 
+    @ApiModelProperty(value = "订单类型")
     private Integer orderType;
+    @ApiModelProperty(value = "用户类型")
     private Integer userType;
 
     public void setOrderType(Integer orderType) {

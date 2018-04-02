@@ -1,5 +1,7 @@
 package com.zx.share.platform.vo.wechat.request;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -10,9 +12,13 @@ import java.io.Serializable;
  */
 public class UserAttorneyDomain implements Serializable {
 
+    @ApiModelProperty(value = "用户code")
     private String userCode;
+    @ApiModelProperty(value = "用户id")
     private Long userId;
+    @ApiModelProperty(value = "领域code")
     private String domainCode;
+    @ApiModelProperty(value = "领域id、")
     private Long domainId;
 
     public String getUserCode() {

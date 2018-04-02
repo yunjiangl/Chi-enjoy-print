@@ -1,6 +1,7 @@
 package com.zx.share.platform.vo.wechat.response;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
@@ -13,15 +14,25 @@ import java.io.Serializable;
 @ApiModel
 public class PrinterResultBean implements Serializable {
 
+    @ApiModelProperty(value = "打印机code")
     private String code;
+    @ApiModelProperty(value = "名称")
     private String name;
+    @ApiModelProperty(value = "省")
     private String province;
+    @ApiModelProperty(value = "市")
     private String city;
+    @ApiModelProperty(value = "区")
     private String area;
+    @ApiModelProperty(value = "地址")
     private String address;
+    @ApiModelProperty(value = "经度")
     private Double longitude;
+    @ApiModelProperty(value = "纬度")
     private Double latitude;
+    @ApiModelProperty(value = "管理员名称")
     private String managerName;
+    @ApiModelProperty(value = "管理员电话")
     private String managerPhone;
 
     public String getCode() {
