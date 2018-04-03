@@ -38,6 +38,7 @@ public class ZxPrinterManagerServiceImpl implements ZxPrinterManagerService {
 		// 这里设置物主id
 		//zxPM.setCreateId(createId);
 		zxPM.setCreateTime(new Date());
+		zxPM.setStatus(false);
 		zxPrinterManagerMapper.insert(zxPM);
 
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
