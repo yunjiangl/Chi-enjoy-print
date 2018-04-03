@@ -78,8 +78,8 @@
 				and zx_printer_manager.address like
 				concat('%',#{address},'%')
 			</if>
-			<if test="status != null and status.trim() != ''">
-				and zx_user_printer.`status` = #{status}
+			<if test="status != null">
+				and zx_printer_manager.`status` = #{status}
 			</if>
 			<if
 				test="startTime != null and endTime != null and startTime.trim() != '' and endTime.trim() != ''">

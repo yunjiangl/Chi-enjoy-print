@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.api.controller.zx;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +77,31 @@ public class ZxPrinterManagerController {
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ApiOperation(value = "设备列表", notes = "设备列表")
-	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "查询信息", required = true) })
+
 	@ACSPermissions(permissions = "zx:pm:list")
-	public DefaultResopnseBean<PageResponseBean<ZxPrinterManager>> list(@RequestBody Map<String, Object> params) {
+	public DefaultResopnseBean<PageResponseBean<ZxPrinterManager>> list(
+			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
+			@ApiParam("每页多少条数据") @RequestParam(name = "pageSize", required = false) Integer pageSize,
+			@ApiParam("设备id") @RequestParam(name = "zxPMId", required = false) Long zxPMId,
+			@ApiParam("设备编码") @RequestParam(name = "printerCode", required = false) String printerCode,
+			@ApiParam("物主名称") @RequestParam(name = "nickname", required = false) String nickname,
+			@ApiParam("设备地址") @RequestParam(name = "address", required = false) String address,
+			@ApiParam("设备状态") @RequestParam(name = "status", required = false) Boolean status,
+			@ApiParam("开始时间") @RequestParam(name = "startTime", required = false) String startTime,
+			@ApiParam("结束时间") @RequestParam(name = "endTime", required = false) String endTime) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("pageNum", pageNum);
+		params.put("pageSize", pageSize);
+		params.put("zxPMId", zxPMId);
+		params.put("printerCode", printerCode);
+		params.put("nickname", nickname);
+		params.put("address", address);
+		params.put("status", status);
+		params.put("startTime", startTime);
+		params.put("endTime", endTime);
+		
 		return zxPrinterManagerService.list(params);
 	}
 
