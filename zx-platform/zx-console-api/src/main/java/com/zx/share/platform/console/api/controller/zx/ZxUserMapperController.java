@@ -62,6 +62,7 @@ public class ZxUserMapperController {
 	@ResponseBody
 	public DefaultResopnseBean<ZxUser> selectOnlineAdminById(Long id){
 		ZxUser selectAdminById = zxUserMapperService.selectOnlineAdminById(id);
-		return new DefaultResopnseBean<ZxUser>("成功",200,(ZxUser)selectAdminById);
+		return new DefaultResopnseBean<ZxUser>("成功",200,selectAdminById);
+
 	}
 }

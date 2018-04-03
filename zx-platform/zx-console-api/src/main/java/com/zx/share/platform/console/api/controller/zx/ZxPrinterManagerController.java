@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
@@ -19,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 
@@ -47,9 +49,24 @@ public class ZxPrinterManagerController {
 			@ApiImplicitParam(paramType = "body", dataType = "ZxPrinterManager", name = "zxPM", value = "设备信息", required = true) })
 	@ACSPermissions(permissions = "zx:pm:add")
 	public DefaultResopnseBean<Object> add(@RequestBody ZxPrinterManager zxPM) {
-		
-		 
-		 return  zxPrinterManagerService.add(zxPM);
+
+		return zxPrinterManagerService.add(zxPM);
+	}
+
+	/**
+	 * 
+	 * @Title: add
+	 * @Description: 改变设备状态
+	 */
+	@RequestMapping(value = "update/status", method = RequestMethod.POST)
+	@ApiOperation(value = "添加打印机设备", notes = "添加打印机设备")
+	public DefaultResopnseBean<Object> update(@ApiParam("设备id") @RequestParam(name = "id", required = true) Long id,
+			@ApiParam("设备状态") @RequestParam(name = "status", required = true) Boolean status) {
+		ZxPrinterManager zxPM = new ZxPrinterManager();
+		zxPM.setStatus(status);
+		zxPM.setId(id);
+
+		return zxPrinterManagerService.update(zxPM);
 	}
 
 	/**
@@ -65,7 +82,7 @@ public class ZxPrinterManagerController {
 	public DefaultResopnseBean<PageResponseBean<ZxPrinterManager>> list(@RequestBody Map<String, Object> params) {
 		return zxPrinterManagerService.list(params);
 	}
-	
+
 	/**
 	 * 
 	 * @Title: info
@@ -76,7 +93,7 @@ public class ZxPrinterManagerController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(paramType = "path", dataType = "Long", name = "id", value = "设备id", required = true) })
 	@ACSPermissions(permissions = "zx:pm:info")
-	public DefaultResopnseBean<Object> info(@PathVariable(name = "id") Long id){
+	public DefaultResopnseBean<Object> info(@PathVariable(name = "id") Long id) {
 		return zxPrinterManagerService.queryByZxPMId(id);
 	}
 }

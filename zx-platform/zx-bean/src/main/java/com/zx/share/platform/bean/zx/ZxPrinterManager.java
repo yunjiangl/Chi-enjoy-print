@@ -82,6 +82,12 @@ public class ZxPrinterManager extends IdEntity {
 	 */
 	@Column(name = "manager_phone")
 	private String managerPhone;
+	
+	/**
+	 * 设备状态
+	 */
+	@Column(name = "status")
+	private Boolean status;
 
 	@Transient
 	private ZxUser zxUser;
