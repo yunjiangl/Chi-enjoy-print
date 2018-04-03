@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zx.share.platform.console.mapper.zx.ZxUserMapper">
+<mapper namespace="com.zx.share.platform.console.mapper.zx.ZxFileManagerCDEMapper">
   <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxFileManagerCDE">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="file_code" jdbcType="VARCHAR" property="fileNode" />
@@ -15,5 +15,41 @@
     <result column="update_id" jdbcType="BIGINT" property="updateId" />
     <result column="manager_id" jdbcType="BIGINT" property="managerId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="user_code" jdbcType="VARCHAR" property="userCode" />
+    <result column="manager_code" jdbcType="VARCHAR" property="managerCode" />
   </resultMap>
+  
+    	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerCDE"
+		resultMap="BaseResultMap">
+			SELECT
+				zx_file_manager_cde.id,
+				zx_file_manager_cde.file_name,
+				zx_file_manager_cde.user_id,
+				zx_user.nickname,
+				lawyer.nickname AS lawyer_nickname
+				FROM
+				zx_file_manager_cde
+				INNER JOIN zx_user AS lawyer ON zx_file_manager_cde.manager_id = lawyer.id
+				INNER JOIN zx_user ON zx_file_manager_cde.user_id = zx_user.id
+		<where>
+			zx_file_manager_cde.user_id=zx_user.id 
+			<if test="userName != null and userName.trim() != ''">
+				and zx_user.username like
+				concat('%',#{userName},'%')
+			</if>
+			<if test="fileName != null and fileName.trim() != ''">
+				and zx_file_manager_ab.file_name like
+				concat('%',#{fileName},'%')
+			</if>
+			<if test="createTime != null and updateTime != null and createTime.trim() != '' and updateTime.trim() != ''">
+				and zx_user.create_time between #{createTime} and
+				#{updateTime}
+			</if>
+		</where>
+	</select>
+	
+	<delete id="delectList" >
+		delete from zx_file_manager_cde where id in (#{ids})
+	</delete>
 </mapper>

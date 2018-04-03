@@ -50,19 +50,11 @@
 		zx_printer_manager.update_time,
 		zx_printer_manager.manager_name,
 		zx_printer_manager.manager_phone,
-		zx_user_printer.`status`,
-		zx_user_printer.id AS up_id,
 		sys_user.real_name,
 		zx_printer_manager.`status` AS pm_status
 		FROM
 		zx_printer_manager
-		INNER JOIN
-		zx_user_printer ON
-		zx_user_printer.printer_id =
-		zx_printer_manager.id
-		INNER JOIN sys_user
-		ON zx_printer_manager.create_id = sys_user.id
-
+		INNER JOIN sys_user ON zx_printer_manager.create_id = sys_user.id
 		<where>
 			<if test="zxPMId != null and zxPMId != 0">
 				and zx_printer_manager.id = #{zxPMId}

@@ -58,7 +58,7 @@
   </select>
   <!-- 设备管理线上管理员分页遍历 -->
 	<select id="selectAdminByPage" resultType="com.zx.share.platform.bean.zx.ZxUser"
-		resultMap="BaseResultMap">
+		resultMap="Map">
 		SELECT
 		zx_user.id,
 		zx_user.username,

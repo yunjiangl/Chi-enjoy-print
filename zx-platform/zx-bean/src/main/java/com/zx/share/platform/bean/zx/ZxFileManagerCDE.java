@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.springframework.http.StreamingHttpOutputMessage;
+
 import com.zx.share.platform.bean.IdEntity;
 
 import lombok.Data;
@@ -75,4 +77,13 @@ public class ZxFileManagerCDE extends IdEntity{
 	 */
 	@Column(name = "user_id")
 	private Long userId;
+	
+	@Column(name = "category_code")
+	private String categoryCode;
+	
+	@Column(name = "user_code")
+	private String userCode;
+	
+	@Column(name = "manager_code")
+	private String managerCode;
 }

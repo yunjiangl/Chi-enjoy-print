@@ -35,6 +35,8 @@ public class ZxPrinterManagerServiceImpl implements ZxPrinterManagerService {
 	@Transactional
 	@Override
 	public DefaultResopnseBean<Object> add(ZxPrinterManager zxPM) {
+		// 这里设置物主id
+		//zxPM.setCreateId(createId);
 		zxPM.setCreateTime(new Date());
 		zxPrinterManagerMapper.insert(zxPM);
 
