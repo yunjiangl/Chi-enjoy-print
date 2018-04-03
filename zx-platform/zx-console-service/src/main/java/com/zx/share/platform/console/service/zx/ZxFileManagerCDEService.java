@@ -22,7 +22,7 @@ public interface ZxFileManagerCDEService {
 	 * @Description: 删除文件
 	 * @return
 	 */
-	public DefaultResopnseBean<Object> delete(Long id);
+	public DefaultResopnseBean<Object> delete(Long ids);
 	
 	/**
 	 * 查看文件信息

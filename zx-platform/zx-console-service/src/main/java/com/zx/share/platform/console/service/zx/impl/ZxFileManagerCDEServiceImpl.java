@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -43,9 +44,11 @@ public class ZxFileManagerCDEServiceImpl implements ZxFileManagerCDEService {
 	}
 	
 
+	
 	@Override
-	public DefaultResopnseBean<Object> delete(Long id) {
-		zxFileManagerCDEMapper.deleteByPrimaryKey(id);
+	@Transactional
+	public DefaultResopnseBean<Object> delete(Long ids) {
+		zxFileManagerCDEMapper.delectList(ids);
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
 
