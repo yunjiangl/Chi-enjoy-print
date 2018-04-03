@@ -66,6 +66,9 @@
 			<if test="nickname != null and nickname.trim() != ''">
 				and sys_user.real_name like concat('%',#{nickname},'%')
 			</if>
+			<if test="sysUserId != null and sysUserId != 0">
+				and sys_user.id = #{sysUserId}
+			</if>
 			<if test="address != null and address.trim() != ''">
 				and zx_printer_manager.address like
 				concat('%',#{address},'%')
