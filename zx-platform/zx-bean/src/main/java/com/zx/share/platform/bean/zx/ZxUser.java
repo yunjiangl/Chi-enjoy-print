@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
 
@@ -90,5 +91,10 @@ public class ZxUser extends IdEntity {
 
 	@Column(name = "area")
     private String area;
+	
+	@Transient
+	private ZxUserAttorney zxUserAttorney;
+	@Transient
+	private ZxUserPrinter zxUserPrinter;
 
 }
