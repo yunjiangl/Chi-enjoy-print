@@ -96,5 +96,7 @@ public class ZxUser extends IdEntity {
 	private ZxUserAttorney zxUserAttorney;
 	@Transient
 	private ZxUserPrinter zxUserPrinter;
+	@Transient
+	private ZxUserAttorneyDomain zxUserAttorneyDomain;
 
 }

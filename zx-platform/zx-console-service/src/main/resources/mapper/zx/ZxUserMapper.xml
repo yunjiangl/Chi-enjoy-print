@@ -15,6 +15,12 @@
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
     <result column="union_id" jdbcType="VARCHAR" property="unionId" />
     <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="addres" jdbcType="VARCHAR" property="address" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="wechat_id" jdbcType="VARCHAR" property="wechatId" />
     <association property="zxUserPrinter"
 			javaType="com.zx.share.platform.bean.zx.ZxUserPrinter">
 			<result column="status" jdbcType="INTEGER" property="status" />
@@ -23,6 +29,17 @@
 	<association property="zxUserAttorney"
 			javaType="com.zx.share.platform.bean.zx.ZxUserAttorney">
 			<result column="domain" jdbcType="VARCHAR" property="domain" />
+			<result column="work_num" jdbcType="VARCHAR" property="workNum" />
+			<result column="work_year" jdbcType="VARCHAR" property="workYear" />
+			<result column="work_org" jdbcType="VARCHAR" property="workOrg" />
+			<result column="identity_card_img" jdbcType="VARCHAR" property="IdentityCardImg" />
+			<result column="attorney_card_img" jdbcType="VARCHAR" property="attorneyCardImg" />
+			<result column="check_img" jdbcType="VARCHAR" property="checkImg" />
+	</association>
+	<association property="zxUserAttorneyDomain"
+			javaType="com.zx.share.platform.bean.zx.ZxUserAttorneyDomain">
+			<result column="domain_code" jdbcType="VARCHAR" property="domainCode" />
+			<result column="domain_id" jdbcType="BIGINT" property="domainId" />
 	</association>
   </resultMap>
   <!-- 设备列表添加线上管理员 -->
@@ -104,16 +121,21 @@
 		zx_user_attorney.`work_num`,
 		zx_user_attorney.`work_org`,
 		zx_user_attorney.`work_year`,
-		zx_user_attorney.`domain`,
 		zx_user_attorney.`identity_card_img`,
 		zx_user_attorney.`attorney_card_img`,
-		zx_user_attorney.`check_img`
+		zx_user_attorney.`check_img`,
+		zx_user_attorney_domain.`domain_code`,
+		zx_user_attorney_domain.`domain_id`
 		FROM
 		zx_user 
 		INNER JOIN
 		zx_user_attorney
 		ON
 		zx_user.id = zx_user_attorney.user_id
+		INNER JOIN
+		zx_user_attorney_domain
+		ON
+		zx_user.`id`=zx_user_attorney_domain.`user_id`
 		WHERE
 		zx_user.id=#{id}
 	</select>
