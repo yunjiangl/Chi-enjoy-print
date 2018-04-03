@@ -70,7 +70,7 @@
 		resultMap="Map">
 		SELECT
 		zx_user.id,
-		zx_user.username,
+		zx_user.nickname,
 		zx_user_printer.`status`,
 		zx_user_printer.create_time,
 		zx_user_attorney.domain
