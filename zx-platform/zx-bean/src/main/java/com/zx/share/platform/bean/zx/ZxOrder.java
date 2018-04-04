@@ -128,17 +128,6 @@ public class ZxOrder extends IdEntity {
 	@Column(name = "remark")
 	private String remark;
 
-	@Column(name = "service_amount")
-	private Double serviceAmount;
-	@Column(name = "printer_amount")
-	private Double printerAmount;
-	@Column(name = "pay_type")
-	private Integer payType;
-	@Column(name = "attorney_id")
-	private Long attorneyId;
-	@Column(name = "attorney_code")
-	private String attorneyCode;
-
 	private static final long serialVersionUID = 1L;
 
 	@Transient
