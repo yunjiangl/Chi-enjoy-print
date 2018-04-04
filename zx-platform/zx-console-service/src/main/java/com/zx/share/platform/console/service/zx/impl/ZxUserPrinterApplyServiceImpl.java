@@ -91,7 +91,7 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 			PageHelper.startPage(pageNum, pageSize, true);
 			List<ZxUserPrinterApply> list = zxUserPrinterApplyMapper.selectNewsList(params);
 			PageInfo pageInfo = new PageInfo(list);
-			PageResponseBean<ZxPrinterManager> data = new PageResponseBean<ZxPrinterManager>();
+			PageResponseBean<ZxUserPrinterApply> data = new PageResponseBean<ZxUserPrinterApply>();
 			data.setFirst(pageInfo.isIsFirstPage());
 			data.setLast(pageInfo.isIsLastPage());
 			data.setNumber(pageInfo.getPageNum());
@@ -101,7 +101,7 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 			data.setTotalElements(pageInfo.getTotal());
 			data.setContent(pageInfo.getList());
 		return new DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>>(ErrorsEnum.SUCCESS.label,
-				ErrorsEnum.SUCCESS.code, null);
+				ErrorsEnum.SUCCESS.code, data);
 	}
 
 	@Transactional
