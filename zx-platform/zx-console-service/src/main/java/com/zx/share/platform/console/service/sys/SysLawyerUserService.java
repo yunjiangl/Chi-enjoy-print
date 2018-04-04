@@ -19,4 +19,6 @@ public interface SysLawyerUserService {
 	DefaultResopnseBean<PageResponseBean<ZxUser>> list(Map<String, Object> params);
 
 	DefaultResopnseBean<Object> queryByZxPMId(Long id);
+	
+
 }

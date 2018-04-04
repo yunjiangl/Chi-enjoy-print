@@ -3,6 +3,8 @@ package com.zx.share.platform.console.service.zx;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
@@ -28,5 +30,7 @@ public interface ZxUserMapperService {
 	 * 设备管理线上管理员查看接口
 	 */
 	ZxUser selectZxAdminById(Long id);
+	
+	
 
 }

@@ -10,6 +10,7 @@ import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
 
 @Repository
 public interface ZxUserMapper extends PlatFormMapper<ZxUser>{
@@ -34,6 +35,9 @@ public interface ZxUserMapper extends PlatFormMapper<ZxUser>{
 	
 	List<ZxUser> queryList(Map<String, Object> params);
 	
-	
+	/**
+	 * 查询律师审核数据
+	 */
+	ZxUser queryByZxPMId(@Param("id")Long id);
 
 }

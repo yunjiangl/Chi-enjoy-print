@@ -52,9 +52,13 @@ public class SysLawyerUserServiceImpl implements SysLawyerUserService {
 		return new DefaultResopnseBean<PageResponseBean<ZxUser>>(ErrorsEnum.SUCCESS.label,
 				ErrorsEnum.SUCCESS.code, data);
 	}
-
+	/**
+	 * 查询律师审核数据
+	 */
 	@Override
 	public DefaultResopnseBean<Object> queryByZxPMId(Long id) {
-		return null;
+		ZxUser zxUser=zxUserMapper.queryByZxPMId(id);
+		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, zxUser);
 	}
+	
 }
