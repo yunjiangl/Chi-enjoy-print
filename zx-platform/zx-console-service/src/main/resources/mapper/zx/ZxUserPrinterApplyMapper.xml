@@ -12,20 +12,23 @@
 		<result column="check_id" jdbcType="BIGINT" property="checkId" />
 		<result column="create_id" jdbcType="BIGINT" property="createId" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<association property="zxUser"  javaType="com.zx.share.platform.bean.zx.ZxUser">
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		</association>
 	</resultMap>
 
 	<select id="selectNewsList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply"
 		resultMap="BaseResultMap">
 		SELECT
-		zx_user_printer_apply.user_id,
 		zx_user_printer_apply.`status`,
-		zx_user.username
+		zx_user_printer_apply.user_id,
+		zx_user.nickname
 		FROM
-		zx_user_printer_apply,
-		zx_user
+		zx_user_printer_apply
+		INNER JOIN zx_user ON zx_user_printer_apply.user_id = zx_user.id
 		<where>
 			<if test="userName != null and userName.trim() != ''">
-				and zx_user.username
+				and zx_user.nickname
 				like
 				concat('%',#{userName},'%')
 			</if>

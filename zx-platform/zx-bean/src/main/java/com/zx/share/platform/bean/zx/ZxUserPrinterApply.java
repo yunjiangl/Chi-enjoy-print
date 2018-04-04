@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
 
@@ -39,6 +40,9 @@ public class ZxUserPrinterApply extends IdEntity {
 
 	@Column(name = "check_id")
 	private Long checkId;
+	
+	@Transient
+	private ZxUser zxUser;
 
 	private static final long serialVersionUID = 1L;
 
