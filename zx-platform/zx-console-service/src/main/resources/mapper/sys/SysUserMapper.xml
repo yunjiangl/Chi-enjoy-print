@@ -135,7 +135,7 @@
   <!-- 后台用户管理增添用户 -->
   <insert id="insertUsers">
   		insert into sys_user(username,real_name,password,email,is_lock,is_del,comment) values(#{userName},
-  		#{realName},#{password},#{email},#{isLock},#{isDel},#{comment})
+  		#{realName},#{password},#{email},#{isLock},0,#{comment})
   </insert>
   <!-- 单行查询 -->
   <select id="Select" resultType="SysUser" resultMap="BaseResultMap">
