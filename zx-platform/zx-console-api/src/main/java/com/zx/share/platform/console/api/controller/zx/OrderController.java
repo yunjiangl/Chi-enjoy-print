@@ -49,6 +49,7 @@ public class OrderController {
 			@ApiParam("每页多少条") @RequestParam(name = "pageSize", required = false) Integer pageSize,
 			@ApiParam("设备编码") @RequestParam(name = "printCode", required = false) String printCode,
 			@ApiParam("设备物主") @RequestParam(name = "printName", required = false) String printName,
+			@ApiParam("设备物主id") @RequestParam(name = "printHostId", required = false) Long printHostId,
 			@ApiParam("律师用户名") @RequestParam(name = "lawyerName", required = false) String lawyerName,
 			@ApiParam("订单支付时间1") @RequestParam(name = "time1", required = false) String time1,
 			@ApiParam("订单支付时间2") @RequestParam(name = "time2", required = false) String time2) {
@@ -59,6 +60,7 @@ public class OrderController {
 		param.put("pageSize", pageSize);
 		param.put("printCode", printCode);
 		param.put("printName", printName);
+		param.put("printHostId", printHostId);
 		param.put("lawyerName", lawyerName);
 		param.put("time1", time1);
 		param.put("time2", time2);

@@ -21,6 +21,9 @@
 		<result column="order_amount" jdbcType="DOUBLE" property="orderAmount" />
 		<result column="attorney_id" jdbcType="BIGINT" property="attorneyId" />
 		<result column="attorney_code" jdbcType="VARCHAR" property="attorneyCode" />
+		<result column="pay_type" jdbcType="VARCHAR" property="payType" />
+		<result column="service_amount" jdbcType="DOUBLE" property="serviceAmount" />
+		<result column="printer_amount" jdbcType="DOUBLE" property="printerAmount" />
 		<result column="remark" jdbcType="LONGVARCHAR" property="remark" />
 	</resultMap>
 
@@ -118,12 +121,17 @@
 		zx_user.nickname,
 		zx_order.printer_code,
 		zx_order.order_code,
-		sys_user.real_name
+		sys_user.real_name,
+		zx_order.pay_type,
+		zx_order.service_amount,
+		zx_order.printer_amount,
+		zx_order.`status`
 		FROM
 		zx_order
 		INNER JOIN zx_user ON
 		zx_order.order_user_id = zx_user.id
-		INNER JOIN zx_printer_manager ON
+		INNER
+		JOIN zx_printer_manager ON
 		zx_order.printer_id =
 		zx_printer_manager.id
 		INNER JOIN sys_user ON
@@ -166,13 +174,20 @@
 		zx_order_printer_file.paper_type,
 		sys_user.real_name,
 		zx_order_printer_file.file_id,
-		zx_order_printer_file.file_type
+		zx_order_printer_file.file_type,
+		zx_order.`status`,
+		zx_order.service_amount,
+		zx_order.printer_amount,
+		zx_order.pay_type
 		FROM
 		zx_order
-		INNER JOIN zx_user ON zx_order.order_user_id = zx_user.id
-		INNER JOIN zx_printer_manager ON zx_order.printer_id =
+		INNER JOIN zx_user ON
+		zx_order.order_user_id = zx_user.id
+		INNER JOIN zx_printer_manager ON
+		zx_order.printer_id =
 		zx_printer_manager.id
-		INNER JOIN zx_order_printer_file ON zx_order.id =
+		INNER JOIN
+		zx_order_printer_file ON zx_order.id =
 		zx_order_printer_file.order_id
 		INNER JOIN sys_user ON
 		zx_printer_manager.create_id = sys_user.id

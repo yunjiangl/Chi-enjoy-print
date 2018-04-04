@@ -98,6 +98,33 @@ public class ZxOrder extends IdEntity {
 	@Column(name = "order_amount")
 	private Double orderAmount;
 
+	/**
+	 * 律师id
+	 */
+	@Column(name = "attorney_id")
+	private Long attorneyId;
+
+	/**
+	 * 律师code
+	 */
+	@Column(name = "attorney_code")
+	private String attorneyCode;
+
+	/**
+	 * 支付类型（微信=wechat）
+	 */
+	@Column(name = "pay_type")
+	private String payType;
+
+	/**
+	 * 服务费
+	 */
+	@Column(name = "service_amount")
+	private Double serviceAmount;
+
+	@Column(name = "printer_amount")
+	private Double printerAmount;
+
 	@Column(name = "remark")
 	private String remark;
 
