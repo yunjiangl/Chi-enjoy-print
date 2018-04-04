@@ -319,10 +319,17 @@ public class OwnerController {
 	@ApiOperation(value = "消息通知查询", notes = "消息通知查询")
 	@ACSPermissions(permissions = "user:news")
 	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(
+			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
+			@ApiParam("每页多少条数据") @RequestParam(name = "pageSize", required = false) Integer pageSize,
 			@ApiParam("用户名") @RequestParam(name = "userName", required = false) String userName,
-			@ApiParam("状态") @RequestParam(name = "status", required = false) int status
+			@ApiParam("状态") @RequestParam(name = "status", required = false) Integer status
 			) {
-		return zxUserPrinterApplyService.selectNewsList(userName, status);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("pageNum", pageNum);
+		params.put("pageSize", pageSize);
+		params.put("userName", userName);
+		params.put("status", status);
+		return zxUserPrinterApplyService.selectNewsList(params);
 	}
 
 	/**

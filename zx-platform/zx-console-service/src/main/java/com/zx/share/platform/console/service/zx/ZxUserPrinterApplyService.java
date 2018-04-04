@@ -1,5 +1,7 @@
 package com.zx.share.platform.console.service.zx;
 
+import java.util.Map;
+
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
@@ -42,7 +44,7 @@ public interface ZxUserPrinterApplyService {
 	 * @param status
 	 * @return
 	 */
-	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(String userName,int status);
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(Map<String, Object> params);
 	
 	public DefaultResopnseBean<Object> addNews(int Id);
 

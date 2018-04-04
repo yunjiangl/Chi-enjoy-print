@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zx.share.platform.console.mapper.zx.ZxUserPrinterApplyMapper">
-  <resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="printer_id" jdbcType="BIGINT" property="printerId" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
-    <result column="check_id" jdbcType="BIGINT" property="checkId" />
-    <result column="create_id" jdbcType="BIGINT" property="createId" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-  </resultMap>
-  
-  	<select id="selectNewsList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply"
+<mapper
+	namespace="com.zx.share.platform.console.mapper.zx.ZxUserPrinterApplyMapper">
+	<resultMap id="BaseResultMap"
+		type="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="user_id" jdbcType="BIGINT" property="userId" />
+		<result column="printer_id" jdbcType="BIGINT" property="printerId" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="check_time" jdbcType="TIMESTAMP" property="checkTime" />
+		<result column="check_id" jdbcType="BIGINT" property="checkId" />
+		<result column="create_id" jdbcType="BIGINT" property="createId" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+
+	<select id="selectNewsList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply"
 		resultMap="BaseResultMap">
-			SELECT
-			zx_user_printer_apply.user_id,
-			zx_user_printer_apply.status,
-			zx_user.username
-			FROM
-			zx_user_printer_apply,
-			zx_user
+		SELECT
+		zx_user_printer_apply.user_id,
+		zx_user_printer_apply.`status`,
+		zx_user.username
+		FROM
+		zx_user_printer_apply,
+		zx_user
 		<where>
 			<if test="userName != null and userName.trim() != ''">
 				and zx_user.username
@@ -28,9 +30,9 @@
 				concat('%',#{userName},'%')
 			</if>
 			<if test="status != null">
-				and zx_user_printer_apply.status = #{status}
+				and zx_user_printer_apply.`status` = #{status}
 			</if>
 		</where>
 	</select>
-  
+
 </mapper>
