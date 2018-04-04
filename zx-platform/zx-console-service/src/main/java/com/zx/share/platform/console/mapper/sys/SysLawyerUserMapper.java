@@ -19,7 +19,7 @@ public interface SysLawyerUserMapper extends PlatFormMapper<SysUser> {
 	 * 
 	 * @return
 	 */
-	List<SysUser> selectLawyerUserAll(Long roleId);
+	List<SysUser> selectLawyerUserAll();
 
 	/**
 	 * 禁用律师数据

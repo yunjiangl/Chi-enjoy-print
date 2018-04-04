@@ -14,7 +14,7 @@ public interface SysLawyerUserService {
 	 * 查询出全部未删除的律师用户管理数据
 	 * @return
 	 */
-	List<SysUser> selectLawyerUserAll(Long roleId);
+	List<SysUser> selectLawyerUserAll();
 	
 	/**
 	 * 禁用律师数据

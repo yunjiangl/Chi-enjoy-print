@@ -31,9 +31,9 @@ public class SysLawyerUserServiceImpl implements SysLawyerUserService {
 	 * @return
 	 */
 	@Override
-	public List<SysUser> selectLawyerUserAll(Long roleId) {
+	public List<SysUser> selectLawyerUserAll() {
 		// TODO Auto-generated method stub
-		return sysLawyerUserMapper.selectLawyerUserAll(roleId);
+		return sysLawyerUserMapper.selectLawyerUserAll();
 	}
 	
 	/**

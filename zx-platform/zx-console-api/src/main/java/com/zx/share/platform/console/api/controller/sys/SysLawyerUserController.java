@@ -40,7 +40,7 @@ public class SysLawyerUserController {
 	@ApiOperation(value="查询律师用户管理所有数据",notes="律师用户管理")
 	@ACSPermissions(permissions = "user:list")
 	public DefaultResopnseBean<List<SysUser>> selectLawyerUserAll(){
-		List<SysUser> list=sysLawyerUserService.selectLawyerUserAll(5L);
+		List<SysUser> list=sysLawyerUserService.selectLawyerUserAll();
 		return new DefaultResopnseBean<List<SysUser>>("成功",200,list);
 	}
 	
