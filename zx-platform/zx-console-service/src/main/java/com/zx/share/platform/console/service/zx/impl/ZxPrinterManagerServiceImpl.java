@@ -35,7 +35,10 @@ public class ZxPrinterManagerServiceImpl implements ZxPrinterManagerService {
 	@Transactional
 	@Override
 	public DefaultResopnseBean<Object> add(ZxPrinterManager zxPM) {
+		// 这里设置物主id
+		//zxPM.setCreateId(createId);
 		zxPM.setCreateTime(new Date());
+		zxPM.setStatus(false);
 		zxPrinterManagerMapper.insert(zxPM);
 
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
@@ -88,8 +91,8 @@ public class ZxPrinterManagerServiceImpl implements ZxPrinterManagerService {
 	 */
 	@Override
 	public DefaultResopnseBean<Object> update(ZxPrinterManager zxPM) {
-		zxPM.setCreateTime(new Date());
-		zxPrinterManagerMapper.updateByPrimaryKey(zxPM);
+		zxPM.setUpdateTime(new Date());
+		zxPrinterManagerMapper.updateByPrimaryKeySelective(zxPM);
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
 
