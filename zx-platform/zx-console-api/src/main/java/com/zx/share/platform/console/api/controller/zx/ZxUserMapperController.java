@@ -59,11 +59,11 @@ public class ZxUserMapperController {
 	 * @设备管理添加线上管理员查看功能
 	 * @return
 	 */
-	@RequestMapping(value = "selectOnlineAdminById", method = RequestMethod.GET)
+	@RequestMapping(value = "selectOnlineAdminById/{id}", method = RequestMethod.GET)
 	@ApiOperation(value = "设备列表添加线上管理员列表查看接口", notes = "selectOnlineAdminById")
 	@ACSPermissions(permissions = "zx:um:info")
 	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "query", dataType = "Long", name = "id", value = "管理员id", required = true) })
+			@ApiImplicitParam(paramType = "path", dataType = "Long", name = "id", value = "管理员id", required = true) })
 	@ResponseBody
 	public DefaultResopnseBean<ZxUser> selectOnlineAdminById(Long id) {
 		ZxUser selectAdminById = zxUserMapperService.selectOnlineAdminById(id);
