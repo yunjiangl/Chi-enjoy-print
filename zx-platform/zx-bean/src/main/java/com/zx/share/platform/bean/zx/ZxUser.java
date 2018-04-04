@@ -92,6 +92,9 @@ public class ZxUser extends IdEntity {
 	@Column(name = "area")
     private String area;
 	
+	@Column(name = "is_lock")
+    private Boolean isLock;
+	
 	@Transient
 	private ZxUserAttorney zxUserAttorney;
 	@Transient

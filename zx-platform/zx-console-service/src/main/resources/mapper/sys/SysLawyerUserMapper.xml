@@ -25,15 +25,7 @@
     <result column="account_name" jdbcType="VARCHAR" property="accountName" />
   </resultMap>
   
-  <!-- 查询出全部未删除的律师用户管理数据 -->
- <select id="selectLawyerUserAll" resultType="SysUser" resultMap="BaseResultMap">
- 		
-	SELECT * FROM
-	zx_user
-	WHERE
-	user_type=2
-	
- </select>
+
  <!-- 禁用功能 -->
  <update id="updateLawyerUser">
  		update sys_user set is_lock=1 where id=#{userId}

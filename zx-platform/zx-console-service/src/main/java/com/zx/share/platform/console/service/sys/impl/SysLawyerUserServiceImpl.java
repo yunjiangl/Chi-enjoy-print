@@ -14,6 +14,7 @@ import com.zx.share.platform.console.mapper.sys.SysBackGroundUserMapper;
 import com.zx.share.platform.console.mapper.sys.SysFrontDeskUserMapper;
 import com.zx.share.platform.console.mapper.sys.SysLawyerUserMapper;
 import com.zx.share.platform.console.mapper.sys.SysOwnerUserMapper;
+import com.zx.share.platform.console.mapper.zx.ZxUserMapper;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysLawyerUserService;
@@ -24,6 +25,9 @@ public class SysLawyerUserServiceImpl implements SysLawyerUserService {
 
 	@Autowired
 	private SysLawyerUserMapper sysLawyerUserMapper;
+	
+	@Autowired
+	private ZxUserMapper zxUserMapper;
 
 	/**
 	 * 查询出全部未删除的律师用户管理数据
@@ -33,7 +37,7 @@ public class SysLawyerUserServiceImpl implements SysLawyerUserService {
 	@Override
 	public List<SysUser> selectLawyerUserAll() {
 		// TODO Auto-generated method stub
-		return sysLawyerUserMapper.selectLawyerUserAll();
+		return zxUserMapper.selectLawyerUserAll();
 	}
 	
 	/**

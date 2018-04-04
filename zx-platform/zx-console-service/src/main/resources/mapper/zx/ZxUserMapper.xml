@@ -42,6 +42,16 @@
 			<result column="domain_id" jdbcType="BIGINT" property="domainId" />
 	</association>
   </resultMap>
+  
+    <!-- 查询出全部未删除的律师用户管理数据 -->
+ <select id="selectLawyerUserAll" resultType="ZxUser" resultMap="Map">
+ 		
+	SELECT * FROM
+	zx_user
+	WHERE
+	user_type=2
+	
+ </select>
   <!-- 设备列表添加线上管理员 -->
   <select id="selectOnlineAdmin" resultType="ZxUser" resultMap="Map">
   		SELECT
