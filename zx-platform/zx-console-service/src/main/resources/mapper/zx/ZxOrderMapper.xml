@@ -119,7 +119,7 @@
 				and sys_user.real_name like
 				concat('%',#{printName},'%')
 			</if>
-			<if test="printHostId != null and printHostId != 0 ''">
+			<if test="printHostId != null and printHostId != 0 ">
 				and zx_order.create_id = #{printHostId}
 			</if>
 			<if test="lawyerName != null and lawyerName.trim() != ''">
