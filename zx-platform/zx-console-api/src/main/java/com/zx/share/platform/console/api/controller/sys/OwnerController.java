@@ -314,13 +314,14 @@ public class OwnerController {
 	 * @Title: list
 	 * @Description: 消息通知查询
 	 */
+	
 	@RequestMapping(value = "/sys/selectNewsList", method = RequestMethod.GET)
 	@ApiOperation(value = "消息通知查询", notes = "消息通知查询")
-	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "查询信息", required = true) })
 	@ACSPermissions(permissions = "user:news")
-	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(@RequestBody String userName,
-			@RequestBody int status) {
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(
+			@ApiParam("用户名") @RequestParam(name = "userName", required = false) String userName,
+			@ApiParam("状态") @RequestParam(name = "status", required = false) int status
+			) {
 		return zxUserPrinterApplyService.selectNewsList(userName, status);
 	}
 

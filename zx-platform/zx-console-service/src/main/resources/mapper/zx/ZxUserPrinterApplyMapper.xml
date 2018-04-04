@@ -16,7 +16,7 @@
 		resultMap="BaseResultMap">
 			SELECT
 			zx_user_printer_apply.user_id,
-			zx_user_printer_apply.`status`,
+			zx_user_printer_apply.status,
 			zx_user.username
 			FROM
 			zx_user_printer_apply,
@@ -27,8 +27,8 @@
 				like
 				concat('%',#{userName},'%')
 			</if>
-			<if test="status != null and status.trim() != ''">
-				and zx_user_printer.`status` = #{status}
+			<if test="status != null">
+				and zx_user_printer_apply.status = #{status}
 			</if>
 		</where>
 	</select>
