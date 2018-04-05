@@ -29,17 +29,20 @@
 			zx_file_manager_ab.file_name,
 			zx_file_manager_ab.file_num,
 			zx_file_manager_ab.category_id,
-			sys_dictionary.parent_id,
-			sys_dictionary.type,
-			sys_dictionary.`name`,
-			sys_dictionary.`value`
+			sj.type,
+			sj.`name`,
+			sj.`value`,
+			sj.sort,
+			sj.parent_id
 			FROM
 			zx_file_manager_ab
-			INNER JOIN sys_dictionary ON zx_file_manager_ab.category_id = sys_dictionary.parent_id
+			INNER JOIN sys_dictionary AS sj ON zx_file_manager_ab.category_id = sj.id
+			INNER JOIN sys_dictionary AS sanji ON sj.parent_id = sanji.id
+			INNER JOIN sys_dictionary AS erji ON sanji.parent_id = erji.id
+			INNER JOIN sys_dictionary AS yiji ON erji.parent_id = yiji.id
 			WHERE
-			sys_dictionary.parent_id = 4
-			and 
-			sys_dictionary.type =#{type}
+			sj.sort = 4 AND
+			yiji.type = #{type}
 	</select>
 	
 	  	<select id="vagueList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
