@@ -91,6 +91,9 @@ public class ZxFileManagerCDE extends IdEntity{
 	@Transient
 	private ZxUser zxUser;
 	
+	@Transient
+	private ZxUser lawyer;
+	
  	@Transient
 	private SysDictionary sysDictionary;
 }
