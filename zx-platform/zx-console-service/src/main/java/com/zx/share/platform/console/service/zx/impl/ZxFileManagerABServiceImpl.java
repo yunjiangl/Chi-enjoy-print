@@ -14,9 +14,9 @@ import com.github.pagehelper.PageInfo;
 import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.console.mapper.zx.ZxFileManagerABMapper;
+import com.zx.share.platform.console.service.UploadService;
 import com.zx.share.platform.console.service.zx.ZxFileManagerABService;
 import com.zx.share.platform.constants.ErrorsEnum;
-import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 
@@ -25,12 +25,15 @@ public class ZxFileManagerABServiceImpl implements ZxFileManagerABService {
 
 	@Autowired
 	private ZxFileManagerABMapper zxFileManagerABMapper;
+	
+	@Autowired
+	private UploadService uploadService;
 
 	@Transactional
 	@Override
 	public DefaultResopnseBean<Object> add(ZxFileManagerAB zxAB, MultipartFile multipartFile) {
 		zxAB.setCreateTime(new Date());
-		zxFileManagerABMapper.insert(zxAB);
+		uploadService.add(zxAB, multipartFile);
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
 

@@ -64,7 +64,7 @@
 			and
 			sys_dictionary.type =#{type}
 			<if test="userName != null and userName.trim() != ''">
-				and lawyer.lawyer_nickname like
+				and zx_user.nickname like
 				concat('%',#{userName},'%')
 			</if>
 			<if test="fileName != null and fileName.trim() != ''">
