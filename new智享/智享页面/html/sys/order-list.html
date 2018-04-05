@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>订单管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <link rel="stylesheet" type="text/css" href="../css/order-list.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane" onsubmit="return checkName();" method="post">
+            <input class="layui-input input-number" name="number" type="text" placeholder="输入设备码">
+            <input class="layui-input input-owner" name="owner" placeholder="输入设备物主">
+            <input class="layui-input input-lawyer" name="lawyerName" placeholder="请输入律师用户名">
+            <input class="layui-input" id="start" name="start" placeholder="创建时间">
+            至
+            <input class="layui-input" id="end" name="end" placeholder="创建时间">
+            <button class="layui-btn search" lay-submit lay-filter="sreach">查询</button>
+        </form>
+    </div>
+
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <!-- <th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                全选
+            </th> -->
+            <th>订单号</th>
+            <th>设备物主</th>
+            <th>设备编号</th>
+            <th>律师</th>
+            <th>客户</th>
+            <th>打印服务费</th>
+            <th>支付时间</th>
+            <th>操作</th>
+        </tr></thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <div class="page">
+           
+                    
+            
+    </div>
+    
+
+<!-- order-details订单详情 start -->
+    <div class="order-details" style="display: none;">
+        <ul>
+            
+        </ul>
+    </div>
+<!-- order-details订单详情 end -->
+
+</div>
+
+</body>
+<script>
+    //日期
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start', //指定元素
+            type:'datetime',
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end', //指定元素
+            type:'datetime',
+        });
+    });
+
+    //模糊查询
+    $('.search').click(function(){
+        var inputNumber = $("input[name = 'number']").val();
+        var inputOwner = $("input[name = 'owner']").val();
+        var inputLawyer = $("input[name = 'lawyerName']").val();
+        var timeStart = $("input[name = 'start']").val();
+        var timeEnd = $("input[name = 'end']").val();
+        // console.log(timeStart);
+        // console.log(timeEnd);
+        if((inputNumber == null || inputNumber == "") && 
+            (inputOwner == null || inputOwner == "") && 
+            (inputLawyer == null || inputLawyer == "") &&
+            ((timeStart == null || timeStart == "" ) || 
+            (timeEnd == null || timeEnd == "")) ){
+            alert("查询条件不能为空");
+        };
+        event.preventDefault();
+        $.ajax({
+            url:'http://123.206.42.162:10002/zx/order/page',
+            method:'GET',
+            data:{
+                printCode:inputNumber,
+                printName:inputOwner,
+                lawyerName:inputLawyer,
+                // time1:timeStart,
+                // time2:timeEnd,
+            },
+            // async:false,
+            success: function(data){
+            var orderlist = '';
+            console.log(data)
+            // var NullOrder = '<td colspan="8" style="color:#f00; text-align: center; font-size: 18px; line-height: 40px;">用户不存在或输入错误</td>'
+            $.each(data.data.content,function(i,e){
+                orderlist +=`
+                <tr>
+                    <td>${e.orderNum}</td>
+                    <td>${e.sysUser.realName}</td>
+                    <td>${e.printerCode}</td>
+                    <td>${e.lawyer.nickname}</td>
+                    <td>${e.zxUser.nickname}</td>
+                    <td>${e.orderAmount}</td>
+                    <td>${e.payTime}</td>
+                    <td>
+                        <button class="layui-btn look-btn">查看</button>
+                    </td>
+                    <td class="detailsId" style="display: none;">${e.id}</td>
+                </tr>
+                `
+            })
+                $('.layui-table tbody').html(orderlist+"用户不存在或者输入错误");
+            
+        }
+        })
+    })
+    //订单管理表数据
+    $.ajax({
+        url:'http://123.206.42.162:10002/zx/order/page',
+        method:'GET',
+        data:{
+            page:1
+        },
+        async:false,
+        success: function(res){
+            var orderlist = '';
+            // console.log(res)
+            $.each(res.data.content,function(i,e){
+                orderlist +=`
+                <tr>
+                    
+                    <td>${e.orderNum}</td>
+                    <td>${e.sysUser.realName}</td>
+                    <td>${e.printerCode}</td>
+                    <td>${e.lawyer.nickname}</td>
+                    <td>${e.zxUser.nickname}</td>
+                    <td>${e.orderAmount}</td>
+                    <td>${e.payTime}</td>
+                    <td>
+                        <button class="layui-btn look-btn" value='${e.id}'>查看</button>
+                    </td>
+                    
+                </tr>
+                `
+            })
+            $('.layui-table tbody').html(orderlist);
+        }
+     
+    })
+    //查看详情
+    $('.look-btn').on('click',function(){
+        $('.order-details ul').html("");
+        // layui弹窗
+        layer.open({
+            type:1,
+            title:'用户详情信息',
+            area:['40%','70%'],
+            shadeClose:true,
+            resize:false,
+            content:$(".order-details")
+        })
+        // 后台获取数据查看
+        var btnId = $(this).val();
+        var detailsIdNum = parseInt(btnId);
+        // console.log(detailsIdNum);
+        $.ajax({
+            url:'http://123.206.42.162:10002/zx/order/info/'+detailsIdNum,
+            method:'GET',
+            async:false,
+            success: function(res){
+            console.log(res)
+            var lookDetails = "";
+            var Details1 = '<li style="color:#f00; text-align: center; font-size: 18px; line-height: 20px;">请添加详情信息</li>'
+            var index = res.data
+            lookDetails =`
+                    <li><font>订单号</font>${index.orderNum}</li>
+                    <li><font>设备物主</font>${index.sysUser.realName}</li>
+                    <li><font>设备编号</font>${index.printerCode}</li>
+                    <li><font>律师用户</font>${index.lawyer.nickname}</li>
+                    <li><font>客户用户</font>${index.zxUser.nickname}</li>
+                    <li><font>打印服务费</font>${index.orderAmount}</li>
+                    <li><font>支付时间</font>${index.payTime}</li>
+                    <li><font>文件标题</font>${index.zxFileManagerAB}</li>
+            `;
+            // if(res.length > 0){
+                $('.order-details ul').html(lookDetails);
+            // }else{
+            //     $('.order-details ul').html(Details1);
+            // }
+                
+            }
+        })
+    })
+
+    //阻止表单提交
+    function checkName(e){
+        return false;
+    }
+ </script>
+ <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+ <script src="../layer/layer.js"></script>
+</html>

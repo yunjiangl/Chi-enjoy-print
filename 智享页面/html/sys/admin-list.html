@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>智享打印-后台管理端</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/default/easyui.css ">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="http://www.java1234.com/jquery-easyui-1.3.3/demo/demo.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <script type="text/javascript" src="../laydate/laydate.js"></script>
+    
+<script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="http://www.java1234.com/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane" onsubmit="return checkName();">
+        <input class="layui-input userName" placeholder="用户组名称" name="cate_name" >
+          <div class="layui-input-inline">
+            <select name="cateid" class="permsName">
+              <option>请选择状态</option>
+              <option>可用</option>
+              <option>禁用</option>
+            </select>
+          </div>
+            <input class="layui-input" placeholder="创建时间" name="start" id="start">
+            至
+            <input class="layui-input" placeholder="创建时间" name="end" id="end">
+          <button class="layui-btn" id="layui-btn-search"  lay-submit="" lay-filter="sreach">查询</button>
+        </form>
+         <button class="layui-btn organize" onclick="groups1()">添加用户组</button>
+      </div>
+      <xblock>
+       
+      </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              用户组名称
+            </th>
+            <th>状态</th>
+            <th>创建时间</th>
+            <th>权限</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+      <div class="page">
+        <div id="page-link"></div>
+      </div>
+    </div>
+
+<!-- 添加用户  -->
+<!-- saveuser start -->
+<div class="saveuser" style="display: none;">
+	<form>
+		<font>用户组名称：</font><input type="" id="addUser" name="username" class="layui-input"><br>
+		<font class="ft">状态：</font>
+            <div class="layui-input-inline  user-margin">
+	            <select name="cateid" id="addUserStatus" value="请选择状态" >
+	              <option value="可用">可用</option>
+	              <option value="禁用">禁用</option>
+	            </select>
+	          </div>
+	          <div style="clear: both;"></div>
+	         <tt><button class="layui-btn">返回</button> 
+	         <button class="layui-btn submit-user">保存</button>
+	         </tt>
+	</form>         
+</div>
+<!-- saveuser end -->
+
+<!-- 修改用户  -->
+<!-- updateuser start -->
+<div class="updateuser" style="display: none;">
+  <form>
+      <div style="display: none;" id="amend-user-id"></div>
+      <font>用户组名称：</font><input type="" name="" id="amend-user" class="layui-input"><br>
+      <font class="ft">状态：</font><div class="layui-input-inline">
+      <select name="cateid" id="amend-status" value="请选择状态" >
+          <option value="可用">可用</option>
+          <option value="禁用">禁用</option>
+      </select>
+      <input name="roleId" style="display:none;" value="${sysRole.roleId }">
+      <input name="createTime" style="display:none;" value="${sysRole.createTime }">
+  </div>
+      <div style="clear: both;"></div>
+      <tt><a href="" class="layui-btn">返回</a>
+          <button class="layui-btn amend-user">保存</button>
+      </tt>
+  </form>
+</div>
+<!-- updateuser end -->
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+<script src="../layer/layer.js"></script>
+<script src="../laydate/laydate.js" ></script>
+      <link rel="stylesheet" href="../laydate/theme/default/laydate.css">
+<!-- 时间控件-->
+<script>
+    layui.use('laydate', function(){
+      var laydate = layui.laydate;
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#start', //指定元素
+        format: 'yyyy年MM月dd日 HH时mm分ss秒'
+      });
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#end', //指定元素
+        format: 'yyyy年MM月dd日 HH时mm分ss秒'
+      });
+    });
+</script>
+
+
+<!--用户组数据-->
+<script type="text/javascript">
+/**
+ * 进入页面时加载数据
+ */
+//全局变量
+//var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+//ajax请求后台数据
+  getUserGroupAllData();
+
+
+/**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  $.each(res, function (i,e) {
+    html +=`<tr>
+                <td id="user-name">${e.name}</td>
+                <td id="amend-tatus">${e.perms}</td>
+                <td>${e.createTime}</td>
+                <td><a href="user-power.html" class="layui-btn">设置权限</a></td>
+                <td><button class="layui-btn modify" value="${e.id},${e.name},${e.perms}" >修改</button></td>
+            </tr>`;
+
+  });
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+/**
+ * 分页开始
+ */
+toPage();
+
+
+function getUserGroupAllData(){
+  $.ajax({
+    url:"http://123.206.42.162:10002/sys/selectRoleAll",
+    type:"GET",
+    data:{
+      page:startPageNum,
+      pageSize:pageSizeSetting
+    },
+    async:false,
+    success:function (res,status) {
+      userGroup(res.data.content);
+      totalElementsAll = res.data.totalElements;
+//      console.log(totalElementsAll);
+    }
+  })
+}
+//console.log(totalElementsAll);
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });
+};
+/**
+ * 分页结束
+ */
+
+
+
+/**
+ * 添加用户
+ */
+$(".submit-user").click(function () {
+  var addUserName = $("#addUser").val();
+  var addUserStatus = $("#addUserStatus").val();
+  $.ajax({
+    url:"http://123.206.42.162:10002/sys/insertRoll",
+    method:"POST",
+    data:{
+        name:addUserName,
+        perms:addUserStatus,
+        remark:"''"
+    },
+    success:function (res) {
+      console.log(res);
+      console.log("添加成功");
+    }
+  })
+})
+
+/**
+ * 修改用户
+ */
+$(".amend-user").click(function () {
+  var userId = parseInt($("#amend-user-id").text());
+  var userName = $("#amend-user").val();
+  var userPerms = $("#amend-status").val();
+  console.log(userId,userName,userPerms);
+  $.ajax({
+    method:"POST",
+    url:"http://123.206.42.162:10002/sys/updateRole",
+    data:{
+      id:userId,
+      name:userName,
+      perms:userPerms
+    },
+    async:false,
+    success:function (res) {
+      console.log("修改成功");
+    }
+  })
+})
+
+
+/**
+ * 搜索查询
+ */
+  $("#layui-btn-search").click(function () {
+    startPageNum = 1;
+    toPage();
+    $(".page-link").hide();
+    var Name = $(".userName").val();
+    var permsName = $(".permsName").val();
+    console.log(permsName);
+    $.ajax({
+      url:"http://123.206.42.162:10002/sys/selectDim",
+      method:"GET",
+      data:{
+        name:Name
+      },
+//      async:false,
+      success:function (res) {
+        var dataContent=res.data;
+        userGroup(dataContent);
+      },
+    })
+  });
+
+
+
+/**
+ * 渲染页面函数
+ */
+
+
+</script>
+<!--user end-->
+<script type="text/javascript">
+$('.organize').on("click",function(){
+	layer.open({
+		type:1,
+		title:'添加用户组',
+		area:['600px','360px'],
+		shadeClose:true,
+		shad:[0.8,'#855'],
+		content:$(".saveuser")
+	});
+});
+</script>
+<!--修改用户-->
+<script type="text/javascript">
+$('.modify').click(function() {
+  layer.open({
+    type: 1,
+    title: '修改用户',
+    area: ['600px', '360px'],
+    shadeClose: true,
+    shad: [0.8, '#855'],
+    content: $(".updateuser")
+  });
+  var amendId = $(this).val();
+  var amends = amendId.split(",");
+  console.log(amends);
+  $("#amend-user-id").text(amends[0]);
+  $("#amend-user").val(amends[1]);
+  $("#amend-status").val(amends[2]);
+})
+</script>
+<!--修改结束-->
+
+      <!--阻止表单提交-->
+<script>
+  function checkName(e){
+
+      return false;
+
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>后台用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane" onsubmit="return checkName();">
+        <input class="layui-input" placeholder="用户名称" name="input_name" >
+          <div class="layui-input-inline">
+            <select name="cateid" class="select">
+              <option>请选择状态</option>
+              <option value="可用">可用</option>
+              <option value="禁用">禁用</option>
+            </select>
+          </div>
+          <input class="layui-input" id="start" name="start" placeholder="创建时间">
+            至
+            <input class="layui-input" id="end" name="end" placeholder="创建时间">
+          <button class="layui-btn search_btn" lay-submit="" lay-filter="sreach">查询</button>
+        </form>
+         <button class="layui-btn btn-update">添加用户</button>
+      </div>
+      <xblock>
+      </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+              全选
+            </th>
+            <th>用户名</th>
+            <th>昵称</th>
+            <th>邮箱</th>
+            <th>状态</th>
+            <th>创建时间</th>
+            <th>上次登录时间</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      <div class="page">
+        <div>
+          <a class="prev" href="">&lt;&lt;</a>
+          <a class="num" href="">1</a>
+          <span class="current">2</span>
+          <a class="num" href="">3</a>
+          <a class="num" href="">489</a>
+          <a class="next" href="">&gt;&gt;</a>
+        </div>
+      </div>
+    </div>
+<!-- addaffter start -->
+    <div class="">
+      
+    </div>
+<!-- addaffter end -->
+
+<!-- 修改用户 -->
+<!-- add-background-user start -->
+<div class="add-background-user update-user" style="display: none;">
+  <form>
+    <div class="content">
+      <ul>
+        <li class="" style="display:none;"><font>用户名</font><input class="layui-input userId" type="" name="id"></li>
+        <li class="bbbb"><font>用户名</font><input class="layui-input userName" type="" name="userName"><i class="">*</i></li>
+        <li><font>昵称</font><input class="layui-input" type="" name="nickName"></li>
+        <li><font>密码</font><input class="layui-input" type="" name="password" placeholder="输入密码"><i class="">*</i></li>
+        <li><font>确认密码</font><input class="layui-input" type="" name="confirmPassword" placeholder="确认密码"><i class="">*</i></li>
+        <li><font>邮箱</font><input class="layui-input" type="email" name="email" placeholder="输入邮箱"></li>
+        <li>
+          <font>所属用户组</font>
+                <div class="layui-input-inline all-select">
+                  <select name="cateid">
+                    <option>请选择所属组</option>
+                    <option value="1">用户组管理</option>
+                    <option value="2">后台用户管理</option>
+                    <option value="3">前台用户管理</option>
+                    <option value="4">物主用户管理</option>
+                    <option value="5">律师用户管理</option>
+                  </select>
+                </div>
+                <i class="i">*</i>
+              </li>
+        <li>
+          <font>状态</font>
+          <div class="layui-input-inline">
+                  <select name="cateid" class="user-status">
+                    <!-- <option>请选择状态</option> -->
+                    <option value="可用">可用</option>
+                    <option value="禁用">禁用</option>
+                  </select>
+                </div>
+                <i class="i">*</i>
+        </li>
+        <li><font>备注</font><input class="layui-input" type="text" name="remarks"></li>
+      </ul>
+      <tt>
+        <a href="../sys/admin-role.html" class="layui-btn">返回</a>
+        <button class="layui-btn btn-save">保存</button>
+      </tt>
+    </div>
+  </form>
+</div>
+<!-- add-background-user end -->
+  </body>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../layer/layer.js"></script>
+<script>
+ //日期
+ layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start', //指定元素
+            type:'datetime',
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end', //指定元素
+            type:'datetime',
+        });
+});
+
+//模糊查询用户管理数据
+$('.search_btn').click(function(){
+
+  var inputName = $("input[name = 'input_name']").val();
+  var roleStatus = $(".select option:selected").val();
+  console.log(roleStatus);
+  // console.log(inputName);
+  $.ajax({
+    url:'http://123.206.42.162:10002/sys/selectUserDim',
+    method:'POST',
+    data:{
+      name:inputName,
+      perms:roleStatus
+    },
+    success:function(res){
+      console.log(res)
+      var roleHtml = '';
+      var notRole = '<td colspan="8" style="color:#f00; text-align: center; font-size: 18px; line-height: 40px;">用户不存在或输入错误</td>'
+      $.each(res.data,function(i,e){
+
+        var status = e.isLock
+        if(status == false){
+          status = "禁用"
+        }else{
+          status = "可用"
+        }
+
+        roleHtml +=`
+        <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.username}</td>
+            <td>${e.realName}</td>
+            <td>${e.email}</td>
+            <td>${status}</td>
+            <td>${e.createTime}</td>
+            <td>${e.modifyTime}</td>
+            <td>
+              <button class="layui-btn btn-update" value="${e.id}">修改</button>
+              <button class="layui-btn" value="${e.id}">删除</button>
+            </td>
+          </tr>
+        `
+      });
+      // if(res.length > 0){
+        $('.layui-table tbody').html(roleHtml);
+      // }else{
+      //   $('.layui-table tbody').html(notRole);
+      // }
+      
+    }
+  })
+
+})
+  //加载所有数据
+  $.ajax({
+    url:'http://123.206.42.162:10002/sys/selectUserAll',
+    method:'GET',
+    data:{
+      roleId:2
+    },
+    async:false,
+    success:function(res){
+      // console.log(res)
+      var roleHtml = '';
+      $.each(res.data,function(i,e){
+
+        var status = e.isLock
+        if(status == false){
+          status = "禁用"
+        }else{
+          status = "可用"
+        }
+
+        roleHtml +=`
+        <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.username}</td>
+            <td>${e.realName}</td>
+            <td>${e.email}</td>
+            <td>${status}</td>
+            <td>${e.createTime}</td>
+            <td>${e.modifyTime}</td>
+            <td>
+              <button class="layui-btn btn-update" value="${e.id}*${e.username}*${e.realName}*${status}*${e.password}*${e.email}">修改</button>
+              <button class="layui-btn" value="${e.id}">删除</button>
+            </td>
+          </tr>
+        `
+      });
+      $('.layui-table tbody').html(roleHtml);
+  }
+  })
+
+//修改后台用户信息 
+$('.btn-update').click(function(){
+      layer.open({
+            type:1,
+            title:'修改用户信息',
+            area:['45%','70%'],
+            shadeClose:true,
+            resize:false,
+            content:$(".update-user")
+          })
+        
+        var btnId = $(this).val();
+        var amends = btnId.split("*");
+        
+        $("input[name = 'id']").val(amends[0]);
+        $("input[name = 'userName']").val(amends[1]);
+        $("input[name = 'nickName']").val(amends[2]);
+        $(".user-status").val(amends[3]);
+        $("input[name = 'password']").val(amends[4]);
+        $("input[name = 'email']").val(amends[5]);
+        console.log(amends[0]);
+    })
+
+//修改后台用户
+$(".btn-save").click(function(){
+    var afterUserId = $("input[name = 'id']").val();
+    var userName = $("input[name = 'userName']").val();
+    var realName = $("input[name = 'nickName']").val();
+    var password = $("input[name = 'password']").val();
+    var confirmPassword = $("input[name = 'confirmPassword']").val();
+    var email = $("input[name = 'email']").val();
+    var roleId = $(".all-select option:selected").val();
+    var userStatus = $(".user-status").val();
+    if(userStatus == '禁用'){
+      userStatus = false;
+    }else if(userStatus == '可用'){
+      userStatus = false;
+    }
+    if(roleId=="用户管理组"){
+      roleId = "1";
+    }else if(roleId == "后台用户管理"){
+      roleId = '2';
+    }else if(roleId == "前台用户管理"){
+      roleId = '3';
+    }else if(roleId == "物主用户管理"){
+      roleId = '4';
+    }else if(roleId == "律师用户管理"){
+      roleId = '5';
+    }
+    var comment = $("input[name = 'remarks']").val();
+    console.log(afterUserId,userName,realName,password,email,comment,userStatus,roleId);
+    alert(1234);
+    $.ajax({
+      url:'http://123.206.42.162:10002/sys/updateUserById',
+      method:'POST',
+      data:{
+       id:afterUserId,
+       userName:userName,
+       realName:realName,
+       password:password,
+       email:email,
+       comment:comment,
+       isLock:userStatus,
+       roleId:roleId
+      },
+      async:false,
+      success:function(res){
+        console.log(res);
+        console.log("修改成功！");
+      }
+    })  
+})
+
+
+//阻止表单提交  
+function checkName(e){
+  return false;
+}
+</script>
+
+</html>

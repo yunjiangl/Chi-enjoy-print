@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>审核律师用户</title>
+	 <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <script type="text/javascript" src="../js/area.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Auditing-lawyer start 审核律师开始-->
+<div class="Auditing-lawyer">
+<!-- top start -->
+	<div class="top">
+		<h4>设置用户组权限</h4>
+	</div>
+	<hr>
+<!-- top end -->
+<!-- content start -->
+	<div class="content">
+		<form>
+			<top>
+				<img src="../images/lawyer.png">
+				<ul class="right">
+					<li><font>姓名：</font><input class="layui-input" type="text" placeholder="输入姓名"></li>
+					<div style="clear: both;"></div>
+
+					<li class="sex">
+						<font>性别：</font>
+						<tt><input type="radio" class="radio" name="sex" value="男">男</tt>
+					    <tt><input type="radio" class="radio" name="sex" value="女">女</tt>
+					</li>
+					<div style="clear: both;"></div>
+					<li><font>年龄：</font><input class="layui-input" type="text" name="" placeholder="输入年龄"></li>
+				</ul>
+			</top>
+			<div style="clear: both;"></div>
+			<ul class="layui-info">
+				<li><font>手&nbsp; 机 &nbsp;号：</font><input type="text" class="layui-input" name="" placeholder="输入手机号"></li>
+				<div style="clear: both;"></div>
+				<li><font>微 &nbsp;信 &nbsp;号：</font><input type="text" class="layui-input" name="" placeholder="输入微信号"></li>
+				<div style="clear: both;"></div>
+				<li>
+				 <font>所 &nbsp;在 &nbsp;地：</font>
+				    <div class="input-select-inline">
+				          <div class="layui-input-inline">
+				            <select name="cateid">
+				              <option>请选择地址</option>
+				              <option>北京</option>
+				              <option>上海市</option>
+				            </select>
+				          </div>
+				          <div class="layui-input-inline">
+				            <select name="cateid">
+				              <option>请选择地址</option>
+				              <option>北京市</option>
+				              <option>上海路</option>
+				            </select>
+				          </div>
+				          <div class="layui-input-inline">
+				            <select name="cateid">
+				              <option>请选择地址</option>
+				              <option>东城</option>
+				              <option>西城</option>
+				            </select>
+				          </div>
+				    </div>			
+				</li>
+				<div style="clear: both;"></div>
+				<li>
+					<font>工作经验：</font>
+			          <div class="layui-input-inline lii">
+			            <select name="cateid">
+			              <option>选择工作经验</option>
+			              <option>1年以下</option>
+			              <option>1~3年</option>
+			              <option>3~5年</option>
+			              <option>5~10年</option>
+			              <option>10年以上</option>
+			            </select>
+			          </div>
+				</li>
+				<div style="clear: both;"></div>
+				<li><font>工作机构：</font><input type="text" class="layui-input" name="" placeholder="输入工作机构"></li>
+				<div style="clear: both;"></div>
+				<li><font>职业证号：</font><input type="text" class="layui-input" name="" placeholder="输入职业证号"></li>
+				<div style="clear: both;"></div>
+				<li>
+					<font>擅长领域：</font>
+						<div class="info-chekbox">
+						<t1>知识产权法律事务<input type="checkbox" name="" value="知识产权法律事务"></t1>
+						<t1>征地拆迁<input type="checkbox" name="" value="征地拆迁"></t1>
+						<t1>金融证券<input type="checkbox" name="" value="金融证券"></t1>
+						<t1>知识产权法律事务<input type="checkbox" name="" value="知识产权法律事务"></t1>
+						<t1>征地拆迁<input type="checkbox" name="" value="征地拆迁"></t1>
+						<t1>金融证券<input type="checkbox" name="" value="金融证券"></t1>
+						</div>
+				</li>
+				<div style="clear: both;"></div>
+				<li>
+					<font>上传照片:</font>
+					<div class="upphoto">
+						<span>
+							<button class="photo-btn"><i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe608;</i> <!-- <img src="../images/lawyer.png"> --></button><br>
+							<t2>职业证书</t2>
+						</span>
+						<span>
+							<button class="photo-btn"><i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe608;</i></button><br>
+							<t2>年度考核备案页</t2>
+						</span>
+						<span>
+							<button class="photo-btn"><i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe608;</i></button><br>
+							<t2>身份证正面照</t2>
+						</span>
+					</div>
+				</li>
+				<div style="clear: both;"></div>
+				<li>
+				<div class="photo-checkbox">
+					<t3><input type="checkbox" name="">通过</t3>
+					<t3><input type="checkbox" name="">不通过</t3>
+				</div>
+				</li>
+			</ul>
+			<div style="clear: both;"></div>
+			<div class="bto-btn">
+				<a href="admin-lawyer.html" class="layui-btn">返回</a>
+				<button type="submit" class="layui-btn">保存</button>
+			</div>
+		</form>	
+	</div>
+<!-- content end -->
+</div>
+<!-- select end -->
+</body>
+</html>

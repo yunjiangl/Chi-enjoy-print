@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>律师用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
+        <input class="layui-input" placeholder="用户组名称" name="cate_name" >
+          <div class="layui-input-inline">
+            <select name="cateid">
+              <option>请选择状态</option>
+              <option>可用</option>
+              <option>禁用</option>
+            </select>
+          </div>
+          <input class="layui-input" type="date" placeholder="创建时间" name="cate_name" >
+          至
+          <input class="layui-input" type="date" placeholder="创建时间" name="cate_name" >
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach">查询</button>
+        </form>
+      </div>
+      <xblock>
+      </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            
+            <th>用户名</th>
+            <th>昵称</th>
+            <th>审核状态</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+      </table>
+      <div class="page">
+         <div id="page-link"></div>
+      </div>
+    </div>
+<!-- addaffter start -->
+    <div class="">
+      
+    </div>
+<!-- addaffter end -->
+<div class="Auditing-lawyer" hidden="true">
+<!-- top start -->
+  <div class="top">
+    <h4>设置用户组权限</h4>
+  </div>
+  <hr>
+<!-- top end -->
+<!-- content start -->
+  <div class="content">
+    <form>
+      <top>
+        <img src="../images/lawyer.png">
+        <ul class="right">
+          <li><font>姓名：</font><input class="layui-input" type="text" placeholder="输入姓名" id="nickname1"></li>
+          <div style="clear: both;"></div>
+          <input type="text" id="userId" hidden="hidden">
+          <li class="sex">
+            <font>性别：</font>
+            <tt><input type="radio" id="radio1" class="radio" name="sex" value="男">男</tt>
+              <tt><input type="radio" id="radio2" class="radio" name="sex" value="女">女</tt>
+          </li>
+          <div style="clear: both;"></div>
+          <li><font>年龄：</font><input class="layui-input" type="text" id="age" name="" placeholder="输入年龄"></li>
+        </ul>
+      </top>
+      <div style="clear: both;"></div>
+      <ul class="layui-info">
+        <li><font>手&nbsp; 机 &nbsp;号：</font><input type="text" class="layui-input" id="phoen" name="" placeholder="输入手机号"></li>
+        <div style="clear: both;"></div>
+        <li><font>微 &nbsp;信 &nbsp;号：</font><input type="text" class="layui-input" id="wechatId" name="" placeholder="输入微信号"></li>
+        <div style="clear: both;"></div>
+        <li>
+         <font>所 &nbsp;在 &nbsp;地：</font>
+            <div class="input-select-inline">
+                  <div class="layui-input-inline">
+                    <select name="cateid" id="province">
+                      <option>请选择地址</option>
+                      <option>北京</option>
+                      <option>上海市</option>
+                    </select>
+                  </div>
+                  <div class="layui-input-inline">
+                    <select name="cateid" id="city">
+                      <option>请选择地址</option>
+                      <option>北京市</option>
+                      <option>上海路</option>
+                    </select>
+                  </div>
+                  <div class="layui-input-inline">
+                    <select name="cateid" id="area">
+                      <option>请选择地址</option>
+                      <option>东城</option>
+                      <option>西城</option>
+                    </select>
+                  </div>
+            </div>      
+        </li>
+        <div style="clear: both;"></div>
+        <li>
+          <font>工作经验：</font>
+                <div class="layui-input-inline lii">
+                  <select name="cateid" id="workYear">
+                    <option>选择工作经验</option>
+                    <option>1年以下</option>
+                    <option>1~3年</option>
+                    <option>3~5年</option>
+                    <option>5~10年</option>
+                    <option>10年以上</option>
+                  </select>
+                </div>
+        </li>
+        <div style="clear: both;"></div>
+        <li><font>工作机构：</font><input type="text" class="layui-input" name="" id="workOrg" placeholder="输入工作机构"></li>
+        <div style="clear: both;"></div>
+        <li><font>职业证号：</font><input type="text" class="layui-input" name="" id="workNum" placeholder="输入职业证号"></li>
+        <div style="clear: both;"></div>
+        <li>
+          <font>擅长领域：</font>
+            <div class="info-chekbox">
+            <t1>知识产权法律事务<input type="checkbox" class="domain" name="" value="知识产权法律事务"></t1>
+            <t1>征地拆迁<input type="checkbox" class="domain" name="" value="征地拆迁"></t1>
+            <t1>金融证券<input type="checkbox" class="domain" name="" value="金融证券"></t1>
+            <t1>知识产权法律事务<input type="checkbox" class="domain" name="" value="知识产权法律事务"></t1>
+            <t1>征地拆迁<input type="checkbox" name="" class="domain" value="征地拆迁"></t1>
+            <t1>金融证券<input type="checkbox" name="" class="domain" value="金融证券"></t1>
+            </div>
+        </li>
+        <div style="clear: both;"></div>
+        <li>
+          <font>上传照片:</font>
+          <div class="upphoto">
+            <span>
+              <button class="photo-btn"><i id="attorneyCardImg" class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe608;</i> <!-- <img src="../images/lawyer.png"> --></button><br>
+              <t2>职业证书</t2>
+            </span>
+            <span>
+              <button class="photo-btn"><i id="checkImg" class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe608;</i></button><br>
+              <t2>年度考核备案页</t2>
+            </span>
+            <span>
+              <button class="photo-btn"><i id="identityCardImg" class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe608;</i></button><br>
+              <t2>身份证正面照</t2>
+            </span>
+          </div>
+        </li>
+        <div style="clear: both;"></div>
+        <li>
+        <div class="photo-checkbox">
+          <t3> <input type="radio" class="status" name="status" id="status1" checked="checked" value="false"><label>通过</label></t3>
+           <t3> <input type="radio" class="status" name="status" id="status0" value="true"><label>不通过</label></t3>
+    </li>
+        </div>
+        </li>
+      </ul>
+      <div style="clear: both;"></div>
+      <div class="bto-btn">
+        <a href="admin-lawyer.html" class="layui-btn">返回</a>
+        <button type="submit" class="layui-btn hold3">保存</button>
+      </div>
+    </form> 
+  </div>
+  <script type="text/javascript">
+     function updataPrint(){
+
+        var data = {
+           
+            id: $("#userId").val().trim(),
+            nickname:$("#nickname1").val().trim(),
+            gen:$(".radio:checked").val().trim(),
+            age:$("#age").val().trim(),
+            mobile:$("#phoen").val().trim(),
+            wechatId:$("#wechatId").val().trim(),
+            province:$("#province").val().trim(),
+            city:$("#city").val().trim(),
+            area:$("#area").val().trim(),
+            workYear:$("#workYear").val().trim(),
+            workOrg:$("#workOrg").val().trim(),
+            workNum:$("#workNum").val().trim(),
+            isLock:$(".status:checked").val().trim()
+        }
+       console.log(data);
+        $.ajax({
+         type: "POST",
+         url: "http://123.206.42.162:10002/lawyer/update/info",
+         data: JSON.stringify(data),
+         dataType: "json",
+         contentType:"application/json",
+         success: function(data){
+          }
+        });
+    }
+
+    $(".hold3").click(function(){
+        updataPrint();
+        return false;
+    })
+
+</script>
+<!-- content end -->
+</div>
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../layer/layer.js"></script>
+  </body>
+<script type="text/javascript">
+
+  var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+  var nickname = null;
+  var status = '';
+  var startTime = null;
+  var endTime = null;
+
+   function alertMe(id,status){
+    $.ajax({
+        url:"http://123.206.42.162:10002/lawyer/update/status",
+        type:"POST",
+        asyec:false,
+        data:{
+            id : id,
+            status : status
+        },
+        async:false,
+        success:function (res,status) {
+           console.log(res);
+          location.reload();
+         }
+    })
+  }
+  
+/**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+
+  $.each(res, function (i,e) {
+    html +=`<tr>
+            <td>${e.username}</td>
+            <td>${e.nickname}</td>
+            <td>${e.isLock?'没通过':'通过'}</td>
+            <td>${e.createTime}</td>
+            <td>
+                <button class="layui-btn look-examine" onclick='alertas(${e.id});'>审核</button>
+                <button class="layui-btn jinyong-btn" value="${e.id}" onclick="alertMe(${e.id},${!e.isLock})" >${e.isLock?"启用":"禁用"}</button>
+            </td>
+        </tr>`;
+
+  });
+
+ 
+    
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+ getUserGroupAllData();
+
+  function getUserGroupAllData(){
+    $.ajax({
+        url:"http://123.206.42.162:10002/lawyer/list",
+        type:"GET",
+         dataType: 'json',
+         data:{
+          pageNum:startPageNum,
+          pageSize:pageSizeSetting,
+          nickname: nickname,
+          status:status,
+          startTime: startTime,
+          endTime: endTime
+         },
+         // async:true,
+    success:function (res,status) {
+      // console.log(res);
+      userGroup(res.data.content);
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+}
+
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });}
+
+
+  function alertas(e){
+    console.log(e);
+    $.ajax({
+        url:"http://123.206.42.162:10002/lawyer/info/"+ e, 
+         asyec:false,
+         success:function (res,status) {
+           console.log(res);
+          
+          $("#nickname1").val(res.data.nickname) ; // 姓名
+          $("#userId").val(res.data.id) ; // 姓名
+
+          
+          // 性别
+          if(res.data.gen == "男"){
+            $("#radio1").attr("checked","checked");
+             $("#radio2").removeAttr("checked");
+          }else{
+            $("#radio1").removeAttr("checked");
+                $("#radio2").attr("checked","checked");
+          }
+
+
+          $("#age").val(res.data.age) ; // 年龄
+          $("#phoen").val(res.data.mobile) ; // 手机号
+          $("#wechatId").val(res.data.wechatId) ; // 微信号
+          // $("#province").val(res.data.province) ; // 省
+          // $("#city").val(res.data.city) ; // 市
+          // $("#area").val(res.data.area) ; // 区
+          // $("#workYear").val(res.data.zxUserAttorney.workYear) ; // 工作经验
+          $("#workOrg").val(res.data.zxUserAttorney.workOrg) ; // 工作机构
+          $("#workNum").val(res.data.zxUserAttorney.workNum) ; // 职业证号
+          // $(".domain").val(res.data.zxUserAttorney.domain) ; // 擅长领域
+          // $("#attorneyCardImg").val(res.data.zxUserAttorney.attorneyCardImg) ; // 职业证书
+          // $("#checkImg").val(res.data.zxUserAttorney.checkImg) ; // 年度考核备案
+          // $("#identityCardImg").val(res.data.zxUserAttorney.identityCardImg) ; // 身份证正面
+
+            // 是否通过
+            if(res.data.isLock){
+                $("#status1").attr("checked","checked");
+                $("#status0").removeAttr("checked");
+            }else{
+                $("#status1").removeAttr("checked");
+                $("#status0").attr("checked","checked");
+            }
+
+         }
+    })
+    layer.open({
+        type:1,
+        title:'审核',
+        area:['60%','80%'],
+        shadeClose:true,
+        shad:[0.8,'#855'],
+        content:$(".Auditing-lawyer")
+    })
+}
+
+</script>
+</html>

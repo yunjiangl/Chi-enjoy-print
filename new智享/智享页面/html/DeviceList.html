@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>设备列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="css/devicelist-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/xadmin.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery-1.9.1.js"></script> -->
+<script type="text/javascript" src="js/area.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
+            <input class="layui-input" placeholder="输入设备码" name="cate_name" id="printerCode">
+            <input class="layui-input" placeholder="输入设备物主" name="cate_name" id="nickname">
+            <div class="layui-input-inline">
+                <select name="cateid" id="address">
+                    <option value="">请输入地址</option>
+                    <option>山西省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="cateid" id="status">
+                    <option value="">全部</option>
+                    <option value="true">已审核</option>
+                    <option value="false">未审核</option>
+                </select>
+            </div>
+            <input class="layui-input" placeholder="创建时间" name="start" id="start">
+            <input class="layui-input" placeholder="" name="end" id="end">
+            <button class="layui-btn select"  lay-submit="" lay-filter="sreach">查询</button>
+        </form>
+        <button class="layui-btn addList">添加设备</button>
+    </div>
+<!-- addDevice start -->
+<div class="addDevice add-device" style="display: none;">
+    <form class="" id="formDemo">
+<ul>
+    <li><font>设备编码</font><input type="text" class="layui-input" name="printerCode" placeholder="输入设备编码"></li>
+    <div style="clear: both;"></div>
+    <li><font>设备物主</font><input type="text" class="layui-input" name="createId" placeholder="输入设备物主"></li>
+    <div style="clear: both;"></div>
+    <li>
+        <font>设备地址</font>
+	    <div class="input-select-inline">
+	        <select id="s_province" name="province"></select>  
+	        <select id="s_city" name="city" ></select>  
+	        <select id="s_county" name="area"></select>
+			<script type="text/javascript">_init_area();</script>
+		    <div id="show"></div>
+		    </div>
+		    <script type="text/javascript">
+				var Gid  = document.getElementById ;
+				var showArea = function(){
+				    Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +    
+				    Gid('s_city').value + " - 县/区" + 
+				    Gid('s_county').value + "</h3>"
+		                            }
+			</script>
+    </li>
+    <div style="clear: both;"></div>
+    <li><font>详细地址</font><input type="text" name="address" class="layui-input" placeholder="输入设备详细地址"></li>
+    <div style="clear: both;"></div>
+    <li><font>线下管理员</font><input type="text" name="managerName" class="layui-input" placeholder="线下管理员"></li>
+    <div style="clear: both;"></div>
+    <li><font>管理员电话</font><input type="text" name="managerPhone" class="layui-input" placeholder="管理员电话"></li>
+    <div style="clear: both;"></div>
+    <li><button class="layui-btn hold" type="submit">保存</button></li>
+</ul>
+</form>
+</div>
+<!-- <script src="js/jquery.serializejson.js"></script> -->
+<script type="text/javascript">
+
+    function addPrint(){
+
+        var data = {
+             printerCode:$("*[name='printerCode']").val().trim(),
+            createId:$("*[name='createId']").val().trim(),
+            province:$("*[name='province']").val().trim(),
+            city:$("*[name='city']").val().trim(),
+            area:$("*[name='area']").val().trim(),
+            address:$("*[name='address']").val().trim(),
+            managerName:$("*[name='managerName']").val().trim(),
+            managerPhone:$("*[name='managerPhone']").val().trim(),
+            latitude:0, // 纬度
+            longitude:0 // 经度
+        }
+       
+        $.ajax({
+         type: "POST",
+         url: "http://123.206.42.162:10002/zx/pm/add",
+         data: JSON.stringify(data),
+         dataType: "json",
+         contentType:"application/json",
+         success: function(data){
+          }
+        });
+    }
+
+    $(".hold").click(function(){
+        addPrint();
+        return false;
+    })
+
+</script>
+<!-- addDevice end -->
+<!-- addDevice examine 审核 start -->
+<div class="addDevice examine" style="display: none;">
+<ul>
+    <li><font>设备编码</font><input type="text" class="layui-input" name="printerCode" id="printerCode1" placeholder="输入设备编码"><input type="text" class="layui-input" name="id" id="printerId" style="display: none;"></li>
+    <div style="clear: both;"></div>
+    <li><font>设备物主</font><input type="text" class="layui-input" name="nickname" id="nickname1" placeholder="输入设备物主"></li>
+    <div style="clear: both;"></div>
+    <li>
+        <font>设备地址</font>
+	    <div class="input-select-inline">
+	        <select id="province" name="province">
+	            <option value="贵州">贵州</option>
+	        </select>  
+	        <select id="city" name="city">
+	            <option value="贵阳">贵阳</option>
+	        </select>  
+	        <select id="county" name="area">
+	            <option value="花溪">花溪</option>
+	        </select>
+				<script class="resources library" src="js/area.js" type="text/javascript"></script>
+				<script type="text/javascript">_init_area();</script>
+	    		<div id="show"></div>
+	    </div>
+		    <script type="text/javascript">
+				var Gid  = document.getElementById ;
+				var showArea = function(){
+				    Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +    
+				    Gid('s_city').value + " - 县/区" + 
+				    Gid('s_county').value + "</h3>"
+				                            }
+			</script>
+    </li>
+    <div style="clear: both;"></div>
+    <li><font>详细地址</font><input type="text" name="address" id="address1" class="layui-input" placeholder="输入设备详细地址"></li>
+    <div style="clear: both;"></div>
+    <li id="radio">
+	    <div>
+		    <input type="radio" class="status" name="status" id="status1" checked="checked" value="true">
+		    <span>通过</span>
+	    </div>
+    	<div>
+			<input type="radio" class="status" name="status" id="status0" value="false">
+			<span>不通过</span>
+    	</div>
+    
+    </li>
+    <li><button class="layui-btn hold1" type="submit">保存</button></li>
+</ul>
+</div>
+<script type="text/javascript">
+     function updataPrint(){
+
+        var data = {
+           
+            id: $(".examine #printerId").val().trim(),
+            printerCode:$(".examine #printerCode1").val().trim(),
+            province:$(".examine #province").val().trim(),
+            city:$(".examine #city").val().trim(),
+            area:$(".examine #county").val().trim(),
+            address:$(".examine #address1").val().trim(),
+            status:$(".status:checked").val().trim(),
+            latitude:0, // 纬度
+            longitude:0 // 经度
+        }
+       console.log(data);
+        $.ajax({
+         type: "POST",
+         url: "http://123.206.42.162:10002/zx/pm/update/info",
+         data: JSON.stringify(data),
+         dataType: "json",
+         contentType:"application/json",
+         success: function(data){
+          }
+        });
+    }
+
+    $(".hold1").click(function(){
+        updataPrint();
+        return false;
+    })
+
+</script>
+<!-- addDevice end -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./layer/layer.js"></script>
+<script type="text/javascript">
+$('.addList').on('click',function(){
+    layer.open({
+        type:1,
+        title:'添加设备',
+        area:['40%','70%'],
+        shadeClose:true,
+        shad:[0.8,'#855'],
+        content:$(".add-device")
+    })
+})
+</script>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>设备编码</th>
+            <th>设备物主</th>
+            <th>审核状态</th>
+            <th>设备地址</th>
+            <th>添加时间</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+        
+        </tbody>
+    </table>
+     <div class="page">
+        <div id="page-link"></div>
+      </div>
+</div>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    /*用户-停用*/
+    function member_stop(obj,id){
+        layer.confirm('确认要停用吗？',function(index){
+
+            if($(obj).attr('title')=='启用'){
+
+                //发异步把用户状态进行更改
+                $(obj).attr('title','停用')
+                $(obj).find('i').html('&#xe62f;');
+
+                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                layer.msg('已停用!',{icon: 5,time:1000});
+
+            }else{
+                $(obj).attr('title','启用')
+                $(obj).find('i').html('&#xe601;');
+
+                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                layer.msg('已启用!',{icon: 5,time:1000});
+            }
+
+        });
+    }
+
+    /*用户-删除*/
+    function member_del(obj,id){
+        layer.confirm('确认要删除吗？',function(index){
+            //发异步删除数据
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!',{icon:1,time:1000});
+        });
+    }
+
+
+
+    function delAll (argument) {
+
+        var data = tableCheck.getData();
+
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+    }
+</script>
+<script type="text/javascript">
+//var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+  var zxPMId = null;
+  var printerCode = null;
+  var nickname = null;
+  var status = '';
+  var address = null;
+  var startTime = null;
+  var endTime = null;
+
+ function alertMe(id,status){
+    $.ajax({
+        url:"http://123.206.42.162:10002/zx/pm/update/status",
+        type:"POST",
+        asyec:false,
+        data:{
+            id : id,
+            status : status
+        },
+        async:false,
+        success:function (res,status) {
+           console.log(res);
+          location.reload();
+         }
+    })
+  }
+
+function alertas(e){
+    console.log(e);
+    $.ajax({
+        url:"http://123.206.42.162:10002/zx/pm/info/"+ e, 
+         asyec:false,
+         success:function (res,status) {
+           console.log(res);
+           console.log(res.data.printerCode);
+           $("#printerCode1").val(res.data.printerCode);
+          $("#printerId").val(res.data.id);
+          $("#nickname1").val(res.data.sysUser.realName) ;
+           // console.log($("#province").val(res.data.province));
+           // $("#city").val(res.data.city);
+            //$("#county").val(res.data.area);
+            $("#address1").val(res.data.address);
+
+            if(res.data.status){
+                $("#status1").attr("checked","checked");
+                $("#status0").removeAttr("checked");
+            }else{
+                $("#status1").removeAttr("checked");
+                $("#status0").attr("checked","checked");
+            }
+
+         }
+    })
+    layer.open({
+        type:1,
+        title:'审核',
+        area:['40%','70%'],
+        shadeClose:true,
+        shad:[0.8,'#855'],
+        content:$(".examine")
+    })
+}
+
+    /**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  $.each(res, function (i,e) {
+    html +=`<tr>
+            <td>${e.printerCode}</td>
+            <td>${e.sysUser.realName}</td>
+            <td>${e.status?'通过':'没通过'}</td>
+            <td>${e.address}</td>
+            <td>${e.createTime}</td>
+            <td>
+                <button class="layui-btn jinyong-btn" value="${e.id}" onclick="alertMe(${e.id},${!e.status})" >${e.status?"禁用":"启用"}</button>
+                <button class="layui-btn look-examine" onclick='alertas(${e.id});'>审核</button>
+            </td>
+        </tr>`;
+
+  });
+
+ 
+    
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+// function alertMe(id,status){
+//     alert(id,status);
+// }
+/**
+ * 分页开始
+ */
+
+ getUserGroupAllData();
+
+// 模糊查询
+ function selectPrint(){
+    printerCode = $("#printerCode").val().trim();
+    nickname = $("#nickname").val().trim();
+    status = $("#status").val().trim();
+    address = $("#address").val().trim();
+    startTime = $("#start").val().trim();
+    endTime = $("#end").val().trim();
+    getUserGroupAllData();
+ }
+
+ $(".select").click(function(){
+        selectPrint();
+        return false;
+    })
+
+ function getUserGroupAllData(){
+    $.ajax({
+        url:"http://123.206.42.162:10002/zx/pm/list",
+        type:"GET",
+         dataType: 'json',
+         data:{
+            pageNum:startPageNum,
+          pageSize:pageSizeSetting,
+          zxPMId:zxPMId,
+          printerCode: printerCode,
+          nickname: nickname,
+          address: address,
+          status:status,
+          startTime: startTime,
+          endTime: endTime
+         },
+         // async:true,
+    success:function (res,status) {
+      // console.log(res);
+      userGroup(res.data.content);
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+}
+
+    function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });}
+
+ 
+
+ 
+</script>
+</body>
+
+</html>

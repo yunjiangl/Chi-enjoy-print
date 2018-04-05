@@ -1,0 +1,69 @@
+.layui-row{
+    width: 50%;
+    padding: 20px;
+}
+.picture{
+    display: flex;
+}
+.sex-age{
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 16px;
+}
+.sex-age li{
+    line-height: 35px;
+}
+.sex-age li input {
+    margin-left: 10px;
+}
+.sex-age li input[type="radio"] {
+    margin-right: 10px;
+}
+.addDevice ul font{
+    float: left;    
+}
+.addDevice ul li .year {
+    float: right;
+    width: 80%;
+    margin-left: 10px;
+}
+.addDevice{
+    padding: 20px;
+    width: 60%;
+}
+.field{
+    display: flex;
+    width: 100%;
+    margin-left: 20px;
+    padding-top: 20px;
+}
+.field font{
+    width: 30%;
+    font-size: 16px;
+}
+.checkbox ul{
+    width: 80%;
+}
+.checkbox ul li{
+    float: left;
+    line-height: 30px;
+    margin: 0 5px;
+}
+.upPicture{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-around;
+    text-align: center;
+}
+.upPicture h4{
+    margin-top: 20px;
+}
+.footer-btn{
+    margin-top: 20px;
+}
+/**
+消息通知查看
+*/
+.notice{
+    width: 60%;
+}

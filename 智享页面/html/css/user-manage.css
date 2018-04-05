@@ -1,0 +1,303 @@
+/*
+添加用户组和修改用户组
+ */
+
+.saveuser {
+    width: 500px;
+}
+
+.saveuser form {
+    width: 100%;
+    display: block;
+    margin-left: -80px;
+}
+
+.saveuser font {
+    float: left;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.saveuser layui-input {
+    float: right;
+}
+
+.saveuser .user-margin {
+    margin-bottom: 20px;
+    width: 320px;
+    float: right;
+}
+
+.updateuser {
+    width: 500px;
+    margin: 80px auto;
+}
+
+.updateuser tt {
+    margin-left: 37%;
+}
+
+.saveuser,
+.updateuser input {
+    width: 320px;
+    height: 35px;
+    float: right;
+    margin: 0 0 26px 0;
+}
+
+.saveuser,
+.updateuser .layui-input-inline {
+    width: 320px;
+    height: 35px;
+    float: right;
+    display: inline;
+    margin: 0 0 30px 0;
+}
+
+.updateuser font {
+    float: left;
+    font-size: 22px;
+}
+
+.saveuser,
+.updateuser .ft {
+    margin: 35px 0 0 65px;
+}
+
+.saveuser tt {
+    margin-left: 35%;
+}
+
+.saveuser,
+.updateuser tt a {
+    margin-right: 30px;
+}
+
+
+/*
+设置权限
+ */
+
+.select {
+    padding: 30px;
+}
+
+.select h4 {
+    font-size: 18px;
+}
+
+.select .content ul li {
+    float: left;
+    width: 32%;
+}
+
+.select .content ul li h4 {
+    float: left;
+    margin: 15px 20px 0 0;
+}
+
+.select .content ul li .file,
+.device,
+.user-manage,
+.Order {
+    float: left;
+    font-size: 16px;
+}
+
+.select .content ul li input {
+    margin: 20px 10px 0 0px;
+}
+
+.bto-btn {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.bto-btn a {
+    margin-right: 30px;
+}
+
+
+/*
+后台用户组管理
+ */
+
+.add-background-user {
+    padding: 50px;
+    padding: 20px 50px 50px 50px; 
+}
+
+.add-background-user .content {
+    width: 500px;
+}
+
+.add-background-user .content ul li {
+    margin-top: 20px;
+}
+
+.add-background-user .content ul li font {
+    margin-right: 20px;
+    text-align: right;
+    width: 100px;
+    font-size: 18px;
+    margin-top: 8px;
+    float: left;
+}
+
+.add-background-user .content ul li input {
+    width: 320px;
+}
+
+.add-background-user .content ul li select {
+    width: 320px;
+}
+
+.add-background-user .content ul li i {
+    color: #f00;
+    font-size: 30px;
+    margin: -32px 6% 0 0;
+    float: right;
+}
+
+.add-background-user .content ul li .i {
+    margin-top: 8px;
+}
+
+.add-background-user .content ul {
+    margin-bottom: 30px;
+}
+
+.add-background-user .content tt {
+    margin-left: 50px;
+}
+
+.add-background-user .content tt a {
+    margin-right: 30px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+
+/*
+前台用户管理
+*/
+
+.active{
+    background: #f00;
+}
+
+
+/*审核律师用户*/
+
+.Auditing-lawyer {
+    padding: 50px;
+}
+
+.Auditing-lawyer .top h4 {
+    font-size: 20px;
+}
+
+.Auditing-lawyer img {
+    float: left;
+}
+
+.Auditing-lawyer .content top .right {
+    float: left;
+    margin-left: 25px;
+    width: 200px;
+}
+
+.Auditing-lawyer .content top .right font {
+    float: left;
+    font-size: 16px;
+}
+
+.Auditing-lawyer .content top .right .layui-input {
+    height: 30px;
+    width: 119px;
+    float: left;
+    margin-left: 20px;
+}
+
+.sex font {
+    float: left;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.sex tt {
+    float: left;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.sex tt .radio {
+    margin-right: 5px;
+}
+
+.Auditing-lawyer .content top .right li {
+    margin-top: 15px;
+}
+
+.layui-info .layui-input {
+    width: 320px;
+    height: 35px;
+    float: left;
+}
+
+.layui-info {
+    width: 800px;
+}
+
+.layui-info li {
+    margin-top: 20px;
+    display: block;
+}
+
+.layui-info font {
+    float: left;
+    font-size: 16px;
+    margin: 5px 30px 0 0;
+}
+
+.layui-info .lii {
+    width: 320px;
+}
+
+.layui-info .info-chekbox {
+    float: left;
+    width: 175px;
+}
+
+.layui-info .info-chekbox t1 {
+    margin-top: 10px;
+    display: block;
+}
+
+.upphoto .photo-btn {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.upphoto t2 {
+    margin-top: 10px;
+    display: block;
+}
+
+.upphoto span {
+    text-align: center;
+    float: left;
+    margin: 0 5px;
+}
+
+.photo-checkbox t3 {
+    margin: 0 15px;
+}
+
+.photo-checkbox t3 input {
+    margin-right: 5px;
+}

@@ -1,0 +1,23 @@
+.add-classify{
+	width: 80%;
+	display: none;
+	margin: auto;
+	text-align: center;
+}
+.add-classify form{
+	margin-top: 40px;
+}
+.add-classify font{
+	font-size: 16px;
+	float: left;
+}
+.add-classify .layui-input-inline,.add-classify input{
+	width: 320px;
+	height: 35px;
+	float: right;
+	display: inline;
+	margin: 0 0 30px 0;
+}
+.add-classify button{
+
+}

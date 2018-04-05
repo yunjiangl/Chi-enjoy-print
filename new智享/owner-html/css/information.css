@@ -1,0 +1,23 @@
+.layui-row{
+    width: 30%;
+    /* background: #0f0; */
+}
+.essentialInformation ul{
+    margin-top: 20px;
+}
+.essentialInformation ul li font{
+    width: 30%;
+    display: block;
+    text-align: right;
+    margin-right: 30px;
+    padding-top: 5px;
+}
+.layui-tab-item ul li {
+    display: flex;
+    justify-content: center;
+    line-height: 30px;
+    margin: 10px 0;
+}
+.essentialInformation .layui-input {
+    width: 40%;
+}

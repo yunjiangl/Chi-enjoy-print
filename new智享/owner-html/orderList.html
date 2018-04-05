@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>物主端-订单列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
+        <input class="layui-input" placeholder="订单号" name="orderId" >
+        <input class="layui-input" placeholder="设备编码" name="printerCode" >
+        <input class="layui-input" placeholder="律师用户名" name="lawyerName" >
+          
+        <input class="layui-input" id="start" name="start" placeholder="创建时间">
+            至
+        <input class="layui-input" id="end" name="end" placeholder="创建时间">
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="layui-btn-search">查询</button>
+        </form>
+      </div>
+      <xblock>
+      </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+              全选
+            </th>
+            <th>订单号</th>
+            <th>设备物主</th>
+            <th>设备编号</th>
+            <th>线上管理员</th>
+            <th>客户</th>
+            <th>打印服务费</th>
+            <th>打印费</th>
+            <th>支付金额</th>
+            <th>支付方式</th>
+            <th>支付时间</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      <div class="page">
+        <div id="page-link">
+          
+        </div>
+      </div>
+    </div>
+<!-- addaffter start -->
+    <div class="">
+      
+    </div>
+	
+	<div class="order-details" style="display: none;">
+       
+    </div>
+<!-- addaffter end -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="layer/layer.js"></script>
+<!-- 时间控件-->
+<script>
+    layui.use('laydate', function(){
+      var laydate = layui.laydate;
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#start', //指定元素
+        format: 'yyyy年MM月dd日 HH时mm分ss秒'
+      });
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#end', //指定元素
+        format: 'yyyy年MM月dd日 HH时mm分ss秒'
+      });
+    });
+</script>
+  </body>
+<script>
+/**
+ * 进入页面时加载数据
+ */
+//全局变量
+//var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+//ajax请求后台数据
+  getUserGroupAllData();
+
+
+/**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  $.each(res, function (i,e) {
+    html +=`<tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.orderNum}</td>
+            <td>${e.zxPrinterManager.managerName}</td>
+            <td>${e.zxPrinterManager.printerCode}</td>
+            <td>${e.zxUser.nickname}</td>
+            <td>${e.sysUser.realname}</td>
+            <td>${e.serviceAmount}</td>
+            <td>${e.printerAmount}</td>
+            <td>${e.orderAmount}</td>
+            <td>${e.payType}</td>
+            <td>${e.payTime}</td>
+            <td>
+              <button class="layui-btn look-btn" value='${e.id}'>查看</button>
+            </td>
+          </tr>`;
+
+  });
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+/**
+ * 分页开始
+ */
+toPage();
+
+
+function getUserGroupAllData(){
+  $.ajax({
+    url:"http://123.206.42.162:10002/zx/order/page",
+    type:"GET",
+    data:{
+      page:startPageNum,
+      pageSize:pageSizeSetting
+    },
+    async:false,
+    success:function (res,status) {
+      userGroup(res.data.content);
+	  //console.log(res.data.content);
+      totalElementsAll = res.data.totalElements;
+
+    }
+  })
+}
+//console.log(totalElementsAll);
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });
+};
+
+$("#layui-btn-search").click(function () {
+    startPageNum = 1;
+	pageSizeSetting =10;
+    toPage();
+    $(".page-link").hide();
+    var orderId = $("input[name = 'orderId']").val();
+    var printCode = $("input[name = 'printerCode']").val();
+	var lawyerName = $("input[name = 'lawyerName']").val();
+	var start = $("input[name = 'start']").val();
+	var end = $("input[name = 'end']").val();
+    event.preventDefault();
+    $.ajax({
+      url:"http://123.206.42.162:10002/zx/order/page",
+      method:"GET",
+      data:{
+        page:startPageNum,
+        pageSize:pageSizeSetting,
+		printHostId:orderId,
+		printCode:printCode,
+		lawyerName:lawyerName,
+		time1:start,
+		time2:end
+      },
+//      async:false,
+      success:function (res) {
+        var dataContent=res.data.content;
+		console.log(dataContent);
+        userGroup(dataContent);
+      },
+    })
+  });
+  
+  
+  //查看详情
+    $('.look-btn').on('click',function(){
+        $('.order-details').html("");
+        // layui弹窗
+        layer.open({
+            type:1,
+            title:'用户详情信息',
+            area:['40%','70%'],
+            shadeClose:true,
+            resize:false,
+            content:$(".order-details")
+        })
+        // 后台获取数据查看
+        var btnId = $(this).val();
+        var detailsIdNum = parseInt(btnId);
+        // console.log(detailsIdNum);
+        $.ajax({
+            url:'http://123.206.42.162:10002/zx/order/info/'+detailsIdNum,
+            method:'GET',
+            async:false,
+            success: function(res){
+            console.log(res)
+            var lookDetails = "";
+            var Details1 = '<li style="color:#f00; text-align: center; font-size: 18px; line-height: 20px;">请添加详情信息</li>'
+            var index = res.data;
+            lookDetails =`
+                    <ul class="number">
+                <ul class="left">
+                    <li><font>订单号</font><input class="layui-input" type="text" value="${index.orderNum}"></li>
+                    <li><font>设备编号</font><input class="layui-input" type="text" value="${index.zxPrinterManager.printerCode}"></li>
+                    <li><font>线下管理员</font><input class="layui-input" type="text" value="${index.lawyer.nickname}"></li>
+                    <li><font>线上管理员</font><input class="layui-input" type="text" value="${index.zxUser.nickname}"></li>
+                </ul>
+                <ul class="right">
+                    <li><font>设备物主</font><input class="layui-input" type="text" placeholder="${index.zxPrinterManager.managerName}"></li>
+                    <li><font>联系方式</font><input class="layui-input" type="text" placeholder="${index.zxPrinterManager.managerPhone}"></li>
+                    <li><font>客户</font><input class="layui-input" type="text" placeholder="${index.sysUser.realname}"></li>
+                </ul>
+            </ul>
+            <div style="clear:both"></div>
+            <div class="line"></div>
+
+            <div class="payment-print">
+                <ul>
+                    <li><font class="all">支付时间</font> <font>${index.payTime}</font></li>
+                    <li><font class="all">支付方式</font> <font>${index.payType}</font></li>
+                    <li><font class="all">支付金额</font> <font>${index.orderAmount}</font></li>
+                    <li><font class="all">文件标题</font> <font>${index.zxFileManagerAB}</font></li>
+                    <li><font class="all">打印服务费</font> <font>${index.serviceAmount}</font></li>
+                    <li><font class="all">打印费</font> <font>${index.printerAmount}</font></li>
+                    <li><font class="all">纸张</font> <font>${index.zxOrderPrinterFile.paperType}</font></li>
+                    <li><font class="all">颜色</font> <font>${index.zxOrderPrinterFile.paperColcor}</font></li>
+                    <li><font class="all">份数</font> <font>${index.zxOrderPrinterFile.printerNum}</font></li>
+                    <li><font class="all">单双面</font> <font>${index.zxOrderPrinterFile.paperUsage}</font></li>
+                    <li><font class="all">范围</font> <font>所有页面(${index.zxOrderPrinterFile.filePaper}页)</font></li>
+                </ul>
+            </div>
+            <button class="layui-btn back">返回</button>
+            `;
+                $('.order-details').html(lookDetails);  
+            }
+			 
+        })
+		
+    })
+</script>
+
+</html>

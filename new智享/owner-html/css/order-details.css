@@ -1,0 +1,52 @@
+.order-details{
+    width: 60%;
+}
+.number .left{
+    float: left;
+    width: 50%;
+}
+.number .right{
+    float: left;
+    width: 50%;
+    margin-top: 48px;
+}
+.number li{
+    line-height: 30px;
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+}
+.number font{
+    width: 30%;
+    text-align: right;
+}
+.layui-input {
+    width: 50%;
+    margin-left: 20px;
+}
+.line{
+    height: 1px;
+    background: #999;
+    margin: 10px 20px;
+}
+.payment-print{
+    width: 100%;
+}
+.payment-print ul li{
+    line-height: 35px;
+    width: 100%;
+    display: flex;
+}
+.payment-print font{
+    display: block;
+}
+.payment-print .all{
+    width: 15%;
+    color: #999;
+    margin-right: 20px;
+    text-align: right;
+}
+.back{
+    margin-left: 50px;
+    margin-top: 20px;
+}

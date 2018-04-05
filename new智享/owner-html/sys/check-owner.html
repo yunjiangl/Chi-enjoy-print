@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>查看设备管理员</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+              全选
+            </th>
+            <th>线下管理员名称</th>
+            <th>领域</th>
+            <th>审核状态</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+          
+          
+        </tbody>
+      </table>
+      <div class="page">
+        <div id="page-link">
+          
+        </div>
+      </div>
+    </div>
+	
+	<div class="x-body" style="display: none;">
+	<div class="layui-row"></div>
+	</div>
+	
+    
+
+<!-- addaffter start -->
+    <div class="">
+      
+    </div>
+<!-- addaffter end -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../layer/layer.js"></script>
+  </body>
+<script>
+/**
+ * 进入页面时加载数据
+ */
+//全局变量
+//var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+//ajax请求后台数据
+  getUserGroupAllData();
+
+
+/**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  $.each(res, function (i,e) {
+     html +=`          <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.nickname}</td>
+            <td>${e.zxUserAttorney.domain}</td>
+            <td>通过</td>
+            <td>${e.zxUserPrinter.createTime}</td>
+            <td>
+             <button class="layui-btn">解除</button>
+              <button class="layui-btn look-btn" value='${e.id}'>查看</button>
+            </td>
+          </tr>`;
+
+  });
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+/**
+ * 分页开始
+ */
+toPage();
+
+
+function getUserGroupAllData(){
+  $.ajax({
+    url:"http://localhost:10002/zx/um/selectOnlineAdmin",
+    type:"GET",
+    data:{
+      page:startPageNum
+    },
+    async:false,
+    success:function (res,status) {
+      userGroup(res.data.content);
+      totalElementsAll = res.data.totalElements;
+      console.log(totalElementsAll);
+    }
+  })
+}
+
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });
+};
+
+//查看详情
+    $('.look-btn').on('click',function(){
+        //$('.layui-row').html("");
+        // layui弹窗
+        layer.open({
+            type:1,
+            title:'用户详情信息',
+            area:['40%','70%'],
+            shadeClose:true,
+            resize:false,
+            content:$(".layui-row")
+        })
+        // 后台获取数据查看
+        var btnId = $(this).val();
+        var detailsIdNum = parseInt(btnId);
+        // console.log(detailsIdNum);
+        $.ajax({
+            url:'http://localhost:10002/zx/um/selectOnlineAdmin'+detailsIdNum,
+            method:'GET',
+            async:false,
+            success: function(res){
+            console.log(res)
+            var lookDetails = "";
+            var Details1 = '<li style="color:#f00; text-align: center; font-size: 18px; line-height: 20px;">请添加详情信息</li>'
+            var index = res.data
+            lookDetails =`
+            <form class="">
+            <div class="picture">
+                <img src="../images/lawyer.png" alt="管理员资料">
+                <div class="">
+                    <ul class="sex-age">
+                        <li><font>姓名:</font> <input type="text" placeholder="输入姓名" value="${index.username}"></li>
+                        <li>
+                            <font>性别:</font> 
+                            <input name="sex" type="radio" value="男" checked>男
+                            <input name="sex" type="radio" value="女" >女
+                        </li>
+                        <li><font>年龄:</font><input type="text" placeholder="输入年龄" value="${index.age}"></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- addDevice start -->
+                <div class="addDevice">
+                    <ul>
+                        <li><font>手机号:</font><input class="layui-input" name="mobile" type="text" value="${index.moblie}" ></li>
+                        <div style="clear: both;"></div>
+                        <li><font>微信号:</font><input class="layui-input" name="wechatId" type="text" value="${index.wechatId}" ></li>
+                        <div style="clear: both;"></div>
+                        <li>
+                            <font>所在地:</font>
+                            <div class="input-select-inline">
+                                <select id="s_province" name="s_province">${index.province}</select>  
+                                <select id="s_city" name="s_city">${index.city}</select>  
+                                <select id="s_county" name="s_county">${index.area}</select>  
+                            </div>
+                            
+                        </li>
+                        <div style="clear: both;"></div>
+                        <li>
+                            <font>执业年限:</font>
+                            <div class="layui-input-inline year">
+                                <select class="permsName" name="cateid" id="workYear">${index.zxUserAttorney.workYear}
+                                    //<option>选择执业年限</option>
+                                    //<option>1年以下</option>
+                                    //<option>1~3年</option>
+                                    //<option>3~5年</option>
+                                    //<option>5~10年</option>
+                                    //<option>10年以上</option>
+                                </select>
+                            </div>
+                        </li>
+                        <div style="clear: both;"></div>
+                        <li><font>执业机构:</font><input class="layui-input" name type="text" value="${index.zxUserAttorney.workOrg}"></li>
+                        <div style="clear: both;"></div>
+                        <li><font>执业证号:</font><input class="layui-input" name type="text" value="${index.zxUserAttorney.workNum}"></li>
+                    </ul>
+                </div>
+            <!-- addDevice end -->
+
+            <!-- field 擅长领域 start -->
+                <div class="field">
+                    <font class="shanchang">擅长领域:</font>
+                    <div class="checkbox">
+                        <ul>
+                            <li><font>劳动纠纷</font><input type="checkbox"></li>
+                            <li><font>海事海商</font><input type="checkbox"></li>
+                            <li><font>商事总裁</font><input type="checkbox"></li>
+                            <li><font>知识产权</font><input type="checkbox"></li>
+                            <li><font>工商税务</font><input type="checkbox"></li>
+                            <li><font>消费维权</font><input type="checkbox"></li>
+                            <li><font>保险理赔</font><input type="checkbox"></li>
+                            <li><font>投资理财</font><input type="checkbox"></li>
+                            <li><font>人身伤害</font><input type="checkbox"></li>
+                            <li><font>交通事故</font><input type="checkbox"></li>
+                            <li><font>医疗关系</font><input type="checkbox"></li>
+                            <li><font>婚姻家事</font><input type="checkbox"></li>
+                            <li><font>物流纠纷</font><input type="checkbox"></li>
+                            <li><font>文体教育</font><input type="checkbox"></li>
+                            <li><font>农林牧渔</font><input type="checkbox"></li>
+                            <li><font>网络信息</font><input type="checkbox"></li>
+                            <li><font>买卖租赁</font><input type="checkbox"></li>
+                            <li><font>借贷纠纷</font><input type="checkbox"></li>
+                            <li><font>合同纠纷</font><input type="checkbox"></li>
+                            <li><font>建设工程</font><input type="checkbox"></li>
+                            <li><font>涉外事务</font><input type="checkbox"></li>
+                            <li><font>刑事案件</font><input type="checkbox"></li>
+                            <li><font>民事诉讼</font><input type="checkbox"></li>
+                            <li><font>行政案件</font><input type="checkbox"></li>
+                            <li><font>房产土地</font><input type="checkbox"></li>
+                            <li><font>拆迁安置</font><input type="checkbox"></li>
+                            <li><font>邻里关系</font><input type="checkbox"></li>
+                            <li><font>企业事务</font><input type="checkbox"></li>
+                            <li><font>其他事务</font><input type="checkbox"></li>
+                        </ul>
+                    </div>
+                </div>
+            <!-- field end -->
+
+            <!-- upPicture start -->
+                <div class="upPicture">
+                    <div class="photo">
+                        <img src="../${index.zxUserAttorney.identityCardImg}" alt="执业证书信息页" width="280" height="207">
+                        <h4>执业证书信息页</h4>
+                    </div>
+                    <div class="photo">
+                        <img src="../${e.zxUserAttorney.attorneyCardImg}" alt="执业证书信息页" width="280" height="207">
+                        <h4>执业证书信息页</h4>
+                    </div>
+                    <div class="photo">
+                        <img src="../${e.zxUserAttorney.checkImg}" alt="执业证书信息页" width="280" height="207">
+                        <h4>执业证书信息页</h4>
+                    </div>
+                </div>
+            <!-- upPicture end -->
+            <div class="footer-btn">
+            <button class="layui-btn hold" type="submit">返回</button>
+            <button class="layui-btn hold" type="submit">解除</button>
+            </div>
+        </form>`;
+                $('.layui-row').html(lookDetails); 
+            }
+			 
+        })
+		
+    })
+</script>
+</html>

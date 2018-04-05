@@ -1,0 +1,29 @@
+.addDevice{
+	text-align: center;
+	padding: 40px;
+	font-size: 16px;
+}
+.addDevice input{
+	width: 80%;
+	float: right;
+}
+.addDevice ul li{
+	margin-top: 20px;
+	display: block;
+}
+.addDevice font{
+	float: left;
+	font-size: 16px;
+}
+.addDevice .input-select-inline{
+	float: right;
+	width: 80%;
+}
+.addDevice .input-select-inline .layui-input-inline{
+	width: 50%;
+	text-align: left;
+	margin-top: 15px;
+}
+.addDevice .hold{
+	margin-top: 20px;
+}

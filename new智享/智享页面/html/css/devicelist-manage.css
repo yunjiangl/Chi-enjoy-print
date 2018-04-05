@@ -1,0 +1,43 @@
+.addDevice{
+	text-align: center;
+	padding: 40px;
+	font-size: 16px;
+}
+.addDevice .layui-input{
+	width: 80%;
+	float: right;
+}
+.addDevice ul li{
+	margin-top: 20px;
+	display: block;
+}
+.addDevice font{
+	float: left;
+	font-size: 16px;
+}
+.addDevice .input-select-inline{
+	float: right;
+	width: 80%;
+}
+.layui-form-select .layui-input{
+	width: 100%;
+}
+.addDevice .input-select-inline .layui-input-inline{
+	width: 50%;
+	text-align: left;
+	margin-top: 15px;
+}
+.addDevice .hold{
+	margin-top: 20px;
+}
+.examine #radio {
+	float: left;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	width: 120px;
+	justify-content: space-between;
+}
+	 

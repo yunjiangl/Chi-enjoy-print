@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>基本信息-详细信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi">
+    <link type="image/x-icon" href="../favicon.ico" rel="shortcut icon">
+    <link href="../css/font.css" rel="stylesheet">
+    <link href="../css/xadmin.css" rel="stylesheet">
+    <link href="../css/information.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/xadmin.js" type="text/javascript"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" href="javascript:location.replace(location.href);" title="刷新" style="line-height:1.6em;margin-top:3px;float:right">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    
+    <div class="x-body">
+      <div class="layui-row">
+               
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">基本信息</li>
+                        <li>收款信息</li>
+                    </ul>
+                    <div class="layui-tab-content" style="height: 100px;">
+                        <div class="layui-tab-item layui-show">
+                            <form action="">
+                                <div class="essentialInformation">
+                                    <ul>
+                                        <li><font>用户名</font><input class="layui-input" type="text name="username" id="username" placeholder="admin"></li>
+                                        <li><font>密码</font><input class="layui-input" type="text" name="password" id="password" placeholder="输入新密码"></li>
+                                        <li><font>确认密码</font><input class="layui-input" type="text" name="password1" placeholder="输入新密码"></li>
+                                        <li><font>email</font><input class="layui-input" type="email" name="email" id="email" placeholder="输入邮箱"></li>
+                                        <li><button class="layui-btn" onclick="updateById()" lay-submit>保存</button></li>
+                                    </ul>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                        <div class="layui-tab-item">
+                            <form action="">
+                                <div class="essentialInformation receivablesInformation">
+                                    <ul>
+                                        <li><font>收款账号开户行</font><input class="layui-input" name="openingBank" id="ob" type="text" placeholder="输入收款账号开户心"></li>
+                                        <li>
+                                        <font>收款账号地市</font>
+
+                                                <div class="input-select-inline" id="select">
+                                                    <select id="s_province" class="layui-input" name="s_province"></select>  
+                                                    <select id="s_city" class="layui-input" name="s_city" ></select>  
+                                                    <select id="s_county" class="layui-input" name="s_county"></select>
+                                                    <script class="resources library" src="../js/area.js" type="text/javascript"></script>
+                                                    <script type="text/javascript">_init_area();</script>
+                                                    <div id="show"></div>
+                                                </div>
+                                                        <script type="text/javascript">
+                                                        var Gid  = document.getElementById ;
+                                                        var showArea = function(){
+                                                            Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +    
+                                                            Gid('s_city').value + " - 县/区" + 
+                                                            Gid('s_county').value + "</h3>"
+                                                            }
+                                                    </script>
+                                                  
+
+                                        </li>
+                                        <li><font>收款账号地区码</font><input class="layui-input" name="region" id="re" type="text" placeholder="输入收款账号地区码"></li>
+                                        <li><font>收款账号</font><input class="layui-input" type="text" name="accountNumber" id="am" placeholder="输入收款账号"></li>
+                                        <li><font>收款账号名称</font><input class="layui-input" type="text" name="accountName" id="at" placeholder="输入收款账号名称"></li>
+                                        <li><button class="layui-btn btnMoney" onclick="updatebank()" lay-submit>保存</button></li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+    </div>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../layer/layer.js"></script>
+  </body>
+<script type="text/javascript">
+  //基本信息
+    function updateById(){
+         var userName = $("#username").val();
+         var passWord = $("#password").val();
+         var Email = $("#email").val();
+         var shen = $("*[name='s_province']").val();
+         var shi = $("*[name='s_city']").val();
+         var qu = $("*[name='s_county']").val();
+  $.ajax({
+    method:"POST",
+    url:"http://123.206.42.162:10002/sys/updateOwnerById",
+    data:{
+      username:userName,
+      password:passWord,
+      email:Email
+    },
+     async:false,
+    // alert("经过");
+    success:function (res) {
+        if (res.data==0) {
+            alert("修改失败/数据库无数据!");
+        }else{
+            alert("修改成功");
+        } 
+     }
+    })
+    }
+//收款信息
+    function updatebank(){
+         var OpeningBank = $("#ob").val();
+         var AccountNumber = $("#am").val();
+         var aAccountName = $("#at").val();
+         var Shen = $("*[name='s_province']").val();
+         var Shi = $("*[name='s_city']").val();
+         var Qu = $("*[name='s_county']").val();
+  $.ajax({
+    method:"POST",
+    url:"http://123.206.42.162:10002/sys/updateBank",
+    data:{
+      openingBank:OpeningBank,
+      province:Shen,
+      city:Shi,
+      region:Qu,
+      accountNumber:AccountNumber,
+      accountName:aAccountName,
+      //此处需要获取当前用户的session
+      userName:'圳宝宝'
+    },
+     async:false,
+    // alert("经过");
+    success:function (res) {
+        alert(res.date);
+        if (res.data==0) {
+            alert("修改失败/数据库无数据!");
+        }else{
+            alert("修改成功");
+        } 
+     }
+    })
+    }
+</script>
+</html>

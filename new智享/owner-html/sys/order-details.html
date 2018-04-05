@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>订单详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi">
+    <link type="image/x-icon" href="../favicon.ico" rel="shortcut icon">
+    <link href="../css/font.css" rel="stylesheet">
+    <link href="../css/xadmin.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/order-details.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/xadmin.js" type="text/javascript"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+      <a class="layui-btn layui-btn-small" href="javascript:location.replace(location.href);" title="刷新" style="line-height:1.6em;margin-top:3px;float:right">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    
+    <div class="x-body">
+        <div class="order-details">
+            <ul class="number">
+                <ul class="left">
+                    <li><font>订单号</font><input class="layui-input" type="text" placeholder="201201520158210001"></li>
+                    <li><font>设备编号</font><input class="layui-input" type="text" placeholder="0001"></li>
+                    <li><font>线下管理员</font><input class="layui-input" type="text" placeholder="郭美美"></li>
+                    <li><font>线上管理员</font><input class="layui-input" type="text" placeholder="章老板"></li>
+                </ul>
+                <ul class="right">
+                    <li><font>设备物主</font><input class="layui-input" type="text" placeholder="章老板"></li>
+                    <li><font>联系方式</font><input class="layui-input" type="text" placeholder="187*********"></li>
+                    <li><font>客户</font><input class="layui-input" type="text" placeholder="哦老板"></li>
+                </ul>
+            </ul>
+            <div style="clear:both"></div>
+            <div class="line"></div>
+
+            <div class="payment-print">
+                <ul>
+                    <li><font class="all">支付时间</font> <font>2017-12-22 14:34:56</font></li>
+                    <li><font class="all">支付方式</font> <font>微信支付</font></li>
+                    <li><font class="all">支付金额</font> <font>99.00</font></li>
+                    <li><font class="all">文件标题</font> <font>离婚财产分割.doc</font></li>
+                    <li><font class="all">打印服务费</font> <font>79.00</font></li>
+                    <li><font class="all">打印费</font> <font>79.00</font></li>
+                    <li><font class="all">纸张</font> <font>A4</font></li>
+                    <li><font class="all">颜色</font> <font>彩色</font></li>
+                    <li><font class="all">份数</font> <font>2</font></li>
+                    <li><font class="all">单双面</font> <font>单面</font></li>
+                    <li><font class="all">范围</font> <font>所有页面(10页)</font></li>
+                </ul>
+            </div>
+            <button class="layui-btn back">返回</button>
+
+        </div>
+    </div>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../layer/layer.js"></script>
+  </body>
+
+</html>

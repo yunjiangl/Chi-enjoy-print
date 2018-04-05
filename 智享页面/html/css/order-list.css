@@ -1,0 +1,13 @@
+.order-details ul{
+    font-size: 18px;
+}
+.order-details ul li{
+    line-height: 40px;
+    width: 50%;
+}
+.order-details font{
+    margin-right: 20px;
+    text-align: right;
+    width: 35%;
+    display: inline-block;
+}

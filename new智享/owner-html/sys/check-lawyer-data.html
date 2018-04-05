@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>线上管理员资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi">
+    <link type="image/x-icon" href="../favicon.ico" rel="shortcut icon">
+    <link href="../css/font.css" rel="stylesheet">
+    <link href="../css/xadmin.css" rel="stylesheet">
+    <link type="text/css" href="../css/devicelist-manage.css" rel="stylesheet">
+    <link type="text/css" href="../css/check-lawyer-data.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/xadmin.js" type="text/javascript"></script>
+    <script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="../js/area.js" type="text/javascript"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../layer/layer.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="x-body">
+    <div class="layui-row">
+        <form class="">
+            <div class="picture">
+                <img src="../images/lawyer.png" alt="管理员资料">
+                <div class="">
+                    <ul class="sex-age">
+                        <li><font>姓名:</font> <input type="text" placeholder="输入姓名"></li>
+                        <li>
+                            <font>性别:</font> 
+                            <input name="sex" type="radio" value="男" checked>男
+                            <input name="sex" type="radio" value="女" >女
+                        </li>
+                        <li><font>年龄:</font><input type="text" placeholder="输入年龄"></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- addDevice start -->
+                <div class="addDevice">
+                    <ul>
+                        <li><font>手机号:</font><input class="layui-input" name type="text" placeholder="收入手机号"></li>
+                        <div style="clear: both;"></div>
+                        <li><font>微信号:</font><input class="layui-input" name type="text" placeholder="输入微信号"></li>
+                        <div style="clear: both;"></div>
+                        <li>
+                            <font>所在地:</font>
+                            <div class="input-select-inline">
+                                <select id="s_province" name="s_province"></select>  
+                                <select id="s_city" name="s_city"></select>  
+                                <select id="s_county" name="s_county"></select>
+                                <script class="resources library" src="js/area.js" type="text/javascript"></script>
+                                <script type="text/javascript">_init_area();</script>
+                                <div id="show"></div>
+                            </div>
+                            <script type="text/javascript">
+                            var Gid  = document.getElementById ;
+                            var showArea = function(){
+                                Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" +    
+                                Gid('s_city').value + " - 县/区" + 
+                                Gid('s_county').value + "</h3>"
+                                                    }
+                            </script>
+                        </li>
+                        <div style="clear: both;"></div>
+                        <li>
+                            <font>执业年限:</font>
+                            <div class="layui-input-inline year">
+                                <select class="permsName" name="cateid">
+                                    <option>选择执业年限</option>
+                                    <option>1年以下</option>
+                                    <option>1~3年</option>
+                                    <option>3~5年</option>
+                                    <option>5~10年</option>
+                                    <option>10年以上</option>
+                                </select>
+                            </div>
+                        </li>
+                        <div style="clear: both;"></div>
+                        <li><font>执业机构:</font><input class="layui-input" name type="text" placeholder="线下管理员"></li>
+                        <div style="clear: both;"></div>
+                        <li><font>执业证号:</font><input class="layui-input" name type="text" placeholder="管理员电话"></li>
+                    </ul>
+                </div>
+            <!-- addDevice end -->
+
+            <!-- field 擅长领域 start -->
+                <div class="field">
+                    <font class="shanchang">擅长领域:</font>
+                    <div class="checkbox">
+                        <ul>
+                            <li><font>劳动纠纷</font><input type="checkbox"></li>
+                            <li><font>海事海商</font><input type="checkbox"></li>
+                            <li><font>商事总裁</font><input type="checkbox"></li>
+                            <li><font>知识产权</font><input type="checkbox"></li>
+                            <li><font>工商税务</font><input type="checkbox"></li>
+                            <li><font>消费维权</font><input type="checkbox"></li>
+                            <li><font>保险理赔</font><input type="checkbox"></li>
+                            <li><font>投资理财</font><input type="checkbox"></li>
+                            <li><font>人身伤害</font><input type="checkbox"></li>
+                            <li><font>交通事故</font><input type="checkbox"></li>
+                            <li><font>医疗关系</font><input type="checkbox"></li>
+                            <li><font>婚姻家事</font><input type="checkbox"></li>
+                            <li><font>物流纠纷</font><input type="checkbox"></li>
+                            <li><font>文体教育</font><input type="checkbox"></li>
+                            <li><font>农林牧渔</font><input type="checkbox"></li>
+                            <li><font>网络信息</font><input type="checkbox"></li>
+                            <li><font>买卖租赁</font><input type="checkbox"></li>
+                            <li><font>借贷纠纷</font><input type="checkbox"></li>
+                            <li><font>合同纠纷</font><input type="checkbox"></li>
+                            <li><font>建设工程</font><input type="checkbox"></li>
+                            <li><font>涉外事务</font><input type="checkbox"></li>
+                            <li><font>刑事案件</font><input type="checkbox"></li>
+                            <li><font>民事诉讼</font><input type="checkbox"></li>
+                            <li><font>行政案件</font><input type="checkbox"></li>
+                            <li><font>房产土地</font><input type="checkbox"></li>
+                            <li><font>拆迁安置</font><input type="checkbox"></li>
+                            <li><font>邻里关系</font><input type="checkbox"></li>
+                            <li><font>企业事务</font><input type="checkbox"></li>
+                            <li><font>其他事务</font><input type="checkbox"></li>
+                        </ul>
+                    </div>
+                </div>
+            <!-- field end -->
+
+            <!-- upPicture start -->
+                <div class="upPicture">
+                    <div class="photo">
+                        <img src="../images/raw_1514021300.jpeg" alt="执业证书信息页" width="280" height="207">
+                        <h4>执业证书信息页</h4>
+                    </div>
+                    <div class="photo">
+                        <img src="../images/raw_1514021300.jpeg" alt="执业证书信息页" width="280" height="207">
+                        <h4>执业证书信息页</h4>
+                    </div>
+                    <div class="photo">
+                        <img src="../images/raw_1514021300.jpeg" alt="执业证书信息页" width="280" height="207">
+                        <h4>执业证书信息页</h4>
+                    </div>
+                </div>
+            <!-- upPicture end -->
+            <div class="footer-btn">
+            <button class="layui-btn hold" type="submit">返回</button>
+            <button class="layui-btn hold" type="submit">解除</button>
+            </div>
+
+        </form>
+    </div>
+
+
+    
+
+    
+    
+
+</div>
+ 
+</body>
+
+</html>

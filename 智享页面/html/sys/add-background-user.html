@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加后台用户</title>
+	
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+	<link rel="stylesheet" href="../css/xadmin.css">
+	<link rel="stylesheet" type="text/css" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+</head>
+<body>
+<!-- add-background-user start -->
+	<div class="add-background-user">
+		<div class="top">
+			<h2>添加后台用户</h2>
+		</div>
+		<hr>
+		<div class="content">
+		<ul>
+			<li class="bbbb"><font>用户组名</font><input class="layui-input" type="" name="" placeholder="输入用户组名称"><i class="">*</i></li>
+			<li><font>昵称</font><input class="layui-input" type="" name="" placeholder="输入用户昵称"></li>
+			<li><font>密码</font><input class="layui-input" type="" name="" placeholder="输入密码"><i class="">*</i></li>
+			<li><font>确认密码</font><input class="layui-input" type="" name="" placeholder="确认密码"><i class="">*</i></li>
+			<li><font>邮箱</font><input class="layui-input" type="" name="" placeholder="输入邮箱"></li>
+			<li>
+				<font>所属用户组</font>
+		          <div class="layui-input-inline">
+		            <select name="cateid">
+		              <option>请选择所属组</option>
+		              <option>客户用户组</option>
+		              <option>律师用户组</option>
+		              <option>物主用户组</option>
+		              <option>政府机构</option>
+		            </select>
+		          </div>
+		          <i class="i">*</i>
+          	</li>
+			<li>
+				<font>状态</font>
+				<div class="layui-input-inline">
+		            <select name="cateid">
+		              <option>请选择状态</option>
+		              <option>可用</option>
+		              <option>禁用</option>
+		            </select>
+		          </div>
+		          <i class="i">*</i>
+			</li>
+			<li><font>备注</font><input class="layui-input" type="" name=""></li>
+		</ul>
+		<tt>
+			<a href="../sys/admin-role.html" class="layui-btn">返回</a>
+			<button class="layui-btn">保存</button>
+		</tt>
+		</div>
+	</div>
+<!-- add-background-user end -->
+</body>
+</html>

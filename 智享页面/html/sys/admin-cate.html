@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>前台用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <link rel="stylesheet" type="text/css" href="../css/user-manage.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+        <div class="layui-row">
+            <form class="layui-form layui-col-md12 x-so layui-form-pane" method="post">
+                <input class="layui-input" placeholder="用户名" name="username">
+                <div class="layui-input-inline select">
+                    <select name="cateid">
+              <option>请选择状态</option>
+              <option value="可用">可用</option>
+              <option value="禁用">禁用</option>
+            </select>
+                </div>
+                <input class="layui-input" type="date" placeholder="创建时间" name="createTime1"> 至
+                <input class="layui-input" type="date" placeholder="创建时间" name="createTime1">
+                <button class="layui-btn btn-search" lay-submit="" lay-filter="sreach">查询</button>
+            </form>
+        </div>
+        <xblock>
+        </xblock>
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                        全选
+                    </th>
+                    <th>用户名</th>
+                    <th>昵称</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
+                    <th>上次登录时间</th>
+                    <th>操作</th>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        <div class="page">
+            <div>
+                <a class="prev layui-laypage-curr" href="">&lt;&lt;</a>
+                <a class="num" href="">1</a>
+                <span class="current">2</span>
+                <a class="num" href="">3</a>
+                <a class="num" href="">489</a>
+                <a class="next" href="">&gt;&gt;</a>
+            </div>
+        </div>
+    </div>
+    <!-- addaffter start -->
+    <div class="">
+
+    </div>
+    <!-- addaffter end -->
+
+</body>
+<script src="../layer/layer.js"></script>
+</html>
+<script>
+    //模糊查询前台
+    $(".btn-search").click(function() {
+        var username = $("input[name = 'username']").val();
+        // var permsStatus = $(".select option:selected").val();
+        // var time1 = $("input[name = 'createTime1']").val();
+        // var time2 = $("input[name = 'createTime1']").val();
+        if(username == null || username == ""){
+            alert("查询条件不能为空")
+        }
+        console.log(name);
+        event.preventDefault();
+        $.ajax({
+            url: "http://123.206.42.162:10002/sys/selectFrontDeskUserDim",
+            method: 'POST',
+            data: {
+                name: username,
+                // perms: permsStatus,
+                // time1: '',
+                // time2: ''
+            },
+            // async: false,
+            success: function(data) {
+                var adminCate = '';
+                console.log(data)
+                $.each(data.data.content, function(i, e) {
+
+                    var disable = data.data.content[i].isLock
+                    var isDiable = '';
+
+                    if (disable == false) {
+                        disable = "禁用";
+                        isDiable = "启用";
+                        // $(".layui-table tbody tr").addClass("active");
+                    } else {
+                        disable = "可用";
+                        isDiable = "禁用"
+                            // $(".layui-table tbody tr").removeClass("active");
+                    }
+                    adminCate +=
+                        "<tr class=''>" +
+                        "<td>" +
+                        "<div class='layui-unselect layui-form-checkbox' data-id='2' lay-skin='primary'><i class='layui-icon'>&#xe605;</i></div>" +
+                        "</td>" +
+                        "<td>" + e.username + "</td>" +
+                        "<td>" + e.realName + "</td>" +
+                        "<td class='status'>" + disable + "</td>" +
+                        "<td>" + e.createTime + "</td>" +
+                        "<td>" + e.loginTime + "</td>" +
+                        "<td>" + '<button class="layui-btn btn2" onclick="bn">' + isDiable + '</button>' + "</td>" +
+                        "</tr>"
+                });
+
+                $('.layui-table tbody').html(adminCate+"用户不存在");
+            }
+        })
+    })
+
+
+    //用户表格数据
+    $.ajax({
+            url: "http://123.206.42.162:10002/sys/selectFrontDeskUserAll",
+            method: 'GET',
+            data: {
+
+            },
+            async: false,
+            success: function(res) {
+                var adminCate = '';
+                // console.log(res.data.content)
+                $.each(res.data.content, function(i, e) {
+                        
+                    var disable = res.data.content[i].isLock
+                    var isDiable = '';
+
+                    if (disable == false) {
+                        disable = "禁用";
+                        isDiable = "可用";
+                        // $(".layui-table tbody tr").addClass("active");
+                    } else {
+                        disable = "可用";
+                        isDiable = "禁用"
+                        // $(".layui-table tbody tr").removeClass("active");
+                    }
+                    adminCate +=
+                        "<tr class=''>" +
+                        "<td>" +
+                        "<div class='layui-unselect layui-form-checkbox' data-id='2' lay-skin='primary'><i class='layui-icon'>&#xe605;</i></div>" +
+                        "</td>" +
+                        "<td>" + e.username + "</td>" +
+                        "<td>" + e.realName + "</td>" +
+                        "<td class='status'>" + disable + "</td>" +
+                        "<td>" + e.createTime + "</td>" +
+                        "<td>" + e.loginTime + "</td>" +
+                        "<td>" + '<input class="layui-btn btn2" type="submit" value='+ isDiable +' />'+ "</td>" +
+                        "</tr>"
+    //禁用id
+
+        // $('.btn2').click(function(){
+        //     var a=$(".btn2").val();
+        //     var b=null
+        //     if(a=="禁用"){
+        //         a=$(".btn2").val("可用");
+        //         b=$(".btn2").text("可用");
+        //     }
+        //     if(a=="可用"){
+        //         a=$(".btn2").val("禁用");
+        //         b=$(".btn2").text("禁用");
+        //     }
+        // })
+                });
+
+                $('.layui-table tbody').html(adminCate);
+            },
+            error:function(res){
+                $('.layui-table tbody').html(adminCate+"数据不存在");
+            }
+        })
+
+
+        $.ajax({
+            url:'http://123.206.42.162:10002/sys/selectFrontDeskUserAll',
+            method:'GEt',
+            data:{
+                page:'1',
+                pageSize:'1'
+            },
+            success:function(res){
+                console.log(res);
+                var ps = '';
+                $.each(res.data.content,function(i,e){
+                    ps +=`
+
+                    `
+                });
+
+            }
+
+        })
+
+
+</script>
