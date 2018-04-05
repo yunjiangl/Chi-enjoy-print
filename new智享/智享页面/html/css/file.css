@@ -1,0 +1,33 @@
+.addFile{
+	padding: 20px 0 20px 0;
+}
+.addFile li{
+	line-height: 30px;
+	margin: 15px 0;
+}
+.addFile span{
+	margin-right: 20px;
+	margin-left: 20px;
+}
+.addFile .layui-input-inline{
+	width: 20%;
+}
+.addFile .layui-input{
+	width: 80%;
+}
+
+.addFile .fileInput li{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	width: 100%;
+}
+.li_button{
+	text-align: center;
+}
+.layui-textarea{
+	resize:none;
+	width: 80%;
+}
