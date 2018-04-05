@@ -33,108 +33,88 @@ public class ZxFileManagerABController {
 
 	@Autowired
 	private ZxFileManagerABService zxFileManagerABService;
-	
+
 	/**
 	 * 
 	 * @Title: add
 	 * @Description: 添加文件分类
 	 */
-	@RequestMapping(value = "add",consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
+	@RequestMapping(value = "add", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
 	@ApiOperation(value = "添加文件管理分类", notes = "添加文件管理分类")
 	@ApiImplicitParams({
-	@ApiImplicitParam(paramType = "body", dataType = "ZxFileManagerAB", name = "zxAB", value = "文件分类管理", required = true) })
+			@ApiImplicitParam(paramType = "body", dataType = "ZxFileManagerAB", name = "zxAB", value = "文件分类管理", required = true) })
 	@ACSPermissions(permissions = "zx:ab:add")
-	public DefaultResopnseBean<Object> add(
-			@RequestBody ZxFileManagerAB zxAB,
-			@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile
-			) {
-		 return  zxFileManagerABService.add(zxAB,multipartFile);
+	public DefaultResopnseBean<Object> add(@RequestBody ZxFileManagerAB zxAB,
+			@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile) {
+		return zxFileManagerABService.add(zxAB, multipartFile);
 	}
-	
+
 	/**
 	 * 
 	 * @Title: update
 	 * @Description: 修改
 	 */
-	@RequestMapping(value = "update",consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
+	@RequestMapping(value = "update", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
 	@ApiOperation(value = "修改文件管理分类", notes = "修改文件管理分类")
 	@ApiImplicitParams({
-	@ApiImplicitParam(paramType = "body", dataType = "ZxFileManagerAB", name = "zxAB", value = "文件分类管理", required = true) })
+			@ApiImplicitParam(paramType = "body", dataType = "ZxFileManagerAB", name = "zxAB", value = "文件分类管理", required = true) })
 	@ACSPermissions(permissions = "zx:ab:add")
-	public DefaultResopnseBean<Object> update(
-			@ApiParam("id") @RequestParam(name = "id", required = false) Long id
-			) {
-		 return  zxFileManagerABService.update(id);
+	public DefaultResopnseBean<Object> update(@ApiParam("id") @RequestParam(name = "id", required = false) Long id) {
+		return zxFileManagerABService.update(id);
 	}
-	
+
 	/**
 	 * 
 	 * @Title: list
 	 * @Description: 文件分类列表
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.POST)
-	@ApiOperation(value = "文件分类a列表", notes = "文件分类a列表")
+	@ApiOperation(value = "文件分类ab列表", notes = "文件分类ab列表")
 	@ACSPermissions(permissions = "zx:ab:list")
 	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> Alist(
 			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
 			@ApiParam("每页多少条数据") @RequestParam(name = "pageSize", required = false) Integer pageSize,
-			@ApiParam("文件分类编号") @RequestParam(name = "typeString", required = false) String typeString
-			) {
+			@ApiParam("文件分类编号") @RequestParam(name = "typeString", required = false) String typeString,
+			@ApiParam("文件标题") @RequestParam(name = "fileName", required = false) String fileName,
+			@ApiParam("一级类目") @RequestParam(name = "yijiName", required = false) String yijiName,
+			@ApiParam("二级类目") @RequestParam(name = "erjiName", required = false) String erjiName,
+			@ApiParam("三级类目") @RequestParam(name = "sanjiName", required = false) String sanjiName,
+			@ApiParam("四级级类目") @RequestParam(name = "sjName", required = false) String sjName) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label.equals(typeString)) {
-			SysDictionary sysDictionary=new SysDictionary();
+		if (DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label.equals(typeString)) {
+			SysDictionary sysDictionary = new SysDictionary();
 			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.code);
-			params.put("pageNum", pageNum);
-			params.put("pageSize", pageSize);
-			params.put("type", sysDictionary.getType());
-		}
-		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label.equals(typeString)) {
-			SysDictionary sysDictionary=new SysDictionary();
-			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.code);
-			params.put("pageNum", pageNum);
-			params.put("pageSize", pageSize);
-			params.put("type", sysDictionary.getType());
-		}
-		return zxFileManagerABService.list(params);
-	}
-	
 
-	@RequestMapping(value = "AvagueList", method = RequestMethod.POST)
-	@ApiOperation(value = "文件a模糊查询", notes = "文件a模糊查询")
-	@ACSPermissions(permissions = "zx:ab:vaguelist")
-	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> vagueList(
-			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
-			@ApiParam("每页多少条数据") @RequestParam(name = "pageSize", required = false) Integer pageSize,
-			@ApiParam("文件分类编号") @RequestParam(name = "typeNum", required = false) String typeString,
-			@ApiParam("文件名称标题") @RequestParam(name = "fileName", required = false) String fileName,
-			@ApiParam("分级标题") @RequestParam(name = "categoryId", required = false) String  name,
-			@ApiParam("地址") @RequestParam(name = "fileUrl", required = false) String  fileUrl
-			) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_C.label.equals(typeString)) {
-			SysDictionary sysDictionary=new SysDictionary();
-			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_C.code);
-			params.put("pageNum", pageNum);
-			params.put("pageSize", pageSize);
 			params.put("type", sysDictionary.getType());
-			params.put("fileName", name);
-			params.put("fileUrl", fileUrl);
 		}
+		if (DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label.equals(typeString)) {
+			SysDictionary sysDictionary = new SysDictionary();
+			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.code);
+
+			params.put("type", sysDictionary.getType());
+		}
+
+		params.put("pageNum", pageNum);
+		params.put("pageSize", pageSize);
+		params.put("fileName", fileName);
+		params.put("yijiName", yijiName);
+		params.put("erjiName", erjiName);
+		params.put("sanjiName", sanjiName);
+		params.put("sjName", sjName);
+
 		return zxFileManagerABService.list(params);
 	}
-	
-	
-	
+
 	/**
 	 * 
 	 * @param Id
 	 * @Description: 删除文件
 	 * @return
 	 */
-	@RequestMapping(value="/sys/deleteUserById",method=RequestMethod.GET)
-	@ApiOperation(value="删除文件",notes="删除文件")
+	@RequestMapping(value = "/sys/deleteUserById", method = RequestMethod.GET)
+	@ApiOperation(value = "删除文件", notes = "删除文件")
 	@ACSPermissions(permissions = "zx:ab:delete")
-	public DefaultResopnseBean<Object> delete(@RequestParam("Id") Long Id){
-		return  zxFileManagerABService.delete(Id);
+	public DefaultResopnseBean<Object> delete(@RequestParam("Id") Long Id) {
+		return zxFileManagerABService.delete(Id);
 	}
 }
