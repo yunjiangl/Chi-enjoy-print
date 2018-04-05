@@ -100,46 +100,12 @@
             </th>
             <th>ID</th>
             <th>标题</th>
-            <th>用户名</th>
+            <th>文件分类</th>
+			<th>打印次数</th>
+			<th>页数</th>
             <th>操作</th>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-              <button class="layui-btn updateFile">修改</button>
-              <button class="layui-btn">删除</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-              <button class="layui-btn">修改</button>
-              <button class="layui-btn">删除</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-              <button class="layui-btn">修改</button>
-              <button class="layui-btn">删除</button>
-            </td>
-          </tr>
         </tbody>
       </table>
       <div class="page">
@@ -163,24 +129,25 @@
  */
 function userGroup(res){
   var html = "";
-  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  var NoData = `<td colspan="7" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
 
   $.each(res, function (i,e) {
     html +=`<tr>
-            <td>${e.username}</td>
-            <td>${e.nickname}</td>
-            <td>${e.isLock?'没通过':'通过'}</td>
-            <td>${e.createTime}</td>
             <td>
-                <button class="layui-btn look-examine" onclick='alertas(${e.id});'>审核</button>
-                <button class="layui-btn jinyong-btn" value="${e.id}" onclick="alertMe(${e.id},${!e.isLock})" >${e.isLock?"启用":"禁用"}</button>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-        </tr>`;
+            <td>${e.id}</td>
+            <td>${e.fileName}</td>
+            <td>${e.sysDictionary.name}</td>
+			<td>2</td>
+			<td>${e.fileNum}</td>
+            <td>
+              <button class="layui-btn">修改</button>
+              <button class="layui-btn">删除</button>
+            </td>
+          </tr>`;
 
-  });
-
- 
-    
+  });  
   if(res.length>0){
     $(".layui-table tbody").html(html);
   }else{
@@ -192,17 +159,22 @@ function userGroup(res){
 
   function getUserGroupAllData(){
     $.ajax({
-        url:"http://123.206.42.162:10002/lawyer/list",
-        type:"GET",
+        url:"http://123.206.42.162:10002/zx/ab/list",
+        type:"POST",
          dataType: 'json',
          data:{
           pageNum:startPageNum,
           pageSize:pageSizeSetting,
-          typeString: typeString
+          typeString: 'a文件分类',
+		  fileName:
+		  yijiName:
+		  erjiName:
+		  sanjiName:
+		  sjName
          },
-         // async:true,
+          async:true,
     success:function (res,status) {
-      // console.log(res);
+       console.log(res);
       userGroup(res.data.content);
       totalElementsAll = res.data.totalElements;
       toPage();

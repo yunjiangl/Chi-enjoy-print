@@ -68,7 +68,7 @@
 				concat('%',#{userName},'%')
 			</if>
 			<if test="fileName != null and fileName.trim() != ''">
-				and zx_file_manager_ab.file_name like
+				and zx_file_manager_cde.file_name like
 				concat('%',#{fileName},'%')
 			</if>
 			<if
