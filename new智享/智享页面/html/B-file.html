@@ -22,213 +22,501 @@
   </head>
   
   <body>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
     <div class="x-body">
-      <div class="layui-row" style="width: 70%;float: right">
+      <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so layui-form-pane">
-          <input type="text" name="username"  placeholder="请输入标题" autocomplete="off" class="layui-input" style="float: left">
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach" style="float: left"><i class="layui-icon">&#xe615;</i></button>
-          <a href="javascript:;" class="layui-btn x-right">添加文件</a>
+        	<input class="layui-input" placeholder="输入标题" name="cate_name_fileName" id="printerCode"/>
+            <div class="layui-input-inline">
+                <select name="cateid-one" id="yiji" lay-filter="sadaS">
+					<option></option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="cateid-two" id="erji" lay-filter="dsfdsafs">
+                   <option></option>
+                </select>
+            </div>
+	        <div class="layui-input-inline">
+	            <select name="cateid-three" id="sanji" lay-filter="dsfaw">
+	              <option></option>
+	            </select>
+	        </div>
+	        <div class="layui-input-inline">
+	            <select name="cateid-four" id="siji">
+	              <option></option>
+	            </select>
+	        </div>
+	          <input class="layui-input" placeholder="输入标题" name="cate_name" >
+	          <button class="layui-btn hold"  lay-submit="" lay-filter="sreach">查询</button>
+	          <a href="javascript:;" class="layui-btn add_file">添加文件</a>
         </form>
       </div>
-      <div class="layui-row">
-        <div class="left-nav" style="float: left;width: 30%">
-          <div id="side-nav">
-            <ul id="nav">
-              <li>
-                <a href="javascript:;">
-                  <i class="iconfont">&#xe6b8;</i>
-                  <cite>合同文书</cite>
-                  <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                  <li>
-                    <a _href="Classification.html">
-                      <i class="iconfont">&#xe6a7;</i>
-                      <cite>民事</cite>
+      <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
 
-                    </a>
-                  </li >
-                  <li>
-                    <a _href="member.html">
-                      <i class="iconfont">&#xe6a7;</i>
-                      <cite>商事</cite>
-
-                    </a>
-                  </li>
-                  <li>
-                    <a _href="member-del.html">
-                      <i class="iconfont">&#xe6a7;</i>
-                      <cite>知识产权</cite>
-                    </a>
-                  </li>
-                  <li>
-                    <a _href="member-del.html">
-                      <i class="iconfont">&#xe6a7;</i>
-                      <cite>企业破产申请</cite>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div style="width: 70%;float: right"><table class="layui-table">
-          <thead>
+    	</xblock>
+      <table class="layui-table">
+        <thead>
           <tr>
-            <th style="padding: 5px 0px;">
+            <th>
               <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
               全选
             </th>
-            <th style="padding: 5px 1px;">ID</th>
-            <th style="padding: 5px 1px;">标题</th>
-            <th style="padding: 5px 1px;">文件分类</th>
-            <th style="padding: 5px 1px;">打印次数</th>
-            <th style="padding: 5px 1px;">页数</th>
-            <th style="padding: 5px 1px;">操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td style="padding: 5px 1px;">
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td style="padding: 5px 1px;">1</td>
-            <td style="padding: 5px 1px;">国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td style="padding: 5px 1px;">合同纠纷</td>
-            <td style="padding: 5px 1px;">4</td>
-            <td style="padding: 5px 1px;">12</td>
-            <td style="padding: 5px 1px;">
-              <button class="layui-btn layui-btn-sm">预览</button>
-              <button class="layui-btn layui-btn-sm">删除</button>
-            </td>
-          </tr>
-          </tbody>
-        </table></div>
+            <th>ID</th>
+            <th>标题</th>
+            <th>文件分类</th>
+			<th>打印次数</th>
+			<th>页数</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
 
-      </div>
-
-      <div class="page" style="width: 70%;float: right">
-        <div>
-          <button class="layui-btn layui-btn-sm" style="margin-right: 66px;float: left">批量删除</button>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
+        </tbody>
+      </table>
+      <div class="page">
+         <div id="page-link"></div>
       </div>
     </div>
+    </div>
+<script type="text/javascript">
+  var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+  var typeNum = null;
+  var fileName = null;
+  var categoryId = null;
+  var fileUrl = null;
+  var typeString = 'a文件分类';
 
+  /**
+ * 页面渲染函数-遍历
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="7" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+
+  $.each(res, function (i,e) {
+    html +=`          <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.id}</td>
+            <td>${e.fileName}</td>
+            <td>${e.sysDictionary.name}</td>
+			<td>2</td>
+			<td>${e.fileNum}</td>
+            <td>
+              <button class="layui-btn updateFile">修改</button>
+              <button class="layui-btn">删除</button>
+            </td>
+          </tr>`;
+
+  });   
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+
+     /**
+ * 页面渲染函数-联动查询
+ */
+ console.log("一级");
+ console.log($("#yiji"));
+ var id=1;
+ vaSelect();
+ 
+ layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  form.on('select(sadaS)', function(data){
+	$.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:data.value
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#erji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+});
+
+form.on('select(dsfdsafs)', function(data){
+	$.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:data.value
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#sanji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+});
+
+form.on('select(dsfaw)', function(data){
+	$.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:data.value
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#siji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+});
+
+}); 
+  
+function manager(res,sel){
+  var html = "";
+  $.each(res, function (i,e) {
+    html +=`<option></option><option value="${e.sysDictionary.id}">${e.sysDictionary.name}</option>`;
+  });
+    if(res.length>0){
+    sel.html(html);
+	layui.use('form', function(){
+   var form = layui.form;
+   form.render();
+  });
+  }
+}
+
+	function vaSelect(){
+	   $.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:id
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#yiji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+}
+
+
+ getUserGroupAllData();
+ vaSelect();
+ 
+ 
+ /*
+*模糊函数
+*/
+$(".hold").click(function(){
+	getUserGroupAllData();
+	
+return false;
+})
+
+ 
+
+  function getUserGroupAllData(){
+    $.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/list",
+        type:"POST",
+         dataType: 'json',
+         data:{
+          pageNum:startPageNum,
+   		 pageSize:pageSizeSetting,
+          typeString: 'b文件分类',
+		  fileName:$("*[name = 'cate_name_fileName']").val(),
+		  yijiName:$("*[name = 'cateid-one']").find("option:selected").text(),
+		  erjiName:$("*[name = 'cateid-two']").find("option:selected").text(),
+		  sanjiName:$("*[name = 'cateid-three']").find("option:selected").text(),
+		  sjName:$("*[name = 'cateid-four']").find("option:selected").text(),
+         },
+          async:true,
+    success:function (res,status) {
+      console.log(res);
+      userGroup(res.data.content);
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+}
+
+
+
+
+
+
+
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+		   vaSelect();
+        }
+      }
+    });
+
+  });}
+</script>
 <!-- 添加文件 -->
 <!-- addFile start -->
-  <div class="addFile updateFileContent" style="display: none;">
-      <form class="" id="formDemo">
-      <ul>
-          <li>
-            <span>选择分类</span>
-                <div class="layui-input-inline">
-                    <select name="cateid">
-                        <option value="选择一级类目">选择一级类目</option>
-                        <option value="民事案由">民事案由</option>
-                        <option value="刑事罪名">刑事罪名</option>
-                        <option value="行政案由">行政案由</option>
-                    </select>
-                </div>
-                <div class="layui-input-inline">
-                    <select name="cateid">
-                        <option value="选择二级类目">选择二级类目</option>
-                        <option value="民事">民事</option>
-                        <option value="商事">商事</option>
-                        <option value="知识产权">知识产权</option>
-                        <option value="企业破产清算">企业破产清算</option>
-                    </select>
-                </div>
-              <div class="layui-input-inline">
-                  <select name="cateid">
-                    <option value="选择三级类目">选择三级类目</option>
-                    <option value="合同纠纷">合同纠纷</option>
-                    <option value="侵权责任纠纷">侵权责任纠纷</option>
-                    <option value="婚姻家庭纠纷">婚姻家庭纠纷</option>
-                    <option value="继承纠纷">继承纠纷</option>
-                    <option value="物权保护纠纷">物权保护纠纷</option>
-                    <option value="所有权纠纷">所有权纠纷</option>
-                    <option value="担保物权纠纷">担保物权纠纷</option>
-                    <option value="人格权纠纷">人格权纠纷</option>
-                    <option value="执行异议之诉">执行异议之诉</option>
-                    <option value="申请保全案件">申请保全案件</option>
-                    <option value="人格权纠纷">占有保护纠纷</option>
-                    <option value="占有保护纠纷">公示催告程序案件</option>
-                    <option value="选民资格纠纷">选民资格纠纷</option>
-                    <option value="宣告失踪、宣告死忙案件">宣告失踪、宣告死忙案件</option>
-                    <option value="认定公民无名事行为能力、限制民事行为能力案件">认定公民无名事行为能力、限制民事行为能力案件</option>
-                    <option value="认定财产无主案件">认定财产无主案件</option>
-                    <option value="监护权特别程序案件">监护权特别程序案件</option>
-                    <option value="督促程序案件">督促程序案件</option>
-                  </select>
-              </div>
-              <div class="layui-input-inline">
-                  <select name="cateid">
-                    <option>选择四级类目</option>
-                    <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-                    <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-                    <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-                    <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-                    <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-                    <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-                    <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-                    <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-                  </select>
-              </div>
-            
-          </li>
-          <ul class="fileInput">
-          <li><span>文件标题</span><input type="text" class="layui-input" name="createId" placeholder="输入设备物主"></li>
-          
-          <li><span>文件页数</span><input type="text" name="address" class="layui-input" placeholder="输入设备详细地址"></li>
-          
-          <li><span>上传附件</span><input type="file" name="managerName" class="" placeholder="线下管理员"></li>
-          
-          <li>
-          <span>文件摘要</span>
-          <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
-          </ul>
-          
-          <li class="li_button">
-          <a href=" " class="layui-btn" type="submit">返回</a>
-          <button class="layui-btn" type="submit">保存</button>
-          </li>
-      </ul>
-    </form>
-  </div>
+	<div class="addFile add-file" style="display: none;">
+	    <form class="" id="formDemo">
+			<ul>
+			    <li>
+			    	<span>选择分类</span>
+		            <div class="layui-input-inline">
+		                <select name="cateid" id="yiji">
+							
+		                </select>
+		            </div>
+		            <div class="layui-input-inline">
+		                <select name="cateid">
+		                    <option value="选择二级类目">选择二级类目</option>
+		                    <option value="民事">民事</option>
+		                    <option value="商事">商事</option>
+		                    <option value="知识产权">知识产权</option>
+		                    <option value="企业破产清算">企业破产清算</option>
+		                </select>
+		            </div>
+			        <div class="layui-input-inline">
+			            <select name="cateid">
+			              <option value="选择三级类目">选择三级类目</option>
+			              <option value="合同纠纷">合同纠纷</option>
+			              <option value="侵权责任纠纷">侵权责任纠纷</option>
+			              <option value="婚姻家庭纠纷">婚姻家庭纠纷</option>
+			              <option value="继承纠纷">继承纠纷</option>
+			              <option value="物权保护纠纷">物权保护纠纷</option>
+			              <option value="所有权纠纷">所有权纠纷</option>
+			              <option value="担保物权纠纷">担保物权纠纷</option>
+			              <option value="人格权纠纷">人格权纠纷</option>
+			              <option value="执行异议之诉">执行异议之诉</option>
+			              <option value="申请保全案件">申请保全案件</option>
+			              <option value="人格权纠纷">占有保护纠纷</option>
+			              <option value="占有保护纠纷">公示催告程序案件</option>
+			              <option value="选民资格纠纷">选民资格纠纷</option>
+			              <option value="宣告失踪、宣告死忙案件">宣告失踪、宣告死忙案件</option>
+			              <option value="认定公民无名事行为能力、限制民事行为能力案件">认定公民无名事行为能力、限制民事行为能力案件</option>
+			              <option value="认定财产无主案件">认定财产无主案件</option>
+			              <option value="监护权特别程序案件">监护权特别程序案件</option>
+			              <option value="督促程序案件">督促程序案件</option>
+			            </select>
+			        </div>
+			        <div class="layui-input-inline">
+			            <select name="cateid">
+			              <option>选择四级类目</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			            </select>
+			        </div>
+			    	
+			    </li>
+			    <ul class="fileInput">
+			    <li><span>文件标题</span><input type="text" class="layui-input" name="createId" placeholder="输入设备物主"></li>
+			    
+			    <li><span>文件页数</span><input type="text" name="address" class="layui-input" placeholder="输入设备详细地址"></li>
+			    
+			    <li><span>上传附件</span><input type="file" name="managerName" class="" placeholder="线下管理员"></li>
+			    
+			    <li>
+			    <span>文件摘要</span>
+			    <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+			    </ul>
+			    
+			    <li class="li_button">
+			    <a href=" " class="layui-btn" type="submit">返回</a>
+			    <button class="layui-btn" type="submit">保存</button>
+			    </li>
+			</ul>
+		</form>
+	</div>
+<!-- addFile ned -->
+
+<!-- 修改文件 -->
+<!-- addFile start -->
+	<div class="addFile update_file" style="display: none;">
+	    <form class="" id="formDemo">
+			<ul>
+			    <li>
+			    	<span>选择分类</span>
+		            <div class="layui-input-inline">
+		                <select name="cateid">
+		                    <option value="选择一级类目">选择一级类目</option>
+		                    <option value="民事案由">民事案由</option>
+		                    <option value="刑事罪名">刑事罪名</option>
+		                    <option value="行政案由">行政案由</option>
+		                </select>
+		            </div>
+		            <div class="layui-input-inline">
+		                <select name="cateid">
+		                    <option value="选择二级类目">选择二级类目</option>
+		                    <option value="民事">民事</option>
+		                    <option value="商事">商事</option>
+		                    <option value="知识产权">知识产权</option>
+		                    <option value="企业破产清算">企业破产清算</option>
+		                </select>
+		            </div>
+			        <div class="layui-input-inline">
+			            <select name="cateid">
+			              <option value="选择三级类目">选择三级类目</option>
+			              <option value="合同纠纷">合同纠纷</option>
+			              <option value="侵权责任纠纷">侵权责任纠纷</option>
+			              <option value="婚姻家庭纠纷">婚姻家庭纠纷</option>
+			              <option value="继承纠纷">继承纠纷</option>
+			              <option value="物权保护纠纷">物权保护纠纷</option>
+			              <option value="所有权纠纷">所有权纠纷</option>
+			              <option value="担保物权纠纷">担保物权纠纷</option>
+			              <option value="人格权纠纷">人格权纠纷</option>
+			              <option value="执行异议之诉">执行异议之诉</option>
+			              <option value="申请保全案件">申请保全案件</option>
+			              <option value="人格权纠纷">占有保护纠纷</option>
+			              <option value="占有保护纠纷">公示催告程序案件</option>
+			              <option value="选民资格纠纷">选民资格纠纷</option>
+			              <option value="宣告失踪、宣告死忙案件">宣告失踪、宣告死忙案件</option>
+			              <option value="认定公民无名事行为能力、限制民事行为能力案件">认定公民无名事行为能力、限制民事行为能力案件</option>
+			              <option value="认定财产无主案件">认定财产无主案件</option>
+			              <option value="监护权特别程序案件">监护权特别程序案件</option>
+			              <option value="督促程序案件">督促程序案件</option>
+			            </select>
+			        </div>
+			        <div class="layui-input-inline">
+			            <select name="cateid">
+			              <option>选择四级类目</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
+			              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+			            </select>
+			        </div>
+			    	
+			    </li>
+			    <ul class="fileInput">
+			    <li><span>文件标题</span><input type="text" class="layui-input" name="createId" placeholder="输入设备物主"></li>
+			    
+			    <li><span>文件页数</span><input type="text" name="address" class="layui-input" placeholder="输入设备详细地址"></li>
+			    
+			    <li><span>上传附件</span><input type="file" name="managerName" class="" placeholder="线下管理员"></li>
+			    
+			    <li>
+			    <span>文件摘要</span>
+			    <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+			    </ul>
+			    
+			    <li class="li_button">
+			    <a href=" " class="layui-btn" type="submit">返回</a>
+			    <button class="layui-btn" type="submit">保存</button>
+			    </li>
+			</ul>
+		</form>
+	</div>
 <!-- addFile ned -->
 
     <script>
+  //时间
       layui.use('laydate', function(){
         var laydate = layui.laydate;
-        
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#start' //指定元素
-        });
 
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#end' //指定元素
-        });
+	        //执行一个laydate实例
+	        laydate.render({
+	          elem: '#start' //指定元素
+	        });
+
+	        //执行一个laydate实例
+	        laydate.render({
+	          elem: '#end' //指定元素
+	        });
       });
 
 //添加文件
-  $('.x-right').click(function(){
-    layer.open({
-          type:1,
-          title:'添加文件',
-          area:['40%','60%'],
-          shadeClose:true,
-          shad:[0.8,'#855'],
-          content:$(".addFile")
-      })
-  })
+	$('.add_file').click(function(){
+		layer.open({
+	        type:1,
+	        title:'添加文件',
+	        area:['40%','70%'],
+	        shadeClose:true,
+	        shad:[0.8,'#855'],
+	        content:$(".add-file")
+    	})
+	})
+
+//修改文件
+	$('.updateFile').click(function(){
+		layer.open({
+	        type:1,
+	        title:'添加文件',
+	        area:['40%','70%'],
+	        shadeClose:true,
+	        shad:[0.8,'#855'],
+	        content:$(".update_file")
+    	})
+	})
+       /*用户-停用*/
+      function member_stop(obj,id){
+          layer.confirm('确认要停用吗？',function(index){
+
+              if($(obj).attr('title')=='启用'){
+
+                //发异步把用户状态进行更改
+                $(obj).attr('title','停用')
+                $(obj).find('i').html('&#xe62f;');
+
+                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                layer.msg('已停用!',{icon: 5,time:1000});
+
+              }else{
+                $(obj).attr('title','启用')
+                $(obj).find('i').html('&#xe601;');
+
+                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                layer.msg('已启用!',{icon: 5,time:1000});
+              }
+              
+          });
+      }
+
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
@@ -244,9 +532,9 @@
 
         var data = tableCheck.getData();
   
-        layer.confirm('确认要恢复吗？'+data,function(index){
+        layer.confirm('确认要删除吗？'+data,function(index){
             //捉到所有被选中的，发异步进行删除
-            layer.msg('恢复成功', {icon: 1});
+            layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
       }
@@ -257,6 +545,7 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
       })();</script>
+
   </body>
 
 </html>

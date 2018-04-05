@@ -28,63 +28,30 @@
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so layui-form-pane">
-        	<input class="layui-input" placeholder="输入标题" name="cate_name" id="printerCode">
+        	<input class="layui-input" placeholder="输入标题" name="cate_name_fileName" id="printerCode"/>
             <div class="layui-input-inline">
-                <select name="cateid">
-                    <option value="选择一级类目">选择一级类目</option>
-                    <option value="民事案由">民事案由</option>
-                    <option value="刑事罪名">刑事罪名</option>
-                    <option value="行政案由">行政案由</option>
+                <select name="cateid-one" id="yiji" lay-filter="sadaS">
+					<option></option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="cateid">
-                    <option value="选择二级类目">选择二级类目</option>
-                    <option value="民事">民事</option>
-                    <option value="商事">商事</option>
-                    <option value="知识产权">知识产权</option>
-                    <option value="企业破产清算">企业破产清算</option>
+                <select name="cateid-two" id="erji" lay-filter="dsfdsafs">
+                   <option></option>
                 </select>
             </div>
 	        <div class="layui-input-inline">
-	            <select name="cateid">
-	              <option value="选择三级类目">选择三级类目</option>
-	              <option value="合同纠纷">合同纠纷</option>
-	              <option value="侵权责任纠纷">侵权责任纠纷</option>
-	              <option value="婚姻家庭纠纷">婚姻家庭纠纷</option>
-	              <option value="继承纠纷">继承纠纷</option>
-	              <option value="物权保护纠纷">物权保护纠纷</option>
-	              <option value="所有权纠纷">所有权纠纷</option>
-	              <option value="担保物权纠纷">担保物权纠纷</option>
-	              <option value="人格权纠纷">人格权纠纷</option>
-	              <option value="执行异议之诉">执行异议之诉</option>
-	              <option value="申请保全案件">申请保全案件</option>
-	              <option value="人格权纠纷">占有保护纠纷</option>
-	              <option value="占有保护纠纷">公示催告程序案件</option>
-	              <option value="选民资格纠纷">选民资格纠纷</option>
-	              <option value="宣告失踪、宣告死忙案件">宣告失踪、宣告死忙案件</option>
-	              <option value="认定公民无名事行为能力、限制民事行为能力案件">认定公民无名事行为能力、限制民事行为能力案件</option>
-	              <option value="认定财产无主案件">认定财产无主案件</option>
-	              <option value="监护权特别程序案件">监护权特别程序案件</option>
-	              <option value="督促程序案件">督促程序案件</option>
+	            <select name="cateid-three" id="sanji" lay-filter="dsfaw">
+	              <option></option>
 	            </select>
 	        </div>
 	        <div class="layui-input-inline">
-	            <select name="cateid">
-	              <option>选择四级类目</option>
-	              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-	              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-	              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-	              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-	              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-	              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
-	              <option value="缔约过失责任纠纷相关法律、法理、判决">缔约过失责任纠纷相关法律、法理、判决</option>
-	              <option value="确认合同有效纠纷相关法律、法理、判决">确认合同有效纠纷相关法律、法理、判决</option>
+	            <select name="cateid-four" id="siji">
+	              <option></option>
 	            </select>
 	        </div>
 	          <input class="layui-input" placeholder="输入标题" name="cate_name" >
-	          <button class="layui-btn"  lay-submit="" lay-filter="sreach">查询</button>
-	          <button class="layui-btn add_file">添加文件</button>
+	          <button class="layui-btn hold"  lay-submit="" lay-filter="sreach">查询</button>
+	          <a href="javascript:;" class="layui-btn add_file">添加文件</a>
         </form>
       </div>
       <xblock>
@@ -100,46 +67,13 @@
             </th>
             <th>ID</th>
             <th>标题</th>
-            <th>用户名</th>
+            <th>文件分类</th>
+			<th>打印次数</th>
+			<th>页数</th>
             <th>操作</th>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-              <button class="layui-btn updateFile">修改</button>
-              <button class="layui-btn">删除</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-              <button class="layui-btn">修改</button>
-              <button class="layui-btn">删除</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>1</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>张亮亮</td>
-            <td>
-              <button class="layui-btn">修改</button>
-              <button class="layui-btn">删除</button>
-            </td>
-          </tr>
+
         </tbody>
       </table>
       <div class="page">
@@ -159,28 +93,29 @@
   var typeString = 'a文件分类';
 
   /**
- * 页面渲染函数
+ * 页面渲染函数-遍历
  */
 function userGroup(res){
   var html = "";
-  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  var NoData = `<td colspan="7" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
 
   $.each(res, function (i,e) {
-    html +=`<tr>
-            <td>${e.username}</td>
-            <td>${e.nickname}</td>
-            <td>${e.isLock?'没通过':'通过'}</td>
-            <td>${e.createTime}</td>
+    html +=`          <tr>
             <td>
-                <button class="layui-btn look-examine" onclick='alertas(${e.id});'>审核</button>
-                <button class="layui-btn jinyong-btn" value="${e.id}" onclick="alertMe(${e.id},${!e.isLock})" >${e.isLock?"启用":"禁用"}</button>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-        </tr>`;
+            <td>${e.id}</td>
+            <td>${e.fileName}</td>
+            <td>${e.sysDictionary.name}</td>
+			<td>2</td>
+			<td>${e.fileNum}</td>
+            <td>
+              <button class="layui-btn updateFile">修改</button>
+              <button class="layui-btn">删除</button>
+            </td>
+          </tr>`;
 
-  });
-
- 
-    
+  });   
   if(res.length>0){
     $(".layui-table tbody").html(html);
   }else{
@@ -188,27 +123,153 @@ function userGroup(res){
   }
 }
 
+
+     /**
+ * 页面渲染函数-联动查询
+ */
+ console.log("一级");
+ console.log($("#yiji"));
+ var id=1;
+ vaSelect();
+ 
+ layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  form.on('select(sadaS)', function(data){
+	$.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:data.value
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#erji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+});
+
+form.on('select(dsfdsafs)', function(data){
+	$.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:data.value
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#sanji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+});
+
+form.on('select(dsfaw)', function(data){
+	$.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:data.value
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#siji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+});
+
+}); 
+  
+function manager(res,sel){
+  var html = "";
+  $.each(res, function (i,e) {
+    html +=`<option></option><option value="${e.sysDictionary.id}">${e.sysDictionary.name}</option>`;
+  });
+    if(res.length>0){
+    sel.html(html);
+	layui.use('form', function(){
+   var form = layui.form;
+   form.render();
+  });
+  }
+}
+
+	function vaSelect(){
+	   $.ajax({
+        url:"http://123.206.42.162:10002/zx/ab/dictionary/list",
+        type:"GET",
+        dataType: 'json',
+        data:{
+			parentId:id
+        },
+        async:true,
+    success:function (res,status) {
+      
+      manager(res.data,$("#yiji"));
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+}
+
+
  getUserGroupAllData();
+ vaSelect();
+ 
+ 
+ /*
+*模糊函数
+*/
+$(".hold").click(function(){
+	getUserGroupAllData();
+	
+return false;
+})
+
+ 
 
   function getUserGroupAllData(){
     $.ajax({
-        url:"http://123.206.42.162:10002/lawyer/list",
-        type:"GET",
+        url:"http://123.206.42.162:10002/zx/ab/list",
+        type:"POST",
          dataType: 'json',
          data:{
           pageNum:startPageNum,
-          pageSize:pageSizeSetting,
-          typeString: typeString
+   		 pageSize:pageSizeSetting,
+          typeString: 'a文件分类',
+		  fileName:$("*[name = 'cate_name_fileName']").val(),
+		  yijiName:$("*[name = 'cateid-one']").find("option:selected").text(),
+		  erjiName:$("*[name = 'cateid-two']").find("option:selected").text(),
+		  sanjiName:$("*[name = 'cateid-three']").find("option:selected").text(),
+		  sjName:$("*[name = 'cateid-four']").find("option:selected").text(),
          },
-         // async:true,
+          async:true,
     success:function (res,status) {
-      // console.log(res);
+      console.log(res);
       userGroup(res.data.content);
       totalElementsAll = res.data.totalElements;
       toPage();
     }
   })
 }
+
+
+
+
+
+
 
 function toPage(){
   layui.use('laypage', function() {
@@ -223,6 +284,7 @@ function toPage(){
         startPageName = (obj.curr-1)*pageSizeSetting;
         if(!first){ //一定要加此判断，否则初始时会无限刷新
           getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+		   vaSelect();
         }
       }
     });
@@ -231,17 +293,14 @@ function toPage(){
 </script>
 <!-- 添加文件 -->
 <!-- addFile start -->
-	<div class="addFile updateFileContent" style="display: none;">
+	<div class="addFile add-file" style="display: none;">
 	    <form class="" id="formDemo">
 			<ul>
 			    <li>
 			    	<span>选择分类</span>
 		            <div class="layui-input-inline">
-		                <select name="cateid">
-		                    <option value="选择一级类目">选择一级类目</option>
-		                    <option value="民事案由">民事案由</option>
-		                    <option value="刑事罪名">刑事罪名</option>
-		                    <option value="行政案由">行政案由</option>
+		                <select name="cateid" id="yiji">
+							
 		                </select>
 		            </div>
 		            <div class="layui-input-inline">
@@ -314,7 +373,7 @@ function toPage(){
 
 <!-- 修改文件 -->
 <!-- addFile start -->
-	<div class="addFile" style="display: none;">
+	<div class="addFile update_file" style="display: none;">
 	    <form class="" id="formDemo">
 			<ul>
 			    <li>
@@ -419,7 +478,7 @@ function toPage(){
 	        area:['40%','70%'],
 	        shadeClose:true,
 	        shad:[0.8,'#855'],
-	        content:$(".addFile")
+	        content:$(".add-file")
     	})
 	})
 
@@ -431,7 +490,7 @@ function toPage(){
 	        area:['40%','70%'],
 	        shadeClose:true,
 	        shad:[0.8,'#855'],
-	        content:$(".updateFileContent")
+	        content:$(".update_file")
     	})
 	})
        /*用户-停用*/
