@@ -190,6 +190,7 @@
 		SELECT
 		zx_user.id,
 		zx_user.username,
+		zx_user.gen,
 		zx_user.mobile,
 		zx_user.`wechat_id`,
 		zx_user.`age`,

@@ -73,7 +73,10 @@
             <th>操作</th>
         </thead>
         <tbody>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f9a2e65ceadc037060f568b0eb91e9a5875133b3
         </tbody>
       </table>
       <div class="page">
@@ -100,7 +103,11 @@ function userGroup(res){
   var NoData = `<td colspan="7" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
 
   $.each(res, function (i,e) {
+<<<<<<< HEAD
     html +=`          <tr>
+=======
+    html +=`<tr>
+>>>>>>> f9a2e65ceadc037060f568b0eb91e9a5875133b3
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
@@ -110,12 +117,20 @@ function userGroup(res){
 			<td>2</td>
 			<td>${e.fileNum}</td>
             <td>
+<<<<<<< HEAD
               <button class="layui-btn updateFile">修改</button>
+=======
+              <button class="layui-btn">修改</button>
+>>>>>>> f9a2e65ceadc037060f568b0eb91e9a5875133b3
               <button class="layui-btn">删除</button>
             </td>
           </tr>`;
 
+<<<<<<< HEAD
   });   
+=======
+  });  
+>>>>>>> f9a2e65ceadc037060f568b0eb91e9a5875133b3
   if(res.length>0){
     $(".layui-table tbody").html(html);
   }else{
@@ -247,6 +262,7 @@ return false;
          dataType: 'json',
          data:{
           pageNum:startPageNum,
+<<<<<<< HEAD
    		 pageSize:pageSizeSetting,
           typeString: 'a文件分类',
 		  fileName:$("*[name = 'cate_name_fileName']").val(),
@@ -258,6 +274,19 @@ return false;
           async:true,
     success:function (res,status) {
       console.log(res);
+=======
+          pageSize:pageSizeSetting,
+          typeString: 'a文件分类',
+		  fileName:
+		  yijiName:
+		  erjiName:
+		  sanjiName:
+		  sjName
+         },
+          async:true,
+    success:function (res,status) {
+       console.log(res);
+>>>>>>> f9a2e65ceadc037060f568b0eb91e9a5875133b3
       userGroup(res.data.content);
       totalElementsAll = res.data.totalElements;
       toPage();

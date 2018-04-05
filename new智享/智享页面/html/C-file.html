@@ -3,7 +3,7 @@
   
   <head>
     <meta charset="UTF-8">
-    <title>d类文件</title>
+    <title>C类文件</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -21,21 +21,22 @@
   </head>
   
   <body>
-     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so layui-form-pane">
-          <input type="text" class="layui-input" id="khmc" name="" placeholder="输入客户名称">
-          <input type="text" class="layui-input" name="" id="fileN" placeholder="输入标题">
-          <input class="layui-input" placeholder="创建时间" id="time1" name="start" id="start">至
-          <input class="layui-input" placeholder="创建时间" id="time2" name="end" id="end">
-          <span class="layui-btn select-title"  lay-submit="" lay-filter="sreach">查询</span>
+		<input class="layui-input" placeholder="线上管理员" name="userName" >
+		<input class="layui-input" placeholder="输入标题" name="fileName" >
+		<input class="layui-input" placeholder="创建时间" name="start" id="start">至
+        <input class="layui-input" placeholder="创建时间" name="end" id="end">
+        <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="layui-btn-search">查询</button>
         </form>
       </div>
       <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px"></span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -46,19 +47,34 @@
             </th>
             <th>ID</th>
             <th>标题</th>
-            <th>用户名</th>
+            <th>线上管理员</th>
+			<th>客户</th>
             <th>操作</th>
         </thead>
         <tbody>
-          <tr>
+          <!--<tr>
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-          </tr>
+            <td>1</td>
+            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
+            <td>张亮亮</td>
+            <td>
+              <button class="layui-btn">删除</button>
+              <button class="layui-btn">查看</button>
+            </td>
+          </tr>-->
         </tbody>
       </table>
       <div class="page">
-        <div id="page-link"></div>
+        <div id="page-link">
+          <!--<a class="prev" href="">&lt;&lt;</a>
+          <a class="num" href="">1</a>
+          <span class="current">2</span>
+          <a class="num" href="">3</a>
+          <a class="num" href="">489</a>
+          <a class="next" href="">&gt;&gt;</a>-->
+        </div>
       </div>
 
     </div>
@@ -130,54 +146,44 @@
         hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
-      })();
+      })();</script>
+  </body>
+<script>
+layui.use('laydate', function(){
+        var laydate = layui.laydate;
 
 
 
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
 
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
 
-
-
-
-
-
-
-
-
-  $(document).ready(function(){
+/**
+ * 进入页面时加载数据
+ */
 //全局变量
-  // var totalElementsAll = 60;//数据总数
+//var totalElementsAll = 0;//数据总数
   var startPageName = 0;//开始
   var pageSizeSetting = 10 ;//每页显示多少条
   var startPageNum = 1; //初始页第1页
+  var type  = "c文件分类";
+//ajax请求后台数据
+  getUserGroupAllData();
 
 
-
-
-  //需要从session中提取一个设备物主id
-    var file = 'd文件分类';
-     $.ajax({
-    method:"POST",
-    url:"http://123.206.42.162:10002/zx/cde/list",
-    data:{
-      typeString:file
-    },
-     async:false,
-     //alert("经过");
-    success:function (res) {
-        console.log(res);
-        userGroup(res.data.content);
-         totalElementsAll = res.data.totalElements;
-     }
-    })
-// 调用分页
-toPage();
 /**
  * 页面渲染函数
  */
 function userGroup(res){
   var html = "";
-  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  var NoData = `<td colspan="6" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
   $.each(res, function (i,e) {
     html +=`<tr>
             <td>
@@ -185,13 +191,13 @@ function userGroup(res){
             </td>
             <td>${e.id}</td>
             <td>${e.fileName}</td>
+			<td>${e.lawyer.nickname}</td>
             <td>${e.zxUser.nickname}</td>
             <td>
-              <button class="layui-btn" onclick="deletefile(${e.id})">删除</button>
-              <button class="layui-btn">查看</button>
+              <button class="layui-btn" value="${e.id}" id="look">删除</button>
+              <button class="layui-btn" value="${e.id}" id="delete">查看</button>
             </td>
-          </tr>
-       `;
+          </tr>`;
 
   });
   if(res.length>0){
@@ -201,18 +207,28 @@ function userGroup(res){
   }
 }
 
+/**
+ * 分页开始
+ */
+toPage();
+
+
 function getUserGroupAllData(){
   $.ajax({
     url:"http://123.206.42.162:10002/zx/cde/list",
     type:"POST",
     data:{
-      typeString:file
+      pageNum:startPageNum,
+      pageSize:pageSizeSetting,
+	  typeString:type
     },
     async:false,
     success:function (res,status) {
       userGroup(res.data.content);
+	  console.log(res.data.content);
       totalElementsAll = res.data.totalElements;
-//      console.log(totalElementsAll);
+	   $(".x-right").html("共有数据："+totalElementsAll+"条");
+
     }
   })
 }
@@ -236,87 +252,53 @@ function toPage(){
 
   });
 };
-})
 
-  // 模糊查询
-$(".select-title").click(function(){
-  getUserGroupAllData1();
-  return false;
-})
-
-function getUserGroupAllData1(){
-  var FN=$("#fileN").val();
-  var KHMC=$("#khmc").val();
-  var TIME1=$("#time1").val();
-  var TIME2=$("#time2").val();
-  // console.log(printercode);
-  $.ajax({
-    url:"http://123.206.42.162:10002/zx/cde/list",
-    type:"POST",
-    data:{
-      typeString:'d文件分类',
-      fileName:FN,
-      userName:KHMC,
-      startTime:TIME1,
-      endTime:TIME2
-
-    },
-    // async:false,
-    success:function (res,status) {
-      console.log(res);
-      userGroup1(res.data.content);
-//      console.log(totalElementsAll);
-    }
-  })
-  function userGroup1(res){
-  var html = "";
-  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
-  $.each(res, function (i,e) {
-    html +=`<tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>${e.id}</td>
-            <td>${e.fileName}</td>
-            <td>${e.zxUser.nickname}</td>
-            <td>
-              <button class="layui-btn">删除</button>
-              <button class="layui-btn">查看</button>
-            </td>
-          </tr>
-       `;
-
+    $("#layui-btn-search").click(function () {
+    startPageNum = 1;
+	pageSizeSetting =10;
+    toPage();
+    $(".page-link").hide();
+	var userName =  $("input[name = 'userName']").val();
+    var fileName = $("input[name = 'fileName']").val();
+	var start = $("#start").val();
+	var end = $("#end").val();
+    $.ajax({
+      url:"http://123.206.42.162:10002/zx/cde/list",
+      method:"POST",
+      data:{
+        page:startPageNum,
+        pageSize:pageSizeSetting,
+		fileName: fileName,
+		userName:userName,
+		startTime:start,
+		endTime:end,
+		typeString:type
+      },
+//      async:false,
+      success:function (res) {
+        var dataContent=res.data.content;
+		console.log(dataContent);
+        userGroup(dataContent);
+      },
+    })
   });
-  if(res.length>0){
-    $(".layui-table tbody").html(html);
-    
-  }else{
-    $(".layui-table tbody").html(NoData);
-    
-  }
-}}
-
- 
-function deletefile(r){
-  $.ajax({
-    method:"GET",
-    url:"http://123.206.42.162:10002/zx/cde/sys/deleteUserById",
-    data:{
-      ids:r
-    },
-    //async:false,
-    success:function (res) {
-      
-        alert("删除成功！");
-
-        location.reload();
-      
-    }
+  
+  $("#delete").click(function(){
+     var id = $(this).val();
+	 var ids = parseInt(id);
+	 $.ajax({
+      url:"http://123.206.42.162:10002/zx/cde/sys/deleteUserById",
+      method:"GET",
+      data:{
+        ids:ids
+      },
+//      async:false,
+      success:function (res) {
+        getUserGroupAllData();
+		toPage();
+      },
+    })
   })
-}
-
-
-    </script>
-  </body>
-
+  
+</script>
 </html>

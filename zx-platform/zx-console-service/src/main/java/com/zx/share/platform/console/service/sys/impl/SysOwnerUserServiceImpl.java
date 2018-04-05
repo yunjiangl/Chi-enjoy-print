@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zx.share.platform.bean.sys.SysRole;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.mapper.sys.SysBackGroundUserMapper;
@@ -18,6 +20,9 @@ import com.zx.share.platform.console.mapper.zx.ZxUserPrinterMapper;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysOwnerUserService;
+import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 @Service
 public class SysOwnerUserServiceImpl implements SysOwnerUserService {
@@ -33,9 +38,32 @@ public class SysOwnerUserServiceImpl implements SysOwnerUserService {
 	 * @return
 	 */
 	@Override
-	public List<SysUser> selectOwnerUserAll(Long roleId) {
+	public DefaultResopnseBean<PageResponseBean<SysUser>> selectOwnerUserAll(Long roleId,Map<String, Object> param) {
 		// TODO Auto-generated method stub
-		return SysOwnerUserMapper.selectOwnerUserAll(roleId);
+		Integer pageNum = param.get("page") != null ? Integer.parseInt(param.get("page").toString()) : 1;
+		Integer pageSize = param.get("pageSize") != null ? Integer.parseInt(param.get("pageSize").toString()) : 10;
+		PageHelper.startPage(pageNum, pageSize, true);
+		List<SysUser> list = SysOwnerUserMapper.selectOwnerUserAll(roleId);
+
+		PageInfo pageInfo = new PageInfo(list);
+
+		PageResponseBean<SysUser> data = new PageResponseBean<SysUser>();
+
+		DefaultResopnseBean<PageResponseBean<SysUser>> resopnseBean = new DefaultResopnseBean<PageResponseBean<SysUser>>();
+
+		data.setFirst(pageInfo.isIsFirstPage());
+		data.setLast(pageInfo.isIsLastPage());
+		data.setNumber(pageInfo.getPageNum());
+		data.setNumberOfElements(pageInfo.getPageSize());
+		data.setSize(pageInfo.getSize());
+		data.setTotalPages(pageInfo.getPages());
+		data.setTotalElements(pageInfo.getTotal());
+		data.setContent(pageInfo.getList());
+
+		resopnseBean.setData(data);
+		resopnseBean.setCode(ErrorsEnum.SUCCESS.code);
+		resopnseBean.setMessage(ErrorsEnum.SUCCESS.label);
+		return resopnseBean;
 	}
 	
 	/**
