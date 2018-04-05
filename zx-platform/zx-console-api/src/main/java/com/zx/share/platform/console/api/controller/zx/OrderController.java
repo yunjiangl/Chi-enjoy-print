@@ -116,4 +116,33 @@ public class OrderController {
 		
 		return resopnseBean;
 	}
+	
+	
+	/**
+	 * 
+	 * @Title: 
+	 * @Description: 查询总金额以及总条数
+	 */
+	@RequestMapping(value = "selectCount", method = RequestMethod.GET)
+	@ApiOperation(value = "查询总条数", notes = "查询总条数")
+	public Integer selectCount(){
+		
+		Integer count=zxOrderService.selectCount();
+		
+		return count;
+	}
+	
+	/**
+	 * 
+	 * @Title: 
+	 * @Description: 查询总金额以及总条数
+	 */
+	@RequestMapping(value = "selectSum", method = RequestMethod.GET)
+	@ApiOperation(value = "查询总金额", notes = "查询总金额")
+	public Integer selectSum(){
+		
+		Integer sum=zxOrderService.selectSum();
+		
+		return sum;
+	}
 }
