@@ -25,4 +25,8 @@ public interface SysDictionaryMapper extends PlatFormMapper<SysDictionary> {
     Integer selectPageCount(@Param("type") String type,
                             @Param("parentId") Long parentId,
                             @Param("query") String query);
+
+    List<SysDictionary> selectParamAll(@Param("type") String type,
+                                   @Param("parentId") Long parentId,
+                                   @Param("query") String query);
 }

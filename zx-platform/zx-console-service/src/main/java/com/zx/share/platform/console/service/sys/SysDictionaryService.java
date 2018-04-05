@@ -4,6 +4,7 @@ import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.util.response.PageResponseBean;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +16,6 @@ import java.util.Map;
 public interface SysDictionaryService {
 
     PageResponseBean<SysDictionary> selecPage(String type,Long parentId,String query, Integer page,Integer pageSize);
+
+    List<SysDictionary> selectParamAll(String type,Long parentId,String query);
 }

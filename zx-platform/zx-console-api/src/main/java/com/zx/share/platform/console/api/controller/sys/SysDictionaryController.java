@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,9 +32,6 @@ public class SysDictionaryController {
     @Autowired
     private SysDictionaryService sysDictionaryService;
 
-    /**
-     * 询出全部未删除的后台用户管理数据
-     */
     @RequestMapping(value = "/sys/dictionary/selectPage", method = RequestMethod.GET)
     @ApiOperation(value = "字典分页", notes = "字典分页")
     public DefaultResopnseBean<PageResponseBean<SysDictionary>> selectPage(
@@ -44,6 +42,17 @@ public class SysDictionaryController {
             @ApiParam("每页多少条") @RequestParam(name = "pageSize", required = false) Integer pageSize) {
         DefaultResopnseBean<PageResponseBean<SysDictionary>> pageResponse = new DefaultResopnseBean<>();
         pageResponse.setData(sysDictionaryService.selecPage(type,parentId,query,page,pageSize));
+        return pageResponse;
+    }
+
+    @RequestMapping(value = "/sys/dictionary/selectAll", method = RequestMethod.GET)
+    @ApiOperation(value = "字典list", notes = "字典list")
+    public DefaultResopnseBean<List<SysDictionary>> selectAll(
+            @ApiParam("字典类型") @RequestParam(name = "type", required = false) String type,
+            @ApiParam("字典父级") @RequestParam(name = "parentId", required = false) Long parentId,
+            @ApiParam("查询内容") @RequestParam(name = "query", required = false) String query) {
+        DefaultResopnseBean<List<SysDictionary>> pageResponse = new DefaultResopnseBean<>();
+        pageResponse.setData(sysDictionaryService.selectParamAll(type,parentId,query));
         return pageResponse;
     }
 }

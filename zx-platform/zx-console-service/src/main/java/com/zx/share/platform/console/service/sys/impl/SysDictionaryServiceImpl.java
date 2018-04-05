@@ -34,4 +34,9 @@ public class SysDictionaryServiceImpl implements SysDictionaryService {
         pageResponseBean.setContent(list);
         return pageResponseBean;
     }
+
+    @Override
+    public List<SysDictionary> selectParamAll(String type, Long parentId, String query) {
+        return sysDictionaryMapper.selectParamAll(type,parentId,query);
+    }
 }
