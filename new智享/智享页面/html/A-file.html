@@ -143,17 +143,92 @@
         </tbody>
       </table>
       <div class="page">
-        <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
+         <div id="page-link"></div>
       </div>
     </div>
+    </div>
+<script type="text/javascript">
+  var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+  var typeNum = null;
+  var fileName = null;
+  var categoryId = null;
+  var fileUrl = null;
+  var typeString = 'a文件分类';
 
+  /**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="5" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+
+  $.each(res, function (i,e) {
+    html +=`<tr>
+            <td>${e.username}</td>
+            <td>${e.nickname}</td>
+            <td>${e.isLock?'没通过':'通过'}</td>
+            <td>${e.createTime}</td>
+            <td>
+                <button class="layui-btn look-examine" onclick='alertas(${e.id});'>审核</button>
+                <button class="layui-btn jinyong-btn" value="${e.id}" onclick="alertMe(${e.id},${!e.isLock})" >${e.isLock?"启用":"禁用"}</button>
+            </td>
+        </tr>`;
+
+  });
+
+ 
+    
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+ getUserGroupAllData();
+
+  function getUserGroupAllData(){
+    $.ajax({
+        url:"http://123.206.42.162:10002/lawyer/list",
+        type:"GET",
+         dataType: 'json',
+         data:{
+          pageNum:startPageNum,
+          pageSize:pageSizeSetting,
+          typeString: typeString
+         },
+         // async:true,
+    success:function (res,status) {
+      // console.log(res);
+      userGroup(res.data.content);
+      totalElementsAll = res.data.totalElements;
+      toPage();
+    }
+  })
+}
+
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });}
+</script>
 <!-- 添加文件 -->
 <!-- addFile start -->
 	<div class="addFile updateFileContent" style="display: none;">
