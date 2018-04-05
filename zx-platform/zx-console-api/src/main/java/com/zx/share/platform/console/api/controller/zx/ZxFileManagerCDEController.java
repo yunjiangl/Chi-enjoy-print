@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.console.service.zx.ZxFileManagerCDEService;
+import com.zx.share.platform.constants.DictionaryTypeEnum;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
@@ -45,15 +47,44 @@ public class ZxFileManagerCDEController {
 			@ApiParam("线上管理员") @RequestParam(name = "userName", required = false) String userName,
 			@ApiParam("标题") @RequestParam(name = "fileName", required = false) String fileName,
 			@ApiParam("开始时间") @RequestParam(name = "createTime", required = false) String createTime,
-			@ApiParam("结束时间") @RequestParam(name = "updateTime", required = false) String updateTime
+			@ApiParam("结束时间") @RequestParam(name = "updateTime", required = false) String updateTime,
+			@ApiParam("文件分类编号") @RequestParam(name = "typeString", required = false) String typeString
 			) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("pageNum", pageNum);
-		params.put("pageSize", pageSize);
-		params.put("userName", userName);
-		params.put("fileName", fileName);
-		params.put("createTime", createTime);
-		params.put(" updateTime",  updateTime);
+		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_C.label.equals(typeString)) {
+			SysDictionary sysDictionary=new SysDictionary();
+			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_C.code);
+			params.put("pageNum", pageNum);
+			params.put("pageSize", pageSize);
+			params.put("userName", userName);
+			params.put("fileName", fileName);
+			params.put("createTime", createTime);
+			params.put(" updateTime",  updateTime);
+			params.put("type", sysDictionary.getType());
+		}
+		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_D.label.equals(typeString)) {
+			SysDictionary sysDictionary=new SysDictionary();
+			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_D.code);
+			params.put("pageNum", pageNum);
+			params.put("pageSize", pageSize);
+			params.put("userName", userName);
+			params.put("fileName", fileName);
+			params.put("createTime", createTime);
+			params.put(" updateTime",  updateTime);
+			params.put("type", sysDictionary.getType());
+		}
+		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_E.label.equals(typeString)) {
+			SysDictionary sysDictionary=new SysDictionary();
+			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_E.code);
+			params.put("pageNum", pageNum);
+			params.put("pageSize", pageSize);
+			params.put("userName", userName);
+			params.put("fileName", fileName);
+			params.put("createTime", createTime);
+			params.put(" updateTime",  updateTime);
+			params.put("type", sysDictionary.getType());
+		}
+		
 		return zxFileManagerCDEService.list(params);
 	}
 	

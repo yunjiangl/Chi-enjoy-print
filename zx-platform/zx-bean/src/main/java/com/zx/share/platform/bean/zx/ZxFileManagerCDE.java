@@ -5,10 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.http.StreamingHttpOutputMessage;
 
 import com.zx.share.platform.bean.IdEntity;
+import com.zx.share.platform.bean.sys.SysDictionary;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -86,4 +88,9 @@ public class ZxFileManagerCDE extends IdEntity{
 	
 	@Column(name = "manager_code")
 	private String managerCode;
+	@Transient
+	private ZxUser zxUser;
+	
+ 	@Transient
+	private SysDictionary sysDictionary;
 }

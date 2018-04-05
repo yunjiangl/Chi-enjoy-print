@@ -18,6 +18,16 @@
     <result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
     <result column="user_code" jdbcType="VARCHAR" property="userCode" />
     <result column="manager_code" jdbcType="VARCHAR" property="managerCode" />
+   <association property="sysDictionary"  javaType="com.zx.share.platform.bean.sys.SysDictionary">
+			<result column="type" jdbcType="VARCHAR" property="type" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+			<result column="value" jdbcType="VARCHAR" property="value" />
+	</association>
+	 <association property="zxUser"  javaType="com.zx.share.platform.bean.sys.SysDictionary">
+			<result column="id" jdbcType="BIGINT" property="id" />
+			<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+	</association>
   </resultMap>
   
     	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerCDE"
@@ -27,13 +37,20 @@
 				zx_file_manager_cde.file_name,
 				zx_file_manager_cde.user_id,
 				zx_user.nickname,
-				lawyer.nickname AS lawyer_nickname
+				lawyer.nickname AS lawyer_nickname,
+				sys_dictionary.parent_id,
+				sys_dictionary.type,
+				sys_dictionary.`name`,
+				sys_dictionary.`value`
 				FROM
 				zx_file_manager_cde
 				INNER JOIN zx_user AS lawyer ON zx_file_manager_cde.manager_id = lawyer.id
 				INNER JOIN zx_user ON zx_file_manager_cde.user_id = zx_user.id
+				INNER JOIN sys_dictionary ON zx_file_manager_cde.category_id = sys_dictionary.parent_id
 		<where>
 			zx_file_manager_cde.user_id=zx_user.id 
+			and 
+			sys_dictionary.type =#{type}
 			<if test="userName != null and userName.trim() != ''">
 				and zx_user.username like
 				concat('%',#{userName},'%')

@@ -75,7 +75,7 @@ public class ZxFileManagerABController {
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ApiOperation(value = "文件分类a列表", notes = "文件分类a列表")
 	@ACSPermissions(permissions = "zx:ab:list")
-	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> list(
+	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> Alist(
 			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
 			@ApiParam("每页多少条数据") @RequestParam(name = "pageSize", required = false) Integer pageSize,
 			@ApiParam("文件分类编号") @RequestParam(name = "typeString", required = false) String typeString
@@ -84,6 +84,13 @@ public class ZxFileManagerABController {
 		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label.equals(typeString)) {
 			SysDictionary sysDictionary=new SysDictionary();
 			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.code);
+			params.put("pageNum", pageNum);
+			params.put("pageSize", pageSize);
+			params.put("type", sysDictionary.getType());
+		}
+		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label.equals(typeString)) {
+			SysDictionary sysDictionary=new SysDictionary();
+			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.code);
 			params.put("pageNum", pageNum);
 			params.put("pageSize", pageSize);
 			params.put("type", sysDictionary.getType());
@@ -104,9 +111,9 @@ public class ZxFileManagerABController {
 			@ApiParam("地址") @RequestParam(name = "fileUrl", required = false) String  fileUrl
 			) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label.equals(typeString)) {
+		if(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_C.label.equals(typeString)) {
 			SysDictionary sysDictionary=new SysDictionary();
-			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.code);
+			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_C.code);
 			params.put("pageNum", pageNum);
 			params.put("pageSize", pageSize);
 			params.put("type", sysDictionary.getType());
