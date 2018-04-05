@@ -19,11 +19,13 @@ import com.zx.share.platform.console.service.sys.SysRoleService;
 import com.zx.share.platform.util.DateUtil;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @Api("后台用户管理接口")
@@ -41,9 +43,13 @@ public class SysBackGroundUserController {
 	@ApiOperation(value="查询后台用户管理所有数据",notes="后台用户管理")
 	@ACSPermissions(permissions = "user:list")
 	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "Long", name = "roleId", value = "用户组ID", required = true)})
-	public DefaultResopnseBean<List<SysUser>> selectUserAll(Long roleId){
-		List<SysUser> list=sysBackGroundUserService.selectUserAll(roleId);
-		return new DefaultResopnseBean<List<SysUser>>("成功",200,list);
+	public DefaultResopnseBean<PageResponseBean<SysUser>> selectUserAll(Long roleId,
+			@ApiParam("第几页") @RequestParam(name = "page", required = false) Integer page,
+			@ApiParam("每页多少条") @RequestParam(name = "pageSize", required = false) Integer pageSize){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("page", page);
+		param.put("pageSize", pageSize);
+		return sysBackGroundUserService.selectUserAll(roleId,param);
 	}
 	
 	/**
