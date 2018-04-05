@@ -17,4 +17,6 @@ public interface ZxFileManagerABMapper extends PlatFormMapper<ZxFileManagerAB>{
 	 * @Description: 查询文件分类列表
 	 */
 	List<ZxFileManagerAB> queryList(Map<String, Object> params);
+	
+	List<ZxFileManagerAB> vagueList(Map<String , Object> params);
 }

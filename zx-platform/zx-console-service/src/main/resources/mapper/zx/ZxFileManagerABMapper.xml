@@ -13,35 +13,67 @@
     <result column="create_id" jdbcType="INTEGER" property="createId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_id" jdbcType="INTEGER" property="updateId" />
+    <association property="sysDictionary"  javaType="com.zx.share.platform.bean.sys.SysDictionary">
+			<result column="type" jdbcType="VARCHAR" property="type" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+			<result column="value" jdbcType="VARCHAR" property="value" />
+	</association>
   </resultMap>
   
   
   	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
 		resultMap="BaseResultMap">
-		SELECT
-		zx_file_manager_ab.id,
-		zx_file_manager_ab.file_code,
-		zx_file_manager_ab.file_name,
-		zx_file_manager_ab.category_id,
-		zx_file_manager_ab.file_url,
-		zx_file_manager_ab.file_num,
-		zx_file_manager_ab.abstracts,
-		zx_file_manager_ab.create_time,
-		zx_file_manager_ab.create_id,
-		zx_file_manager_ab.update_time,
-		zx_file_manager_ab.update_id,
-		zx_file_manager_ab.category_code
-		FROM
-		zx_file_manager_ab
-
-		<where>
+			SELECT
+			zx_file_manager_ab.id,
+			zx_file_manager_ab.file_name,
+			zx_file_manager_ab.file_num,
+			zx_file_manager_ab.category_id,
+			sys_dictionary.parent_id,
+			sys_dictionary.type,
+			sys_dictionary.`name`,
+			sys_dictionary.`value`
+			FROM
+			zx_file_manager_ab
+			INNER JOIN sys_dictionary ON zx_file_manager_ab.category_id = sys_dictionary.parent_id
+			WHERE
+			sys_dictionary.parent_id = 4
+			and 
+			sys_dictionary.type =#{type}
+	</select>
+	
+	  	<select id="vagueList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
+		resultMap="BaseResultMap">
+			SELECT
+			zx_file_manager_ab.id,
+			zx_file_manager_ab.file_name,
+			zx_file_manager_ab.file_num,
+			zx_file_manager_ab.category_id,
+			sys_dictionary.parent_id,
+			sys_dictionary.type,
+			sys_dictionary.`name`,
+			sys_dictionary.`value`
+			FROM
+			zx_file_manager_ab
+			INNER JOIN sys_dictionary ON 
+			zx_file_manager_ab.category_id = 
+			(select sys_dictionary.parent_id from  sys_dictionary 
+			<where>
+			<if test="name != null and name.trim() != ''">
+				and sys_dictionary.`name` like
+				concat('%',#{name},'%')
+			</if>
+			</where>
+			）
+			WHERE
+			sys_dictionary.type =#{type}
 			<if test="fileName != null and fileName.trim() != ''">
 				and zx_file_manager_ab.file_name like
 				concat('%',#{fileName},'%')
 			</if>
-			<if test="categoryId != null and categoryId != 0">
-				and zx_printer_manager.id = #{categoryId}
+			<if test="fileUrl != null and fileUrl.trim() != ''">
+				and zx_file_manager_ab.file_url like
+				concat('%',#{fileUrl},'%')
 			</if>
-		</where>
 	</select>
 </mapper>

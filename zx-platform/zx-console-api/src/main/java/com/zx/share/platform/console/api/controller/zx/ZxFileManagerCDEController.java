@@ -38,8 +38,6 @@ public class ZxFileManagerCDEController {
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ApiOperation(value = "文件分类列表cde", notes = "文件分类列表cde")
-	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "body", dataType = "Map", name = "params", value = "查询信息", required = true) })
 	@ACSPermissions(permissions = "zx:cde:list")
 	public DefaultResopnseBean<PageResponseBean<ZxFileManagerCDE>> list(
 			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,

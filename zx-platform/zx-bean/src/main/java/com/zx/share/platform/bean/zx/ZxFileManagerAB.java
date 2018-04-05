@@ -5,8 +5,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
+import com.zx.share.platform.bean.sys.SysDictionary;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -63,4 +65,7 @@ public class ZxFileManagerAB extends IdEntity {
 	
 	@Column(name = "update_id")
 	private int updateId;
+	
+	@Transient
+	private SysDictionary sysDictionary;
 }
