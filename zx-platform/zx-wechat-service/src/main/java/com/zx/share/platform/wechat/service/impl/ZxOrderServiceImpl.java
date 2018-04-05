@@ -99,6 +99,26 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Override
 	public int saveOrder(OrderSaveBean orderSaveBean) {
+		int result = 0;
+		if(StringUtil.isBlank(orderSaveBean.getOrderCode())){
+			result = this.save(orderSaveBean);
+		}else{
+			result = this.update(orderSaveBean);
+		}
+		return result;
+	}
+
+	private int save(OrderSaveBean orderSaveBean){
+		String fileCode = orderSaveBean.getFileCodes();
+		if(StringUtil.isNotBlank(fileCode)){
+			String[] fileCodes = fileCode.split(",");
+		}
+		return 0;
+	}
+
+	private int update(OrderSaveBean orderSaveBean){
+		//获取历史订单
+
 		return 0;
 	}
 

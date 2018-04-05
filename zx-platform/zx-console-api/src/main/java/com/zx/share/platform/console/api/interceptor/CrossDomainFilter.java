@@ -38,7 +38,7 @@ public class CrossDomainFilter implements Filter {
         if (allowCrossDomain) {
             //LOG.info("允许客户端跨域访问");
             // 重要：clientIp不能为*，否则session无法传递到服务器端.
-            response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+            response.addHeader("Access-Control-Allow-Origin", "*");
             response.addHeader("Access-Control-Allow-Credentials", "true");
 
             /**
@@ -51,7 +51,7 @@ public class CrossDomainFilter implements Filter {
                     && "OPTIONS".equalsIgnoreCase(request.getMethod())) {
                 response.addHeader("Access-Control-Allow-Methods", "GET, POST");
                 response.addHeader("Access-Control-Allow-Headers",
-                        "X-Requested-With, Origin, Content-Type, Cookie, X-Access-Token");
+                        "X-Requested-With, Origin, Content-Type, Cookie");
             }
             // response.addCookie(new Cookie("test-random-time", System.currentTimeMillis() + ""));
             filterChain.doFilter(request, response);

@@ -28,16 +28,16 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public List<DictionaryResultBean> lista() {
-        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label);
+        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.code);
     }
 
     @Override
     public List<DictionaryResultBean> listb() {
-        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label);
+        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.code);
     }
 
     @Override
     public List<DictionaryResultBean> domain() {
-        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_ATTORNEY_DOMAIN.label);
+        return dictionaryMapper.findTypeList(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_ATTORNEY_DOMAIN.code);
     }
 }
