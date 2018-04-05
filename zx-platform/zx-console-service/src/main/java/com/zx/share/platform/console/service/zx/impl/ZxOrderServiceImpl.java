@@ -99,4 +99,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 		return zxOrder;
 	}
 
+	@Override
+	public Integer selectSum() {
+		// TODO Auto-generated method stub
+		return zxOrderMapper.selectSum();
+	}
+
 }

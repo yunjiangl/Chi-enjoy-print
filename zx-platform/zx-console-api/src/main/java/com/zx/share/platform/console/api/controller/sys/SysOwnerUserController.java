@@ -17,6 +17,7 @@ import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.console.service.sys.SysOwnerUserService;
+import com.zx.share.platform.util.DateUtil;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 
@@ -64,12 +65,14 @@ public class SysOwnerUserController {
 	@RequestMapping(value="/sys/selectOwnerUserDim",method=RequestMethod.POST)
 	@ApiOperation(value="模糊查询物主用户组管理数据",notes="物主组管理")
 	@ACSPermissions(permissions = "role:list")
-	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "name", value = "查询用户组的名字", required = false),
-						@ApiImplicitParam(paramType = "query", dataType = "String", name = "perms", value = "当前用户组状态（可用，禁用）", required = false),
-						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time1", value = "开始时间", required = false),
-						@ApiImplicitParam(paramType = "query", dataType = "Date", name = "time2", value = "截至时间）", required = false)})
-	public DefaultResopnseBean<List<SysUser>> selectOwnerUserDim(String name,String perms,Date time1,Date time2){
-		List<SysUser> list=sysOwnerUserService.selectOwnerUserDim(name, perms, time1, time2);
+	@ApiImplicitParams({@ApiImplicitParam(paramType = "query", dataType = "String", name = "name", value = "查询用户的名字", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "Boolean", name = "isLock", value = "当前用户状态（可用，禁用）", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "time3", value = "开始时间", required = false),
+						@ApiImplicitParam(paramType = "query", dataType = "String", name = "time4", value = "截至时间）", required = false)})
+	public DefaultResopnseBean<List<SysUser>> selectOwnerUserDim(String name,Boolean isLock,String time3,String time4){
+		Date time1=DateUtil.getDateFromStr(time3);
+		Date time2=DateUtil.getDateFromStr(time4);
+		List<SysUser> list=sysOwnerUserService.selectOwnerUserDim(name, isLock, time1, time2);
 		return new DefaultResopnseBean<List<SysUser>>("成功",200,list);
 	}
 	/**

@@ -21,5 +21,8 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 	public List<ZxOrder> queryList(Map<String, Object> param);
 
 	public ZxOrder queryByOrderId(Long id);
+	
+	
+	Integer selectSum();
 
 }

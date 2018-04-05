@@ -80,7 +80,9 @@
 			<result column="paper_usage" property="paperUsage" jdbcType="BIGINT" />
 		</association>
 	</resultMap>
-
+	<select id="selectSum" resultType="ZxOrder" resultMap="baseResultMap">
+		select sum(order_amount) from zx_order
+	</select>
 	<select id="queryList" resultMap="orderList">
 		SELECT
 		zx_order.id,

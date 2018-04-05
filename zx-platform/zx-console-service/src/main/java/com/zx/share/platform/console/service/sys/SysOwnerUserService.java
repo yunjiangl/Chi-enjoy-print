@@ -24,7 +24,7 @@ public interface SysOwnerUserService {
 	 * 模糊查询
 	 */
 	List<SysUser> selectOwnerUserDim(@Param("name") String name,
-										@Param("perms") String perms,
+										@Param("isLock") Boolean isLock,
 										@Param("time1") Date  time1,
 										@Param("time2") Date time2);
 	/**

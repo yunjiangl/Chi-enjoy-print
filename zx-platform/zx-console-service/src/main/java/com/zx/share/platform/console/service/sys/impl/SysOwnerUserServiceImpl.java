@@ -51,9 +51,9 @@ public class SysOwnerUserServiceImpl implements SysOwnerUserService {
 	 */
 
 	@Override
-	public List<SysUser> selectOwnerUserDim(String name, String perms, Date time1, Date time2) {
+	public List<SysUser> selectOwnerUserDim(String name, Boolean isLock, Date time1, Date time2) {
 		// TODO Auto-generated method stub
-		return SysOwnerUserMapper.selectOwnerUserDim(name, perms, time1, time2);
+		return SysOwnerUserMapper.selectOwnerUserDim(name, isLock, time1, time2);
 	}
 	
 	/**

@@ -39,6 +39,7 @@
 	sys_user_role.user_id AND
 	sys_role.id = sys_user_role.role_id AND
 	sys_user.is_del='0' AND
+	sys_user.is_lock='0' AND
 	sys_role.id=#{roleId}
 	
  </select>
@@ -65,10 +66,10 @@
 	sys_user.is_del='0' AND
 	sys_role.id=4
   		<if test="name != null and name.trim() !=''">
-			 AND name like CONCAT('%',#{name},'%')
+			 AND username like CONCAT('%',#{name},'%')
 		</if>
-		<if test="perms != null">
-			 AND perms =#{perms} 
+		<if test="isLock != null">
+			 AND is_lock =#{isLock} 
 		</if>
 		<if test="time1!=null and time2!=null and time1.trim()!='' and time2.trim()!='' ">
 			 AND create_time BETWEEN #{time1} and #{time2}

@@ -1,7 +1,9 @@
 package com.zx.share.platform.console.api.controller.zx;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zx.share.platform.bean.sys.export;
 import com.zx.share.platform.bean.zx.ZxOrder;
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.console.service.zx.ZxOrderService;
+import com.zx.share.platform.util.ExportBeanExcel;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 
@@ -64,10 +69,34 @@ public class OrderController {
 		param.put("lawyerName", lawyerName);
 		param.put("time1", time1);
 		param.put("time2", time2);
-
 		return zxOrderService.list(param);
 	}
-	
+	/**
+	 * 导出
+	 *//*
+	@ApiOperation(value = "导出", notes = "导出")
+	@RequestMapping(value = "/export", method = RequestMethod.GET)
+	public String export(){
+		List<String> listName = new ArrayList<>();
+        listName.add("订单号");
+        listName.add("设备物主");
+        listName.add("设备编号");
+        listName.add("线上管理员");
+        listName.add("客户");
+        listName.add("打印费");
+        listName.add("服务费");
+        listName.add("支付金额");
+        listName.add("支付方式");
+        listName.add("支付时间");
+        listName.add("平台收益");
+        listName.add("物主收益");
+        List<String> listId = new ArrayList<>();
+        Map<String, Object> param = new HashMap<String, Object>();
+        List<ZxOrder> list1=zxOrderService.list(param).getData().getContent();  
+        ExportBeanExcel<export> exportBeanExcelUtil = new ExportBeanExcel();
+        exportBeanExcelUtil.exportExcel("测试POI导出EXCEL文档", listName, listId, list1);
+		return null;
+	}*/
 	/**
 	 * 
 	 * @Title: info
