@@ -28,7 +28,8 @@ public interface ZxOrderService {
 	 * @Description: 单个信息查询
 	 */
 	public ZxOrder orderInfo(Long id);
-		
+	
+	Integer selectCount();	
 	Integer selectSum();
 
 }

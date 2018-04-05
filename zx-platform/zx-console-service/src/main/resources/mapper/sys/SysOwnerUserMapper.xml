@@ -39,7 +39,6 @@
 	sys_user_role.user_id AND
 	sys_role.id = sys_user_role.role_id AND
 	sys_user.is_del='0' AND
-	sys_user.is_lock='0' AND
 	sys_role.id=#{roleId}
 	
  </select>

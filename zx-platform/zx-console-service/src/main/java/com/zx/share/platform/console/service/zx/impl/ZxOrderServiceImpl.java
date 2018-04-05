@@ -100,6 +100,13 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	}
 
 	@Override
+	public Integer selectCount() {
+		// TODO Auto-generated method stub
+		ZxOrder zxOrder=new ZxOrder();
+		return zxOrderMapper.selectCount(zxOrder);
+	}
+
+	@Override
 	public Integer selectSum() {
 		// TODO Auto-generated method stub
 		return zxOrderMapper.selectSum();
