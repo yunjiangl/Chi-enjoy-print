@@ -1,6 +1,7 @@
 package com.zx.share.platform.console.api.controller.zx;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
-import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.console.service.zx.ZxFileManagerABService;
 import com.zx.share.platform.constants.DictionaryTypeEnum;
 import com.zx.share.platform.util.annotation.ACSPermissions;
@@ -116,5 +116,21 @@ public class ZxFileManagerABController {
 	@ACSPermissions(permissions = "zx:ab:delete")
 	public DefaultResopnseBean<Object> delete(@RequestParam("Id") Long Id) {
 		return zxFileManagerABService.delete(Id);
+	}
+
+	/**
+	 * 
+	 * @Title: dictionaryList
+	 * @Description: 获取ab分类类目
+	 */
+	@RequestMapping(value = "/dictionary/list", method = RequestMethod.GET)
+	@ApiOperation(value = "文件分类ab类目列表", notes = "文件分类ab类目列表")
+	public DefaultResopnseBean<List<SysDictionary>> dictionaryList(
+			@ApiParam("父级id") @RequestParam(name = "parentId", required = true) String parentId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("parentId", parentId);
+		
+		return zxFileManagerABService.dictionaryList(params);
 	}
 }

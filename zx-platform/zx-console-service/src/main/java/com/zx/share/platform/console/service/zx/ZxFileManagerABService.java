@@ -1,9 +1,11 @@
 package com.zx.share.platform.console.service.zx;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
@@ -49,4 +51,6 @@ public interface ZxFileManagerABService {
 	 * @return
 	 */
 	public DefaultResopnseBean<Object> delete(Long id);
+
+	public DefaultResopnseBean<List<SysDictionary>> dictionaryList(Map<String, Object> params);
 }

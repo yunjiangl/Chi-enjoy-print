@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 
@@ -19,4 +20,6 @@ public interface ZxFileManagerABMapper extends PlatFormMapper<ZxFileManagerAB>{
 	List<ZxFileManagerAB> queryList(Map<String, Object> params);
 	
 	List<ZxFileManagerAB> vagueList(Map<String , Object> params);
+
+	List<SysDictionary> dictionaryList(Map<String, Object> params);
 }

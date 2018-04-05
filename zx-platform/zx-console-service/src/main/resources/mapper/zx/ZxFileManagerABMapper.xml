@@ -15,6 +15,7 @@
 		<result column="update_id" jdbcType="INTEGER" property="updateId" />
 		<association property="sysDictionary"
 			javaType="com.zx.share.platform.bean.sys.SysDictionary">
+			<result column="id" jdbcType="VARCHAR" property="id" />
 			<result column="type" jdbcType="VARCHAR" property="type" />
 			<result column="name" jdbcType="VARCHAR" property="name" />
 			<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
@@ -109,5 +110,22 @@
 			and zx_file_manager_ab.file_url like
 			concat('%',#{fileUrl},'%')
 		</if>
+	</select>
+
+	<select id="dictionaryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
+		resultMap="BaseResultMap">
+		SELECT DISTINCT
+		sys_dictionary.type,
+		sys_dictionary.`name`,
+		sys_dictionary.`value`,
+		sys_dictionary.parent_id,
+		sys_dictionary.id
+		FROM
+		sys_dictionary
+		INNER JOIN sys_dictionary AS parent ON
+		sys_dictionary.parent_id =
+		parent.id
+		WHERE
+		parent.id = #{parentId}
 	</select>
 </mapper>
