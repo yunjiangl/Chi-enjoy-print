@@ -12,4 +12,5 @@ public interface ZxUserPrinterApplyMapper extends PlatFormMapper<ZxUserPrinterAp
 
 	
 	List<ZxUserPrinterApply> selectNewsList(Map<String, Object> params);
+
 }

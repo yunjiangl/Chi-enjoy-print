@@ -48,4 +48,6 @@ public interface ZxUserPrinterApplyService {
 	
 	public DefaultResopnseBean<Object> addNews(int Id);
 
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> list(Map<String, Object> params);
+
 }

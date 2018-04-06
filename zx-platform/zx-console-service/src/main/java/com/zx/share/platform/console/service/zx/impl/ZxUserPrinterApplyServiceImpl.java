@@ -34,7 +34,7 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 
 	@Autowired
 	private ZxUserPrinterApplyMapper zxUserPrinterApplyMapper;
-	
+
 	@Autowired
 	private ZxUserPrinterService zxUserPrinterApplyService;
 
@@ -66,6 +66,11 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 
 		// 操作成功
 		if (zxUserPrinterApplyMapper.updateByPrimaryKeySelective(zxUPA) > 0) {
+			ZxUserPrinter zxUP = new ZxUserPrinter();
+			zxUP.setStatus(zxUPA.getStatus());
+			zxUP.setPrinterId(zxUPA.getPrinterId());
+			zxUP.setUserId(zxUPA.getUserId());
+			zxUserPrinterApplyService.add(zxUP);
 
 			return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 		}
@@ -84,22 +89,22 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 
 	@Override
 	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> selectNewsList(Map<String, Object> params) {
-			zxUserPrinterApplyMapper.selectNewsList(params);
+		zxUserPrinterApplyMapper.selectNewsList(params);
 
-			Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
-			Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
-			PageHelper.startPage(pageNum, pageSize, true);
-			List<ZxUserPrinterApply> list = zxUserPrinterApplyMapper.selectNewsList(params);
-			PageInfo pageInfo = new PageInfo(list);
-			PageResponseBean<ZxUserPrinterApply> data = new PageResponseBean<ZxUserPrinterApply>();
-			data.setFirst(pageInfo.isIsFirstPage());
-			data.setLast(pageInfo.isIsLastPage());
-			data.setNumber(pageInfo.getPageNum());
-			data.setNumberOfElements(pageInfo.getPageSize());
-			data.setSize(pageInfo.getSize());
-			data.setTotalPages(pageInfo.getPages());
-			data.setTotalElements(pageInfo.getTotal());
-			data.setContent(pageInfo.getList());
+		Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
+		Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
+		PageHelper.startPage(pageNum, pageSize, true);
+		List<ZxUserPrinterApply> list = zxUserPrinterApplyMapper.selectNewsList(params);
+		PageInfo pageInfo = new PageInfo(list);
+		PageResponseBean<ZxUserPrinterApply> data = new PageResponseBean<ZxUserPrinterApply>();
+		data.setFirst(pageInfo.isIsFirstPage());
+		data.setLast(pageInfo.isIsLastPage());
+		data.setNumber(pageInfo.getPageNum());
+		data.setNumberOfElements(pageInfo.getPageSize());
+		data.setSize(pageInfo.getSize());
+		data.setTotalPages(pageInfo.getPages());
+		data.setTotalElements(pageInfo.getTotal());
+		data.setContent(pageInfo.getList());
 		return new DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>>(ErrorsEnum.SUCCESS.label,
 				ErrorsEnum.SUCCESS.code, data);
 	}
@@ -107,24 +112,47 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 	@Transactional
 	@Override
 	public DefaultResopnseBean<Object> addNews(int Id) {
-		ZxUserPrinterApply zxUserPrinterApply= zxUserPrinterApplyMapper.selectByPrimaryKey(Id);
-		if(StringUtil.isNotBlank(zxUserPrinterApply)) {
+		ZxUserPrinterApply zxUserPrinterApply = zxUserPrinterApplyMapper.selectByPrimaryKey(Id);
+		if (StringUtil.isNotBlank(zxUserPrinterApply)) {
 			zxUserPrinterApply.setStatus(1);
 		}
 		zxUserPrinterApplyMapper.updateByPrimaryKey(zxUserPrinterApply);
-		
-		
-		
+
 		// 添加设备线上管理员
 		ZxUserPrinter zxUP = new ZxUserPrinter();
-		//zxUP.setCreateId(createId);
+		// zxUP.setCreateId(createId);
 		zxUP.setCreateTime(new Date());
 		zxUP.setPrinterId(zxUserPrinterApply.getPrinterId());
 		zxUP.setStatus(1);
 		zxUP.setUserId(zxUserPrinterApply.getUserId());
 		zxUserPrinterApplyService.add(zxUP);
-		
+
 		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+	}
+
+	@Override
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> list(Map<String, Object> params) {
+		Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
+		Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
+		PageHelper.startPage(pageNum, pageSize, true);
+		ZxUserPrinterApply record = new ZxUserPrinterApply();
+		record.setPrinterId(Long.parseLong(params.get("zxPMId").toString()));
+		List<ZxUserPrinterApply> list = zxUserPrinterApplyMapper.select(record);
+		PageInfo pageInfo = new PageInfo(list);
+
+		PageResponseBean<ZxUserPrinterApply> data = new PageResponseBean<ZxUserPrinterApply>();
+
+		data.setFirst(pageInfo.isIsFirstPage());
+		data.setLast(pageInfo.isIsLastPage());
+		data.setNumber(pageInfo.getPageNum());
+		data.setNumberOfElements(pageInfo.getPageSize());
+		data.setSize(pageInfo.getSize());
+		data.setTotalPages(pageInfo.getPages());
+		data.setTotalElements(pageInfo.getTotal());
+		data.setContent(pageInfo.getList());
+
+		return new DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>>(ErrorsEnum.SUCCESS.label,
+				ErrorsEnum.SUCCESS.code, data);
 	}
 
 }

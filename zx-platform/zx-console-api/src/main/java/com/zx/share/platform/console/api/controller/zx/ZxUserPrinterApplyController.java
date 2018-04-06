@@ -1,20 +1,27 @@
 package com.zx.share.platform.console.api.controller.zx;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.console.service.zx.ZxUserPrinterApplyService;
 import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.util.response.PageResponseBean;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 
@@ -78,6 +85,28 @@ public class ZxUserPrinterApplyController {
 
 		return zxUserPrinterApplyService.query(zxUPA);
 
+	}
+	
+
+	/**
+	 * 
+	 * @Title: list
+	 * @Description: 设备管理员申请列表
+	 */
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@ApiOperation(value = "设备管理员申请列表", notes = "设备管理员申请列表")
+	public DefaultResopnseBean<PageResponseBean<ZxUserPrinterApply>> list(
+			@ApiParam("第几页") @RequestParam(name = "pageNum", required = false) Integer pageNum,
+			@ApiParam("每页多少条数据") @RequestParam(name = "pageSize", required = false) Integer pageSize,
+			@ApiParam("设备id") @RequestParam(name = "zxPMId", required = true) Long zxPMId
+			){
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put("pageNum", pageNum);
+		params.put("pageSize", pageSize);
+		params.put("zxPMId", zxPMId);
+		
+		return zxUserPrinterApplyService.list(params);
 	}
 
 }
