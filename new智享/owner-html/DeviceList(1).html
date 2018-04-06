@@ -109,16 +109,9 @@ var showArea = function(){
 
         </tbody>
     </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
-    </div>
+   <div class="page">
+        <div id="page-link"></div>
+      </div>
 
 </div>
 <script>
@@ -217,11 +210,11 @@ function userGroup(res){
                 <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </td>
             <td>${e.printerCode}</td>
-            <td>${e.name}</td>
-            <td>${e.status}</td>
+            <td>${e.sysUser.realName}</td>
+           <td>${e.status?'通过':'没通过'}</td>
             <td>${e.address}</td>
             <td>${e.createTime}</td>
-            <td>${e.sysUser.username}</td>
+            <td>${e.managerName}</td>
             <td>${e.managerPhone}</td>
             <td>
                 <button class="layui-btn">禁用</button>
