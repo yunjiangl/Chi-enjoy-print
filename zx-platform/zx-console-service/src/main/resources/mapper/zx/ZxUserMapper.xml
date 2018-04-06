@@ -98,9 +98,14 @@
 		zx_user.nickname,
 		zx_user.username,
 		zx_user.is_lock,
-		zx_user.create_time
+		zx_user.create_time,
+		zx_user_attorney.`domain`
 		FROM
 		zx_user
+		INNER JOIN
+		zx_user_attorney
+		ON
+		zx_user.`id`=zx_user_attorney.`user_id`
 		WHERE
 		zx_user.user_type = 2
 		<where>
