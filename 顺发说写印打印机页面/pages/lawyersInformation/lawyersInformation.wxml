@@ -1,0 +1,102 @@
+<!--container start  -->
+  <view class='container'>
+
+    <!--top start  -->
+      <view class='top'>
+          <view class='image'><image src='../images/lawyers.jpg' /></view>
+
+          <view class='top-information'>
+
+              <view class='unitl'>
+                <view class='lt'>姓名：</view>
+                <view>张大大</view>
+              </view>
+
+              <view class='unitl'>
+                <view class='lt'>性别：</view>
+                <view>女</view>
+              </view>
+
+              <view class='unitl'>
+                <view class='lt'>年龄：</view>
+                <view>30</view>
+              </view>
+
+          </view>
+          
+      </view>
+    <!--top end  -->
+
+    <!--center start  -->
+        <view class='center'>
+
+            <view class='center-number'>
+              <view class='lt'>手机号：</view>
+              <view>187********</view>
+            </view>
+
+              <view class='line'></view>
+
+            <view class='center-number'>
+              <view class='lt'>微信号；</view>
+              <view>187********</view>
+            </view>
+
+              <view class='line'></view>
+
+            <view class='center-number'>
+              <view class='lt'>所在地：</view>
+              <view>贵州省遵义市大学城大学生创新创业园</view>
+            </view>
+
+        </view>
+    <!--center end  -->
+
+    <!-- footer start  -->
+      <view class='footer'>
+
+          <view class='footer-font'>
+            <view class='lt'>工作经验：</view>
+            <view>5年以上</view>
+          </view>
+
+          <view class='line'></view>
+
+          <view class='footer-font'>
+            <view class='lt'>工作机构：</view>
+            <view>贵州省贵阳市大学城大学生创新创业园</view>
+          </view>
+
+          <view class='line'></view>
+
+          <view class='footer-font'>
+            <view class='lt'>擅长领域：</view>
+            <view class='rt'>
+
+              <view class='tp'>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+              </view>
+
+              <view class='tp'>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+              </view>  
+
+            </view>
+          </view>
+
+      </view>
+    <!--footer end  -->
+
+      <!--btn start  -->
+        <view class='btn'>
+            <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">向他咨询</button>
+        </view>
+      <!--btn end  -->
+
+  </view>
+<!--container end  -->

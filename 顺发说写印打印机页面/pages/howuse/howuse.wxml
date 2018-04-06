@@ -1,0 +1,21 @@
+<!--container start  -->
+ <view class='container'>
+    
+    <!--list-until  -->
+      <view class='list-until'>
+        <view class='text'>如何使用智能打印机打印文档</view>
+        <view class='usejpg'><image src='../images/use.jpg' /></view>
+      </view>
+    <!--list-until  -->
+
+      <view class='line'></view>
+
+    <!--list-until  -->
+      <view class='list-until'>
+        <view>如何使用智能打印机打印文档</view>
+        <view class='usejpg'><image src='../images/use.jpg' /></view>
+      </view>
+    <!--list-until  -->  
+
+ </view>
+<!--container end  -->

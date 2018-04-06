@@ -1,0 +1,19 @@
+<!--container start  -->
+<view class='container'>
+  <!--top start  -->
+    <view class='top'>
+
+      <text class='print'>打印服务费</text>
+      <text class='money'>68元</text>
+
+    </view>
+  <!--top end  -->
+
+<!-- btn start  -->
+  <view class='btn'>
+      <button type='default' size='default' loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">去结算</button>
+    </view>
+<!-- btn end  -->
+
+</view>
+<!--container end  -->

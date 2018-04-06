@@ -1,0 +1,111 @@
+<!--container start  -->
+  <view class='container'>
+    
+    <!--top start  -->
+      <view class='top'>
+         <view class='lt'>
+            <text>请选择打印机</text>
+          </view>
+        <view class='rt'> > </view>
+      </view>
+    <!--top end  -->
+
+    <!--content start  -->
+      <view class='content'>
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>纸张</view>
+          <view class='a4'>A4</view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view>
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>份数</view>
+          <view class='a4 update'>
+              
+              <view class='minus'>-</view>
+              <view class='add'>+</view>
+
+          </view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view> 
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>单双面</view>
+              
+            <view class='double'> 
+                <radio-group class="radio-group" bindchange="radioChange">
+                  <view class='input-radio'>
+                    <label class="radio" wx:for="{{items1}}">
+                        <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                    </label>
+                  </view>
+                </radio-group>
+            </view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view>
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>单双面</view>
+              
+            <view class='double'> 
+                <radio-group class="radio-group" bindchange="radioChange">
+                  <view class='input-radio'>
+                    <label class="radio" wx:for="{{items3}}">
+                        <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                    </label>
+                  </view>
+                </radio-group>
+            </view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view>     
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>纸张</view>
+          <view class='a4'>所有页面(共2页)</view>
+
+        </view>
+      <!-- list end  -->        
+
+      </view>
+    <!--content end  -->
+
+    <!--footer start  -->
+      <view class='footer'>
+
+        <view class='total'>
+        <text>合计</text>
+        <text>2页共计<text style='color:#f00;'>0.4元</text></text>
+        </view>
+
+        <view class='finish'>
+          <text>确认打印</text>
+        </view>
+
+      </view>
+    <!--footer end  -->
+
+  </view>
+<!--container end  -->
