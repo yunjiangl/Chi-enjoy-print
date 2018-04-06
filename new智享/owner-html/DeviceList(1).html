@@ -15,7 +15,7 @@
     <script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="js/xadmin.js"></script>
     <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-    
+    <script type="text/javascript" src="js/area.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./layer/layer.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -30,14 +30,9 @@
 <div class="x-body">
     <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so layui-form-pane">
-            <input class="layui-input" placeholder="输入设备码" name="cate_name" >
-            <input class="layui-input" placeholder="输入设备物主" name="cate_name" >
-            <div class="layui-input-inline">
-                <select name="cateid">
-                    <option>请输入地址</option>
-                    <option>山西省</option>
-                </select>
-            </div>
+            <input class="layui-input" placeholder="输入设备码" name="cate_name_1" >
+            <input class="layui-input" placeholder="输入设备物主" name="cate_name_2" >
+			<input class="layui-input" placeholder="请输入地址" name="cate_name_3" >
             <div class="layui-input-inline">
                 <select name="cateid">
                     <option>全部</option>
@@ -47,7 +42,7 @@
             </div>
             <input class="layui-input" placeholder="创建时间" name="start" id="start">
             <input class="layui-input" placeholder="" name="end" id="end">
-            <button class="layui-btn"  lay-submit="" lay-filter="sreach">查询</button>
+            <button class="layui-btn search-btn"  lay-submit="" lay-filter="sreach">查询</button>
             <!-- <a class="layui-btn addList"  onclick="addDeviceList()" href="javascript:void(0)">添加设备</a> -->
         </form>
     </div>
@@ -111,60 +106,7 @@ var showArea = function(){
             <th>操作</th>
         </thead>
         <tbody>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>00100</td>
-            <td>张亮亮</td>
-            <td>通过</td>
-            <td>北京市********</td>
-            <td>2017-12-21 12:23:35</td>
-            <td>李老板</td>
-            <td>187********</td>
-            <td>
-                <button class="layui-btn">禁用</button>
-                <button class="layui-btn update">修改</button>
-                <a class="layui-btn" href="./sys/check-owner.html">查看</a>
-                <a class="layui-btn" href="./sys/add-owner.html">添加管理员</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>00100</td>
-            <td>张亮亮</td>
-            <td>通过</td>
-            <td>北京市********</td>
-            <td>2017-12-21 12:23:35</td>
-            <td>李老板</td>
-            <td>187********</td>
-            <td>
-                <button class="layui-btn">禁用</button>
-                <button class="layui-btn">修改</button>
-                <a class="layui-btn" href="./sys/check-owner.html">查看</a>
-                <a href="./sys/add-owner.html" class="layui-btn">添加管理员</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>00100</td>
-            <td>张亮亮</td>
-            <td>通过</td>
-            <td>北京市********</td>
-            <td>2017-12-21 12:23:35</td>
-            <td>李老板</td>
-            <td>187********</td>
-            <td>
-                <button class="layui-btn">禁用</button>
-                <button class="layui-btn">修改</button>
-                <a href="./sys/check-owner.html" class="layui-btn">查看</a>
-                <a class="layui-btn" href="./sys/add-owner.html">添加管理员</a>
-            </td>
-        </tr>
+
         </tbody>
     </table>
     <div class="page">
@@ -263,6 +205,144 @@ $('.update').on('click',function () {
         shad:[0.8,'#855'],
         content:$(".addDevice")
     })
+})
+
+//数据渲染
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="9" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  $.each(res, function (i,e) {
+    html +=`        <tr>
+            <td>
+                <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.printerCode}</td>
+            <td>${e.name}</td>
+            <td>${e.status}</td>
+            <td>${e.address}</td>
+            <td>${e.createTime}</td>
+            <td>${e.sysUser.username}</td>
+            <td>${e.managerPhone}</td>
+            <td>
+                <button class="layui-btn">禁用</button>
+                <button class="layui-btn updateUser">修改</button>
+                <a href="./sys/check-owner.html" class="layui-btn showUser">查看</a>
+                <a class="layui-btn" href="./sys/add-owner.html">添加管理员</a>
+            </td>
+        </tr>`;
+
+  });
+  if(res.length>0){
+    $(".layui-table tbody").html(html);
+  }else{
+    $(".layui-table tbody").html(NoData);
+  }
+}
+
+$.ajax({
+	url:"http://123.206.42.162:10002/zx/pm/list",
+	type:"GET",
+	data:{
+		page:1,
+		pageSize:10,
+		//设备物主的id 后面请改成动态
+		//sysUserId:2
+	},
+	async:false,
+	success:function(res){
+		//console.log(res);
+		userGroup(res.data.content)
+	}
+})
+
+/*
+*模糊函数
+*/
+$(".search-btn").click(function(){
+	$.ajax({
+		url:"http://123.206.42.162:10002/zx/pm/list",
+		type:"GET",
+		data:{
+			//pageNum:1,
+			//pageSize:10,
+			printerCode:$("*[name = 'cate_name_1']").val(),
+			//nickname:$("*[name = 'cate_name_2']").val(),
+			address:$("*[name = 'cate_name_3']").val(),
+			//startTime:$("*[name = 'start']").val(),
+			//endTime:$("*[name = 'end']").val()
+		},
+		async:false,
+		success:function(res){
+		console.log(res);
+			userGroup(res.data.content)
+		}
+	
+	})
+	
+	
+	return false;
+
+})
+
+/**
+*添加管理员
+
+* addUser").click(function () {
+*	alert();
+*  var addUserName = $("#addUser").val();
+*  var addUserStatus = $("#addUserStatus").val();
+*  $.ajax({
+*    url:"http://123.206.42.162:10002/sys/insertRoll",
+*    method:"POST",
+*    data:{
+*        name:addUserName,
+*        perms:addUserStatus,
+*        remark:"''"
+*    },
+*    success:function (res) {
+*      console.log(res);
+*      console.log("添加成功");
+*    }
+*  })
+* })
+*/
+
+/**
+ * 修改用户
+* $(".updateUser").click(function () {
+*  var userId = parseInt($("#amend-user-id").text());
+*  var userName = $("#amend-user").val();
+*  var userPerms = $("#amend-status").val();
+*  console.log(userId,userName,userPerms);
+*  $.ajax({
+*    method:"POST",
+*    url:"http://123.206.42.162:10002/sys/updateRole",
+*    data:{
+*      id:userId,
+*      name:userName,
+*      perms:userPerms
+*    },
+*    async:false,
+*    success:function (res) {
+*      console.log("修改成功");
+*    }
+*  })
+* })
+ */
+
+/**
+ * 查看信息
+ */
+$(".showUser").click(function () {
+	alert();
+  $.ajax({
+    method:"POST",
+    url:"http://123.206.42.162:10002/zx/pm/info/"+ 1,
+    async:false,
+    success:function (res) {
+      console.log("修改成功");
+    }
+  })
 })
 </script>
 </body>
