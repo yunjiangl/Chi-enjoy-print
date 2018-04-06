@@ -55,6 +55,7 @@ public class UploadController {
 		file.setUserId(userCache.getId());
 		file.setManagerId(managerId);
 		file.setAbstracts(abstracts);
+		file.setCategoryId(16L);
 
 		return uploadService.add(file, multipartFile);
 	}
@@ -80,6 +81,7 @@ public class UploadController {
 		file.setUserId(userId);
 		file.setManagerId(managerId);
 		file.setAbstracts(abstracts);
+		file.setCategoryId(17L);
 
 		return uploadService.add(file, multipartFile);
 	}
@@ -105,6 +107,7 @@ public class UploadController {
 		file.setUserId(userCache.getId());
 		file.setManagerId(managerId);
 		file.setAbstracts(abstracts);
+		file.setCategoryId(18L);
 
 		return uploadService.add(file, multipartFile);
 	}
