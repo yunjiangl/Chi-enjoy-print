@@ -1,0 +1,45 @@
+<!--container start  -->
+<view class='container'>
+  <view class='top-font'>为了您的账户更加安全，请先绑定手机</view>
+  <!-- login-form start -->
+  <view class='login-form'>
+
+      <!--账号-->  
+      <view class="inputView">  
+          <label class="loginLab">手<tt></tt>机<tt></tt>号:</label>  
+          <input class="inputText it" placeholder="输入手机号" bindinput="phoneInput" />  
+      </view>  
+
+<view class="line"></view> 
+
+      <!--密码-->  
+        <view class="inputView">  
+          <label class="loginLab">密<font>码</font>:</label>  
+          <view class='btn-right'>
+          <input class="inputText" style='float:left;' password="true" placeholder="密码" bindinput="passwordInput" />  
+          <button type="default" class='btn-psw' size="mini"> 重新发送(20) </button>          
+          </view>
+        </view>
+
+<view class="line"></view>
+
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items1}}">
+            <radio color='#0097d5' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+      </radio-group>
+
+      <view class="loginBtnView">  
+            <button class="loginBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login">下一步</button>  
+      </view>
+
+      <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox" wx:for-items="{{items2}}">
+            <checkbox color='#0097d5'  checked="{{item.checked}}"/>用户已阅读并同意《<view class='xieyi' bindtap='xieyi'>用户注册协议</view>》
+        </label>
+      </checkbox-group>
+
+  </view>
+  <!--login-form end  -->
+</view>
+<!--container end  -->

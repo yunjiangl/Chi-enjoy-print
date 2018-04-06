@@ -1,0 +1,59 @@
+<!--container start  -->
+<view class='container'>
+  <!--top start  -->
+    <view class='top'>
+        
+        <!--left start  -->
+        <view class='left'>
+
+          <view class='header-photo'><image src='../images/notlogin.png' /></view>
+
+          <view class='name-vip'>
+            <view class='login'>登录/注册</view>
+          </view>
+
+        </view>
+        <!--left end  -->
+
+       
+
+    </view>
+  <!--top end  -->
+
+  <!--center start  -->
+    <view class='center'>
+
+      <!--list start  -->
+        <view class='list-until' bindtap='how'>
+
+            <view class='question'>
+              <view><image src='../images/question.png' /></view>
+              <view class='how'>如何使用</view>
+            </view>
+            
+            <view class='go'> > </view>
+
+        </view>
+      <!--list end  -->
+
+            <view class='line'></view>
+
+      <!--list start  -->
+        <view class='list-until'>
+
+            <view class='question'>
+              <view><image src='../images/delete.png' /></view>
+              <view class='how'>清除缓存</view>
+            </view>
+            
+            <view class='go font'> <text style='font-family: "微软雅黑"; font-size: 14px;'> 30.00M</text> > </view>
+
+        </view>
+      <!--list end  -->      
+
+    </view>
+  <!--center end  -->
+  
+
+</view>
+<!--container end  -->

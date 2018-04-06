@@ -1,0 +1,114 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding:0;
+  color: #333;
+  height: 100%;
+}
+.top{
+  background: #fff;
+  flex-direction: row;
+  display: flex;
+  color: 14px;
+  font-size: 16px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  line-height: 40px;
+}
+.item{
+  width: 30%;
+  position: relative;
+  margin:  0 5px;
+}
+.top .item.active{
+  color: #3798fb;
+}
+.top .item.active::after{
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: #3798fb;
+}
+
+.list{
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+}
+.list-until{
+  background: #fff;
+  margin-top: 20px;
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;    
+}
+.cr{
+  width: 70%;
+  margin: 0 0 0 10px;
+  line-height: 30px;
+}
+tt{
+  margin: 0 3px;
+  position: relative;
+}
+.rt{
+  right: 0;
+  position: absolute;
+  margin-top: 15px;
+  line-height: 28px;
+  width: 60px;
+  text-align: center;
+  color: #fff;
+  border-radius: 20px 0 0 20px;
+  background: #3798fb;
+}
+.page{
+  color: #999;
+  font-size: 14px;
+}
+.line{
+  height: 1px;
+  background: #e0e0e0;
+  margin: 10px 0;
+}
+.tt{
+  display: flex;
+  width: 100%;
+  padding: 0px;
+}
+.word{
+  width: 44px;
+  margin-top: 5px;
+  height: 52px;
+}
+.bm{
+  display: flex;
+  line-height: 25px;
+}
+.icon2{
+  width: 20px;
+  height: 25px;
+  margin-right: 10px;
+}
+.fh{
+  background: #999;
+}
+.pdf{
+  width: 44px;
+  height: 45px;
+  margin-top: 5px;
+}
+.excel{
+  width: 44px;
+  height: 50px;
+  margin-top: 5px;
+}

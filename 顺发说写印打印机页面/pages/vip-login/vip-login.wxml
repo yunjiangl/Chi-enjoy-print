@@ -1,0 +1,29 @@
+<view class="container">  
+  <view class="login-from">    
+    <!--账号-->  
+    <view class="inputView">   
+      <label class="loginLab">手 机 号：</label>  
+      <input class="inputText" placeholder="输入手机号" bindinput="phoneInput" />  
+    </view>  
+    <view class="line"></view>  
+  
+    <!--密码-->  
+    <view class="inputView"> 
+      <label class="loginLab">密 <font>码</font>：</label>  
+      <input class="inputText" password="true" placeholder="密码" bindinput="passwordInput" />  
+    </view>  
+    <view class="line"></view>  
+    <view class='a'>
+      <view class='zhuce' bindtap='zhuce' bindlongtap=''>快速注册</view>
+      <view class='forget' bindtap='forget'>忘记密码</view>
+    </view>
+    <!--按钮-->  
+    <view class="loginBtnView lbv">  
+      <button class="loginBtn next" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login">下一步</button>  
+    </view>  
+    <view class="loginBtnView">  
+      <button class="loginBtn login-wx" type="" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login">使用微信账号登录</button>  
+    </view>
+  </view>  
+</view>  
+

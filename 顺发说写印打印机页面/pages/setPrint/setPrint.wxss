@@ -1,0 +1,105 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 14px;
+  padding: 0px;
+}
+.top{
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  line-height: 45px;
+  padding: 0 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.lt{
+  color: #666;
+}
+.rt{
+  font-size: 25px;
+  color: #666;
+}
+.content{
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-top: 20px;
+  
+}
+.list{
+  display: flex;
+  margin: 10px 0;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+.a4{
+  color: #999;
+}
+.line{
+  height: 1px;
+  background: #e0e0e0;
+  margin:  20px 0px 20px 20px;
+}
+.update{
+  display: flex;
+  font-size: 30px;
+  font-family: "楷体";
+  color: #3798fb;
+}
+.minus,.add{
+  border: 2px solid #3798fb;
+  padding: 0 15px;
+}
+.minus{
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+}
+.add{
+  border-radius: 0 5px 5px 0;
+}
+.radio{
+  font-size: 14px;
+  margin-right: 30px;
+  display: inline-block;
+  color: #666;
+}
+radio .wx-radio-input{
+  border-radius:50%;
+  width:15px;
+  height:15px;
+
+}
+.input-radio{
+  float: left;
+  margin-top: 10px;
+}
+.double{
+  margin-left: 30px;
+  margin-right: -30px;
+}
+.footer{
+  background: #fff;
+  display: flex;
+  position: fixed;
+  line-height: 50px;
+  width: 100%;
+  justify-content: space-between;
+  bottom: 0px;
+  padding-left: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+.footer text{
+  margin: 0 10px 0 0;
+}
+.finish{
+  background: #3798fb;
+  color: #fff;
+  padding: 0 20px;
+}

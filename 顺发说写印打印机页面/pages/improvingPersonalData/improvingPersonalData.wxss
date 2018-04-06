@@ -1,0 +1,239 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0px;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+}
+.top{
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.li{
+  display: flex;
+  margin-left: 20px;
+  line-height: 50px;
+}
+.input{
+  margin: 15px 20px 0 20px;
+  width: 80%;
+  background: #0f0;
+}
+.it{
+  margin: -10px 0 10px 20px;
+}
+.radio{
+  font-size: 14px;
+  margin-right: 30px;
+  display: inline-block;
+  color: #666;
+}
+radio .wx-radio-input{
+  border-radius:50%;
+  width:15px;
+  height:15px;
+  margin-right: 10px;
+
+}
+.input-radio{
+  float: left;
+  margin-top: 10px;
+}
+.line{
+  height: 1px;
+  background: #e0e0e0;
+  margin-left: 20px;
+}
+.center{
+  background: #fff;
+  margin-top: 20px;
+  border: 1px solid #e0e0e0;
+  border-right: none;
+  border-left: none;
+  height: 150px;
+}
+.li2{
+  display: flex;
+  margin-left: 20px;
+  line-height: 50px;
+}
+.center-font,.address{
+  margin-right: 20px;
+}
+.center-input{
+  margin-top: 14px;
+  width: 70%;
+}
+.footer{
+  margin:  80px 20px 0 20px;
+}
+button[type="default"] {
+color:#fff;
+background-color:#3798fb;
+}
+/*三级联动  */
+
+.page{
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+    height: 100%;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.nav{
+    position: relative;
+    z-index: 99;
+    display: flex;
+    background: #fff;
+}
+.nav-son{
+    display: flex;
+    flex: 1;
+    text-align: center;
+    height: 40px;
+    align-items:center;
+    justify-content:left;
+    font-size: 14px;
+}
+.borders{
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+.content{
+    display: inline-block;
+    color: #999;
+    text-align: left;
+    width: 100%;
+}
+.icon{
+    display: inline-block;
+    border: 4px solid transparent;
+    border-top: 4px solid #9b9b9b;
+    margin-left: 150px;
+
+}
+.temp{
+    position: relative;
+    z-index: 4;
+}
+.temp1{
+    display: none;
+    width: 100%;
+    max-height: 550rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.temp2{
+    display: none;
+    width: 100%;
+    max-height: 750rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.slidedown{
+    transform:  translateY(0%);
+}
+.temp view{
+    border-bottom: 1px solid #d1d3d4;
+    font-size: 14px;
+    color: #666;
+}
+.quyu{
+    position: relative;
+    display: none;
+    height: 450rpx;
+    z-index: 5;
+}
+.quyu .qy{
+    overflow-y: scroll;
+    float: left;
+    width: 33.33%;
+    height: 450rpx;
+    line-height: 80rpx;
+    box-sizing: border-box; 
+    font-size: 14px;
+    color: #717273;
+}
+.qy view{
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space:nowrap;  
+    padding-left: 15rpx; 
+}
+.quyu-left{
+    background: #c5c5c5;
+}
+.quyu-center{
+    background: #e0e0e0;
+}
+.quyu-right{
+    background: #fff;
+}
+.quyu-right view{
+    border-bottom: 1px solid #c5c5c5;
+}
+.current{
+    background: #e0e0e0;
+}
+.current2{
+    background: #fff;
+}
+.fullbg{
+    position: fixed;
+    top:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgb(1, 1, 1);
+    transition: all 2s;
+    opacity: 0;
+}
+.fullopacity{
+    opacity: .5;
+}
+.nav-son.active .content{
+    color: #999;
+}
+.nav-son.active .icon{
+    border-bottom: 4px solid #61beff;
+    border-top:0;
+}
+@keyframes slidown{
+    from{
+        transform:  translateY(-100%);
+    }
+    to{
+        transform:  translateY(0%);
+    }
+}
+.slidown{
+    display: block;
+    animation: slidown .7s ease-in both;
+}
+@keyframes slidup{
+    from{
+        transform:  translateY(0%);
+    }
+    to{
+        transform:  translateY(-100%);
+    }
+}
+.slidup{
+    display: block;
+    animation: slidup .7s ease-in both;
+}
+.disappear{
+    display: none;
+}

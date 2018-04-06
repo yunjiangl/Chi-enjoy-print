@@ -1,0 +1,18 @@
+<!-- container start  -->
+  <view class='container'>
+
+    <!--top start  -->
+      <view class='top'>
+
+        <view class='search'>
+        <image src='../images/search.png' />
+          <input class='input' confirm-type="search" placeholder='搜索您选择的打印机'> </input>
+        </view>
+
+        <view class='right'>搜索</view>
+
+      </view>
+    <!--top end  -->
+
+  </view>
+<!-- container end  -->

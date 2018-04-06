@@ -1,0 +1,337 @@
+<!--container start  -->
+  <view class='container'>
+
+    <!--top start  -->
+    <view class='top'>
+      <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab ==index ? 'active' : '' }}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
+    </view>
+    <!--top end  -->
+
+    <!-- 待付款 start -->
+    <view hidden='{{currentTab!=0}}'>
+    
+      <!-- list start  -->
+        <view class='list' bindtap='setprint' >
+
+          <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='word' src='../images/word.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt' bindtap='goCost' ><text>待付款</text></view>
+
+        </view>
+
+          <view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='pdf' src='../images/pdf.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待付款</text></view>
+
+        </view>
+
+          <view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='excel' src='../images/excel.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待付款</text></view>
+        </view>
+        
+          <view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+        </view>
+      <!-- list end  -->
+
+    </view>
+    <!--待付款 end  -->
+
+    <!-- 待打印 start  -->
+    <view hidden='{{currentTab!=1}}'>
+    
+      <!-- list start  -->
+        <view class='list'>
+
+          <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='word' src='../images/word.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待打印</text></view>
+        </view>
+<view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='pdf' src='../images/pdf.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待打印</text></view>
+        </view>
+
+<view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='excel' src='../images/excel.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待打印</text></view>
+        </view>
+        
+<view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+        </view>
+      <!-- list end  -->
+    
+    </view>
+    <!-- 待打印 end  -->
+
+    <!-- 已完成 start  -->
+    <view hidden='{{currentTab!=2}}'>
+    
+      <!-- list start  -->
+        <view class='list'>
+
+          <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='word' src='../images/word.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt fh'><text>已完成</text></view>
+
+        </view>
+
+          <view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='pdf' src='../images/pdf.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt fh'><text>已完成</text></view>
+
+        </view>
+
+          <view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='excel' src='../images/excel.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt fh'><text>已完成</text></view>
+        </view>
+        
+          <view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+        </view>
+      <!-- list end  -->
+
+    </view>
+    <!-- 已完成 end  -->
+
+<!--currentTab!=3 start  -->
+<view hidden='{{currentTab!=3}}'>
+
+ <!--list start  -->
+    <view class='list'>
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='word' src='../images/word.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待付款</text></view>
+        </view>
+<view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='pdf' src='../images/pdf.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt fh'><text>已完成</text></view>
+        </view>
+
+<view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+      <!--list-until start -->
+      <view class='list-until'>
+        <view class='tt'>
+          <image class='excel' src='../images/excel.png' />
+
+          <view class='cr'>
+            <text>打印机使用操作说明</text>
+            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
+          </view>
+
+          <view class='rt'><text>待打印</text></view>
+        </view>
+        
+<view class='line'></view>
+
+        <view class='bm'>
+          <image class='icon2' src='../images/address.png' />
+          <text>北京市昌平区回龙观金域国际中心B座</text>
+        </view>
+
+      </view>
+      <!--list-until end  -->
+
+    </view>
+    <!--list end  -->
+
+</view>
+<!--currentTab!=3 end  -->
+
+  </view>
+<!--container end  -->

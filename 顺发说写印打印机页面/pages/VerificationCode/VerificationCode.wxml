@@ -1,0 +1,21 @@
+<!--container start  -->
+<view class="container">
+  <!--login-form start  -->
+    <view class='login-form'>
+
+      <view class="inputView">  
+          <label class="loginLab" style='float:left;'>验证码:</label>  
+          <input class="inputText it" placeholder="4位验证码" bindinput="phoneInput" />
+      </view> 
+
+      <button type="default" class='btn-psw' size="mini"> 重新发送(20) </button>  
+
+      <view style='clear:both;'></view> 
+      <view class="line"></view>   
+
+       <button class="loginBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login">确定</button>
+
+    </view>
+  <!--login-form end  -->
+</view>
+<!--container end  -->

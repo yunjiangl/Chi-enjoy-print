@@ -1,0 +1,59 @@
+<!--container start  -->
+<view class='container'>
+
+<!-- content start  -->
+<view class='content'>
+
+  <!--top start  -->
+  <view class='top'>
+ <!-- <map longitude='{{longitude}}' latitude='{{latitude}}' ></map>  -->
+      <view class='address' bindtap="getLocation" formType="submit">
+         <image src='../images/address.png' />
+          <label>{{address}}</label> 
+         <!-- <label><input class="page-body-form-value" type="text" value="{{location.longitude}}" name="longitude"></input></label> -->
+      </view>
+
+        <view class='search' >
+        <image src='../images/search.png' />
+          <input class='input' confirm-type="search" placeholder='搜索您选择的打印机'> </input>
+        </view>
+        
+  </view>
+  <!-- top end  -->
+
+  <!-- list start  -->
+  <view class='list'>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+  </view>
+  <!--list end  -->
+
+</view>
+<!--content end  -->
+</view>
+<!-- container end  -->
