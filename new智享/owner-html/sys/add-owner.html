@@ -28,8 +28,8 @@
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so layui-form-pane">
-        <input class="layui-input" placeholder="输入线上管理员" name="cate_name" >
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach">查询</button>
+        <input class="layui-input" placeholder="输入线上管理员" id="userName" >
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="layui-btn-search">查询</button>
         </form>
       </div>
       <xblock>
@@ -48,57 +48,10 @@
             <th>操作</th>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>郭律师</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>通过</td>
-            <td>2017-08-02 14:33:44</td>
-            <td>
-             <button class="layui-btn">邀请</button>
-              <a href="check-lawyer-data.html" class="layui-btn">查看</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>郭律师</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>通过</td>
-            <td>2017-08-02 14:33:44</td>
-            <td>
-             <button class="layui-btn">邀请</button>
-              <a href="check-lawyer-data.html" class="layui-btn">查看</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="layui-unselect layui-form-checkbox" data-id="2" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
-            </td>
-            <td>郭律师</td>
-            <td>国务院关于建立城镇职工基本医疗保险制度的决定</td>
-            <td>通过</td>
-            <td>2017-08-02 14:33:44</td>
-            <td>
-             <button class="layui-btn">邀请</button>
-              <a href="check-lawyer-data.html" class="layui-btn">查看</a>
-            </td>
-          </tr>
-          
         </tbody>
       </table>
       <div class="page">
-        <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
+        <div id="page-link"></div>
       </div>
     </div>
 <!-- addaffter start -->
@@ -109,5 +62,126 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../layer/layer.js"></script>
   </body>
+<script>
+/**
+ * 进入页面时加载数据
+ */
+//全局变量
+//var totalElementsAll = 0;//数据总数
+  var startPageName = 0;//开始
+  var pageSizeSetting = 10 ;//每页显示多少条
+  var startPageNum = 1; //初始页第1页
+//ajax请求后台数据
+  getUserGroupAllData();
 
+
+/**
+ * 页面渲染函数
+ */
+function userGroup(res){
+  var html = "";
+  var NoData = `<td colspan="6" style="height: 20rem;text-align: center;color:#ff0000;line-height: 20rem;font-size:2.5rem;">暂无数据！</td>`;
+  $.each(res, function (i,e) {
+    html +=`<tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>${e.nickname}</td>
+            <td>${e.zxUserAttorney.domain}</td>
+            <td name="lock">${e.zxUserPrinter.status}</td>
+            <td>${e.createTime}</td>
+            <td>
+             <button class="layui-btn" name="passBtn"></button>
+              <a href="check-lawyer-data.html" class="layui-btn">查看</a>
+			  <input type="hidden" name="isPass" value="${e.zxUserPrinter.status}">
+			  <input type="hidden" name="isLock" value="${e.isLock}">
+            </td>
+          </tr>`;
+  });
+          if(res.length>0){
+             $(".layui-table tbody").html(html);
+          }else{
+             $(".layui-table tbody").html(NoData);
+            }
+			
+            if($("input[name = 'isPass']").val()==1){
+             $("button[name = 'passBtn']").html("解绑");
+            }else{
+             $("button[name = 'passBtn']").html("邀请");
+            }
+			
+			if($("input[name = 'isLock']").val()=="true"){
+             $("td[name = 'lock']").html("通过");
+            }else{
+             $("td[name = 'lock']").html("未通过");
+            }
+  
+}
+
+/**
+ * 分页开始
+ */
+toPage();
+
+
+function getUserGroupAllData(){
+  $.ajax({
+    url:"http://123.206.42.162:10002/lawyer/list",
+    type:"GET",
+    data:{
+      pageNum:startPageNum,
+      pageSize:pageSizeSetting
+    },
+    async:false,
+    success:function (res,status) {
+      userGroup(res.data.content);
+	  console.log(res.data.content);
+      totalElementsAll = res.data.totalElements;
+    }
+  })
+}
+//console.log(totalElementsAll);
+function toPage(){
+  layui.use('laypage', function() {
+    var laypage = layui.laypage;
+    //调用分页
+    laypage.render({
+      elem: 'page-link'
+      ,count: totalElementsAll //从后台得到总条数
+      ,skip: true
+      ,jump: function(obj, first){
+        startPageNum = obj.curr;//点击时获得当前第几页
+        startPageName = (obj.curr-1)*pageSizeSetting;
+        if(!first){ //一定要加此判断，否则初始时会无限刷新
+          getUserGroupAllData();//一定要把翻页的ajax请求放到这里，不然会请求两次。
+        }
+      }
+    });
+
+  });
+};
+
+    $("#layui-btn-search").click(function () {
+    startPageNum = 1;
+	pageSizeSetting =10;
+    toPage();
+    $(".page-link").hide();
+	var userName =  $("#userName").val();
+    $.ajax({
+      url:"http://123.206.42.162:10002/lawyer/list",
+      method:"GET",
+      data:{
+        page:startPageNum,
+        pageSize:pageSizeSetting,
+		nickname:userName
+      },
+//      async:false,
+      success:function (res) {
+        var dataContent=res.data;
+        userGroup(dataContent);
+      },
+    })
+  });
+  
+</script>
 </html>
