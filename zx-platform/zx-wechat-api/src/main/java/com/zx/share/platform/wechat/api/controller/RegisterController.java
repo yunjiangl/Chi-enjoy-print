@@ -79,7 +79,8 @@ public class RegisterController extends BaseController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public DefaultResopnseBean<Object> save(@ApiParam("手机号") @RequestParam("mobile") String mobile,
-			@ApiParam("验证码") @RequestParam("code") String code, @ApiParam("类型") @RequestParam("type") Integer type,
+			@ApiParam("验证码") @RequestParam("code") String code, @ApiParam("用户类型") @RequestParam("type") Integer type,
+			@ApiParam("密码") @RequestParam("password") String password,
 			@ApiParam("省") @RequestParam("province") String province, @ApiParam("市") @RequestParam("city") String city,
 			@ApiParam("区") @RequestParam("area") String area, @ApiParam("名称") @RequestParam("name") String name,
 			@ApiParam("微信号") @RequestParam("wechatId") String wechatId,
@@ -100,6 +101,7 @@ public class RegisterController extends BaseController {
 		user.setProvince(province);
 		user.setCity(city);
 		user.setArea(area);
+		user.setPassword(password);
 		user.setUserStatus(2);
 
 		userService.update(user);

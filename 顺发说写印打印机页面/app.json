@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/choice/choice",
     
+    "pages/register/register",
     "pages/index/index",
     "pages/map/map",
     "pages/search/search",
@@ -22,7 +22,6 @@
     "pages/forgetPassword/forgetPassword",
     "pages/resetPassword/resetPassword",
     "pages/VerificationCode/VerificationCode",
-    "pages/register/register",
     "pages/logs/logs"
   ],
   "window": {

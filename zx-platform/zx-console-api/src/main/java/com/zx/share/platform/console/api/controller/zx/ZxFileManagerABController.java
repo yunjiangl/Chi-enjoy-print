@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,11 +43,14 @@ public class ZxFileManagerABController {
 	 */
 	@RequestMapping(value = "add", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
 	@ApiOperation(value = "添加文件管理分类", notes = "添加文件管理分类")
-	@ApiImplicitParams({
-			@ApiImplicitParam(paramType = "body", dataType = "ZxFileManagerAB", name = "zxAB", value = "文件分类管理", required = true) })
-	@ACSPermissions(permissions = "zx:ab:add")
-	public DefaultResopnseBean<Object> add(@RequestBody ZxFileManagerAB zxAB,
-			@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile) {
+	public DefaultResopnseBean<Object> add(
+			@ApiParam("分类id") @RequestParam(name = "categoryId", required = true) Long categoryId,
+			@ApiParam("摘要") @RequestParam(name = "abstracts", required = true) String abstracts,
+			@ApiParam("上传的文件") @RequestParam(name = "multipartFile", required = true) MultipartFile multipartFile) {
+		ZxFileManagerAB zxAB = new ZxFileManagerAB();
+		zxAB.setAbstracts(abstracts);
+		zxAB.setCategoryId(categoryId);
+		System.out.println(categoryId);
 		return zxFileManagerABService.add(zxAB, multipartFile);
 	}
 
@@ -128,9 +133,9 @@ public class ZxFileManagerABController {
 	public DefaultResopnseBean<List<SysDictionary>> dictionaryList(
 			@ApiParam("父级id") @RequestParam(name = "parentId", required = true) String parentId) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		
+
 		params.put("parentId", parentId);
-		
+
 		return zxFileManagerABService.dictionaryList(params);
 	}
 }
