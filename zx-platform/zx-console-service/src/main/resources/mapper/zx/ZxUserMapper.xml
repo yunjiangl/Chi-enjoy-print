@@ -99,13 +99,18 @@
 		zx_user.username,
 		zx_user.is_lock,
 		zx_user.create_time,
-		zx_user_attorney.`domain`
+		zx_user_attorney.`domain`,
+		zx_user_printer.`status`
 		FROM
 		zx_user
 		INNER JOIN
 		zx_user_attorney
 		ON
 		zx_user.`id`=zx_user_attorney.`user_id`
+		INNER JOIN
+		zx_user_printer
+		ON
+		zx_user.`id`=zx_user_printer.`user_id`
 		WHERE
 		zx_user.user_type = 2
 		<where>
@@ -171,9 +176,11 @@
 		SELECT
 		zx_user.id,
 		zx_user.nickname,
+		zx_user.`is_lock`,
 		zx_user_printer.`status`,
 		zx_user_printer.create_time,
-		zx_user_attorney.domain
+		zx_user_attorney.domain,
+		zx_user_printer.status
 		FROM
 		zx_user
 		INNER
@@ -186,7 +193,6 @@
 		ON zx_user.id =
 		zx_user_attorney.user_id
 		WHERE
-		zx_user_printer.status=0 And
 		zx_user.user_type=2
 	</select>
 

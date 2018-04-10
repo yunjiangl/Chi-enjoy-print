@@ -70,7 +70,7 @@
  * 进入页面时加载数据
  */
 //全局变量
-//var totalElementsAll = 0;//数据总数
+  var totalElementsAll = 0;//数据总数
   var startPageName = 0;//开始
   var pageSizeSetting = 10 ;//每页显示多少条
   var startPageNum = 1; //初始页第1页
@@ -91,11 +91,14 @@ function userGroup(res){
             </td>
             <td>${e.nickname}</td>
             <td>${e.zxUserAttorney.domain}</td>
-            <td>通过</td>
-            <td>${e.zxUserPrinter.createTime}</td>
+            <td name="lock"></td>
+            <td>${e.createTime}</td>
             <td>
-             <button class="layui-btn">解除</button>
-              <button class="layui-btn look-btn" value='${e.id}'>查看</button>
+              <button class="layui-btn" name="passBtn"></button>
+              <button class="layui-btn look-btn">查看</button>
+			  <input type="hidden" name="isPass" value="${e.zxUserPrinter.status}">
+			  <input type="hidden" name="isLock" value="${e.isLock}">
+			  <input type="hidden" name="adminId" value="${e.id}">
             </td>
           </tr>`;
 
@@ -105,6 +108,18 @@ function userGroup(res){
   }else{
     $(".layui-table tbody").html(NoData);
   }
+  
+            if($("input[name = 'isPass']").val()==1){
+             $("button[name = 'passBtn']").html("解绑");
+            }else{
+             $("button[name = 'passBtn']").html("邀请");
+            }
+			
+			if($("input[name = 'isLock']").val()=="true"){
+             $("td[name = 'lock']").html("通过");
+            }else{
+             $("td[name = 'lock']").html("未通过");
+            }
 }
 
 /**
@@ -115,7 +130,7 @@ toPage();
 
 function getUserGroupAllData(){
   $.ajax({
-    url:"http://localhost:10002/zx/um/selectOnlineAdmin",
+    url:"http://123.206.42.162:10002/zx/um/selectOnlineAdmin",
     type:"GET",
     data:{
       page:startPageNum
@@ -124,7 +139,7 @@ function getUserGroupAllData(){
     success:function (res,status) {
       userGroup(res.data.content);
       totalElementsAll = res.data.totalElements;
-      console.log(totalElementsAll);
+      console.log(res.data.content);
     }
   })
 }
@@ -162,18 +177,21 @@ function toPage(){
             content:$(".layui-row")
         })
         // 后台获取数据查看
-        var btnId = $(this).val();
+        var btnId = $("input[name = 'adminId']").val();
         var detailsIdNum = parseInt(btnId);
         // console.log(detailsIdNum);
         $.ajax({
-            url:'http://localhost:10002/zx/um/selectOnlineAdmin'+detailsIdNum,
+            url:'http://123.206.42.162:10002/zx/um/selectOnlineAdmin',
             method:'GET',
+			 data:{
+              id:detailsIdNum
+            },
             async:false,
             success: function(res){
             console.log(res)
             var lookDetails = "";
             var Details1 = '<li style="color:#f00; text-align: center; font-size: 18px; line-height: 20px;">请添加详情信息</li>'
-            var index = res.data
+            var index = res.data.content
             lookDetails =`
             <form class="">
             <div class="picture">
@@ -183,8 +201,8 @@ function toPage(){
                         <li><font>姓名:</font> <input type="text" placeholder="输入姓名" value="${index.username}"></li>
                         <li>
                             <font>性别:</font> 
-                            <input name="sex" type="radio" value="男" checked>男
-                            <input name="sex" type="radio" value="女" >女
+                            <input name="sex" type="radio" value="男" checked id="male">男
+                            <input name="sex" type="radio" value="女" id="female">女
                         </li>
                         <li><font>年龄:</font><input type="text" placeholder="输入年龄" value="${index.age}"></li>
                     </ul>
@@ -210,8 +228,8 @@ function toPage(){
                         <li>
                             <font>执业年限:</font>
                             <div class="layui-input-inline year">
-                                <select class="permsName" name="cateid" id="workYear">${index.zxUserAttorney.workYear}
-                                    //<option>选择执业年限</option>
+                                <select class="permsName" name="cateid" id="workYear">
+                                     <option>${index.zxUserAttorney.workYear}</option>
                                     //<option>1年以下</option>
                                     //<option>1~3年</option>
                                     //<option>3~5年</option>
@@ -286,9 +304,16 @@ function toPage(){
             <div class="footer-btn">
             <button class="layui-btn hold" type="submit">返回</button>
             <button class="layui-btn hold" type="submit">解除</button>
+			<input type="hidden" id="isGen" value="${index.gen}">
             </div>
         </form>`;
-                $('.layui-row').html(lookDetails); 
+                $('.layui-row').html(lookDetails);
+				
+                if($("#isGen").val()=="男")	{
+				$("#male").attr("checked",checked);
+				}else{
+				$("#female").attr("checked",checked);
+			}				
             }
 			 
         })
