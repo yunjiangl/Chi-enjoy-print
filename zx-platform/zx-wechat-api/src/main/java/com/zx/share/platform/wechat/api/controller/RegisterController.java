@@ -40,7 +40,7 @@ public class RegisterController extends BaseController {
 	private TokenCacheService tokenCacheService;
 
 	@ApiOperation(value = "发送注册验证码", notes = "发送注册验证码")
-	@RequestMapping(value = "/code", method = RequestMethod.POST)
+	@RequestMapping(value = "/code", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<Object> list(@ApiParam("手机号") @RequestParam("mobile") String mobile,
 			HttpServletRequest request) {
@@ -53,7 +53,7 @@ public class RegisterController extends BaseController {
 	}
 
 	@ApiOperation(value = "验证注册验证码", notes = "验证注册验证码")
-	@RequestMapping(value = "/verification", method = RequestMethod.POST)
+	@RequestMapping(value = "/verification", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<Object> verification(@ApiParam("手机号") @RequestParam("mobile") String mobile,
 			@ApiParam("验证码") @RequestParam("code") String code, @ApiParam("类型") @RequestParam("type") Integer type,
