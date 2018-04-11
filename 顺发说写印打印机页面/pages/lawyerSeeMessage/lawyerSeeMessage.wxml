@@ -1,0 +1,72 @@
+<!--container start  -->
+  <view class='container'>
+
+    <!--content start  -->
+    <view class='content'>
+
+      <!--top start -->
+        <view class='top'>
+          <view>物主张亮亮邀请您成为设备 000 001的线上管理员，请注意查看。</view>
+          <view class='date'>2018-01-26 16:59:20</view>
+        </view>
+      <!--top end  -->
+
+      <view class='line'></view>
+
+      <!--message start -->
+      <view class='message'>
+      
+        <view class='li'>
+          <label>设 备 编 码</label>
+          <label>000 001</label>
+        </view>
+
+        <view class='li'>
+          <label>设 备 物 主</label>
+          <label>张亮亮</label>
+        </view>
+
+        <view class='li'>
+          <label>设 备 地 址</label>
+          <label>山西省阳泉市平定县</label>
+        </view>
+
+        <view class='li'>
+          <label>详 细 地 址</label>
+          <label>贵州省遵义市平安街大学生创新创业园</label>
+        </view>
+
+        <view class='li'>
+          <label>线下管理员</label>
+          <label>熊壮壮</label>
+        </view>
+
+        <view class='li'>
+          <label>管理员电话</label>
+          <label>187 **** ****</label>
+        </view>
+
+      </view>
+      <!--message end  -->
+
+          <view class='line'></view>
+
+      <!--btn start  -->
+        <view class='btn'>
+        <view></view>
+
+            <view class='button'>
+            
+            <button type='primary' hover-class="other-button-hover" size='mini'>接受</button>
+            <button type='default' size='mini' hover-class='ohter-button-hover'>拒绝</button>
+
+            </view>
+
+        </view>
+      <!--btn end  -->
+
+    </view>  
+    <!--conten end  -->
+
+  </view>
+<!--container end  -->

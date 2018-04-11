@@ -1,0 +1,143 @@
+<!--container start  -->
+ <view class='container'>
+    
+    <!--top start  -->
+      <view class='top'>
+
+        <view class='search'>
+        <image src='../images/search.png' />
+          <input class='input' confirm-type="search" placeholder='搜索您咨询的法律案件'> </input>
+        </view>
+
+      </view>
+    <!--top end  -->
+
+    <!--content start -->
+      <view class='content'>
+         
+         <!--titleTop start  -->
+         <view class='titleTop'>
+            <text wx:for='{{navbar}}' data-idx='{{index}}' class="item {{currentTab == index ? 'active' : ''}}" wx:key='unique' bindtap='navbarTap'>{{item}}</text>
+         </view>
+         <!--titleTop end  -->
+
+         <!--民事案由 start -->
+         <view hidden='{{currentTab!=0}}'>
+
+            <!--list start -->
+              <view class='list'>
+                
+                <!--listTitle start  -->
+                  <view class='listTitle'>
+                      <text wx:for='{{listNavBar}}' data-idx='{{index}}' class="item2 {{listTitleTab == index ? 'active' : ''}}" wx:key='unique' bindtap='listNavBarTab'>{{item}}</text>
+                  </view>
+                <!--listTitle end  -->
+
+                <!--right start -->
+                <view class='right'>
+
+                <!--民事 start -->
+                <view hidden='{{listTitleTab!=0}}'>
+
+                <!--listUntil start -->
+                  <view class='listUntil'>
+                    <text bindtap='trun'>合同纠纷</text>
+                    <text>侵权责任纠纷</text>
+                    <text>婚姻家庭纠纷</text>
+                    <text>继承纠纷</text>
+                    <text>物权保护纠纷</text>
+                    <text>合同纠纷</text>
+                    <text>侵权责任纠纷</text>
+                    <text>婚姻家庭纠纷</text>
+                    <text>继承纠纷</text>
+                    <text>物权保护纠纷</text>
+                    <text>合同纠纷</text>
+                    <text>侵权责任纠纷</text>
+                    <text>婚姻家庭纠纷</text>
+                    
+                  </view>
+                <!--listUntil end  -->
+
+                </view>
+                <!--民事 end -->
+
+                <!--商事 start -->
+                <view hidden='{{listTitleTab!=1}}'>
+
+                <!--listUntil start -->
+                  <view class='listUntil'>
+                    dff
+                  </view>
+                <!--listUntil end  -->
+
+                </view>
+                <!--商事 end -->
+
+                </view>
+                <!--rigth end  -->
+
+              </view>
+            <!--list end  -->
+
+         </view>
+         <!--民事案由 end -->
+
+         <!--刑事罪名(accusation罪名) start -->
+         <view hidden='{{currentTab!=1}}'>
+
+            <!--list start -->
+              <view class='list'>
+                
+                <!--titleAccusation start -->
+                  <view class='titleAccusation'>
+                    <text>危害国家安全罪</text>
+                      <view class='line'></view>
+                    <text>危害公共安全罪</text>
+                      <view class='line'></view>                    
+                    <text>侵犯财产罪</text>
+                      <view class='line'></view>                    
+                    <text>渎职罪</text>
+                      <view class='line'></view>                    
+                    <text>破会社会主义市场经济罪</text>
+                  </view>
+                <!--titleAccusation  -->
+
+              </view>
+            <!--list end  -->
+
+         </view>
+         <!--刑事罪名 end -->
+
+         <!--行政案由(Administration 行政) start -->
+         <view hidden='{{currentTab!=2}}'>
+
+            <!--list start -->
+              <view class='list'>
+               
+               <!--titleAccusation start -->
+                  <view class='Administration'>
+                    <text>公安行政管理</text>
+                      <view class='line'></view>
+                    <text>城乡建设行政管理</text>
+                      <view class='line'></view>                    
+                    <text>资源行政管理</text>
+                      <view class='line'></view>                    
+                    <text>交通运输行政管理(交通)</text>
+                      <view class='line'></view>                    
+                    <text>质量监督验检疫行政管理</text>
+                  </view>
+                <!--titleAccusation  -->
+               
+              </view>
+            <!--list end  -->
+
+         </view>
+         <!--行政案由 end -->
+
+
+
+      </view>
+    <!--content end  -->
+
+ </view>
+<!--container end  -->

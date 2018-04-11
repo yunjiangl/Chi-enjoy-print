@@ -1,0 +1,55 @@
+<!--container start  -->
+<view class='container'>
+
+<!-- content start  -->
+<view class='content'>
+
+  <!--top start  -->
+  <view class='top'>
+      <view class='address'>
+         <image src='../images/address.png' />
+         <label>贵州遵义市红花岗区</label>
+      </view>
+        <view class='search'>
+        <image src='../images/search.png' />
+          <input class='input' confirm-type="search" placeholder='输入物主名或设备编号'> </input>
+        </view>
+  </view>
+  <!-- top end  -->
+
+  <!-- list start  -->
+  <view class='list'>
+
+    <view class='list-unit'>
+      <label class='label'>张亮</label>
+      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>张亮</label>
+      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>张亮</label>
+      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>张亮</label>
+      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
+    </view>
+
+  </view>
+  <!--list end  -->
+
+</view>
+<!--content end  -->
+</view>
+<!-- container end  -->

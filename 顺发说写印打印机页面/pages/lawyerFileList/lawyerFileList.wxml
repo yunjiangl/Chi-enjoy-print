@@ -1,0 +1,74 @@
+<!-- container start -->
+  <view class='container'>
+  <!-- top start -->
+    <view class='top'>
+        * 注：点击文件标题，可查看文件摘要
+    </view>
+  <!-- top end -->
+
+  <!-- content start -->
+    <view class='content'>
+
+    <!-- list start -->
+      <view class='list'>
+
+        <view class='left' bindtap='downloadDocument'>
+          <view class='round'></view>
+          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
+        </view>
+
+        <view class='page'>12页</view>
+
+      </view>    
+    <!-- list end -->
+
+      <view class='line'></view>
+
+    <!-- list start -->      
+      <view class='list'>
+
+        <view class='left'>
+          <view class='round'></view>
+          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
+        </view>
+
+        <view class='page'>12页</view>
+
+      </view> 
+    <!-- list end -->       
+
+      <view class='line'></view>
+
+    <!-- list start -->      
+      <view class='list'>
+
+        <view class='left'>
+          <view class='round'></view>
+          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
+        </view>
+
+        <view class='page'>12页</view>
+
+      </view> 
+    <!-- list end -->       
+
+      <view class='line'></view>
+
+    <!-- list start -->      
+      <view class='list'>
+
+        <view class='left'>
+          <view class='round'></view>
+          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
+        </view>
+
+        <view class='page'>12页</view>
+
+      </view> 
+    <!-- list end -->          
+    
+    </view>
+  <!-- content end -->
+  
+  </view>
+<!-- container end -->

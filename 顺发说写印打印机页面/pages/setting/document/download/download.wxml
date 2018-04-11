@@ -1,0 +1,13 @@
+<!-- container start -->
+<view class='container'>
+
+  <view class='file-type-head'>
+    <text>文件类型</text>
+  </view>
+
+  <view class='category-item'>
+    
+  </view>
+
+</view>
+<!-- container end -->

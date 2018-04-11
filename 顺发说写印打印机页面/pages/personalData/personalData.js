@@ -7,8 +7,8 @@ Page({
    */
   data: {
     items1: [
-      { name: 'putong', value: '男', checked: 'true' },
-      { name: 'lvshi', value: '女' },
+      { name: '男', value: '男', checked: 'true' },
+      { name: '女', value: '女' },
     ],
     items2: [
       { checked: 'true' },

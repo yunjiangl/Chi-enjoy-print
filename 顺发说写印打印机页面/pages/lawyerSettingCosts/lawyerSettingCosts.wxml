@@ -1,0 +1,109 @@
+<!--container start  -->
+  <view class='container'>
+    
+    <!--top start  -->
+      <view class='top'>
+         <view>
+            <view>打印机位置</view>
+          </view>
+        <view class='address'>贵州省遵义市新浦新区大学城大学生创新创业园</view>
+      </view>
+    <!--top end  -->
+
+    <!--content start  -->
+      <view class='content'>
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>纸张</view>
+          <view class='a4'>A4</view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view>
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>范围</view>
+          <view class='a4 update'>
+              
+              <view class='minus'>-</view>
+              <view class='add'>+</view>
+
+          </view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view> 
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>单双面</view>
+              
+            <view class='double'> 
+                <radio-group class="radio-group" bindchange="radioChange">
+                  <view class='input-radio'>
+                    <label class="radio" wx:for="{{items1}}">
+                        <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                    </label>
+                  </view>
+                </radio-group>
+            </view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view>
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>单双面</view>
+              
+            <view class='double'> 
+                <radio-group class="radio-group" bindchange="radioChange">
+                  <view class='input-radio'>
+                    <label class="radio" wx:for="{{items3}}">
+                        <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                    </label>
+                  </view>
+                </radio-group>
+            </view>
+
+        </view>
+      <!-- list end  -->
+
+        <view class='line'></view>     
+
+      <!-- list start  -->
+        <view class='list'>
+
+          <view class='font'>纸张</view>
+          <view class='a4'>所有页面(共2页)</view>
+
+        </view>
+      <!-- list end  -->        
+
+      </view>
+    <!--content end  -->
+
+    <!-- settingCosts start -->
+      <view class='settingCosts'>
+        <label>设置打印服务费</label>
+        <label class='costs'><label><input type='text' placeholder='输入费用'></input></label><label class='m'>￥</label></label>
+      </view>
+    <!-- settingCosts end -->
+
+    <!--footer start  -->
+      <view class='footer'>
+          <button type='default' size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
+      </view>
+    <!--footer end  -->
+
+  </view>
+<!--container end  -->

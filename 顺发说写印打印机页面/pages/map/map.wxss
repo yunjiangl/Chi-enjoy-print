@@ -1,6 +1,16 @@
+.map{
+  height: 100%;
+}
 .btn{
   position: fixed;
   bottom: 0;
-  background: #f00;
   text-align: center;
+  background: #fff;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 5px;
+  width: 100%;
+}
+.default{
+  line-height: 50px;
 }

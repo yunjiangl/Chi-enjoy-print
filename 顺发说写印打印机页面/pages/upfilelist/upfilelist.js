@@ -7,6 +7,11 @@ Page({
   data: {
   
   },
+  turn:function(){
+    wx.navigateTo({
+      url: '../lawyerSettingCosts/lawyerSettingCosts',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

@@ -1,0 +1,132 @@
+<!--container start  -->
+    <view class='container'>
+        
+        <!-- top start  -->
+        <view class='top'>
+
+          <view class='search'>
+            <image src='../images/search.png' />
+            <input class='input' confirm-type="search" placeholder='搜索您咨询的法律案件'> </input>
+          </view>
+
+        </view>
+        <!-- top end  -->
+
+        <!-- content start -->
+          <view class='content'>
+
+            <!-- dateAndMoney start -->
+               <view class='dateAndMoney'>
+                  
+                  <view class='money'>
+                    <view>2018年01月</view>
+                    <view><label class='income'>收入: ￥300</label><label class='warn'>*具体收入与物主商店</label></view>
+                  </view>
+
+                  <!--date start -->
+                  <view class='date'>
+
+                    <view class="section">  
+
+                      <picker mode="date" value="{{date}}" fields='month' start="1978-01-01" end="2200-01-01" bindchange="bindDateChange">  
+
+                        <view class="picker">  
+                          <image src='../images/year.png' />{{dates}}  
+                        </view>  
+
+                      </picker>  
+
+                    </view>
+
+                  </view>
+                  <!-- date end -->
+
+               </view>
+            <!-- dateAndMoner end  -->
+
+            <!--list start -->
+              <view class='list'>
+
+                <!-- owner(物主) start -->
+                <view class='owner'>
+                  <view><label>设备物主: </label><label>张亮</label></view>
+                  <view><label>设备编号:</label><label>000 001</label></view>
+                </view>
+                <!-- owner end  -->
+
+                  <view class='line'></view>
+
+                <!-- customer(客户) start  -->
+                  <view class='customer'>
+
+                    <view class='nameDate'>
+                      <view><label>客户:</label><label>郭晓敏</label></view>
+                      <view class='yearDate'>2018-01-29 12:23:30</view>
+                    </view>
+
+                    <view class='customerMoner'>￥300.00</view>
+                  </view>
+                  <!-- customer end  -->
+
+              </view>
+            <!--list end  -->
+
+            <!--list start -->
+              <view class='list'>
+
+                <!-- owner(物主) start -->
+                <view class='owner'>
+                  <view><label>设备物主: </label><label>张亮</label></view>
+                  <view><label>设备编号:</label><label>000 001</label></view>
+                </view>
+                <!-- owner end  -->
+
+                  <view class='line'></view>
+
+                <!-- customer(客户) start  -->
+                  <view class='customer'>
+
+                    <view class='nameDate'>
+                      <view><label>客户:</label><label>郭晓敏</label></view>
+                      <view class='yearDate'>2018-01-29 12:23:30</view>
+                    </view>
+
+                    <view class='customerMoner'>￥300.00</view>
+                  </view>
+                  <!-- customer end  -->
+
+              </view>
+            <!--list end  -->
+
+            <!--list start -->
+              <view class='list'>
+
+                <!-- owner(物主) start -->
+                <view class='owner'>
+                  <view><label>设备物主: </label><label>张亮</label></view>
+                  <view><label>设备编号:</label><label>000 001</label></view>
+                </view>
+                <!-- owner end  -->
+
+                  <view class='line'></view>
+
+                <!-- customer(客户) start  -->
+                  <view class='customer'>
+
+                    <view class='nameDate'>
+                      <view><label>客户:</label><label>郭晓敏</label></view>
+                      <view class='yearDate'>2018-01-29 12:23:30</view>
+                    </view>
+
+                    <view class='customerMoner'>￥300.00</view>
+                  </view>
+                  <!-- customer end  -->
+
+              </view>
+            <!--list end  -->
+
+          </view>
+        <!-- content end  -->
+
+    </view>
+<!--container  -->

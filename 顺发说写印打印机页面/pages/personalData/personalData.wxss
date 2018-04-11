@@ -14,7 +14,6 @@ page{
 .loginLab{
   margin: 15px 15px 15px 20px;
   color: #333;
-  font-size: 14px;
   float: left;
 }
 .inputText{
@@ -23,10 +22,8 @@ page{
   text-align: left;
   margin-top: 16px;
   color: #999;
-  font-size: 14px;
 }
 .radio{
-  font-size: 14px;
   margin-right: 30px;
   display: inline-block;
   color: #666;
@@ -45,7 +42,6 @@ radio .wx-radio-input{
   float: left;
   margin: 15px 15px 15px 20px;
   color: #333;
-  font-size: 14px;
 }
 .info-top{
   width: 100%;
@@ -92,7 +88,7 @@ radio .wx-radio-input{
     height: 40px;
     align-items:center;
     justify-content:left;
-    font-size: 14px;
+    font-size: 28rpx;
 }
 .borders{
     border-left: 1px solid #e6e6e6;
@@ -137,7 +133,7 @@ radio .wx-radio-input{
 }
 .temp view{
     border-bottom: 1px solid #d1d3d4;
-    font-size: 14px;
+    font-size: 28rpx;
     color: #666;
 }
 .quyu{
@@ -153,7 +149,7 @@ radio .wx-radio-input{
     height: 450rpx;
     line-height: 80rpx;
     box-sizing: border-box; 
-    font-size: 14px;
+    font-size: 28rpx;
     color: #717273;
 }
 .qy view{

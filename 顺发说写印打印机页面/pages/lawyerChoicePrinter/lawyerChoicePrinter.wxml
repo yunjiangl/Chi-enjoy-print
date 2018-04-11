@@ -1,0 +1,91 @@
+<!-- container start -->
+  <view class='container'>
+
+    <!-- choice start -->
+      <view class='choice'>
+
+        <!-- address start -->
+          <view class='address'>
+            <view>贵阳市花溪区国际影城3楼</view>
+            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
+          </view>
+        <!-- address end -->
+
+        <!-- btn start  -->
+            <view class='btn'>
+                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+            </view>
+        <!-- btn end  -->
+
+      </view>
+    <!-- choice end -->
+
+        <view class='line'></view>
+
+        <!-- choice start -->
+      <view class='choice'>
+
+        <!-- address start -->
+          <view class='address'>
+            <view>贵阳市花溪区国际影城3楼</view>
+            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
+          </view>
+        <!-- address end -->
+
+        <!-- btn start  -->
+            <view class='btn'>
+                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+            </view>
+        <!-- btn end  -->
+
+      </view>
+    <!-- choice end -->
+
+        <view class='line'></view>
+
+        <!-- choice start -->
+      <view class='choice'>
+
+        <!-- address start -->
+          <view class='address'>
+            <view>贵阳市花溪区国际影城3楼</view>
+            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
+          </view>
+        <!-- address end -->
+
+        <!-- btn start  -->
+            <view class='btn'>
+                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+            </view>
+        <!-- btn end  -->
+
+      </view>
+    <!-- choice end -->
+
+        <view class='line'></view>
+
+        <!-- choice start -->
+      <view class='choice'>
+
+        <!-- address start -->
+          <view class='address'>
+            <view>贵阳市花溪区国际影城3楼</view>
+            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
+          </view>
+        <!-- address end -->
+
+        <!-- btn start  -->
+            <view class='btn'>
+                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+            </view>
+        <!-- btn end  -->
+
+      </view>
+    <!-- choice end -->
+
+  </view>
+<!-- container end -->

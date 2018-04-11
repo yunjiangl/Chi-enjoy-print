@@ -1,0 +1,362 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 28rpx;
+}
+.PhotoName{
+  display: flex;
+  background: #fff;
+  padding: 20rpx 0rpx 20rpx 30rpx;
+  border-bottom: 1px solid #e0e0e0;
+}
+.upPhoto image{
+  width: 110px;
+  height: 114px;
+}
+.NSA{
+  width: 36px;
+  margin-right: 30rpx;
+}
+.Name{
+  line-height: 40px;
+  margin-left: 15px;
+}
+.Name view{
+  display: flex;
+}
+.info{
+  margin: 8px 0 0 0rpx;
+}
+.radio{
+  margin-right: 20px;
+}
+radio .wx-radio-input{
+  border-radius:50%;
+  width:15px;
+  height:15px;
+}
+.phoneAndWeChat{
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-top: 30rpx;
+  background: #fff;
+  height: 280rpx;
+}
+.NumberAndAddress{
+  margin: 30rpx 0 0 30rpx;
+  display: flex; 
+}
+.NAA{
+  margin: 20rpx 0 0 30rpx;
+}
+.line{
+  height: 1px;
+  background: #e0e0e0;
+  margin: 10rpx 0 0 30rpx;
+}
+.in{
+  margin: -10rpx 0 0 30rpx;
+}
+.location{
+  margin: 10px 15px 15px 0rpx;
+  color: #333;
+}
+.occupation{
+  margin-top: 15px;
+  background: #fff;
+}
+.PracticeYears{
+  display: flex;
+  padding-right: 15px;
+}
+.Years{
+  margin: 15px 15px 0 0;
+  padding-left: 30rpx;
+}
+
+/* 下拉框 */
+.phone_personal{
+    width: 100%;
+    height:100rpx;
+    line-height:100rpx;
+    color: #999;
+}
+.phone_one{
+    display: flex; 
+    position: relative;
+    justify-content: space-between;
+    background: #fff;
+    width: 520rpx;
+    height:100rpx;
+    margin:0 auto;
+    line-height: 400rpx;
+}
+.person_box{
+    position: relative;
+}
+.phone_select{
+    margin-top:0;
+    margin-left: -15px;
+    z-index: 10000;
+    position: absolute; 
+}
+.select_one{
+    text-align: center;
+    background: #fff;
+    width:538rpx;   
+    height:100rpx;
+    line-height:90rpx;
+    margin:0 5%;
+    border-bottom:1rpx solid rgb(255, 255, 255);
+}
+.personal_image{
+    z-index: 10000;
+    position: absolute;
+    transition: All 0.4s ease;  
+    -webkit-transition: All 0.4s ease;
+}
+.rotateRight{
+    transform: rotate(180deg); 
+}
+.occupationMechanism,.occupationNumber{
+  display: flex;
+  line-height: 100rpx;
+}
+.occupationNumber{
+  margin-bottom: -15px;
+}
+.font{
+  margin-right: 30rpx;
+  padding-left: 30rpx;
+}
+.infoOccupation{
+  margin-top: 26rpx;
+}
+.atLeast{
+  color: #999;
+}
+.list{
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  line-height: 25px;
+  padding: 0 10px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+.rt{
+  margin-left: 5px;
+}
+.tp{
+  display: flex;
+}
+
+/*上传图片*/
+.upPicture{
+  background: #fff;
+  margin-top: 30rpx;
+  padding: 1px 30rpx;
+}
+.IDCard,.lawYerCertificate,.putOnfile{
+  border: 1px dashed #999;
+  width: 100%;
+  margin: 30rpx 0;
+  justify-content: space-between;
+}
+.up{
+  width: 50%;
+  margin: 80rpx auto;
+  text-align: center;
+}
+.text{
+  margin-top: 10rpx;
+  color: #3798fb;
+}
+.images{
+  width: 80px;
+  height: 67px;
+}
+.footer{
+  display: flex;
+  margin: 50px 0 20px 0;
+}
+.footer button{
+  width: 90%;
+}
+.costs{
+  display: flex;
+  justify-content: space-between;
+}
+button[type='default']{
+  color: #fff;
+  background: #3798fb;
+}
+
+/*三级联动  */
+.page{
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+    height: 100%;
+    overflow: hidden;
+}
+.nav{
+    position: relative;
+    z-index: 99;
+    display: flex;
+    background: #fff;
+}
+.nav-son{
+    display: flex;
+    flex: 1;
+    text-align: center;
+    height: 40px;
+    align-items:center;
+    justify-content:left;
+    font-size: 28rpx;
+}
+.borders{
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+.content{
+    display: inline-block;
+    color: #999;
+    text-align: left;
+}
+.icon{
+    display: inline-block;
+    border: 4px solid transparent;
+    border-top: 4px solid #9b9b9b;
+    margin-left: 380rpx;
+}
+.ico{
+  margin-top: 20px;
+  margin-left: 520rpx;
+}
+.temp{
+    position: relative;
+    z-index: 4;
+}
+.temp1{
+    display: none;
+    width: 100%;
+    max-height: 550rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.temp2{
+    display: none;
+    width: 100%;
+    max-height: 750rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.slidedown{
+    transform:  translateY(0%);
+}
+.temp view{
+    border-bottom: 1px solid #d1d3d4;
+    font-size: 28rpx;
+    color: #666;
+}
+.quyu{
+    position: relative;
+    display: none;
+    height: 450rpx;
+    z-index: 5;
+}
+.quyu .qy{
+    overflow-y: scroll;
+    float: left;
+    width: 33.33%;
+    height: 450rpx;
+    line-height: 80rpx;
+    box-sizing: border-box; 
+    font-size: 28rpx;
+    color: #717273;
+}
+.qy view{
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space:nowrap;  
+    padding-left: 15rpx; 
+}
+.quyu-left{
+    background: #c5c5c5;
+}
+.quyu-center{
+    background: #e0e0e0;
+}
+.quyu-right{
+    background: #fff;
+}
+.quyu-right view{
+    border-bottom: 1px solid #c5c5c5;
+}
+.current{
+    background: #e0e0e0;
+}
+.current2{
+    background: #fff;
+}
+.fullbg{
+    position: fixed;
+    top:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgb(1, 1, 1);
+    transition: all 2s;
+    opacity: 0;
+}
+.fullopacity{
+    opacity: .5;
+}
+.nav-son.active .content{
+    color: #999;
+}
+.nav-son.active .icon{
+    border-bottom: 4px solid #9b9b9b;
+    border-top:0;
+}
+.phone_one.active .ico{
+    border-bottom: 4px solid #9b9b9b;
+    border-top:0;
+}
+@keyframes slidown{
+    from{
+        transform:  translateY(-100%);
+    }
+    to{
+        transform:  translateY(0%);
+    }
+}
+.slidown{
+    display: block;
+    animation: slidown .7s ease-in both;
+}
+@keyframes slidup{
+    from{
+        transform:  translateY(0%);
+    }
+    to{
+        transform:  translateY(-100%);
+    }
+}
+.slidup{
+    display: block;
+    animation: slidup .7s ease-in both;
+}
+.disappear{
+    display: none;
+}

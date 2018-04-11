@@ -1,0 +1,99 @@
+<!-- container start -->
+  <view class='container'>
+
+    <!-- until start -->
+      <view class='until'>
+        
+        <!-- orderNum start -->
+          <view class='orderNum'>
+            <label>订 单 编 号</label>
+            <label>201801182334350001</label>
+          </view>
+        <!-- orderNum end -->
+
+          <view class='line'></view>
+
+        <!-- owner start -->
+          <view class='owner'>
+              <view>
+                <label>设 备 物 主</label>
+                <label>张亮亮</label>
+              </view>
+              <view>
+                <label>设 备 编 码</label>
+                <label>000 01</label>
+              </view>
+              <view>
+                <label>线下管理员</label>
+                <label>张希</label>
+              </view>
+              <view>
+                <label>管理员电话</label>
+                <label>187********</label>
+              </view>
+              <view>
+                <label>打印机地址</label>
+                <label>遵义市新浦新区大学城大学生创新创业园</label>
+              </view>
+          </view>
+        <!-- owner end -->
+
+        <view class='line'></view>
+
+        <!-- admin start -->
+          <view class='owner admin'>
+              <view>
+                <label>线上管理员</label>
+                <label>熊壮壮</label>
+              </view>
+              <view>
+                <label>客 户 用 户</label>
+                <label>郭美美</label>
+              </view>
+              <view>
+                <label>支 付 时 间</label>
+                <label>2018-01-29 12：23：30</label>
+              </view>
+              <view>
+                <label>支 付 方 式</label>
+                <label>微信支付</label>
+              </view>
+          </view>
+        <!-- admin end -->
+
+        <view class='line'></view>
+
+        <!-- information start -->
+          <view class='owner information'>
+              <view>
+                <label>文 件 标 题</label>
+                <label>离婚财产分割、财产继承</label>
+              </view>
+              <view>
+                <label>纸<tt></tt>张</label>
+                <label>A4</label>
+              </view>
+              <view>
+                <label>颜<tt></tt>色</label>
+                <label>黑白</label>
+              </view>
+              <view>
+                <label>份<tt></tt>数</label>
+                <label>2</label>
+              </view>
+              <view>
+                <label>单 <ff>双</ff> 面</label>
+                <label>单面</label>
+              </view>
+              <view>
+                <label>范<tt></tt>围</label>
+                <label>所有页面(20页)</label>
+              </view>
+          </view>
+        <!-- information end -->
+
+      </view>
+    <!-- until end -->
+
+  </view>
+<!-- container end -->

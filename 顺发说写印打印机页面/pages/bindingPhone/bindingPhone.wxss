@@ -66,12 +66,22 @@ line-height:20px;
 font-size:14px;
 padding:6px 6px;
 }
+.radio-group{
+  margin-left: 10px;
+}
 .radio{
   display: inline-block;
  font-size: 14px;
  margin-top: 20px;
  margin-right: 60px;
  color: #666;
+}
+radio .wx-radio-input{
+  border-radius:50%;
+  width:18px;
+  height:18px;
+  margin-right: 10px;
+
 }
 .loginBtn[type="primary"] {  
   width: 100%;  

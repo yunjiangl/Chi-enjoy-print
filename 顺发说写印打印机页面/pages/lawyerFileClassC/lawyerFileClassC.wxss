@@ -1,0 +1,78 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  color: #333;
+  height: 100%;
+  
+}
+.content{
+  width: 100%;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-top: 20px;
+}
+.word{
+  display: flex;
+  margin: 0px 20px 20px 20px;
+  justify-content: space-between;
+}
+.left{
+  display: flex;
+}
+.right{
+  margin: 20px 0 0 20px;
+}
+.line{
+  height: 1px;
+  background: #e0e0e0;
+  margin: 20px 0;
+}
+.WordAndDate{
+  flex-direction: row;
+  margin-left: 15px;
+  margin-top: 5px;
+  width: 80%;
+  line-height: 25px;
+}
+.wordpng{
+  width: 64px;
+  height: 76px;
+}
+.PageDate{
+  font-size: 14px;
+  color: #999;
+}
+.pdf{
+  width: 64px;
+  height: 65px;
+}
+.excel{
+  width: 58px;
+  height: 66px;
+}
+.footer{
+  width: 100%;
+  background: #f00;
+  position: fixed;
+  bottom: 0px;
+  height: 50px;
+}
+button{
+  width: 50%;
+  border-radius: 0;
+}
+button[size='mini']{
+  font-size: 16px;
+  line-height: 50px;
+}
+button[type='primary']{
+  background: #3798fb;
+}

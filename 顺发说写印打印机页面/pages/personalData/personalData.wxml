@@ -47,35 +47,35 @@
 <view style='clear:both;'></view>
 
         <view class="inputView">   
-        <label class="loginLab">所 在 地：</label>  
-         <!-- <input class="inputText" placeholder="请选择所在地" bindinput="phoneInput" />    -->
-        <!-- page start  -->
-         <view class="page">
-          <view class="nav">
-              <view class="nav-son {{shownavindex == 1? 'active' : ''}}" bindtap="listqy" data-nav="1">
-                  <view class="content">请选择所在地</view>
-                  <view class="icon"></view>
-              </view>
+          <label class="loginLab">所 在 地：</label>  
+          <!-- <input class="inputText" placeholder="请选择所在地" bindinput="phoneInput" />    -->
+          <!-- page start  -->
+          <view class="page">
+            <view class="nav">
+                <view class="nav-son {{shownavindex == 1? 'active' : ''}}" bindtap="listqy" data-nav="1">
+                    <view class="content">请选择所在地</view>
+                    <view class="icon"></view>
+                </view>
+            </view> 
+            <view class="quyu {{qyopen ? 'slidown' : 'slidup'}} {{qyshow ? 'disappear':''}}"> 
+                <view class="qy quyu-left">
+                    <view class="{{select1 == index ? 'current' : ''}}" wx:for="{{cityleft}}" bindtap="selectleft" data-city='{{index}}'>
+                        {{index}}
+                    </view>
+                </view> 
+                <view class="qy quyu-center">
+                    <view class="{{select2 == index ? 'current2' : ''}}" wx:for="{{citycenter}}" bindtap="selectcenter" data-city='{{index}}'>
+                        {{index}}
+                    </view>
+                </view> 
+                  <view class="qy quyu-right">
+                    <view wx:for="{{cityright}}">
+                        {{item}}
+                    </view>
+                </view>  
+            </view>
           </view> 
-          <view class="quyu {{qyopen ? 'slidown' : 'slidup'}} {{qyshow ? 'disappear':''}}"> 
-              <view class="qy quyu-left">
-                  <view class="{{select1 == index ? 'current' : ''}}" wx:for="{{cityleft}}" bindtap="selectleft" data-city='{{index}}'>
-                      {{index}}
-                  </view>
-              </view> 
-              <view class="qy quyu-center">
-                  <view class="{{select2 == index ? 'current2' : ''}}" wx:for="{{citycenter}}" bindtap="selectcenter" data-city='{{index}}'>
-                      {{index}}
-                  </view>
-              </view> 
-                <view class="qy quyu-right">
-                  <view wx:for="{{cityright}}">
-                      {{item}}
-                  </view>
-              </view>  
-          </view>
-        </view> 
-    <!--page end  -->
+          <!--page end  -->
         </view> 
 </view>
 <view style='clear:both;'></view>

@@ -76,28 +76,24 @@
 			<systemPath>${basedir}/../lib/bcprov-jdk15on-154.jar</systemPath>
 		</dependency>
 
+		
+		
 		<dependency>
-			<groupId>itextpdf-5.5.9</groupId>
-			<artifactId>itextpdf-5.5.9</artifactId>
-			<version>2.5.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/../lib/itextpdf-5.5.9.jar</systemPath>
+			<groupId>org.yunjiang.itextpdf</groupId>
+			<artifactId>yunjiang-itextpdf</artifactId>
+			<version>4.6.1</version>
 		</dependency>
 		
 		<dependency>
-			<groupId>aspose-words-15.8.0-jdk16</groupId>
-			<artifactId>aspose-words-15.8.0-jdk16</artifactId>
-			<version>2.5.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/../lib/aspose-words-15.8.0-jdk16.jar</systemPath>
+			<groupId>org.yunjiang.aspose</groupId>
+			<artifactId>yunjiang-words</artifactId>
+			<version>4.6.1</version>
 		</dependency>
 		
 		<dependency>
-			<groupId>aspose-cells-8.5.2</groupId>
-			<artifactId>aspose-cells-8.5.2</artifactId>
-			<version>2.5.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/../lib/aspose-cells-8.5.2.jar</systemPath>
+			<groupId>org.yunjiang.aspose</groupId>
+			<artifactId>yunjiang-cells</artifactId>
+			<version>4.6.1</version>
 		</dependency>
 
 		<dependency>

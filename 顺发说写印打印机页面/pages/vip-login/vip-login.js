@@ -1,11 +1,11 @@
-//index.js
-//获取应用实例
-const app = getApp()
 
+//获取应用实例
+var app = getApp()
+var api = 'http://47.94.103.214:10001/wechat/login'
 Page({
   data: {
     phone: '',
-    password: ''
+    password: '',
   },
   onPullDownRefresh: function () { //下拉刷新
     wx.showNavigationBarLoading();
@@ -28,19 +28,23 @@ Page({
     })
   },
 
+
   // 登录  
   login: function () {
+
     if (this.data.phone.length == 0 || this.data.password.length == 0) {
       wx.showToast({
         title: '用户名和密码不能为空',
         icon: 'loading',
-        duration: 1000
-      })
+        duration: 10000
+      });
     } else {
       // 这里修改成跳转的页面  
       wx.navigateTo({
         url: '',
-        success: function (res) { },
+        success: function (res) {
+          console.log(res.code);
+        },
         fail: function (res) { },
         complete: function (res) { },
       })
@@ -60,9 +64,49 @@ Page({
   forget: function () {
     wx.navigateTo({
       url: '../forgetPassword/forgetPassword',
-      success: function (res) { },
+      success: function (res) {
+
+      },
       fail: function (res) { },
       complete: function (res) { },
     })
+  },
+  weiLogin: function () {
+    wx.getUserInfo({
+      success: function (res) {
+        console.log(res);
+        wx.login({
+          success: function (loginres) {
+            console.log(loginres);
+            // var that = this
+            wx.request({
+              url: 'http://123.206.42.162:10001/wechat/login',
+              data: {
+                appId: '',
+                code: loginres.code,
+                iv: res.iv,
+                encryptedData: res.encryptedData
+              },
+              method: 'GET',
+              header: {
+                //'content-type': 'X-ACCESS-TOKEN'
+              },
+              success: function (data) {
+                console.log(data.data);
+                if (data.data.code == '200') {
+                  wx.switchTab({
+                    url: '../lawyerIndex/lawyerIndex',
+                  })
+                } 
+              }
+            })
+
+          }
+        })
+
+      }
+    })
+
+
   }
 })
