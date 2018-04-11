@@ -1,39 +1,46 @@
 <view class='container'>
-<view class='top-font'>为了您的账户更加安全，请先绑定手机</view> 
-  <view class="login-from">    
-      <!--账号-->  
-        <view class="inputView">  
-          <label class="loginLab">手<tt></tt>机<tt></tt>号:</label>  
-          <input class="inputText" placeholder="输入手机号" bindinput="phoneInput" />  
-        </view>  
-<view class="line"></view>  
-    
-      <!--密码-->  
-        <view class="inputView">  
-          <label class="loginLab">密<font>码</font>:</label>  
-          <input class="inputText" password="true" placeholder="密码" bindinput="passwordInput" />  
-        </view>  
-<view class="line"></view>
-      <view class="inputView">
-        <label class="loginLab">确认密码:</label>  
-        <input class="inputText" password="true" placeholder="确认密码" bindinput="passwordInput" />  
-      </view>
-<view class="line"></view>    
-        <radio-group class="radio-group" bindchange="radioChange">
-        <label class="radio" wx:for="{{items1}}">
-            <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-        </label>
-        </radio-group>
-          <view class="loginBtnView">  
-            <button class="loginBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="PhoneNext">下一步</button>  
-          </view>  
-        <view class="loginBtnView">  
-          <button class="loginBtn login-wx" type="" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login-weix">使用微信登录</button>
-        </view>
-      <checkbox-group bindchange="checkboxChange">
-        <label class="checkbox" wx:for-items="{{items2}}">
-            <checkbox color='#3798FB'  checked="{{item.checked}}"/>用户已阅读并同意《<view class='xieyi' bindtap='xieyi'>用户注册协议</view>》
-        </label>
-      </checkbox-group>
-      </view>
+  <view class='top-font'>为了您的账户更加安全，请先绑定手机</view>
+  
+  <view class="login-from">
+  <form bindsubmit="formBindsubmit" bindreset="formReset">
+    <!--账号-->
+    <view class="inputView">
+      <label class="loginLab">手
+        <tt></tt>机
+        <tt></tt>号:</label>
+      <input class="inputText" placeholder="输入手机号" name="phone" />
+    </view>
+    <view class="line"></view>
+
+    <!--密码-->
+    <view class="inputView">
+      <label class="loginLab">密
+        <font>码</font>:</label>
+      <input class="inputText" password="true" placeholder="密码" name="password" />
+    </view>
+    <view class="line"></view>
+    <view class="inputView">
+      <label class="loginLab">确认密码:</label>
+      <input class="inputText" password="true" placeholder="确认密码" name='restPassword' />
+    </view>
+    <view class="line"></view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for='{{items1}}'>
+        <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </label>
+    </radio-group>
+    <view class="loginBtnView">
+      <button class="loginBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}"  formType="submit">下一步</button>
+    </view>
+    <view class="loginBtnView">
+      <button class="loginBtn login-wx" type="" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login-weix">使用微信登录</button>
+    </view>
+    <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox">
+        <checkbox color='#3798FB' checked="{{items2.checked}}" />用户已阅读并同意《
+        <view class='xieyi' bindtap='xieyi'>用户注册协议</view>》
+      </label>
+    </checkbox-group>
+     </form>
+  </view>
 </view>

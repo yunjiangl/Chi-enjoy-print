@@ -41,16 +41,25 @@ App({
                 console.log(data.data);
                 // 如果用户刚刚使用微信登录
                 if (data.data.data.userStatus == 1) {
-                  url: '../register/register'
+                  wx.redirectTo({
+                    url: 'pages/register/register'
+                  })
+                 
                 } else {
                   // 判断用户类型
 
                   if (data.data.data.userType == 2) {
                     //跳转到律师首页
-                    url: '../lawyerIndex/lawyerIndex'
+                    wx.redirectTo({
+                      url: 'pages/lawyerIndex/lawyerIndex'
+                    })
+                   
                   } else if (data.data.data.userType == 1) {
                     //跳转到普通用户首页
-                    url: '../index/index'
+                    wx.redirectTo({
+                      url: 'pages/index/index'
+                    })
+                    
                   }
                 }
 
