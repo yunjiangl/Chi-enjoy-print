@@ -28,11 +28,11 @@
             <button class="loginBtn" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="PhoneNext">下一步</button>  
           </view>  
         <view class="loginBtnView">  
-          <button class="loginBtn login-wx" type="" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login-weix">使用微信登录</button>
+          <button class="loginBtn login-wx" type="" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" hover-class="other-button-hover" bindtap="login-weix">使用微信登录</button>
         </view>
       <checkbox-group bindchange="checkboxChange">
         <label class="checkbox" wx:for-items="{{items2}}">
-            <checkbox color='#3798FB'  checked="{{item.checked}}"/>用户已阅读并同意《<view class='xieyi' bindtap='xieyi'>用户注册协议</view>》
+            <checkbox color='#3798FB'   checked="{{item.checked}}"/>用户已阅读并同意《<view class='xieyi' bindtap='xieyi'>用户注册协议</view>》
         </label>
       </checkbox-group>
       </view>

@@ -1,0 +1,55 @@
+<!--container start  -->
+<view class='container'>
+
+<!-- content start  -->
+<view class='content'>
+
+  <!--top start  -->
+  <view class='top'>
+      <view class='address'>
+         <image src='../images/address.png' />
+         <label>贵州遵义市红花岗区</label>
+      </view>
+        <view class='search'>
+        <image src='../images/search.png' />
+          <input class='input' confirm-type="search" placeholder='搜索您选择的打印机'> </input>
+        </view>
+  </view>
+  <!-- top end  -->
+
+  <!-- list start  -->
+  <view class='list'>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+   <view class='line'></view>
+
+    <view class='list-unit'>
+      <label class='label'>金域国际中心二层</label>
+      <label class='lable'> > </label>
+    </view>
+
+  </view>
+  <!--list end  -->
+
+</view>
+<!--content end  -->
+</view>
+<!-- container end  -->

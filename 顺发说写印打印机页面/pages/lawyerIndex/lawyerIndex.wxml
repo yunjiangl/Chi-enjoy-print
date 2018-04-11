@@ -1,0 +1,103 @@
+<!--index.wxml-->
+<!--container start  -->
+<view class="container">
+  <!-- swiper start  -->
+  <swiper indicator-dots='{{indicatorDots}}' autoplay='{{autoplay}}' interval='{{interval}}' duration='{{duration}}'>
+      <block wx:for='{{imgUrls}}'>
+        <swiper-item>
+          <navigator  url='{{item.link}}' hover-class='navigator-hover'>
+          <image src='{{item.url}}' class='slide-image' width='355' height='150' />
+          </navigator>
+        </swiper-item>
+      </block>
+  </swiper>
+  <!--swiper end  -->
+  <!-- content start  -->
+  <view class='content'>
+    <!--main_01 start  -->
+    <view class='main_01'>
+
+        <view class='main_01_left' bindtap='uploadImg' >
+          <view class='photo-Print'>
+            <text class='print'>照片打印</text>
+            <text class='photo-file'>打印手机相机中的照片</text>
+          </view>
+          <view class='photo-image'>
+            <image src='../images/main_01_left.png'></image>
+          </view>
+        </view>
+
+        <view class='main_01_right'>
+          <view class='photo-Print'>
+            <text class='print'>文档打印</text>
+            <text class='photo-file pf' >您曾打印或导入的文件</text>
+          </view>
+          <view class='photo-image' style='line-height: 138px;'>
+            <image src='../images/main_01_right.png'></image>
+          </view>
+        </view>
+    </view>
+    <!--main_01 end -->
+
+    <!--main_02 start  -->
+    <view class='main_02' bindtap='choice'>
+
+      <view class='text_02'>
+        <text>为客户查找、收集、整理、打印和我有关的法律规定，最高法院，最高检察院规定</text>
+      </view> 
+      <view class='image_02'>
+        <image src='../images/lawyer-main_02.png'></image>
+      </view> 
+
+    </view>
+    <!--main_02 end  -->
+
+    <!--main_03 start  -->
+    <view class='main_02 m_02'>
+
+      <view class='text_03'>
+        <text>为客户书写和打印合同书</text>
+      </view> 
+      <view class='image_03 i02'>
+        <image src='../images/lawyer-main_03.png'></image>
+      </view> 
+       
+    </view>
+    <!--main_03 end  -->
+
+    <!--main_04 start  -->
+    <view class='main_02'>
+
+      <view class='text_04'>
+        <text>为客户书写和打印诉讼或其他法律文书</text>
+      </view> 
+      <view class='image_02'>
+        <image src='../images/lawyer-main_04.png'></image>
+      </view> 
+       
+    </view>
+    <!--main_04 end  -->
+
+    <!-- footer start  -->
+      <view class='footer'>
+
+        <view class='btn-left'>
+          <button type="default" size="mini" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="map" hover-class="other-button-hover">
+          <image src='../images/btn-left.png' />
+            附件打印机
+          </button>
+        </view>
+
+        <view class='btn-right' bindtap='scanCode' >
+          <button type="default" size="mini" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> <image src='../images/btn-right.png' /> 扫码取件 </button>
+        </view>
+
+      </view>
+    <!-- footer end  -->
+
+  </view>
+  <!--conten end  -->
+</view>
+<!-- container end  -->

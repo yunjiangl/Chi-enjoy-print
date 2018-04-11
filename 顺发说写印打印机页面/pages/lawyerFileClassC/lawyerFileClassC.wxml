@@ -1,0 +1,116 @@
+<!--container start  -->
+  <view class='container'>
+  
+  <!--content start  -->
+  <view class='content'>
+
+    <!--word start  -->
+    <view class='word'>
+      <!--left start  -->
+      <view class='left'>
+
+          <image class='wordpng' src='../images/word.png' />
+
+          <view class='WordAndDate'>
+          
+            <text>打印机使用操作说明.doc</text>
+            <view class='PageDate'>13页 2017-12-18 12:30</view>
+          </view>  
+          
+      </view>
+      <!--left end  -->
+
+      <!--right start  -->
+        <view class='right'>
+          
+          <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{items1}}">
+                <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+            </label>
+        
+          </radio-group>
+          
+          </view>
+      <!--right end  -->
+
+    </view>
+    <!--word end  -->
+
+      <view class='line'></view>
+
+    <!--pdf start  -->
+      <view class='word'>
+      <!--left start  -->
+      <view class='left'>
+
+        <image class='pdf' src='../images/pdf.png' />
+
+        <view class='WordAndDate'>
+          <text>打印机使用操作说明.pdf</text>
+          <view class='PageDate'>13页 2017-12-18 12:30</view>
+        </view>
+
+      </view>
+      <!--left end  -->
+
+      <!--right start  -->
+      <view class='right'>
+        
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items2}}">
+              <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+          </label>
+       
+        </radio-group>
+        
+        </view>
+    <!--right end  -->
+
+    </view> 
+    <!--pdf end  -->
+
+      <view class='line'></view>
+
+    <!--excel start  -->
+      <view class='word'>
+      <!--left start -->
+      <view class='left'>
+
+        <image class='excel' src='../images/excel.png' />
+
+        <view class='WordAndDate'>
+          <text>打印机使用操作说明.doc</text>
+          <view class='PageDate'>13页 2017-12-18 12:30</view>
+        </view>
+
+      </view>
+      <!--left end  -->
+
+      <!--right start  -->
+      <view class='right'>
+        
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items3}}">
+              <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+          </label>
+       
+        </radio-group>
+        
+        </view>
+    <!--right end  -->
+
+    </view> 
+    <!--excel end  -->
+    
+  </view>
+  <!--content  -->
+
+  <!--footer start  -->
+    <view class='footer'>
+        <button size='mini' hover-class='ohter-button-hover' type='default'>删除文件</button>
+        <button size='mini' hover-class='ohter-button-hover' type='primary'>发送客户</button>
+    </view>
+  <!--footer end  -->
+
+  </view>
+<!--container end  -->

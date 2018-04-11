@@ -3,12 +3,15 @@
   <!--login-form start  -->
     <view class='login-form'>
 
-      <view class="inputView">  
-          <label class="loginLab" style='float:left;'>验证码:</label>  
-          <input class="inputText it" placeholder="4位验证码" bindinput="phoneInput" />
-      </view> 
+        <view class='phone'>
+          <view class="inputView">  
+              <label class="loginLab" style='float:left;'>验证码:</label>  
+              <input class="inputText it" placeholder="4位验证码" bindinput="phoneInput" />
+          </view> 
 
-      <button type="default" class='btn-psw' size="mini"> 重新发送(20) </button>  
+          <button type="default" class='btn-psw' size="mini"> 重新发送(20) </button>  
+
+        </view>
 
       <view style='clear:both;'></view> 
       <view class="line"></view>   

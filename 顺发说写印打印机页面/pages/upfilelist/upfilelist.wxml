@@ -5,7 +5,7 @@
   <view class='content'>
 
     <!--word start  -->
-    <view class='word'>
+    <view class='word' bindtap='turn'>
       <image class='wordpng' src='../images/word.png' />
 
       <view class='WordAndDate'>

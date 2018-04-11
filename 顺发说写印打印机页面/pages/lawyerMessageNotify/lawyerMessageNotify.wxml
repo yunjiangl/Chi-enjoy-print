@@ -1,0 +1,80 @@
+<!-- container start -->
+    <view class='container'>
+
+        <!-- message start -->
+          <view class='message'>
+             
+             <!-- owner物主 start -->
+            <view class='owner'>
+                <view>物主张亮亮邀请您成为设备000 001的线上管理员，请注意查看。</view>
+                <view class='date'>2018-01-26 16:59:20</view>
+            </view>
+            <!-- owner物主 end-->
+
+              <view class='line'></view>
+
+            <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>接受</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+          </view>
+        <!-- message end -->
+
+        <!-- message start -->
+          <view class='message'>
+             
+             <!-- owner物主 start -->
+            <view class='owner'>
+                <view>物主张亮亮邀请您成为设备000 001的线上管理员，请注意查看。</view>
+                <view class='date'>2018-01-26 16:59:20</view>
+            </view>
+            <!-- owner物主 end-->
+
+              <view class='line'></view>
+
+            <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" size='mini'>接受</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+          </view>
+        <!-- message end -->
+
+        <!-- message start -->
+          <view class='message'>
+             
+             <!-- owner物主 start -->
+            <view class='owner'>
+                <view>物主张亮亮邀请您成为设备000 001的线上管理员，请注意查看。</view>
+                <view class='date'>2018-01-26 16:59:20</view>
+            </view>
+            <!-- owner物主 end-->
+
+              <view class='line'></view>
+
+            <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" size='mini'>接受</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+          </view>
+        <!-- message end -->
+
+    </view>
+<!-- container end -->

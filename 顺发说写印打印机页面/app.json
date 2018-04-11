@@ -1,9 +1,30 @@
 {
   "pages": [
+    "pages/vip-login/vip-login",
     
-    "pages/register/register",
-    "pages/index/index",
-    "pages/map/map",
+    "pages/lawyerIndex/lawyerIndex",
+    
+    "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
+    "pages/lawyerFourFileList/lawyerFourFileList",
+    "pages/lawyerFileList/lawyerFileList",
+    "pages/lawyerChoiceOwner/lawyerChoiceOwner",
+    "pages/lawyerChoicePrinter/lawyerChoicePrinter",
+    "pages/lawyerMessageNotify/lawyerMessageNotify",
+    "pages/lawyerSettingCosts/lawyerSettingCosts",    
+    "pages/lawyerSearchOrders/lawyerSearchOrders",
+    "pages/lawyerSearch/lawyerSearch",
+    "pages/lawyerTransactionOrder/lawyerTransactionOrder",
+    "pages/lawyerSeeeQuipment/lawyerSeeeQuipment",
+    "pages/lawyerSeeMessage/lawyerSeeMessage",
+    "pages/lawyerFileClassC/lawyerFileClassC",    
+    "pages/lawyerFileClassB/lawyerFileClassB",
+    "pages/lawyerFileClassA/lawyerFileClassA",    
+    "pages/lawyerpersonData/lawyerpersonData",
+    "pages/setting/document/download/download",    
+
+    
+    "pages/CustomerIndex/CustomerIndex",
+    "pages/map/map", 
     "pages/search/search",
     "pages/choiceLawyer/choiceLawyer",
     "pages/lawyersInformation/lawyersInformation",  
@@ -16,12 +37,15 @@
     "pages/printCost/printCost",    
     "pages/printOrders/printOrders",
     "pages/upfilelist/upfilelist",    
+    "pages/choicePrinter/choicePrinter",    
     "pages/personalData/personalData",
-    "pages/vip-login/vip-login",
+
+
     "pages/bindingPhone/bindingPhone",
     "pages/forgetPassword/forgetPassword",
     "pages/resetPassword/resetPassword",
     "pages/VerificationCode/VerificationCode",
+    "pages/register/register",
     "pages/logs/logs"
   ],
   "window": {
@@ -35,17 +59,18 @@
       "selectedColor": "#3798fb",
       "list": [
         {
-          "pagePath": "pages/index/index",
-          "text": "打印文件",
-          "iconPath": "pages/images/icon/1.png",
-          "selectedIconPath": "pages/images/file.png"
+          "pagePath":"pages/lawyerIndex/lawyerIndex",
+          "text":"打印文件",
+          "iconPath":"pages/images/icon/1.png",
+          "selectedIconPath":"pages/images/file.png"
         },
         {
           "pagePath": "pages/upfilelist/upfilelist",
           "text": "上传列表",
-          "iconPath": "pages/images/uplist.png",
-          "selectedIconPath": "pages/images/icon/2.png"
+          "iconPath": "pages/images/icon/2.png",
+          "selectedIconPath": "pages/images/uplist.png"
         },
+        
         {
           "pagePath": "pages/historyConsultant/historyConsultant",
           "text": "历史质询",
