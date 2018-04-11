@@ -1,7 +1,6 @@
-<<<<<<< HEAD
+
 <!--pages/lawyerIndex/lawyerIndex.wxml-->
 <text>pages/lawyerIndex/lawyerIndex.wxml</text>
-=======
 <!--index.wxml-->
 <!--container start  -->
 <view class="container">
@@ -105,4 +104,4 @@
   <!--conten end  -->
 </view>
 <!-- container end  -->
->>>>>>> 28b1260bf66f5e9621dcfdc5f46ab540112a8084
+
