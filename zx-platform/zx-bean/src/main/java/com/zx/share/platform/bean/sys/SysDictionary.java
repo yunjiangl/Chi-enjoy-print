@@ -1,10 +1,12 @@
 package com.zx.share.platform.bean.sys;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
 
@@ -92,6 +94,15 @@ public class SysDictionary extends IdEntity {
      */
 	@Column(name = "update_id")
     private Integer updateId;
+
+	@Transient
+	private List<SysDictionary> dictionaryList;
+
+    @Transient
+    private String selected;
+
+    @Transient
+    private SysDictionary sysDictionary;
 
     private static final long serialVersionUID = 1L;
 
