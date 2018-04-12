@@ -33,6 +33,8 @@ import javax.servlet.http.HttpServletResponse;
      @ApiOperation(value = "login", notes = "login")
      @ResponseBody
      public DefaultResopnseBean<Object> login(HttpServletRequest request, HttpServletResponse response){
+
+
          sercurityService.saveSession(request,response,new UserCache());
          return null;
      }

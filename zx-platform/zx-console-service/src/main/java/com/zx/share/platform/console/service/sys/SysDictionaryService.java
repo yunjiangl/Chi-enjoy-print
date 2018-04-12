@@ -18,4 +18,8 @@ public interface SysDictionaryService {
     PageResponseBean<SysDictionary> selecPage(String type,Long parentId,String query, Integer page,Integer pageSize);
 
     List<SysDictionary> selectParamAll(String type,Long parentId,String query);
+
+    SysDictionary findId(Long id);
+
+    int save(SysDictionary sysDictionary);
 }

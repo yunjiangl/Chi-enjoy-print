@@ -17,7 +17,7 @@
             AND name like #{query,jdbcType=VARCHAR}
         </if>
         <if test="type!=null and type!=''">
-            AND type = #{type,jdbcType=VARCHAR}
+            AND type like #{type,jdbcType=VARCHAR}
         </if>
         <if test="parentId!=null and parentId!=''">
             AND parent_id =#{parentId,jdbcType=BIGINT}
@@ -31,7 +31,7 @@
             AND name like #{query,jdbcType=VARCHAR}
         </if>
         <if test="type!=null and type!=''">
-            AND type = #{type,jdbcType=VARCHAR}
+            AND type like #{type,jdbcType=VARCHAR}
         </if>
         <if test="parentId!=null and parentId!=''">
             AND parent_id =#{parentId,jdbcType=BIGINT}
@@ -44,7 +44,7 @@
             AND name like #{query,jdbcType=VARCHAR}
         </if>
         <if test="type!=null and type!=''">
-            AND type = #{type,jdbcType=VARCHAR}
+            AND type like #{type,jdbcType=VARCHAR}
         </if>
         <if test="parentId!=null and parentId!=''">
             AND parent_id =#{parentId,jdbcType=BIGINT}
