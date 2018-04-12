@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zx.share.platform.wechat.mapper.UserMapper">
+<mapper namespace="com.zx.share.platform.wechat.mapper.DictionaryMapper">
 
     <resultMap id="dictionaryResultBean" type="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
         <result column="code" property="code" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="id" property="id"/>
     </resultMap>
 
     <select id="findTypePIdList" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
-        select code,name from sys_dictionary where type=#{type} and parent_id=#{parentId} and status=1
+        select id,code,name from sys_dictionary where type=#{type} and parent_id=#{parentId} and status=1
     </select>
 
     <select id="findTypeList" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
-        select code,name from sys_dictionary where type=#{type} and status=1
+        select id,code,name from sys_dictionary where type=#{type} and status=1
     </select>
 
 </mapper>
