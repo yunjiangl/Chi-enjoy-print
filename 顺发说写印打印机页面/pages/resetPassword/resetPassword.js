@@ -5,15 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      PWD:''
   },
-  loginSure:function(){
-    wx.navigateTo({
-      url: '../vip-login/vip-login',
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+  PWDInput: function (e) {
+    console.log(e)
+    this.setData({
+      PWD: e.detail.value
     })
+    },
+
+  loginSure:function(){
+    wx.request({
+      url: 'http://123.206.42.162:10001/forgetpassword/save',
+      header: {
+        'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken,
+      },
+      date: {
+        pwd: PWD
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log(res)
+      }
+  })
   },
 
   /**
