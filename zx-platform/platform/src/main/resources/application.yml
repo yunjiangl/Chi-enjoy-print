@@ -50,6 +50,9 @@ jwtconfig:
         expire: 604800
         header: token
 
+# 文件上传路径
+filePath: /home/zx-platform/file
+
 
 logging:
   level:

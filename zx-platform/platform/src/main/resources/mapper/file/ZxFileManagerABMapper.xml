@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zx.share.platform.console.api.modules.file.dao.ZxFileManagerABMapper">
+	<resultMap id="BaseResultMap" type="com.zx.share.platform.bean.zx.ZxFileManagerAB">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="file_code" jdbcType="VARCHAR" property="fileCode" />
+		<result column="file_name" jdbcType="VARCHAR" property="fileName" />
+		<result column="category_id" jdbcType="BIGINT" property="categoryId" />
+		<result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+		<result column="file_num" jdbcType="INTEGER" property="fileNum" />
+		<result column="abstracts" jdbcType="LONGVARCHAR" property="abstracts" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_id" jdbcType="INTEGER" property="createId" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="update_id" jdbcType="INTEGER" property="updateId" />
+		<association property="sysDictionary"
+			javaType="com.zx.share.platform.bean.sys.SysDictionary">
+			<result column="id" jdbcType="VARCHAR" property="id" />
+			<result column="type" jdbcType="VARCHAR" property="type" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+			<result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+			<result column="value" jdbcType="VARCHAR" property="value" />
+		</association>
+	</resultMap>
+
+
+	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
+		resultMap="BaseResultMap">
+		SELECT
+		zx_file_manager_ab.id,
+		zx_file_manager_ab.file_name,
+		zx_file_manager_ab.file_num,
+		zx_file_manager_ab.category_id,
+		sj.type,
+		sj.`name`,
+		sj.`value`,
+		sj.sort,
+		sj.parent_id
+		FROM
+		zx_file_manager_ab
+		INNER
+		JOIN sys_dictionary AS sj ON zx_file_manager_ab.category_id = sj.id
+		INNER JOIN sys_dictionary AS sanji ON sj.parent_id = sanji.id
+		INNER
+		JOIN sys_dictionary AS erji ON sanji.parent_id = erji.id
+		INNER JOIN
+		sys_dictionary AS yiji ON erji.parent_id = yiji.id
+		INNER JOIN
+		sys_dictionary AS dingji ON yiji.parent_id = dingji.id
+		WHERE
+		sj.sort = 5
+		AND
+		dingji.type = #{type}
+
+		<if test="fileName != null and fileName.trim() != ''">
+			and zx_file_manager_ab.file_name like
+			concat('%',#{fileName},'%')
+		</if>
+		<if test="yijiName != null and yijiName.trim() != ''">
+			and yiji.name like
+			concat('%',#{yijiName},'%')
+		</if>
+		<if test="erjiName != null and erjiName.trim() != ''">
+			and erji.name like
+			concat('%',#{erjiName},'%')
+		</if>
+		<if test="sanjiName != null and sanjiName.trim() != ''">
+			and sanji.name like
+			concat('%',#{sanjiName},'%')
+		</if>
+		<if test="sjName != null and sjName.trim() != ''">
+			and sj.name like
+			concat('%',#{sanjiName},'%')
+		</if>
+
+	</select>
+
+	<select id="vagueList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
+		resultMap="BaseResultMap">
+		SELECT
+		zx_file_manager_ab.id,
+		zx_file_manager_ab.file_name,
+		zx_file_manager_ab.file_num,
+		zx_file_manager_ab.category_id,
+		sys_dictionary.parent_id,
+		sys_dictionary.type,
+		sys_dictionary.`name`,
+		sys_dictionary.`value`
+		FROM
+		zx_file_manager_ab
+		INNER JOIN sys_dictionary
+		ON
+		zx_file_manager_ab.category_id =
+		(select sys_dictionary.parent_id
+		from sys_dictionary
+		<where>
+			<if test="name != null and name.trim() != ''">
+				and sys_dictionary.`name` like
+				concat('%',#{name},'%')
+			</if>
+		</where>
+		）
+		WHERE
+		sys_dictionary.type =#{type}
+		<if test="fileName != null and fileName.trim() != ''">
+			and zx_file_manager_ab.file_name like
+			concat('%',#{fileName},'%')
+		</if>
+		<if test="fileUrl != null and fileUrl.trim() != ''">
+			and zx_file_manager_ab.file_url like
+			concat('%',#{fileUrl},'%')
+		</if>
+	</select>
+
+	<select id="dictionaryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB"
+		resultMap="BaseResultMap">
+		SELECT DISTINCT
+		sys_dictionary.type,
+		sys_dictionary.`name`,
+		sys_dictionary.`value`,
+		sys_dictionary.parent_id,
+		sys_dictionary.id
+		FROM
+		sys_dictionary
+		INNER JOIN sys_dictionary AS parent ON
+		sys_dictionary.parent_id =
+		parent.id
+		WHERE
+		parent.id = #{parentId}
+	</select>
+</mapper>
