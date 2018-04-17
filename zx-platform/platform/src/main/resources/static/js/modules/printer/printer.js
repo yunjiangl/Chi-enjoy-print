@@ -8,7 +8,7 @@ $(function () {
 			{ label: '用户名', name: 'createName', width: 90 },
 			{ label: '地址', name: 'address', width: 100 },
 			{ label: '状态', name: 'status', width: 80, formatter: function(value, options, row){
-				return value === 0 ? 
+				return value == 0 ?
 					'<span class="label label-danger">禁用</span>' : 
 					'<span class="label label-success">正常</span>';
 			}},
@@ -61,7 +61,7 @@ var vm = new Vue({
 			vm.title = "新增";
 			vm.roleList = {};
 			vm.printer = {};
-			
+			// vm.provinceList = dsy.get("")
 		},
 		update: function () {
 			var userId = getSelectedRow();
@@ -110,7 +110,7 @@ var vm = new Vue({
 				type: "POST",
 			    url: baseURL + url,
                 contentType: "application/json",
-			    data: JSON.stringify(vm.user),
+			    data: JSON.stringify(vm.printer),
 			    success: function(r){
 			    	if(r.code === 0){
 						alert('操作成功', function(){

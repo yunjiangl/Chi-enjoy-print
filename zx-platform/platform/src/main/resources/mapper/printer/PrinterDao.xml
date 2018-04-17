@@ -20,9 +20,9 @@
                 order by id desc
 			</otherwise>
         </choose>
-		<!--<if test="offset != null and limit != null">-->
-			<!--limit #{offset}, #{limit}-->
-		<!--</if>-->
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
 	</select>
 	
  	<select id="queryTotal" resultType="int">
@@ -33,11 +33,29 @@
 	</select>
 
 	<insert id="save" parameterType="com.zx.share.platform.bean.zx.ZxPrinterManager" useGeneratedKeys="true" keyProperty="userId">
-
+		INSERT INTO zx_printer_manager(
+			printer_code,name,longitude,latitude,province,city,area,address,remark,create_id,create_time,update_id,update_time,manager_name,manager_phone,status
+		) VALUES (#{printerCode},#{name},#{longitude},#{latitude},#{province},#{city},#{area},#{address},#{remark},#{createId},#{createTime},#{updateId},#{updateTime},#{managerName},#{managerPhone},#{status})
 	</insert>
 	 
 	<update id="update" parameterType="com.zx.share.platform.bean.zx.ZxPrinterManager">
-
+		  UPDATE zx_printer_manager
+		  <set>
+			  <if test="printerCode != null">`printer_code` = #{printerCode}, </if>
+			  <if test="name != null">`name` = #{name}, </if>
+			  <if test="longitude != null">`longitude` = #{longitude}, </if>
+			  <if test="latitude != null">`latitude` = #{latitude}, </if>
+			  <if test="province != null">`province` = #{province}, </if>
+			  <if test="city != null">`city` = #{city}, </if>
+			  <if test="area != null">`area` = #{area}, </if>
+			  <if test="address != null">`address` = #{address}, </if>
+			  <if test="remark != null">`remark` = #{remark}, </if>
+			  <if test="updateId != null">`update_id` = #{updateId}, </if>
+			  <if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			  <if test="managerName != null">`manager_name` = #{managerName}, </if>
+			  <if test="managerPhone != null">`manager_phone` = #{managerPhone}, </if>
+			  status=1
+		  </set>
 	</update>
 	
 	<delete id="delete">

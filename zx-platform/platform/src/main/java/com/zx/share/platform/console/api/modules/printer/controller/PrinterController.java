@@ -33,8 +33,9 @@ public class PrinterController {
         //查询列表数据
         Query query = new Query(params);
         query.isPaging(true);
-        List<ZxPrinterManager> userList = printerService.queryList(query);
-        PageUtils pageUtil = new PageUtils(userList, query.getTotle(), query.getLimit(), query.getPage());
+        List<ZxPrinterManager> printerList = printerService.queryList(query);
+        int total = printerService.queryTotal(query);
+        PageUtils pageUtil = new PageUtils(printerList, total, query.getLimit(), query.getPage());
         return R.ok().put("page", pageUtil);
     }
 
@@ -46,7 +47,7 @@ public class PrinterController {
     public R info(@PathVariable("printerId") Long printerId){
         ZxPrinterManager printer = printerService.queryObject(printerId);
 
-        return R.ok().put("user", printer);
+        return R.ok().put("printer", printer);
     }
 
     /**

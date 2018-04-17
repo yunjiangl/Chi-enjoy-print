@@ -23,12 +23,12 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public List<ZxPrinterManager> queryList(Map<String, Object> map) {
-        return null;
+        return printerDao.queryList(map);
     }
 
     @Override
     public int queryTotal(Map<String, Object> map) {
-        return 0;
+        return printerDao.queryTotal(map);
     }
 
     @Override

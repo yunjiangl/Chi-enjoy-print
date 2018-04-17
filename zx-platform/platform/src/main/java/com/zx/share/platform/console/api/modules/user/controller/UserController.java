@@ -42,7 +42,8 @@ public class UserController {
         Query query = new Query(params);
 		query.isPaging(true);
 		List<ZxUser> userList = userService.queryList(query);
-		PageUtils pageUtil = new PageUtils(userList, query.getTotle(), query.getLimit(), query.getPage());
+		int total = userService.queryTotal(query);
+		PageUtils pageUtil = new PageUtils(userList, total, query.getLimit(), query.getPage());
 		return R.ok().put("page", pageUtil);
 	}
 	
