@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.share.platform.console.api.modules.user.dao.UserDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zx.share.platform.bean.zx.ZxUser" id="userMap">
+        <result property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="mobile" column="mobile"/>
+        <result property="password" column="password"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.zx.share.platform.bean.zx.ZxUser">
+		select * from zx_user where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxUser">
+		select * from zx_user
+		<where>
+			<if test="username!=null and username!=''">
+				and username like concat('%',#{username},'%')
+			</if>
+			<if test="userStatus!=null and userStatus!=''">
+				and use_status = #{useStatus}
+			</if>
+			<if test="userType!=null and userType!=''">
+				and user_type = #{userType}
+			</if>
+		</where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<!--<if test="offset != null and limit != null">-->
+			<!--limit #{offset}, #{limit}-->
+		<!--</if>-->
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from zx_user
+	</select>
+
+	<select id="queryByMobile" resultType="com.zx.share.platform.bean.zx.ZxUser">
+		select * from zx_user where mobile = #{value}
+	</select>
+	 
+	<insert id="save" parameterType="com.zx.share.platform.bean.zx.ZxUser" useGeneratedKeys="true" keyProperty="userId">
+		insert into zx_user
+		(
+			user_code,
+			`username`, 
+			`mobile`, 
+			`password`, 
+			`create_time`,
+			nickname,
+			portrait,
+			register_time,
+			open_id,
+			union_id,
+			user_type,
+			user_status,
+			age,
+			wechat_id,
+			province,
+			city,
+			area,
+			addres,
+			is_lock,
+			gen
+		)
+		values
+		(
+			#{userCode},
+			#{username}, 
+			#{mobile}, 
+			#{password}, 
+			#{createTime},
+			#{nickname},
+			#{portrait},
+			#{registerTime},
+			#{openId},
+			#{unionId},
+			#{userType},
+			#{userStatus},
+			#{age},
+			#{wechatId},
+			#{province},
+			#{city},
+			#{area},
+			#{addres},
+			#{isLock},
+			#{gen}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.zx.share.platform.bean.zx.ZxUser">
+		update zx_user
+		<set>
+			<if test="username != null">`username` = #{username}, </if>
+			<if test="mobile != null">`mobile` = #{mobile}, </if>
+			<if test="password != null">`password` = #{password}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}</if>
+		</set>
+		where user_id = #{userId}
+	</update>
+	
+	<delete id="delete">
+		delete from zx_user where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		 update zx_user set use_status=0 where id in
+		<foreach item="userId" collection="array" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+	</delete>
+
+</mapper>

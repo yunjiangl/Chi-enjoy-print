@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.zx.share.platform.console.api.modules.sys.dao.SysConfigDao">
+	<select id="queryObject" resultType="com.zx.share.platform.bean.sys.SysDictionary">
+		select * from sys_dictionary where id = #{id}
+	</select>
+	
+	<select id="queryList" parameterType="map" resultType="com.zx.share.platform.bean.sys.SysDictionary">
+		select * from sys_dictionary where status = 1
+		<if test="key != null and key.trim() != ''">
+			and `type` like concat('%',#{key},'%')
+		</if>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+	<select id="queryTotal" parameterType="map" resultType="int">
+		select count(*) from sys_dictionary where status = 1
+		<if test="key != null and key.trim() != ''">
+			and `type` like concat('%',#{key},'%')
+		</if>
+	</select>
+	
+	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysDictionary">
+		insert into sys_dictionary(`type` ,code,parent_id,name,sort, `value`, remark)
+			values(#{type},#{code},#{parentId},#{name},#{sort},#{value},#{remark})
+	</insert>
+
+	<update id="update" parameterType="com.zx.share.platform.bean.sys.SysDictionary">
+		update sys_dictionary set `type` = #{type},code=#{code},parent_id=#{parentId},name=#{name},sort=#{sort} ,`value` = #{value}, remark = #{remark}
+			 where id = #{id}
+	</update>
+
+	<!-- 根据key，更新value -->
+	<update id="updateValueByKey" parameterType="map">
+		update sys_dictionary set `value` = #{value} where `code` = #{code}
+	</update>
+	
+	<!-- 根据key，查询value -->
+	<select id="queryByKey" parameterType="string" resultType="com.zx.share.platform.bean.sys.SysDictionary">
+		select * from sys_dictionary where `type` = #{type}
+	</select>
+	
+	<delete id="deleteBatch" parameterType="int">
+		delete from sys_dictionary where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	
+</mapper>

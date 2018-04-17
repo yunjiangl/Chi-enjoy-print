@@ -77,6 +77,12 @@ public class ZxUser extends IdEntity {
 	@Column(name = "user_status")
     private Integer userStatus;
 
+	/**
+	 * 用户状态（1-正常，0-关闭）
+	 */
+	@Column(name="use_status")
+	private Integer useStatus;
+
 	@Column(name = "age")
     private Integer age;
 

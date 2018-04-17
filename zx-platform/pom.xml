@@ -34,6 +34,7 @@
 		<module>zx-console-service</module>
 		<module>zx-console-api</module>
 		<module>zx-wechat-pay-api</module>
+		<module>platform</module>
 	</modules>
 
 	<dependencies>
