@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.dao;
 
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity;
+import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

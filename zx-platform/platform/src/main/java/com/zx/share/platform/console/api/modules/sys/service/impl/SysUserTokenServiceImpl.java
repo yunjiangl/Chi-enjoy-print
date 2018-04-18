@@ -1,8 +1,8 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
+import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.modules.sys.dao.SysUserTokenDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity;
 import com.zx.share.platform.console.api.modules.sys.oauth2.TokenGenerator;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;

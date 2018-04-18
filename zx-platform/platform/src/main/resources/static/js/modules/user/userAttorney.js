@@ -7,9 +7,9 @@ $(function () {
 			{ label: '用户名', name: 'username', index: 'username', width: 80 },
             { label: '状态', name: 'useStatus', index: 'useStatus', width: 80 ,formatter:function(cellvalue, options, rowObject){
             	if(cellvalue==1){
-            		return '正常';
+            		return '<span class="label label-success">正常</span>';
 				}
-            	return '关闭';
+            	return '<span class="label label-danger">关闭</span>';
 			}},
 			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 },
             { label: '上次登录时间', name: 'loginTime', index: 'loginTime', width: 80 },

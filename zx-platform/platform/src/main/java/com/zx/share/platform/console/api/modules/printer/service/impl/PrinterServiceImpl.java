@@ -3,6 +3,7 @@ package com.zx.share.platform.console.api.modules.printer.service.impl;
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.console.api.modules.printer.dao.PrinterDao;
 import com.zx.share.platform.console.api.modules.printer.service.PrinterService;
+import com.zx.share.platform.console.api.modules.sys.dao.SysUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,15 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Autowired
     private PrinterDao printerDao;
+    @Autowired
+    private SysUserDao sysUserDao;
 
     @Override
     public List<ZxPrinterManager> queryList(Map<String, Object> map) {
-        return printerDao.queryList(map);
+        List<ZxPrinterManager> printerList = printerDao.queryList(map);
+
+        printerList.forEach(x->x.setSysUser(sysUserDao.queryObject(x.getCreateId())));
+        return printerList;
     }
 
     @Override

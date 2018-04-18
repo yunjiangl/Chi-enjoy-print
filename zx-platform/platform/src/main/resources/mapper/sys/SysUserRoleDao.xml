@@ -3,7 +3,7 @@
 
 <mapper namespace="com.zx.share.platform.console.api.modules.sys.dao.SysUserRoleDao">
 
-	<select id="queryList" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysUserRoleEntity">
+	<select id="queryList" resultType="com.zx.share.platform.bean.sys.SysUserRoleEntity">
 		select * from sys_user_role 
 		<where>
 			<if test="userId != null">

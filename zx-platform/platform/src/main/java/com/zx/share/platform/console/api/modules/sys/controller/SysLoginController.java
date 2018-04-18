@@ -2,9 +2,9 @@ package com.zx.share.platform.console.api.modules.sys.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.common.utils.ShiroUtils;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserTokenService;
 import org.apache.commons.io.IOUtils;

@@ -1,7 +1,7 @@
 package com.zx.share.platform.console.api.common.utils;
 
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.common.exception.RRException;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;

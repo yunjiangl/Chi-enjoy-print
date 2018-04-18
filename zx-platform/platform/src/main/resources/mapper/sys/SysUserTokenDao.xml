@@ -3,15 +3,15 @@
 
 <mapper namespace="com.zx.share.platform.console.api.modules.sys.dao.SysUserTokenDao">
 
-	<select id="queryByUserId" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity">
+	<select id="queryByUserId" resultType="com.zx.share.platform.bean.sys.SysUserTokenEntity">
 		select * from sys_user_token where user_id = #{value}
 	</select>
 
-	<select id="queryByToken" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity">
+	<select id="queryByToken" resultType="com.zx.share.platform.bean.sys.SysUserTokenEntity">
 		select * from sys_user_token where token = #{value}
 	</select>
 	 
-	<insert id="save" parameterType="com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity">
+	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysUserTokenEntity">
 		insert into sys_user_token
 		(
 			`user_id`, 
@@ -28,7 +28,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity">
+	<update id="update" parameterType="com.zx.share.platform.bean.sys.SysUserTokenEntity">
 		update sys_user_token
 		<set>
 			<if test="token != null">`token` = #{token}, </if>

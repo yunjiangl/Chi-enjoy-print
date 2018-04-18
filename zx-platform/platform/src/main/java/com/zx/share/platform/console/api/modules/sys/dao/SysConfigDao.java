@@ -1,7 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.dao;
 
 import com.zx.share.platform.bean.sys.SysDictionary;
-import com.zx.share.platform.console.api.modules.sys.entity.SysConfigEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

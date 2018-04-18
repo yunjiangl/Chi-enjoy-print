@@ -1,8 +1,6 @@
 package com.zx.share.platform.console.api.modules.printer.service;
 
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
-import com.zx.share.platform.bean.zx.ZxUser;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 
 import java.util.List;
 import java.util.Map;

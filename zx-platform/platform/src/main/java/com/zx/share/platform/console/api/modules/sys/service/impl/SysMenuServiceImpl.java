@@ -1,8 +1,8 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
+import com.zx.share.platform.bean.sys.SysMenuEntity;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.modules.sys.dao.SysMenuDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysMenuEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysMenuService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

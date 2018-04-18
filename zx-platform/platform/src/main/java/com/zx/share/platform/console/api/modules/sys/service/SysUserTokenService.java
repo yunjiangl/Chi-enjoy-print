@@ -1,7 +1,7 @@
 package com.zx.share.platform.console.api.modules.sys.service;
 
+import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import com.zx.share.platform.console.api.common.utils.R;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity;
 
 /**
  * 用户Token

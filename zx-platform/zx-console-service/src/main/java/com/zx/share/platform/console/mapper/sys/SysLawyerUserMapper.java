@@ -7,8 +7,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.zx.share.platform.bean.sys.SysRole;
-import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 
 @Repository

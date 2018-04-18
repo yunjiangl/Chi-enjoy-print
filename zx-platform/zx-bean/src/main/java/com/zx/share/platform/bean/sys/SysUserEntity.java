@@ -1,7 +1,5 @@
-package com.zx.share.platform.console.api.modules.sys.entity;
+package com.zx.share.platform.bean.sys;
 
-import com.zx.share.platform.console.api.common.validator.group.AddGroup;
-import com.zx.share.platform.console.api.common.validator.group.UpdateGroup;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -27,13 +25,13 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 用户名
 	 */
-	@NotBlank(message="用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
+	@NotBlank(message="用户名不能为空")
 	private String username;
 
 	/**
 	 * 密码
 	 */
-	@NotBlank(message="密码不能为空", groups = AddGroup.class)
+	@NotBlank(message="密码不能为空")
 	private String password;
 
 	/**
@@ -46,8 +44,8 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 邮箱
 	 */
-	@NotBlank(message="邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
-	@Email(message="邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
+	@NotBlank(message="邮箱不能为空")
+	@Email(message="邮箱格式不正确")
 	private String email;
 
 	/**

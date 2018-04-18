@@ -1,9 +1,9 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.common.exception.RRException;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.modules.sys.dao.SysUserDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysRoleService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserRoleService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;

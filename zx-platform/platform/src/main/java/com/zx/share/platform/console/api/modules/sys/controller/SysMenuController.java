@@ -1,10 +1,10 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
+import com.zx.share.platform.bean.sys.SysMenuEntity;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.common.exception.RRException;
 import com.zx.share.platform.console.api.common.utils.Constant.MenuType;
 import com.zx.share.platform.console.api.common.utils.R;
-import com.zx.share.platform.console.api.modules.sys.entity.SysMenuEntity;
 import com.zx.share.platform.console.api.modules.sys.service.ShiroService;
 import com.zx.share.platform.console.api.modules.sys.service.SysMenuService;
 import org.apache.commons.lang.StringUtils;
