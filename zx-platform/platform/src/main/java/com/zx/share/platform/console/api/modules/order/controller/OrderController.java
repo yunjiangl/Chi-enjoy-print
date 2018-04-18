@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.order.controller;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 //import com.zx.share.platform.bean.sys.export;
 import com.zx.share.platform.bean.zx.ZxOrder;
 import com.zx.share.platform.console.api.modules.order.service.ZxOrderService;
@@ -20,7 +21,6 @@ import com.zx.share.platform.util.response.PageResponseBean;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 /**
  * 
@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiParam;
  *
  */
 @RestController
-@RequestMapping("zx/order/")
+@RequestMapping("/zx/order/")
 public class OrderController {
 
 	@Autowired
@@ -77,6 +77,25 @@ public class OrderController {
 		DefaultResopnseBean<ZxOrder> resopnseBean = new DefaultResopnseBean<ZxOrder>();
 
 		ZxOrder data = zxOrderService.orderInfo(id);
+
+		resopnseBean.setData(data);
+
+		return resopnseBean;
+	}
+
+	/**
+	 * 
+	 * @Title: paperInfo   
+	 * @Description: 查询纸张信息
+	 */
+	@RequestMapping(value = "paperInfo", method = RequestMethod.GET)
+	public DefaultResopnseBean<List<SysDictionary>> paperInfo(@RequestParam Long paperTypeId, @RequestParam Long paperColcorId, @RequestParam Long paperUsageId) {
+		DefaultResopnseBean<List<SysDictionary>> resopnseBean = new DefaultResopnseBean<List<SysDictionary>>();
+		Long[] Ids = new Long[3];
+		Ids[0] = paperTypeId;
+		Ids[1] = paperColcorId;
+		Ids[2] = paperUsageId;
+		List<SysDictionary> data = zxOrderService.paperInfo(Ids);
 
 		resopnseBean.setData(data);
 

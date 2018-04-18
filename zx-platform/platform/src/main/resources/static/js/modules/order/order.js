@@ -47,6 +47,7 @@ $(function () {
         }
     });
 });
+
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
@@ -60,6 +61,9 @@ var vm = new Vue({
 		},
 		showList: true,
 		title:null,
+		paperType: null, // 纸张
+		paperColcor: null, // 颜色
+		paperUsage: null, // 单双面
 		order:{
 			orderNum:null, // 订单号
 			payTime: null, // 支付时间
@@ -131,7 +135,7 @@ function orderInfo(id){
 		type: 1,
 		skin: 'layui-layer-molv',
 		title: "订单详情",
-		area: ['550px', '270px'],
+		area: ['80%', '70%'],
 		shadeClose: false,
 		content: jQuery("#orderInfo"),
 		btn: ['返回'],
@@ -142,8 +146,49 @@ function orderInfo(id){
 			    dataType: "json",
 			    success: function(r){
 					vm.order = r.data;
+					paperInfo(r);
 				}
 			});
 		}
 	});
 }
+
+/**
+ * 获取纸张value
+ * @returns
+ */
+function paperInfo(r){
+	$.ajax({
+		type: "GET",
+	    url: baseURL + "zx/order/paperInfo",
+	    dataType: "json",
+	    data:{
+	    	paperTypeId:r.data.zxOrderPrinterFile.paperType,
+	        paperColcorId:r.data.zxOrderPrinterFile.paperColcor,
+	        paperUsageId:r.data.zxOrderPrinterFile.paperUsage
+	    },
+	    success: function(res){
+	    	vm.paperType = res.data[0].name;
+	    	vm.paperColcor = res.data[1].name;
+	    	vm.paperUsage = res.data[2].name;
+		}
+	});
+}
+
+layui.use('laydate', function(){
+    var laydate = layui.laydate;
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#start', //指定元素
+      done: function(data){
+    	  vm.q.time1 = data;
+      }
+    });
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#end', //指定元素
+      done: function(data){
+    	  vm.q.time2 = data;
+      }
+    });
+  });

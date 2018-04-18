@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
 <link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
 <link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
 <script src="../../libs/jquery.min.js"></script>
 <script src="../../plugins/layer/layer.js"></script>
 <script src="../../libs/bootstrap.min.js"></script>
@@ -19,21 +21,37 @@
 <script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
 <script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
 <script src="../../js/common.js"></script>
+<style>
+       #start,#end{
+            max-width: 200px;
+            display: inline-block;
+        }
+ </style>
 </head>
 <body>
 <div id="rrapp" v-cloak>
 	<div v-show="showList">
 		<div class="grid-btn">
-			<div class="form-group col-sm-2">
+			<div class="form-group col-sm-1">
 				<input type="text" class="form-control" v-model="q.printCode" @keyup.enter="query" placeholder="设备编码">
 			</div>
-			<div class="form-group col-sm-2">
+			<div class="form-group col-sm-1">
 				<input type="text" class="form-control" v-model="q.printName" @keyup.enter="query" placeholder="设备物主">
 			</div>
-			<div class="form-group col-sm-2">
+			<div class="form-group col-sm-1">
 				<input type="text" class="form-control" v-model="q.lawyerName" @keyup.enter="query" placeholder="律师用户名">
 			</div>
-			<a class="btn btn-default" @click="query">查询</a>
+			<div class="form-group col-sm-1s">
+				 <input class="layui-input" v-model="q.time1" placeholder="创建时间" name="start" id="start">
+			<!-- </div>
+       			 <lable>至</lable>
+       		<div class="form-group col-sm-2"> -->
+   				 <input class="layui-input" placeholder="创建时间" name="end" id="end">
+   				 <a class="btn btn-default" @click="query">查询</a>
+			</div>
+			
+			
+			
 		</div>
 	    <table id="jqGrid"></table>
 	    <div id="jqGridPager"></div>
@@ -56,10 +74,10 @@
 			  <span v-if="order.zxFileManagerCDE !=null">{{order.zxFileManagerCDE.fileName}}</span><br/>
 		律师服务费{{order.serviceAmount}}<br/>
 		文件打印费{{order.printerAmount}}<br/>
-		纸张{{order.zxOrderPrinterFile.paperType}}<br/>
-		颜色{{order.zxOrderPrinterFile.paperColcor}}<br/>
+		纸张{{paperType}}<br/>
+		颜色{{paperColcor}}<br/>
 		份数{{order.zxOrderPrinterFile.printerNum}}<br/>
-		单双面{{order.zxOrderPrinterFile.paperUsage}}<br/>
+		单双面{{paperUsage}}<br/>
 		范围{{order.zxOrderPrinterFile.filePaper}}<br/>
 	</div>
 </div>
