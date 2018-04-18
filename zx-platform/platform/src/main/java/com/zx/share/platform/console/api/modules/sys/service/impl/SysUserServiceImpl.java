@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.api.common.exception.RRException;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.modules.sys.dao.SysUserDao;
@@ -47,17 +47,17 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
-	public SysUserEntity queryByUserName(String username) {
+	public SysUser queryByUserName(String username) {
 		return sysUserDao.queryByUserName(username);
 	}
 	
 	@Override
-	public SysUserEntity queryObject(Long userId) {
+	public SysUser queryObject(Long userId) {
 		return sysUserDao.queryObject(userId);
 	}
 
 	@Override
-	public List<SysUserEntity> queryList(Map<String, Object> map){
+	public List<SysUser> queryList(Map<String, Object> map){
 		return sysUserDao.queryList(map);
 	}
 	
@@ -68,7 +68,7 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Override
 	@Transactional
-	public void save(SysUserEntity user) {
+	public void save(SysUser user) {
 		user.setCreateTime(new Date());
 		//sha256加密
 		String salt = RandomStringUtils.randomAlphanumeric(20);
@@ -85,7 +85,7 @@ public class SysUserServiceImpl implements SysUserService {
 
 	@Override
 	@Transactional
-	public void update(SysUserEntity user) {
+	public void update(SysUser user) {
 		if(StringUtils.isBlank(user.getPassword())){
 			user.setPassword(null);
 		}else{
@@ -118,7 +118,7 @@ public class SysUserServiceImpl implements SysUserService {
 	/**
 	 * 检查角色是否越权
 	 */
-	private void checkRole(SysUserEntity user){
+	private void checkRole(SysUser user){
 		//如果不是超级管理员，则需要判断用户的角色是否自己创建
 		if(user.getCreateUserId() == Constant.SUPER_ADMIN){
 			return ;

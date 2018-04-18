@@ -42,7 +42,15 @@
 			<div class="form-group">
 			   	<div class="col-sm-2 control-label">参数类型</div>
 			   	<div class="col-sm-10">
-			      <input type="text" class="form-control" v-model="config.type" placeholder="参数类型"/>
+				  <select class="form-control" v-model="config.type">
+					  <option value="zx_file_type_a">A文件类型</option>
+					  <option value="zx_file_type_b">B文件类型</option>
+					  <option value="zx_attorney_domain">律师领域</option>
+					  <option value="zx_order_earnings">收益</option>
+					  <option value="zx_printer_paper_type">打印纸张类型</option>
+					  <option value="zx_printer_paper_colour">打印纸张颜色</option>
+					  <option value="zx_printer_paper_use">使用</option>
+				  </select>
 			    </div>
 			</div>
 			<div class="form-group">

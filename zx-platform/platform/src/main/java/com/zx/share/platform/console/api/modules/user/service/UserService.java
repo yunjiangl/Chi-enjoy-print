@@ -37,6 +37,8 @@ public interface UserService {
 	 */
 	void deleteBatch(Long[] userIds);
 
+	void startUsing(Long[] userIds);
+
 	ZxUser queryByMobile(String mobile);
 
 	/**

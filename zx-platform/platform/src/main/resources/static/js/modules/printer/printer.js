@@ -2111,12 +2111,36 @@ var vm = new Vue({
                 return;
             }
 
-            confirm('确定要删除选中的记录？', function () {
+            confirm('确定要禁用选中的打印机？', function () {
                 $.ajax({
                     type: "POST",
                     url: baseURL + "printer/delete",
                     contentType: "application/json",
                     data: JSON.stringify(userIds),
+                    success: function (r) {
+                        if (r.code == 0) {
+                            alert('操作成功', function () {
+                                vm.reload();
+                            });
+                        } else {
+                            alert(r.msg);
+                        }
+                    }
+                });
+            });
+        },
+        startUsing: function () {
+            var printerIds = getSelectedRows();
+            if (printerIds == null) {
+                return;
+            }
+
+            confirm('确定要启用选中的打印机？', function () {
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "printer/startUsing",
+                    contentType: "application/json",
+                    data: JSON.stringify(printerIds),
                     success: function (r) {
                         if (r.code == 0) {
                             alert('操作成功', function () {

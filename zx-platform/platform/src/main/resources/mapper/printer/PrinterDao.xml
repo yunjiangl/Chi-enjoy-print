@@ -106,11 +106,18 @@
 		delete from zx_printer_manager where id = #{value}
 	</delete>
 	
-	<delete id="deleteBatch">
+	<update id="deleteBatch">
 		 update zx_printer_manager set status=0 where id in
 		<foreach item="printerId" collection="array" open="(" separator="," close=")">
 			#{printerId}
 		</foreach>
-	</delete>
+	</update>
+	<update id="startUsing">
+		update zx_printer_manager set status=1 where id in
+		<foreach item="printerId" collection="array" open="(" separator="," close=")">
+			#{printerId}
+		</foreach>
+	</update>
+
 
 </mapper>

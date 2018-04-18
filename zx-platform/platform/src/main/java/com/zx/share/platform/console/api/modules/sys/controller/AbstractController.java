@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractController {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 	
-	protected SysUserEntity getUser() {
-		return (SysUserEntity) SecurityUtils.getSubject().getPrincipal();
+	protected SysUser getUser() {
+		return (SysUser) SecurityUtils.getSubject().getPrincipal();
 	}
 
 	protected Long getUserId() {

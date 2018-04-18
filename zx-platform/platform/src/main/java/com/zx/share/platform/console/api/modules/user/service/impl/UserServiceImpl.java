@@ -82,6 +82,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public void startUsing(Long[] userIds){
+		userDao.startUsing(userIds);
+	}
+
+	@Override
 	public ZxUser queryByMobile(String mobile) {
 		return userDao.queryByMobile(mobile);
 	}

@@ -14,7 +14,7 @@ import java.util.List;
  * @email object_czx@163.com
  * @date 2016年9月18日 上午9:28:55
  */
-public class SysUserEntity implements Serializable {
+public class SysUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	/**

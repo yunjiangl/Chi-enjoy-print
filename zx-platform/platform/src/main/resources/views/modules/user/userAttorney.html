@@ -36,6 +36,7 @@
 			<a class="btn btn-default" @click="query">查询</a>
 			<a v-if="hasPermission('sys:attorney:check')" class="btn btn-primary" @click="checkAttorney"><i class="fa fa-pencil-square-o"></i>&nbsp;审核</a>
 			<a v-if="hasPermission('sys:attorney:delete')" class="btn btn-primary" @click="deleteAttorney"><i class="fa fa-pencil-square-o"></i>&nbsp;禁用</a>
+			<a v-if="hasPermission('sys:attorney:delete')" class="btn btn-primary" @click="updateAttorney"><i class="fa fa-pencil-square-o"></i>&nbsp;启用</a>
 		</div>
 	    <table id="jqGrid"></table>
 	    <div id="jqGridPager"></div>

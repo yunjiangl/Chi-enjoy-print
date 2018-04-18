@@ -12,4 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PrinterDao extends BaseDao<ZxPrinterManager> {
+
+    int startUsing(Object[] id);
 }

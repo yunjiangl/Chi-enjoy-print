@@ -23,8 +23,8 @@
 	</select>
 	
 	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysDictionary">
-		insert into sys_dictionary(`type` ,code,parent_id,name,sort, `value`, remark)
-			values(#{type},#{code},#{parentId},#{name},#{sort},#{value},#{remark})
+		insert into sys_dictionary(`type` ,code,parent_id,name,sort, `value`, remark,status)
+			values(#{type},#{code},#{parentId},#{name},#{sort},#{value},#{remark},1)
 	</insert>
 
 	<update id="update" parameterType="com.zx.share.platform.bean.sys.SysDictionary">

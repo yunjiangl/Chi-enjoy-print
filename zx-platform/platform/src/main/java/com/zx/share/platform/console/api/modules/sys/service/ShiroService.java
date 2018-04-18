@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.service;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 
 import java.util.Set;
@@ -23,5 +23,5 @@ public interface ShiroService {
      * 根据用户ID，查询用户
      * @param userId
      */
-    SysUserEntity queryUser(Long userId);
+    SysUser queryUser(Long userId);
 }

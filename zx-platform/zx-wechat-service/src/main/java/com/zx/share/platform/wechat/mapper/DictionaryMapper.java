@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.mapper;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
 import org.apache.ibatis.annotations.Param;

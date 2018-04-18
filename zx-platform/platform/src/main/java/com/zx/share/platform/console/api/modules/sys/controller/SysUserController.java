@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.common.utils.PageUtils;
@@ -49,7 +49,7 @@ public class SysUserController extends AbstractController {
 		
 		//查询列表数据
 		Query query = new Query(params);
-		List<SysUserEntity> userList = sysUserService.queryList(query);
+		List<SysUser> userList = sysUserService.queryList(query);
 		int total = sysUserService.queryTotal(query);
 		
 		PageUtils pageUtil = new PageUtils(userList, total, query.getLimit(), query.getPage());
@@ -93,7 +93,7 @@ public class SysUserController extends AbstractController {
 	@RequestMapping("/info/{userId}")
 	@RequiresPermissions("sys:user:info")
 	public R info(@PathVariable("userId") Long userId){
-		SysUserEntity user = sysUserService.queryObject(userId);
+		SysUser user = sysUserService.queryObject(userId);
 		
 		//获取用户所属的角色列表
 		List<Long> roleIdList = sysUserRoleService.queryRoleIdList(userId);
@@ -108,7 +108,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("保存用户")
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:user:save")
-	public R save(@RequestBody SysUserEntity user){
+	public R save(@RequestBody SysUser user){
 		ValidatorUtils.validateEntity(user, AddGroup.class);
 		
 		user.setCreateUserId(getUserId());
@@ -123,7 +123,7 @@ public class SysUserController extends AbstractController {
 	@SysLog("修改用户")
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:user:update")
-	public R update(@RequestBody SysUserEntity user){
+	public R update(@RequestBody SysUser user){
 		ValidatorUtils.validateEntity(user, UpdateGroup.class);
 		
 		user.setCreateUserId(getUserId());
