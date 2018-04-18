@@ -12,12 +12,12 @@
 	</select>
 
 	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysUserLogin">
-		INSERT INTO sys_user_login(user_id,user_type,login_time,login_id)
-		VALUES (#{userId},#{userType},#{loginTime},#{loginId})
+		INSERT INTO sys_user_login(user_id,user_type,login_time,login_ip)
+		VALUES (#{userId},#{userType},#{loginTime},#{loginIp})
 	</insert>
 
 	<update id="update" parameterType="com.zx.share.platform.bean.sys.SysUserLogin">
-		UPDATE sys_user_login set login_time=#{loginTime},login_id=#{loginId} where user_id=#{userId} and user_type=#{userType}
+		UPDATE sys_user_login set login_time=#{loginTime},login_ip=#{loginIp} where user_id=#{userId} and user_type=#{userType}
 	</update>
 
 </mapper>
