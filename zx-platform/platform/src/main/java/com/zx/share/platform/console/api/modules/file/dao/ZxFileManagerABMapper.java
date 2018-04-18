@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
+import com.zx.share.platform.console.api.modules.sys.dao.BaseDao;
 
 @Repository
 @Mapper
