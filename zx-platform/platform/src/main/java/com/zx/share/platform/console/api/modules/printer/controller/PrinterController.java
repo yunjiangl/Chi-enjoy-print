@@ -6,10 +6,12 @@ import com.zx.share.platform.console.api.common.utils.PageUtils;
 import com.zx.share.platform.console.api.common.utils.Query;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.modules.printer.service.PrinterService;
+import com.zx.share.platform.console.api.modules.sys.controller.AbstractController;
 import com.zx.share.platform.console.api.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/printer")
-public class PrinterController {
+public class PrinterController extends AbstractController {
     @Autowired
     private PrinterService printerService;
 
@@ -33,8 +35,9 @@ public class PrinterController {
         //查询列表数据
         Query query = new Query(params);
         query.isPaging(true);
-        List<ZxPrinterManager> userList = printerService.queryList(query);
-        PageUtils pageUtil = new PageUtils(userList, query.getTotle(), query.getLimit(), query.getPage());
+        List<ZxPrinterManager> printerList = printerService.queryList(query);
+        int total = printerService.queryTotal(query);
+        PageUtils pageUtil = new PageUtils(printerList, total, query.getLimit(), query.getPage());
         return R.ok().put("page", pageUtil);
     }
 
@@ -46,7 +49,7 @@ public class PrinterController {
     public R info(@PathVariable("printerId") Long printerId){
         ZxPrinterManager printer = printerService.queryObject(printerId);
 
-        return R.ok().put("user", printer);
+        return R.ok().put("printer", printer);
     }
 
     /**
@@ -54,6 +57,8 @@ public class PrinterController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody ZxPrinterManager printer){
+        printer.setCreateId(getUserId());
+        printer.setCreateTime(new Date());
         printerService.save(printer);
 
         return R.ok();
@@ -64,6 +69,8 @@ public class PrinterController {
      */
     @RequestMapping("/update")
     public R update(@RequestBody ZxPrinterManager printer){
+        printer.setUpdateId(getUserId());
+        printer.setUpdateTime(new Date());
         printerService.update(printer);
 
         return R.ok();

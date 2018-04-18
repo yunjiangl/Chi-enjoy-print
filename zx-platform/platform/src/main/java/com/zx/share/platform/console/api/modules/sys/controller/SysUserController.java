@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.common.utils.PageUtils;
@@ -9,7 +10,6 @@ import com.zx.share.platform.console.api.common.validator.Assert;
 import com.zx.share.platform.console.api.common.validator.ValidatorUtils;
 import com.zx.share.platform.console.api.common.validator.group.AddGroup;
 import com.zx.share.platform.console.api.common.validator.group.UpdateGroup;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserRoleService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;
 import org.apache.commons.lang.ArrayUtils;

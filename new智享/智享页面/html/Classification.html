@@ -18,6 +18,8 @@
   <fieldset class="layui-elem-field">
     <legend>分类列表</legend>
     <div class="layui-field-box">
+      <input id="query" class="layui-input" style="width:150px;" name="query" type="text"/>
+      <input id="parentId" name="parentId" type="hidden" value="0"/>
       <button class="layui-btn x-right" style="margin-bottom: 20px" onclick="classify()">添加分类</button>
     </div>
     <div class="layui-field-box">
@@ -25,96 +27,510 @@
         <thead>
         <tr>
           <th>分类名称</th>
+          <th>类型</th>
           <th>等级</th>
           <th>创建时间</th>
           <th>操作</th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-          <td>A类文件</td>
-          <td>1</td>
-          <td>2017-12-23 12:23:34</td>
-          <td><button class="layui-btn">修改</button></td>
-        </tr>
-        <tr>
-          <td>文件分类名称</td>
-          <td>2</td>
-          <td>2017-12-23 12:23:34</td>
-          <td><button class="layui-btn">修改</button></td>
-        </tr>
-        <tr>
-          <td>A类文件</td>
-          <td>1</td>
-          <td>2017-12-23 12:23:34</td>
-          <td><button class="layui-btn">修改</button></td>
-        </tr>
-        <tr>
-          <td>文件分类名称</td>
-          <td>2</td>
-          <td>2017-12-23 12:23:34</td>
-          <td><button class="layui-btn">修改</button></td>
-        </tr>
-        <tr>
-          <td>文件分类名称</td>
-          <td>2</td>
-          <td>2017-12-23 12:23:34</td>
-          <td><button class="layui-btn">修改</button></td>
-        </tr>
-        <tr>
-          <td>A类文件</td>
-          <td>1</td>
-          <td>2017-12-23 12:23:34</td>
-          <td><button class="layui-btn">修改</button></td>
-        </tr>
+        <tbody id="table-data">
+        
         </tbody>
       </table>
+      <div id="tablePage"></div>
     </div>
   </fieldset>
   <!-- add-classify start -->
-  <div class="add-classify">
+  <div class="add-type" style="display: none;">
     <form>
-      <font>上级菜单</font>
-      <div class="layui-input-inline">
-                <select name="cateid"  >
-                  <option value="">顶级菜单</option>
-                  <option value="">A类文件</option>
-                  <option value="">B类文件</option>
-                  <option value="">C类文件</option>
+      <font>类型</font>
+      <div class="layui-input-inline" id="type">
+                <select id="select_type" name="select_type"  >
+                  <option value="zx_file_type_a">A类文件类型</option>
+                  <option value="zx_file_type_b">B类文件类型</option>
                 </select>
       </div>
       <div style="clear: both;"></div>
-      <font class="ft">二级菜单</font>
-          <div class="layui-input-inline">
-                <select name="cateid">
-                  <option></option>
-                  <option value="可用">可用</option>
-                  <option value="禁用">禁用</option>
+      <font class="ft">上级菜单</font>
+          <div class="layui-input-inline" id="select_parentId">
+                <select id="parentId1" name="parentId">
+                  
                 </select>
           </div>
           <div style="clear: both;"></div>
       <font class="ft">分类名称</font>
-           <input type="" name="" class="layui-input" placeholder="输入分类名称">
+      <div class="layui-input-inline" >
+<input type="txt" name="name" style="width: 150px;" class="layui-input" placeholder="输入分类名称">
+      </div>
               <div style="clear: both;"></div>
-             <button class="layui-btn">保存</button> 
-             </tt>
+             <button class="layui-btn" id="type_save">保存</button> 
     </form>
   </div>
   <!-- add-classify end -->
+  <div class="update-type" style="display: none;">
+    <form>
+      <font>类型</font>
+      <div class="layui-input-inline" id="update_type">
+        <input type="hidden" id="update_id" value="" name="update_id">
+        <select id="update_select_type" name="update_select_type">
+          <option value="zx_file_type_a">A类文件类型</option>
+          <option value="zx_file_type_b">B类文件类型</option>
+        </select>
+      </div>
+      <div style="clear: both;"></div>
+      <font class="ft">上级菜单</font>
+      <div class="layui-input-inline" id="update_select_parentId">
+        <!-- <select id="update_parentId1" name="update_parentId">
+  
+        </select> -->
+      </div>
+      <div style="clear: both;"></div>
+      <font class="ft">分类名称</font>
+      <div class="layui-input-inline">
+        <input type="txt" name="update_name" style="width: 150px;" class="layui-input" placeholder="输入分类名称">
+      </div>
+      <div style="clear: both;"></div>
+      <button class="layui-btn" id="type_update">保存</button>
+    </form>
+  </div>
 </div>
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 <script src="./layer/layer.js"></script>
+<script type="text/javascript" src="lib/layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(".x-right").on("click",function(){
   layer.open({
     type:1,
     title:"添加分类",
-    area:['600px','360px'],
+    area: ['35%', '60%'],
     shadeClose:true,
     shad:[0.8,'#855'],
-    content:$('.add-classify')
+    content:$('.add-type')
   });
 });
+  
+$("#type_save").click(function(){
+  var type = $("#select_type option:selected").val();
+  var pIds = "0";
+   var vlaue = '0';
+  $("select[name='update_parentId']").each(function () {
+    pIds += "," + $(this).val();
+    value = parseInt(value) + 1;
+  });
+  var name = $("input[name='name']").val();
+
+  $.ajax({
+    url: 'http://127.0.0.1:10002/sys/dictionary/save',
+    type: 'POST', //GET
+    data: {
+      id:0,
+      pIds: pIds,
+      type: type,
+      name: name,
+        value: value
+    },
+    crossDomain: true,
+    // timeout: 5000,    //超时时间
+    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+    beforeSend: function(xhr) {
+      console.log('发送前')
+    },
+    success: function (data, textStatus, jqXHR) {
+      $("#add-type").hide();
+      dataLoad(1, 10);
+    },
+    error: function (xhr, textStatus) {
+      console.log('错误')
+      console.log(xhr)
+      console.log(textStatus)
+    },
+    complete: function () {
+      console.log('结束')
+    }
+  });
+});
+
+  $("#type_update").on("click",function () {
+    var type = $("#update_select_type option:selected").val();
+    var pIds = "0";
+    var vlaue = '0';
+    $("select[name='update_parentId']").each(function () {
+      pIds += "," + $(this).val();
+      value = parseInt(value)+1;
+    });
+    var name = $("input[name='update_name']").val();
+    var id = $("input[name='update_id']").val();
+
+    $.ajax({
+      url: 'http://127.0.0.1:10002/sys/dictionary/save',
+      type: 'POST', //GET
+      data: {
+        id: id,
+        pIds: pIds,
+        type: type,
+        name: name,
+        value: value
+      },
+      crossDomain: true,
+      // timeout: 5000,    //超时时间
+      dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+      beforeSend: function (xhr) {
+        console.log('发送前')
+      },
+      success: function (data, textStatus, jqXHR) {
+        $("#update-type").hide();
+        dataLoad(1, 10);
+      },
+      error: function (xhr, textStatus) {
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+      },
+      complete: function () {
+        console.log('结束')
+      }
+    });
+  });
+
+$.ajax({
+  url: 'http://127.0.0.1:10002/sys/dictionary/selectAll',
+  type: 'GET', //GET
+  data: {
+    parentId: '0',
+    type: 'zx_file_type_a'
+  },
+  crossDomain: true,
+  // timeout: 5000,    //超时时间
+  dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+  beforeSend: function (xhr) {
+    console.log('发送前')
+  },
+  success: function (data, textStatus, jqXHR) {
+    var html = "<option value='0'>请选择</option>";
+    $.each(data.data, function (i, d) {
+      html += "<option value='"+d.id+"'>" + d.name + "</option>";
+    });
+    $("#parentId1").html(html);
+  },
+  error: function (xhr, textStatus) {
+    console.log('错误')
+    console.log(xhr)
+    console.log(textStatus)
+  },
+  complete: function () {
+    console.log('结束')
+  }
+});
+  $("#select_type").on("change", function () {
+    $.ajax({
+      url: 'http://127.0.0.1:10002/sys/dictionary/selectAll',
+      type: 'GET', //GET
+      data: {
+        parentId: '',
+        type: $("#select_type option:selected").val()
+      },
+      crossDomain: true,
+      // timeout: 5000,    //超时时间
+      dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+      beforeSend: function (xhr) {
+        console.log('发送前')
+      },
+      success: function (data, textStatus, jqXHR) {
+        $("select[name='parentId']").each(function(){
+          var dataparentId = $(this).attr("id");
+          var count = dataparentId.substring(dataparentId.length - 1, dataparentId.length);
+          if(count!=1){
+            $(this).remove();
+          }
+        });
+        var html = "<option value='0'>请选择</option>";
+        $.each(data.data, function (i, d) {
+          html += "<option value='" + d.id + "'>" + d.name + "</option>";
+        });
+        $("#parentId1").html(html);
+      },
+      error: function (xhr, textStatus) {
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+      },
+      complete: function () {
+        console.log('结束')
+      }
+    });
+  });
+$("select[name='parentId']").on("change", function () {
+    var dataparentId = $(this).attr("id");
+  var count = dataparentId.substring(dataparentId.length - 1, dataparentId.length);
+  alert(count);
+    $.ajax({
+    url: 'http://127.0.0.1:10002/sys/dictionary/selectAll',
+    type: 'GET', //GET
+    data: {
+      parentId: $("#"+ dataparentId+" option:selected").val(),
+      type: $("#select_type option:selected").val()
+    },
+    crossDomain: true,
+    // timeout: 5000,    //超时时间
+    dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+    beforeSend: function (xhr) {
+      console.log('发送前')
+    },
+    success: function (data, textStatus, jqXHR) {
+      var html = "<select id='parentId"+ (parseInt(count) + 1)+"' name='parentId'>";
+      html+="<option value='0'>请选择</option>";
+      $.each(data.data, function (i, d) {
+        html += "<option value='" + d.id + "'>" + d.name + "</option>";
+      });
+      html+="</select>";
+      $("#parentId" + (parseInt(count)+1)).remove();
+      $("#select_parentId").append(html);
+    },
+    error: function (xhr, textStatus) {
+      console.log('错误')
+      console.log(xhr)
+      console.log(textStatus)
+    },
+    complete: function () {
+      console.log('结束')
+    }
+  });
+});
+
+  function tablePage(page, count) {
+    layui.use('laypage', function () {
+      var laypage = layui.laypage;
+
+      //执行一个laypage实例
+      laypage.render({
+        elem: 'tablePage' //注意，这里的 test1 是 ID，不用加 # 号
+        , count: count //数据总数，从服务端得到
+        , limits: [10, 20, 30, 40, 50], 
+        skip: true, curr:page
+        , jump: function (obj, first) {
+          // startPageNum = obj.curr;//点击时获得当前第几页
+          // startPageName = (obj.curr - 1) * pageSizeSetting;
+          if(!first){
+          dataLoad(obj.curr,10)
+          }
+        }
+      });
+    });
+  }
+  dataLoad(1, 10);
+  function dataLoad(page, pageSize) {
+    var type = 'zx_file_type';
+    var query = $("#query").val();
+    var parentId = $("#parentId").val();
+    $.ajax({
+      url: 'http://127.0.0.1:10002/sys/dictionary/selectPage',
+      type: 'GET', //GET
+      data: {
+        type: type,
+        query: query,
+        parentId: parentId,
+        page: page,
+        pageSize: pageSize
+      },
+      headers: {
+
+      },
+      crossDomain: true,
+      // timeout: 5000,    //超时时间
+      dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+      beforeSend: function (xhr) {
+        console.log('发送前')
+      },
+      success: function (data, textStatus, jqXHR) {
+        tableLoad(data.data.content);
+        tablePage(page, data.data.totalElements);
+      },
+      error: function (xhr, textStatus) {
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+      },
+      complete: function () {
+        console.log('结束')
+      }
+    });
+  }
+
+  function tableLoad(data) {
+    var html = "";
+
+    $.each(data, function (i, d) {
+        html+="<tr>";
+        html += "<td>"+d.name+"</td>";
+      html += "<td>" + d.type + "</td>";
+      html += "<td>" + d.value + "</td>";
+        html += "<td>" + d.createTime +"</td>";
+        html += "<td><button class='layui-btn' id='delete_btn' data_id=" + d.id + ">删除</button><button id='update_btn' class='layui-btn' data_id=" + d.id + ">修改</button></td>";
+        html += "</tr>";
+    });
+
+    if (html!="" && html.length > 0) {
+      $("#table-data").html(html);
+    }
+
+    $("#update_btn").on("click", function () {
+      layer.open({
+        type: 1,
+        title: "修改分类",
+        area: ['35%', '60%'],
+        shadeClose: true,
+        shad: [0.8, '#855'],
+        content: $('.update-type')
+      });
+      var dataId = $(this).attr("data_id");
+      update_view(dataId);
+      
+      update_parentId_change();
+    });
+
+    $("#update_select_type").on("change", function () {
+      $.ajax({
+        url: 'http://127.0.0.1:10002/sys/dictionary/selectAll',
+        type: 'GET', //GET
+        data: {
+          parentId: '',
+          type: $("#update_select_type option:selected").val()
+        },
+        crossDomain: true,
+        // timeout: 5000,    //超时时间
+        dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+        beforeSend: function (xhr) {
+          console.log('发送前')
+        },
+        success: function (data, textStatus, jqXHR) {
+          $("select[name='update_parentId']").each(function () {
+            var dataparentId = $(this).attr("id");
+            var count = dataparentId.substring(dataparentId.length - 1, dataparentId.length);
+            if (count != 1) {
+              $(this).remove();
+            }
+          });
+          var html = "<select id='update_parentId1' name = 'update_parentId'><option value='0'>请选择</option>";
+          $.each(data.data, function (i, d) {
+            html += "<option value='" + d.id + "'>" + d.name + "</option>";
+          });
+          html+="</select>";
+          $("#update_select_parentId").append(html);
+          update_parentId_change();
+        },
+        error: function (xhr, textStatus) {
+          console.log('错误')
+          console.log(xhr)
+          console.log(textStatus)
+        },
+        complete: function () {
+          console.log('结束')
+        }
+      });
+    });
+  }
+  function update_parentId_change(){
+    $("select[name='update_parentId']").unbind("change");
+    $("select[name='update_parentId']").on("change", function () {
+          var dataparentId = $(this).attr("id");
+          var count = dataparentId.substring(dataparentId.length - 1, dataparentId.length);
+          alert(count);
+          $.ajax({
+            url: 'http://127.0.0.1:10002/sys/dictionary/selectAll',
+            type: 'GET', //GET
+            data: {
+              parentId: $("#" + dataparentId + " option:selected").val(),
+              type: $("#update_select_type option:selected").val()
+            },
+            crossDomain: true,
+            // timeout: 5000,    //超时时间
+            dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            beforeSend: function (xhr) {
+              console.log('发送前')
+            },
+            success: function (data, textStatus, jqXHR) {
+              var html = "<select id='update_parentId" + (parseInt(count) + 1) + "' name='update_parentId'>";
+              html += "<option value='0'>请选择</option>";
+              $.each(data.data, function (i, d) {
+                html += "<option value='" + d.id + "'>" + d.name + "</option>";
+              });
+              html += "</select>";
+              $("#update_parentId" + (parseInt(count) + 1)).remove();
+              $("#update_select_parentId").append(html);
+            },
+            error: function (xhr, textStatus) {
+              console.log('错误')
+              console.log(xhr)
+              console.log(textStatus)
+            },
+            complete: function () {
+              console.log('结束')
+            }
+          });
+        });
+  }
+  function update_view(dataId){
+
+    $.ajax({
+      url: 'http://127.0.0.1:10002/sys/dictionary/selectGet',
+      type: 'GET', //GET
+      data: {
+        id: dataId,
+
+      },
+      crossDomain: true,
+      // timeout: 5000,    //超时时间
+      dataType: 'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+      beforeSend: function (xhr) {
+        console.log('发送前')
+      },
+      success: function (data, textStatus, jqXHR) {
+        if(data.data.type='zx_file_type_a'){
+            $("#update_select_type").get(0).selectedIndex = 0;
+        }else{
+            $("#update_select_type").get(0).selectedIndex = 1;
+        }
+        
+        $("input[name='update_name']").val(data.data.name); 
+        $("input[name='update_id']").val(data.data.id);
+
+        var parentIdc = data.parentId;
+        var value = data.value;
+
+        update_html(data.data);
+      },
+      error: function (xhr, textStatus) {
+        console.log('错误')
+        console.log(xhr)
+        console.log(textStatus)
+      },
+      complete: function () {
+        console.log('结束')
+      }
+    });
+  }
+
+  function update_html(data,count){
+    var html = "<select id='update_parentId"+count+"' name = 'update_parentId'><option value='0'>请选择</option>";
+    var isPrent = false;
+    var dataObj=null;
+    $.each(data.dictionaryList, function (i, d) {
+        if(d.selected=='selected'){
+          dataObj=d;
+          isPrent=true;
+          html += "<option value='" + d.id + "' selected>" + d.name + "</option>";
+        }else{
+          html += "<option value='" + d.id + "'>" + d.name + "</option>";
+        }
+       
+    });
+    html += "</select>";
+    $("#update_select_parentId").append(html);
+
+    if(isPrent==true && dataObj!=null){
+      update_html(dataObj,(parseInt(count)+1));
+    }
+  }
 </script>
 </body>
 </html>

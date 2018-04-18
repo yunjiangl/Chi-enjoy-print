@@ -1,12 +1,12 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
+import com.zx.share.platform.bean.sys.SysMenuEntity;
+import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.modules.sys.dao.SysMenuDao;
 import com.zx.share.platform.console.api.modules.sys.dao.SysUserDao;
 import com.zx.share.platform.console.api.modules.sys.dao.SysUserTokenDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysMenuEntity;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity;
 import com.zx.share.platform.console.api.modules.sys.service.ShiroService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

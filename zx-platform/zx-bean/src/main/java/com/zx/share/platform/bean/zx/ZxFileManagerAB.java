@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
-import com.zx.share.platform.bean.sys.SysDictionary;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

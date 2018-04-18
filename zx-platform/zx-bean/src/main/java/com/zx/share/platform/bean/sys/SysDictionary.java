@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 
 
 /**
- * @author 
+ * @author
  */
 @Entity
 @Table(name="sys_dictionary")
@@ -26,77 +26,77 @@ public class SysDictionary extends IdEntity {
     /**
      * 类型
      */
-	@Column(name = "type")
+    @Column(name = "type")
     private String type;
 
     /**
      * 编码
      */
-	@Column(name = "code")
+    @Column(name = "code")
     private String code;
 
     /**
      * 名称
      */
-	@Column(name = "name")
+    @Column(name = "name")
     private String name;
 
     /**
      * 值
      */
-	@Column(name = "value")
+    @Column(name = "value")
     private String value;
 
     /**
      * 父级
      */
-	@Column(name = "parent_id")
+    @Column(name = "parent_id")
     private Long parentId;
 
     /**
      * 排序
      */
-	@Column(name = "sort")
+    @Column(name = "sort")
     private Integer sort;
 
     /**
      * 备注
      */
-	@Column(name = "remark")
+    @Column(name = "remark")
     private String remark;
 
     /**
      * 状态（1-使用，2-不使用）
      */
-	@Column(name = "status")
+    @Column(name = "status")
     private Integer status;
 
     /**
      * 创建时间
      */
-	@Column(name = "create_time")
+    @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 创建人
      */
-	@Column(name = "create_id")
+    @Column(name = "create_id")
     private Long createId;
 
     /**
      * 修改时间
      */
-	@Column(name = "update_time")
+    @Column(name = "update_time")
     private Date updateTime;
 
     /**
      * 修改人
      */
-	@Column(name = "update_id")
+    @Column(name = "update_id")
     private Integer updateId;
 
-	@Transient
-	private List<SysDictionary> dictionaryList;
+    @Transient
+    private List<SysDictionary> dictionaryList;
 
     @Transient
     private String selected;
@@ -106,5 +106,5 @@ public class SysDictionary extends IdEntity {
 
     private static final long serialVersionUID = 1L;
 
-   
+
 }

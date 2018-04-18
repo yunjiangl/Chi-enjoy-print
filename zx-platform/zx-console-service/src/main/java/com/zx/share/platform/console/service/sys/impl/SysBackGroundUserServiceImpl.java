@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zx.share.platform.bean.sys.SysRole;
-import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.mapper.sys.SysBackGroundUserMapper;
 import com.zx.share.platform.console.service.sys.SysBackGroundUserService;
 import com.zx.share.platform.constants.ErrorsEnum;

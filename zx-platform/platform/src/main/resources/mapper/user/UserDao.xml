@@ -37,9 +37,9 @@
                 order by id desc
 			</otherwise>
         </choose>
-		<!--<if test="offset != null and limit != null">-->
-			<!--limit #{offset}, #{limit}-->
-		<!--</if>-->
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
 	</select>
 	
  	<select id="queryTotal" resultType="int">
@@ -121,4 +121,7 @@
 		</foreach>
 	</delete>
 
+	<update id="checkUpdate">
+		update zx_user set is_lock=#{isLock} where id=#{id}
+	</update>
 </mapper>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.mapper.sys.SysFrontDeskUserMapper;
 import com.zx.share.platform.console.service.sys.SysFrontDeskUserService;
 import com.zx.share.platform.constants.ErrorsEnum;

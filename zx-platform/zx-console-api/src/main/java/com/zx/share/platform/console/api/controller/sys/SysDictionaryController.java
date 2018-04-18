@@ -1,10 +1,7 @@
 package com.zx.share.platform.console.api.controller.sys;
 
-import com.zx.share.platform.bean.sys.SysDictionary;
-import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.service.sys.SysDictionaryService;
 import com.zx.share.platform.util.StringUtil;
-import com.zx.share.platform.util.annotation.ACSPermissions;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 import io.swagger.annotations.Api;
@@ -17,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by fenggang on 18/4/4.

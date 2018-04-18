@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.share.platform.console.api.modules.user.dao.SysUserLoginDao">
+
+	<select id="queryUserType" resultType="com.zx.share.platform.bean.sys.SysUserLogin">
+		SELECT * FROM sys_user_login where user_id=#{userId} AND user_type=#{type} ORDER BY login_time desc limit 1
+	</select>
+
+	<select id="queryObject" resultType="com.zx.share.platform.bean.sys.SysUserLogin">
+		SELECT * FROM sys_user_login where user_id=#{userId} AND user_type=1 ORDER BY login_time desc limit 1
+	</select>
+
+	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysUserLogin">
+		INSERT INTO sys_user_login(user_id,user_type,login_time,login_id)
+		VALUES (#{userId},#{userType},#{loginTime},#{loginId})
+	</insert>
+
+	<update id="update" parameterType="com.zx.share.platform.bean.sys.SysUserLogin">
+		UPDATE sys_user_login set login_time=#{loginTime},login_id=#{loginId} where user_id=#{userId} and user_type=#{userType}
+	</update>
+
+</mapper>

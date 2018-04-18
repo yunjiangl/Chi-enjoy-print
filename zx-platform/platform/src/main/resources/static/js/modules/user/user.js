@@ -6,14 +6,16 @@ $(function () {
 			{ label: 'ID', name: 'id', index: 'user_id', width: 50, key: true },
 			{ label: '用户名', name: 'username', index: 'username', width: 80 },
             { label: '状态', name: 'useStatus', index: 'useStatus', width: 80 ,formatter:function(cellvalue, options, rowObject){
+                var html = '';
             	if(cellvalue==1){
-            		return '正常';
-				}
-            	return '关闭';
+                    html += '<span class="label label-success">账号正常</span>';
+                }else
+                    html += '<span class="label label-danger">账号关闭</span>';
+                return html;
 			}},
 			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 },
-            { label: '上次登录时间', name: 'loginTime', index: 'loginTime', width: 80 },
-            { label: '上次登录IP', name: 'loginIp', index: 'loginIp', width: 80 }
+            { label: '上次登录时间', name: 'userLogin.loginTime', index: 'loginTime', width: 80 },
+            { label: '上次登录IP', name: 'userLogin.loginIp', index: 'loginIp', width: 80 }
         ],
 		viewrecords: true,
         height: 385,
@@ -91,29 +93,29 @@ var vm = new Vue({
 				}
 			});
 		},
-		delete: function (event) {
-			var userIds = getSelectedRows();
-			if(userIds == null){
-				return ;
-			}
-			
-			confirm('确定要关闭选中的记录？', function(){
-				$.ajax({
-					type: "POST",
-				    url: baseURL + "user/delete",
+		del: function (event) {
+            var userIds = getSelectedRows();
+            if(userIds == null){
+                return ;
+            }
+
+            confirm('确定要禁用选中的账号？', function(){
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "user/delete",
                     contentType: "application/json",
-				    data: JSON.stringify(userIds),
-				    success: function(r){
-						if(r.code == 0){
-							alert('操作成功', function(index){
-								$("#jqGrid").trigger("reloadGrid");
-							});
-						}else{
-							alert(r.msg);
-						}
-					}
-				});
-			});
+                    data: JSON.stringify(userIds),
+                    success: function(r){
+                        if(r.code == 0){
+                            alert('操作成功', function(index){
+                                $("#jqGrid").trigger("reloadGrid");
+                            });
+                        }else{
+                            alert(r.msg);
+                        }
+                    }
+                });
+            });
 		},
         check: function (event) {
             var userIds = getSelectedRows();

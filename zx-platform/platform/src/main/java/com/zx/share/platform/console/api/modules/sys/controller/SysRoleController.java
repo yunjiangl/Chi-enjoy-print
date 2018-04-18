@@ -1,12 +1,12 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
+import com.zx.share.platform.bean.sys.SysRoleEntity;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.common.utils.PageUtils;
 import com.zx.share.platform.console.api.common.utils.Query;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.common.validator.ValidatorUtils;
-import com.zx.share.platform.console.api.modules.sys.entity.SysRoleEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysRoleMenuService;
 import com.zx.share.platform.console.api.modules.sys.service.SysRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

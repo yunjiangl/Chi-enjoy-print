@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.share.platform.console.api.modules.user.dao.UserAttorneyDao">
+
+	<select id="queryObject" resultType="com.zx.share.platform.bean.zx.ZxUserAttorney">
+		SELECT * FROM zx_user_attorney where user_id=#{userId} limit 1
+	</select>
+
+</mapper>

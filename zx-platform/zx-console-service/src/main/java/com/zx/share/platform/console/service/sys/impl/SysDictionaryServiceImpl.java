@@ -1,6 +1,5 @@
 package com.zx.share.platform.console.service.sys.impl;
 
-import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.common.bean.PageRequestBean;
 import com.zx.share.platform.console.mapper.sys.SysDictionaryMapper;
 import com.zx.share.platform.console.service.sys.SysDictionaryService;

@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.job.task;
 
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;

@@ -3,10 +3,10 @@ package com.zx.share.platform.console.api.modules.file.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 

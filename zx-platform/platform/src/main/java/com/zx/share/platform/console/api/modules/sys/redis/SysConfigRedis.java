@@ -3,7 +3,6 @@ package com.zx.share.platform.console.api.modules.sys.redis;
 import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.console.api.common.utils.RedisKeys;
 import com.zx.share.platform.console.api.common.utils.RedisUtils;
-import com.zx.share.platform.console.api.modules.sys.entity.SysConfigEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

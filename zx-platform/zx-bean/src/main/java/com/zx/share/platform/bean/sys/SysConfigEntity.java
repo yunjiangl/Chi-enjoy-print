@@ -1,4 +1,4 @@
-package com.zx.share.platform.console.api.modules.sys.entity;
+package com.zx.share.platform.bean.sys;
 
 
 import org.hibernate.validator.constraints.NotBlank;
