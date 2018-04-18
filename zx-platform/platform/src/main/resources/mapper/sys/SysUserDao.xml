@@ -100,9 +100,9 @@
 			<if test="status != null">`status` = #{status}, </if>
 		</set>
 		where user_id = #{userId} 
-		<if test="createUserId != null">
-			and `create_user_id` = #{createUserId} 
-		</if>
+		<!--<if test="createUserId != null">-->
+			<!--and `create_user_id` = #{createUserId} -->
+		<!--</if>-->
 	</update>
 	
 	<update id="updatePassword" parameterType="map">
