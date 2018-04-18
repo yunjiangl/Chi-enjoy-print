@@ -115,5 +115,12 @@ public class UserController {
 		
 		return R.ok();
 	}
-	
+	@RequestMapping("/startUsing")
+	public R startUsing(@RequestBody Long[] userIds){
+		userService.startUsing(userIds);
+
+		return R.ok();
+	}
+
+
 }

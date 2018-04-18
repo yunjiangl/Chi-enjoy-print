@@ -24,4 +24,6 @@ public interface PrinterService {
     void deleteBatch(Long[] printerIds);
 
     ZxPrinterManager queryObject(Long printerId);
+
+    void startUsing(Long[] ids);
 }

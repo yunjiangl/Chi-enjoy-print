@@ -1,6 +1,6 @@
 package com.suke.czx;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.api.common.utils.RedisUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
@@ -17,11 +17,11 @@ public class RedisTest {
 
 	@Test
 	public void contextLoads() {
-		SysUserEntity user = new SysUserEntity();
+		SysUser user = new SysUser();
 		user.setEmail("qqq@qq.com");
 		redisUtils.set("user", user);
 
-		System.out.println(ToStringBuilder.reflectionToString(redisUtils.get("user", SysUserEntity.class)));
+		System.out.println(ToStringBuilder.reflectionToString(redisUtils.get("user", SysUser.class)));
 	}
 
 }

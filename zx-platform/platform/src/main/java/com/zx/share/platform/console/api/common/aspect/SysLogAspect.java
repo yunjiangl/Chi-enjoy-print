@@ -2,7 +2,7 @@ package com.zx.share.platform.console.api.common.aspect;
 
 import com.google.gson.Gson;
 import com.zx.share.platform.bean.sys.SysLogEntity;
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.common.utils.HttpContextUtils;
 import com.zx.share.platform.console.api.common.utils.IPUtils;
@@ -84,7 +84,7 @@ public class SysLogAspect {
 		sysLog.setIp(IPUtils.getIpAddr(request));
 
 		//用户名
-		String username = ((SysUserEntity) SecurityUtils.getSubject().getPrincipal()).getUsername();
+		String username = ((SysUser) SecurityUtils.getSubject().getPrincipal()).getUsername();
 		sysLog.setUsername(username);
 
 		sysLog.setTime(time);

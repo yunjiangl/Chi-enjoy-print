@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.common.utils;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.api.common.exception.RRException;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -23,8 +23,8 @@ public class ShiroUtils {
 		return SecurityUtils.getSubject();
 	}
 
-	public static SysUserEntity getUserEntity() {
-		return (SysUserEntity)SecurityUtils.getSubject().getPrincipal();
+	public static SysUser getUserEntity() {
+		return (SysUser)SecurityUtils.getSubject().getPrincipal();
 	}
 
 	public static Long getUserId() {

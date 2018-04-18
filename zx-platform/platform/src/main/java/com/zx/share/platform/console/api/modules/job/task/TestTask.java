@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.job.task;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class TestTask {
 			e.printStackTrace();
 		}
 		
-		SysUserEntity user = sysUserService.queryObject(1L);
+		SysUser user = sysUserService.queryObject(1L);
 		System.out.println(ToStringBuilder.reflectionToString(user));
 		
 	}

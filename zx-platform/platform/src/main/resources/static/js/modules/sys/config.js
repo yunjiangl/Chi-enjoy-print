@@ -56,7 +56,10 @@ var vm = new Vue({
 		add: function(){
 			vm.showList = false;
 			vm.title = "新增";
-			vm.config = {};
+			vm.config = {
+				type:'zx_file_type_a',
+				sort:0
+			};
 		},
 		update: function () {
 			var id = getSelectedRow();

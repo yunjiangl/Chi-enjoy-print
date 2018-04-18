@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.oauth2;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import com.zx.share.platform.console.api.modules.sys.service.ShiroService;
 import org.apache.shiro.authc.*;
@@ -35,7 +35,7 @@ public class OAuth2Realm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        SysUserEntity user = (SysUserEntity)principals.getPrimaryPrincipal();
+        SysUser user = (SysUser)principals.getPrimaryPrincipal();
         Long userId = user.getUserId();
 
         //用户权限列表
@@ -61,7 +61,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
 
         //查询用户信息
-        SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
+        SysUser user = shiroService.queryUser(tokenEntity.getUserId());
         //账号锁定
         if(user.getStatus() == 0){
             throw new LockedAccountException("账号已被锁定,请联系管理员");

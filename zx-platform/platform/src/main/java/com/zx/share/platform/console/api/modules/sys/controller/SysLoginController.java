@@ -2,7 +2,7 @@ package com.zx.share.platform.console.api.modules.sys.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.sys.SysUserLogin;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.common.utils.ShiroUtils;
@@ -78,7 +78,7 @@ public class SysLoginController extends AbstractController {
 //		}
 
 		//用户信息
-		SysUserEntity user = sysUserService.queryByUserName(username);
+		SysUser user = sysUserService.queryByUserName(username);
 
 		//账号不存在、密码错误
 		if(user == null || !user.getPassword().equals(new Sha256Hash(password, user.getSalt()).toHex())) {

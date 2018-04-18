@@ -1,7 +1,7 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
 import com.zx.share.platform.bean.sys.SysMenuEntity;
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import com.zx.share.platform.console.api.common.utils.Constant;
 import com.zx.share.platform.console.api.modules.sys.dao.SysMenuDao;
@@ -54,7 +54,7 @@ public class ShiroServiceImpl implements ShiroService {
     }
 
     @Override
-    public SysUserEntity queryUser(Long userId) {
+    public SysUser queryUser(Long userId) {
         return sysUserDao.queryObject(userId);
     }
 }

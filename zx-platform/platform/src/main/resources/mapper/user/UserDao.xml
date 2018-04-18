@@ -114,12 +114,19 @@
 		delete from zx_user where id = #{value}
 	</delete>
 	
-	<delete id="deleteBatch">
+	<update id="deleteBatch">
 		 update zx_user set use_status=0 where id in
 		<foreach item="userId" collection="array" open="(" separator="," close=")">
 			#{userId}
 		</foreach>
-	</delete>
+	</update>
+
+	<update id="startUsing">
+		update zx_user set use_status=1 where id in
+		<foreach item="userId" collection="array" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+	</update>
 
 	<update id="checkUpdate">
 		update zx_user set is_lock=#{isLock} where id=#{id}

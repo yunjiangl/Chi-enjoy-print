@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.service;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 
 import java.util.List;
 import java.util.Map;
@@ -29,19 +29,19 @@ public interface SysUserService {
 	/**
 	 * 根据用户名，查询系统用户
 	 */
-	SysUserEntity queryByUserName(String username);
+	SysUser queryByUserName(String username);
 	
 	/**
 	 * 根据用户ID，查询用户
 	 * @param userId
 	 * @return
 	 */
-	SysUserEntity queryObject(Long userId);
+	SysUser queryObject(Long userId);
 	
 	/**
 	 * 查询用户列表
 	 */
-	List<SysUserEntity> queryList(Map<String, Object> map);
+	List<SysUser> queryList(Map<String, Object> map);
 	
 	/**
 	 * 查询总数
@@ -51,12 +51,12 @@ public interface SysUserService {
 	/**
 	 * 保存用户
 	 */
-	void save(SysUserEntity user);
+	void save(SysUser user);
 	
 	/**
 	 * 修改用户
 	 */
-	void update(SysUserEntity user);
+	void update(SysUser user);
 	
 	/**
 	 * 删除用户

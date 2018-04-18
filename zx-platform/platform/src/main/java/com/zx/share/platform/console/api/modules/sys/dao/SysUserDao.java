@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.dao;
 
-import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Map;
  * @date 2016年9月18日 上午9:34:11
  */
 @Mapper
-public interface SysUserDao extends BaseDao<SysUserEntity> {
+public interface SysUserDao extends BaseDao<SysUser> {
 	
 	/**
 	 * 查询用户的所有权限
@@ -30,7 +30,7 @@ public interface SysUserDao extends BaseDao<SysUserEntity> {
 	/**
 	 * 根据用户名，查询系统用户
 	 */
-	SysUserEntity queryByUserName(String username);
+	SysUser queryByUserName(String username);
 	
 	/**
 	 * 修改密码

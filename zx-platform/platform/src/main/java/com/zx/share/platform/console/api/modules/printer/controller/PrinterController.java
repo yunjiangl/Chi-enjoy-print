@@ -85,4 +85,11 @@ public class PrinterController extends AbstractController {
 
         return R.ok();
     }
+
+    @RequestMapping("/startUsing")
+    public R startUsing(@RequestBody Long[] ids){
+        printerService.startUsing(ids);
+
+        return R.ok();
+    }
 }

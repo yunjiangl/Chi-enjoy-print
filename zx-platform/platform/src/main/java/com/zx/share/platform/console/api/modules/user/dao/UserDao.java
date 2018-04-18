@@ -18,4 +18,6 @@ public interface UserDao extends BaseDao<ZxUser> {
     ZxUser queryByMobile(String mobile);
 
     int checkUpdate(ZxUser user);
+
+    int startUsing(Object[] id);
 }

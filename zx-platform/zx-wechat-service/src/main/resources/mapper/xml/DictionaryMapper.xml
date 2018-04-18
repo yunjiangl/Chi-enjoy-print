@@ -6,14 +6,15 @@
         <result column="code" property="code" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="id" property="id"/>
+        <result column="parent_id" property="pId" />
     </resultMap>
 
     <select id="findTypePIdList" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
-        select id,code,name from sys_dictionary where type=#{type} and parent_id=#{parentId} and status=1
+        select id,code,name,parent_id from sys_dictionary where type=#{type} and parent_id=#{parentId} and status=1
     </select>
 
     <select id="findTypeList" resultMap="dictionaryResultBean" resultType="com.zx.share.platform.vo.wechat.response.DictionaryResultBean">
-        select id,code,name from sys_dictionary where type=#{type} and status=1
+        select id,code,name,parent_id from sys_dictionary where type=#{type} and status=1
     </select>
 
 </mapper>
