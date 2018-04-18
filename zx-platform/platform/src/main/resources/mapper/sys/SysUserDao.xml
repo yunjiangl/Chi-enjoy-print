@@ -9,9 +9,9 @@
 	<select id="queryList" resultType="com.zx.share.platform.bean.sys.SysUser">
 		select * from sys_user 
 		<where>
-			<if test="createUserId != null">
-				and `create_user_id` = #{createUserId} 
-			</if>
+			<!--<if test="createUserId != null">-->
+				<!-- and `create_user_id` = #{createUserId} -->
+			<!--</if>-->
 			<if test="username != null and username.trim() != ''">
 				and `username` like concat('%',#{username},'%') 
 			</if>
@@ -35,9 +35,9 @@
 	<select id="queryTotal" resultType="int">
 		select count(*) from sys_user
 		<where>
-			<if test="createUserId != null">
-				and `create_user_id` = #{createUserId} 
-			</if>
+			<!--<if test="createUserId != null">-->
+				<!-- and `create_user_id` = #{createUserId} -->
+			<!--</if>-->
 			<if test="username != null and username.trim() != ''">
 				and `username` like concat('%',#{username},'%') 
 			</if>

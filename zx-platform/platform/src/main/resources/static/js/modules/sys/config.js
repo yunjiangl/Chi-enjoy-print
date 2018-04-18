@@ -58,7 +58,8 @@ var vm = new Vue({
 			vm.title = "新增";
 			vm.config = {
 				type:'zx_file_type_a',
-				sort:0
+				sort:0,
+				parentId:0
 			};
 		},
 		update: function () {
@@ -71,6 +72,12 @@ var vm = new Vue({
                 vm.showList = false;
                 vm.title = "修改";
                 vm.config = r.config;
+                if(r.config.sort==undefined || r.config.sort=='' || r.config.sort==null){
+                	vm.config.sort=0;
+				}
+                if(r.config.parentId==undefined || r.config.parentId=='' || r.config.parentId==null){
+                    vm.config.parentId=0;
+                }
             });
 		},
 		del: function () {

@@ -3,6 +3,7 @@ package com.zx.share.platform.console.api.controller.zx;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
