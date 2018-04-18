@@ -5,7 +5,6 @@ import com.zx.share.platform.console.api.common.utils.PageUtils;
 import com.zx.share.platform.console.api.common.utils.Query;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.common.validator.ValidatorUtils;
-import com.zx.share.platform.console.api.modules.sys.entity.SysConfigEntity;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.modules.sys.service.SysConfigService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

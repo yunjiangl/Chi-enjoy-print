@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 

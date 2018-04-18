@@ -6,11 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.zx.share.platform.bean.sys.SysUser;
-import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
-import com.zx.share.platform.util.response.DefaultResopnseBean;
 
 @Repository
 public interface ZxUserMapper extends PlatFormMapper<ZxUser>{

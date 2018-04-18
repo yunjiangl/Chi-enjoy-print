@@ -7,11 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.springframework.http.StreamingHttpOutputMessage;
-
 import com.zx.share.platform.bean.IdEntity;
-import com.zx.share.platform.bean.sys.SysDictionary;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

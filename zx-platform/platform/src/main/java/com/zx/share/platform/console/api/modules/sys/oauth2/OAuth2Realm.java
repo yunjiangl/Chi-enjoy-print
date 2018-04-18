@@ -1,7 +1,7 @@
 package com.zx.share.platform.console.api.modules.sys.oauth2;
 
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserTokenEntity;
+import com.zx.share.platform.bean.sys.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUserTokenEntity;
 import com.zx.share.platform.console.api.modules.sys.service.ShiroService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

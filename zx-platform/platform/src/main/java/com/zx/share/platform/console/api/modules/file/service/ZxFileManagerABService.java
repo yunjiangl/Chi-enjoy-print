@@ -3,9 +3,9 @@ package com.zx.share.platform.console.api.modules.file.service;
 import java.util.List;
 import java.util.Map;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;

@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zx.share.platform.console.api.modules.sys.dao.SysUserDao">
-	<select id="queryObject" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity">
+	<select id="queryObject" resultType="com.zx.share.platform.bean.sys.SysUserEntity">
 		select * from sys_user where user_id = #{value}
 	</select>
 	
-	<select id="queryList" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity">
+	<select id="queryList" resultType="com.zx.share.platform.bean.sys.SysUserEntity">
 		select * from sys_user 
 		<where>
 			<if test="createUserId != null">
@@ -59,11 +59,11 @@
 		where ur.user_id = #{userId}
 	</select>
 	
-	<select id="queryByUserName" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity">
+	<select id="queryByUserName" resultType="com.zx.share.platform.bean.sys.SysUserEntity">
 		select * from sys_user where username = #{username}
 	</select>
 	
-	<insert id="save" parameterType="com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity" useGeneratedKeys="true" keyProperty="userId">
+	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysUserEntity" useGeneratedKeys="true" keyProperty="userId">
 		insert into sys_user
 		(
 			`user_id`, 
@@ -90,7 +90,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity">
+	<update id="update" parameterType="com.zx.share.platform.bean.sys.SysUserEntity">
 		update sys_user 
 		<set> 
 			<if test="username != null">`username` = #{username}, </if>

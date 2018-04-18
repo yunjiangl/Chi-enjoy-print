@@ -1,11 +1,11 @@
 package com.zx.share.platform.console.api.common.aspect;
 
 import com.google.gson.Gson;
+import com.zx.share.platform.bean.sys.SysLogEntity;
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.common.annotation.SysLog;
 import com.zx.share.platform.console.api.common.utils.HttpContextUtils;
 import com.zx.share.platform.console.api.common.utils.IPUtils;
-import com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysLogService;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

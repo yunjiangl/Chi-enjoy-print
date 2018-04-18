@@ -9,6 +9,7 @@ import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
 
+import com.zx.share.platform.bean.sys.SysUserLogin;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -110,5 +111,7 @@ public class ZxUser extends IdEntity {
 	private ZxUserPrinter zxUserPrinter;
 	@Transient
 	private ZxUserAttorneyDomain zxUserAttorneyDomain;
+	@Transient
+	private SysUserLogin userLogin;
 
 }

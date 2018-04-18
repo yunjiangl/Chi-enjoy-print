@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.share.platform.console.api.modules.user.dao.UserAttorneyDomainDao">
+
+    <select id="queryDomainList" resultType="java.lang.String">
+        SELECT sd.name FROM zx_user_attorney_domain ud join sys_dictionary sd on sd.id=ud.domain_id where ud.user_id=#{userId}
+    </select>
+
+</mapper>

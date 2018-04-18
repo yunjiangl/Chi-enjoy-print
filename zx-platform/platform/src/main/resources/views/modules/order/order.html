@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>设备列表</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/font-awesome.min.css">
+<link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+<link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
+<link rel="stylesheet" href="../../css/main.css">
+<script src="../../libs/jquery.min.js"></script>
+<script src="../../plugins/layer/layer.js"></script>
+<script src="../../libs/bootstrap.min.js"></script>
+<script src="../../libs/vue.min.js"></script>
+<script src="../../libs/validator.min.js"></script>
+<script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="../../js/common.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.printCode" @keyup.enter="query" placeholder="设备编码">
+			</div>
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.printName" @keyup.enter="query" placeholder="设备物主">
+			</div>
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.lawyerName" @keyup.enter="query" placeholder="律师用户名">
+			</div>
+			<a class="btn btn-default" @click="query">查询</a>
+		</div>
+	    <table id="jqGrid"></table>
+	    <div id="jqGridPager"></div>
+    </div>
+    <!-- 订单详情 -->
+	<div id="orderInfo" style="display: none;">
+		订单号{{order.orderNum}}<br/>
+		律师用户{{order.lawyer.nickname}}
+		客户用户{{order.zxUser.nickname}}<br/>
+		设备编码{{order.zxPrinterManager.printerCode}}
+		设备物主{{order.sysUser.username}}<br/>
+		线下管理员{{order.zxPrinterManager.managerName}}
+		联系电话{{order.zxPrinterManager.managerPhone}}<br/>
+		<hr/><br/>
+		支付时间{{order.payTime}}<br/>
+		支付方式 <span v-if="order.payType == 'wecaht'">微信支付</span>
+			   <span v-else>其他方式支付</span><br/>
+		支付金额{{order.orderAmount}}<br/>
+		文件标题<span v-if="order.zxFileManagerAB != null">{{order.zxFileManagerAB.fileName}}</span>
+			  <span v-if="order.zxFileManagerCDE !=null">{{order.zxFileManagerCDE.fileName}}</span><br/>
+		律师服务费{{order.serviceAmount}}<br/>
+		文件打印费{{order.printerAmount}}<br/>
+		纸张{{order.zxOrderPrinterFile.paperType}}<br/>
+		颜色{{order.zxOrderPrinterFile.paperColcor}}<br/>
+		份数{{order.zxOrderPrinterFile.printerNum}}<br/>
+		单双面{{order.zxOrderPrinterFile.paperUsage}}<br/>
+		范围{{order.zxOrderPrinterFile.filePaper}}<br/>
+	</div>
+</div>
+<script src="../../js/modules/order/order.js"></script>
+</body>
+</html>

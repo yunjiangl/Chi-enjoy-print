@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.console.api.common.exception.RRException;
 import com.zx.share.platform.console.api.modules.sys.dao.SysConfigDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysConfigEntity;
 import com.zx.share.platform.console.api.modules.sys.redis.SysConfigRedis;
 import com.zx.share.platform.console.api.modules.sys.service.SysConfigService;
 import org.apache.commons.lang.StringUtils;

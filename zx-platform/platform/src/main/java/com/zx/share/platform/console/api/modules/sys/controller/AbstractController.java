@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,11 +3,11 @@
 
 <mapper namespace="com.zx.share.platform.console.api.modules.sys.dao.SysLogDao">
 
-	<select id="queryObject" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity">
+	<select id="queryObject" resultType="com.zx.share.platform.bean.sys.SysLogEntity">
 		select * from sys_log where id = #{value}
 	</select>
 
-	<select id="queryList" resultType="com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity">
+	<select id="queryList" resultType="com.zx.share.platform.bean.sys.SysLogEntity">
 		select * from sys_log 
 		<where>
 			<if test="key != null and key.trim() != ''">
@@ -29,7 +29,7 @@
 		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysLogEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into sys_log
 		(
 			`username`, 

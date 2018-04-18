@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.service;
 
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
+import com.zx.share.platform.bean.sys.SysUserEntity;
 
 import java.util.List;
 import java.util.Map;

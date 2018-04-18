@@ -1,7 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.service;
 
 import com.zx.share.platform.bean.sys.SysDictionary;
-import com.zx.share.platform.console.api.modules.sys.entity.SysConfigEntity;
 
 import java.util.List;
 import java.util.Map;

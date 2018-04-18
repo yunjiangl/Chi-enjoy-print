@@ -1,6 +1,6 @@
 package com.zx.share.platform.console.api.modules.sys.service;
 
-import com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity;
+import com.zx.share.platform.bean.sys.SysLogEntity;
 
 import java.util.List;
 import java.util.Map;

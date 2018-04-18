@@ -1,7 +1,7 @@
 package com.zx.share.platform.console.api.modules.sys.service.impl;
 
+import com.zx.share.platform.bean.sys.SysLogEntity;
 import com.zx.share.platform.console.api.modules.sys.dao.SysLogDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

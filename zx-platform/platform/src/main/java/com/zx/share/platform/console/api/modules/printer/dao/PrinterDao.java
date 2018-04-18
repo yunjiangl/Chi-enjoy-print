@@ -2,7 +2,6 @@ package com.zx.share.platform.console.api.modules.printer.dao;
 
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.console.api.modules.sys.dao.BaseDao;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

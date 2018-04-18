@@ -1,9 +1,11 @@
 package com.zx.share.platform.console.api.modules.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.bean.zx.ZxUserAttorney;
 import com.zx.share.platform.console.api.modules.user.entity.UserEntity;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +53,34 @@ public class UserController {
 	/**
 	 * 信息
 	 */
+	@RequestMapping("/domain/{userId}")
+	public R domain(@PathVariable("userId") Long userId){
+		List<String> list = userService.domain(userId);
+		
+		return R.ok().put("domains", list==null?new ArrayList<String>():list);
+	}
+	/**
+	 * 信息
+	 */
+	@RequestMapping("/attorney/{userId}")
+	public R attorney(@PathVariable("userId") Long userId){
+		ZxUserAttorney user = userService.attorney(userId);
+
+		return R.ok().put("attorney", user==null?new ZxUserAttorney():user);
+	}
+	/**
+	 * 信息
+	 */
 	@RequestMapping("/info/{userId}")
 	public R info(@PathVariable("userId") Long userId){
 		ZxUser user = userService.queryObject(userId);
-		
+
 		return R.ok().put("user", user);
+	}
+	@RequestMapping("/check")
+	public R check(@RequestBody ZxUser user){
+		userService.check(user);
+		return R.ok();
 	}
 	
 	/**

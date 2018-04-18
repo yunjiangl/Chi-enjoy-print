@@ -1,7 +1,7 @@
 package com.suke.czx;
 
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import com.zx.share.platform.console.api.common.utils.RedisUtils;
-import com.zx.share.platform.console.api.modules.sys.entity.SysUserEntity;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

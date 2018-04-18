@@ -1,6 +1,8 @@
 package com.zx.share.platform.console.api.modules.user.service;
 
 import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.bean.zx.ZxUserAttorney;
+import com.zx.share.platform.bean.zx.ZxUserAttorneyDomain;
 import com.zx.share.platform.console.api.modules.user.entity.UserEntity;
 
 import java.util.List;
@@ -44,4 +46,10 @@ public interface UserService {
 	 * @return          返回用户ID
 	 */
 	long login(String mobile, String password);
+
+	List<String> domain(Long userId);
+
+	ZxUserAttorney attorney(Long userId);
+
+	void check(ZxUser user);
 }

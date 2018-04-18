@@ -10,7 +10,29 @@
 	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxPrinterManager">
 		select * from zx_printer_manager
 		<where>
-
+			<if test="name!=null and name!=''">
+				AND create_id in (
+					select id from sys_user where username like concat('%',#{name},'%')
+				)
+			</if>
+			<if test="createId!=null and createId!=''">
+				AND create_id = #{createId}
+			</if>
+			<if test="printerCode!=null and printerCode!=''">
+				AND printerCode LIKE concat('%',#{printerCode},'%')
+			</if>
+			<if test="startTime != null and startTime.trim() != '' ">
+				AND create_time &gt;= #{startTime}
+			</if>
+			<if test="endTime != null and endTime.trim() != ''">
+				AND create_time &lt;= #{endTime}
+			</if>
+			<if test="status!=null and status!=''">
+				AND status = #{status}
+			</if>
+			<if test="province!=null and province!=''">
+				AND province=#{province}
+			</if>
 		</where>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -28,7 +50,29 @@
  	<select id="queryTotal" resultType="int">
 		select count(*) from zx_printer_manager
 		<where>
-
+			<if test="name!=null and name!=''">
+				AND create_id in (
+				select id from sys_user where username like concat('%',#{name},'%')
+				)
+			</if>
+			<if test="createId!=null and createId!=''">
+				AND create_id = #{createId}
+			</if>
+			<if test="printerCode!=null and printerCode!=''">
+				AND printerCode LIKE concat('%',#{printerCode},'%')
+			</if>
+			<if test="startTime != null and startTime.trim() != '' ">
+				AND create_time &gt;= #{startTime}
+			</if>
+			<if test="endTime != null and endTime.trim() != ''">
+				AND create_time &lt;= #{endTime}
+			</if>
+			<if test="status!=null and status!=''">
+				AND status = #{status}
+			</if>
+			<if test="province!=null and province!=''">
+				AND province=#{province}
+			</if>
 		</where>
 	</select>
 
@@ -54,8 +98,8 @@
 			  <if test="updateTime != null">`update_time` = #{updateTime}, </if>
 			  <if test="managerName != null">`manager_name` = #{managerName}, </if>
 			  <if test="managerPhone != null">`manager_phone` = #{managerPhone}, </if>
-			  status=1
 		  </set>
+		  where id=#{id}
 	</update>
 	
 	<delete id="delete">

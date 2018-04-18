@@ -1,9 +1,9 @@
 package com.zx.share.platform.console.api.modules.sys.controller;
 
+import com.zx.share.platform.bean.sys.SysLogEntity;
 import com.zx.share.platform.console.api.common.utils.PageUtils;
 import com.zx.share.platform.console.api.common.utils.Query;
 import com.zx.share.platform.console.api.common.utils.R;
-import com.zx.share.platform.console.api.modules.sys.entity.SysLogEntity;
 import com.zx.share.platform.console.api.modules.sys.service.SysLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

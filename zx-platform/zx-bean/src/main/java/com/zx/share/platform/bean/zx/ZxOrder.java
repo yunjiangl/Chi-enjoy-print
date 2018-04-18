@@ -3,14 +3,12 @@ package com.zx.share.platform.bean.zx;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
-import com.zx.share.platform.bean.sys.SysUser;
 
+import com.zx.share.platform.bean.sys.SysUserEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -137,7 +135,7 @@ public class ZxOrder extends IdEntity {
 	private ZxUser lawyer;
 
 	@Transient
-	private SysUser sysUser;
+	private SysUserEntity sysUser;
 
 	@Transient
 	private ZxPrinterManager zxPrinterManager;
