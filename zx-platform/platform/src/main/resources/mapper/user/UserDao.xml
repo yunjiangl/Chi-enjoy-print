@@ -121,4 +121,7 @@
 		</foreach>
 	</delete>
 
+	<update id="checkUpdate">
+		update zx_user set is_lock=#{isLock} where id=#{id}
+	</update>
 </mapper>

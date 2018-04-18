@@ -1,8 +1,13 @@
 package com.zx.share.platform.console.api.modules.user.service.impl;
 
 import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.bean.zx.ZxUserAttorney;
+import com.zx.share.platform.bean.zx.ZxUserAttorneyDomain;
 import com.zx.share.platform.console.api.common.exception.RRException;
 import com.zx.share.platform.console.api.common.validator.Assert;
+import com.zx.share.platform.console.api.modules.user.dao.SysUserLoginDao;
+import com.zx.share.platform.console.api.modules.user.dao.UserAttorneyDao;
+import com.zx.share.platform.console.api.modules.user.dao.UserAttorneyDomainDao;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +25,12 @@ import com.zx.share.platform.console.api.modules.user.service.UserService;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private UserAttorneyDomainDao userAttorneyDomainDao;
+	@Autowired
+	private UserAttorneyDao userAttorneyDao;
+	@Autowired
+	private SysUserLoginDao sysUserLoginDao;
 	
 	@Override
 	public ZxUser queryObject(Long userId){
@@ -28,7 +39,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public List<ZxUser> queryList(Map<String, Object> map){
-		return userDao.queryList(map);
+		List<ZxUser> list = userDao.queryList(map);
+		list.forEach(x->x.setUserLogin(sysUserLoginDao.queryUserType(x.getId(),2)));
+		return list;
 	}
 	
 	@Override
@@ -85,6 +98,21 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return user.getId();
+	}
+
+	@Override
+	public List<String> domain(Long userId) {
+		return userAttorneyDomainDao.queryDomainList(userId);
+	}
+
+	@Override
+	public ZxUserAttorney attorney(Long userId) {
+		return userAttorneyDao.queryObject(userId);
+	}
+
+	@Override
+	public void check(ZxUser user) {
+		userDao.checkUpdate(user);
 	}
 
 }
