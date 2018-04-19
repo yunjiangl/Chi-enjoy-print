@@ -25,4 +25,6 @@ public interface ZxFileManagerABMapper extends PlatFormMapper<ZxFileManagerAB>{
 	List<ZxFileManagerAB> vagueList(Map<String , Object> params);
 
 	List<SysDictionary> dictionaryList(Map<String, Object> params);
+	
+	void deleteAll(Long[] ids);
 }

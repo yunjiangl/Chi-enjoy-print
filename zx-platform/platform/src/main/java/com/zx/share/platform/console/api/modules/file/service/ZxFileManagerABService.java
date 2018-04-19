@@ -22,13 +22,27 @@ public interface ZxFileManagerABService {
 	public DefaultResopnseBean<Object> add(ZxFileManagerAB zxAB,MultipartFile multipartFile);
 	
 	/**
+	 * 单条数据展示
+	 * @param Id
+	 * @return
+	 */
+	public ZxFileManagerAB selectId(Long Id);
+	
+	/**
 	 * 
 	 * @Title: update
 	 * @Description: 修改文件分类
 	 * @param zxAB
 	 *            修改文件分类
 	 */
-	public DefaultResopnseBean<Object> update(long id);
+	public void update(ZxFileManagerAB zxFileManagerAB);
+	
+	
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	public void deleteAll(Long[] ids);
 	
 	/**
 	 * 
@@ -52,5 +66,5 @@ public interface ZxFileManagerABService {
 	 */
 	public DefaultResopnseBean<Object> delete(Long id);
 
-	public DefaultResopnseBean<List<SysDictionary>> dictionaryList(Map<String, Object> params);
+	public List<SysDictionary> dictionaryList(Map<String, Object> params);
 }

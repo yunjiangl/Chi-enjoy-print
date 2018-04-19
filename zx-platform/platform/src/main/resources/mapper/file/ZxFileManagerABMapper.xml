@@ -128,4 +128,12 @@
 		WHERE
 		parent.id = #{parentId}
 	</select>
+	
+	<delete id="deleteAll">
+		 delete from zx_file_manager_ab where id in
+		<foreach item="ids" collection="array" open="(" separator="," close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	
 </mapper>

@@ -95,15 +95,24 @@ public class ZxFileManagerABServiceImpl implements ZxFileManagerABService {
 
 	@Transactional
 	@Override
-	public DefaultResopnseBean<Object> update(long id) {
-		ZxFileManagerAB zxFileManagerAB = zxFileManagerABMapper.selectByPrimaryKey(id);
+	public void update(ZxFileManagerAB zxFileManagerAB) {
 		zxFileManagerABMapper.updateByPrimaryKey(zxFileManagerAB);
-		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
 	}
 
 	@Override
-	public DefaultResopnseBean<List<SysDictionary>> dictionaryList(Map<String, Object> params) {
-		List<SysDictionary> data = zxFileManagerABMapper.dictionaryList(params);
-		return new DefaultResopnseBean<List<SysDictionary>>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, data);
+	public List<SysDictionary> dictionaryList(Map<String, Object> params) {
+		return zxFileManagerABMapper.dictionaryList(params);
+		//return new DefaultResopnseBean<List<SysDictionary>>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, data);
+	}
+
+	@Override
+	public ZxFileManagerAB selectId(Long Id) {
+		return zxFileManagerABMapper.selectByPrimaryKey(Id);
+		 
+	}
+
+	@Override
+	public void deleteAll(Long[] ids) {
+		zxFileManagerABMapper.deleteAll(ids);
 	}
 }

@@ -9,6 +9,10 @@ $(function () {
 			{ label: '文件分类', name: 'sysDictionary.name',  width: 80 },
 			{ label: '打印次数', name: 'fileNum', width: 80 },
             { label: '页数', name: 'fileNum', width: 80 },
+            { label: '操作', name: 'id',width: 80, formatter: function (value, options, row) { 
+                return '<a class="btn btn-primary btn-sm" href="javascript:;" onclick="deleteFileB(\''+value + '\');">删除</a>&nbsp;&nbsp;'               
+                +'<a class="btn btn-primary btn-sm" href="javascript:;" onclick="updateFileB(\''+value + '\')">修改</a>';
+            } },
         ],
 		viewrecords: true,
         height: 385,

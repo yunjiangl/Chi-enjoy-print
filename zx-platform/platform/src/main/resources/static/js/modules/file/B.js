@@ -49,12 +49,73 @@ var vm = new Vue({
         	fileName:null
         },
 		showList: true,
-		title: null
+		title: null,
+		fileB:{},
+		parent:{},
 	},
 	
 	methods: {
 		query: function () {
 			vm.reload();
+		},
+		catalog: function(){
+			console.log(123);
+			var parentid="56";
+			$.ajax({
+                type: "POST",
+                url: baseURL + "zx/ab/dictionary/list/"+parentid,
+                contentType: "application/json",
+                data:JSON.stringify(parentid),
+                success: function (r) {
+                	console.log(r);
+                }
+			});
+
+		},
+		saveFile:function(){
+			//alert();
+			vm.showList=false;
+			vm.title="新增文件";
+			vm.fileB={};
+		},
+		deleteAll:function(){
+			var userId = getSelectedRow();
+			console.log(userId);
+		},
+		saveOrUpdate: function () {
+	            var url = vm.fileB.id == null ? "zx/ab/add" : "zx/ab/update";
+	            vm.printer.province=vm.prov;
+	            vm.printer.city=vm.city;
+	            vm.printer.area=vm.district;
+	            $.ajax({
+	                type: "POST",
+	                url: baseURL + url,
+	                contentType: "application/json",
+	                data: JSON.stringify(vm.fileB),
+	                success: function (r) {
+	                    if (r.code === 0) {
+	                        alert('操作成功', function () {
+	                            vm.reload();
+	                        });
+	                    } else {
+	                        alert(r.msg);
+	                    }
+	                }
+	            });
+	        },
+		getfileB: function(id){
+			vm.catalog(id);
+			console.log(id);
+			$.ajax({
+				type: "POST",
+                url: baseURL + "zx/ab/info/"+id,
+                contentType: "application/json",
+                data:JSON.stringify(id),
+                success: function (r) {
+                	console.log(r);
+                	vm.fileB=r.zxFileManagerAB;
+                }
+			})
 		},
 		reload: function (event) {
 			vm.showList = true;
@@ -64,6 +125,7 @@ var vm = new Vue({
                 postData:{'fileName': vm.q.fileName}
             }).trigger("reloadGrid");
 		}
+		
 	}
 });
 
@@ -94,4 +156,10 @@ function deleteFileB(id){
 		    
 		  
 	})
+}
+
+function updateFileB(id){
+	vm.showList=false;
+	vm.title="修改文件";
+	vm.getfileB(id);
 }
