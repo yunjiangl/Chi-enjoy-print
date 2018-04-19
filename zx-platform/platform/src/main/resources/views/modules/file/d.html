@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>用户</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/font-awesome.min.css">
+<link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+<link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../plugins/layui/css/layui.css">
+<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+<script src="../../libs/jquery.min.js"></script>
+<script src="../../plugins/layer/layer.js"></script>
+<script src="../../libs/bootstrap.min.js"></script>
+<script src="../../libs/vue.min.js"></script>
+<script src="../../libs/validator.min.js"></script>
+<script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="../../js/common.js"></script>
+
+<style>
+       #start,#end{
+            max-width: 200px;
+            display: inline-block;
+        }
+ </style>
+</head>
+<body>
+<div id="userAttorney" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.fileName" @keyup.enter="query" placeholder="线上管理员">
+			</div>
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.userName" @keyup.enter="query" placeholder="输入标题">
+			</div>
+			<div class="form-group col-sm-1s">
+				 <input class="layui-input" v-model="q.time1" placeholder="创建时间" name="start" id="start">
+   				 <input class="layui-input" placeholder="截至时间" name="end" id="end">
+			</div>
+			<span class="btn btn-default" @click="query">查询</span>
+		</div>
+	    <table id="File"></table>
+	    <div id="FilePager"></div>
+    </div>
+
+</div>
+
+<!-- 选择菜单 -->
+<div id="checkLayer" style="display: none;padding:10px;">
+</div>
+<script src="../../js/modules/file/d.js"></script>
+</body>
+</html>

@@ -1,7 +1,9 @@
 package com.zx.share.platform.console.api.modules.order.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxOrder;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
@@ -31,5 +33,7 @@ public interface ZxOrderService {
 	
 	Integer selectCount();	
 	Integer selectSum();
+
+	public List<SysDictionary> paperInfo(Long[] Ids);
 
 }

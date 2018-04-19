@@ -8,9 +8,13 @@ $(function () {
 			{ label: '邮箱', name: 'email', width: 90 },
 			{ label: '手机号', name: 'mobile', width: 100 },
 			{ label: '状态', name: 'status', width: 80, formatter: function(value, options, row){
-				return value === 0 ? 
-					'<span class="label label-danger">禁用</span>' : 
-					'<span class="label label-success">正常</span>';
+				var html = (value === 0 ?
+					'<span class="label label-danger">禁用</span>' :
+					'<span class="label label-success">正常</span>');
+				html += '&nbsp;&nbsp;';
+				html += (row.userType ==1 ? '<span class="label label-success">系统用户</span>' :
+                    '<span class="label label-success">物主用户</span>');
+				return html;
 			}},
 			{ label: '创建时间', name: 'createTime', index: "create_time", width: 80}
         ],

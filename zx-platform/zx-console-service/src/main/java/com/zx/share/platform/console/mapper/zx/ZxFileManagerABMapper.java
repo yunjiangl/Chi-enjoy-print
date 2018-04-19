@@ -3,6 +3,7 @@ package com.zx.share.platform.console.mapper.zx;
 import java.util.List;
 import java.util.Map;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import org.springframework.stereotype.Repository;
 
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;

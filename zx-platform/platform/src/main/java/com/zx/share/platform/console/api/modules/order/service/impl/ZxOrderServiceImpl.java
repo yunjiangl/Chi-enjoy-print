@@ -1,5 +1,6 @@
 package com.zx.share.platform.console.api.modules.order.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +111,20 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	public Integer selectSum() {
 		// TODO Auto-generated method stub
 		return zxOrderMapper.selectSum();
+	}
+
+	@Override
+	public List<SysDictionary> paperInfo(Long[] Ids) {
+		List<SysDictionary> data = new ArrayList<SysDictionary>();
+		
+		for (int i = 0; i < Ids.length; i++) {
+			SysDictionary record = new SysDictionary();
+			record.setId(Ids[i]);
+			SysDictionary sysDictionary = dictionaryMapper.selectByPrimaryKey(record);
+			data.add(sysDictionary);
+		}
+		
+		return data;
 	}
 
 }
