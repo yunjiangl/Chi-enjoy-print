@@ -27,9 +27,9 @@
 				<input type="text" class="form-control" v-model="q.fileName" @keyup.enter="query" placeholder="标题">
 			</div>
 			<a class="btn btn-default" @click="query">查询</a>
-			<a v-if="hasPermission('sys:attorney:check')" class="btn btn-primary" @click="checkAttorney"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			<a v-if="hasPermission('sys:attorney:delete')" class="btn btn-primary" @click="deleteFileB"><i class="fa fa-pencil-square-o"></i>&nbsp;删除</a>
-		
+<!-- 			<a class="btn btn-primary" @click="updateFileB"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			<a class="btn btn-primary" @click="deleteFileB"><i class="fa fa-pencil-square-o"></i>&nbsp;删除</a>
+		 -->
 		</div>
 	    <table id="jqGrid"></table>
 	    <div id="jqGridPager"></div>
