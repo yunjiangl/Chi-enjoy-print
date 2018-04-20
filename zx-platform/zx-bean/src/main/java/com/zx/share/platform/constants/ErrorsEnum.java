@@ -22,6 +22,7 @@ public enum ErrorsEnum {
     //未登录
     SYSTEM_NOT_LOGIN_STATUS(600,"登录已失效"),
     SYSTEM_USER_STUTUS_LONGIN(602,"该账户已冻结,请联系管理员"),
+    SYSTEM_USER_ERROR_LONGIN(603,"用户名或密码错误"),
 
     //getPermissions
     SYSTEM_USER_PERMISSIONS(650,"权限不足"),

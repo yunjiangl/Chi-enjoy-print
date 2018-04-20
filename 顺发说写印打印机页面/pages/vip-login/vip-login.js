@@ -31,22 +31,48 @@ Page({
 
   // 登录  
   login: function () {
-
-    if (this.data.phone.length == 0 || this.data.password.length == 0) {
+    if (this.data.phone.length == 0) {
       wx.showToast({
-        title: '用户名和密码不能为空',
+        title: '用户名不能为空',
         icon: 'loading',
-        duration: 10000
+        duration: 1000
+      });
+    } else if (this.data.password.length == 0) {
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'loading',
+        duration: 1000
       });
     } else {
       // 这里修改成跳转的页面  
-      wx.navigateTo({
-        url: '',
-        success: function (res) {
-          console.log(res.code);
+      wx.request({
+        url: getApp().data.api + getApp().data.urlLogin,
+        data: {
+          mobile: this.data.phone,
+          pwd: this.data.password,
         },
-        fail: function (res) { },
-        complete: function (res) { },
+        method: 'GET',
+        header: {
+          //'content-type': 'X-ACCESS-TOKEN'
+        },
+        success: function (response) {
+          // console.log(response.data.data);
+          if (response.data.code == 200) {
+            app.data.userInfo = response.data.data;
+            console.log(getApp().data.userInfo);
+            wx.navigateTo({
+              url: '../lawyerIndex/lawyerIndex',
+              success: function (res) {
+                console.log(res.code);
+              },
+              fail: function (res) { },
+              complete: function (res) { },
+            });
+          }
+        },
+       fail: function (res) { 
+         console.log(res);
+       },
       })
     }
   },
@@ -65,7 +91,6 @@ Page({
     wx.navigateTo({
       url: '../forgetPassword/forgetPassword',
       success: function (res) {
-
       },
       fail: function (res) { },
       complete: function (res) { },
@@ -74,13 +99,10 @@ Page({
   weiLogin: function () {
     wx.getUserInfo({
       success: function (res) {
-        console.log(res);
         wx.login({
           success: function (loginres) {
-            console.log(loginres);
-            // var that = this
             wx.request({
-              url: 'http://123.206.42.162:10001/wechat/login',
+              url: getApp().data.api + getApp().data.urlWechatLogin,
               data: {
                 appId: '',
                 code: loginres.code,
@@ -91,22 +113,25 @@ Page({
               header: {
                 //'content-type': 'X-ACCESS-TOKEN'
               },
-              success: function (data) {
-                console.log(data.data);
-                if (data.data.code == '200') {
-                  wx.switchTab({
+              success: function (response) {
+                // console.log(response.data.data);
+                if (response.data.code==200){
+                  app.data.userInfo = response.data.data;
+                  console.log(getApp().data.userInfo);
+                  wx.navigateTo({
                     url: '../lawyerIndex/lawyerIndex',
-                  })
-                } 
+                    success: function (res) {
+                      console.log(res.code);
+                    },
+                    fail: function (res) { },
+                    complete: function (res) { },
+                  });
+                }
               }
             })
-
           }
         })
-
       }
     })
-
-
   }
-})
+});

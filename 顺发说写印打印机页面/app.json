@@ -39,6 +39,7 @@
     "pages/upfilelist/upfilelist",    
     "pages/choicePrinter/choicePrinter",    
     "pages/personalData/personalData",
+    "pages/index/index",
 
 
     "pages/bindingPhone/bindingPhone",
