@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -150,7 +151,8 @@ public class ZxFileManagerABController {
 	 * @Title: dictionaryList
 	 * @Description: 获取ab分类类目
 	 */
-	@RequestMapping(value = "/dictionary/list/{parentid}", method = RequestMethod.POST)
+	@RequestMapping(value = "/dictionary/list/{parentid}", method = RequestMethod.GET)
+	@ResponseBody
 	public R dictionaryList(@PathVariable("parentid") String parentid) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("parentId", parentid);
