@@ -6,6 +6,7 @@ const app = getApp()
 
 Page({
   data: {
+    
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -32,6 +33,7 @@ Page({
     duration:1000,
 
   },
+  
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({

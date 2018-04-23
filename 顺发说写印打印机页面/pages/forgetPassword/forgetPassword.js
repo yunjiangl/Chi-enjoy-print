@@ -17,7 +17,7 @@ Page({
       header: {
         'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken,
       },
-      date: {
+      data: {
         code: yanzhengma
       },
       method: 'POST',
