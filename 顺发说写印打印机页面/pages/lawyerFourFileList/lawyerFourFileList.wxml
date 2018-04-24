@@ -3,16 +3,16 @@
   <!-- content start -->
   <view class='content'>
     <!-- list start -->
-    <view wx:for='{{dictionaryList}}'>
-
+    
+<view wx:for='{{dictionaryList}}'>
       <view class='list' data-code='{{item.code}}' bindtap='trun'>
         <view>{{item.name}}</view>
       </view>
       <!-- list end -->
-
       <view class='line'></view>
+</view>
 
-    </view>
+    
   </view>
   <!-- content end -->
 </view>

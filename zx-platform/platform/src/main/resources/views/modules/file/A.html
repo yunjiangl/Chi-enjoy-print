@@ -24,83 +24,41 @@
 	<div v-show="showList">
 		<div class="grid-btn">
 			<div class="form-group col-sm-2">
-				<input type="text" class="form-control" v-model="q.fileName" @keyup.enter="query" placeholder="标题">
+				<input type="text" class="form-control" v-model="q.fileName" @keyup.enter="query" placeholder="用户名">
 			</div>
+ 			<div class="form-group col-sm-2">
+				<select class="form-control" v-model="q.useStatus" @keyup.enter="query">
+					<option value="" selected>一级标题</option>
+					<option value="1">正常</option>
+					<option value="0">关闭</option>
+				</select>
+			</div>
+						<div class="form-group col-sm-2">
+				<select class="form-control" v-model="q.useStatus" @keyup.enter="query">
+					<option value="" selected>二级级标题</option>
+					<option value="1">正常</option>
+					<option value="0">关闭</option>
+				</select>
+			</div>
+						<div class="form-group col-sm-2">
+				<select class="form-control" v-model="q.useStatus" @keyup.enter="query">
+					<option value="" selected>三级标题</option>
+					<option value="1">正常</option>
+					<option value="0">关闭</option>
+				</select>
+			</div> 
+									<div class="form-group col-sm-2">
+				<select class="form-control" v-model="q.useStatus" @keyup.enter="query">
+					<option value="" selected>三级标题</option>
+					<option value="1">正常</option>
+					<option value="0">关闭</option>
+				</select>
+			</div> 
 			<a class="btn btn-default" @click="query">查询</a>
-			<a class="btn btn-primary" v-on:click="saveFile()"><i class="fa fa-pencil-square-o"></i>&nbsp;新增</a>
-			<a class="btn btn-primary"  v-on:click="updateFileA()"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			<a class="btn btn-danger"  v-on:click="deleteAll()"><i class="fa fa-pencil-square-o"></i>&nbsp;删除</a>
 		</div>
 	    <table id="jqGrid"></table>
-	    <div id="jqGridPager"></div>  
+	    <div id="jqGridPager"></div>
     </div>
-    
-    
-   	<div v-show="!showList" class="panel panel-default">
-		<div class="panel-heading">{{title}}</div>
-		<form class="form-horizontal">
-	 		<div class="form-group">
-				<div class="col-sm-2 control-label">选择文件分类</div>
-				<div class="col-sm-10">
-					<select class=" form-control" style="width:100px;" v-model="ldone" >
-						<option v-for="option in parentone" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select>
-<!-- 					<select class="form-control" style="width:100px;" v-model="ldtwo">
-						<option v-for="option in parenttwo" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select>
-					<select class="form-control" style="width:100px;" v-model="ldthree">
-						<option v-for="option in parentthree" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select>
-					<select class="form-control" style="width:100px;" v-model="ldfore">
-						<option v-for="option in parentfore" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select> -->
-				</div>
-			</div> 
-		
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">文件标题</div>
-			   	<div class="col-sm-10">
-			      <input type="text" class="form-control"  v-model="fileA.fileName" placeholder="输入标题"/>
-			    </div>
-			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">文件页数</div>
-			   	<div class="col-sm-10">
-			      <input type="text" class="form-control" v-model="fileA.fileNum" placeholder="输入页数"/>
-			    </div>
-			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">上传附件</div>
-			   	<div class="col-sm-10">
-			      <input type="file"  class="projectfile" v-model="fileA.fileUrl" /><br/>
-			      <p class="help-block" style="font-size: 5px">支持doc、docx的word文档上传</p>
-			    </div>
-			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">文件摘要</div>
-			   	<div class="col-sm-10">
-					<textarea class="form-control" rows="5" v-model="fileA.abstract"></textarea>
-			    </div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-sm-2 control-label"></div> 
-				<input type="button" class="btn btn-primary" v-on:click="saveOrUpdate()" value="确定"/>
-				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
-			</div>
-		</form>
-	</div>
-    
-    
-    
 </div>
 
 <script src="../../js/modules/file/A.js"></script>

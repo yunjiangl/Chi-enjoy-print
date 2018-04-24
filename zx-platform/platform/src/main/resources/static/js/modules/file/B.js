@@ -124,43 +124,37 @@ var vm = new Vue({
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function (res) {
-                    if (res.code === 200) {
-
-                    }
-                },
-                error: function (err) {
-                    alert("网络错误");
-                }
-
-            });
-        },
-        saveOrUpdate: function () {
-            var url = vm.bean.id == null ? "zx/ab/add" : "zx/ab/update";
-            $.ajax({
-                type: "POST",
-                url: baseURL + url,
-                contentType: "application/json",
-                data: JSON.stringify(vm.bean),
-                success: function (r) {
-                    if (r.code === 0) {
-                        alert('操作成功', function () {
-                            vm.reload();
-                        });
-                    } else {
-                        alert(r.msg);
-                    }
-                }
-            });
-        },
-        reload: function (event) {
-            vm.showList = true;
-            var page = $("#jqGrid").jqGrid('getGridParam', 'page');
-            $("#jqGrid").jqGrid('setGridParam', {
-                page: page,
-                postData: {'fileName': vm.q.fileName}
+			})
+	    },
+		saveOrUpdate: function () {
+			var url = vm.fileB.id == null ? "zx/ab/add" : "zx/ab/update";
+	        vm.printer.province=vm.prov;
+	        vm.printer.city=vm.city;
+	        vm.printer.area=vm.district;
+	        $.ajax({
+	        	type: "POST",
+	        	url: baseURL + url,
+	        	contentType: "application/json",
+	        	data: JSON.stringify(vm.fileB),
+	        	success: function (r) {
+	        		if (r.code === 0) {
+	        			alert('操作成功', function () {
+	        				vm.reload();
+	        			});
+	        		} else {
+	        			alert(r.msg);
+	        		}
+	        	}
+	        });
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page,
+                postData:{'fileName': vm.q.fileName}
             }).trigger("reloadGrid");
-        }
+		}
     },
     beforeMount: function () {
 
