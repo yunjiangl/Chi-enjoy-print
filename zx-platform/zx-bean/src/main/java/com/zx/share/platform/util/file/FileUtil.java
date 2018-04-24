@@ -1,7 +1,10 @@
 package com.zx.share.platform.util.file;
 
+import com.zx.share.platform.util.DateUtil;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by fenggang on 18/4/2.
@@ -52,5 +55,15 @@ public class FileUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+
+    //按照类型，年月日区分文件夹
+    public static String getFilePath(String filePath,String userId){
+        StringBuffer newFilePath = new StringBuffer(filePath+userId+File.separator);
+        newFilePath.append(File.separator+ DateUtil.getDateString(new Date()));
+        newFilePath.append(File.separator);
+        FileUtil.isExistDir(newFilePath.toString());
+        return newFilePath.toString();
     }
 }

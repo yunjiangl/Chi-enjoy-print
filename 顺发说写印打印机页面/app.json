@@ -49,7 +49,6 @@
     "pages/resetPassword/resetPassword",
     "pages/VerificationCode/VerificationCode",
     "pages/register/register",
-    "pages/modelTest/modelTest",
     "pages/logs/logs"
   ],
   "window": {

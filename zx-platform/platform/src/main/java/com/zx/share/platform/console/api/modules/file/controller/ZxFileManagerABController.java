@@ -57,7 +57,7 @@ public class ZxFileManagerABController {
 	@RequestMapping("/info/{fileId}")
 	public R selectId(@PathVariable("fileId") Long fileId) {
 		ZxFileManagerAB zxFileManagerAB=zxFileManagerABService.selectId(fileId);
-		return R.ok().put("zxFileManagerAB",zxFileManagerAB);
+		return R.ok().put("bean",zxFileManagerAB);
 	}
 	
 
