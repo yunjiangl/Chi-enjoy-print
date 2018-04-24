@@ -9,7 +9,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
+    userInfo: null,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgUrls: [
@@ -33,6 +33,11 @@ Page({
     //滑动动画时间
     duration: 1000,
 
+  },
+  onLoad: function (options) {
+    this.setData({
+      userInfo: getApp().data.userInfo
+    });
   },
   //事件处理函数
   bindViewTap: function () {
@@ -64,6 +69,7 @@ Page({
   },
   // 扫二维码
   scanCode: function () {
+    console.log(getApp().data.userInfo);
     wx.scanCode({
       success: (res) => {
         console.log(res)

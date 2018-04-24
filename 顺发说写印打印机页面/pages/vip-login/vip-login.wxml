@@ -18,7 +18,7 @@
     </view>
     <!--按钮-->  
     <view class="loginBtnView lbv">  
-      <button class="loginBtn next" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login">下一步</button>  
+      <button class="loginBtn next" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="login">登   录</button>  
     </view>  
     <view class="loginBtnView">  
       <button class="loginBtn login-wx" type="" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="weiLogin">使用微信账号登录</button>  

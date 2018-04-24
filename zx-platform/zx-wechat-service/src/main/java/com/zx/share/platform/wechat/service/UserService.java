@@ -35,4 +35,6 @@ public interface UserService {
 	UserDetailsBean details(String userCode);
 
 	String findMaxId(String userCode);
+
+	ZxUser findByMobile(String mobile);
 }

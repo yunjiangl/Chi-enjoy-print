@@ -193,4 +193,12 @@ public class UserServiceImpl implements UserService {
 
 		return id==null || id==0 ?"0":id.toString();
 	}
+
+	@Override
+	public ZxUser findByMobile(String mobile) {
+		ZxUser user = new ZxUser();
+		user.setMobile(mobile);
+		ZxUser resurl = userMapper.selectOne(user);
+		return resurl;
+	}
 }
