@@ -1,0 +1,57 @@
+page{
+  background: #fff;
+}
+.container{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0px;
+  color: #333;
+}
+.list{
+  width: 100%;
+  font-size: 14px;
+  background: #fff;
+  margin-top: 20px;
+}
+.list-until{
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 0 20px;
+}
+.lt{
+  display: flex;
+  line-height: 25px;
+}
+.photo{
+  line-height: 40px;
+  margin: 8px 20px 0 0;
+  position: relative;
+}
+.head-photo{
+  width: 35px;
+  height: 35px;
+}
+.your{
+  font-size: 12px;
+  color: #999;
+}
+.red{
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.date{
+  line-height: 50px;
+  color: #999;
+}
+.line{
+  margin: 10px 0 10px 20px;
+  height: 1px;
+  background: #e0e0e0;
+}
