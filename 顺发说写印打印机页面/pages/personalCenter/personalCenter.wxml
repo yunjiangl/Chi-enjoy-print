@@ -6,11 +6,11 @@
         <!--left start  -->
         <view class='left'>
 
-          <view class='header-photo'><image src='../images/personal.png' /></view>
+          <view class='header-photo'><image src='{{details.portrait}}' /></view>
 
           <view class='name-vip'>
-            <view>熊壮壮</view>
-            <view class='vip'>普通会员</view>
+            <view>{{details.nickName}}</view>
+            <view class='vip'>{{details.userType === 1 ? '普通用户' : '律师'}}</view>
           </view>
 
         </view>
@@ -61,7 +61,7 @@
   <!--footer start  -->
     <view class='footer'>
       <view class='fr'>
-        <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover"> 退出登录 </button>
+        <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="logout" hover-class="other-button-hover"> 退出登录 </button>
       </view>  
     </view>
   <!--footer end  -->
