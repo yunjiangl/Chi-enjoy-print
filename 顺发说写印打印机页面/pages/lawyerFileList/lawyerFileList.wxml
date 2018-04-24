@@ -1,74 +1,35 @@
 <!-- container start -->
-  <view class='container'>
+<view class='container'>
   <!-- top start -->
-    <view class='top'>
-        * 注：点击文件标题，可查看文件摘要
-    </view>
+  <view class='top'>
+    * 注：点击文件标题，可查看文件摘要
+  </view>
   <!-- top end -->
 
   <!-- content start -->
-    <view class='content'>
+  <view class='content'>
+    <checkbox-group class="radio-group" bindchange="radioChange">
+      <view wx:for='{{fileInfoList}}'>
+        <!-- list start -->
+        <view class='list'>
 
-    <!-- list start -->
-      <view class='list'>
+          <view class='left' bindtap='downloadDocument'>
+            <checkbox value="{{index}}" />
+            <view class='text' data-abstracts='{{item.abstracts}}' bindtap="abstractsInfo">{{item.fileName}}</view>
 
-        <view class='left' bindtap='downloadDocument'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
+          </view>
+
+          <view class='page'>{{item.fileNum}}页</view>
+
         </view>
+        <!-- list end -->
 
-        <view class='page'>12页</view>
+        <view class='line'></view>
 
-      </view>    
-    <!-- list end -->
-
-      <view class='line'></view>
-
-    <!-- list start -->      
-      <view class='list'>
-
-        <view class='left'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
-        </view>
-
-        <view class='page'>12页</view>
-
-      </view> 
-    <!-- list end -->       
-
-      <view class='line'></view>
-
-    <!-- list start -->      
-      <view class='list'>
-
-        <view class='left'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
-        </view>
-
-        <view class='page'>12页</view>
-
-      </view> 
-    <!-- list end -->       
-
-      <view class='line'></view>
-
-    <!-- list start -->      
-      <view class='list'>
-
-        <view class='left'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
-        </view>
-
-        <view class='page'>12页</view>
-
-      </view> 
-    <!-- list end -->          
-    
-    </view>
-  <!-- content end -->
-  
+      </view>
+    </checkbox-group>
   </view>
+  <!-- content end -->
+  <button class="loginBtn next" type="primary" bindtap="choiceCustomer">发送给客户</button>
+</view>
 <!-- container end -->

@@ -1,72 +1,47 @@
 {
   "pages": [
-<<<<<<< HEAD
-   
-    
-    
-    "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
-    "pages/personalCenter/personalCenter",
-    "pages/vip-login/vip-login",
-    "pages/improvingPersonalData/improvingPersonalData",
-    
-    "pages/lawyerIndex/lawyerIndex",
-    
-    
-=======
+    "pages/lawyerFileClassA/lawyerFileClassA",
     "pages/choiceCustomer/choiceCustomer",
-    "pages/historyConsultant/historyConsultant",
     "pages/lawyerIndex/lawyerIndex",
-    
-    "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
-    
     "pages/vip-login/vip-login",
+    "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     "pages/improvingPersonalData/improvingPersonalData",
-
->>>>>>> 094b4eaf1310df29dfa6b8141091bf70fa8fb6de
     "pages/lawyerFourFileList/lawyerFourFileList",
     "pages/lawyerFileList/lawyerFileList",
     "pages/lawyerChoiceOwner/lawyerChoiceOwner",
     "pages/lawyerChoicePrinter/lawyerChoicePrinter",
     "pages/lawyerMessageNotify/lawyerMessageNotify",
-    "pages/lawyerSettingCosts/lawyerSettingCosts",    
+    "pages/lawyerSettingCosts/lawyerSettingCosts",
     "pages/lawyerSearchOrders/lawyerSearchOrders",
     "pages/lawyerSearch/lawyerSearch",
     "pages/lawyerTransactionOrder/lawyerTransactionOrder",
     "pages/lawyerSeeeQuipment/lawyerSeeeQuipment",
     "pages/lawyerSeeMessage/lawyerSeeMessage",
-    "pages/lawyerFileClassC/lawyerFileClassC",    
+    "pages/lawyerFileClassC/lawyerFileClassC",
     "pages/lawyerFileClassB/lawyerFileClassB",
-    "pages/lawyerFileClassA/lawyerFileClassA",    
     "pages/lawyerpersonData/lawyerpersonData",
-    "pages/setting/document/download/download",    
-
-    
+    "pages/setting/document/download/download",
+    "pages/historyConsultant/historyConsultant",
     "pages/CustomerIndex/CustomerIndex",
-    "pages/map/map", 
+    "pages/map/map",
     "pages/search/search",
     "pages/choiceLawyer/choiceLawyer",
-    "pages/lawyersInformation/lawyersInformation",  
-    "pages/howuse/howuse",    
-    "pages/notLogin/notLogin",    
-<<<<<<< HEAD
-     
-=======
-    "pages/personalCenter/personalCenter",  
->>>>>>> 094b4eaf1310df29dfa6b8141091bf70fa8fb6de
-    "pages/setPrint/setPrint",    
-    "pages/printCost/printCost",    
+    "pages/lawyersInformation/lawyersInformation",
+    "pages/howuse/howuse",
+    "pages/notLogin/notLogin",
+    "pages/personalCenter/personalCenter",
+    "pages/setPrint/setPrint",
+    "pages/printCost/printCost",
     "pages/printOrders/printOrders",
-    "pages/upfilelist/upfilelist",    
-    "pages/choicePrinter/choicePrinter",    
+    "pages/upfilelist/upfilelist",
+    "pages/choicePrinter/choicePrinter",
     "pages/personalData/personalData",
-
-
+    "pages/index/index",
     "pages/bindingPhone/bindingPhone",
     "pages/forgetPassword/forgetPassword",
     "pages/resetPassword/resetPassword",
     "pages/VerificationCode/VerificationCode",
     "pages/register/register",
-    "pages/modelTest/modelTest",
     "pages/logs/logs"
   ],
   "window": {
@@ -75,7 +50,6 @@
     "navigationBarTitleText": "顺发说写印",
     "navigationBarTextStyle": "#fff"
   },
-<<<<<<< HEAD
   "tabBar": {
     "color": "#666",
     "selectedColor": "#3798fb",
@@ -89,8 +63,8 @@
       {
         "pagePath": "pages/upfilelist/upfilelist",
         "text": "上传列表",
-        "iconPath": "pages/images/uplist.png",
-        "selectedIconPath": "pages/images/icon/2.png"
+        "iconPath": "pages/images/icon/2.png",
+        "selectedIconPath": "pages/images/uplist.png"
       },
       {
         "pagePath": "pages/historyConsultant/historyConsultant",
@@ -112,44 +86,4 @@
       }
     ]
   }
-=======
-    "tabBar": {
-      "color": "#666",
-      "selectedColor": "#3798fb",
-      "list": [
-        {
-          "pagePath":"pages/lawyerIndex/lawyerIndex",
-          "text":"打印文件",
-          "iconPath":"pages/images/icon/1.png",
-          "selectedIconPath":"pages/images/file.png"
-        },
-        {
-          "pagePath": "pages/upfilelist/upfilelist",
-          "text": "上传列表",
-          "iconPath": "pages/images/icon/2.png",
-          "selectedIconPath": "pages/images/uplist.png"
-        },
-        
-        {
-          "pagePath": "pages/historyConsultant/historyConsultant",
-          "text": "历史质询",
-          "iconPath": "pages/images/Historical.png",
-          "selectedIconPath": "pages/images/icon/3.png"
-        },
-        {
-          "pagePath": "pages/printOrders/printOrders",
-          "text": "打印订单",
-          "iconPath": "pages/images/order.png",
-          "selectedIconPath": "pages/images/icon/4.png"
-        },
-        {
-          "pagePath": "pages/personalCenter/personalCenter",
-          "text": "个人中心",
-          "iconPath": "pages/images/person.png",
-          "selectedIconPath": "pages/images/icon/5.png"
-        }
-      ]
-    }
-  
->>>>>>> 094b4eaf1310df29dfa6b8141091bf70fa8fb6de
 }

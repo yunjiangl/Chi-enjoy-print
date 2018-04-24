@@ -2,7 +2,7 @@
   <view class='container'>
     
     <!--top start  -->
-      <view class='top'>
+      <view class='top' bindtap='getPrinterCode'>
          <view>
             <view>打印机位置</view>
           </view>
@@ -30,8 +30,9 @@
           <view class='font'>范围</view>
           <view class='a4 update'>
               
-              <view class='minus'>-</view>
-              <view class='add'>+</view>
+              <view class='minus' bindtap='minus'>-</view>
+              <view>{{printerNum}}</view>
+              <view class='add' bindtap='add'>+</view>
 
           </view>
 
@@ -46,7 +47,7 @@
           <view class='font'>单双面</view>
               
             <view class='double'> 
-                <radio-group class="radio-group" bindchange="radioChange">
+                <radio-group class="radio-group" bindchange="usageChange">
                   <view class='input-radio'>
                     <label class="radio" wx:for="{{items1}}">
                         <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
@@ -63,10 +64,10 @@
       <!-- list start  -->
         <view class='list'>
 
-          <view class='font'>单双面</view>
+          <view class='font'>颜色</view>
               
             <view class='double'> 
-                <radio-group class="radio-group" bindchange="radioChange">
+                <radio-group class="radio-group" bindchange="colcorChange">
                   <view class='input-radio'>
                     <label class="radio" wx:for="{{items3}}">
                         <radio color='#3798FB' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
@@ -83,8 +84,8 @@
       <!-- list start  -->
         <view class='list'>
 
-          <view class='font'>纸张</view>
-          <view class='a4'>所有页面(共2页)</view>
+          <view class='font'>范围</view>
+          <view class='a4'>所有页面(共{{order.printerNum}}页)</view>
 
         </view>
       <!-- list end  -->        
@@ -95,7 +96,7 @@
     <!-- settingCosts start -->
       <view class='settingCosts'>
         <label>设置打印服务费</label>
-        <label class='costs'><label><input type='text' placeholder='输入费用'></input></label><label class='m'>￥</label></label>
+        <label class='costs'><label><input type='text' bindinput='serviceAmout' placeholder='输入费用'></input></label><label class='m'>￥</label></label>
       </view>
     <!-- settingCosts end -->
 

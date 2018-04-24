@@ -1,4 +1,5 @@
 // pages/lawyerSettingCosts/lawyerSettingCosts.js
+var app = getApp()
 Page({
 
   /**
@@ -7,86 +8,200 @@ Page({
   data: {
 
     items1: [
-      { name: 'putong', value: '单面', checked: 'true' },
-      { name: 'lvshi', value: '双面' },
+      { name: '12', value: '单面', checked: 'true' },
+      { name: '13', value: '双面' },
     ],
     items2: [
       { checked: 'true' },
     ],
     items3: [
-      { name: 'putong', value: '黑白', checked: 'true' },
-      { name: 'lvshi', value: '彩色' },
+      { name: '10', value: '黑白', checked: 'true' },
+      { name: '11', value: '彩色' },
     ],
-  
+    printerNum: 1, // 打印数量，默认为1
+    paperUsage: null,//范围
+    fileNames: [],
+    filePaper:null,
+    order: {
+      customerCode: null,// 客户code
+      attorneyCode: null, // 律师code
+      printerCode: null, // 打印机code
+      fileCodes: null, // 文件code(多个文件中间用英文逗号分隔)
+      paperType: 9, // 纸张类型
+      printerNum: null, // 打印数量
+      paperColcor: 10, // 纸张颜色
+      paperUsage: 12, // 纸张使用
+      serviceAmout: null, // 服务费
+    }
+
   },
-  showModal:function(){
+
+  minus: function () {
+    var that = this
+    this.data.printerNum = that.data.printerNum - 1
+    this.data.order.printerNum = (that.data.printerNum * that.data.filePaper)
+  },
+
+  add: function () {
+    var that = this
+   
+    this.data.printerNum = that.data.printerNum + 1
+   
+    this.data.order.printerNum = (that.data.printerNum * that.data.filePaper)
+   
+  },
+  // 改变单双面
+  usageChange: function (e) {
+    this.data.order.paperUsage = e.detail.value
+  },
+  // 改变颜色
+  colcorChange: function (e) {
+    this.data.order.paperColcor = e.detail.value
+  },
+  // 获取律师输入服务费用
+  serviceAmout: function (e) {
+    this.data.order.serviceAmout = e.detail.value
+  },
+  showModal: function () {
+    var that = this
+    var msg = ''
+    for(var i in this.data.fileNames){
+      msg += this.data.fileNames[i]
+    }
+    console.log(that.data.order)
     wx.showModal({
-      title: '提示',
-      content: '这是一个模态弹窗',
+      title: '发送到：' + that.data.order.customerCode,
+      content: '律师服务费：' + that.data.order.serviceAmout + msg,
       success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
+          // 向服务端发送订单数据保存订单
+          wx.request({
+            url: app.data.api + 'order/save',
+            method: 'POST',
+            header: {
+              "Content-Type":
+              "application/x-www-form-urlencoded"
+            },
+            data: {
+              customerCode: that.data.order.customerCode,// 客户code
+              attorneyCode: that.data.order.attorneyCode, // 律师code
+              printerCode: that.data.order.printerCode, // 打印机code
+              fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+              paperType: that.data.order.paperType, // 纸张类型
+              printerNum: that.data.order.printerNum, // 打印数量
+              paperColcor: that.data.order.paperColcor, // 纸张颜色
+              paperUsage: that.data.order.paperUsage, // 纸张使用
+              serviceAmout: that.data.order.serviceAmout, // 服务费
+            },
+            success: function (res) {
+              console.log('保存订单结果' + res)
+            }
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
+          // 取消保存订单信息
         }
       }
     })
   },
-  
-
+  // 获取律师的code
+  getLawyerCode: function () {
+    var that = this
+    wx.request({
+      url: app.data.api + 'user/details/info',
+      method: 'GET',
+      success: function (res) {
+        // 这里成功之后设置order的attorneyCode
+      },
+      complete: function () {
+        // 因为接口原因，目前将律师的code设置为死的数据，当接口获取成功之后可将此方法删除
+        that.data.order.attorneyCode = 'wechat00000000009'
+      }
+    })
+  },
+  // 获取打印机code，目前写死，之后需要调整
+  getPrinterCode: function () {
+    console.log("获得打印机code")
+    this.data.order.printerCode = '156156'
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // 在页面加载时就设置order的律师code
+    this.getLawyerCode()
+    // 把接收到的字符串转换成json对象
+    var fileInfo = JSON.parse(options.fileInfo);
+
+    var fileCodes = '' // 文件code
+    var filePaper = null // 页数
+    var fileNames = []
+
+    // 通过循环，获得订单的一些初始数据 
+    for (var i in fileInfo) {
+      filePaper += fileInfo[i].fileNum
+      fileCodes += fileInfo[i].fileCode
+      fileNames.push(fileInfo[i].fileName)
+      if (i != fileInfo.length - 1) {
+        fileCodes += ","
+      }
+    }
+
+    this.data.fileNames = fileNames
+    this.data.filePaper = filePaper
+    this.data.order.customerCode = options.userCode
+    this.data.order.fileCodes = fileCodes
+    this.data.order.printerNum = filePaper
+    console.log(this.data.order.printerNum)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })
