@@ -9,8 +9,27 @@ Page({
     currentTab: 0,
     listNavBar: null,
     listTitleTab: 0,
-    listUntilData: null
+    listUntilData: null,
+    fileName: null
   },
+
+  searchFile: function () {
+    var that = this;
+    
+    wx.navigateTo({
+      url: '../lawyerFileList/lawyerFileList?query=' + that.data.fileName,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
+  fileNameInput: function (e) {
+    this.setData({
+      fileName: e.detail.value
+    })
+  },
+
   navbarTap: function (e) {
     var that = this;
     this.setData({
@@ -21,7 +40,7 @@ Page({
   },
   listNavBarTab: function (e) {
     var that = this;
-   
+
     this.setData({
       listTitleTab: e.currentTarget.dataset.idx,
       listUntilData: that.data.listNavBar[e.currentTarget.dataset.idx].list
@@ -29,9 +48,10 @@ Page({
   },
   trun: function (e) {
     var that = this;
-    console.log(that.data.listUntilData[e.currentTarget.dataset.idx])
+    // 把要传递的json对象转换成字符串
+    var dictionaryInfo = JSON.stringify(that.data.listUntilData[e.currentTarget.dataset.idx]);
     wx: wx.navigateTo({
-      url: '../lawyerFourFileList/lawyerFourFileList?id=' + that.data.listUntilData[e.currentTarget.dataset.idx].id,
+      url: '../lawyerFourFileList/lawyerFourFileList?dictionaryInfo=' + dictionaryInfo,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -54,7 +74,7 @@ Page({
           listNavBar: data.data.data[0].list[0].list,
           listUntilData: data.data.data[0].list[0].list[0].list
         })
-        
+
       }
     })
   },

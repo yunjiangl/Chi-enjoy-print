@@ -1,33 +1,19 @@
 <!-- container start -->
-  <view class='container'>
-    <!-- content start -->
-      <view class='content'>
-        <!-- list start -->
-          <view class='list' bindtap='trun'>
-            <view>缔约过失责任纠纷相关法律、法规、判决</view>
-            <view> > </view>
-          </view>
-        <!-- list end -->
+<view class='container'>
+  <!-- content start -->
+  <view class='content'>
+    <!-- list start -->
+    <view wx:for='{{dictionaryList}}'>
 
-        <view class='line'></view>
-
-        <!-- list start -->
-          <view class='list'>
-            <view>缔约过失责任纠纷相关法律、法规、判决</view>
-            <view> > </view>
-          </view>
-        <!-- list end -->
-
-        <view class='line'></view>
-
-        <!-- list start -->
-          <view class='list'>
-            <view>缔约过失责任纠纷相关法律、法规、判决</view>
-            <view> > </view>
-          </view>
-        <!-- list end -->
-        
+      <view class='list' data-code='{{item.code}}' bindtap='trun'>
+        <view>{{item.name}}</view>
       </view>
-    <!-- content end -->
+      <!-- list end -->
+
+      <view class='line'></view>
+
+    </view>
   </view>
+  <!-- content end -->
+</view>
 <!-- container end -->

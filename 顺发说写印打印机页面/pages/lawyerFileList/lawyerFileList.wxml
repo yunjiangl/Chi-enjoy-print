@@ -8,64 +8,23 @@
 
   <!-- content start -->
     <view class='content'>
-
+ <view wx:for='{{fileInfoList}}'>
     <!-- list start -->
       <view class='list'>
-
+       
         <view class='left' bindtap='downloadDocument'>
           <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
+          <view class='text' data-abstracts='{{item.abstracts}}' bindtap="abstractsInfo">{{item.fileName}}</view>
         </view>
 
-        <view class='page'>12页</view>
+        <view class='page'>{{item.fileNum}}页</view>
 
       </view>    
     <!-- list end -->
 
       <view class='line'></view>
 
-    <!-- list start -->      
-      <view class='list'>
-
-        <view class='left'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
-        </view>
-
-        <view class='page'>12页</view>
-
-      </view> 
-    <!-- list end -->       
-
-      <view class='line'></view>
-
-    <!-- list start -->      
-      <view class='list'>
-
-        <view class='left'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
-        </view>
-
-        <view class='page'>12页</view>
-
-      </view> 
-    <!-- list end -->       
-
-      <view class='line'></view>
-
-    <!-- list start -->      
-      <view class='list'>
-
-        <view class='left'>
-          <view class='round'></view>
-          <view class='text'>缔约过失责任纠纷相关法律、法规、判决</view>
-        </view>
-
-        <view class='page'>12页</view>
-
-      </view> 
-    <!-- list end -->          
+      </view>
     
     </view>
   <!-- content end -->

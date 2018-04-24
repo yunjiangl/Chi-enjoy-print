@@ -49,8 +49,8 @@ public class FileManagerController extends BaseController {
     @ApiOperation(value = "A类文件接口", notes = "A类文件接口")
     @RequestMapping(value = "/a/page", method = {RequestMethod.GET})
     @ResponseBody
-    public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListA(@ApiParam("查询内容") @RequestParam("query") String query,
-																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+    public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListA(@ApiParam("查询内容") @RequestParam(name = "query", required = false) String query,
+																		   @ApiParam("文件分类code") @RequestParam(name ="categoryCode", required = false) String categoryCode,
 																		   @ApiParam("第几页") @RequestParam("page") Integer page,
                                                                            @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
                                                                            HttpServletRequest request, HttpServletResponse response) {

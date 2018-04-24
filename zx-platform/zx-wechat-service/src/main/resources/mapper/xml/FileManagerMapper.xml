@@ -10,21 +10,22 @@
         <result column="file_num" jdbcType="INTEGER" property="fileNum" />
         <result column="user_code" jdbcType="VARCHAR" property="userCode" />
         <result column="manager_code" jdbcType="VARCHAR" property="managerCode" />
+        <result column="abstracts" jdbcType="VARCHAR" property="abstracts" />
     </resultMap>
 
     <select id="pageListab" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
-        select file_code,file_num,file_name,category_code from zx_file_manager_ab WHERE 1=1
+        select file_code,file_num,file_name,category_code,abstracts from zx_file_manager_ab WHERE 1=1
         <if test="categoryCode!=null and categoryCode!=''">
             AND category_code = #{categoryCode}
         </if>
         <if test="query!=null and query!=''">
-            AND file_name like #{query,jdbcType=VARCHAR}
+            AND file_name like concat('%',#{query,jdbcType=VARCHAR},'%')
         </if>
 
         limit #{currentSize},#{pageSize}
     </select>
 
-    <select id="pageCountab" resultMap="fileResultBean" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
+    <select id="pageCountab" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
         select count(1) from zx_file_manager_ab WHERE 1=1
         <if test="categoryCode!=null and categoryCode!=''">
             AND category_code = #{categoryCode}

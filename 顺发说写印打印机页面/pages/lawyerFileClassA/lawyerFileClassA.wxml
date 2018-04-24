@@ -5,8 +5,8 @@
   <view class='top'>
 
     <view class='search'>
-      <image src='../images/search.png' />
-      <input class='input' confirm-type="search" placeholder='搜索您咨询的法律案件'> </input>
+      <image bindtap="searchFile"  src='../images/search.png' />
+      <input class='input' bindinput='fileNameInput' confirm-type="search" placeholder='搜索您咨询的法律案件'> </input>
     </view>
 
   </view>

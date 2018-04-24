@@ -30,6 +30,8 @@ public class FileResultBean implements Serializable {
     private String userCode;
     @ApiModelProperty(value = "管理员code")
     private String managerCode;
+    @ApiModelProperty(value = "文件摘要")
+    private String abstracts;
 
     public String getFileCode() {
         return fileCode;
@@ -86,4 +88,14 @@ public class FileResultBean implements Serializable {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
+
+	public String getAbstracts() {
+		return abstracts;
+	}
+
+	public void setAbstracts(String abstracts) {
+		this.abstracts = abstracts;
+	}
+    
+    
 }
