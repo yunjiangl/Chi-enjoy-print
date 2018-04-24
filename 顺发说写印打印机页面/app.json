@@ -1,8 +1,11 @@
 {
   "pages": [
+    "pages/lawyerFileClassA/lawyerFileClassA",
+    "pages/choiceCustomer/choiceCustomer",
+    "pages/lawyerIndex/lawyerIndex",
     "pages/vip-login/vip-login",
     
-    "pages/lawyerIndex/lawyerIndex",
+    
     
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     "pages/lawyerFourFileList/lawyerFourFileList",
@@ -18,7 +21,7 @@
     "pages/lawyerSeeMessage/lawyerSeeMessage",
     "pages/lawyerFileClassC/lawyerFileClassC",    
     "pages/lawyerFileClassB/lawyerFileClassB",
-    "pages/lawyerFileClassA/lawyerFileClassA",    
+     
     "pages/lawyerpersonData/lawyerpersonData",
     "pages/setting/document/download/download",    
 

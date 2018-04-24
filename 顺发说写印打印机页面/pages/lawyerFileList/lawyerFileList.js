@@ -10,13 +10,36 @@ Page({
     code: null,
     page: 0,
     pageSize: 10,
-    fileInfoList: []
+    fileInfoList: [],
+    fileInfo:[]
   },
   // downloadDocument:function(){
   //   wx.navigateBack({
   //     url:'/pages/setting/document/download/download'
   //   });
   // },
+  radioChange: function (e) {
+    var that = this;
+    var fileInfo = []
+    for (var i in e.detail.value){
+      fileInfo.push(that.data.fileInfoList[e.detail.value[i]])
+    }
+    this.setData({
+      fileInfo: fileInfo
+    })
+  },
+
+  choiceCustomer:function(){
+    var that = this;
+    // 把要传递的json对象转换成字符串
+    var fileInfo = JSON.stringify(that.data.fileInfo);
+    wx: wx.navigateTo({
+      url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
 
   /**
    * 获取数据
@@ -81,12 +104,12 @@ Page({
     if (!(Object.prototype.toString.call(options.code) === '[object Undefined]')) {
       code = options.code
     }
-   
+
     that.setData({
       code: code,
       query: query
     })
-   
+
     that.getData();
   },
 
