@@ -156,6 +156,7 @@ var vm = new Vue({
                 postData:{'fileName': vm.q.fileName}
             }).trigger("reloadGrid");
 		},
+		//获取一级标题
 		ldyiji: function(){
 			//console.log("联动一");
 			var parentid=2;
@@ -178,6 +179,7 @@ var vm = new Vue({
             });
 			//console.log(parent[0]);
 		},
+		//获取二级标题
 		lderji: function(){
 			console.log("联动er");
 			var parentone=[];
@@ -209,7 +211,7 @@ var vm = new Vue({
 				}
 			}
 			*/
-		},
+		}
 /*		ldsanji: function(){
 			for(var i in vm.parenttwo){
 				var obg=this.parenttwo[i];
@@ -261,8 +263,8 @@ var vm = new Vue({
 					break;
 				}
 			}
-		}
-	},*/
+		}*/
+	},
 	beforeMount: function () {
         this.ldyiji();
         this.lderji();
