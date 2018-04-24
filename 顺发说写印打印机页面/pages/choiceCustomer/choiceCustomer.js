@@ -5,14 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     fileInfo: null,
     userCode: 'wechat00000000000', // 所要发送文件的客户，这个后面应该改为动态的
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     // 把接收到的字符串转换成json对象
     var dictionaryInfo = JSON.parse(options.fileInfo);
     this.setData({
@@ -30,10 +33,15 @@ Page({
       complete: function (res) { },
     })
   },
+
+  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
+
 
   },
 
