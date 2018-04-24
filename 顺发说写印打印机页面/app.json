@@ -1,10 +1,16 @@
 {
   "pages": [
+   
+    
+    
+    "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
+    "pages/personalCenter/personalCenter",
     "pages/vip-login/vip-login",
+    "pages/improvingPersonalData/improvingPersonalData",
     
     "pages/lawyerIndex/lawyerIndex",
     
-    "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
+    
     "pages/lawyerFourFileList/lawyerFourFileList",
     "pages/lawyerFileList/lawyerFileList",
     "pages/lawyerChoiceOwner/lawyerChoiceOwner",
@@ -30,8 +36,7 @@
     "pages/lawyersInformation/lawyersInformation",  
     "pages/howuse/howuse",    
     "pages/notLogin/notLogin",    
-    "pages/personalCenter/personalCenter",  
-    "pages/improvingPersonalData/improvingPersonalData",  
+     
     "pages/setPrint/setPrint",    
     "pages/historyConsultant/historyConsultant",    
     "pages/printCost/printCost",    
@@ -46,6 +51,7 @@
     "pages/resetPassword/resetPassword",
     "pages/VerificationCode/VerificationCode",
     "pages/register/register",
+    "pages/modelTest/modelTest",
     "pages/logs/logs"
   ],
   "window": {
@@ -59,7 +65,7 @@
     "selectedColor": "#3798fb",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/lawyerIndex/lawyerIndex",
         "text": "打印文件",
         "iconPath": "pages/images/icon/1.png",
         "selectedIconPath": "pages/images/file.png"

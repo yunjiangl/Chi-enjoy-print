@@ -9,9 +9,21 @@ Page({
   },
   ImprovingPersonalData:function(){
       wx.navigateTo({
-        url: '../improvingPersonalData/improvingPersonalData',
+        url: '../improvingPersonalData/improvingPersonalData?userCode=' + this.data.details.userCode,
       })
+      console.log('usercode:'+this.data.details.userCode);
   },
+logout:function(){
+  
+  wx.request({
+    url: 'http://127.0.0.1:10001/logout',
+    success: function (res) {
+      console.log('退出');
+    }
+  })
+
+},
+
   how:function(){
     wx.navigateTo({
       url: '../howuse/howuse',
@@ -22,7 +34,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+    wx.request({
+      url: 'http://127.0.0.1:10001/user/details',
+      data: {
+        code: 'wechat00000000000'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data.data.nickName)
+        that.setData({
+          details: res.data.data
+        })
+      }
+    })
+
   },
 
   /**
