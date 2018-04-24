@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items:[
-      {name:'男',value:'男',checked:'true'},
-      {name:"女",value:"女"}
+    items: [
+      { name: '男', value: '男', checked: 'true' },
+      { name: "女", value: "女" }
     ],
     selectPerson: true,
     firstPerson: '请选择职业年限',
@@ -32,6 +32,34 @@ Page({
     select2: '',
     shownavindex: ''
   },
+  formSubmit: function (e) {
+    // 姓名
+    var name = e.detail.value.name;
+    console.log(name)
+    // 年龄
+    var age = e.detail.value.age;
+    console.log(age);
+    //性别
+    var sex = this.data.items[0].checked;
+    if(sex==true){
+      console.log(this.data.items[0].value);
+    }else{
+      console.log(this.data.items[1].value);
+    }
+    
+    //职业年限
+    console.log(this.data.firstPerson);
+  
+  },
+  //性别
+  radioChange:function(e){
+    console.log(e.detail.value);
+  },
+
+//所在地
+
+//执业类型
+
   listqy: function (e) {
     if (this.data.qyopen) {
       this.setData({
@@ -56,7 +84,7 @@ Page({
         shownavindex: e.currentTarget.dataset.nav
       })
     }
-
+    
   },
   list: function (e) {
     if (this.data.nzopen) {
@@ -155,6 +183,7 @@ Page({
         selectPerson: true,
       })
     }
+    
   },
   //点击切换
   mySelect: function (e) {
@@ -169,55 +198,55 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     yanzhengma: '',
-    mobile: '', 
+    mobile: '',
     date: '请选择日期',
     fun_id: 2,
     time: '获取验证码', //倒计时 
@@ -59,7 +59,7 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res);
-        
+
       }
     })
   },
@@ -77,7 +77,7 @@ Page({
         icon: 'loading',
         duration: 1000
       });
-    }else{
+    } else {
       wx.navigateTo({
         url: '../resetPassword/resetPassword',
         success: function (res) { },

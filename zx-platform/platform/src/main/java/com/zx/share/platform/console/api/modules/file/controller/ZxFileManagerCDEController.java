@@ -28,7 +28,7 @@ public class ZxFileManagerCDEController {
 	 * @Title: list
 	 * @Description: 文件分类cde列表
 	 */
-	@RequestMapping(value = "list", method = RequestMethod.POST)
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public DefaultResopnseBean<PageResponseBean<ZxFileManagerCDE>> list(
 			@RequestParam(name = "pageNum", required = false) Integer pageNum,
 			@RequestParam(name = "pageSize", required = false) Integer pageSize,

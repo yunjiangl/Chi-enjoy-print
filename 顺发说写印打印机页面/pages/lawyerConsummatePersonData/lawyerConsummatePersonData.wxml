@@ -1,4 +1,5 @@
 <!-- container start -->
+<form bindsubmit="formSubmit">
   <view class='container'>
 
     <!-- PhotoName start -->
@@ -13,7 +14,7 @@
         <!-- Name start -->
           <view class='Name'>
           
-            <view><label class='NSA'>姓名:</label><label class='info'><input placeholder='请输入姓名' /></label></view>
+            <view><label class='NSA'>姓名:</label><label class='info'><input name='name' placeholder='请输入姓名' /></label></view>
             <view>
               <label class='NSA'>性别:</label>
                <label class='sex'> 
@@ -24,7 +25,7 @@
                 </radio-group>
                </label> 
             </view>
-            <view><label class='NSA'>年龄:</label><label class='info'><input placeholder='请输入年龄' /></label></view>
+            <view><label class='NSA'>年龄:</label><label class='info'><input name='age' placeholder='请输入年龄' /></label></view>
 
           </view>
         <!-- Name end -->
@@ -226,9 +227,10 @@
     
     <!--footer start  -->
       <view class='footer'>
-          <button type='default' size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
+          <button formType="submit" type="primary" size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
       </view>
     <!--footer end  -->
 
   </view>
 <!-- container end -->
+</form>

@@ -83,7 +83,7 @@
 
         <view class='btn-left'>
           <button type="default" size="mini" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">
+        disabled="{{disabled}}" bindtap="getLocation" hover-class="other-button-hover">
           <image src='../images/btn-left.png' />
             附件打印机
           </button>

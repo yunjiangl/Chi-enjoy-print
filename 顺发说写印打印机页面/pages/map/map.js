@@ -1,133 +1,145 @@
-// pages/map/map.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    actionSheetHidden:true,
-    actionSheetItems:[
-      {bindtap: 'Menu1', txt: '第一个打印机'},
-      {bindtap: 'Menu2', txt: '第二个打印机'},
-      {bindtap:'Menu3',txt:'第三个打印机'}
-    ],
-    menu:'',
-
-    markers: [{
-      // iconPath: "/resources/others.png",
-      id: 0,
-      latitude: 23.099994,
-      longitude: 113.324520,
-      width: 50,
-      height: 50
-    }],
-    polyline: [{
-      points: [{
-        longitude: 113.3245211,
-        latitude: 23.10229
-      }, {
-        longitude: 113.324520,
-        latitude: 23.21229
-      }],
-      color: "#FF0000DD",
-      width: 2,
-      dottedLine: true
-    }],
+    Height: 0,
+    scale: 13,
+    latitude: "",
+    longitude: "",
+    markers: [],
     controls: [{
       id: 1,
-      // iconPath: '/resources/location.png',
+      iconPath: '../images/jian.png',
       position: {
-        left: 0,
-        top: 300 - 50,
-        width: 50,
-        height: 50
+        left: 320,
+        top: 100 - 50,
+        width: 20,
+        height: 20
       },
       clickable: true
-    }]
+    },
+    {
+      id: 2,
+      iconPath: '../images/jia.png',
+      position: {
+        left: 340,
+        top: 100 - 50,
+        width: 20,
+        height: 20
+      },
+      clickable: true
+    }
+    ],
+    circles: []
+
   },
+
+  onLoad: function () {
+    var _this = this;
+
+    wx.getSystemInfo({
+      success: function (res) {
+        //设置map高度，根据当前设备宽高满屏显示
+        _this.setData({
+          view: {
+            Height: res.windowHeight
+          }
+
+        })
+
+
+
+      }
+    })
+
+    wx.getLocation({
+      type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+      success: function (res) {
+        var a = res.latitude;
+        var b = res.longitude;
+        console.log(a);
+        console.log(b);
+        wx.request({
+          url: 'http://123.206.42.162:10001/printer/nearby',
+          header: {
+            'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken,
+          },
+          data: {
+            longitude: a,
+            latitude: b
+          },
+          method: 'GET',
+          success: function (aa) {
+            //markers解决
+           
+          }
+        })
+        _this.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+          markers: [{
+            id: "1",
+            latitude: res.latitude,
+            longitude: res.longitude,
+            width: 50,
+            height: 50,
+            iconPath: "../images/my.png",
+            title: "哪里"
+
+          }],
+          circles: [{
+            latitude: res.latitude,
+            longitude: res.longitude,
+            color: '#FF0000DD',
+            fillColor: '#7cb5ec88',
+            radius: 3000,
+            strokeWidth: 1
+          }]
+
+        })
+      }
+
+    })
+
+  },
+
   regionchange(e) {
-    console.log(e.type)
+    console.log("regionchange===" + e.type)
   },
+
+  //点击merkers
   markertap(e) {
     console.log(e.markerId)
+
+    wx.showActionSheet({
+      itemList: ["A"],
+      success: function (res) {
+        console.log(res.tapIndex)
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
   },
+
+  //点击缩放按钮动态请求数据
   controltap(e) {
-    console.log(e.controlId)
-  },
-  //附件打印机
-  actionSheetTap:function(){
-    this.setData({
-      actionSheetHidden:!this.data.actionSheetHidden
-    })
-  },
-  actionSheetbindchange:function(){
-    this.setData({
-      actionSheetHidden:!this.data.actionSheetHidden
-    })
-  },
-  bindMenu1:function(){
-    actionSheetHidden:!this.data.actionSheetHidden
-  },
-  bindMenu2: function () {
-    actionSheetHidden:!this.data.actionSheetHidden
-  },
-  bindMenu3: function () {
-    actionSheetHidden:!this.data.actionSheetHidden
+    var that = this;
+    console.log("scale===" + this.data.scale)
+    if (e.controlId === 1) {
+      // if (this.data.scale === 13) {
+      that.setData({
+        scale: --this.data.scale
+      })
+      // }
+    } else {
+      //  if (this.data.scale !== 13) {
+      that.setData({
+        scale: ++this.data.scale
+      })
+      // }
+    }
+
+
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
