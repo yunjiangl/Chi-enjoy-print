@@ -26,6 +26,7 @@ public class OrderSaveBean implements Serializable {
     private Long paperColcor;
     private Long paperUsage;
     private Double serviceAmout;
+    private Long fileType; // 文件的类型，4为ab类文件，5为cde类文件 
 
     public String getOrderCode() {
         return orderCode;
@@ -106,4 +107,14 @@ public class OrderSaveBean implements Serializable {
     public void setServiceAmout(Double serviceAmout) {
         this.serviceAmout = serviceAmout;
     }
+
+	public Long getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(Long fileType) {
+		this.fileType = fileType;
+	}
+    
+    
 }
