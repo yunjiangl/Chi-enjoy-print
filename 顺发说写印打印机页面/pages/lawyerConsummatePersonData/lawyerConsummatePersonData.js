@@ -25,7 +25,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checked:'',
+    checked: '',
     selectPerson: true,
     firstPerson: '请选择职业年限',
     selectArea: false,
@@ -37,39 +37,148 @@ Page({
     citys: citys,
     countys: countys,
     value: [0, 0, 0],
-    sex:''
+    sex: '',
+    src1: '../images/photo.png',
+    src2: '../images/photo.png',
+    src3: '../images/photo.png'
   },
   formSubmit: function (e) {
     // 姓名
+    var code = this.data.details.userCode;
     var name = e.detail.value.name;
-    console.log(name)
     // 年龄
     var age = e.detail.value.age;
-    console.log(age);
-    //性别
-    var sex = this.data.items[0].checked;
-    if(sex==true){
-      console.log(this.data.items[0].value);
-    }else{
-      console.log(this.data.items[1].value);
-    }
+    // 手机
+    var mobile = e.detail.value.mobile;
+    // 微信
+    var weChatId = e.detail.value.weChatId;
+    // 性别
+    var sex = this.data.sex;
     //所在地
-    var area = e.detail.value.area;
-    console.log(area);
+    var portrait = this.data.details.portrait;
+    var province = this.data.province;
+    var city = this.data.city;
+    var area = this.data.county;
+    var address = province + city + area;
+    //执业机构
+    var workOrg = e.detail.value.workOrg;
+    //执业证号
+    var workNum = e.detail.value.workNum;
     //执业类型
-
+    var domains = '刑事,民事';
     //职业年限
+    var workYear = this.data.firstPerson;
     console.log(this.data.firstPerson);
-    console.log(this.data.items.length);
-  
+    //审核图片
+    var checkImg = this.data.src3;
+    //资格证图片
+    var attorneyCardImg = this.data.src2;
+    //身份证
+    var identityCardImg = this.data.src1;
+
+    console.log('姓名:' + name + '年龄:' + age + '手机:' + age + '微信:' + weChatId + '性别:' + sex + '所在地:' + address + '执业机构:' + workOrg + '执业证号:' + workNum + '执业类型:' + domains + '职业年限:' + workYear + '审核图片:' + checkImg + '资格证图片:' + attorneyCardImg + '身份证:' + identityCardImg);
+
+    wx.request({
+      url: 'http://127.0.0.1:10001/user/attorney/update',
+      data: {
+        userCode: code,
+        wechatId: weChatId,
+        mobile: mobile,
+        portrait: portrait,
+        age: age,
+        gen: this.data.sex,
+        province: province,
+        city: city,
+        area: area,
+        address: address,
+        checkImg: checkImg,
+        attorneyCardImg: attorneyCardImg,
+        identityCardImg: identityCardImg,
+        workNum: workNum,
+        workOrg: workOrg,
+        workYear: workYear,
+        domains: domains
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success: function (res) {
+        console.log('修改成功');
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
   },
   //性别
-  radioChange:function(e){
+  radioChange: function (e) {
     console.log(e.detail.value);
     this.setData({
       sex: e.detail.value
     })
   },
+  //上传IDCard
+  uploadOne: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths[0]);
+        that.setData({
+          src1: tempFilePaths[0]
+        })
+        upload(that, tempFilePaths, src1);
+      }
+    })
+
+  },
+
+
+  //上传律师证书
+  uploadTwo: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        that.setData({
+          src2: tempFilePaths[0]
+        })
+        upload(that, tempFilePaths, src2);
+      }
+    })
+  },
+
+
+  //上传年审
+  uploadThree: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        that.setData({
+          src3: tempFilePaths[0]
+        })
+        upload(that, tempFilePaths, src3);
+      }
+    })
+  },
+
+
   //点击选择类型
   clickPerson: function () {
     var selectPerson = this.data.selectPerson;
@@ -84,7 +193,7 @@ Page({
         selectPerson: true,
       })
     }
-    
+
   },
   //点击切换
   mySelect: function (e) {
@@ -98,8 +207,39 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onShow: function (options) {
+    var that = this;
+    wx.request({
+      url: 'http://127.0.0.1:10001/user/details',
+      data: {
+        code: 'wechat00000000007'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+
+        var item;
+        if (res.data.data.gen == '男') {
+          item = [
+            { name: '男', value: '男', checked: 'true' },
+            { name: '女', value: '女' },
+          ]
+        } else {
+          item = [
+            { name: '男', value: '男' },
+            { name: '女', value: '女', checked: 'true' },
+          ]
+        }
+
+        that.setData({
+          details: res.data.data,
+          items: item
+
+        })
+
+      }
+    })
   },
   //滑动事件
   bindChange: function (e) {
@@ -145,37 +285,7 @@ Page({
       getProvinceData(that);
     });
 
-    wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
-      data: {
-        code: 'wechat00000000007'
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
 
-        var item;
-        if (res.data.data.gen == '男'){
-          item= [
-            { name: '男', value: '男', checked: 'true' },
-            { name: '女', value: '女' },
-          ]
-        }else{
-          item=[
-            { name: '男', value: '男' },
-            { name: '女', value: '女', checked: 'true'},
-          ]
-        }
-
-        that.setData({
-          details: res.data.data,
-          items:item
-
-        })
-    
-      }
-    })
 
   },
   // ------------------- 分割线 --------------------
@@ -227,6 +337,53 @@ Page({
     })
   }
 })
+//上传文件
+function upload(page, path, src) {
+  wx.showToast({
+    icon: "loading",
+    title: "正在上传"
+  }),
+    wx.uploadFile({
+      url: constant.SERVER_URL + "/FileUploadServlet",
+      filePath: path[0],
+      name: 'file',
+      header: { "Content-Type": "multipart/form-data" },
+      formData: {
+        //和服务器约定的token, 一般也可以放在header中
+        'session_token': wx.getStorageSync('session_token')
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.statusCode != 200) {
+          wx.showModal({
+            title: '提示',
+            content: '上传失败',
+            showCancel: false
+          })
+          return;
+        }
+        var data = res.data
+        page.setData({  //上传成功修改显示头像
+          src: path[0]
+        })
+      },
+      fail: function (e) {
+        console.log(e);
+        wx.showModal({
+          title: '提示',
+          content: '上传失败',
+          showCancel: false
+        })
+      },
+      complete: function () {
+        wx.hideToast();  //隐藏Toast
+      }
+    })
+}
+
+
+
+
 
 //动画事件
 function animationEvents(that, moveY, show) {

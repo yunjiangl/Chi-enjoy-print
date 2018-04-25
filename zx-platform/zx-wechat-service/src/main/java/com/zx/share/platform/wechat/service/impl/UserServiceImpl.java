@@ -22,6 +22,7 @@ import com.zx.share.platform.wechat.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -64,6 +65,22 @@ public class UserServiceImpl implements UserService {
 		return userMapper.update(userSaveBean);
 	}
 
+	/**
+	 * 用户信息修改
+	 *
+	 * @param bean
+	 * @return
+	 */
+	@Override
+	public Integer updateUser(UserUpdateBean bean) {
+		return userMapper.update(bean);
+	}
+
+	/**
+	 * 律师信息修改
+	 * @param bean
+	 * @return
+	 */
 	@Transactional(readOnly = false)
 	@Override
 	public Integer update(UserUpdateBean bean) {
@@ -82,9 +99,9 @@ public class UserServiceImpl implements UserService {
 				saveDomain.setUserCode(bean.getUserCode());
 				saveDomain.setUserId(bean.getUserId());
 				saveDomain.setDomainCode(domainCode);
-
 				domainList.add(saveDomain);
 			}
+
 
 			if(domainList!=null && !domainList.isEmpty()){
 				userMapper.saveAttorneyDomain(domainList);
@@ -94,6 +111,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return 1;
 	}
+
 
 	@Override
 	public String registerCode(String mobile) {
@@ -192,13 +210,5 @@ public class UserServiceImpl implements UserService {
 		Long id = userMapper.findMaxId(userCode+"%");
 
 		return id==null || id==0 ?"0":id.toString();
-	}
-
-	@Override
-	public ZxUser findByMobile(String mobile) {
-		ZxUser user = new ZxUser();
-		user.setMobile(mobile);
-		ZxUser resurl = userMapper.selectOne(user);
-		return resurl;
 	}
 }
