@@ -82,158 +82,89 @@ background-color:#3798fb;
 }
 /*三级联动  */
 
-.page{
-    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
-    height: 100%;
-    overflow: hidden;
-    margin-top: 5px;
-}
-.nav{
-    position: relative;
-    z-index: 99;
-    display: flex;
-    background: #fff;
-}
-.nav-son{
-    display: flex;
-    flex: 1;
-    text-align: center;
-    height: 40px;
-    align-items:center;
-    justify-content:left;
-    font-size: 14px;
-}
-.borders{
-    border-left: 1px solid #e6e6e6;
-    border-right: 1px solid #e6e6e6;
-}
-.content{
-    display: inline-block;
-    color: #999;
-    text-align: left;
+.infoText{
+    margin-top: 20rpx;
     width: 100%;
+    justify-content: center; 
+    color: #888;
+    min-height: 1rem;
 }
-.icon{
-    display: inline-block;
-    border: 4px solid transparent;
-    border-top: 4px solid #9b9b9b;
-    margin-left: 150px;
+.li3{
+  line-height: 2rem;
+}
+.animation-element-wrapper picker-view{
+  background-color: white; 
+  padding: 0;
+  width: 100%; 
+  height: 380rpx;
+  bottom: 0;
+  position: fixed;
+}
 
+.animation-element-wrapper picker-view-column view{
+  vertical-align:middle; 
+  font-size: 28rpx;
+  line-height: 28rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.temp{
-    position: relative;
-    z-index: 4;
+
+/* ----------------------------------------- */
+
+.animation-element-wrapper {
+  display: flex;  
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 12;
 }
-.temp1{
-    display: none;
-    width: 100%;
-    max-height: 550rpx;
-    overflow-y: scroll;
-    padding: 0 0 0 20rpx;
-    line-height:100rpx;
-    background: #fff;
+.animation-element {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 470rpx;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 22222;
 }
-.temp2{
-    display: none;
-    width: 100%;
-    max-height: 750rpx;
-    overflow-y: scroll;
-    padding: 0 0 0 20rpx;
-    line-height:100rpx;
-    background: #fff;
+
+.animation-button {
+  margin-top: 20rpx;
+  top:20rpx;
+  width: 400rpx;
+  height: 100rpx; 
+  line-height: 100rpx; 
+  align-items:center;
 }
-.slidedown{
-    transform:  translateY(0%);
+text{
+  color: #999999;
+  display: inline-flex;  
+  position: fixed;
+  margin-top: 20rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 34rpx;
+  font-family: Arial, Helvetica, sans-serif;
 }
-.temp view{
-    border-bottom: 1px solid #d1d3d4;
-    font-size: 14px;
-    color: #666;
+
+.left-bt{
+  left: 30rpx;
 }
-.quyu{
-    position: relative;
-    display: none;
-    height: 450rpx;
-    z-index: 5;
+.right-bt {
+  right: 30rpx;
 }
-.quyu .qy{
-    overflow-y: scroll;
-    float: left;
-    width: 33.33%;
-    height: 450rpx;
-    line-height: 80rpx;
-    box-sizing: border-box; 
-    font-size: 14px;
-    color: #717273;
-}
-.qy view{
-    text-overflow: ellipsis;
-    overflow: hidden; 
-    white-space:nowrap;  
-    padding-left: 15rpx; 
-}
-.quyu-left{
-    background: #c5c5c5;
-}
-.quyu-center{
-    background: #e0e0e0;
-}
-.quyu-right{
-    background: #fff;
-}
-.quyu-right view{
-    border-bottom: 1px solid #c5c5c5;
-}
-.current{
-    background: #e0e0e0;
-}
-.current2{
-    background: #fff;
-}
-.fullbg{
-    position: fixed;
-    top:0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    background: rgb(1, 1, 1);
-    transition: all 2s;
-    opacity: 0;
-}
-.fullopacity{
-    opacity: .5;
-}
-.nav-son.active .content{
-    color: #999;
-}
-.nav-son.active .icon{
-    border-bottom: 4px solid #61beff;
-    border-top:0;
-}
-@keyframes slidown{
-    from{
-        transform:  translateY(-100%);
-    }
-    to{
-        transform:  translateY(0%);
-    }
-}
-.slidown{
-    display: block;
-    animation: slidown .7s ease-in both;
-}
-@keyframes slidup{
-    from{
-        transform:  translateY(0%);
-    }
-    to{
-        transform:  translateY(-100%);
-    }
-}
-.slidup{
-    display: block;
-    animation: slidup .7s ease-in both;
-}
-.disappear{
-    display: none;
+
+.animation-element-wrapper .line{
+  display: block;
+  position: fixed;
+  height: 1rpx;
+  width: 100%;
+  margin-top: 89rpx; 
+  background-color: #eeeeee;
 }

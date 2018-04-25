@@ -1,14 +1,17 @@
 {
   "pages": [
-    "pages/lawyerFileClassA/lawyerFileClassA",
-    "pages/choiceCustomer/choiceCustomer",
     "pages/lawyerIndex/lawyerIndex",
+    "pages/choiceCustomer/choiceCustomer",
+    "pages/lawyerFourFileList/lawyerFourFileList",
+    
+    
+    "pages/lawyerFileClassA/lawyerFileClassA",
+    
+    
     "pages/vip-login/vip-login",
     
-    
-    
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
-    "pages/lawyerFourFileList/lawyerFourFileList",
+    
     "pages/lawyerFileList/lawyerFileList",
     "pages/lawyerChoiceOwner/lawyerChoiceOwner",
     "pages/lawyerChoicePrinter/lawyerChoicePrinter",
