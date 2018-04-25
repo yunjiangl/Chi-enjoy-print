@@ -21,7 +21,7 @@ Page({
     printerNum: 1, // 打印数量，默认为1
     paperUsage: null,//范围
     fileNames: [],
-    filePaper:null,
+    filePaper: null,
     order: {
       customerCode: null,// 客户code
       attorneyCode: null, // 律师code
@@ -38,34 +38,94 @@ Page({
 
   minus: function () {
     var that = this
-    this.data.printerNum = that.data.printerNum - 1
-    this.data.order.printerNum = (that.data.printerNum * that.data.filePaper)
+    that.setData({
+      printerNum: that.data.printerNum - 1,
+      order: {
+        customerCode: that.data.order.customerCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: that.data.order.printerCode, // 打印机code
+        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: (that.data.printerNum * that.data.filePaper), // 打印数量
+        paperColcor: that.data.order.paperColcor, // 纸张颜色
+        paperUsage: that.data.order.paperUsage, // 纸张使用
+        serviceAmout: that.data.order.serviceAmout, // 服务费
+      }
+    })
   },
 
   add: function () {
     var that = this
-   
-    this.data.printerNum = that.data.printerNum + 1
-   
-    this.data.order.printerNum = (that.data.printerNum * that.data.filePaper)
-   
+    that.setData({
+      printerNum: that.data.printerNum + 1,
+      order: {
+        customerCode: that.data.order.customerCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: that.data.order.printerCode, // 打印机code
+        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: (that.data.printerNum * that.data.filePaper), // 打印数量
+        paperColcor: that.data.order.paperColcor, // 纸张颜色
+        paperUsage: that.data.order.paperUsage, // 纸张使用
+        serviceAmout: that.data.order.serviceAmout, // 服务费
+      }
+    })
   },
   // 改变单双面
   usageChange: function (e) {
-    this.data.order.paperUsage = e.detail.value
+    var that = this
+    that.setData({
+      order: {
+        customerCode: that.data.order.customerCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: that.data.order.printerCode, // 打印机code
+        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: that.data.order.printerNum, // 打印数量
+        paperColcor: that.data.order.paperColcor, // 纸张颜色
+        paperUsage: e.detail.value, // 纸张使用
+        serviceAmout: that.data.order.serviceAmout, // 服务费
+      }
+    })
   },
   // 改变颜色
   colcorChange: function (e) {
-    this.data.order.paperColcor = e.detail.value
+    var that = this
+    that.setData({
+      order: {
+        customerCode: that.data.order.customerCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: that.data.order.printerCode, // 打印机code
+        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: that.data.order.printerNum, // 打印数量
+        paperColcor: e.detail.value, // 纸张颜色
+        paperUsage: that.data.order.paperUsage, // 纸张使用
+        serviceAmout: that.data.order.serviceAmout, // 服务费
+      }
+    })
   },
   // 获取律师输入服务费用
   serviceAmout: function (e) {
-    this.data.order.serviceAmout = e.detail.value
+    var that = this
+    that.setData({
+      order: {
+        customerCode: that.data.order.customerCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: that.data.order.printerCode, // 打印机code
+        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: that.data.order.printerNum, // 打印数量
+        paperColcor: that.data.order.paperColcor, // 纸张颜色
+        paperUsage: that.data.order.paperUsage, // 纸张使用
+        serviceAmout: e.detail.value, // 服务费
+      }
+    })
   },
   showModal: function () {
     var that = this
     var msg = ''
-    for(var i in this.data.fileNames){
+    for (var i in this.data.fileNames) {
       msg += this.data.fileNames[i]
     }
     console.log(that.data.order)
@@ -116,14 +176,39 @@ Page({
       },
       complete: function () {
         // 因为接口原因，目前将律师的code设置为死的数据，当接口获取成功之后可将此方法删除
-        that.data.order.attorneyCode = 'wechat00000000009'
+        that.setData({
+          order: {
+            customerCode: that.data.order.customerCode,// 客户code
+            attorneyCode: 'wechat00000000009', // 律师code
+            printerCode: that.data.order.printerCode, // 打印机code
+            fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+            paperType: that.data.order.paperType, // 纸张类型
+            printerNum: that.data.order.printerNum, // 打印数量
+            paperColcor: that.data.order.paperColcor, // 纸张颜色
+            paperUsage: that.data.order.paperUsage, // 纸张使用
+            serviceAmout: that.data.order.serviceAmout, // 服务费
+          }
+        })
       }
     })
   },
   // 获取打印机code，目前写死，之后需要调整
   getPrinterCode: function () {
     console.log("获得打印机code")
-    this.data.order.printerCode = '156156'
+    var that = this
+    this.setData({
+      order: {
+        customerCode: that.data.order.customerCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: '156156', // 打印机code
+        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: that.data.order.printerNum, // 打印数量
+        paperColcor: that.data.order.paperColcor, // 纸张颜色
+        paperUsage: that.data.order.paperUsage, // 纸张使用
+        serviceAmout: that.data.order.serviceAmout, // 服务费
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -147,13 +232,22 @@ Page({
         fileCodes += ","
       }
     }
-
-    this.data.fileNames = fileNames
-    this.data.filePaper = filePaper
-    this.data.order.customerCode = options.userCode
-    this.data.order.fileCodes = fileCodes
-    this.data.order.printerNum = filePaper
-    console.log(this.data.order.printerNum)
+    var that = this
+    this.setData({
+      fileNames: fileNames,
+      filePaper: filePaper,
+      order: {
+        customerCode: options.userCode,// 客户code
+        attorneyCode: that.data.order.attorneyCode, // 律师code
+        printerCode: that.data.order.printerCode, // 打印机code
+        fileCodes: fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+        paperType: that.data.order.paperType, // 纸张类型
+        printerNum: filePaper, // 打印数量
+        paperColcor: that.data.order.paperColcor, // 纸张颜色
+        paperUsage: that.data.order.paperUsage, // 纸张使用
+        serviceAmout: that.data.order.serviceAmout, // 服务费
+      }
+    })
   },
 
   /**

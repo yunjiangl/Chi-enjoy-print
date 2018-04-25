@@ -71,7 +71,7 @@
     <!--main_04 start  -->
     <view class='main_02'>
 
-      <view class='text_04'>
+      <view class='text_04' bindtap='choiceC'>
         <text>为客户书写和打印诉讼或其他法律文书</text>
       </view> 
       <view class='image_02'>
