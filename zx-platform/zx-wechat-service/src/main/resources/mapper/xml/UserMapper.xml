@@ -99,6 +99,9 @@
         <if test="openId != null">
             ,open_id=#{openId}
         </if>
+        <if test="gen!=null">
+            ,gen=#{gen}
+        </if>
         where user_code = #{userCode}
     </update>
 
@@ -127,10 +130,10 @@
 
     </insert>
     <insert id="saveAttorneyDomain" parameterType="java.util.List">
-        insert into zx_user_attorney_domain(user_id,user_code,domain_id,domain_code)
+        insert into zx_user_attorney_domain(user_id,user_code,domain_code)
          values
         <foreach collection="list" item="bean" separator=",">
-        (#{bean.userId},#{bean.userCode},#{bean.domainId},#{bean.domainCode})
+        (#{bean.userId},#{bean.userCode},#{bean.domainCode})
 
         </foreach>
     </insert>

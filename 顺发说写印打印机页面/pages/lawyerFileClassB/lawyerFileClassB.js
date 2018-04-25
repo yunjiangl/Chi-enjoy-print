@@ -5,20 +5,56 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navbar: ['民事案由'],
+    navbar: null,
     currentTab: 0,
-    listNavBar: ['民事', '商事', '知识产权', '企业破产清算', '破坏社会主义市场经济罪', '侵犯公民人身权利、民主权利罪'],
+    listNavBar: null,
     listTitleTab: 0,
-
+    listUntilData: null,
+    fileName: null
   },
-  navbarTap: function (e) {
+
+  searchFile: function () {
+    var that = this;
+
+    wx.navigateTo({
+      url: '../lawyerFileList/lawyerFileList?query=' + that.data.fileName,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
+  fileNameInput: function (e) {
     this.setData({
-      currentTab: e.currentTarget.dataset.idx
+      fileName: e.detail.value
+    })
+  },
+
+  navbarTap: function (e) {
+    var that = this;
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx,
+      listNavBar: that.data.navbar[e.currentTarget.dataset.idx].list,
+      listUntilData: that.data.navbar[e.currentTarget.dataset.idx].list[0].list
     });
   },
   listNavBarTab: function (e) {
+    var that = this;
+
     this.setData({
-      listTitleTab: e.currentTarget.dataset.idx
+      listTitleTab: e.currentTarget.dataset.idx,
+      listUntilData: that.data.listNavBar[e.currentTarget.dataset.idx].list
+    })
+  },
+  trun: function (e) {
+    var that = this;
+    // 把要传递的json对象转换成字符串
+    var dictionaryInfo = JSON.stringify(that.data.listUntilData[e.currentTarget.dataset.idx]);
+    wx: wx.navigateTo({
+      url: '../lawyerFourFileList/lawyerFourFileList?dictionaryInfo=' + dictionaryInfo,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
 
@@ -26,7 +62,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
 
+    wx.request({
+      url: app.data.api + 'dictionary/b/list',
+      method: 'GET',
+      success: function (data) {
+
+        that.setData({
+          navbar: data.data.data[0].list,
+          listNavBar: data.data.data[0].list[0].list,
+          listUntilData: data.data.data[0].list[0].list[0].list
+        })
+
+      }
+    })
   },
 
   /**

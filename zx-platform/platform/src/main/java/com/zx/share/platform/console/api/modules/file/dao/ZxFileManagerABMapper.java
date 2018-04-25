@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zx.share.platform.bean.sys.SysDictionary;
+import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,18 +14,7 @@ import com.zx.share.platform.console.api.modules.sys.dao.BaseDao;
 
 @Repository
 @Mapper
-public interface ZxFileManagerABMapper extends PlatFormMapper<ZxFileManagerAB>{
-
-	/**
-	 * 
-	 * @Title: queryList
-	 * @Description: 查询文件分类列表
-	 */
-	List<ZxFileManagerAB> queryList(Map<String, Object> params);
-	
-	List<ZxFileManagerAB> vagueList(Map<String , Object> params);
+public interface ZxFileManagerABMapper extends BaseDao<ZxFileManagerAB> {
 
 	List<SysDictionary> dictionaryList(Map<String, Object> params);
-	
-	void deleteAll(Long[] ids);
 }

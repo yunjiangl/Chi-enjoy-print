@@ -45,28 +45,40 @@ Page({
     var age = e.detail.value.age;
     var mobile = e.detail.value.mobile;
     var weChatId = e.detail.value.weChatId;
-    var portrait =null;
+    var portrait = this.data.details.portrait;
     var province = this.data.province;
     var city = this.data.city;
     var area = this.data.county;
-    console.log('姓名：' + nickName+'性别：'+this.data.sex +'年龄：'+ age +'手机：'+ mobile +'微信：'+ weChatId+'地址：'+address);
+    var address = province + city + area;
+    var sex = this.data.sex;
+    var code = this.data.details.userCode;
+    console.log('姓名：' + nickName + '性别：' + sex + '年龄：' + age + '手机：' + mobile + '微信：' + weChatId + '地址：' + province + city + area + '头像' + portrait);
 
        wx.request({
          url: 'http://127.0.0.1:10001/user/update',
          data: {
+           userCode: code,
            wechatId: weChatId,
            mobile: mobile,
            portrait: portrait,
            age: age,
            province: province,
            city: city,
-           area: area
+           area: area,
+           address: address,
+           gen: this.data.sex
          },
+         method:'POST',
          header: {
-           'content-type': 'application/json' // 默认值
+           'content-type': 'application/x-www-form-urlencoded' // 默认值
          },
          success: function (res) {
-           
+           console.log('修改成功');
+           wx.showToast({
+             title: '修改成功',
+             icon: 'success',
+             duration: 2000
+           })
          }
        })
 
@@ -75,8 +87,9 @@ Page({
 
   radioChange:function(e){
     this.setData({
-      sex: e.detail.value
+      sex : e.detail.value
     })
+    console.log('性别：'+e.detail.value);
   },
 
   
