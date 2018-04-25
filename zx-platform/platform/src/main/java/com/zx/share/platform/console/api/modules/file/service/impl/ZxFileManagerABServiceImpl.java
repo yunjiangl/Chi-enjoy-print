@@ -29,90 +29,38 @@ public class ZxFileManagerABServiceImpl implements ZxFileManagerABService {
 	@Autowired
 	private UploadService uploadService;
 
-	@Transactional
 	@Override
-	public DefaultResopnseBean<Object> add(ZxFileManagerAB zxAB, MultipartFile multipartFile) {
-		zxAB.setCreateTime(new Date());
-		uploadService.add(zxAB, multipartFile);
-		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+	public List<ZxFileManagerAB> queryList(Map<String, Object> map) {
+		return zxFileManagerABMapper.queryList(map);
 	}
 
-	/**
-	 * 列表查询
-	 */
 	@Override
-	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> list(Map<String, Object> params) {
-		Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
-		Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
-		PageHelper.startPage(pageNum, pageSize, true);
-		List<ZxFileManagerAB> list = zxFileManagerABMapper.queryList(params);
-		PageInfo pageInfo = new PageInfo(list);
-		PageResponseBean<ZxFileManagerAB> data = new PageResponseBean<ZxFileManagerAB>();
-		data.setFirst(pageInfo.isIsFirstPage());
-		data.setLast(pageInfo.isIsLastPage());
-		data.setNumber(pageInfo.getPageNum());
-		data.setNumberOfElements(pageInfo.getPageSize());
-		data.setSize(pageInfo.getSize());
-		data.setTotalPages(pageInfo.getPages());
-		data.setTotalElements(pageInfo.getTotal());
-		data.setContent(pageInfo.getList());
-		return new DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>>(ErrorsEnum.SUCCESS.label,
-				ErrorsEnum.SUCCESS.code, data);
+	public int queryTotal(Map<String, Object> map) {
+		return zxFileManagerABMapper.queryTotal(map);
 	}
 
-	/**
-	 * 模糊查询a文件
-	 * 
-	 * @param params
-	 * @return
-	 */
 	@Override
-	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> vagueList(Map<String, Object> params) {
-		Integer pageNum = params.get("pageNum") != null ? Integer.parseInt(params.get("pageNum").toString()) : 1;
-		Integer pageSize = params.get("pageSize") != null ? Integer.parseInt(params.get("pageSize").toString()) : 10;
-		PageHelper.startPage(pageNum, pageSize, true);
-		List<ZxFileManagerAB> list = zxFileManagerABMapper.vagueList(params);
-		PageInfo pageInfo = new PageInfo(list);
-		PageResponseBean<ZxFileManagerAB> data = new PageResponseBean<ZxFileManagerAB>();
-		data.setFirst(pageInfo.isIsFirstPage());
-		data.setLast(pageInfo.isIsLastPage());
-		data.setNumber(pageInfo.getPageNum());
-		data.setNumberOfElements(pageInfo.getPageSize());
-		data.setSize(pageInfo.getSize());
-		data.setTotalPages(pageInfo.getPages());
-		data.setTotalElements(pageInfo.getTotal());
-		data.setContent(pageInfo.getList());
-		return new DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>>(ErrorsEnum.SUCCESS.label,
-				ErrorsEnum.SUCCESS.code, data);
+	public void save(ZxFileManagerAB file) {
+		zxFileManagerABMapper.save(file);
 	}
 
-	@Transactional
 	@Override
-	public DefaultResopnseBean<Object> delete(Long id) {
-		zxFileManagerABMapper.deleteByPrimaryKey(id);
-		return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+	public void update(ZxFileManagerAB file) {
+		zxFileManagerABMapper.update(file);
 	}
 
-	@Transactional
 	@Override
-	public void update(ZxFileManagerAB zxFileManagerAB) {
-		zxFileManagerABMapper.updateByPrimaryKey(zxFileManagerAB);
+	public void deleteBatch(Long[] fileIds) {
+		zxFileManagerABMapper.deleteBatch(fileIds);
+	}
+
+	@Override
+	public ZxFileManagerAB queryObject(Long id) {
+		return zxFileManagerABMapper.queryObject(id);
 	}
 
 	@Override
 	public List<SysDictionary> dictionaryList(Map<String, Object> params) {
 		return zxFileManagerABMapper.dictionaryList(params);
-		//return new DefaultResopnseBean<List<SysDictionary>>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, data);
-	}
-
-	@Override
-	public ZxFileManagerAB selectId(Long Id) {
-		return zxFileManagerABMapper.selectByPrimaryKey(Id);
-		 
-	}
-
-	@Override
-	public void deleteAll(Long[] ids) {
-		zxFileManagerABMapper.deleteAll(ids);
 	}
 }

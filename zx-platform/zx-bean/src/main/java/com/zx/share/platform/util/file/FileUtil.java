@@ -60,7 +60,7 @@ public class FileUtil {
 
     //按照类型，年月日区分文件夹
     public static String getFilePath(String filePath,String userId){
-        StringBuffer newFilePath = new StringBuffer(filePath+userId+File.separator);
+        StringBuffer newFilePath = new StringBuffer(filePath+userId);
         newFilePath.append(File.separator+ DateUtil.getDateString(new Date()));
         newFilePath.append(File.separator);
         FileUtil.isExistDir(newFilePath.toString());

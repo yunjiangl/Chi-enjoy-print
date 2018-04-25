@@ -84,19 +84,6 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 		SysDictionary sysDictionary = dictionaryMapper.selectByPrimaryKey(record);
 
-		// 判断订单文件
-		if (StringUtil.isNotBlank(sysDictionary) && "fileAB".equals(sysDictionary.getCode())) {
-
-			ZxFileManagerAB ab = new ZxFileManagerAB();
-			ab.setId(zxOrder.getZxOrderPrinterFile().getFileId());
-			zxOrder.setZxFileManagerAB(zxFileManagerABMapper.selectByPrimaryKey(ab));
-
-		} else if (StringUtil.isNotBlank(sysDictionary) && "fileCDE".equals(sysDictionary.getCode())) {
-
-			ZxFileManagerCDE cde = new ZxFileManagerCDE();
-			cde.setId(zxOrder.getZxOrderPrinterFile().getFileId());
-			zxOrder.setZxFileManagerCDE(zxFileManagerCDEMapper.selectByPrimaryKey(cde));
-		}
 		return zxOrder;
 	}
 

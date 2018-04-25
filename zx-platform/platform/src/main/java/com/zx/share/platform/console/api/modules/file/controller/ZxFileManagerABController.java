@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.zx.share.platform.bean.sys.SysDictionary;
+import com.zx.share.platform.bean.sys.SysMenuEntity;
+import com.zx.share.platform.console.api.common.utils.PageUtils;
+import com.zx.share.platform.console.api.common.utils.Query;
+import com.zx.share.platform.console.api.modules.sys.controller.AbstractController;
+import com.zx.share.platform.console.api.modules.sys.service.SysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,137 +31,93 @@ import com.zx.share.platform.util.response.PageResponseBean;
 
 @RestController
 @RequestMapping("zx/ab/")
-public class ZxFileManagerABController {
+public class ZxFileManagerABController  extends AbstractController {
 
 	@Autowired
 	private ZxFileManagerABService zxFileManagerABService;
+	@Autowired
+	private SysConfigService sysConfigService;
 
 	/**
-	 * 
-	 * @Title: add
-	 * @Description: 添加文件分类
+	 * 列表
 	 */
-	@RequestMapping(value = "add", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
-	public R add(@RequestParam(name = "categoryId", required = true) Long categoryId,
-			@RequestParam(name = "abstracts", required = true) String abstracts,
-			@RequestParam(name = "multipartFile", required = true) MultipartFile multipartFile) {
-		ZxFileManagerAB zxAB = new ZxFileManagerAB();
-		zxAB.setAbstracts(abstracts);
-		zxAB.setCategoryId(categoryId);
-		System.out.println(categoryId);
-		zxFileManagerABService.add(zxAB, multipartFile);
-		return R.ok();
+	@RequestMapping("/list")
+	public R list(@RequestParam Map<String, Object> params){
+		//查询列表数据
+		Query query = new Query(params);
+		query.isPaging(true);
+		List<ZxFileManagerAB> printerList = zxFileManagerABService.queryList(query);
+		int total = zxFileManagerABService.queryTotal(query);
+		PageUtils pageUtil = new PageUtils(printerList, total, query.getLimit(), query.getPage());
+		return R.ok().put("page", pageUtil);
 	}
-	
-	
+
+
 	/**
-	 * 单条数据展示
-	 * @param fileId
-	 * @return
+	 * 信息
 	 */
 	@RequestMapping("/info/{fileId}")
-	public R selectId(@PathVariable("fileId") Long fileId) {
-		ZxFileManagerAB zxFileManagerAB=zxFileManagerABService.selectId(fileId);
-		return R.ok().put("bean",zxFileManagerAB);
-	}
-	
-
-/*	*//**
-	 * 
-	 * @Title: update
-	 * @Description: 修改
-	 *//*
-	@RequestMapping(value = "update", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
-	public DefaultResopnseBean<Object> update(@RequestParam(name = "id", required = false) Long id) {
-		return zxFileManagerABService.update(id);
-	}*/
-	
-	
-	
-	/**
-	 * 修改文件
-	 * @param ZxFileManagerAB
-	 * @return
-	 */
-    @RequestMapping(value="/update",method= RequestMethod.POST)
-    public R update(@RequestBody ZxFileManagerAB zxFileManagerAB){
-    	zxFileManagerABService.update(zxFileManagerAB);
-    	return R.ok();
-    }
-
-       
-
-	/**
-	 * 
-	 * @Title: list
-	 * @Description: 文件分类列表
-	 */
-	@RequestMapping(value = "list", method = RequestMethod.POST)
-	public DefaultResopnseBean<PageResponseBean<ZxFileManagerAB>> Alist(
-			@RequestParam(name = "pageNum", required = false) Integer pageNum,
-			@RequestParam(name = "pageSize", required = false) Integer pageSize,
-			@RequestParam(name = "typeString", required = false) String typeString,
-			@RequestParam(name = "fileName", required = false) String fileName,
-			@RequestParam(name = "yijiName", required = false) String yijiName,
-			@RequestParam(name = "erjiName", required = false) String erjiName,
-			@RequestParam(name = "sanjiName", required = false) String sanjiName,
-			@RequestParam(name = "sjName", required = false) String sjName) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		if (DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.label.equals(typeString)) {
-			SysDictionary sysDictionary = new SysDictionary();
-			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_A.code);
-
-			params.put("type", sysDictionary.getType());
+	public R info(@PathVariable("fileId") Long fileId){
+		ZxFileManagerAB file = zxFileManagerABService.queryObject(fileId);
+		SysDictionary dictionary = sysConfigService.queryObject(file.getCategoryId());
+		if(dictionary!=null){
+			return R.ok().put("bean", file).put("categoryName",dictionary.getName());
 		}
-		if (DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.label.equals(typeString)) {
-			SysDictionary sysDictionary = new SysDictionary();
-			sysDictionary.setType(DictionaryTypeEnum.ZX_DICTIONARY_TYPE_FILE_B.code);
-
-			params.put("type", sysDictionary.getType());
-		}
-
-		params.put("pageNum", pageNum);
-		params.put("pageSize", pageSize);
-		params.put("fileName", fileName);
-		params.put("yijiName", yijiName);
-		params.put("erjiName", erjiName);
-		params.put("sanjiName", sanjiName);
-		params.put("sjName", sjName);
-
-		return zxFileManagerABService.list(params);
+		return R.ok().put("bean", file);
 	}
 
 	/**
-	 * 
-	 * @param Id
-	 * @Description: 删除文件
-	 * @return
+	 * 保存
 	 */
-	@RequestMapping(value = "/sys/deleteUserById", method = RequestMethod.GET)
-	public DefaultResopnseBean<Object> delete(@RequestParam("Id") Long Id) {
-		return zxFileManagerABService.delete(Id);
+	@RequestMapping("/save")
+	public R save(@RequestBody ZxFileManagerAB file){
+		file.setCreateId(getUserId());
+		file.setCreateTime(new Date());
+		zxFileManagerABService.save(file);
+
+		return R.ok();
 	}
-	
-    /**
-     * 批量删除
-     */
-    @RequestMapping("/sys/delete")
-    public R delete(@RequestBody Long[] fileIds){
-        zxFileManagerABService.deleteAll(fileIds);
-        return R.ok();
-    }
+
+	/**
+	 * 修改
+	 */
+	@RequestMapping("/update")
+	public R update(@RequestBody ZxFileManagerAB file){
+		file.setUpdateId(getUserId());
+		file.setUpdateTime(new Date());
+		zxFileManagerABService.update(file);
+
+		return R.ok();
+	}
+
+	/**
+	 * 删除
+	 */
+	@RequestMapping("/delete")
+	public R delete(@RequestBody Long[] printerIds){
+		zxFileManagerABService.deleteBatch(printerIds);
+
+		return R.ok();
+	}
 
 	/**
 	 * 
 	 * @Title: dictionaryList
 	 * @Description: 获取ab分类类目
 	 */
-	@RequestMapping(value = "/dictionary/list/{parentid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/dictionary/list/{type}", method = RequestMethod.GET)
 	@ResponseBody
-	public R dictionaryList(@PathVariable("parentid") String parentid) {
+	public R dictionaryList(@PathVariable("type") String type) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("parentId", parentid);
+		params.put("type", type);
 		List<SysDictionary> list= zxFileManagerABService.dictionaryList(params);
+
+		//添加顶级菜单
+		SysDictionary root = new SysDictionary();
+		root.setId(0L);
+		root.setName("顶级");
+		root.setParentId(-1L);
+		list.add(root);
 		return R.ok().put("list", list);
 	}
 }

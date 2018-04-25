@@ -1,106 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>B类文件</title>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
-<link rel="stylesheet" href="../../css/font-awesome.min.css">
-<link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
-<link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
-<link rel="stylesheet" href="../../css/main.css">
-<script src="../../libs/jquery.min.js"></script>
-<script src="../../plugins/layer/layer.js"></script>
-<script src="../../libs/bootstrap.min.js"></script>
-<script src="../../libs/vue.min.js"></script>
-<script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
-<script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
-<script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
-<script src="../../js/common.js"></script>
+    <title>B类文件</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+    <link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../plugins/layer/layer.js"></script>
+    <script src="../../libs/bootstrap.min.js"></script>
+    <script src="../../libs/vue.min.js"></script>
+    <script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
+    <script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="../../js/common.js"></script>
 </head>
 <body>
 <div id="rrapp" v-cloak>
-	<div v-show="showList">
-		<div class="grid-btn">
-			<div class="form-group col-sm-2">
-				<input type="text" class="form-control" v-model="q.fileName" @keyup.enter="query" placeholder="标题">
-			</div>
-			<a class="btn btn-default" @click="query">查询</a>
-			<a class="btn btn-primary" v-on:click="saveFile()"><i class="fa fa-pencil-square-o"></i>&nbsp;新增</a>
-			<a class="btn btn-primary"  v-on:click="updateFile()"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
-			<a class="btn btn-danger"  v-on:click="deleteAll()"><i class="fa fa-pencil-square-o"></i>&nbsp;删除</a>
-		</div>
-	    <table id="jqGrid"></table>
-	    <div id="jqGridPager"></div>  
+    <div v-show="showList">
+        <div class="grid-btn">
+            <div class="form-group col-sm-2">
+                <input type="text" class="form-control" v-model="q.fileName" @keyup.enter="query" placeholder="标题">
+            </div>
+            <a class="btn btn-default" @click="query">查询</a>
+            <a class="btn btn-primary" v-on:click="saveFile()"><i class="fa fa-pencil-square-o"></i>&nbsp;新增</a>
+            <a class="btn btn-primary" v-on:click="updateFile()"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <a class="btn btn-danger" v-on:click="deleteAll()"><i class="fa fa-pencil-square-o"></i>&nbsp;删除</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
     </div>
-    
-    
-   	<div v-show="!showList" class="panel panel-default">
-		<div class="panel-heading">{{title}}</div>
-		<form class="form-horizontal">
-	 		<div class="form-group">
-				<div class="col-sm-2 control-label">选择文件分类</div>
-				<div class="col-sm-10">
-					<!--<select class=" form-control" style="width:100px;">-->
-						<!--<option v-for="option in parentone" :value="option.id">-->
-						<!--{{ option.name }}-->
-						<!--</option>-->
-					<!--</select>-->
-<!-- 					<select class="form-control" style="width:100px;" v-model="ldtwo">
-						<option v-for="option in parenttwo" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select>
-					<select class="form-control" style="width:100px;" v-model="ldthree">
-						<option v-for="option in parentthree" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select>
-					<select class="form-control" style="width:100px;" v-model="ldfore">
-						<option v-for="option in parentfore" :value="option.id">
-						{{ option.name }}
-						</option>
-					</select> -->
-				</div>
-			</div> 
-		
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">文件标题</div>
-			   	<div class="col-sm-10">
-			      <input type="text" class="form-control"  v-model="bean.fileName" placeholder="输入标题"/>
-			    </div>
-			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">文件页数</div>
-			   	<div class="col-sm-10">
-			      <input type="number" class="form-control" v-model="bean.fileNum" placeholder="输入页数"/>
-			    </div>
-			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">上传附件</div>
-			   	<div class="col-sm-10">
-			      <input type="file" @change="uploadFile" class="projectfile" v-model="bean.fileUrl" /><br/>
-			      <p class="help-block" style="font-size: 5px">支持doc、docx的word文档上传</p>
-			    </div>
-			</div>
-			<div class="form-group">
-			   	<div class="col-sm-2 control-label">文件摘要</div>
-			   	<div class="col-sm-10">
-					<textarea class="form-control" rows="5" v-model="bean.abstract"></textarea>
-			    </div>
-			</div>
-			
-			<div class="form-group">
-				<div class="col-sm-2 control-label"></div> 
-				<input type="button" class="btn btn-primary" v-on:click="add()" value="确定"/>
-				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
-			</div>
-		</form>
-	</div>
-    
-    
-    
+
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">选择文件分类</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" style="cursor:pointer;" v-model="bean.categoryName"
+                           @click="categoryTree" readonly="readonly" placeholder="选择文件分类"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">文件标题</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="bean.fileName" placeholder="输入标题"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">上传文件</div>
+                <div class="col-sm-10">
+                    <input type="file" @change="uploadFile" class="projectfile" /><br/>
+                    <p>{{bean.fileUrl}}</p>
+                    <p class="help-block" style="font-size: 5px">支持doc、docx的word文档上传</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">文件页数</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="bean.fileNum" placeholder="输入页数"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">文件摘要</div>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="5" v-model="bean.abstracts"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 选择菜单 -->
+<div id="categoryLayer" style="display: none;padding:10px;">
+    <ul id="categoryTree" class="ztree"></ul>
 </div>
 
 <script src="../../js/modules/file/B.js"></script>

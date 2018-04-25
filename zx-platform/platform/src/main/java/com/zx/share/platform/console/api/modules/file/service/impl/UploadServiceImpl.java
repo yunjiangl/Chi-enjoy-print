@@ -45,70 +45,7 @@ public class UploadServiceImpl implements UploadService {
     @Transactional
     public DefaultResopnseBean<Object> add(ZxFileManagerAB file, MultipartFile multipartFile) {
 
-        File targetFile = new File(filePath);
-
-        // 判断文件夹是否存在
-        if (!targetFile.exists()) {
-            targetFile.mkdirs();
-        }
-
-        String fileURL = this._getFilePath(filePath,file.getCategoryId().toString()) + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
-
-        try {
-
-            // 文件上传
-            FileOutputStream fos = new FileOutputStream(fileURL);
-
-            FileInputStream fs = (FileInputStream) multipartFile.getInputStream();
-
-            byte[] buffer = new byte[1024];
-            int len = 0;
-            while ((len = fs.read(buffer)) != -1) {
-                fos.write(buffer, 0, len);
-            }
-
-            fos.close();
-            fs.close();
-
-            // 文件上传完毕
-
-            // 获得文件后缀
-            String suffix = multipartFile.getOriginalFilename()
-                    .substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1);
-
-            // 读取pdf文件打印页数
-            if ("pdf".equals(suffix)) {
-                file.setFileNum(GetPdfpage.getPdfPage(fileURL));
-               // file.setCategoryId(categoryId); 设置文件分类id
-            }
-
-            // 读取word文件打印页数
-            if ("doc".equals(suffix) || "docx".equals(suffix)) {
-                file.setFileNum(GetPdfpage.getPdfPage(Word2PdfUtil.doc2pdf(fileURL)));
-             // file.setCategoryId(categoryId); 设置文件分类id
-            }
-            
-            // 读取Excel文件打印页数
-            if("xls".equals(suffix)||"xlsx".equals(suffix)) {
-            	file.setFileNum(GetPdfpage.getPdfPage(Excel2Pdf.excel2pdf(fileURL)));
-            	// file.setCategoryId(categoryId); 设置文件分类id
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return new DefaultResopnseBean<Object>("文件上传失败", 500, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        file.setFileName(multipartFile.getOriginalFilename());
-        file.setFileUrl(fileURL);
-        
-        file.setCreateTime(new Date());
-
-        zxFileManagerABMapper.insertSelective(file);
-
-        return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+        return null;
     }
 
     //按照类型，年月日区分文件夹
