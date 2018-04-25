@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/lawyerFileClassA/lawyerFileClassA",
     "pages/choiceCustomer/choiceCustomer",
     "pages/lawyerIndex/lawyerIndex",
+    "pages/lawyerFileClassA/lawyerFileClassA",
+    
+    
     "pages/vip-login/vip-login",
-    
-    
     
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     "pages/lawyerFourFileList/lawyerFourFileList",

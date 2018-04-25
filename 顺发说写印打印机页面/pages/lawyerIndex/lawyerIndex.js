@@ -50,6 +50,11 @@ Page({
       url: '../lawyerFileClassA/lawyerFileClassA',
     })
   },
+  choiceB: function(){
+    wx.navigateTo({
+      url: '../lawyerFileClassB/lawyerFileClassB',
+    })
+  },
   uploadImg: function () {
     wx.chooseImage({
       count: 9, // 默认9
