@@ -8,7 +8,7 @@ Page({
 
     fileInfo: null,
     userCode: 'wechat00000000000', // 所要发送文件的客户，这个后面应该改为动态的
-
+    fileType: null,
   },
 
   /**
@@ -19,7 +19,8 @@ Page({
     // 把接收到的字符串转换成json对象
     var dictionaryInfo = JSON.parse(options.fileInfo);
     this.setData({
-      fileInfo: dictionaryInfo
+      fileInfo: dictionaryInfo,
+      fileType: options.fileType
     })
   },
   choice: function () {
@@ -27,14 +28,14 @@ Page({
     // 把要传递的json对象转换成字符串
     var fileInfo = JSON.stringify(that.data.fileInfo);
     wx: wx.navigateTo({
-      url: '../lawyerSettingCosts/lawyerSettingCosts?fileInfo=' + fileInfo + '&userCode=' + that.data.userCode,
+      url: '../lawyerSettingCosts/lawyerSettingCosts?fileInfo=' + fileInfo + '&userCode=' + that.data.userCode + "&fileType=" + that.data.fileType,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
     })
   },
 
-  
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

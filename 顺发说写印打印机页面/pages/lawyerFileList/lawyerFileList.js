@@ -11,7 +11,8 @@ Page({
     page: 0,
     pageSize: 10,
     fileInfoList: [],
-    fileInfo:[]
+    fileInfo:[],
+    fileType:null,
   },
   // downloadDocument:function(){
   //   wx.navigateBack({
@@ -34,7 +35,7 @@ Page({
     // 把要传递的json对象转换成字符串
     var fileInfo = JSON.stringify(that.data.fileInfo);
     wx: wx.navigateTo({
-      url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo,
+      url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo + "&fileType=" + that.data.fileType,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -107,7 +108,8 @@ Page({
 
     that.setData({
       code: code,
-      query: query
+      query: query,
+      fileType: options.fileType
     })
 
     that.getData();

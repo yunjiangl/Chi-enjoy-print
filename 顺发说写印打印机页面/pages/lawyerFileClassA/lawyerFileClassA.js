@@ -10,14 +10,15 @@ Page({
     listNavBar: null,
     listTitleTab: 0,
     listUntilData: null,
-    fileName: null
+    fileName: null,
+    fileType: 4
   },
 
   searchFile: function () {
     var that = this;
-    
+
     wx.navigateTo({
-      url: '../lawyerFileList/lawyerFileList?query=' + that.data.fileName,
+      url: '../lawyerFileList/lawyerFileList?query=' + that.data.fileName + "&fileType=" + that.data.fileType,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -51,7 +52,7 @@ Page({
     // 把要传递的json对象转换成字符串
     var dictionaryInfo = JSON.stringify(that.data.listUntilData[e.currentTarget.dataset.idx]);
     wx: wx.navigateTo({
-      url: '../lawyerFourFileList/lawyerFourFileList?dictionaryInfo=' + dictionaryInfo,
+      url: '../lawyerFourFileList/lawyerFourFileList?dictionaryInfo=' + dictionaryInfo + "&fileType=" + that.data.fileType,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
