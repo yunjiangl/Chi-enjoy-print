@@ -18,4 +18,10 @@ public interface UploadService {
      * @Description: 添加文件
      */
     DefaultResopnseBean<Object> add(ZxFileManagerCDE file, MultipartFile multipartFile);
+    /**
+     *
+     * @Title: add
+     * @Description: 添加用户照片
+     */
+    DefaultResopnseBean<Object> addImg(MultipartFile multipartFile,String filePath);
 }

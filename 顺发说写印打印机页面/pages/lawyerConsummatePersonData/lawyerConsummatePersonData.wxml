@@ -150,41 +150,19 @@
                     <view class='font'>执业类别:</view>
                     <view class='atLeast'>(至少选择6-8个)</view>
                   </view>
-
+                <view style='clear:both;'></view>
                 <!-- choice start -->
                   <view class='choice'>
                     
-                    <view class='rt'>
+                   <view class='rt'>
 
-                    <view class='tp'>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>金融证券</view>
-                      <view class='list'>行政法律</view>
-                      <view class='list'>知识产权</view>
+                     <view class='tp'>
+                      <view  class="list {{item.state==1?'active-tag':''}} " bindtap="select_date"  wx:for="{{dates}}" data-key='{{index}}'>
+                          <text class="flex-item">{{item.name}}</text>
+                      </view>
                     </view>
 
-                    <view class='tp'>
-                      <view class='list'>劳动纠纷</view>
-                      <view class='list'>海事海商</view>
-                      <view class='list'>商事仲裁</view>
-                      <view class='list'>合同纠纷</view>
                     </view>
-
-                    <view class='tp'>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                    </view>
-
-                    <view class='tp'>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                    </view>  
-
-                  </view>
 
                   </view>
                 <!-- choice end -->
@@ -197,7 +175,7 @@
       
       </view>
     <!-- occupation执业 end -->
-
+<view style='clear:both;'></view>
     <!-- upPicture上传图片 start -->
       <view class='upPicture'>
 

@@ -40,7 +40,36 @@ Page({
     sex: '',
     src1: '../images/photo.png',
     src2: '../images/photo.png',
-    src3: '../images/photo.png'
+    src3: '../images/photo.png',
+    //执业证号
+    dates: [
+      { "data_name": "1", "name": "金融证券", "state": 0 },
+      { "data_name": "2", "name": "征地拆迁", "state": 0 },
+      { "data_name": "3", "name": "行政法律", "state": 0 },
+      { "data_name": "4", "name": "知识产权", "state": 0 },
+      { "data_name": "5", "name": "劳动纠纷", "state": 0 },
+      { "data_name": "6", "name": "海事海商", "state": 0 },
+      { "data_name": "7", "name": "商事仲裁", "state": 0 },
+      { "data_name": "8", "name": "合同纠纷", "state": 0 },
+      { "data_name": "8", "name": "合同纠纷", "state": 0 },
+      { "data_name": "8", "name": "合同纠纷", "state": 0 },
+    ]
+  },
+  //选择执业后加样式
+  select_date: function (e) {
+    var index = e.currentTarget.dataset.key;
+    if (this.data.dates[index].state == 1) {
+      this.data.dates[index].state = 0;
+    } else if (this.data.dates[index].state == 0) {
+      this.data.dates[index].state = 1;
+    }
+    var name = this.data.dates[index].name
+    var ds = this.data.dates
+
+    console.log(name)
+    this.setData({
+      dates: ds,
+    });
   },
   formSubmit: function (e) {
     // 姓名
@@ -65,7 +94,14 @@ Page({
     //执业证号
     var workNum = e.detail.value.workNum;
     //执业类型
-    var domains = '刑事,民事';
+    var domains = '';
+    var dates = this.data.dates;
+    for (var i = 0; i < dates.length ; i++){
+      if (dates[i].state == 1){
+        domains += dates[i].name+',';
+        }
+    }
+
     //职业年限
     var workYear = this.data.firstPerson;
     console.log(this.data.firstPerson);
@@ -134,7 +170,7 @@ Page({
         that.setData({
           src1: tempFilePaths[0]
         })
-        upload(that, tempFilePaths, src1);
+        upload(that, tempFilePaths,1);
       }
     })
 
@@ -154,7 +190,7 @@ Page({
         that.setData({
           src2: tempFilePaths[0]
         })
-        upload(that, tempFilePaths, src2);
+        upload(that, tempFilePaths,2);
       }
     })
   },
@@ -173,7 +209,7 @@ Page({
         that.setData({
           src3: tempFilePaths[0]
         })
-        upload(that, tempFilePaths, src3);
+        upload(that, tempFilePaths,3);
       }
     })
   },
@@ -209,37 +245,7 @@ Page({
    */
   onShow: function (options) {
     var that = this;
-    wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
-      data: {
-        code: 'wechat00000000007'
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-
-        var item;
-        if (res.data.data.gen == '男') {
-          item = [
-            { name: '男', value: '男', checked: 'true' },
-            { name: '女', value: '女' },
-          ]
-        } else {
-          item = [
-            { name: '男', value: '男' },
-            { name: '女', value: '女', checked: 'true' },
-          ]
-        }
-
-        that.setData({
-          details: res.data.data,
-          items: item
-
-        })
-
-      }
-    })
+    
   },
   //滑动事件
   bindChange: function (e) {
@@ -285,6 +291,38 @@ Page({
       getProvinceData(that);
     });
 
+    wx.request({
+      url: 'http://127.0.0.1:10001/user/details',
+      data: {
+        code: 'wechat00000000007'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+
+        var item;
+        if (res.data.data.gen == '男') {
+          item = [
+            { name: '男', value: '男', checked: 'true' },
+            { name: '女', value: '女' },
+          ]
+        } else {
+          item = [
+            { name: '男', value: '男' },
+            { name: '女', value: '女', checked: 'true' },
+          ]
+        }
+
+        that.setData({
+          details: res.data.data,
+          items: item,
+          sex: res.data.data.gen
+
+        })
+
+      }
+    })
 
 
   },
@@ -338,22 +376,22 @@ Page({
   }
 })
 //上传文件
-function upload(page, path, src) {
+function upload(page, path,num) {
   wx.showToast({
     icon: "loading",
     title: "正在上传"
   }),
     wx.uploadFile({
-      url: constant.SERVER_URL + "/FileUploadServlet",
+    url: "http://127.0.0.1:10001/upload/file/userimg",
       filePath: path[0],
-      name: 'file',
-      header: { "Content-Type": "multipart/form-data" },
+      name: 'multipartFile',
+      header: { "content-type": "multipart/form-data" },
       formData: {
         //和服务器约定的token, 一般也可以放在header中
-        'session_token': wx.getStorageSync('session_token')
+        //'session_token': wx.getStorageSync('session_token')
       },
       success: function (res) {
-        console.log(res);
+        console.log(res.data);
         if (res.statusCode != 200) {
           wx.showModal({
             title: '提示',
@@ -363,9 +401,25 @@ function upload(page, path, src) {
           return;
         }
         var data = res.data
-        page.setData({  //上传成功修改显示头像
-          src: path[0]
-        })
+        
+
+        switch (num) {
+          case 1:
+            page.setData({  //上传成功修改显示头像
+              src1: data
+            })
+            break;
+          case 2:
+            page.setData({  //上传成功修改显示头像
+              src2: data
+            })
+            break;
+          case 3:
+            page.setData({  //上传成功修改显示头像
+              src3: data
+            })
+            break;
+        }
       },
       fail: function (e) {
         console.log(e);
