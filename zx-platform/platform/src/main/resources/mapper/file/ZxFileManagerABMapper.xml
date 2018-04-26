@@ -27,6 +27,9 @@
 			<if test="status!=null and status!=''">
 				AND ab.status = #{status}
 			</if>
+			<if test="categoryId!=null and categoryId!=''">
+				AND ab.category_idd = #{categoryId}
+			</if>
 		</where>
 		<choose>
 			<when test="sidx != null and sidx.trim() != ''">
@@ -61,6 +64,9 @@
 			</if>
 			<if test="status!=null and status!=''">
 				AND ab.status = #{status}
+			</if>
+			<if test="categoryId!=null and categoryId!=''">
+				AND ab.category_idd = #{categoryId}
 			</if>
 		</where>
 	</select>

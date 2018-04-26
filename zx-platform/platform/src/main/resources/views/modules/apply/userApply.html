@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>用户</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/font-awesome.min.css">
+<link rel="stylesheet" href="../../plugins/jqgrid/ui.jqgrid-bootstrap.css">
+<link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css">
+<link rel="stylesheet" href="../../css/main.css">
+<script src="../../libs/jquery.min.js"></script>
+<script src="../../plugins/layer/layer.js"></script>
+<script src="../../libs/bootstrap.min.js"></script>
+<script src="../../libs/vue.min.js"></script>
+<script src="../../plugins/jqgrid/grid.locale-cn.js"></script>
+<script src="../../plugins/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="../../plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="../../js/common.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.username" @keyup.enter="query" placeholder="用户名">
+			</div>
+			<div class="form-group col-sm-2">
+				<select class="form-control" v-model="q.status" @keyup.enter="query" >
+					<option value="">全部</option>
+					<option value="1">接受</option>
+					<option value="2">拒绝</option>
+				</select>
+			</div>
+			<a class="btn btn-default" @click="query">查询</a>
+			<a class="btn btn-primary" @click="checkAttorney"><i class="fa fa-pencil-square-o"></i>&nbsp;审核</a>
+		</div>
+		<table id="jqGrid"></table>
+		<div id="jqGridPager"></div>
+	</div>
+
+
+	<div v-show="!showList" class="panel panel-default">
+		<div class="panel-heading">{{title}}</div>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<div class="col-sm-2 control-label">用户名</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="user.username" placeholder="用户名" disabled/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">手机号</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="user.mobile" placeholder="手机号" disabled/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">工作年限</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="attorney.workYear"  disabled/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">工作机构</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="attorney.workOrg" disabled/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">执业证号</div>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" v-model="attorney.workNum" disabled/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2 control-label">擅长领域</div>
+				<div class="col-sm-10">
+					<span class="label label-success" v-for="arr in domains">
+						{{arr}}
+					</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">身份证</div>
+				<div class="col-sm-10">
+					<img src="" width="200px" height="200px">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">律师证</div>
+				<div class="col-sm-10">
+					<img src="" width="200px" height="200px">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label">年度审查图</div>
+				<div class="col-sm-10">
+					<img src="" width="200px" height="200px">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2 control-label"></div>
+				<input type="button" class="btn btn-primary" @click="checkOk" value="通过"/>
+				<input type="button" class="btn btn-primary" @click="checkNo" value="不通过"/>
+				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 选择菜单 -->
+<div id="checkLayer" style="display: none;padding:10px;">
+</div>
+<script src="../../js/modules/msg/userApply.js"></script>
+</body>
+</html>

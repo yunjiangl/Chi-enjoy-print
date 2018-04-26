@@ -44,7 +44,7 @@ public class ApiTestController {
     @AuthIgnore
     @GetMapping("notToken")
     public R notToken(){
-        return R.ok().put("msg", "无需token也能访问。。。");
+        return R.ok().put("apply", "无需token也能访问。。。");
     }
 
 }

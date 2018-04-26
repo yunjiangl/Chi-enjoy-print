@@ -1,32 +1,28 @@
 $(function () {
     $("#jqGrid").jqGrid({
-        url: baseURL + 'user/list?userType=2',
+        url: baseURL + 'apply/list?userType=2',
         datatype: "json",
-        colModel: [			
-			{ label: 'ID', name: 'id', index: 'user_id', width: 50, key: true },
-			{ label: '用户名', name: '', index: '', width: 80 },
-            { label: '昵称', name: 'username', index: 'username', width: 80 },
-            { label: '状态', name: 'useStatus', index: 'useStatus', width: 90 ,formatter:function(cellvalue, options, rowObject){
-            	var html  = '';
-            	if(rowObject.isLock!=undefined){
-            		if(rowObject.isLock==0){
-                        html += '<span class="label label-success">审核中</span>&nbsp;&nbsp;';
-					}else if(rowObject.isLock==1){
-                        html += '<span class="label label-success">通过</span>&nbsp;&nbsp;';
-                    }else if(rowObject.isLock==2){
-						html += '<span class="label label-danger">不通过</span>&nbsp;&nbsp;';
-                    }
-				}
+        colModel: [
+            { label: 'ID', name: 'id', index: 'user_id', width: 50, key: true },
+            { label: '消息', name: '', index: '', width: 90 ,formatter:function(cellvalue, options, rowObject){
+                var html  = rowObject.zxUser.username+'律师申请加入，请查看！';
 
-                // if(cellvalue==1){
-            		// html += '<span class="label label-success">账号正常</span>';
-				// }else
-                 //    html += '<span class="label label-danger">账号关闭</span>';
-            	return html;
-			}},
-			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 },
-            { label: '上次登录时间', name: 'userLogin.loginTime', index: 'loginTime', width: 80 },
-            { label: '上次登录IP', name: 'userLogin.loginIp', index: 'loginIp', width: 80 }
+                return html;
+            }},
+            { label: '申请人', name: 'zxUser.username', index: 'zxUser.username', width: 80 },
+            { label: '状态', name: 'status', index: 'status', width: 80 ,formatter:function(cellvalue, options, rowObject){
+                var html = '';
+                if(cellvalue==1){
+                    html = '<span class="label label-success">通过</span>';
+                }
+                if(cellvalue==0){
+                    html = '<span class="label label-success">未审核</span>';
+                }
+                if(cellvalue==2) {
+                    html = '<span class="label label-danger">未通过</span>';
+                }
+                return html;
+            }}
         ],
 		viewrecords: true,
         height: 385,
@@ -56,12 +52,11 @@ $(function () {
 });
 
 var vm = new Vue({
-	el:'#userAttorney',
+	el:'#rrapp',
 	data:{
         q:{
             username: null,
-            useStatus: null,
-			userType:2
+            status: ''
         },
 		showList: true,
 		title: null,
@@ -80,7 +75,7 @@ var vm = new Vue({
 		},
         checkOk:function(){
             var url = "user/check" ;
-            vm.user.userType=1;
+            vm.user.isLock=1;
             vm.checkUpdate(url);
 		},
         checkNo:function(){
@@ -182,16 +177,19 @@ var vm = new Vue({
             });
         },
         checkAttorney: function (event) {
-            var userId = getSelectedRow();
-            if(userId == null){
+            var id = getSelectedRow();
+            if(id == null){
                 return ;
             }
             vm.showList = false;
             vm.title = "审核";
 
-            vm.getInfo(userId);
+            vm.getInfo(id);
         },
 		getInfo: function(userId){
+            $.get(baseURL + "apply/info/"+userId, function(r){
+                userId=r.user.id;
+            });
 			$.get(baseURL + "user/info/"+userId, function(r){
                 vm.user = r.user;
             });
@@ -207,7 +205,7 @@ var vm = new Vue({
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
 			$("#jqGrid").jqGrid('setGridParam',{ 
                 page:page,
-                postData:{'username': vm.q.username,'useStatus':vm.q.useStatus,'userType':vm.q.userType}
+                postData:{'name': vm.q.username,'status':vm.q.status}
             }).trigger("reloadGrid");
 		}
 	}
