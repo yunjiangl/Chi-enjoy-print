@@ -2,6 +2,7 @@ package com.zx.share.platform.console.api.modules.apply.controller;
 
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.bean.zx.ZxUserAttorney;
+import com.zx.share.platform.bean.zx.ZxUserPrinter;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.console.api.common.utils.PageUtils;
 import com.zx.share.platform.console.api.common.utils.Query;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -77,10 +79,12 @@ public class ApplyController extends AbstractController {
 
         return R.ok();
     }
-    @RequestMapping("/startUsing")
-    public R startUsing(@RequestBody Long[] userIds){
-        applyService.startUsing(userIds);
 
+    @RequestMapping("/check")
+    public R check(@RequestBody ZxUserPrinter user){
+        user.setCheckId(getUserId());
+        user.setCheckTime(new Date());
+        applyService.updateStatus(user);
         return R.ok();
     }
 

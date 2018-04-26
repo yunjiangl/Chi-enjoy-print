@@ -1,6 +1,7 @@
 package com.zx.share.platform.console.api.modules.apply.dao;
 
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
+import com.zx.share.platform.bean.zx.ZxUserPrinter;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.console.api.modules.sys.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,4 +14,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ApplyDao extends BaseDao<ZxUserPrinterApply> {
+
+    int updateStatus(ZxUserPrinterApply bean);
+
+    int saveApply(ZxUserPrinter bean);
 }

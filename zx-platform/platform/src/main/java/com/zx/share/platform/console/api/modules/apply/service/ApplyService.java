@@ -2,6 +2,7 @@ package com.zx.share.platform.console.api.modules.apply.service;
 
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.bean.zx.ZxUserAttorney;
+import com.zx.share.platform.bean.zx.ZxUserPrinter;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 
 import java.util.List;
@@ -35,4 +36,6 @@ public interface ApplyService {
     ZxUserAttorney attorney(Long userId);
 
     void check(ZxUser user);
+
+    void updateStatus(ZxUserPrinter bean);
 }

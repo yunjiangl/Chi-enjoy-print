@@ -58,6 +58,7 @@ var vm = new Vue({
             username: null,
             status: ''
         },
+        dataId:null,
 		showList: true,
 		title: null,
 		user: {},
@@ -74,21 +75,24 @@ var vm = new Vue({
 			vm.user = {};
 		},
         checkOk:function(){
-            var url = "user/check" ;
-            vm.user.isLock=1;
-            vm.checkUpdate(url);
-		},
-        checkNo:function(){
-            var url = "user/check" ;
-            vm.user.isLock=2;
-            vm.checkUpdate(url);
+            var url = "apply/check" ;
+            var status=1;
+            vm.checkUpdate(url,status);
         },
-		checkUpdate:function(url){
+        checkNo:function(){
+            var url = "apply/check" ;
+            var status=2;
+            vm.checkUpdate(url,status);
+        },
+		checkUpdate:function(url,status){
+            var data = new Object();
+            data.id=vm.dataId;
+            data.status=status;
             $.ajax({
                 type: "POST",
                 url: baseURL + url,
                 contentType: "application/json",
-                data: JSON.stringify(vm.user),
+                data: JSON.stringify(data),
                 success: function(r){
                     if(r.code === 0){
                         alert('操作成功', function(index){
@@ -186,19 +190,22 @@ var vm = new Vue({
 
             vm.getInfo(id);
         },
-		getInfo: function(userId){
-            $.get(baseURL + "apply/info/"+userId, function(r){
-                userId=r.user.id;
+		getInfo: function(id){
+		    var userId = 0;
+            $.get(baseURL + "apply/info/"+id, function(r){
+                userId=r.user.userId;
+                $.get(baseURL + "user/info/"+userId, function(r){
+                    vm.user = r.user;
+                });
+                $.get(baseURL + "user/attorney/"+userId, function(r){
+                    vm.attorney = r.attorney;
+                });
+                $.get(baseURL + "user/domain/"+userId, function(r){
+                    vm.domains = r.domains;
+                });
             });
-			$.get(baseURL + "user/info/"+userId, function(r){
-                vm.user = r.user;
-            });
-            $.get(baseURL + "user/attorney/"+userId, function(r){
-                vm.attorney = r.attorney;
-            });
-            $.get(baseURL + "user/domain/"+userId, function(r){
-                vm.domains = r.domains;
-            });
+
+            vm.dataId=id;
 		},
 		reload: function (event) {
 			vm.showList = true;

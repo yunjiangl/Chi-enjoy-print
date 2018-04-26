@@ -60,9 +60,17 @@
 	<update id="deleteBatch">
 
 	</update>
-	<update id="startUsing">
-
+	<update id="updateStatus">
+		update zx_user_printer_apply set status=${status},check_id=#{checkId},check_time=now() where id=#{id}
 	</update>
 
-
+	<insert id="saveApply" parameterType="com.zx.share.platform.bean.zx.ZxUserPrinter">
+		insert into zx_user_printer(
+			user_id,printer_id,status,check_time,check_id,
+			user_code,printer_code,check_code,create_id,create_time
+		) values(
+			#{userId},#{printerId},#{status},#{checkTime},#{checkId},
+			#{userCode},#{printerCode},#{checkCode},#{createId},#{createTime}
+		)
+	</insert>
 </mapper>

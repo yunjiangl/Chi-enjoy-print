@@ -2,9 +2,14 @@ package com.zx.share.platform.console.api.modules.apply.service.impl;
 
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.bean.zx.ZxUserAttorney;
+import com.zx.share.platform.bean.zx.ZxUserPrinter;
 import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
 import com.zx.share.platform.console.api.modules.apply.dao.ApplyDao;
 import com.zx.share.platform.console.api.modules.apply.service.ApplyService;
+import com.zx.share.platform.console.api.modules.printer.service.PrinterService;
+import com.zx.share.platform.console.api.modules.user.service.UserService;
+import com.zx.share.platform.util.StringUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +27,10 @@ public class ApplyServiceImpl implements ApplyService {
 
     @Autowired
     private ApplyDao applyDao;
+    @Autowired
+    private PrinterService printerService;
+    @Autowired
+    private UserService UserService;
 
     @Override
     public ZxUserPrinterApply queryObject(Long userId) {
@@ -61,5 +70,19 @@ public class ApplyServiceImpl implements ApplyService {
     @Override
     public void check(ZxUser user) {
 
+    }
+
+    @Override
+    public void updateStatus(ZxUserPrinter bean) {
+        ZxUserPrinterApply entity = new ZxUserPrinterApply();
+        entity.setId(bean.getId());
+        entity.setStatus(bean.getStatus());
+        entity.setCheckId(bean.getCheckId());
+        applyDao.updateStatus(entity);
+        if(StringUtil.isNotBlank(bean.getStatus())&& bean.getStatus()==1){
+            ZxUserPrinterApply apply = queryObject(bean.getId());
+            BeanUtils.copyProperties(apply,bean);
+            applyDao.saveApply(bean);
+        }
     }
 }
