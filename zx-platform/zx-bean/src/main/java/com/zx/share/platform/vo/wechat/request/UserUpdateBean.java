@@ -54,6 +54,7 @@ public class UserUpdateBean implements Serializable {
     private String unionId;
     @ApiModelProperty(value = "")
     private String openId;
+    private String gen;
 
     public String getUserCode() {
         return userCode;
@@ -205,5 +206,13 @@ public class UserUpdateBean implements Serializable {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public String getGen() {
+        return gen;
+    }
+
+    public void setGen(String gen) {
+        this.gen = gen;
     }
 }
