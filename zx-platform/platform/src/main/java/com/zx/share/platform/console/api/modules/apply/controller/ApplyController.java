@@ -40,6 +40,7 @@ public class ApplyController extends AbstractController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         //查询列表数据
+        params = super.checkOwnerParams(params);
         Query query = new Query(params);
         query.isPaging(true);
         List<ZxUserPrinterApply> userList = applyService.queryList(query);

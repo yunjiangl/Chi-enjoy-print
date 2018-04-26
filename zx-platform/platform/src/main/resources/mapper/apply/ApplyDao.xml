@@ -8,15 +8,15 @@
 	</select>
 
 	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
-		select * from zx_user_printer_apply
+		select apply.* from zx_user_printer_apply apply join zx_printer_manager p on p.id=apply.printer_id
 		<where>
 			<if test="name!=null and name!=''">
-				AND create_id in (
-					select id from sys_user where username like concat('%',#{name},'%')
+				AND apply.user_id in (
+				select id from zx_user where username like concat('%',#{name},'%')
 				)
 			</if>
 			<if test="createId!=null and createId!=''">
-				AND create_id = #{createId}
+				AND p.create_id = #{createId}
 			</if>
 			<if test="status!=null and status!=''">
 				AND status = #{status}
@@ -36,15 +36,15 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from zx_user_printer_apply
+		select count(*) from zx_user_printer_apply apply join zx_printer_manager p on p.id=apply.printer_id
 		<where>
 			<if test="name!=null and name!=''">
-				AND create_id in (
-				select id from sys_user where username like concat('%',#{name},'%')
+				AND apply.user_id in (
+				select id from zx_user where username like concat('%',#{name},'%')
 				)
 			</if>
 			<if test="createId!=null and createId!=''">
-				AND create_id = #{createId}
+				AND p.create_id = #{createId}
 			</if>
 			<if test="status!=null and status!=''">
 				AND status = #{status}
