@@ -1,36 +1,46 @@
 package com.zx.share.platform.wechat.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zx.share.platform.bean.sys.SysDictionary;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.bean.zx.ZxFileManagerAB;
 import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.bean.zx.ZxOrder;
 import com.zx.share.platform.bean.zx.ZxOrderPay;
+import com.zx.share.platform.bean.zx.ZxOrderPrinterFile;
+import com.zx.share.platform.bean.zx.ZxPrinterManager;
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.constants.OrderStatusEnum;
 import com.zx.share.platform.constants.PayStatusEnum;
+import com.zx.share.platform.util.CodeBuilderUtil;
 import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.wechat.request.OrderFileSaveBean;
 import com.zx.share.platform.vo.wechat.request.OrderQueryBean;
 import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
+import com.zx.share.platform.vo.wechat.response.FileResultBean;
 import com.zx.share.platform.vo.wechat.response.OrderResultBean;
 import com.zx.share.platform.wechat.api.pay.service.WeCharPayService;
 import com.zx.share.platform.wechat.mapper.DictionaryMapper;
 import com.zx.share.platform.wechat.mapper.FileManagerMapper;
+import com.zx.share.platform.wechat.mapper.PrinterMapper;
+import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.mapper.file.CDEFileMapper;
 import com.zx.share.platform.wechat.mapper.order.ZxOrderMapper;
 import com.zx.share.platform.wechat.mapper.order.ZxOrderPayMapper;
+import com.zx.share.platform.wechat.mapper.order.ZxOrderPrinterFileMapper;
 import com.zx.share.platform.wechat.service.ZxOrderService;
 
 @Service
@@ -38,8 +48,13 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Autowired
 	private ZxOrderMapper zxOrderMapper;
+
 	@Autowired
 	private ZxOrderPayMapper zxOrderPayMapper;
+
+	@Autowired
+	private ZxOrderPrinterFileMapper zxOrderPrinterFileMapper;
+
 	@Autowired
 	private WeCharPayService weCharPayService;
 
@@ -51,6 +66,12 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Autowired
 	private CDEFileMapper zxFileManagerCDEMapper;
+
+	@Autowired
+	private PrinterMapper printerMapper;
+
+	@Autowired
+	private UserMapper userMapper;
 
 	@Override
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> list(Map<String, Object> params) {
@@ -100,24 +121,132 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	@Override
 	public int saveOrder(OrderSaveBean orderSaveBean) {
 		int result = 0;
-		if(StringUtil.isBlank(orderSaveBean.getOrderCode())){
+		if (StringUtil.isBlank(orderSaveBean.getOrderCode())) {
 			result = this.save(orderSaveBean);
-		}else{
+		} else {
 			result = this.update(orderSaveBean);
 		}
 		return result;
 	}
 
-	private int save(OrderSaveBean orderSaveBean){
+	/**
+	 * 
+	 * @Title: save
+	 * @Description: 保存订单
+	 */
+	@Transactional
+	private int save(OrderSaveBean orderSaveBean) {
+
+		// 获取打印机信息
+		ZxPrinterManager printerRecord = new ZxPrinterManager();
+		ZxPrinterManager printeResultBean = new ZxPrinterManager();
+		printerRecord.setPrinterCode(orderSaveBean.getPrinterCode());
+		printeResultBean = printerMapper.selectOne(printerRecord);
+
+		// 获取用户信息
+		ZxUser customerRecord = new ZxUser();
+		ZxUser customerResultBean = new ZxUser();
+		customerRecord.setUserCode(orderSaveBean.getCustomerCode());
+		customerResultBean = userMapper.selectOne(customerRecord);
+
+		// 获取律师信息
+		ZxUser attorneyRecord = new ZxUser();
+		ZxUser attorneyResultBean = new ZxUser();
+		attorneyRecord.setUserCode(orderSaveBean.getAttorneyCode());
+		attorneyResultBean = userMapper.selectOne(attorneyRecord);
+
+		// 下面是文件的操作
 		String fileCode = orderSaveBean.getFileCodes();
-		if(StringUtil.isNotBlank(fileCode)){
+		if (StringUtil.isNotBlank(fileCode)) {
+
 			String[] fileCodes = fileCode.split(",");
+			
+			List<ZxOrder> orderRecordList = new ArrayList<ZxOrder>();
+			List<ZxOrderPrinterFile> orderPrinterFileRecordList = new ArrayList<ZxOrderPrinterFile>();
+			Map<String, ZxOrderPrinterFile> orderPrinterFileRecordMap =   new HashMap<String, ZxOrderPrinterFile>();
+			List<String> orderCodes = new ArrayList<String>();
+			
+			for (int i = 0; i < fileCodes.length; i++) {
+
+				ZxOrder zxOrderSaveBean = new ZxOrder();
+				ZxOrderPrinterFile ZxOrderPrinterFileSaveBean = new ZxOrderPrinterFile();
+				
+				// 首先生成一个订单code，这里先把订单num设置为何code一致
+				String orderCode = CodeBuilderUtil.orderCOde(orderSaveBean.getAttorneyCode());
+				String orderNum = orderCode;
+				orderCodes.add(orderCode);
+
+				FileResultBean abResultBean = null;
+				FileResultBean cdeResultBean = null;
+
+				if (orderSaveBean.getFileType().longValue() == 4L) {
+					// ab类型的文件
+
+					abResultBean = zxFileManagerABMapper.detailsab(fileCodes[i]);
+
+					zxOrderSaveBean.setFileUrl(abResultBean.getFileUrl());
+					ZxOrderPrinterFileSaveBean.setFileType("4");
+					ZxOrderPrinterFileSaveBean.setFileId(abResultBean.getId());
+					ZxOrderPrinterFileSaveBean.setFilePaper(abResultBean.getFileNum() * orderSaveBean.getPrinterNum());
+				} else if (orderSaveBean.getFileType().longValue() == 5L) {
+					// cde类型文件
+					ZxFileManagerCDE cdeRecord = new ZxFileManagerCDE();
+					cdeRecord.setFileCode(fileCodes[i]);
+					cdeResultBean = zxFileManagerABMapper.detailscde(fileCodes[i]);
+
+					zxOrderSaveBean.setFileUrl(cdeResultBean.getFileUrl());
+					ZxOrderPrinterFileSaveBean.setFileType("5");
+					ZxOrderPrinterFileSaveBean.setFileId(cdeResultBean.getId());
+					ZxOrderPrinterFileSaveBean.setFilePaper(cdeResultBean.getFileNum() * orderSaveBean.getPrinterNum());
+				}
+
+				zxOrderSaveBean.setAttorneyCode(attorneyResultBean.getUserCode());
+				zxOrderSaveBean.setAttorneyId(attorneyResultBean.getId());
+				zxOrderSaveBean.setCreateId(attorneyResultBean.getId());
+				zxOrderSaveBean.setCreateTime(new Date());
+				zxOrderSaveBean.setOrderCode(orderCode);
+				zxOrderSaveBean.setOrderNum(orderNum);
+				zxOrderSaveBean.setOrderUserCode(customerResultBean.getUserCode());
+				zxOrderSaveBean.setOrderUserId(customerResultBean.getId());
+				// zxOrderSaveBean.setPrinterAmount(printerAmount);打印费用，不知道一张纸多少钱
+				zxOrderSaveBean.setPrinterCode(printeResultBean.getPrinterCode());
+				zxOrderSaveBean.setPrinterId(printeResultBean.getId());
+				zxOrderSaveBean.setServiceAmount(orderSaveBean.getServiceAmout());
+				zxOrderSaveBean.setStatus(0); // 0这个状态应该是未支付
+
+				orderRecordList.add(zxOrderSaveBean);
+
+				ZxOrderPrinterFileSaveBean.setFileCode(fileCodes[i]);
+				ZxOrderPrinterFileSaveBean.setCreateId(attorneyResultBean.getId());
+				ZxOrderPrinterFileSaveBean.setCreateTime(new Date());
+				ZxOrderPrinterFileSaveBean.setOrderCode(orderCode);
+				ZxOrderPrinterFileSaveBean.setPaperColcor(orderSaveBean.getPaperColcor());
+				ZxOrderPrinterFileSaveBean.setPaperType(orderSaveBean.getPaperType());
+				ZxOrderPrinterFileSaveBean.setPaperUsage(orderSaveBean.getPaperUsage());
+				ZxOrderPrinterFileSaveBean.setPrinterNum(orderSaveBean.getPrinterNum());
+
+				orderPrinterFileRecordMap.put(orderCode, ZxOrderPrinterFileSaveBean);
+
+			}
+
+			zxOrderMapper.insertList(orderRecordList);
+
+			for (ZxOrder orderRecord : orderRecordList) {
+				ZxOrder record = new ZxOrder();
+				record.setOrderCode(orderRecord.getOrderCode());
+				orderPrinterFileRecordMap.get(orderRecord.getOrderCode())
+						.setOrderId(zxOrderMapper.selectOne(record).getId());
+			}
+			orderPrinterFileRecordList.addAll(orderPrinterFileRecordMap.values());
+			zxOrderPrinterFileMapper.insertList(orderPrinterFileRecordList);
+			return 1;
 		}
+
 		return 0;
 	}
 
-	private int update(OrderSaveBean orderSaveBean){
-		//获取历史订单
+	private int update(OrderSaveBean orderSaveBean) {
+		// 获取历史订单
 
 		return 0;
 	}
