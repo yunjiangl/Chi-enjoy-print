@@ -161,7 +161,11 @@ Page({
         }
         that.setData({
           details: res.data.data,
-          items1:item
+          items1:item,
+          sex: res.data.data.gen,
+          province: res.data.data.province,
+          city:res.data.data.city,
+          county:res.data.data.area
 
         })
       }
