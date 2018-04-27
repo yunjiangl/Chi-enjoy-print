@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.api.controller;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.constants.DictionaryKeys;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
@@ -42,8 +43,10 @@ public class DictionaryController extends BaseController {
 
     @ApiOperation(value = "根据code获取单个字典信息接口", notes = "根据code获取单个字典信息接口")
     @RequestMapping(value = "/get",method = RequestMethod.GET)
-    public void get(@RequestParam("code") String code,HttpServletRequest request){
+    @ResponseBody
+    public DictionaryResultBean get(@RequestParam("code") String code,HttpServletRequest request){
         servletPath = request.getServletPath();
+        return dictionaryService.get(code);
 
     }
 

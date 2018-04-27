@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
 
 import java.util.List;
@@ -25,5 +26,7 @@ public interface DictionaryService {
     List<DictionaryResultBean> listb();
 
     List<DictionaryResultBean> domain();
+    
+    DictionaryResultBean get(String code);
 
 }
