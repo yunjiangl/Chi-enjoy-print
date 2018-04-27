@@ -3,285 +3,266 @@
   <view class='container'>
 
     <!-- PhotoName start -->
-      <view class='PhotoName'>
-        
-        <!-- upPhoto start -->
-          <view class='upPhoto'>
-              <image src='../images/lawyerPersonData.png' />
-              <image src='{{details.portrait}}' />
-          </view>
-        <!-- upPhoto end  -->
+    <view class='PhotoName'>
 
-        <!-- Name start -->
-          <view class='Name'>
-          
-            <view><label class='NSA'>姓名:</label><label class='info'><input name='name' placeholder='请输入姓名' /></label></view>
-            <view><label class='NSA'>姓名:</label><label class='info'><input name='name' placeholder='请输入姓名' value='{{details.nickName}}' /></label></view>
-            <view>
-              <label class='NSA'>性别:</label>
-               <label class='sex'> 
-                <radio-group class='radio-group' bindchange='radioChange'>
-                  <label class='radio' wx:for='{{items}}'>
-                   <label class='radio' wx:for='{{items}}'>
-                    <radio value='{{item.name}}' checked='{{item.checked}}' color='#3798fb' />{{item.value}}
-                  </label>
+      <!-- upPhoto start -->
+      <view class='upPhoto'>
+        <image src='{{details.portrait}}' />
+      </view>
+      <!-- upPhoto end  -->
 
-                  
-                </radio-group>
-               </label> 
-            </view>
-            <view><label class='NSA'>年龄:</label><label class='info'><input name='age' placeholder='请输入年龄' /></label></view>
-            <view><label class='NSA'>年龄:</label><label class='info'><input name='age' placeholder='请输入年龄' value='{{details.age}}' /></label></view>
+      <!-- Name start -->
+      <view class='Name'>
 
-          </view>
-        <!-- Name end -->
+        <view>
+          <label class='NSA'>姓名:</label>
+          <label class='info'>
+            <input name='name' placeholder='请输入姓名' value='{{details.nickName}}' />
+          </label>
+        </view>
+        <view>
+          <label class='NSA'>性别:</label>
+          <label class='sex'>
+            <radio-group class='radio-group' bindchange='radioChange'>
+              <label class='radio' wx:for='{{items}}'>
+                <radio value='{{item.name}}' checked='{{item.checked}}' color='#3798fb' />{{item.value}}
+              </label>
+
+
+            </radio-group>
+          </label>
+        </view>
+        <view>
+          <label class='NSA'>年龄:</label>
+          <label class='info'>
+            <input name='age' placeholder='请输入年龄' value='{{details.age}}' />
+          </label>
+        </view>
 
       </view>
+      <!-- Name end -->
+
+    </view>
     <!-- PhotoName end -->
 
     <!-- phoneAndWeChat start -->
-      <view class='phoneAndWeChat'>
-        <view class='NumberAndAddress'>
-          <label>手机号:</label>
-          <label class='in'><input placeholder='请输入手机号' /></label>
-          <label class='in'><input name='mobile' placeholder='请输入手机号' value='{{details.mobile}}'/></label>
-        </view>
-
-          <view class='line'></view>
-
-        <view class='NumberAndAddress'>
-          <label>微信号:</label>
-          <label class='in'><input placeholder='请输入微信号' /></label>
-          <label class='in'><input name='weChatId' placeholder='请输入微信号' value='{{details.weChatId}}' /></label>
-        </view>
-
-          <view class='line'></view>        
-
-        <view class='NumberAndAddress NAA'>
-
-            <label class="location">所在地:</label>  
-            <!-- page start  -->
-            <view class="page">
-              <view class="nav">
-                  <view class="nav-son {{shownavindex == 1? 'active' : ''}}" bindtap="listqy" data-nav="1">
-                      <view class="content">请选择所在地</view>
-                      <view class="icon"></view>
-                  </view>
-              </view> 
-              <view class="quyu {{qyopen ? 'slidown' : 'slidup'}} {{qyshow ? 'disappear':''}}"> 
-                  <view class="qy quyu-left">
-                      <view class="{{select1 == index ? 'current' : ''}}" wx:for="{{cityleft}}" bindtap="selectleft" data-city='{{index}}'>
-                          {{index}}
-                      </view>
-                  </view> 
-                  <view class="qy quyu-center">
-                      <view class="{{select2 == index ? 'current2' : ''}}" wx:for="{{citycenter}}" bindtap="selectcenter" data-city='{{index}}'>
-                          {{index}}
-                      </view>
-                  </view> 
-                    <view class="qy quyu-right">
-                      <view wx:for="{{cityright}}">
-                          {{item}}
-                      </view>
-                  </view>  
-             <!-- page start  -->
-              <label class='li3'><view  class='infoText' bindtap="translate">{{province}} {{city}} {{county}}</view></label>
-            <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
-              <view class="animation-element" catchtap="nono">
-                  <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
-                  <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
-                    <view class="line"></view> 
-
-                  <picker-view indicator-style = "height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
-                  <!--省-->
-                  <picker-view-column>
-                    <view wx:for="{{provinces}}" wx:for-item="sheng" wx:key="">
-                      {{sheng.name}}
-                    </view>
-                  </picker-view-column>
-                  <!--地级市-->
-                  <picker-view-column>
-                    <view wx:for="{{citys}}" wx:key="">
-                      {{item.name}}
-                    </view>
-                  </picker-view-column>
-                  <!--区县-->
-                  <picker-view-column>
-                    <view wx:for="{{countys}}" wx:key="">
-                      {{item.name}}
-                    </view>
-                  </picker-view-column>
-                  </picker-view>
-              </view>
-            </view> 
-            <!--page end  -->
-            </view>
-          <!--page end  -->
-
-        </view>
+    <view class='phoneAndWeChat'>
+      <view class='NumberAndAddress'>
+        <label>手机号:</label>
+        <label class='in'>
+          <input placeholder='请输入手机号' value='{{details.mobile}}' />
+        </label>
       </view>
+
+      <view class='line'></view>
+
+      <view class='NumberAndAddress'>
+        <label>微信号:</label>
+        <label class='in'>
+          <input placeholder='请输入微信号' value='{{details.weChatId}}' />
+        </label>
+      </view>
+
+      <view class='line'></view>
+
+      <view class='NumberAndAddress NAA'>
+
+        <label class="location">所在地:</label>
+        <!-- page start  -->
+        <label class='li3'>
+          <view class='infoText' bindtap="translate">{{province}} {{city}} {{county}}</view>
+        </label>
+        <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
+          <view class="animation-element" catchtap="nono">
+            <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+            <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
+            <view class="line"></view>
+
+            <picker-view indicator-style="height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+              <!--省-->
+              <picker-view-column>
+                <view wx:for="{{provinces}}" wx:for-item="sheng" wx:key="">
+                  {{sheng.name}}
+                </view>
+              </picker-view-column>
+              <!--地级市-->
+              <picker-view-column>
+                <view wx:for="{{citys}}" wx:key="">
+                  {{item.name}}
+                </view>
+              </picker-view-column>
+              <!--区县-->
+              <picker-view-column>
+                <view wx:for="{{countys}}" wx:key="">
+                  {{item.name}}
+                </view>
+              </picker-view-column>
+            </picker-view>
+          </view>
+        </view>
+        <!--page end  -->
+
+      </view>
+    </view>
     <!--  phoneAndWeChat end -->
 
-      <!-- occupation执业 start -->
-    <view class='occupation' >
+    <!-- occupation执业 start -->
+    <view class='occupation'>
 
-        <!-- PracticeYears执业年限 start -->
-        <view class='PracticeYears'>
-        <view class='Years'>职业年限:</view> 
+      <!-- PracticeYears执业年限 start -->
+      <view class='PracticeYears'>
+        <view class='Years'>职业年限:</view>
 
-          <!-- 下拉框 start -->
-          <view>
-
-            <view class="phone_one" bindtap="clickPerson">
-              <view class="phone_personal">{{firstPerson}}</view>
-              <view class="icon ico personal_image {{selectArea ? 'rotateRight' :''}}"></view>
-            </view>
-
-            <view class="person_box">
-              <view class="phone_select" hidden="{{selectPerson}}">
-                <view class="select_one" bindtap="mySelect" data-me="一年以下">一年以下</view>
-                <view class="select_one" bindtap="mySelect" data-me="1~3年">1~3年</view>
-                <view class="select_one" bindtap="mySelect" data-me="3~5年">3~5年</view>
-                <view class="select_one" bindtap="mySelect" data-me="5~10年">5~10年</view>
-                <view class="select_one" bindtap="mySelect" data-me="10年以上">10年以上</view>
-              </view>
-            </view>
-
-            </view>
-            <!-- 下拉框 end -->
-
-          </view>
-          <!-- PracticeYears end -->
-
-          <view class='line'></view>
-
-         <!-- mechanism机构 start -->
+        <!-- 下拉框 start -->
         <view>
 
-            <!-- occupationMechanism执业机构 start -->
-            <view class='occupationMechanism'>
-                <view class='font'>执业机构:</view>
-                <view class='infoOccupation'><input placeholder='请输入执业机构'></input></view>
-                <view class='infoOccupation'><input name='workOrg' placeholder='请输入执业机构'></input></view>
+          <view class="phone_one" bindtap="clickPerson">
+            <view class="phone_personal">{{firstPerson}}</view>
+            <view class="icon ico personal_image {{selectArea ? 'rotateRight' :''}}"></view>
+          </view>
+
+          <view class="person_box">
+            <view class="phone_select" hidden="{{selectPerson}}">
+              <view class="select_one" bindtap="mySelect" data-me="一年以下">一年以下</view>
+              <view class="select_one" bindtap="mySelect" data-me="1~3年">1~3年</view>
+              <view class="select_one" bindtap="mySelect" data-me="3~5年">3~5年</view>
+              <view class="select_one" bindtap="mySelect" data-me="5~10年">5~10年</view>
+              <view class="select_one" bindtap="mySelect" data-me="10年以上">10年以上</view>
             </view>
-            <!-- occupationMechanism end -->
-
-            <view class='line'></view>
-
-            <!-- occupationNumber执业证号 start -->
-              <view class='occupationNumber'>
-                <view class='font'>执业证号:</view>
-                <view class='infoOccupation'><input placeholder='请输入执业证号'></input></view>
-                <view class='infoOccupation'><input name='workNum' placeholder='请输入执业证号'></input></view>
-              </view>
-            <!-- occupationNumber end -->
-
-            <view class='line'></view>
-
-            <!-- choiceNumber start -->
-              <view class='choiceNumber'>
-                  <view class='occupationNumber'>
-                    <view class='font'>执业证号:</view>
-                    <view class='font'>执业类别:</view>
-                    <view class='atLeast'>(至少选择6-8个)</view>
-                  </view>
-
-                <view style='clear:both;'></view>
-                <!-- choice start -->
-                  <view class='choice'>
-                    
-                    <view class='rt'>
-                   <view class='rt'>
-
-                    <view class='tp'>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>金融证券</view>
-                      <view class='list'>行政法律</view>
-                      <view class='list'>知识产权</view>
-                     <view class='tp'>
-                      <view  class="list {{item.state==1?'active-tag':''}} " bindtap="select_date"  wx:for="{{dates}}" data-key='{{index}}'>
-                          <text class="flex-item">{{item.name}}</text>
-                      </view>
-                    </view>
-
-                    <view class='tp'>
-                      <view class='list'>劳动纠纷</view>
-                      <view class='list'>海事海商</view>
-                      <view class='list'>商事仲裁</view>
-                      <view class='list'>合同纠纷</view>
-                    </view>
-
-                    <view class='tp'>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                    </view>
-
-                    <view class='tp'>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                      <view class='list'>征地拆迁</view>
-                    </view>  
-
-                  </view>
-
-                  </view>
-                <!-- choice end -->
-
-              </view>
-            <!-- choiceNumber end -->
+          </view>
 
         </view>
-        <!-- mechanism机构 end  -->
-      
+        <!-- 下拉框 end -->
+
       </view>
+      <!-- PracticeYears end -->
+
+      <view class='line'></view>
+
+      <!-- mechanism机构 start -->
+      <view>
+
+        <!-- occupationMechanism执业机构 start -->
+        <view class='occupationMechanism'>
+          <view class='font'>执业机构:</view>
+          <view class='infoOccupation'>
+            <input placeholder='请输入执业机构'></input>
+          </view>
+        </view>
+        <!-- occupationMechanism end -->
+
+        <view class='line'></view>
+
+        <!-- occupationNumber执业证号 start -->
+        <view class='occupationNumber'>
+          <view class='font'>执业证号:</view>
+          <view class='infoOccupation'>
+            <input placeholder='请输入执业证号'></input>
+          </view>
+        </view>
+        <!-- occupationNumber end -->
+
+        <view class='line'></view>
+
+        <!-- choiceNumber start -->
+        <view class='choiceNumber'>
+          <view class='occupationNumber'>
+            <view class='font'>执业证号:</view>
+            <view class='atLeast'>(至少选择6-8个)</view>
+          </view>
+
+          <!-- choice start -->
+          <view class='choice'>
+
+            <view class='rt'>
+
+              <view class='tp'>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>金融证券</view>
+                <view class='list'>行政法律</view>
+                <view class='list'>知识产权</view>
+              </view>
+
+              <view class='tp'>
+                <view class='list'>劳动纠纷</view>
+                <view class='list'>海事海商</view>
+                <view class='list'>商事仲裁</view>
+                <view class='list'>合同纠纷</view>
+              </view>
+
+              <view class='tp'>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+              </view>
+
+              <view class='tp'>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+                <view class='list'>征地拆迁</view>
+              </view>
+
+            </view>
+
+          </view>
+          <!-- choice end -->
+
+        </view>
+        <!-- choiceNumber end -->
+
+      </view>
+      <!-- mechanism机构 end  -->
+
+    </view>
     <!-- occupation执业 end -->
 
-<view style='clear:both;'></view>
     <!-- upPicture上传图片 start -->
-      <view class='upPicture'>
+    <view class='upPicture'>
 
-        <!-- IDCard start -->
-          <view class='IDCard'>
-              <view class='up'>
-                  <view class='upImage'><image class='images' src='../images/photo.png' /></view>
-                  <view class='upImage' bindtap='uploadOne'><image class='images' src='{{src1}}' /></view>
-                  <view class='text'>请上传身份证信息页照片</view>
-              </view>
-          </view>    
-        <!-- IDCard end -->
-
-        <!-- lawYerCertificate律师证书 start -->
-          <view class='lawYerCertificate'>
-            <view class='up'>
-              <view><image class='images' src='../images/photo.png' /></view>
-              <view bindtap='uploadTwo'><image class='images' src='{{src2}}' /></view>
-              <view class='text'>请上传律师执业证书信息页</view>
-            </view>
+      <!-- IDCard start -->
+      <view class='IDCard'>
+        <view class='up'>
+          <view class='upImage'>
+            <image class='images' src='../images/photo.png' />
           </view>
-        <!-- lawYerCertificate律师证书 end -->
-
-        <!-- putOnfile备案 start -->
-          <view class='putOnfile'>
-            <view class='up'>
-              <view><image class='images' src='../images/photo.png' /></view>
-              <view bindtap='uploadThree'><image class='images' src='{{src3}}' /></view>
-              <view class='text'>请上传年度审核备案页</view>
-            </view>
-          </view>
-        <!-- putOnfile备案 end -->
-
+          <view class='text'>请上传身份证信息页照片</view>
+        </view>
       </view>
+      <!-- IDCard end -->
+
+      <!-- lawYerCertificate律师证书 start -->
+      <view class='lawYerCertificate'>
+        <view class='up'>
+          <view>
+            <image class='images' src='../images/photo.png' />
+          </view>
+          <view class='text'>请上传律师执业证书信息页</view>
+        </view>
+      </view>
+      <!-- lawYerCertificate律师证书 end -->
+
+      <!-- putOnfile备案 start -->
+      <view class='putOnfile'>
+        <view class='up'>
+          <view>
+            <image class='images' src='../images/photo.png' />
+          </view>
+          <view class='text'>请上传年度审核备案页</view>
+        </view>
+      </view>
+      <!-- putOnfile备案 end -->
+
+    </view>
     <!-- upPicture上传图片 end -->
-    
+
     <!--footer start  -->
-      <view class='footer'>
-          <button formType="submit" type="primary" size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
-      </view>
+    <view class='footer'>
+      <button formType="submit" type="primary" size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
+    </view>
     <!--footer end  -->
 
   </view>
-<!-- container end -->
+  <!-- container end -->
 </form>

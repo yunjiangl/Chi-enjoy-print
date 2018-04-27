@@ -1,40 +1,11 @@
 {
   "pages": [
     "pages/lawyerIndex/lawyerIndex",
-
-
-
-
-
-
-
-
-
-
-
-
     "pages/choiceCustomer/choiceCustomer",
     "pages/historyConsultant/historyConsultant",
-    "pages/lawyerIndex/lawyerIndex",
-    "pages/lawyerFourFileList/lawyerFourFileList",
-    
-    
-    "pages/lawyerFileClassA/lawyerFileClassA",
-    
-    
-    "pages/vip-login/vip-login",
-    
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
-    
     "pages/vip-login/vip-login",
-    "pages/improvingPersonalData/improvingPersonalData",
-
     "pages/lawyerFourFileList/lawyerFourFileList",
-
-
-
-
-
     "pages/lawyerFileList/lawyerFileList",
     "pages/lawyerChoiceOwner/lawyerChoiceOwner",
     "pages/lawyerChoicePrinter/lawyerChoicePrinter",
@@ -48,11 +19,8 @@
     "pages/lawyerFileClassC/lawyerFileClassC",    
     "pages/lawyerFileClassB/lawyerFileClassB",
     "pages/lawyerFileClassA/lawyerFileClassA",    
-     
     "pages/lawyerpersonData/lawyerpersonData",
     "pages/setting/document/download/download",    
-
-    
     "pages/CustomerIndex/CustomerIndex",
     "pages/map/map", 
     "pages/search/search",
@@ -61,18 +29,14 @@
     "pages/howuse/howuse",    
     "pages/notLogin/notLogin",    
     "pages/personalCenter/personalCenter",  
-
     "pages/improvingPersonalData/improvingPersonalData",  
-    "pages/setPrint/setPrint",    
-    "pages/historyConsultant/historyConsultant",    
+    "pages/setPrint/setPrint",      
     "pages/printCost/printCost",    
     "pages/printOrders/printOrders",
     "pages/upfilelist/upfilelist",    
     "pages/choicePrinter/choicePrinter",    
     "pages/personalData/personalData",
     "pages/index/index",
-
-
     "pages/bindingPhone/bindingPhone",
     "pages/forgetPassword/forgetPassword",
     "pages/resetPassword/resetPassword",
@@ -123,7 +87,7 @@
           "selectedIconPath": "pages/images/icon/5.png"
         }
       ]
-    }
+    },
   
   "tabBar": {
     "color": "#666",

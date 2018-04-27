@@ -8,8 +8,6 @@ Page({
   data: {
 
     items1: [
-      { name: 'putong', value: '单面', checked: 'true' },
-      { name: 'lvshi', value: '双面' },
       { name: '12', value: '单面', checked: 'true' },
       { name: '13', value: '双面' },
     ],
@@ -17,25 +15,9 @@ Page({
       { checked: 'true' },
     ],
     items3: [
-      { name: 'putong', value: '黑白', checked: 'true' },
-      { name: 'lvshi', value: '彩色' },
       { name: '10', value: '黑白', checked: 'true' },
       { name: '11', value: '彩色' },
     ],
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
     printerNum: 1, // 打印数量，默认为1
     paperUsage: null,//范围
     fileNames: [],
@@ -54,21 +36,6 @@ Page({
     }
 
   },
-  showModal:function(){
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   minus: function () {
     var that = this
@@ -169,27 +136,11 @@ Page({
     }
     console.log(that.data.order)
     wx.showModal({
-      title: '提示',
-      content: '这是一个模态弹窗',
       title: '发送到：' + that.data.order.customerCode,
       content: '律师服务费：' + that.data.order.serviceAmout + msg,
       success: function (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           // 向服务端发送订单数据保存订单
           wx.request({
             url: app.data.api + 'order/save',
@@ -221,28 +172,6 @@ Page({
       }
     })
   },
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // 获取律师的code
   getLawyerCode: function () {
     var that = this
@@ -294,38 +223,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // 在页面加载时就设置order的律师code
     this.getLawyerCode()
     // 把接收到的字符串转换成json对象
@@ -367,7 +264,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
 
   },
 
@@ -375,7 +271,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
 
   },
 
@@ -383,7 +278,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
 
   },
 
@@ -391,7 +285,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
 
   },
 
@@ -399,7 +292,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
 
   },
 
@@ -407,7 +299,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
 
   },
 
@@ -415,7 +306,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
 
   }
 })

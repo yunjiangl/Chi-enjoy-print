@@ -1,24 +1,10 @@
 <!--container start  -->
-  <view class='container'>
 
 <view class='container'>
 
   <!--list start  -->
-    <view class='list'>
-      
-      <!--list-until  start -->
-        <view class='list-until'>
   <view class='list'>
 
-        <view class='lt'>
-            <view class='photo'>
-              <image class='head-photo' src='../images/boy.png' />
-              <image class='red' src='../images/red.png' />
-            </view>   
-            <view>
-                <view><text>张大律师</text></view> 
-                <view class='your'><text>您曾导入的文件</text></view>
-            </view>
     <!--list-until  start -->
     <view class='list-until' bindtap="choice">
 
@@ -27,9 +13,6 @@
           <image class='head-photo' src='../images/boy.png' />
           <image class='red' src='../images/red.png' />
         </view>
-
-        <view class='date'>
-          <text class='dt'>上午11:35</text>
         <view>
           <view>
             <text>张大律师</text>
@@ -39,36 +22,17 @@
           </view>
         </view>
 
-        </view>
-      <!--list-until  end -->
-          
-            <view class='line'></view>
       </view>
 
-      <!--list-until  start -->
-        <view class='list-until'>
       <view class='date'>
         <text class='dt'>上午11:35</text>
       </view>
 
-        <view class='lt'>
-            <view class='photo'>
-              <image class='head-photo' src='../images/girl.png' />
-              <!-- <image class='red' src='../images/red.png' /> -->
-            </view>   
-            <view>
-                <view><text>张大律师</text></view> 
-                <view class='your'><text>您曾导入的文件</text></view>
-            </view>
     </view>
     <!--list-until  end -->
 
-        </view>
     <view class='line'></view>
 
-        <view class='date'>
-          <text class='dt'>18/01/08</text>
-        </view>
     <!--list-until  start -->
     <view class='list-until'>
 
@@ -77,8 +41,6 @@
           <image class='head-photo' src='../images/girl.png' />
           <!-- <image class='red' src='../images/red.png' /> -->
         </view>
-      <!--list-until  end -->
-
         <view>
           <view>
             <text>张大律师</text>
@@ -88,33 +50,17 @@
           </view>
         </view>
 
-      <view class='line'></view>
       </view>
 
-      <!--list-until  start -->
-        <view class='list-until'>
       <view class='date'>
         <text class='dt'>18/01/08</text>
       </view>
 
-        <view class='lt'>
-            <view class='photo'>
-              <image class='head-photo' src='../images/girl.png' />
-              <!-- <image class='red' src='../images/red.png' /> -->
-            </view>   
-            <view>
-                <view><text>张大律师</text></view> 
-                <view class='your'><text>您曾导入的文件</text></view>
-            </view>
     </view>
     <!--list-until  end -->
 
-        </view>
     <view class='line'></view>
 
-        <view class='date'>
-          <text class='dt'>18/01/08</text>
-        </view>
     <!--list-until  start -->
     <view class='list-until'>
 
@@ -123,8 +69,6 @@
           <image class='head-photo' src='../images/girl.png' />
           <!-- <image class='red' src='../images/red.png' /> -->
         </view>
-      <!--list-until  end -->
-
         <view>
           <view>
             <text>张大律师</text>
@@ -134,7 +78,6 @@
           </view>
         </view>
 
-      <view class='line'></view>
       </view>
 
       <view class='date'>
@@ -149,7 +92,6 @@
   </view>
   <!--list end  -->
 
-  </view>
 
 
 </view>
