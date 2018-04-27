@@ -1,24 +1,23 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.service.MemcachedService;
+import com.zx.share.platform.common.service.TokenCacheService;
+import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.constants.OCSKeys;
 import com.zx.share.platform.util.StringUtil;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.vo.user.UserRequestBean;
+import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.vo.wechat.request.UserAttorneyDomain;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
 import com.zx.share.platform.vo.wechat.response.AttorneyDetailsBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.zx.share.platform.bean.zx.ZxUser;
-import com.zx.share.platform.common.service.TokenCacheService;
-import com.zx.share.platform.constants.ErrorsEnum;
-import com.zx.share.platform.util.response.DefaultResopnseBean;
-import com.zx.share.platform.vo.user.UserRequestBean;
-import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.service.SmsService;
 import com.zx.share.platform.wechat.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -64,6 +63,22 @@ public class UserServiceImpl implements UserService {
 		return userMapper.update(userSaveBean);
 	}
 
+	/**
+	 * 用户信息修改
+	 *
+	 * @param bean
+	 * @return
+	 */
+	@Override
+	public Integer updateUser(UserUpdateBean bean) {
+		return userMapper.update(bean);
+	}
+
+	/**
+	 * 律师信息修改
+	 * @param bean
+	 * @return
+	 */
 	@Transactional(readOnly = false)
 	@Override
 	public Integer update(UserUpdateBean bean) {
@@ -82,9 +97,9 @@ public class UserServiceImpl implements UserService {
 				saveDomain.setUserCode(bean.getUserCode());
 				saveDomain.setUserId(bean.getUserId());
 				saveDomain.setDomainCode(domainCode);
-
 				domainList.add(saveDomain);
 			}
+
 
 			if(domainList!=null && !domainList.isEmpty()){
 				userMapper.saveAttorneyDomain(domainList);
@@ -94,6 +109,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return 1;
 	}
+
 
 	@Override
 	public String registerCode(String mobile) {
@@ -170,7 +186,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetailsBean details(String userCode) {
 		String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
-		Object obj = memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
+		Object obj = memcachedService.getAndTouch(key, OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
 		UserDetailsBean resultBean = null;
 		if(obj==null){
 			resultBean = userMapper.findByCode(userCode);
@@ -180,7 +196,7 @@ public class UserServiceImpl implements UserService {
 				attorney.setDomainList(domains);
 				resultBean.setAttorney(attorney);
 			}
-			memcachedService.set(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
+			memcachedService.set(key, OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
 		}else{
 			 resultBean = (UserDetailsBean)obj;
 		}
