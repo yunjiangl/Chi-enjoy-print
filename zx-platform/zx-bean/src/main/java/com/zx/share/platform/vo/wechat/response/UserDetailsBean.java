@@ -23,11 +23,21 @@ public class UserDetailsBean implements Serializable {
     @ApiModelProperty("昵称")
     private String nickName;
     @ApiModelProperty("性别")
-    private Integer grad;
+    private String gen;
     @ApiModelProperty("年龄")
     private Integer age;
     @ApiModelProperty("头像url")
     private String portrait;
+    @ApiModelProperty("openId")
+    private String openId;
+    @ApiModelProperty("微信号")
+    private String weChatId;
+    @ApiModelProperty("省份")
+    private String province;
+    @ApiModelProperty("城市")
+    private String city;
+    @ApiModelProperty("地区")
+    private String area;
     @ApiModelProperty("用户类型（1-普通用户，2-律师）")
     private Integer userType;
     @ApiModelProperty("用户状态（1-微信刚登陆，2-绑定手机号）")
@@ -35,6 +45,46 @@ public class UserDetailsBean implements Serializable {
 
     @ApiModelProperty("律师信息")
     private AttorneyDetailsBean attorney;
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
+    public String getWeChatId() {
+        return weChatId;
+    }
+
+    public void setWeChatId(String weChatId) {
+        this.weChatId = weChatId;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
 
     public String getUserCode() {
         return userCode;
@@ -68,12 +118,12 @@ public class UserDetailsBean implements Serializable {
         this.nickName = nickName;
     }
 
-    public Integer getGrad() {
-        return grad;
+    public String getGen() {
+        return gen;
     }
 
-    public void setGrad(Integer grad) {
-        this.grad = grad;
+    public void setGen(String gen) {
+        this.gen = gen;
     }
 
     public Integer getAge() {

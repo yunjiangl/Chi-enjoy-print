@@ -4,7 +4,6 @@ import com.zx.share.platform.common.bean.SessionConfig;
 import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
-import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by fenggang on 18/3/5.
@@ -68,11 +66,13 @@ public class UserController extends BaseController {
     public DefaultResopnseBean<Object> update(@ApiParam("微信号") @RequestParam("wechatId") String wechatId,
                                               @ApiParam("手机号") @RequestParam("mobile") String mobile,
                                               @ApiParam("头像") @RequestParam("portrait") String portrait,
-                                              @ApiParam("性别（1-男，2-女）") @RequestParam("age") Integer age,
+                                              @ApiParam("年龄") @RequestParam("age") Integer age,
+                                              @ApiParam("性别（男，女）") @RequestParam("gen") String gen,
                                               @ApiParam("省") @RequestParam("province") String province,
                                               @ApiParam("市") @RequestParam("city") String city,
                                               @ApiParam("区") @RequestParam("area") String area,
-                                              @ApiParam("地址") @RequestParam("address") String address, HttpServletRequest request) {
+                                              @ApiParam("地址") @RequestParam("address") String address,
+                                              @ApiParam("用户code") @RequestParam("userCode") String userCode, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
         UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
@@ -81,7 +81,7 @@ public class UserController extends BaseController {
         }
         UserUpdateBean updateBean = new UserUpdateBean();
         updateBean.setAddress(address);
-        updateBean.setUserCode(user.getUserCode());
+        updateBean.setUserCode(userCode);
         updateBean.setWechatId(wechatId);
         updateBean.setAge(age);
         updateBean.setMobile(mobile);
@@ -89,7 +89,9 @@ public class UserController extends BaseController {
         updateBean.setPortrait(portrait);
         updateBean.setProvince(province);
         updateBean.setArea(area);
+        updateBean.setGen(gen);
 
+        userService.updateUser(updateBean);
 
         return resopnseBean;
     }
@@ -98,9 +100,11 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/attorney/update", method = RequestMethod.POST)
     @ResponseBody
     public DefaultResopnseBean<Object> attorneyUpdat(@ApiParam("微信号") @RequestParam("wechatId") String wechatId,
+                                                     @ApiParam("用户code") @RequestParam("userCode") String userCode,
                                                      @ApiParam("手机号") @RequestParam("mobile") String mobile,
                                                      @ApiParam("头像") @RequestParam("portrait") String portrait,
-                                                     @ApiParam("性别（1-男，2-女）") @RequestParam("age") Integer age,
+                                                     @ApiParam("性别（男，女）") @RequestParam("gen") String gen,
+                                                     @ApiParam("年龄") @RequestParam("age") Integer age,
                                                      @ApiParam("省") @RequestParam("province") String province,
                                                      @ApiParam("市") @RequestParam("city") String city,
                                                      @ApiParam("区") @RequestParam("area") String area,
@@ -120,9 +124,11 @@ public class UserController extends BaseController {
         }
         UserUpdateBean updateBean = new UserUpdateBean();
         updateBean.setAddress(address);
-        updateBean.setUserCode(user.getUserCode());
+       // updateBean.setUserCode(user.getUserCode());
+        updateBean.setUserCode(userCode);
         updateBean.setWechatId(wechatId);
         updateBean.setAge(age);
+        updateBean.setGen(gen);
         updateBean.setMobile(mobile);
         updateBean.setCity(city);
         updateBean.setPortrait(portrait);
@@ -135,7 +141,7 @@ public class UserController extends BaseController {
         updateBean.setWorkYear(workYear);
         updateBean.setWorkOrg(workOrg);
         updateBean.setDomains(domains);
-
+        userService.update(updateBean);
         return resopnseBean;
     }
 

@@ -1,6 +1,5 @@
 //获取应用实例
-// var app = getApp()
-// var util = require('../../utils/util.js')
+var app = getApp()
 var area = require('../../utils/area.js')
 
 var areaInfo = [];//所有省市区县数据
@@ -115,7 +114,7 @@ Page({
     console.log('姓名:' + name + '年龄:' + age + '手机:' + age + '微信:' + weChatId + '性别:' + sex + '所在地:' + address + '执业机构:' + workOrg + '执业证号:' + workNum + '执业类型:' + domains + '职业年限:' + workYear + '审核图片:' + checkImg + '资格证图片:' + attorneyCardImg + '身份证:' + identityCardImg);
 
     wx.request({
-      url: 'http://127.0.0.1:10001/user/attorney/update',
+      url: app.data.api + app.data.urlUserAttorneyUpdate,
       data: {
         userCode: code,
         wechatId: weChatId,
@@ -167,9 +166,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         console.log(tempFilePaths[0]);
-        that.setData({
-          src1: tempFilePaths[0]
-        })
+       
         upload(that, tempFilePaths,1);
       }
     })
@@ -187,9 +184,7 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        that.setData({
-          src2: tempFilePaths[0]
-        })
+        
         upload(that, tempFilePaths,2);
       }
     })
@@ -206,9 +201,7 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        that.setData({
-          src3: tempFilePaths[0]
-        })
+      
         upload(that, tempFilePaths,3);
       }
     })
@@ -292,9 +285,9 @@ Page({
     });
 
     wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
+      url: app.data.api + app.data.urlUserDetails,
       data: {
-        code: 'wechat00000000007'
+        code: app.data.userCode
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -317,7 +310,10 @@ Page({
         that.setData({
           details: res.data.data,
           items: item,
-          sex: res.data.data.gen
+          sex: res.data.data.gen,
+          province: res.data.data.province,
+          city: res.data.data.city,
+          county: res.data.data.area
 
         })
 
@@ -382,7 +378,7 @@ function upload(page, path,num) {
     title: "正在上传"
   }),
     wx.uploadFile({
-    url: "http://127.0.0.1:10001/upload/file/userimg",
+    url: app.data.api + app.data.urlUploadUserimg,
       filePath: path[0],
       name: 'multipartFile',
       header: { "content-type": "multipart/form-data" },
@@ -402,7 +398,6 @@ function upload(page, path,num) {
         }
         var data = res.data
         
-
         switch (num) {
           case 1:
             page.setData({  //上传成功修改显示头像

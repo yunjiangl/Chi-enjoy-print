@@ -23,5 +23,5 @@ public interface UploadService {
      * @Title: add
      * @Description: 添加用户照片
      */
-    DefaultResopnseBean<Object> addImg(MultipartFile multipartFile,String filePath);
+    DefaultResopnseBean<Object> addImg(MultipartFile multipartFile, String filePath);
 }

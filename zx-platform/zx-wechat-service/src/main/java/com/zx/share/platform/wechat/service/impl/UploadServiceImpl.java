@@ -1,29 +1,23 @@
 package com.zx.share.platform.wechat.service.impl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
+import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
+import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.DateUtil;
+import com.zx.share.platform.util.Excel2Pdf;
+import com.zx.share.platform.util.GetPdfpage;
+import com.zx.share.platform.util.Word2PdfUtil;
 import com.zx.share.platform.util.file.FileUtil;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.wechat.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
-import com.zx.share.platform.constants.ErrorsEnum;
-import com.zx.share.platform.util.Excel2Pdf;
-import com.zx.share.platform.util.GetPdfpage;
-import com.zx.share.platform.util.Word2PdfUtil;
-import com.zx.share.platform.util.response.DefaultResopnseBean;
-import com.zx.share.platform.wechat.service.UploadService;
+import java.io.*;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by fenggang on 18/3/19.
@@ -127,7 +121,7 @@ public class UploadServiceImpl implements UploadService {
      * @Description: 添加用户照片
      */
     @Override
-    public DefaultResopnseBean<Object> addImg(MultipartFile multipartFile,String filePath) {
+    public DefaultResopnseBean<Object> addImg(MultipartFile multipartFile, String filePath) {
         // 获得文件后缀
         String suffix = multipartFile.getOriginalFilename()
                 .substring(multipartFile.getOriginalFilename().lastIndexOf(".") );
