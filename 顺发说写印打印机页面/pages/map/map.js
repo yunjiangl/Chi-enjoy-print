@@ -76,7 +76,7 @@ Page({
 
           url: 'http://123.206.42.162:10001/printer/nearby',
           header: {
-            'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken,
+            'X-ACCESS-TOKEN': null,
           },
           data: {
             longitude: a,
