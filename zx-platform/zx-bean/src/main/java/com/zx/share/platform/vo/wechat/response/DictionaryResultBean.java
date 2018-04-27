@@ -22,6 +22,8 @@ public class DictionaryResultBean implements Serializable {
     private String name;
     private Long id;
     private Long pId;
+    @ApiModelProperty(value = "参数值")
+    private String value;
 
     private List<DictionaryResultBean> list = new ArrayList<>();
 
@@ -64,4 +66,16 @@ public class DictionaryResultBean implements Serializable {
     public void setpId(Long pId) {
         this.pId = pId;
     }
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	
+    
+    
 }

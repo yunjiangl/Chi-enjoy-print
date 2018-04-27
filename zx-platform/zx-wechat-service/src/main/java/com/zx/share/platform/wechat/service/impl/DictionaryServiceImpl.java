@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import com.zx.share.platform.bean.sys.SysDictionary;
 import com.zx.share.platform.constants.DictionaryTypeEnum;
 import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
@@ -59,4 +60,10 @@ public class DictionaryServiceImpl implements DictionaryService {
         }
         return result;
     }
+
+	@Override
+	public DictionaryResultBean get(String code) {
+		// TODO Auto-generated method stub
+		return dictionaryMapper.get(code);
+	}
 }
