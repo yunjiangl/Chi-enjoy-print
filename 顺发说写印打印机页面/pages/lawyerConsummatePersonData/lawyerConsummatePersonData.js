@@ -1,3 +1,4 @@
+var cityData = require('../../utils/city.js');
 //获取应用实例
 // var app = getApp()
 // var util = require('../../utils/util.js')
@@ -25,6 +26,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    items: [
+      { name: '男', value: '男', checked: 'true' },
+      { name: "女", value: "女" }
+    ],
     checked: '',
     selectPerson: true,
     firstPerson: '请选择职业年限',
@@ -32,6 +37,21 @@ Page({
     items2: [
       { checked: 'true' },
     ],
+    nv: [],
+    px: [],
+    qyopen: false,
+    qyshow: false,
+    nzopen: false,
+    pxopen: false,
+    nzshow: false,
+    pxshow: false,
+    isfull: false,
+    cityleft: cityData.getCity(),
+    citycenter: {},
+    cityright: {},
+    select1: '',
+    select2: '',
+    shownavindex: ''
     show: show,
     provinces: provinces,
     citys: citys,
@@ -75,8 +95,16 @@ Page({
     // 姓名
     var code = this.data.details.userCode;
     var name = e.detail.value.name;
+    console.log(name)
     // 年龄
     var age = e.detail.value.age;
+    console.log(age);
+    //性别
+    var sex = this.data.items[0].checked;
+    if(sex==true){
+      console.log(this.data.items[0].value);
+    }else{
+      console.log(this.data.items[1].value);
     // 手机
     var mobile = e.detail.value.mobile;
     // 微信
@@ -101,10 +129,17 @@ Page({
         domains += dates[i].name+',';
         }
     }
+    
+
+
+
+
 
     //职业年限
     var workYear = this.data.firstPerson;
     console.log(this.data.firstPerson);
+  
+
     //审核图片
     var checkImg = this.data.src3;
     //资格证图片
@@ -150,8 +185,96 @@ Page({
     })
   },
   //性别
+  radioChange:function(e){
   radioChange: function (e) {
     console.log(e.detail.value);
+  },
+
+//所在地
+
+//执业类型
+
+  listqy: function (e) {
+    if (this.data.qyopen) {
+      this.setData({
+        qyopen: false,
+        nzopen: false,
+        pxopen: false,
+        nzshow: true,
+        pxshow: true,
+        qyshow: false,
+        isfull: false,
+        shownavindex: 0
+      })
+    } else {
+      this.setData({
+        qyopen: true,
+        pxopen: false,
+        nzopen: false,
+        nzshow: true,
+        pxshow: true,
+        qyshow: false,
+        isfull: true,
+        shownavindex: e.currentTarget.dataset.nav
+      })
+    }
+    
+  },
+  list: function (e) {
+    if (this.data.nzopen) {
+      this.setData({
+        nzopen: false,
+        pxopen: false,
+        qyopen: false,
+        nzshow: false,
+        pxshow: true,
+        qyshow: true,
+        isfull: false,
+        shownavindex: 0
+      })
+    } else {
+      this.setData({
+        content: this.data.nv,
+        nzopen: true,
+        pxopen: false,
+        qyopen: false,
+        nzshow: false,
+        pxshow: true,
+        qyshow: true,
+        isfull: true,
+        shownavindex: e.currentTarget.dataset.nav
+      })
+    }
+  },
+  listpx: function (e) {
+    if (this.data.pxopen) {
+      this.setData({
+        nzopen: false,
+        pxopen: false,
+        qyopen: false,
+        nzshow: true,
+        pxshow: false,
+        qyshow: true,
+        isfull: false,
+        shownavindex: 0
+      })
+    } else {
+      this.setData({
+        content: this.data.px,
+        nzopen: false,
+        pxopen: true,
+        qyopen: false,
+        nzshow: true,
+        pxshow: false,
+        qyshow: true,
+        isfull: true,
+        shownavindex: e.currentTarget.dataset.nav
+      })
+    }
+    console.log(e.target)
+  },
+  selectleft: function (e) {
+
     this.setData({
       sex: e.detail.value
     })
@@ -195,6 +318,31 @@ Page({
     })
   },
 
+    this.setData({
+      cityright: {},
+      citycenter: this.data.cityleft[e.currentTarget.dataset.city],
+      select1: e.target.dataset.city,
+      select2: ''
+    });
+  },
+  selectcenter: function (e) {
+
+    this.setData({
+      cityright: this.data.citycenter[e.currentTarget.dataset.city],
+      select2: e.target.dataset.city
+    });
+  },
+  hidebg: function (e) {
+
+    this.setData({
+      qyopen: false,
+      nzopen: false,
+      pxopen: false,
+      nzshow: true,
+      pxshow: true,
+      qyshow: true,
+      isfull: false,
+      shownavindex: 0
 
   //上传年审
   uploadThree: function () {
@@ -229,6 +377,7 @@ Page({
         selectPerson: true,
       })
     }
+    
 
   },
   //点击切换
@@ -243,6 +392,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onLoad: function (options) {
+
   onShow: function (options) {
     var that = this;
     
@@ -266,6 +417,10 @@ Page({
     }
     index = val;
 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
     console.log(index + " => " + val);
 
     //更新数据
@@ -278,12 +433,17 @@ Page({
 
   },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
   onLoad: function (options) {
     cellId = options.cellId;
     var that = this;
     var date = new Date()
     console.log(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
 
+  },
     //获取省市区县数据
     area.getAreaInfo(function (arr) {
       areaInfo = arr;
@@ -291,6 +451,10 @@ Page({
       getProvinceData(that);
     });
 
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
     wx.request({
       url: 'http://127.0.0.1:10001/user/details',
       data: {
@@ -301,6 +465,7 @@ Page({
       },
       success: function (res) {
 
+  },
         var item;
         if (res.data.data.gen == '男') {
           item = [
@@ -314,18 +479,43 @@ Page({
           ]
         }
 
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
         that.setData({
           details: res.data.data,
           items: item,
           sex: res.data.data.gen
 
+  },
         })
 
+
+
+
+
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
       }
     })
 
 
+
+
+
+
+
+
   },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
   // ------------------- 分割线 --------------------
   onReady: function () {
     this.animation = wx.createAnimation({
@@ -403,6 +593,17 @@ function upload(page, path,num) {
         var data = res.data
         
 
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+
+
+
+
+
+
         switch (num) {
           case 1:
             page.setData({  //上传成功修改显示头像
@@ -447,7 +648,16 @@ function animationEvents(that, moveY, show) {
     duration: 400,
     timingFunction: "ease",
     delay: 0
+
+
+
+
+
+
+
+
   }
+})
   )
   that.animation.translateY(moveY + 'vh').step()
 

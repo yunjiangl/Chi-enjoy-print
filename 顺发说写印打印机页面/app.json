@@ -1,7 +1,21 @@
 {
   "pages": [
     "pages/lawyerIndex/lawyerIndex",
+
+
+
+
+
+
+
+
+
+
+
+
     "pages/choiceCustomer/choiceCustomer",
+    "pages/historyConsultant/historyConsultant",
+    "pages/lawyerIndex/lawyerIndex",
     "pages/lawyerFourFileList/lawyerFourFileList",
     
     
@@ -12,6 +26,15 @@
     
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     
+    "pages/vip-login/vip-login",
+    "pages/improvingPersonalData/improvingPersonalData",
+
+    "pages/lawyerFourFileList/lawyerFourFileList",
+
+
+
+
+
     "pages/lawyerFileList/lawyerFileList",
     "pages/lawyerChoiceOwner/lawyerChoiceOwner",
     "pages/lawyerChoicePrinter/lawyerChoicePrinter",
@@ -24,6 +47,7 @@
     "pages/lawyerSeeMessage/lawyerSeeMessage",
     "pages/lawyerFileClassC/lawyerFileClassC",    
     "pages/lawyerFileClassB/lawyerFileClassB",
+    "pages/lawyerFileClassA/lawyerFileClassA",    
      
     "pages/lawyerpersonData/lawyerpersonData",
     "pages/setting/document/download/download",    
@@ -37,6 +61,7 @@
     "pages/howuse/howuse",    
     "pages/notLogin/notLogin",    
     "pages/personalCenter/personalCenter",  
+
     "pages/improvingPersonalData/improvingPersonalData",  
     "pages/setPrint/setPrint",    
     "pages/historyConsultant/historyConsultant",    
@@ -53,6 +78,7 @@
     "pages/resetPassword/resetPassword",
     "pages/VerificationCode/VerificationCode",
     "pages/register/register",
+    "pages/modelTest/modelTest",
     "pages/logs/logs"
   ],
   "window": {
@@ -61,6 +87,44 @@
     "navigationBarTitleText": "顺发说写印",
     "navigationBarTextStyle": "#fff"
   },
+    "tabBar": {
+      "color": "#666",
+      "selectedColor": "#3798fb",
+      "list": [
+        {
+          "pagePath":"pages/lawyerIndex/lawyerIndex",
+          "text":"打印文件",
+          "iconPath":"pages/images/icon/1.png",
+          "selectedIconPath":"pages/images/file.png"
+        },
+        {
+          "pagePath": "pages/upfilelist/upfilelist",
+          "text": "上传列表",
+          "iconPath": "pages/images/icon/2.png",
+          "selectedIconPath": "pages/images/uplist.png"
+        },
+        
+        {
+          "pagePath": "pages/historyConsultant/historyConsultant",
+          "text": "历史质询",
+          "iconPath": "pages/images/Historical.png",
+          "selectedIconPath": "pages/images/icon/3.png"
+        },
+        {
+          "pagePath": "pages/printOrders/printOrders",
+          "text": "打印订单",
+          "iconPath": "pages/images/order.png",
+          "selectedIconPath": "pages/images/icon/4.png"
+        },
+        {
+          "pagePath": "pages/personalCenter/personalCenter",
+          "text": "个人中心",
+          "iconPath": "pages/images/person.png",
+          "selectedIconPath": "pages/images/icon/5.png"
+        }
+      ]
+    }
+  
   "tabBar": {
     "color": "#666",
     "selectedColor": "#3798fb",
@@ -97,4 +161,44 @@
       }
     ]
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

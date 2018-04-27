@@ -9,10 +9,17 @@ Page({
   },
   ImprovingPersonalData:function(){
       wx.navigateTo({
+        url: '../improvingPersonalData/improvingPersonalData',
         url: '../improvingPersonalData/improvingPersonalData?userCode=' + this.data.details.userCode,
       })
       console.log('usercode:'+this.data.details.userCode);
   },
+
+
+
+
+
+
 logout:function(){
   
   wx.request({
@@ -39,7 +46,24 @@ logout:function(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   },
 
   /**
@@ -53,6 +77,7 @@ logout:function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+  
     var that = this
     wx.request({
       url: 'http://127.0.0.1:10001/user/details',
