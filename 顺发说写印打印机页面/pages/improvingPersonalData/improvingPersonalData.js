@@ -1,9 +1,8 @@
 //获取应用实例
-// var app = getApp()
-// var util = require('../../utils/util.js')
+var app = getApp();
+
 var area = require('../../utils/area.js')
 
-var cityData = require('../../utils/city.js');
 var areaInfo = [];//所有省市区县数据
 
 var provinces = [];//省
@@ -27,64 +26,21 @@ Page({
    */
   data: {
 
-    items1: [
-      { name: 'putong', value: '男', checked: 'true' },
-      { name: 'lvshi', value: '女' },
-    ],
     items2: [
       { checked: 'true' },
     ],
-    nv: [],
-    px: [],
-    qyopen: false,
-    qyshow: false,
-    nzopen: false,
-    pxopen: false,
-    nzshow: false,
-    pxshow: false,
-    isfull: false,
-    cityleft: cityData.getCity(),
-    citycenter: {},
-    cityright: {},
-    select1: '',
-    select2: '',
-    shownavindex: ''
     show: show,
     provinces: provinces,
     citys: citys,
     countys: countys,
     value: [0, 0, 0],
-    sex:''
+    sex: ''
   },
-  listqy: function (e) {
-    if (this.data.qyopen) {
-      this.setData({
-        qyopen: false,
-        nzopen: false,
-        pxopen: false,
-        nzshow: true,
-        pxshow: true,
-        qyshow: false,
-        isfull: false,
-        shownavindex: 0
-      })
-    } else {
-      this.setData({
-        qyopen: true,
-        pxopen: false,
-        nzopen: false,
-        nzshow: true,
-        pxshow: true,
-        qyshow: false,
-        isfull: true,
-        shownavindex: e.currentTarget.dataset.nav
-      })
-    }
-  
-/**
- * 提交修改信息
- */
-  submitInfo:function(e){
+
+  /**
+   * 提交修改信息
+   */
+  submitInfo: function (e) {
     var nickName = e.detail.value.nickName;
     var age = e.detail.value.age;
     var mobile = e.detail.value.mobile;
@@ -98,98 +54,46 @@ Page({
     var code = this.data.details.userCode;
     console.log('姓名：' + nickName + '性别：' + sex + '年龄：' + age + '手机：' + mobile + '微信：' + weChatId + '地址：' + province + city + area + '头像' + portrait);
 
-
-
-
-       wx.request({
-         url: 'http://127.0.0.1:10001/user/update',
-         data: {
-           userCode: code,
-           wechatId: weChatId,
-           mobile: mobile,
-           portrait: portrait,
-           age: age,
-           province: province,
-           city: city,
-           area: area,
-           address: address,
-           gen: this.data.sex
-         },
-         method:'POST',
-         header: {
-           'content-type': 'application/x-www-form-urlencoded' // 默认值
-         },
-         success: function (res) {
-           console.log('修改成功');
-           wx.showToast({
-             title: '修改成功',
-             icon: 'success',
-             duration: 2000
-           })
-         }
-       })
-
-
-  },
-  list: function (e) {
-    if (this.data.nzopen) {
-      this.setData({
-        nzopen: false,
-        pxopen: false,
-        qyopen: false,
-        nzshow: false,
-        pxshow: true,
-        qyshow: true,
-        isfull: false,
-        shownavindex: 0
-      })
-    } else {
-      this.setData({
-        content: this.data.nv,
-        nzopen: true,
-        pxopen: false,
-        qyopen: false,
-        nzshow: false,
-        pxshow: true,
-        qyshow: true,
-        isfull: true,
-        shownavindex: e.currentTarget.dataset.nav
-      })
-    }
-
-  radioChange:function(e){
-    this.setData({
-      sex : e.detail.value
+    wx.request({
+      url: app.data.api + app.data.urlUserUpdate,
+      data: {
+        userCode: code,
+        wechatId: weChatId,
+        mobile: mobile,
+        portrait: portrait,
+        age: age,
+        province: province,
+        city: city,
+        area: area,
+        address: address,
+        gen: this.data.sex
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      success: function (res) {
+        console.log('修改成功');
+        wx.showToast({
+          title: '修改成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
     })
-    console.log('性别：'+e.detail.value);
-  },
-  listpx: function (e) {
-    if (this.data.pxopen) {
-      this.setData({
-        nzopen: false,
-        pxopen: false,
-        qyopen: false,
-        nzshow: true,
-        pxshow: false,
-        qyshow: true,
-        isfull: false,
-        shownavindex: 0
-      })
-    } else {
-      this.setData({
-        content: this.data.px,
-        nzopen: false,
-        pxopen: true,
-        qyopen: false,
-        nzshow: true,
-        pxshow: false,
-        qyshow: true,
-        isfull: true,
-        shownavindex: e.currentTarget.dataset.nav
-      })
 
-  
-  
+
+  },
+
+  radioChange: function (e) {
+    this.setData({
+      sex: e.detail.value
+    })
+    console.log('性别：' + e.detail.value);
+  },
+
+
+
   //滑动事件
   bindChange: function (e) {
     var val = e.detail.value
@@ -207,20 +111,12 @@ Page({
         getCountyInfo(val[0], val[1], this);//获取区县数据
       }
     }
-    console.log(e.target)
-  },
-  selectleft: function (e) {
     index = val;
 
     console.log(index + " => " + val);
 
     //更新数据
     this.setData({
-      cityright: {},
-      citycenter: this.data.cityleft[e.currentTarget.dataset.city],
-      select1: e.target.dataset.city,
-      select2: ''
-    });
       value: [val[0], val[1], val[2]],
       province: provinces[val[0]].name,
       city: citys[val[1]].name,
@@ -228,52 +124,24 @@ Page({
     })
 
   },
-  selectcenter: function (e) {
-  
+
   onLoad: function (options) {
     cellId = options.cellId;
     var that = this;
     var date = new Date()
     console.log(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
 
-    this.setData({
-      cityright: this.data.citycenter[e.currentTarget.dataset.city],
-      select2: e.target.dataset.city
     //获取省市区县数据
     area.getAreaInfo(function (arr) {
       areaInfo = arr;
       //获取省份数据
       getProvinceData(that);
     });
-  },
-  hidebg: function (e) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
+      url: app.data.api + app.data.urlUserDetails,
       data: {
-        code: options.userCode
+        code: app.data.userCode
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -293,39 +161,19 @@ Page({
         }
         that.setData({
           details: res.data.data,
-          items1:item,
+          items1: item,
           sex: res.data.data.gen,
           province: res.data.data.province,
-          city:res.data.data.city,
-          county:res.data.data.area
+          city: res.data.data.city,
+          county: res.data.data.area
 
-    this.setData({
-      qyopen: false,
-      nzopen: false,
-      pxopen: false,
-      nzshow: true,
-      pxshow: true,
-      qyshow: true,
-      isfull: false,
-      shownavindex: 0
         })
       }
     })
-  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   // ------------------- 分割线 --------------------
   onReady: function () {
-  
     this.animation = wx.createAnimation({
       transformOrigin: "50% 50%",
       duration: 0,
@@ -353,11 +201,6 @@ Page({
     // this.animation.translate(arr[0], arr[1]).step();
     animationEvents(this, moveY, show);
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
   //隐藏弹窗浮层
   hiddenFloatView(e) {
@@ -367,18 +210,7 @@ Page({
     t = 0;
     animationEvents(this, moveY, show);
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
   //页面滑至底部事件
   onReachBottom: function () {
     // Do something when page reach bottom.
@@ -390,12 +222,6 @@ Page({
   }
 })
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
 //动画事件
 function animationEvents(that, moveY, show) {
   console.log("moveY:" + moveY + "\nshow:" + show);
@@ -408,22 +234,11 @@ function animationEvents(that, moveY, show) {
   )
   that.animation.translateY(moveY + 'vh').step()
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
   that.setData({
     animation: that.animation.export(),
     show: show
   })
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
 }
 
 // ---------------- 分割线 ---------------- 
@@ -440,7 +255,6 @@ function getProvinceData(that) {
       num++;
     }
   }
-})
   that.setData({
     provinces: provinces
   })

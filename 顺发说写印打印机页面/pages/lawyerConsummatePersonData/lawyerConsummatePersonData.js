@@ -1,7 +1,6 @@
-var cityData = require('../../utils/city.js');
 //获取应用实例
-// var app = getApp()
-// var util = require('../../utils/util.js')
+var app = getApp();
+
 var area = require('../../utils/area.js')
 
 var areaInfo = [];//所有省市区县数据
@@ -26,149 +25,48 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [
-      { name: '男', value: '男', checked: 'true' },
-      { name: "女", value: "女" }
-    ],
-    checked: '',
-    selectPerson: true,
-    firstPerson: '请选择职业年限',
-    selectArea: false,
+
     items2: [
       { checked: 'true' },
     ],
-    nv: [],
-    px: [],
-    qyopen: false,
-    qyshow: false,
-    nzopen: false,
-    pxopen: false,
-    nzshow: false,
-    pxshow: false,
-    isfull: false,
-    cityleft: cityData.getCity(),
-    citycenter: {},
-    cityright: {},
-    select1: '',
-    select2: '',
-    shownavindex: ''
     show: show,
     provinces: provinces,
     citys: citys,
     countys: countys,
     value: [0, 0, 0],
-    sex: '',
-    src1: '../images/photo.png',
-    src2: '../images/photo.png',
-    src3: '../images/photo.png',
-    //执业证号
-    dates: [
-      { "data_name": "1", "name": "金融证券", "state": 0 },
-      { "data_name": "2", "name": "征地拆迁", "state": 0 },
-      { "data_name": "3", "name": "行政法律", "state": 0 },
-      { "data_name": "4", "name": "知识产权", "state": 0 },
-      { "data_name": "5", "name": "劳动纠纷", "state": 0 },
-      { "data_name": "6", "name": "海事海商", "state": 0 },
-      { "data_name": "7", "name": "商事仲裁", "state": 0 },
-      { "data_name": "8", "name": "合同纠纷", "state": 0 },
-      { "data_name": "8", "name": "合同纠纷", "state": 0 },
-      { "data_name": "8", "name": "合同纠纷", "state": 0 },
-    ]
+    sex: ''
   },
-  //选择执业后加样式
-  select_date: function (e) {
-    var index = e.currentTarget.dataset.key;
-    if (this.data.dates[index].state == 1) {
-      this.data.dates[index].state = 0;
-    } else if (this.data.dates[index].state == 0) {
-      this.data.dates[index].state = 1;
-    }
-    var name = this.data.dates[index].name
-    var ds = this.data.dates
 
-    console.log(name)
-    this.setData({
-      dates: ds,
-    });
-  },
-  formSubmit: function (e) {
-    // 姓名
-    var code = this.data.details.userCode;
-    var name = e.detail.value.name;
-    console.log(name)
-    // 年龄
+  /**
+   * 提交修改信息
+   */
+  submitInfo: function (e) {
+    var nickName = e.detail.value.nickName;
     var age = e.detail.value.age;
-    console.log(age);
-    //性别
-    var sex = this.data.items[0].checked;
-    if(sex==true){
-      console.log(this.data.items[0].value);
-    }else{
-      console.log(this.data.items[1].value);
-    // 手机
     var mobile = e.detail.value.mobile;
-    // 微信
     var weChatId = e.detail.value.weChatId;
-    // 性别
-    var sex = this.data.sex;
-    //所在地
     var portrait = this.data.details.portrait;
     var province = this.data.province;
     var city = this.data.city;
     var area = this.data.county;
     var address = province + city + area;
-    //执业机构
-    var workOrg = e.detail.value.workOrg;
-    //执业证号
-    var workNum = e.detail.value.workNum;
-    //执业类型
-    var domains = '';
-    var dates = this.data.dates;
-    for (var i = 0; i < dates.length ; i++){
-      if (dates[i].state == 1){
-        domains += dates[i].name+',';
-        }
-    }
-    
-
-
-
-
-
-    //职业年限
-    var workYear = this.data.firstPerson;
-    console.log(this.data.firstPerson);
-  
-
-    //审核图片
-    var checkImg = this.data.src3;
-    //资格证图片
-    var attorneyCardImg = this.data.src2;
-    //身份证
-    var identityCardImg = this.data.src1;
-
-    console.log('姓名:' + name + '年龄:' + age + '手机:' + age + '微信:' + weChatId + '性别:' + sex + '所在地:' + address + '执业机构:' + workOrg + '执业证号:' + workNum + '执业类型:' + domains + '职业年限:' + workYear + '审核图片:' + checkImg + '资格证图片:' + attorneyCardImg + '身份证:' + identityCardImg);
+    var sex = this.data.sex;
+    var code = this.data.details.userCode;
+    console.log('姓名：' + nickName + '性别：' + sex + '年龄：' + age + '手机：' + mobile + '微信：' + weChatId + '地址：' + province + city + area + '头像' + portrait);
 
     wx.request({
-      url: 'http://127.0.0.1:10001/user/attorney/update',
+      url: app.data.api + app.data.urlUserUpdate,
       data: {
         userCode: code,
         wechatId: weChatId,
         mobile: mobile,
         portrait: portrait,
         age: age,
-        gen: this.data.sex,
         province: province,
         city: city,
         area: area,
         address: address,
-        checkImg: checkImg,
-        attorneyCardImg: attorneyCardImg,
-        identityCardImg: identityCardImg,
-        workNum: workNum,
-        workOrg: workOrg,
-        workYear: workYear,
-        domains: domains
+        gen: this.data.sex
       },
       method: 'POST',
       header: {
@@ -183,221 +81,19 @@ Page({
         })
       }
     })
+
+
   },
-  //性别
-  radioChange:function(e){
+
   radioChange: function (e) {
-    console.log(e.detail.value);
-  },
-
-//所在地
-
-//执业类型
-
-  listqy: function (e) {
-    if (this.data.qyopen) {
-      this.setData({
-        qyopen: false,
-        nzopen: false,
-        pxopen: false,
-        nzshow: true,
-        pxshow: true,
-        qyshow: false,
-        isfull: false,
-        shownavindex: 0
-      })
-    } else {
-      this.setData({
-        qyopen: true,
-        pxopen: false,
-        nzopen: false,
-        nzshow: true,
-        pxshow: true,
-        qyshow: false,
-        isfull: true,
-        shownavindex: e.currentTarget.dataset.nav
-      })
-    }
-    
-  },
-  list: function (e) {
-    if (this.data.nzopen) {
-      this.setData({
-        nzopen: false,
-        pxopen: false,
-        qyopen: false,
-        nzshow: false,
-        pxshow: true,
-        qyshow: true,
-        isfull: false,
-        shownavindex: 0
-      })
-    } else {
-      this.setData({
-        content: this.data.nv,
-        nzopen: true,
-        pxopen: false,
-        qyopen: false,
-        nzshow: false,
-        pxshow: true,
-        qyshow: true,
-        isfull: true,
-        shownavindex: e.currentTarget.dataset.nav
-      })
-    }
-  },
-  listpx: function (e) {
-    if (this.data.pxopen) {
-      this.setData({
-        nzopen: false,
-        pxopen: false,
-        qyopen: false,
-        nzshow: true,
-        pxshow: false,
-        qyshow: true,
-        isfull: false,
-        shownavindex: 0
-      })
-    } else {
-      this.setData({
-        content: this.data.px,
-        nzopen: false,
-        pxopen: true,
-        qyopen: false,
-        nzshow: true,
-        pxshow: false,
-        qyshow: true,
-        isfull: true,
-        shownavindex: e.currentTarget.dataset.nav
-      })
-    }
-    console.log(e.target)
-  },
-  selectleft: function (e) {
-
     this.setData({
       sex: e.detail.value
     })
-  },
-  //上传IDCard
-  uploadOne: function () {
-    var that = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths;
-        console.log(tempFilePaths[0]);
-        that.setData({
-          src1: tempFilePaths[0]
-        })
-        upload(that, tempFilePaths,1);
-      }
-    })
-
+    console.log('性别：' + e.detail.value);
   },
 
 
-  //上传律师证书
-  uploadTwo: function () {
-    var that = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths;
-        that.setData({
-          src2: tempFilePaths[0]
-        })
-        upload(that, tempFilePaths,2);
-      }
-    })
-  },
 
-    this.setData({
-      cityright: {},
-      citycenter: this.data.cityleft[e.currentTarget.dataset.city],
-      select1: e.target.dataset.city,
-      select2: ''
-    });
-  },
-  selectcenter: function (e) {
-
-    this.setData({
-      cityright: this.data.citycenter[e.currentTarget.dataset.city],
-      select2: e.target.dataset.city
-    });
-  },
-  hidebg: function (e) {
-
-    this.setData({
-      qyopen: false,
-      nzopen: false,
-      pxopen: false,
-      nzshow: true,
-      pxshow: true,
-      qyshow: true,
-      isfull: false,
-      shownavindex: 0
-
-  //上传年审
-  uploadThree: function () {
-    var that = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths;
-        that.setData({
-          src3: tempFilePaths[0]
-        })
-        upload(that, tempFilePaths,3);
-      }
-    })
-  },
-
-
-  //点击选择类型
-  clickPerson: function () {
-    var selectPerson = this.data.selectPerson;
-    if (selectPerson == true) {
-      this.setData({
-        selectArea: true,
-        selectPerson: false,
-      })
-    } else {
-      this.setData({
-        selectArea: false,
-        selectPerson: true,
-      })
-    }
-    
-
-  },
-  //点击切换
-  mySelect: function (e) {
-    this.setData({
-      firstPerson: e.target.dataset.me,
-      selectPerson: true,
-      selectArea: false,
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  onShow: function (options) {
-    var that = this;
-    
-  },
   //滑动事件
   bindChange: function (e) {
     var val = e.detail.value
@@ -417,10 +113,6 @@ Page({
     }
     index = val;
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
     console.log(index + " => " + val);
 
     //更新数据
@@ -433,17 +125,12 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
   onLoad: function (options) {
     cellId = options.cellId;
     var that = this;
     var date = new Date()
     console.log(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
 
-  },
     //获取省市区县数据
     area.getAreaInfo(function (arr) {
       areaInfo = arr;
@@ -451,21 +138,15 @@ Page({
       getProvinceData(that);
     });
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
     wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
+      url: app.data.api + app.data.urlUserDetails,
       data: {
-        code: 'wechat00000000007'
+        code: app.data.userCode
       },
       header: {
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-
-  },
         var item;
         if (res.data.data.gen == '男') {
           item = [
@@ -478,44 +159,19 @@ Page({
             { name: '女', value: '女', checked: 'true' },
           ]
         }
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
         that.setData({
           details: res.data.data,
-          items: item,
-          sex: res.data.data.gen
+          items1: item,
+          sex: res.data.data.gen,
+          province: res.data.data.province,
+          city: res.data.data.city,
+          county: res.data.data.area
 
-  },
         })
-
-
-
-
-
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
       }
     })
 
-
-
-
-
-
-
-
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
   // ------------------- 分割线 --------------------
   onReady: function () {
     this.animation = wx.createAnimation({
@@ -565,80 +221,6 @@ Page({
     })
   }
 })
-//上传文件
-function upload(page, path,num) {
-  wx.showToast({
-    icon: "loading",
-    title: "正在上传"
-  }),
-    wx.uploadFile({
-    url: "http://127.0.0.1:10001/upload/file/userimg",
-      filePath: path[0],
-      name: 'multipartFile',
-      header: { "content-type": "multipart/form-data" },
-      formData: {
-        //和服务器约定的token, 一般也可以放在header中
-        //'session_token': wx.getStorageSync('session_token')
-      },
-      success: function (res) {
-        console.log(res.data);
-        if (res.statusCode != 200) {
-          wx.showModal({
-            title: '提示',
-            content: '上传失败',
-            showCancel: false
-          })
-          return;
-        }
-        var data = res.data
-        
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-
-
-
-
-
-
-        switch (num) {
-          case 1:
-            page.setData({  //上传成功修改显示头像
-              src1: data
-            })
-            break;
-          case 2:
-            page.setData({  //上传成功修改显示头像
-              src2: data
-            })
-            break;
-          case 3:
-            page.setData({  //上传成功修改显示头像
-              src3: data
-            })
-            break;
-        }
-      },
-      fail: function (e) {
-        console.log(e);
-        wx.showModal({
-          title: '提示',
-          content: '上传失败',
-          showCancel: false
-        })
-      },
-      complete: function () {
-        wx.hideToast();  //隐藏Toast
-      }
-    })
-}
-
-
-
-
 
 //动画事件
 function animationEvents(that, moveY, show) {
@@ -648,16 +230,7 @@ function animationEvents(that, moveY, show) {
     duration: 400,
     timingFunction: "ease",
     delay: 0
-
-
-
-
-
-
-
-
   }
-})
   )
   that.animation.translateY(moveY + 'vh').step()
 
