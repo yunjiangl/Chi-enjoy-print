@@ -1,5 +1,5 @@
 //获取应用实例
-var app = getApp();
+var app = getApp()
 
 var area = require('../../utils/area.js')
 
@@ -34,13 +34,13 @@ Page({
     citys: citys,
     countys: countys,
     value: [0, 0, 0],
-    sex: ''
+    sex:''
   },
-
-  /**
-   * 提交修改信息
-   */
-  submitInfo: function (e) {
+  
+/**
+ * 提交修改信息
+ */
+  submitInfo:function(e){
     var nickName = e.detail.value.nickName;
     var age = e.detail.value.age;
     var mobile = e.detail.value.mobile;
@@ -54,9 +54,8 @@ Page({
     var code = this.data.details.userCode;
     console.log('姓名：' + nickName + '性别：' + sex + '年龄：' + age + '手机：' + mobile + '微信：' + weChatId + '地址：' + province + city + area + '头像' + portrait);
 
-<<<<<<< HEAD
        wx.request({
-         url: app.data.api+app.data.urlUserUpdate,
+         url: app.data.api + app.data.urlUserUpdate,
          data: {
            userCode: code,
            wechatId: weChatId,
@@ -82,48 +81,19 @@ Page({
            })
          }
        })
-=======
-    wx.request({
-      url: app.data.api + app.data.urlUserUpdate,
-      data: {
-        userCode: code,
-        wechatId: weChatId,
-        mobile: mobile,
-        portrait: portrait,
-        age: age,
-        province: province,
-        city: city,
-        area: area,
-        address: address,
-        gen: this.data.sex
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
-      },
-      success: function (res) {
-        console.log('修改成功');
-        wx.showToast({
-          title: '修改成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }
-    })
->>>>>>> 7564742a554e3979a4f37f1edc4072c8afedc1a7
 
 
   },
 
-  radioChange: function (e) {
+  radioChange:function(e){
     this.setData({
-      sex: e.detail.value
+      sex : e.detail.value
     })
-    console.log('性别：' + e.detail.value);
+    console.log('性别：'+e.detail.value);
   },
 
-
-
+  
+  
   //滑动事件
   bindChange: function (e) {
     var val = e.detail.value
@@ -154,7 +124,7 @@ Page({
     })
 
   },
-
+  
   onLoad: function (options) {
     cellId = options.cellId;
     var that = this;
@@ -167,7 +137,7 @@ Page({
       //获取省份数据
       getProvinceData(that);
     });
-
+    
     wx.request({
       url: app.data.api + app.data.urlUserDetails,
       data: {
@@ -191,11 +161,11 @@ Page({
         }
         that.setData({
           details: res.data.data,
-          items1: item,
+          items1:item,
           sex: res.data.data.gen,
           province: res.data.data.province,
-          city: res.data.data.city,
-          county: res.data.data.area
+          city:res.data.data.city,
+          county:res.data.data.area
 
         })
       }

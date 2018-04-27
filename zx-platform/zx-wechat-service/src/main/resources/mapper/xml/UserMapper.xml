@@ -17,12 +17,16 @@
         <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
         <result column="open_id" property="openId" jdbcType="VARCHAR"/>
         <result column="username" property="nickName" jdbcType="VARCHAR"/>
+        <result column="gen" property="gen" jdbcType="VARCHAR"/>
+        <result column="wechat_id" property="weChatId" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
         <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
         <result column="user_type" property="userType" jdbcType="INTEGER"/>
         <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
-        <result column="grad" property="grad" jdbcType="INTEGER"/>
         <result column="age" property="age" jdbcType="INTEGER"/>
         <result column="portrait" property="portrait" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap id="attorneyDetailsBean" type="com.zx.share.platform.vo.wechat.response.AttorneyDetailsBean">
@@ -96,6 +100,9 @@
         <if test="openId != null">
             ,open_id=#{openId}
         </if>
+        <if test="gen!=null">
+            ,gen=#{gen}
+        </if>
         where user_code = #{userCode}
     </update>
 
@@ -124,10 +131,10 @@
 
     </insert>
     <insert id="saveAttorneyDomain" parameterType="java.util.List">
-        insert into zx_user_attorney_domain(user_id,user_code,domain_id,domain_code)
+        insert into zx_user_attorney_domain(user_id,user_code,domain_code)
          values
         <foreach collection="list" item="bean" separator=",">
-        (#{bean.userId},#{bean.userCode},#{bean.domainId},#{bean.domainCode})
+        (#{bean.userId},#{bean.userCode},#{bean.domainCode})
 
         </foreach>
     </insert>
@@ -137,7 +144,8 @@
     </update>
 
     <select id="findByCode" resultMap="userDetailsBean">
-        select user_type,user_status,user_code,username,mobile,union_id,open_id,age,grad,portrait from zx_user where user_code=#{code,jdbcType=VARCHAR} limit 1
+        select user_type,user_status,user_code,username,mobile,union_id,open_id,age,wechat_id,portrait,city,area,gen,province from zx_user where user_code=#{code,jdbcType=VARCHAR} limit 1
+
     </select>
 
     <select id="findByAttorney" resultMap="attorneyDetailsBean">

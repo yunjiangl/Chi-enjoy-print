@@ -2,8 +2,6 @@ package com.zx.share.platform.vo.wechat.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.Serializable;
 
@@ -54,7 +52,16 @@ public class UserUpdateBean implements Serializable {
     private String unionId;
     @ApiModelProperty(value = "")
     private String openId;
+    @ApiModelProperty(value = "")
     private String gen;
+
+    public String getGen() {
+        return gen;
+    }
+
+    public void setGen(String gen) {
+        this.gen = gen;
+    }
 
     public String getUserCode() {
         return userCode;
@@ -206,13 +213,5 @@ public class UserUpdateBean implements Serializable {
 
     public void setOpenId(String openId) {
         this.openId = openId;
-    }
-
-    public String getGen() {
-        return gen;
-    }
-
-    public void setGen(String gen) {
-        this.gen = gen;
     }
 }
