@@ -1,4 +1,4 @@
-//app.js
+﻿//app.js
 App({
   data: {
     api: 'http://127.0.0.1:10001/',
@@ -14,8 +14,10 @@ App({
     urlUserDetails:'user/details',//根据用户获取用户信息
     urlUserUpdate:'user/update',//修改用户信息
     urlUserAttorneyUpdate:'user/attorney/update',//修改律师用户
-    urlUploadUserimg:'upload/file/userimg'//上传认证图片
-   
+    urlUploadUserimg: 'upload/file/userimg',//上传认证图片
+    urlDictionaryAList: 'dictionary/a/list', // a文件分类
+    urlFileMAPage: 'file/m/a/page',//a文件分页
+    urlOrderSave: 'order/save',//保存订单信息
   },
 
   onLaunch: function () {

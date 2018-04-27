@@ -185,10 +185,13 @@
 		sys_user.username
 		FROM
 		zx_order
-		INNER JOIN zx_user ON zx_order.order_user_id = zx_user.id
-		INNER JOIN zx_printer_manager ON zx_order.printer_id =
+		INNER JOIN zx_user ON
+		zx_order.order_user_id = zx_user.id
+		INNER JOIN zx_printer_manager ON
+		zx_order.printer_id =
 		zx_printer_manager.id
-		INNER JOIN zx_order_printer_file ON zx_order.id =
+		INNER JOIN
+		zx_order_printer_file ON zx_order.id =
 		zx_order_printer_file.order_id
 		INNER JOIN sys_user ON zx_printer_manager.create_id = sys_user.user_id
 		WHERE

@@ -61,7 +61,7 @@ Page({
       page: that.data.page + 1
     })
     wx.request({
-      url: app.data.api + 'file/m/a/page',
+      url: app.data.api + app.data.urlFileMAPage,
       method: 'GET',
       data: {
         query: that.data.query,

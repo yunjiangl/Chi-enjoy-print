@@ -45,10 +45,9 @@ public class UserController extends BaseController {
         UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if (user == null) {
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
-        }else{
-            String code = user.getUserCode();
-            resopnseBean.setData(userService.details(code));
         }
+        String code = user.getUserCode();
+        resopnseBean.setData(userService.details(code));
         return resopnseBean;
     }
 
@@ -79,7 +78,6 @@ public class UserController extends BaseController {
         UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if (user == null) {
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
-            return resopnseBean;
         }
         UserUpdateBean updateBean = new UserUpdateBean();
         updateBean.setAddress(address);
@@ -119,7 +117,6 @@ public class UserController extends BaseController {
         UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if (user == null) {
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
-            return resopnseBean;
         }
         UserUpdateBean updateBean = new UserUpdateBean();
         updateBean.setAddress(address);

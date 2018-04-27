@@ -60,7 +60,8 @@ public class OrderController extends BaseController {
 			@ApiParam("纸张颜色") @RequestParam("paperColcor") Long paperColcor,
 			@ApiParam("纸张使用") @RequestParam("paperUsage") Long paperUsage,
 			@ApiParam("服务费") @RequestParam("serviceAmout") Double serviceAmout,
-			@ApiParam("文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)") @RequestParam("fileType") Long fileType, HttpServletRequest request) {
+			@ApiParam("文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)") @RequestParam("fileType") Long fileType,
+			HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
 		OrderSaveBean orderSaveBean = new OrderSaveBean();

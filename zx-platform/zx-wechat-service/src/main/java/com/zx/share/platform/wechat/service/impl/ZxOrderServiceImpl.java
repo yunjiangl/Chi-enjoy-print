@@ -160,17 +160,17 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 		if (StringUtil.isNotBlank(fileCode)) {
 
 			String[] fileCodes = fileCode.split(",");
-			
+
 			List<ZxOrder> orderRecordList = new ArrayList<ZxOrder>();
 			List<ZxOrderPrinterFile> orderPrinterFileRecordList = new ArrayList<ZxOrderPrinterFile>();
-			Map<String, ZxOrderPrinterFile> orderPrinterFileRecordMap =   new HashMap<String, ZxOrderPrinterFile>();
+			Map<String, ZxOrderPrinterFile> orderPrinterFileRecordMap = new HashMap<String, ZxOrderPrinterFile>();
 			List<String> orderCodes = new ArrayList<String>();
-			
+
 			for (int i = 0; i < fileCodes.length; i++) {
 
 				ZxOrder zxOrderSaveBean = new ZxOrder();
 				ZxOrderPrinterFile ZxOrderPrinterFileSaveBean = new ZxOrderPrinterFile();
-				
+
 				// 首先生成一个订单code，这里先把订单num设置为何code一致
 				String orderCode = CodeBuilderUtil.orderCOde(orderSaveBean.getAttorneyCode());
 				String orderNum = orderCode;

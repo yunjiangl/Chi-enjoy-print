@@ -1,4 +1,4 @@
-var app = getApp()
+﻿var app = getApp()
 Page({
 
   /**
@@ -66,7 +66,7 @@ Page({
     var that = this;
 
     wx.request({
-      url: app.data.api + 'dictionary/a/list',
+      url: app.data.api + app.data.urlDictionaryAList,
       method: 'GET',
       success: function (data) {
 

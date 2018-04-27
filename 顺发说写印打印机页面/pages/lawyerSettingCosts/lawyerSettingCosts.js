@@ -143,7 +143,7 @@ Page({
           console.log('用户点击确定')
           // 向服务端发送订单数据保存订单
           wx.request({
-            url: app.data.api + 'order/save',
+            url: app.data.api + app.data.urlOrderSave,
             method: 'POST',
             header: {
               "Content-Type":
