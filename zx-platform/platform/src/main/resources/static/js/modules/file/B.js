@@ -11,6 +11,28 @@ var setting = {
         }
     }
 };
+var querysetting = {
+    data: {
+        simpleData: {
+            enable: true,
+            idKey: "id",
+            pIdKey: "parentId",
+            rootPId: -1
+        },
+        key: {
+            url:"nourl"
+        }
+    },
+    callback: {
+        onClick: zTreeOnClick
+    }
+};
+function zTreeOnClick(event, treeId, treeNode) {
+    vm.q.categoryId=treeNode.id;
+    vm.reload();
+    alert(treeNode.tId + ", " + treeNode.name);
+
+};
 var ztree;
 $(function () {
     $("#jqGrid").jqGrid({
@@ -49,13 +71,20 @@ $(function () {
             $("#jqGrid").closest(".ui-jqgrid-bdiv").css({"overflow-x": "hidden"});
         }
     });
+    $.get(baseURL + "zx/ab/dictionary/list/zx_file_type_b", function(r){
+        ztree = $.fn.zTree.init($("#queryTree"), querysetting, r.list);
+        var node = ztree.getNodeByParam("id", vm.category.parentId);
+        ztree.selectNode(node);
+    })
+
 });
 
 var vm = new Vue({
     el: '#rrapp',
     data: {
         q: {
-            fileName: null
+            fileName: null,
+            categoryId:null
         },
         showList: true,
         title: null,
@@ -209,7 +238,7 @@ var vm = new Vue({
 			var page = $("#jqGrid").jqGrid('getGridParam','page');
 			$("#jqGrid").jqGrid('setGridParam',{ 
                 page:page,
-                postData:{'fileName': vm.q.fileName}
+                postData:{'fileName': vm.q.fileName,'categoryId':vm.q.categoryId}
             }).trigger("reloadGrid");
 		}
     },

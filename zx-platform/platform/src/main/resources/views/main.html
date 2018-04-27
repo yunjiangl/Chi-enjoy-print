@@ -6,11 +6,115 @@
     <title>欢迎页</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript"
+            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
 </head>
 <body>
 <div class="panel panel-default">
     <div class="panel-heading">财务总资产</div>
-
+    <div style="">
+        <div style="float: left;width: 40%;padding: 10px;">
+            <div id="container" style="height:300px;width: 100%;background-color: #fcf7f0;"></div>
+            <div align="center"  style="width: 100%;height: 200px;background-color: #fcf7f0;padding: 5px 5px 5px 5px;margin-top: 10px;">
+                <div align="center"  style="float:left;width: 45%;" >
+                    <p>上月预估收入</p>
+                    <p>￥&nbsp;&nbsp;5000.00</p>
+                    <p><a>查看&nbsp;&nbsp;>></a></p>
+                </div>
+                <div align="center"  style="float:right;width: 45%;">
+                    <p>本月预估收入</p>
+                    <p>￥&nbsp;&nbsp;5000.00</p>
+                    <p><a>查看&nbsp;&nbsp;>></a></p>
+                </div>
+            </div>
+            <div style="width: 100%;height: 200px;background-color: #fcf7f0;padding: 5px 5px 5px 5px;margin-top: 10px;">收入B</div>
+        </div>
+        <div align="center" style="float: left;width: 27%;height: 100%;padding: 5px 5px 5px 5px;">
+            <div align="center" style="width: 100%;height: 230px;background-color: #db0ead;padding: 5px 5px 5px 5px;margin-top: 10px;">
+                <h3>A类</h3>
+                <h3 id="a_earnings">2300.00</h3>
+                <h4 id="a_platform_earnings">平台收益：1000.00</h4>
+                <h4 id="a_owner_earnings">物主收益：1000.00</h4>
+            </div>
+            <div align="center" style="width: 100%;height: 230px;background-color: #56d6a8;padding: 5px 5px 5px 5px;margin-top: 10px;">
+                <h3>C类</h3>
+                <h3 id="c_earnings">2300.00</h3>
+                <h4 id="c_platform_earnings">平台收益：1000.00</h4>
+                <h4 id="c_owner_earnings">物主收益：1000.00</h4>
+            </div>
+            <div align="center" style="width: 100%;height: 230px;background-color: #42ddff;padding: 5px 5px 5px 5px;margin-top: 10px;">
+                <h3>E类</h3>
+                <h3 id="e_earnings">2300.00</h3>
+                <h4 id="e_platform_earnings">平台收益：1000.00</h4>
+                <h4 id="e_owner_earnings">物主收益：1000.00</h4>
+            </div>
+        </div>
+        <div align="center" style="float: right;width: 27%;height: 100%;padding: 5px 5px 5px 5px;">
+            <div align="center" style="width: 100%;height: 230px;background-color: #8bc34a;padding: 5px 5px 5px 5px;margin-top: 10px;">
+                <h3>B类</h3>
+                <h3 id="b_earnings">2300.00</h3>
+                <h4 id="b_platform_earnings">平台收益：1000.00</h4>
+                <h4 id="b_owner_earnings">物主收益：1000.00</h4>
+            </div>
+            <div align="center" style="width: 100%;height: 230px;background-color: #ff6972;padding: 5px 5px 5px 5px;margin-top: 10px;">
+                <h3>D类</h3>
+                <h3 id="d_earnings">2300.00</h3>
+                <h4 id="d_platform_earnings">平台收益：1000.00</h4>
+                <h4 id="d_owner_earnings">物主收益：1000.00</h4>
+            </div>
+            <div align="center" style="width: 100%;height: 230px;background-color: #ff9980;padding: 5px 5px 5px 5px;margin-top: 10px;">律师服务费</div>
+        </div>
+    </div>
 </div>
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title: {
+            text: '账户总资产：30000',
+            subtext: '',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 335, name: '物主收益：335.00'},
+                    {value: 1548, name: '平台收益：1548.00'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
 </body>
 </html>

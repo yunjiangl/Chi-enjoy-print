@@ -104,6 +104,12 @@ public class SysDictionary extends IdEntity {
     @Transient
     private SysDictionary sysDictionary;
 
+    /**
+     * ztree属性
+     */
+    @Transient
+    private Boolean open=true;
+
     private static final long serialVersionUID = 1L;
 
 

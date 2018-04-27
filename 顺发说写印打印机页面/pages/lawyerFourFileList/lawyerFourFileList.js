@@ -6,12 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dictionaryList: null
+    dictionaryList: null,
+    filetype: null
   },
   trun: function (e) {
-
+    var that = this
     wx.navigateTo({
-      url: '../lawyerFileList/lawyerFileList?code=' + e.currentTarget.dataset.code,
+      url: '../lawyerFileList/lawyerFileList?code=' + e.currentTarget.dataset.code + "&fileType=" + that.data.fileType,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -29,7 +30,8 @@ Page({
       title: dictionaryInfo.name
     })
     this.setData({
-      dictionaryList: dictionaryInfo.list
+      dictionaryList: dictionaryInfo.list,
+      fileType: options.fileType
     })
 
   },

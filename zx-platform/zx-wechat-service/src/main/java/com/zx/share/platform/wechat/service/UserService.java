@@ -21,22 +21,9 @@ public interface UserService {
 
 	Integer update(UserRequestBean bean);
 
-	/**
-	 * 律师信息修改
-	 * @param bean
-	 * @return
-	 */
 	Integer update(UserUpdateBean bean);
 
-	/**
-	 * 用户信息修改
-	 * @param bean
-	 * @return
-	 */
-	Integer updateUser(UserUpdateBean bean);
-
 	Integer update(ZxUser user);
-
 
 	String registerCode(String mobile);
 

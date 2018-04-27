@@ -129,6 +129,11 @@
 	</update>
 
 	<update id="checkUpdate">
-		update zx_user set is_lock=#{isLock} where id=#{id}
+		update zx_user
+		<set>
+			<if test="isLock != null">is_lock=#{isLock}, </if>
+			<if test="userType != null">user_type=#{userType} </if>
+		</set>
+		  where id=#{id}
 	</update>
 </mapper>

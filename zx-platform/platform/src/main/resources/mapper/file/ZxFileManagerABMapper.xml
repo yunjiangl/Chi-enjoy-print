@@ -7,8 +7,9 @@
 	</select>
 
 	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxFileManagerAB">
-		select ab.*,sd.name categoryName from zx_file_manager_ab ab join sys_dictionary sd on sd.id=ab.category_id where ab.status =1 and sd.type = #{type}
+		select ab.*,sd.name categoryName from zx_file_manager_ab ab join sys_dictionary sd on sd.id=ab.category_id
 		<where>
+			and ab.status =1 and sd.type = #{type}
 			<if test="name!=null and name!=''">
 				AND ab.create_id in (
 				select id from sys_user where username like concat('%',#{name},'%')
@@ -26,6 +27,9 @@
 			</if>
 			<if test="status!=null and status!=''">
 				AND ab.status = #{status}
+			</if>
+			<if test="categoryId!=null and categoryId!=''">
+				AND ab.category_id = #{categoryId}
 			</if>
 		</where>
 		<choose>
@@ -42,8 +46,9 @@
 	</select>
 
 	<select id="queryTotal" resultType="int">
-		select count(*) from zx_file_manager_ab ab join sys_dictionary sd on sd.id=ab.category_id  where  ab.status =1 and  sd.type = #{type}
+		select count(*) from zx_file_manager_ab ab join sys_dictionary sd on sd.id=ab.category_id
 		<where>
+			and ab.status =1 and  sd.type = #{type}
 			<if test="name!=null and name!=''">
 				AND ab.create_id in (
 				select id from sys_user where username like concat('%',#{name},'%')
@@ -61,6 +66,9 @@
 			</if>
 			<if test="status!=null and status!=''">
 				AND ab.status = #{status}
+			</if>
+			<if test="categoryId!=null and categoryId!=''">
+				AND ab.category_id = #{categoryId}
 			</if>
 		</where>
 	</select>

@@ -63,22 +63,6 @@ public class UserServiceImpl implements UserService {
 		return userMapper.update(userSaveBean);
 	}
 
-	/**
-	 * 用户信息修改
-	 *
-	 * @param bean
-	 * @return
-	 */
-	@Override
-	public Integer updateUser(UserUpdateBean bean) {
-		return userMapper.update(bean);
-	}
-
-	/**
-	 * 律师信息修改
-	 * @param bean
-	 * @return
-	 */
 	@Transactional(readOnly = false)
 	@Override
 	public Integer update(UserUpdateBean bean) {
@@ -97,9 +81,9 @@ public class UserServiceImpl implements UserService {
 				saveDomain.setUserCode(bean.getUserCode());
 				saveDomain.setUserId(bean.getUserId());
 				saveDomain.setDomainCode(domainCode);
+
 				domainList.add(saveDomain);
 			}
-
 
 			if(domainList!=null && !domainList.isEmpty()){
 				userMapper.saveAttorneyDomain(domainList);
@@ -109,7 +93,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return 1;
 	}
-
 
 	@Override
 	public String registerCode(String mobile) {

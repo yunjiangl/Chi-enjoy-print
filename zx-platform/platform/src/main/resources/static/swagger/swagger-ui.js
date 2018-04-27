@@ -674,7 +674,7 @@ templates['popup'] = template({"compiler":[7,">= 4.0.0"],"main":function(contain
 
   return "<div class=\"api-popup-dialog-wrapper\">\n    <div class=\"api-popup-title\">"
     + container.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"title","hash":{},"data":data}) : helper)))
-    + "</div>\n    <div class=\"api-popup-content\"></div>\n    <p class=\"error-msg\"></p>\n    <div class=\"api-popup-actions\">\n        <button class=\"api-popup-cancel api-button gray\" type=\"button\">Cancel</button>\n    </div>\n</div>\n<div class=\"api-popup-dialog-shadow\"></div>";
+    + "</div>\n    <div class=\"api-popup-content\"></div>\n    <p class=\"error-apply\"></p>\n    <div class=\"api-popup-actions\">\n        <button class=\"api-popup-cancel api-button gray\" type=\"button\">Cancel</button>\n    </div>\n</div>\n<div class=\"api-popup-dialog-shadow\"></div>";
 },"useData":true});
 templates['resource'] = template({"1":function(container,depth0,helpers,partials,data) {
     return " : ";

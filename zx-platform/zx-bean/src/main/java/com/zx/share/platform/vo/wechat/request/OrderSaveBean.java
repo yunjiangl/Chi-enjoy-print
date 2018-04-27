@@ -14,96 +14,105 @@ import java.io.Serializable;
  */
 @ApiModel
 public class OrderSaveBean implements Serializable {
-    private static final long serialVersionUID = -8800221558232404995L;
+	private static final long serialVersionUID = -8800221558232404995L;
 
-    private String orderCode;
-    private String customerCode;
-    private String printerCode;
-    private String attorneyCode;
-    private String fileCodes;
-    private Long paperType;
-    private Integer printerNum;
-    private Long paperColcor;
-    private Long paperUsage;
-    private Double serviceAmout;
+	private String orderCode;
+	private String customerCode;
+	private String printerCode;
+	private String attorneyCode;
+	private String fileCodes;
+	private Long paperType;
+	private Integer printerNum;
+	private Long paperColcor;
+	private Long paperUsage;
+	private Double serviceAmout;
+	private Long fileType; // 文件的类型，4为ab类文件，5为cde类文件
 
-    public String getOrderCode() {
-        return orderCode;
-    }
+	public String getOrderCode() {
+		return orderCode;
+	}
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
-    }
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
+	}
 
-    public String getCustomerCode() {
-        return customerCode;
-    }
+	public String getCustomerCode() {
+		return customerCode;
+	}
 
-    public void setCustomerCode(String customerCode) {
-        this.customerCode = customerCode;
-    }
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
+	}
 
-    public String getPrinterCode() {
-        return printerCode;
-    }
+	public String getPrinterCode() {
+		return printerCode;
+	}
 
-    public void setPrinterCode(String printerCode) {
-        this.printerCode = printerCode;
-    }
+	public void setPrinterCode(String printerCode) {
+		this.printerCode = printerCode;
+	}
 
-    public String getAttorneyCode() {
-        return attorneyCode;
-    }
+	public String getAttorneyCode() {
+		return attorneyCode;
+	}
 
-    public void setAttorneyCode(String attorneyCode) {
-        this.attorneyCode = attorneyCode;
-    }
+	public void setAttorneyCode(String attorneyCode) {
+		this.attorneyCode = attorneyCode;
+	}
 
-    public String getFileCodes() {
-        return fileCodes;
-    }
+	public String getFileCodes() {
+		return fileCodes;
+	}
 
-    public void setFileCodes(String fileCodes) {
-        this.fileCodes = fileCodes;
-    }
+	public void setFileCodes(String fileCodes) {
+		this.fileCodes = fileCodes;
+	}
 
-    public Long getPaperType() {
-        return paperType;
-    }
+	public Long getPaperType() {
+		return paperType;
+	}
 
-    public void setPaperType(Long paperType) {
-        this.paperType = paperType;
-    }
+	public void setPaperType(Long paperType) {
+		this.paperType = paperType;
+	}
 
-    public Integer getPrinterNum() {
-        return printerNum;
-    }
+	public Integer getPrinterNum() {
+		return printerNum;
+	}
 
-    public void setPrinterNum(Integer printerNum) {
-        this.printerNum = printerNum;
-    }
+	public void setPrinterNum(Integer printerNum) {
+		this.printerNum = printerNum;
+	}
 
-    public Long getPaperColcor() {
-        return paperColcor;
-    }
+	public Long getPaperColcor() {
+		return paperColcor;
+	}
 
-    public void setPaperColcor(Long paperColcor) {
-        this.paperColcor = paperColcor;
-    }
+	public void setPaperColcor(Long paperColcor) {
+		this.paperColcor = paperColcor;
+	}
 
-    public Long getPaperUsage() {
-        return paperUsage;
-    }
+	public Long getPaperUsage() {
+		return paperUsage;
+	}
 
-    public void setPaperUsage(Long paperUsage) {
-        this.paperUsage = paperUsage;
-    }
+	public void setPaperUsage(Long paperUsage) {
+		this.paperUsage = paperUsage;
+	}
 
-    public Double getServiceAmout() {
-        return serviceAmout;
-    }
+	public Double getServiceAmout() {
+		return serviceAmout;
+	}
 
-    public void setServiceAmout(Double serviceAmout) {
-        this.serviceAmout = serviceAmout;
-    }
+	public void setServiceAmout(Double serviceAmout) {
+		this.serviceAmout = serviceAmout;
+	}
+
+	public Long getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(Long fileType) {
+		this.fileType = fileType;
+	}
 }

@@ -16,6 +16,8 @@ public class FileResultBean implements Serializable {
 
     private static final long serialVersionUID = -5964152037114320669L;
 
+    @ApiModelProperty(value = "文件id")
+    private Long id;
     @ApiModelProperty(value = "fileCode")
     private String fileCode;
     @ApiModelProperty(value = "文件名")
@@ -96,6 +98,15 @@ public class FileResultBean implements Serializable {
 	public void setAbstracts(String abstracts) {
 		this.abstracts = abstracts;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
     
     
 }

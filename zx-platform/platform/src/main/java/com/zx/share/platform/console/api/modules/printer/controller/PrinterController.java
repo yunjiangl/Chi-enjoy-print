@@ -33,6 +33,22 @@ public class PrinterController extends AbstractController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         //查询列表数据
+        params = super.checkOwnerParams(params);
+        Query query = new Query(params);
+        query.isPaging(true);
+        List<ZxPrinterManager> printerList = printerService.queryList(query);
+        int total = printerService.queryTotal(query);
+        PageUtils pageUtil = new PageUtils(printerList, total, query.getLimit(), query.getPage());
+        return R.ok().put("page", pageUtil);
+    }
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/owner/list")
+    public R ownerList(@RequestParam Map<String, Object> params){
+        //查询列表数据
+        params = super.checkOwnerParams(params);
         Query query = new Query(params);
         query.isPaging(true);
         List<ZxPrinterManager> printerList = printerService.queryList(query);

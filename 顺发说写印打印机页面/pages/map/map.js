@@ -1,10 +1,11 @@
+
 Page({
   data: {
-    Height: 0,
-    scale: 13,
-    latitude: "",
-    longitude: "",
+    scale: 14,
+
+    markPoints: [],
     markers: [],
+
     controls: [{
       id: 1,
       iconPath: '../images/jian.png',
@@ -32,6 +33,19 @@ Page({
 
   },
 
+  /*// 显示所有经纬度
+  includePoints: function () {
+    var _this = this;
+    console.log(_this.data.markPoints);
+    _this.setData({
+      scale: 0
+    })
+    this.mapCtx.includePoints({
+      padding: [10],
+      points: _this.data.markPoints
+    })
+  },*/
+
   onLoad: function () {
     var _this = this;
 
@@ -51,6 +65,7 @@ Page({
     })
 
     wx.getLocation({
+
       type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       success: function (res) {
         var a = res.latitude;
@@ -58,9 +73,10 @@ Page({
         console.log(a);
         console.log(b);
         wx.request({
+
           url: 'http://123.206.42.162:10001/printer/nearby',
           header: {
-            'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken,
+            'X-ACCESS-TOKEN': null,
           },
           data: {
             longitude: a,
@@ -68,33 +84,51 @@ Page({
           },
           method: 'GET',
           success: function (aa) {
+            //var that=this;
+            //console.log(aa);
             //markers解决
-           
+            var _mapMarkers = [],
+                _markPoints = [];
+            for (var i = 0; i < aa.data.data.length; i++) {
+
+              _markPoints.push({
+                latitude: aa.data.data[i].longitude,
+                longitude: aa.data.data[i].latitude
+              });
+              
+              _mapMarkers.push({
+                id: i+1,
+                latitude: aa.data.data[i].longitude,
+                longitude: aa.data.data[i].latitude,
+                title: aa.data.data[i].name,
+                width: 40,
+                height: 40,
+                iconPath: "../images/my.png"
+              })
+
+            }
+
+            console.log(_mapMarkers)
+
+            _this.setData({
+              latitude: res.latitude,
+              longitude: res.longitude,
+              markers: _mapMarkers,
+              markPoints: _markPoints,
+              
+
+            })
+
+            console.log(_this.data.markers)
+
+            
+            
           }
         })
-        _this.setData({
-          latitude: res.latitude,
-          longitude: res.longitude,
-          markers: [{
-            id: "1",
-            latitude: res.latitude,
-            longitude: res.longitude,
-            width: 50,
-            height: 50,
-            iconPath: "../images/my.png",
-            title: "哪里"
 
-          }],
-          circles: [{
-            latitude: res.latitude,
-            longitude: res.longitude,
-            color: '#FF0000DD',
-            fillColor: '#7cb5ec88',
-            radius: 3000,
-            strokeWidth: 1
-          }]
+        
 
-        })
+       
       }
 
     })
@@ -105,20 +139,7 @@ Page({
     console.log("regionchange===" + e.type)
   },
 
-  //点击merkers
-  markertap(e) {
-    console.log(e.markerId)
 
-    wx.showActionSheet({
-      itemList: ["A"],
-      success: function (res) {
-        console.log(res.tapIndex)
-      },
-      fail: function (res) {
-        console.log(res.errMsg)
-      }
-    })
-  },
 
   //点击缩放按钮动态请求数据
   controltap(e) {
@@ -140,6 +161,10 @@ Page({
 
 
   },
+
+  onReady: function(e){
+    this.mapCtx = wx.createMapContext('map')
+  }
 
 
 })
