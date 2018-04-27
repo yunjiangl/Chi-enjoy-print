@@ -1,4 +1,5 @@
 // pages/personalCenter/personalCenter.js
+var app = getApp();
 Page({
 
   /**
@@ -16,7 +17,7 @@ Page({
 logout:function(){
   
   wx.request({
-    url: 'http://127.0.0.1:10001/logout',
+    url: app.data.api + app.data.urlLogout,
     success: function (res) {
       console.log('退出');
       wx.showToast({
@@ -55,9 +56,9 @@ logout:function(){
   onShow: function () {
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
+      url: app.data.api + app.data.urlUserDetails,
       data: {
-        code: 'wechat00000000000'
+        code: app.data.userCode
       },
       header: {
         'content-type': 'application/json' // 默认值

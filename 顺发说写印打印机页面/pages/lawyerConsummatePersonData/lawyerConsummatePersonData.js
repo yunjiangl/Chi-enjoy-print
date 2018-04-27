@@ -1,6 +1,6 @@
 //获取应用实例
-// var app = getApp()
-// var util = require('../../utils/util.js')
+var app = getApp();
+
 var area = require('../../utils/area.js')
 
 var areaInfo = [];//所有省市区县数据
@@ -115,7 +115,7 @@ Page({
     console.log('姓名:' + name + '年龄:' + age + '手机:' + age + '微信:' + weChatId + '性别:' + sex + '所在地:' + address + '执业机构:' + workOrg + '执业证号:' + workNum + '执业类型:' + domains + '职业年限:' + workYear + '审核图片:' + checkImg + '资格证图片:' + attorneyCardImg + '身份证:' + identityCardImg);
 
     wx.request({
-      url: 'http://127.0.0.1:10001/user/attorney/update',
+      url: app.data.api + app.data.urlUserAttorneyUpdate,
       data: {
         userCode: code,
         wechatId: weChatId,
@@ -292,9 +292,9 @@ Page({
     });
 
     wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
+      url: app.data.api + app.data.urlUserDetails,
       data: {
-        code: 'wechat00000000007'
+        code: app.data.userCode
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -382,7 +382,7 @@ function upload(page, path,num) {
     title: "正在上传"
   }),
     wx.uploadFile({
-    url: "http://127.0.0.1:10001/upload/file/userimg",
+    url: app.data.api + app.data.urlUploadUserimg,
       filePath: path[0],
       name: 'multipartFile',
       header: { "content-type": "multipart/form-data" },

@@ -1,6 +1,6 @@
 //获取应用实例
-// var app = getApp()
-// var util = require('../../utils/util.js')
+var app = getApp();
+
 var area = require('../../utils/area.js')
 
 var areaInfo = [];//所有省市区县数据
@@ -55,7 +55,7 @@ Page({
     console.log('姓名：' + nickName + '性别：' + sex + '年龄：' + age + '手机：' + mobile + '微信：' + weChatId + '地址：' + province + city + area + '头像' + portrait);
 
        wx.request({
-         url: 'http://127.0.0.1:10001/user/update',
+         url: app.data.api+app.data.urlUserUpdate,
          data: {
            userCode: code,
            wechatId: weChatId,
@@ -139,9 +139,9 @@ Page({
     });
     
     wx.request({
-      url: 'http://127.0.0.1:10001/user/details',
+      url: app.data.api + app.data.urlUserDetails,
       data: {
-        code: options.userCode
+        code: app.data.userCode
       },
       header: {
         'content-type': 'application/json' // 默认值
