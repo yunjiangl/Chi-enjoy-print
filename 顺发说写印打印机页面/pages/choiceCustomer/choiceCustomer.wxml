@@ -15,7 +15,7 @@
         </view>
         <view>
           <view>
-            <text>张客户</text>
+            <text>张大律师</text>
           </view>
           <view class='your'>
             <text>您曾导入的文件</text>
@@ -43,7 +43,7 @@
         </view>
         <view>
           <view>
-            <text>李客户</text>
+            <text>张大律师</text>
           </view>
           <view class='your'>
             <text>您曾导入的文件</text>
@@ -71,7 +71,7 @@
         </view>
         <view>
           <view>
-            <text>王客户</text>
+            <text>张大律师</text>
           </view>
           <view class='your'>
             <text>您曾导入的文件</text>

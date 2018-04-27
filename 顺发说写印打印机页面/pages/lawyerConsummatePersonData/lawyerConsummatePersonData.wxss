@@ -133,6 +133,9 @@ radio .wx-radio-input{
   line-height: 100rpx;
   z-index: 333;
 }
+.occupationNumber{
+  /* margin-bottom: -15px; */
+}
 .font{
   margin-right: 30rpx;
   padding-left: 30rpx;
@@ -144,36 +147,21 @@ radio .wx-radio-input{
 .atLeast{
   color: #999;
 }
-.choice{
-  width: 100%;
-  background: #fff;
-  overflow: hidden;
-  padding-bottom: 10rpx;
-}
-.rt{
-  width: 100%;
-  margin-left: 5px;
-  margin-right: 5px;
-}
 .list{
   border: 1px solid #e0e0e0;
   border-radius: 20px;
   line-height: 25px;
   padding: 0 10px;
-  margin: 10rpx 15rpx;
-  float: left;
+  margin-top: 15px;
+  margin-left: 10px;
 }
- .rt .active{
-  color: #ff6700;
-  border: 1px solid #ff6700;  
-} 
-.active-tag {
-  color:#ff6700;  
-  border: 1px solid #ff6700;
-  border-radius: 20px;
-  line-height: 25px;
-  padding: 0 10px;
+.rt{
+  margin-left: 5px;
 }
+.tp{
+  display: flex;
+}
+
 /*上传图片*/
 .upPicture{
   background: #fff;
@@ -215,6 +203,7 @@ button[type='default']{
   background: #3798fb;
   z-index: 5565
 }
+
 /*三级联动  */
 .infoText{
     margin-top: 20rpx;
@@ -274,7 +263,7 @@ button[type='default']{
   line-height: 100rpx; 
   align-items:center;
 }
-.animation-element-wrapper text{
+text{
   color: #999999;
   display: inline-flex;  
   position: fixed;

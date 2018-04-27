@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zx.share.platform.console.api.modules.apply.dao.ApplyDao">
+
+	<select id="queryObject" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
+		select * from zx_user_printer_apply where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
+		select apply.* from zx_user_printer_apply apply join zx_printer_manager p on p.id=apply.printer_id
+		<where>
+			<if test="name!=null and name!=''">
+				AND apply.user_id in (
+				select id from zx_user where username like concat('%',#{name},'%')
+				)
+			</if>
+			<if test="createId!=null and createId!=''">
+				AND p.create_id = #{createId}
+			</if>
+			<if test="status!=null and status!=''">
+				AND status = #{status}
+			</if>
+		</where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from zx_user_printer_apply apply join zx_printer_manager p on p.id=apply.printer_id
+		<where>
+			<if test="name!=null and name!=''">
+				AND apply.user_id in (
+				select id from zx_user where username like concat('%',#{name},'%')
+				)
+			</if>
+			<if test="createId!=null and createId!=''">
+				AND p.create_id = #{createId}
+			</if>
+			<if test="status!=null and status!=''">
+				AND status = #{status}
+			</if>
+
+		</where>
+	</select>
+
+	<delete id="delete">
+		delete from zx_user_printer_apply where id = #{value}
+	</delete>
+	
+	<update id="deleteBatch">
+
+	</update>
+	<update id="updateStatus">
+		update zx_user_printer_apply set status=${status},check_id=#{checkId},check_time=now() where id=#{id}
+	</update>
+
+	<insert id="saveApply" parameterType="com.zx.share.platform.bean.zx.ZxUserPrinter">
+		insert into zx_user_printer(
+			user_id,printer_id,status,check_time,check_id,
+			user_code,printer_code,check_code,create_id,create_time
+		) values(
+			#{userId},#{printerId},#{status},#{checkTime},#{checkId},
+			#{userCode},#{printerCode},#{checkCode},#{createId},#{createTime}
+		)
+	</insert>
+</mapper>

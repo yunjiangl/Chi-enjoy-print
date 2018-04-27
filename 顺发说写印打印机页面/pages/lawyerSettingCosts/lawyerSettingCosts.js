@@ -32,6 +32,7 @@ Page({
       paperColcor: 10, // 纸张颜色
       paperUsage: 12, // 纸张使用
       serviceAmout: null, // 服务费
+      fileType: null,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
     }
 
   },
@@ -50,6 +51,7 @@ Page({
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
+        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },
@@ -68,6 +70,7 @@ Page({
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
+        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },
@@ -85,6 +88,7 @@ Page({
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: e.detail.value, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
+        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },
@@ -102,6 +106,7 @@ Page({
         paperColcor: e.detail.value, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
+        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },
@@ -119,6 +124,7 @@ Page({
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: e.detail.value, // 服务费
+        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },
@@ -149,10 +155,11 @@ Page({
               printerCode: that.data.order.printerCode, // 打印机code
               fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
               paperType: that.data.order.paperType, // 纸张类型
-              printerNum: that.data.order.printerNum, // 打印数量
+              printerNum: that.data.printerNum, // 打印数量
               paperColcor: that.data.order.paperColcor, // 纸张颜色
               paperUsage: that.data.order.paperUsage, // 纸张使用
               serviceAmout: that.data.order.serviceAmout, // 服务费
+              fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
             },
             success: function (res) {
               console.log('保存订单结果' + res)
@@ -187,6 +194,7 @@ Page({
             paperColcor: that.data.order.paperColcor, // 纸张颜色
             paperUsage: that.data.order.paperUsage, // 纸张使用
             serviceAmout: that.data.order.serviceAmout, // 服务费
+            fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
           }
         })
       }
@@ -200,13 +208,14 @@ Page({
       order: {
         customerCode: that.data.order.customerCode,// 客户code
         attorneyCode: that.data.order.attorneyCode, // 律师code
-        printerCode: '156156', // 打印机code
+        printerCode: '1561563', // 打印机code
         fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
         paperType: that.data.order.paperType, // 纸张类型
         printerNum: that.data.order.printerNum, // 打印数量
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
+        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },
@@ -246,6 +255,7 @@ Page({
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
+        fileType: options.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       }
     })
   },

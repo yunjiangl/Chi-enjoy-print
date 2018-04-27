@@ -6,12 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+  
+
+
+
+
     query: null,
     code: null,
     page: 0,
     pageSize: 10,
     fileInfoList: [],
-    fileInfo:[]
+    fileInfo:[],
+    fileType:null,
   },
   // downloadDocument:function(){
   //   wx.navigateBack({
@@ -29,12 +35,17 @@ Page({
     })
   },
 
+
+
+
+
+
   choiceCustomer:function(){
     var that = this;
     // 把要传递的json对象转换成字符串
     var fileInfo = JSON.stringify(that.data.fileInfo);
     wx: wx.navigateTo({
-      url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo,
+      url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo + "&fileType=" + that.data.fileType,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -93,6 +104,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     var that = this;
     var code = '';
@@ -107,7 +132,8 @@ Page({
 
     that.setData({
       code: code,
-      query: query
+      query: query,
+      fileType: options.fileType
     })
 
     that.getData();
@@ -117,6 +143,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+  
 
   },
 
@@ -124,6 +151,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+  
 
   },
 
@@ -131,6 +159,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+  
 
   },
 
@@ -138,6 +167,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+  
 
   },
 
@@ -145,6 +175,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+  
 
   },
 
@@ -152,6 +183,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+  
     var that = this;
     that.getData();
   },
@@ -160,6 +192,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+  
 
   }
 })

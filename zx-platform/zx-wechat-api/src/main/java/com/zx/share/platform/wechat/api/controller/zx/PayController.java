@@ -46,6 +46,7 @@ public class PayController extends BaseController {
         UserCache user = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if(user==null){
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+            return resopnseBean;
         }
         return resopnseBean;
     }

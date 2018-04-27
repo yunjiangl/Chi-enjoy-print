@@ -22,7 +22,7 @@ public class RRExceptionHandler {
 	public R handleRRException(RRException e){
 		R r = new R();
 		r.put("code", e.getCode());
-		r.put("msg", e.getMessage());
+		r.put("apply", e.getMessage());
 
 		return r;
 	}
