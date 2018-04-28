@@ -5,10 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-
-
-
     fileInfo: null,
     userCode: 'wechat00000000000', // 所要发送文件的客户，这个后面应该改为动态的
     fileType: null,

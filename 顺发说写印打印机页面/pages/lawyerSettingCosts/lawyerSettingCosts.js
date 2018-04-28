@@ -22,6 +22,7 @@ Page({
     paperUsage: null,//范围
     fileNames: [],
     filePaper: null,
+    printerAddress:'尚未选择打印机',
     order: {
       customerCode: null,// 客户code
       attorneyCode: null, // 律师code
@@ -202,21 +203,27 @@ Page({
   },
   // 获取打印机code，目前写死，之后需要调整
   getPrinterCode: function () {
-    console.log("获得打印机code")
-    var that = this
-    this.setData({
-      order: {
-        customerCode: that.data.order.customerCode,// 客户code
-        attorneyCode: that.data.order.attorneyCode, // 律师code
-        printerCode: '1561563', // 打印机code
-        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
-        paperType: that.data.order.paperType, // 纸张类型
-        printerNum: that.data.order.printerNum, // 打印数量
-        paperColcor: that.data.order.paperColcor, // 纸张颜色
-        paperUsage: that.data.order.paperUsage, // 纸张使用
-        serviceAmout: that.data.order.serviceAmout, // 服务费
-        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
-      }
+    // console.log("获得打印机code")
+    // var that = this
+    // this.setData({
+    //   order: {
+    //     customerCode: that.data.order.customerCode,// 客户code
+    //     attorneyCode: that.data.order.attorneyCode, // 律师code
+    //     printerCode: '1561563', // 打印机code
+    //     fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+    //     paperType: that.data.order.paperType, // 纸张类型
+    //     printerNum: that.data.order.printerNum, // 打印数量
+    //     paperColcor: that.data.order.paperColcor, // 纸张颜色
+    //     paperUsage: that.data.order.paperUsage, // 纸张使用
+    //     serviceAmout: that.data.order.serviceAmout, // 服务费
+    //     fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
+    //   }
+    // })
+    wx: wx.navigateTo({
+      url: '../map/map?costs=true',
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
     })
   },
   /**
