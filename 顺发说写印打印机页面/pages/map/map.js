@@ -210,6 +210,7 @@ Page({
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2]; // 上一个页面
     if (that.data.costs) {
+      that.data.costs = false
       prevPage.setData({
         printerAddress: e.currentTarget.dataset.vallist.name,
         order: {
