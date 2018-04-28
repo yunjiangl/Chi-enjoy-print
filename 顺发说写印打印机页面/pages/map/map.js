@@ -6,31 +6,26 @@ Page({
     markPoints: [],
     markers: [],
 
-    controls: [{
-      id: 1,
-      iconPath: '../images/jian.png',
-      position: {
-        left: 320,
-        top: 100 - 50,
-        width: 20,
-        height: 20
-      },
-      clickable: true
-    },
-    {
-      id: 2,
-      iconPath: '../images/jia.png',
-      position: {
-        left: 340,
-        top: 100 - 50,
-        width: 20,
-        height: 20
-      },
-      clickable: true
-    }
+    controls: [
     ],
-    circles: []
+    circles: [],
 
+    showView: true,
+    // imgUrl: '../images/triangle_01.png'
+
+    val:null,
+    blackmoney:null,
+    colormoney:null
+  },
+
+  //点击显示
+  change: function () {
+    // imgUrl:false;
+    // imgUrl:'../images/triangle_02.png'
+    var that = this;
+    that.setData({
+      showView: (!that.data.showView)
+    })
   },
 
   /*// 显示所有经纬度
@@ -45,8 +40,9 @@ Page({
       points: _this.data.markPoints
     })
   },*/
-
-  onLoad: function () {
+  onLoad: function (options) {
+    //点击显示
+    showView: (options.showView == "true" ? true : false)
     var _this = this;
 
     wx.getSystemInfo({
@@ -85,19 +81,22 @@ Page({
           method: 'GET',
           success: function (aa) {
             //var that=this;
-            //console.log(aa);
+            console.log(aa.data.data);
+            _this.setData({
+              val:aa.data.data
+            });
             //markers解决
             var _mapMarkers = [],
-                _markPoints = [];
+              _markPoints = [];
             for (var i = 0; i < aa.data.data.length; i++) {
 
               _markPoints.push({
                 latitude: aa.data.data[i].longitude,
                 longitude: aa.data.data[i].latitude
               });
-              
+
               _mapMarkers.push({
-                id: i+1,
+                id: i + 1,
                 latitude: aa.data.data[i].longitude,
                 longitude: aa.data.data[i].latitude,
                 title: aa.data.data[i].name,
@@ -108,27 +107,62 @@ Page({
 
             }
 
-            console.log(_mapMarkers)
+           // console.log(_mapMarkers)
 
             _this.setData({
               latitude: res.latitude,
               longitude: res.longitude,
               markers: _mapMarkers,
               markPoints: _markPoints,
-              
+
 
             })
 
-            console.log(_this.data.markers)
+            //console.log(_this.data.markers)
 
-            
-            
+
+
           }
         })
 
-        
+        wx.request({
 
-       
+          url: 'http://123.206.42.162:10001/dictionary/get',
+          header: {
+            'X-ACCESS-TOKEN': null,
+          },
+          data: {
+            code: 'paper_colour_black'
+          },
+          method: 'GET',
+          success: function (bb) {
+            console.log(bb);
+              _this.setData({
+                blackmoney:bb.data.value
+              })
+          }
+        })
+
+        wx.request({
+
+          url: 'http://123.206.42.162:10001/dictionary/get',
+          header: {
+            'X-ACCESS-TOKEN': null,
+          },
+          data: {
+            code: 'paper_colour_colours'
+          },
+          method: 'GET',
+          success: function (cc) {
+            // console.log(cc);
+            _this.setData({
+              colormoney: cc.data.value
+            })
+          }
+        })
+
+
+
       }
 
     })
@@ -162,7 +196,7 @@ Page({
 
   },
 
-  onReady: function(e){
+  onReady: function (e) {
     this.mapCtx = wx.createMapContext('map')
   }
 
