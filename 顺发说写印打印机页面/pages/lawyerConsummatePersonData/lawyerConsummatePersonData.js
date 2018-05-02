@@ -41,18 +41,8 @@ Page({
     src2: '../images/photo.png',
     src3: '../images/photo.png',
     //执业证号
-    dates: [
-      { "data_name": "1", "name": "金融证券", "state": 0 },
-      { "data_name": "2", "name": "征地拆迁", "state": 0 },
-      { "data_name": "3", "name": "行政法律", "state": 0 },
-      { "data_name": "4", "name": "知识产权", "state": 0 },
-      { "data_name": "5", "name": "劳动纠纷", "state": 0 },
-      { "data_name": "6", "name": "海事海商", "state": 0 },
-      { "data_name": "7", "name": "商事仲裁", "state": 0 },
-      { "data_name": "8", "name": "合同纠纷", "state": 0 },
-      { "data_name": "8", "name": "合同纠纷", "state": 0 },
-      { "data_name": "8", "name": "合同纠纷", "state": 0 },
-    ]
+    dates: [],
+    
   },
   //选择执业后加样式
   select_date: function (e) {
@@ -95,10 +85,10 @@ Page({
     //执业类型
     var domains = '';
     var dates = this.data.dates;
-    for (var i = 0; i < dates.length ; i++){
-      if (dates[i].state == 1){
-        domains += dates[i].name+',';
-        }
+    for (var i = 0; i < dates.length; i++) {
+      if (dates[i].state == 1) {
+        domains += dates[i].name + ',';
+      }
     }
 
     //职业年限
@@ -166,8 +156,8 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
         console.log(tempFilePaths[0]);
-       
-        upload(that, tempFilePaths,1);
+
+        upload(that, tempFilePaths, 1);
       }
     })
 
@@ -184,8 +174,8 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        
-        upload(that, tempFilePaths,2);
+
+        upload(that, tempFilePaths, 2);
       }
     })
   },
@@ -201,8 +191,8 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-      
-        upload(that, tempFilePaths,3);
+
+        upload(that, tempFilePaths, 3);
       }
     })
   },
@@ -238,7 +228,31 @@ Page({
    */
   onShow: function (options) {
     var that = this;
-    
+    wx.request({
+      url: app.data.api + app.data.urlDomainList,
+      data: {
+
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        var list1 = new Array();
+        var dates = new Array();
+        list1 = res.data.data;
+        for (var i in list1) {
+
+          var obj = { "data_name": i, "name": list1[i].name, "state": 0 }
+          dates.push(obj)
+        }
+        console.log(dates)
+        that.setData({
+          dates: dates
+        })
+      }
+    })
+
+
   },
   //滑动事件
   bindChange: function (e) {
@@ -313,7 +327,8 @@ Page({
           sex: res.data.data.gen,
           province: res.data.data.province,
           city: res.data.data.city,
-          county: res.data.data.area
+          county: res.data.data.area,
+          firstPerson: res.data.data.attorney.workYear
 
         })
 
@@ -372,13 +387,13 @@ Page({
   }
 })
 //上传文件
-function upload(page, path,num) {
+function upload(page, path, num) {
   wx.showToast({
     icon: "loading",
     title: "正在上传"
   }),
     wx.uploadFile({
-    url: app.data.api + app.data.urlUploadUserimg,
+      url: app.data.api + app.data.urlUploadUserimg,
       filePath: path[0],
       name: 'multipartFile',
       header: { "content-type": "multipart/form-data" },
@@ -397,7 +412,7 @@ function upload(page, path,num) {
           return;
         }
         var data = res.data
-        
+
         switch (num) {
           case 1:
             page.setData({  //上传成功修改显示头像

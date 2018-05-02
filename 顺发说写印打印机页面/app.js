@@ -2,7 +2,10 @@
 App({
   data: {
     api: 'http://127.0.0.1:10001/',
-    userInfo: null,
+    userInfo: {
+      accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
+      userType: null,// 用户类型，1为普通用户，2为律师用户
+    },
     urlWechatLogin: "wechat/login",
     urlLogin: 'login',
     userCode: 'wechat00000000000',//登录成功后，存储用户code
@@ -18,6 +21,7 @@ App({
     urlDictionaryAList: 'dictionary/a/list', // a文件分类
     urlFileMAPage: 'file/m/a/page',//a文件分页
     urlOrderSave: 'order/save',//保存订单信息
+    urlDomainList:'dictionary/domain/list',//律师领域
   },
 
   onLaunch: function () {
@@ -53,7 +57,7 @@ App({
                 // 如果用户刚刚使用微信登录
                 if (data.data.data.userStatus == 1) {
                   wx.redirectTo({
-                    url: './register'
+                    url: '../register/register'
                   })
                  
                 } else {
@@ -62,7 +66,7 @@ App({
                   if (data.data.data.userType == 2) {
                     //跳转到律师首页
                     wx.redirectTo({
-                      url: './lawyerIndex'
+                      url: '../lawyerIndex/lawyerIndex'
                     })
                    
                   } else if (data.data.data.userType == 1) {
@@ -75,7 +79,7 @@ App({
                 }
 
                 // 为全局变量赋值
-                that.data.userInfo.userCode = data.data.data.userCode;
+                that.data.userCode = data.data.data.userCode;
                 that.data.userInfo.userType = data.data.data.userType;
                 that.data.userInfo.accessToken = data.data.data.accessToken;
               }

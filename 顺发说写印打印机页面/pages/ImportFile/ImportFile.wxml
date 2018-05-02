@@ -1,0 +1,81 @@
+<view class='container'>
+  <!-- top start -->
+    <view class='top'>
+      <image src='../images/icon/1.png' />
+      <view class='top-right'>
+        <view class=''>文档打印</view>
+        <view class=''>您曾导入的文件</view>
+      </view>
+    </view>
+  <!-- top end  -->
+  <!-- content start -->
+    <view class='content'>
+      <view class='title'>
+        其他方式导入
+      </view>
+      <!-- ul start -->
+        <view class='ul'>
+
+          <!--li start -->
+            <view class='li'>
+                <image src='../images/weixin.png' />
+                <view class='ul-right'>
+                  <view class='li-title'>微信</view>
+                  <view class='explain'>导入并打印您聊天记录或收藏中的文件</view>
+                </view>
+            </view>
+          <!-- li end -->
+
+            <view class='line'></view>
+
+          <!--li start -->
+            <view class='li'>
+                <image src='../images/social-qq.png' />
+                <view class='ul-right'>
+                  <view class='li-title'>微信</view>
+                  <view class='explain'>导入并打印您聊天记录或收藏中的文件</view>
+                </view>
+            </view>
+          <!-- li end -->
+
+            <view class='line'></view>
+
+          <!--li start -->
+            <view class='li'>
+                <image src='../images/baiduyun.png' />
+                <view class='ul-right'>
+                  <view class='li-title'>微信</view>
+                  <view class='explain'>导入并打印您聊天记录或收藏中的文件</view>
+                </view>
+            </view>
+          <!-- li end -->
+
+            <view class='line'></view>
+
+          <!--li start -->
+            <view class='li'>
+                <image src='../images/WPS(wps).png' />
+                <view class='ul-right'>
+                  <view class='li-title'>微信</view>
+                  <view class='explain'>导入并打印您聊天记录或收藏中的文件</view>
+                </view>
+            </view>
+          <!-- li end -->
+
+            <view class='line'></view>
+
+          <!--li start -->
+            <view class='li'>
+                <image src='../images/youxiang.png' />
+                <view class='ul-right'>
+                  <view class='li-title'>微信</view>
+                  <view class='explain'>导入并打印您聊天记录或收藏中的文件</view>
+                </view>
+            </view>
+          <!-- li end -->
+
+        </view>
+      <!-- ul end -->
+    </view>
+  <!-- content end -->
+</view>

@@ -155,6 +155,11 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 		attorneyRecord.setUserCode(orderSaveBean.getAttorneyCode());
 		attorneyResultBean = userMapper.selectOne(attorneyRecord);
 
+		// 获取打印价格倍数
+		SysDictionary paperType = dictionaryMapper.selectByPrimaryKey(orderSaveBean.getPaperType());
+		SysDictionary paperColcor = dictionaryMapper.selectByPrimaryKey(orderSaveBean.getPaperColcor());
+		SysDictionary paperUsage = dictionaryMapper.selectByPrimaryKey(orderSaveBean.getPaperUsage());
+
 		// 下面是文件的操作
 		String fileCode = orderSaveBean.getFileCodes();
 		if (StringUtil.isNotBlank(fileCode)) {
@@ -212,6 +217,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 				zxOrderSaveBean.setPrinterCode(printeResultBean.getPrinterCode());
 				zxOrderSaveBean.setPrinterId(printeResultBean.getId());
 				zxOrderSaveBean.setServiceAmount(orderSaveBean.getServiceAmout());
+				zxOrderSaveBean.setPrinterAmount(ZxOrderPrinterFileSaveBean.getFilePaper().doubleValue()
+						* Double.parseDouble(paperType.getValue()) * Double.parseDouble(paperColcor.getValue())
+						* Double.parseDouble(paperUsage.getValue()));
+				zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getServiceAmount() + zxOrderSaveBean.getPrinterAmount());
 				zxOrderSaveBean.setStatus(0); // 0这个状态应该是未支付
 
 				orderRecordList.add(zxOrderSaveBean);

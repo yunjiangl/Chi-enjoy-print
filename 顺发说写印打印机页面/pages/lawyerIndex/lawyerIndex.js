@@ -87,9 +87,9 @@ Page({
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
+    if (app.data.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        userInfo: app.data.userInfo,
         hasUserInfo: true
       })
     } else if (this.data.canIUse) {
@@ -116,7 +116,7 @@ Page({
   },
   getUserInfo: function (e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+    app.data.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true

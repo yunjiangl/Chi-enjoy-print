@@ -63,6 +63,9 @@ Page({
     wx.request({
       url: app.data.api + app.data.urlFileMAPage,
       method: 'GET',
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
       data: {
         query: that.data.query,
         categoryCode: that.data.code,
