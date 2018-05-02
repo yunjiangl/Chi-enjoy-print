@@ -7,7 +7,7 @@ Page({
    */
   data: {
     items1: [
-      { name: 'putong', value: '', checked: 'true' },
+      { name: 'putong', value: '', checked: 'false' },
     ],
       query: '',
       categoryCode: 'cde',
@@ -33,8 +33,12 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        var list = that.data.fileInfoList;
+        var list = [];
+        //console.log(res.data.data.content);
         for (var i = 0; i < res.data.data.content.length; i++) {
+          if (res.data.data.content[i].fileNum==null){
+            res.data.data.content[i].fileNum=0;
+          }
           list.push(res.data.data.content[i]);
         }
         that.setData({
@@ -59,12 +63,21 @@ Page({
     var that = this;
     // 把要传递的json对象转换成字符串
     var fileInfo = JSON.stringify(that.data.fileInfo);
-    wx: wx.navigateTo({
-      url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo + "&fileType=" + that.data.fileType,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
-    })
+    if (that.data.fileInfo <= 0) {
+      wx.showModal({
+        content: '请选择发送的文件',
+        success: function (res) {
+          console.log(res.confirm);
+        }
+      })
+    }else{
+      wx: wx.navigateTo({
+        url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo + "&fileType=" + that.data.fileType,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
+    }
   },
   deleteFile: function(){
     var that=this;
@@ -73,7 +86,7 @@ Page({
       wx.showModal({
         content: '请选择删除的文件',
         success: function (res) {
-         // console.log(res.confirm);
+         console.log(res.confirm);
         }
       })
     }else{
@@ -92,13 +105,15 @@ Page({
             wx.request({
               url: app.data.api + 'file/m/deleteFile',
               method: 'DELETE',
-              
-              data: {
-                ids:that.data.ids,
+              dataType: 'json', 
+              header:{
+                'content-type': 'application/json'
               },
+              data: JSON.stringify(that.data.ids),
               traditional: true ,
               success: function (res) {
-                console.log(res);
+                that.getData();
+                //that.data.items1.checked=false
               }
             })
           }
