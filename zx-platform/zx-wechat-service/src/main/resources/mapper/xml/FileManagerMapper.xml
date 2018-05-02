@@ -77,11 +77,11 @@
 		from zx_file_manager_cde where file_code = #{code}
 	</select>
 	
-	<delete id="deleteFile">
+	<update id="deleteFile">
 		delete from zx_file_manager_cde where id in 
-		<foreach item="ids" collection="array" open="(" separator="," close=")">
+		<foreach collection="array" item="ids"  open="(" separator="," close=")">
 			#{ids}
 		</foreach>
-	</delete>
+	</update>
 
 </mapper>

@@ -14,6 +14,7 @@ import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -142,18 +143,18 @@ public class FileManagerController extends BaseController {
 	@ApiOperation(value = "删除文件", notes = "删除文件")
 	@RequestMapping(value = "/deleteFile",method = RequestMethod.DELETE)
 	@ResponseBody
-	public DefaultResopnseBean<String> deleteFile(@ApiParam("文件ids") Long[] ids,
+	public DefaultResopnseBean<String> deleteFile(@ApiParam("文件ids") @RequestBody List<Long> ids,
 			HttpServletRequest request){
 		
-		System.out.println(ids);
+		//System.out.println(ids.get(0));
+		Long[] id=new Long[ids.size()];
+		for(int i=0;i<ids.size();i++) {
+			id[i]=ids.get(i);
+			System.out.println(id[i]);
+		}
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
-//		Long[] ids1=null;
-//		for(int i=0;i<ids.length;i++) {
-////			System.out.println(ids[i].substring(i, ids.length));
-//			ids1[i]=Long.parseLong(ids[i]);
-//		}
-		fileManagerService.deleteFile(ids);
+		fileManagerService.deleteFile(id);
 		return resopnseBean;
 	}
 
