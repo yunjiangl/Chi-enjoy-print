@@ -18,6 +18,7 @@ App({
     urlDictionaryAList: 'dictionary/a/list', // a文件分类
     urlFileMAPage: 'file/m/a/page',//a文件分页
     urlOrderSave: 'order/save',//保存订单信息
+    urlDomainList:'dictionary/domain/list',//律师领域
   },
 
   onLaunch: function () {
