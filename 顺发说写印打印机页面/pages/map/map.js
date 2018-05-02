@@ -6,28 +6,31 @@ Page({
     markPoints: [],
     markers: [],
 
-    controls: [
+    controls: [{
+      id: 1,
+      iconPath: '../images/jian.png',
+      position: {
+        left: 320,
+        top: 100 - 50,
+        width: 20,
+        height: 20
+      },
+      clickable: true
+    },
+    {
+      id: 2,
+      iconPath: '../images/jia.png',
+      position: {
+        left: 340,
+        top: 100 - 50,
+        width: 20,
+        height: 20
+      },
+      clickable: true
+    }
     ],
-    circles: [],
+    circles: []
 
-    showView: true,
-    // imgUrl: '../images/triangle_01.png'
-
-    val: null,
-    blackmoney: null,
-    colormoney: null,
-    costs: false,
-    orderInfo:null,
-  },
-
-  //点击显示
-  change: function () {
-    // imgUrl:false;
-    // imgUrl:'../images/triangle_02.png'
-    var that = this;
-    that.setData({
-      showView: (!that.data.showView)
-    })
   },
 
   /*// 显示所有经纬度
@@ -42,15 +45,10 @@ Page({
       points: _this.data.markPoints
     })
   },*/
-  onLoad: function (options) {
-    //点击显示
-    showView: (options.showView == "true" ? true : false)
+
+  onLoad: function () {
     var _this = this;
-    if (!(Object.prototype.toString.call(options.costs) === '[object Undefined]')) {
-      _this.setData({
-        costs: options.costs
-      })
-    }
+
     wx.getSystemInfo({
       success: function (res) {
         //设置map高度，根据当前设备宽高满屏显示
@@ -87,22 +85,19 @@ Page({
           method: 'GET',
           success: function (aa) {
             //var that=this;
-            console.log(aa.data.data);
-            _this.setData({
-              val: aa.data.data
-            });
+            //console.log(aa);
             //markers解决
             var _mapMarkers = [],
-              _markPoints = [];
+                _markPoints = [];
             for (var i = 0; i < aa.data.data.length; i++) {
 
               _markPoints.push({
                 latitude: aa.data.data[i].longitude,
                 longitude: aa.data.data[i].latitude
               });
-
+              
               _mapMarkers.push({
-                id: i + 1,
+                id: i+1,
                 latitude: aa.data.data[i].longitude,
                 longitude: aa.data.data[i].latitude,
                 title: aa.data.data[i].name,
@@ -113,62 +108,27 @@ Page({
 
             }
 
-            // console.log(_mapMarkers)
+            console.log(_mapMarkers)
 
             _this.setData({
               latitude: res.latitude,
               longitude: res.longitude,
               markers: _mapMarkers,
               markPoints: _markPoints,
-
+              
 
             })
 
-            //console.log(_this.data.markers)
+            console.log(_this.data.markers)
 
-
-
+            
+            
           }
         })
 
-        wx.request({
+        
 
-          url: 'http://123.206.42.162:10001/dictionary/get',
-          header: {
-            'X-ACCESS-TOKEN': null,
-          },
-          data: {
-            code: 'paper_colour_black'
-          },
-          method: 'GET',
-          success: function (bb) {
-            console.log(bb);
-            _this.setData({
-              blackmoney: bb.data.value
-            })
-          }
-        })
-
-        wx.request({
-
-          url: 'http://123.206.42.162:10001/dictionary/get',
-          header: {
-            'X-ACCESS-TOKEN': null,
-          },
-          data: {
-            code: 'paper_colour_colours'
-          },
-          method: 'GET',
-          success: function (cc) {
-            // console.log(cc);
-            _this.setData({
-              colormoney: cc.data.value
-            })
-          }
-        })
-
-
-
+       
       }
 
     })
@@ -202,32 +162,8 @@ Page({
 
   },
 
-  onReady: function (e) {
+  onReady: function(e){
     this.mapCtx = wx.createMapContext('map')
-  },
-  getVal: function (e) {
-    var that = this
-    var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2]; // 上一个页面
-    if (that.data.costs) {
-      that.data.costs = false
-      prevPage.setData({
-        printerAddress: e.currentTarget.dataset.vallist.name,
-        order: {
-          customerCode: prevPage.data.order.customerCode,// 客户code
-          attorneyCode: prevPage.data.order.attorneyCode, // 律师code
-          printerCode: e.currentTarget.dataset.vallist.code, // 打印机code
-          fileCodes: prevPage.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
-          paperType: prevPage.data.order.paperType, // 纸张类型
-          printerNum: prevPage.data.order.printerNum, // 打印数量
-          paperColcor: prevPage.data.order.paperColcor, // 纸张颜色
-          paperUsage: prevPage.data.order.paperUsage, // 纸张使用
-          serviceAmout: prevPage.data.order.serviceAmout, // 服务费
-          fileType: prevPage.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
-        }
-      })
-       wx.navigateBack();
-    }
   }
 
 

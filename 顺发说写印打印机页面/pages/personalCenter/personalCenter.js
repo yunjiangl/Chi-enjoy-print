@@ -1,5 +1,4 @@
 // pages/personalCenter/personalCenter.js
-var app = getApp()
 Page({
 
   /**
@@ -10,7 +9,7 @@ Page({
   },
   ImprovingPersonalData:function(){
       wx.navigateTo({
-        url: '../improvingPersonalData/improvingPersonalData',
+        url: '../improvingPersonalData/improvingPersonalData?userCode=' + this.data.details.userCode,
       })
       console.log('usercode:'+this.data.details.userCode);
   },
