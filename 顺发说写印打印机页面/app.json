@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/lawyerIndex/lawyerIndex",
+    "pages/personalCenter/personalCenter",
     "pages/choiceCustomer/choiceCustomer",
-    "pages/historyConsultant/historyConsultant",
+    "pages/historyConsultant/historyConsultant",            
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     "pages/vip-login/vip-login",
     "pages/lawyerFourFileList/lawyerFourFileList",
@@ -28,7 +29,6 @@
     "pages/lawyersInformation/lawyersInformation",  
     "pages/howuse/howuse",    
     "pages/notLogin/notLogin",    
-    "pages/personalCenter/personalCenter",  
     "pages/improvingPersonalData/improvingPersonalData",  
     "pages/setPrint/setPrint",      
     "pages/printCost/printCost",    
@@ -87,82 +87,5 @@
           "selectedIconPath": "pages/images/icon/5.png"
         }
       ]
-    },
-  
-  "tabBar": {
-    "color": "#666",
-    "selectedColor": "#3798fb",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "打印文件",
-        "iconPath": "pages/images/icon/1.png",
-        "selectedIconPath": "pages/images/file.png"
-      },
-      {
-        "pagePath": "pages/upfilelist/upfilelist",
-        "text": "上传列表",
-        "iconPath": "pages/images/uplist.png",
-        "selectedIconPath": "pages/images/icon/2.png"
-      },
-      {
-        "pagePath": "pages/historyConsultant/historyConsultant",
-        "text": "历史质询",
-        "iconPath": "pages/images/Historical.png",
-        "selectedIconPath": "pages/images/icon/3.png"
-      },
-      {
-        "pagePath": "pages/printOrders/printOrders",
-        "text": "打印订单",
-        "iconPath": "pages/images/order.png",
-        "selectedIconPath": "pages/images/icon/4.png"
-      },
-      {
-        "pagePath": "pages/personalCenter/personalCenter",
-        "text": "个人中心",
-        "iconPath": "pages/images/person.png",
-        "selectedIconPath": "pages/images/icon/5.png"
-      }
-    ]
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
