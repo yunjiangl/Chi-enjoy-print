@@ -23,4 +23,6 @@ public interface FileManagerMapper extends PlatFormMapper<ZxFileManagerAB> {
 
     FileResultBean detailsab(String code);
     FileResultBean detailscde(String code);
+    
+    int deleteFile(Long[] ids);
 }

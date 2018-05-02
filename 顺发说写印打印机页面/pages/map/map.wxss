@@ -1,16 +1,49 @@
 .map{
   height: 100%;
 }
-.btn{
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  background: #fff;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 5px;
-  width: 100%;
-}
 .default{
   line-height: 50px;
+}
+#map{
+  position: relative;
+}
+.cover{
+  bottom: 0;
+  width:100%;
+  position: absolute;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+}
+.cover_01{
+  width: 90%;
+  background: #fff;
+  margin: 0 auto;
+}
+.img{
+  width: 40rpx;
+  height: 40rpx;
+  margin: auto;
+}
+.page{
+  display: flex;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+.black{
+  margin-right: 30rpx;
+}
+.hide{
+display: none;
+
+}
+.show{
+display: block;
+height: 400rpx;
+overflow: auto;
+}
+.showAddress{
+  padding-left: 30rpx;
+  margin: 10rpx 0 0 0;
 }

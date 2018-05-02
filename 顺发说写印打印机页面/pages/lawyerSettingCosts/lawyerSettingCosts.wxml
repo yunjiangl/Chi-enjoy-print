@@ -6,7 +6,7 @@
          <view>
             <view>打印机位置</view>
           </view>
-        <view class='address'>贵州省遵义市新浦新区大学城大学生创新创业园</view>
+        <view class='address'>{{printerAddress}}</view>
       </view>
     <!--top end  -->
 

@@ -1,5 +1,32 @@
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" 
-markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange"
-  show-location style="width:100%; height: 600px"></map>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange"  show-location style="width:100%; height: 100vh;z-index:6666;">
+
+ <!-- cover start  -->
+     <cover-view class='cover'>
+            
+        <!-- cover_01 start  -->
+          <cover-view class='cover_01'>
+                <cover-image class="img" bindtap="change" src="{{showView?'../images/triangle_01.png':'../images/triangle_02.png'}}"></cover-image>
+            <!-- showView start  -->
+              <cover-view class="{{showView?'hide':'show'}} coverList" >
+                <cover-view class='showAddress' wx:for="{{val}}" wx:key=""   wx:for-item="valList" >
+                    <cover-view>{{valList.name}}</cover-view>
+                    <cover-view class='page'>
+                      <cover-view class='black'>
+                        <cover-view>黑白:{{blackmoney}}元/页</cover-view>
+                      </cover-view>
+                      <cover-view>彩色:{{colormoney}}元/页</cover-view>
+                    </cover-view>
+                </cover-view>
+              </cover-view>
+            <!-- showView end -->
+              
+              
+
+          </cover-view>
+        <!-- cover_01 end -->
+           
+    </cover-view>  
+    <!-- cover end  -->
+</map>
 
   

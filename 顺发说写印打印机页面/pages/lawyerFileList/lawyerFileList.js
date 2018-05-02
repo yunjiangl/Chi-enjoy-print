@@ -63,6 +63,9 @@ Page({
     wx.request({
       url: app.data.api + app.data.urlFileMAPage,
       method: 'GET',
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
       data: {
         query: that.data.query,
         categoryCode: that.data.code,
@@ -104,21 +107,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     var that = this;
     var code = '';
     var query = '';

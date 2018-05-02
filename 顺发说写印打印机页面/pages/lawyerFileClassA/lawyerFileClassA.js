@@ -1,4 +1,4 @@
-﻿var app = getApp()
+var app = getApp()
 Page({
 
   /**
@@ -33,19 +33,49 @@ Page({
 
   navbarTap: function (e) {
     var that = this;
-    this.setData({
-      currentTab: e.currentTarget.dataset.idx,
-      listNavBar: that.data.navbar[e.currentTarget.dataset.idx].list,
-      listUntilData: that.data.navbar[e.currentTarget.dataset.idx].list[0].list
-    });
+   
+    if (that.data.navbar[e.currentTarget.dataset.idx].list.length == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '没有数据了',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    } else {
+      this.setData({
+        currentTab: e.currentTarget.dataset.idx,
+        listNavBar: that.data.navbar[e.currentTarget.dataset.idx].list,
+        listUntilData: that.data.navbar[e.currentTarget.dataset.idx].list[0].list
+      });
+    }
   },
   listNavBarTab: function (e) {
     var that = this;
-
-    this.setData({
-      listTitleTab: e.currentTarget.dataset.idx,
-      listUntilData: that.data.listNavBar[e.currentTarget.dataset.idx].list
-    })
+   
+    if (that.data.listNavBar[e.currentTarget.dataset.idx].list.length == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '没有数据了',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+    else {
+      this.setData({
+        listTitleTab: e.currentTarget.dataset.idx,
+        listUntilData: that.data.listNavBar[e.currentTarget.dataset.idx].list
+      })
+    }
   },
   trun: function (e) {
     var that = this;
@@ -64,10 +94,13 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
+    
     wx.request({
       url: app.data.api + app.data.urlDictionaryAList,
       method: 'GET',
+      header:{
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
       success: function (data) {
 
         that.setData({
