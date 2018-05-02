@@ -67,4 +67,9 @@ public class FileManagerServiceImpl implements FileManagerService {
         }
         return resultBean;
     }
+
+	@Override
+	public int deleteFile(Long[] ids) {
+		return fileManagerMapper.deleteFile(ids);
+	}
 }

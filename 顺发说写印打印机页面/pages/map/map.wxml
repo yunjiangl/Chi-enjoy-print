@@ -1,4 +1,4 @@
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange"  show-location style="width:100%; height: 550px;z-index:6666;">
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange"  show-location style="width:100%; height: 100vh;z-index:6666;">
 
  <!-- cover start  -->
      <cover-view class='cover'>
@@ -8,7 +8,7 @@
                 <cover-image class="img" bindtap="change" src="{{showView?'../images/triangle_01.png':'../images/triangle_02.png'}}"></cover-image>
             <!-- showView start  -->
               <cover-view class="{{showView?'hide':'show'}} coverList" >
-                <cover-view class='showAddress' wx:for="{{val}}" wx:key=""  data-valList='{{valList}}' bindtap='getVal'  wx:for-item="valList" >
+                <cover-view class='showAddress' wx:for="{{val}}" wx:key=""   wx:for-item="valList" >
                     <cover-view>{{valList.name}}</cover-view>
                     <cover-view class='page'>
                       <cover-view class='black'>

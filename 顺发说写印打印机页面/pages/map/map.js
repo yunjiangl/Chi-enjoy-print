@@ -13,11 +13,9 @@ Page({
     showView: true,
     // imgUrl: '../images/triangle_01.png'
 
-    val: null,
-    blackmoney: null,
-    colormoney: null,
-    costs: false,
-    orderInfo:null,
+    val:null,
+    blackmoney:null,
+    colormoney:null
   },
 
   //点击显示
@@ -46,11 +44,7 @@ Page({
     //点击显示
     showView: (options.showView == "true" ? true : false)
     var _this = this;
-    if (!(Object.prototype.toString.call(options.costs) === '[object Undefined]')) {
-      _this.setData({
-        costs: options.costs
-      })
-    }
+
     wx.getSystemInfo({
       success: function (res) {
         //设置map高度，根据当前设备宽高满屏显示
@@ -89,7 +83,7 @@ Page({
             //var that=this;
             console.log(aa.data.data);
             _this.setData({
-              val: aa.data.data
+              val:aa.data.data
             });
             //markers解决
             var _mapMarkers = [],
@@ -113,7 +107,7 @@ Page({
 
             }
 
-            // console.log(_mapMarkers)
+           // console.log(_mapMarkers)
 
             _this.setData({
               latitude: res.latitude,
@@ -143,9 +137,9 @@ Page({
           method: 'GET',
           success: function (bb) {
             console.log(bb);
-            _this.setData({
-              blackmoney: bb.data.value
-            })
+              _this.setData({
+                blackmoney:bb.data.value
+              })
           }
         })
 
@@ -204,30 +198,6 @@ Page({
 
   onReady: function (e) {
     this.mapCtx = wx.createMapContext('map')
-  },
-  getVal: function (e) {
-    var that = this
-    var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2]; // 上一个页面
-    if (that.data.costs) {
-      that.data.costs = false
-      prevPage.setData({
-        printerAddress: e.currentTarget.dataset.vallist.name,
-        order: {
-          customerCode: prevPage.data.order.customerCode,// 客户code
-          attorneyCode: prevPage.data.order.attorneyCode, // 律师code
-          printerCode: e.currentTarget.dataset.vallist.code, // 打印机code
-          fileCodes: prevPage.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
-          paperType: prevPage.data.order.paperType, // 纸张类型
-          printerNum: prevPage.data.order.printerNum, // 打印数量
-          paperColcor: prevPage.data.order.paperColcor, // 纸张颜色
-          paperUsage: prevPage.data.order.paperUsage, // 纸张使用
-          serviceAmout: prevPage.data.order.serviceAmout, // 服务费
-          fileType: prevPage.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
-        }
-      })
-       wx.navigateBack();
-    }
   }
 
 

@@ -17,4 +17,6 @@ public interface FileManagerService {
     PageResponseBean<FileResultBean> pagecdeList(String suffix,String categoryCode, int page, int pageSize,String query);
 
     FileResultBean details(String code);
+    
+    int deleteFile(Long[] ids);
 }

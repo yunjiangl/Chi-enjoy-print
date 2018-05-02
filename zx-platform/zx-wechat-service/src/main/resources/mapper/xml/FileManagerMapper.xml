@@ -43,13 +43,13 @@
 	<select id="pageListcde" resultMap="fileResultBean"
 		parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
 		select
-		file_code,file_num,file_name,category_code,user_code,manager_code from
-		zx_file_manager_cer WHERE 1=1
+		file_code,file_num,id,file_num,file_name,category_code,user_code,manager_code from
+		zx_file_manager_cde WHERE 1=1
 		<if test="categoryCode!=null and categoryCode!=''">
 			AND category_code = #{categoryCode}
 		</if>
 		<if test="query!=null and query!=''">
-			AND file_name like #{query,jdbcType=VARCHAR}
+			AND file_name like concat('%',#{query,jdbcType=VARCHAR},'%')
 		</if>
 
 		limit #{currentSize},#{pageSize}
@@ -76,5 +76,12 @@
 		id,file_code,file_num,file_name,category_code,user_code,manager_code,abstracts
 		from zx_file_manager_cde where file_code = #{code}
 	</select>
+	
+	<delete id="deleteFile">
+		delete from zx_file_manager_cde where id in 
+		<foreach item="ids" collection="array" open="(" separator="," close=")">
+			#{ids}
+		</foreach>
+	</delete>
 
 </mapper>

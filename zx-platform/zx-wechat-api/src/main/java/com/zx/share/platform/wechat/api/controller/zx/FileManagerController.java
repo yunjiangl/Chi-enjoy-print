@@ -1,6 +1,9 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.List;
+import java.util.Map;
 
 import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
@@ -79,8 +82,8 @@ public class FileManagerController extends BaseController {
 	@ApiOperation(value = "C类文件接口", notes = "C类文件接口")
 	@RequestMapping(value = "/c/page", method = {RequestMethod.GET})
 	@ResponseBody
-	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListC(@ApiParam("查询内容") @RequestParam("query") String query,
-																		   @ApiParam("文件分类code") @RequestParam("categoryCode") String categoryCode,
+	public DefaultResopnseBean<PageResponseBean<FileResultBean>> pageListC(@ApiParam("查询内容") @RequestParam(name = "query", required = false) String query,
+																		   @ApiParam("文件分类code") @RequestParam(name ="categoryCode", required = false) String categoryCode,
 																		   @ApiParam("第几页") @RequestParam("page") Integer page,
 																		   @ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
 																		   HttpServletRequest request, HttpServletResponse response) {
@@ -133,6 +136,24 @@ public class FileManagerController extends BaseController {
 			return resopnseBean;
 		}
 		resopnseBean.setData(fileManagerService.details(code));
+		return resopnseBean;
+	}
+	
+	@ApiOperation(value = "删除文件", notes = "删除文件")
+	@RequestMapping(value = "/deleteFile",method = RequestMethod.DELETE)
+	@ResponseBody
+	public DefaultResopnseBean<String> deleteFile(@ApiParam("文件ids") Long[] ids,
+			HttpServletRequest request){
+		
+		System.out.println(ids);
+		servletPath = request.getServletPath();
+		DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
+//		Long[] ids1=null;
+//		for(int i=0;i<ids.length;i++) {
+////			System.out.println(ids[i].substring(i, ids.length));
+//			ids1[i]=Long.parseLong(ids[i]);
+//		}
+		fileManagerService.deleteFile(ids);
 		return resopnseBean;
 	}
 
