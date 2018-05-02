@@ -130,7 +130,7 @@
             <view class='occupationMechanism'>
                 <view class='font'>执业机构:</view>
                 <view class='infoOccupation'>
-                <input name='workOrg' placeholder='请输入执业机构' value='{{details.workOrg}}'></input>
+                <input name='workOrg' placeholder='请输入执业机构' value='{{details.attorney.workOrg}}'></input>
                 </view>
             </view>
             <!-- occupationMechanism end -->
@@ -141,7 +141,7 @@
               <view class='occupationNumber'>
                 <view class='font'>执业证号:</view>
                 <view class='infoOccupation'>
-                <input name='workNum' placeholder='请输入执业证号' value='{{details.workNum}}'></input>
+                <input name='workNum' placeholder='请输入执业证号' value='{{details.attorney.workNum}}'></input>
                 </view>
               </view>
             <!-- occupationNumber end -->
