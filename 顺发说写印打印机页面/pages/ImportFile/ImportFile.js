@@ -8,6 +8,11 @@ Page({
   
   },
 
+  history:function(){
+    wx.switchTab({
+      url: '/pages/upfilelist/upfilelist',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

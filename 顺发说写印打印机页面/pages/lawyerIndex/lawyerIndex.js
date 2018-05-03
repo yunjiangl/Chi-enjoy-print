@@ -62,6 +62,21 @@ Page({
       url: '../lawyerFileClassC/lawyerFileClassC',
     })
   },
+  //文件打印
+  mainRight:function(){
+    // wx.navigateTo({
+    //   url: '../ImportFile/ImportFile',
+    // })
+
+    wx.getSavedFileInfo({
+      filePath: '/', //仅做示例用，非真正的文件路径
+      success: function (res) {
+        console.log(res.size)
+        console.log(res.createTime)
+      }
+    })
+  },
+
   uploadImg: function () {
     wx.chooseImage({
       count: 9, // 默认9

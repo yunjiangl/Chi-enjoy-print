@@ -1,7 +1,7 @@
 <view class='container'>
   <!-- top start -->
-    <view class='top'>
-      <image src='../images/icon/1.png' />
+    <view class='top' bindtap='history'>
+      <image src='../images/icon/1.png'  />
       <view class='top-right'>
         <view class=''>文档打印</view>
         <view class=''>您曾导入的文件</view>

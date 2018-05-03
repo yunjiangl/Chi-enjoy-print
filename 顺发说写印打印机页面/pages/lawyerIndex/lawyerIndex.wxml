@@ -29,7 +29,7 @@
         </view>
       </view>
 
-      <view class='main_01_right'>
+      <view class='main_01_right' bindtap='mainRight'>
         <view class='photo-Print'>
           <text class='print'>文档打印</text>
           <text class='photo-file pf'>您曾打印或导入的文件</text>

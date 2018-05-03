@@ -6,11 +6,11 @@
         <!--left start  -->
         <view class='left'>
 
-          <view class='header-photo'><image src='../images/personal.png' /></view>
+          <view class='header-photo'><image src='{{details.portrait}}' /></view>
 
           <view class='name-vip'>
-            <view>熊壮壮</view>
-            <view class='vip'>律师</view>
+            <view>{{details.nickName}}</view>
+            <view class='vip'>{{details.userType === 1 ? '普通用户' : '律师'}}</view>
           </view>
 
         </view>
@@ -28,7 +28,7 @@
     <view class='center'>
 
       <!--list start  -->
-        <view class='list-until' bindtap='how'>
+        <view class="list-until {{showView?'view_show':'view_hide'}}" bindtap='order'>
 
             <view class='question'>
               <view><image src='../images/finshOrder.png' /></view>
@@ -40,10 +40,10 @@
         </view>
       <!--list end  -->
 
-            <view class='line'></view>      
+            <view class="line {{showView?'view_show':'view_hide'}}"></view>      
 
       <!--list start  -->
-        <view class='list-until' bindtap='how'>
+        <view class="list-until {{showView?'view_show':'view_hide'}}" bindtap='message'>
 
             <view class='question'>
               <view><image src='../images/information.png' /></view>
@@ -55,10 +55,10 @@
         </view>
       <!--list end  -->
 
-            <view class='line'></view>
+            <view class="line {{showView?'view_show':'view_hide'}}"></view>
       
       <!--list start  -->
-        <view class='list-until' bindtap='how'>
+        <view class="list-until {{showView?'view_show':'view_hide'}}" bindtap='device'>
 
             <view class='question'>
               <view><image src='../images/device.png' /></view>
@@ -70,10 +70,10 @@
         </view>
       <!--list end  -->
 
-            <view class='line'></view>            
+            <view class="line {{showView?'view_show':'view_hide'}}"></view>            
 
       <!--list start  -->
-        <view class='list-until' bindtap='how'>
+        <view class='list-until' bindtap='why'>
 
             <view class='question'>
               <view><image src='../images/question.png' /></view>
@@ -88,14 +88,14 @@
             <view class='line'></view>
 
       <!--list start  -->
-        <view class='list-until'>
+        <view class='list-until' bindtap='remove'>
 
             <view class='question'>
               <view><image src='../images/delete.png' /></view>
               <view class='how'>清除缓存</view>
             </view>
             
-            <view class='go font'> <text style='font-family: "微软雅黑"; font-size: 14px;'> 30.00M</text> > </view>
+            <view class='go font'> <text style='font-family: "微软雅黑"; font-size: 14px;'> {{cache}}</text> > </view>
 
         </view>
       <!--list end  -->      
