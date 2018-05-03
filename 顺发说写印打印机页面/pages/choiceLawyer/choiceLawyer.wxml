@@ -1,95 +1,103 @@
 <!--container start  -->
-  <view class='container'>
-
-    <!-- list start  -->
-      <view class='list'>
-
-          <!--left start  -->
-          <view class='left'>
-            <image src='../images/boy.png'></image>
-
-              <!--center start  -->
-              <view class='center'>
-
-                <view class='lawyer'>张大律师</view>
-                <view class='details'>
-                    <view class='lawyer-details'>征地拆迁</view>
-                    <view class='lawyer-details'>征地拆迁</view>
-                    <view class='lawyer-details'>征地拆迁</view>
-                </view>
-            
-              </view>
-              <!--center end  -->
-
-          </view>
-          <!--left end  -->
-
-          <view class='right'> > </view>
-
-      </view>
-    <!--list end  -->
-
-      <view class='line'></view>
-
-    <!-- list start  -->
-      <view class='list'>
-
-          <!--left start  -->
-          <view class='left'>
-            <image src='../images/boy.png'></image>
-
-              <!--center start  -->
-              <view class='center'>
-
-                <view class='lawyer'>张大律师</view>
-                <view class='details'>
-                    <view class='lawyer-details'>征地拆迁</view>
-                    <view class='lawyer-details'>征地拆迁</view>
-                    <view class='lawyer-details'>征地拆迁</view>
-                </view>
-            
-              </view>
-              <!--center end  -->
-
-          </view>
-          <!--left end  -->
-
-          <view class='right'> > </view>
-
-      </view>
-    <!--list end  -->
-
-        <view class='line'></view>
-
-    <!-- list start  -->
-      <view class='list'>
-
-          <!--left start  -->
-          <view class='left'>
-            <image src='../images/boy.png'></image>
-
-              <!--center start  -->
-              <view class='center'>
-
-                <view class='lawyer'>张大律师</view>
-                <view class='details'>
-                    <view class='lawyer-details'>征地拆迁</view>
-                    <view class='lawyer-details'>征地拆迁</view>
-                    <view class='lawyer-details'>征地拆迁</view>
-                </view>
-            
-              </view>
-              <!--center end  -->
-
-          </view>
-          <!--left end  -->
-
-          <view class='right'> > </view>
-
-      </view>
-    <!--list end  -->
-
-        <view class='line'></view>    
-    
+<view class='container'>
+  <view>
+    打印设备信息
+    <view>打印机编码 {{printInfo.code}}</view>
+    <view>打印机地址 {{printInfo.province}}{{printInfo.city}}{{printInfo.area}}</view>
+    <view>详细地址 {{printInfo.name}}</view>
+    <view>打印机值守人 {{printInfo.managerName}}</view>
+    <view>值守人联系电话 {{printInfo.managerPhone}}</view>
   </view>
+  <view>和打印机管理的律师</view>
+  <!-- list start  -->
+  <view class='list'>
+
+    <!--left start  -->
+    <view class='left'>
+      <image src='../images/boy.png'></image>
+
+      <!--center start  -->
+      <view class='center'>
+
+        <view class='lawyer'>张大律师</view>
+        <view class='details'>
+          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer-details'>征地拆迁</view>
+        </view>
+
+      </view>
+      <!--center end  -->
+
+    </view>
+    <!--left end  -->
+
+    <view class='right'> > </view>
+
+  </view>
+  <!--list end  -->
+
+  <view class='line'></view>
+
+  <!-- list start  -->
+  <view class='list'>
+
+    <!--left start  -->
+    <view class='left'>
+      <image src='../images/boy.png'></image>
+
+      <!--center start  -->
+      <view class='center'>
+
+        <view class='lawyer'>张大律师</view>
+        <view class='details'>
+          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer-details'>征地拆迁</view>
+        </view>
+
+      </view>
+      <!--center end  -->
+
+    </view>
+    <!--left end  -->
+
+    <view class='right'> > </view>
+
+  </view>
+  <!--list end  -->
+
+  <view class='line'></view>
+
+  <!-- list start  -->
+  <view class='list'>
+
+    <!--left start  -->
+    <view class='left'>
+      <image src='../images/boy.png'></image>
+
+      <!--center start  -->
+      <view class='center'>
+
+        <view class='lawyer'>张大律师</view>
+        <view class='details'>
+          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer-details'>征地拆迁</view>
+        </view>
+
+      </view>
+      <!--center end  -->
+
+    </view>
+    <!--left end  -->
+
+    <view class='right'> > </view>
+
+  </view>
+  <!--list end  -->
+
+  <view class='line'></view>
+
+</view>
 <!--container end  -->
