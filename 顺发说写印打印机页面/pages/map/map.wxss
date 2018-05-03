@@ -1,24 +1,18 @@
-.map{
-  height: 100%;
-}
 .default{
   line-height: 50px;
 }
-#map{
-  position: relative;
-}
 .cover{
-  bottom: 0;
   width:100%;
-  position: absolute;
   margin-bottom: 20rpx;
   font-size: 28rpx;
+  height: 600rpx; 
+  overflow: auto;
 }
-.cover_01{
-  width: 90%;
+ .cover_01{
   background: #fff;
   margin: 0 auto;
-}
+  height: 100%;
+} 
 .img{
   width: 40rpx;
   height: 40rpx;
@@ -33,15 +27,6 @@
 }
 .black{
   margin-right: 30rpx;
-}
-.hide{
-display: none;
-
-}
-.show{
-display: block;
-height: 400rpx;
-overflow: auto;
 }
 .showAddress{
   padding-left: 30rpx;

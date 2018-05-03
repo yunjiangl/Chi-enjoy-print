@@ -1,17 +1,13 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.StringUtil;
-import com.zx.share.platform.vo.wechat.response.DictionaryResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.constants.FileQuerySuffixEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;

@@ -17,6 +17,8 @@ Page({
     blackmoney: null,
     colormoney: null,
     costs: false,
+    lat: null,
+    lon: null
   },
 
   //点击显示
@@ -88,6 +90,8 @@ Page({
             //var that=this;
             console.log(aa.data.data);
             _this.setData({
+              lat: a + 0.05519,
+              lon: b + 0.0162,
               val: aa.data.data
             });
             //markers解决
