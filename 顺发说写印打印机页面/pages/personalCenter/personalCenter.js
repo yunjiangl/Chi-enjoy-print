@@ -1,5 +1,5 @@
 // pages/personalCenter/personalCenter.js
-var app = getApp()
+var app = getApp();
 
 Page({
 
