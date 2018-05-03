@@ -10,7 +10,8 @@
                 <!-- <cover-image class="img" bindtap="change" src="{{showView?'../images/triangle_01.png':'../images/triangle_02.png'}}"></cover-image> -->
             <!-- showView start  -->
               <!-- <view class="{{showView?'hide':'show'}} coverList" > -->
-                <view class='showAddress' wx:for="{{val}}" wx:key=""   wx:for-item="valList" >
+                
+				<view class='showAddress' wx:for="{{val}}" wx:key="" data-valList='{{valList}}' bindtap='getVal' wx:for-item="valList" >
                     <view>{{valList.name}}</view>
                     <view class='page'>
                       <view class='black'>
