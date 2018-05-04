@@ -186,7 +186,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetailsBean details(String userCode) {
 		String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
-		Object obj = memcachedService.getAndTouch(key, OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
+		Object obj = null;//memcachedService.getAndTouch(key, OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
 		UserDetailsBean resultBean = null;
 		if(obj==null){
 			resultBean = userMapper.findByCode(userCode);

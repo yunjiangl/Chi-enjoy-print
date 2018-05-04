@@ -1,5 +1,6 @@
 {
   "pages": [
+
     "pages/lawyerIndex/lawyerIndex",
     "pages/index/index",
     "pages/lawyerpersonData/lawyerpersonData",
@@ -12,10 +13,13 @@
     "pages/howuse/howuse",
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     "pages/improvingPersonalData/improvingPersonalData",
+
     "pages/upfilelist/upfilelist",
     "pages/ImportFile/ImportFile",
+    "pages/choice/choice",
     "pages/choiceCustomer/choiceCustomer",
     "pages/historyConsultant/historyConsultant",
+    
     "pages/vip-login/vip-login",
     "pages/lawyerFourFileList/lawyerFourFileList",
     "pages/lawyerFileList/lawyerFileList",
@@ -24,6 +28,8 @@
     "pages/lawyerSearchOrders/lawyerSearchOrders",
     "pages/lawyerSearch/lawyerSearch",
     "pages/lawyerSeeeQuipment/lawyerSeeeQuipment",
+
+
     "pages/lawyerFileClassC/lawyerFileClassC",
     "pages/lawyerFileClassB/lawyerFileClassB",
     "pages/lawyerFileClassA/lawyerFileClassA",
@@ -32,12 +38,14 @@
     "pages/map/map",
     "pages/search/search",
     "pages/choiceLawyer/choiceLawyer",
+
     "pages/lawyersInformation/lawyersInformation",
     "pages/notLogin/notLogin",
     "pages/setPrint/setPrint",
     "pages/printCost/printCost",
     "pages/printOrders/printOrders",
     "pages/choicePrinter/choicePrinter",
+
     "pages/personalData/personalData",
     "pages/bindingPhone/bindingPhone",
     "pages/forgetPassword/forgetPassword",
@@ -52,6 +60,7 @@
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "顺发说写印",
     "navigationBarTextStyle": "#fff"
+
   },
   "tabBar": {
     "color": "#666",
@@ -88,5 +97,6 @@
         "selectedIconPath": "pages/images/icon/5.png"
       }
     ]
+
   }
 }

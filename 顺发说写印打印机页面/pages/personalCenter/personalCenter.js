@@ -1,6 +1,7 @@
+var template = require('../../template/template.js');
 // pages/personalCenter/personalCenter.js
-var app = getApp();
 
+var app = getApp()
 Page({
 
   /**
@@ -40,7 +41,7 @@ logout:function(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    template.tabbar("tabBar", 4, this, app.data.userInfo.userType)//0表示第一个tabbar
   },
 
   /**

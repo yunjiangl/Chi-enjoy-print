@@ -1,3 +1,6 @@
+// 引入SDK核心类
+var QQMapWX = require('../../lib/qqmap-wx-jssdk.js');
+var app = getApp()
 // pages/choice/choice.js
 Page({
 
@@ -5,11 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    address:'',//地址
-
-    //默认未获取地址
-    hasLocation: true
-  
+    address:'',//地址  
+    printList : null // 附近打印机列表
   },
   //获取经纬度
   getLocation: function (e) {
@@ -41,7 +41,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+    // 实例化腾讯地图API核心类
+    var qqmapsdk = new QQMapWX({
+      key: 'A4OBZ-E3UWJ-EY7FL-K2RHY-JAQM6-5JFRM' // 必填
+    });
+    //1、获取当前位置坐标
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log(res)
+        //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (addressRes) {
+            console.log(addressRes)
+            var address = addressRes.result.formatted_addresses.recommend;
+            wx.request({
+              url: app.data.api + app.data.urlPrinterNearby,
+              header: {
+                'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+              },
+              method : 'GET',
+              data:{
+                longitude : res.longitude,
+                latitude : res.latitude
+              },
+              success: function(resdata){
+                that.setData({
+                  address: address,
+                  printList: resdata.data.data
+                })
+              }
+            })
+            
+          },
+          fail:function(r){
+            console.log(r)
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -91,5 +134,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  choiceLawyer:function(e){
+    var that = this
+    // 把要传递的json对象转换成字符串
+    var printInfo = JSON.stringify(that.data.printList[e.currentTarget.dataset.idx]);
+    wx.redirectTo({
+      url: '../choiceLawyer/choiceLawyer?printInfo='+ printInfo
+    })
   }
 })

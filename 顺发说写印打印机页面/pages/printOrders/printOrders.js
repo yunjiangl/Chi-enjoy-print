@@ -1,4 +1,5 @@
 var app = getApp()
+var template = require('../../template/template.js');
 Page({
 
   /**
@@ -30,7 +31,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    template.tabbar("tabBar", 3, this, app.data.userInfo.userType)//0表示第一个tabbar
   },
 
   /**
