@@ -139,7 +139,7 @@ Page({
     var that = this
     // 把要传递的json对象转换成字符串
     var printInfo = JSON.stringify(that.data.printList[e.currentTarget.dataset.idx]);
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../choiceLawyer/choiceLawyer?printInfo='+ printInfo
     })
   }

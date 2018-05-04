@@ -9,95 +9,37 @@
     <view>值守人联系电话 {{printInfo.managerPhone}}</view>
   </view>
   <view>和打印机管理的律师</view>
-  <!-- list start  -->
-  <view class='list'>
+  <view wx:for='{{lawyerList}}' bindtap='lawyerInfo' data-idx='{{index}}'>
+    <!-- list start  -->
+    <view class='list'>
 
-    <!--left start  -->
-    <view class='left'>
-      <image src='../images/boy.png'></image>
+      <!--left start  -->
+      <view class='left'>
+        <image src='{{item.portrait}}'></image>
 
-      <!--center start  -->
-      <view class='center'>
+        <!--center start  -->
+        <view class='center'>
 
-        <view class='lawyer'>张大律师</view>
-        <view class='details'>
-          <view class='lawyer-details'>征地拆迁</view>
-          <view class='lawyer-details'>征地拆迁</view>
-          <view class='lawyer-details'>征地拆迁</view>
+          <view class='lawyer'>{{item.nickName}}</view>
+          <view class='details'>
+            <view class='lawyer-details' wx:for='{{item.attorney.domainList}}' wx:for-item="domain">{{domain}}</view>
+          </view>
+
         </view>
+        <!--center end  -->
 
       </view>
-      <!--center end  -->
+      <!--left end  -->
 
+      <view class='right'> > </view>
+      
     </view>
-    <!--left end  -->
-
-    <view class='right'> > </view>
-
+    <!--list end  -->
+    <view class='line'></view>
   </view>
-  <!--list end  -->
 
-  <view class='line'></view>
 
-  <!-- list start  -->
-  <view class='list'>
 
-    <!--left start  -->
-    <view class='left'>
-      <image src='../images/boy.png'></image>
-
-      <!--center start  -->
-      <view class='center'>
-
-        <view class='lawyer'>张大律师</view>
-        <view class='details'>
-          <view class='lawyer-details'>征地拆迁</view>
-          <view class='lawyer-details'>征地拆迁</view>
-          <view class='lawyer-details'>征地拆迁</view>
-        </view>
-
-      </view>
-      <!--center end  -->
-
-    </view>
-    <!--left end  -->
-
-    <view class='right'> > </view>
-
-  </view>
-  <!--list end  -->
-
-  <view class='line'></view>
-
-  <!-- list start  -->
-  <view class='list'>
-
-    <!--left start  -->
-    <view class='left'>
-      <image src='../images/boy.png'></image>
-
-      <!--center start  -->
-      <view class='center'>
-
-        <view class='lawyer'>张大律师</view>
-        <view class='details'>
-          <view class='lawyer-details'>征地拆迁</view>
-          <view class='lawyer-details'>征地拆迁</view>
-          <view class='lawyer-details'>征地拆迁</view>
-        </view>
-
-      </view>
-      <!--center end  -->
-
-    </view>
-    <!--left end  -->
-
-    <view class='right'> > </view>
-
-  </view>
-  <!--list end  -->
-
-  <view class='line'></view>
 
 </view>
 <!--container end  -->
