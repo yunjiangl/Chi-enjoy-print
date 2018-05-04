@@ -1,7 +1,7 @@
 //app.js
 App({
   data: {
-    api: 'http://127.0.0.1:10001/',
+    api: 'http://123.206.42.162:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: null,// 用户类型，1为普通用户，2为律师用户
@@ -21,7 +21,8 @@ App({
     urlDictionaryAList: 'dictionary/a/list', // a文件分类
     urlFileMAPage: 'file/m/a/page',//a文件分页
     urlOrderSave: 'order/save',//保存订单信息
-    urlDomainList:'dictionary/domain/list',//律师领域
+    urlDomainList: 'dictionary/domain/list',//律师领域
+    urlPrinterNearby: 'printer/nearby', // 附近的打印机
   },
 
   onLaunch: function () {
@@ -54,35 +55,45 @@ App({
               },
               success: function (data) {
                 console.log(data.data);
-                // 如果用户刚刚使用微信登录
-                if (data.data.data.userStatus == 1) {
+                if (data.data.code == 300) {
+                  console.log("登录失败")
                   wx.redirectTo({
                     //url: '../register/register'
-                    url: '../lawyerIndex/lawyerIndex'
+                    // url: '../lawyerIndex/lawyerIndex'
+                    url: '../vip-login/vip-login'
                   })
-                 
-                } else {
-                  // 判断用户类型
+                } else if (data.data.code == 200) {
+                  // 如果用户刚刚使用微信登录
+                  if (data.data.data.userStatus == 1) {
+                    wx.redirectTo({
+                      url: '../register/register'
+                    })
 
-                  if (data.data.data.userType == 2) {
-                    //跳转到律师首页
-                    wx.redirectTo({
-                      url: '../lawyerIndex/lawyerIndex'
-                    })
-                   
-                  } else if (data.data.data.userType == 1) {
-                    //跳转到普通用户首页
-                    wx.redirectTo({
-                      url: './index'
-                    })
-                    
+                  } else {
+                    // 判断用户类型
+
+                    if (data.data.data.userType == 2) { 
+                      console.log("我是律师")
+                      //跳转到律师首页
+                      wx.redirectTo({
+                        url: "../lawyerIndex/lawyerIndex"
+                      })
+                      
+
+                    } else if (data.data.data.userType == 1) {
+                      //跳转到普通用户首页
+                      wx.redirectTo({
+                        url: '../CustomerIndex/CustomerIndex'
+                      })
+
+                    }
                   }
-                }
 
-                // 为全局变量赋值
-                that.data.userCode = data.data.data.userCode;
-                that.data.userInfo.userType = data.data.data.userType;
-                that.data.userInfo.accessToken = data.data.data.accessToken;
+                  // 为全局变量赋值
+                  that.data.userCode = data.data.data.userCode;
+                  that.data.userInfo.userType = data.data.data.userType;
+                  that.data.userInfo.accessToken = data.data.data.accessToken;
+                }
               }
             })
 

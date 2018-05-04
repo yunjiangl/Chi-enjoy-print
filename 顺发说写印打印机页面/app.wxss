@@ -1,3 +1,4 @@
+@import "/template/tabBar.wxss";
 /**app.wxss**/
 .container {
   height: 100%;

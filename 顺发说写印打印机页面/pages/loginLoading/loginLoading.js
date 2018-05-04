@@ -1,4 +1,4 @@
-// page/index/index.js
+// pages/loginLoading/loginLoading.js
 Page({
 
   /**

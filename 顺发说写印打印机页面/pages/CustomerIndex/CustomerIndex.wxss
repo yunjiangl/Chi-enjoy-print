@@ -16,7 +16,7 @@ page{
   height: 150px;
 }
 .content{
-  height: 634px;
+  height: 624px;
   display: flex; 
   flex-direction: column;
   align-items: center;
@@ -109,7 +109,7 @@ page{
 .footer{
   width: 100%;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   justify-content:center;
 }
 .footer image{

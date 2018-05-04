@@ -81,3 +81,9 @@ button[type="default"] {
 color:#fff;
 background-color:#3798fb;
 }
+.view_hide{  
+ display: none;  
+}  
+.view_show{  
+ display:flex;  
+} 

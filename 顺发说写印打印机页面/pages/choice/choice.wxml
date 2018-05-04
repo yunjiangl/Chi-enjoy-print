@@ -22,33 +22,14 @@
   <!-- top end  -->
 
   <!-- list start  -->
-  <view class='list'>
+  <view class='list' wx:for='{{printList}}'>
 
-    <view class='list-unit'>
-      <label class='label'>金域国际中心二层</label>
+    <view class='list-unit' data-idx='{{index}}' bindtap='choiceLawyer'>
+      <label class='label'>{{item.name}}</label>
       <label class='lable'> > </label>
     </view>
 
    <view class='line'></view>
-
-    <view class='list-unit'>
-      <label class='label'>金域国际中心二层</label>
-      <label class='lable'> > </label>
-    </view>
-
-   <view class='line'></view>
-
-    <view class='list-unit'>
-      <label class='label'>金域国际中心二层</label>
-      <label class='lable'> > </label>
-    </view>
-
-   <view class='line'></view>
-
-    <view class='list-unit'>
-      <label class='label'>金域国际中心二层</label>
-      <label class='lable'> > </label>
-    </view>
 
   </view>
   <!--list end  -->

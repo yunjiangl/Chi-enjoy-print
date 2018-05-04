@@ -5,14 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+  printInfo:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // 把接收到的字符串转换成json对象
+    var printInfo = JSON.parse(options.printInfo);
+    console.log(printInfo)
+    this.setData({
+      printInfo: printInfo
+    })
   },
 
   /**
