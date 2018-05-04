@@ -57,7 +57,8 @@ App({
                 // 如果用户刚刚使用微信登录
                 if (data.data.data.userStatus == 1) {
                   wx.redirectTo({
-                    url: '../register/register'
+                    //url: '../register/register'
+                    url: '../lawyerIndex/lawyerIndex'
                   })
                  
                 } else {
