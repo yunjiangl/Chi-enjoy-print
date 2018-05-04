@@ -1,0 +1,141 @@
+<!-- container start  -->
+  <view class='container'>
+
+    <!--top start  -->
+      <view class='top'>
+
+        <view class='search'>
+        <image src='../images/search.png' />
+          <input class='input' confirm-type="search" placeholder='搜索物主名/设备编号'></input>
+        </view>
+
+      </view>
+    <!--top end  -->
+    <!--content start  -->
+      <view class='content'>
+
+      <!--device-owner start  -->
+        <view class='device-owner'>
+          <view>
+            <label>设备物主:</label>
+            <label>张亮</label>
+          </view>
+          <view>山西省阳泉市城区</view>
+        </view>
+      <!--device-owner end  -->
+      
+      <!-- li start -->
+        <view class='li'>
+
+          <view>
+            <view class='address'>金域国际二层</view>
+            <view><label>设备编码:</label>000 001</view>
+          </view>
+
+          <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+        </view>
+      <!-- li end -->
+
+        <view class='line'></view>
+
+      <!-- li start -->
+        <view class='li'>
+
+          <view>
+            <view>金域国际二层</view>
+            <view><label>设备编码:</label>000 001</view>
+          </view>
+
+          <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+        </view>
+      <!-- li end -->
+
+        <view class='line'></view>
+
+      <!-- li start -->
+        <view class='li'>
+
+          <view>
+            <view>金域国际二层</view>
+            <view><label>设备编码:</label>000 001</view>
+          </view>
+
+          <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+        </view>
+      <!-- li end -->
+
+      </view>
+    <!--content end  -->
+
+        <!--content start  -->
+      <view class='content'>
+
+      <!--device-owner start  -->
+        <view class='device-owner'>
+          <view>
+            <label>设备物主:</label>
+            <label>张亮</label>
+          </view>
+          <view>山西省阳泉市城区</view>
+        </view>
+      <!--device-owner end  -->
+      
+      <!-- li start -->
+        <view class='li'>
+
+          <view>
+            <view>金域国际二层</view>
+            <view><label>设备编码:</label>000 001</view>
+          </view>
+
+          <!-- btn start -->
+            <view class='btn'>
+              <view></view>
+              <view>
+                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+              </view>
+            </view>
+            <!-- btn end -->
+
+        </view>
+      <!-- li end -->
+
+      </view>
+    <!--content end  -->
+
+        <!--footer start  -->
+      <view class='footer'>
+          <button type='default' size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
+      </view>
+    <!--footer end  -->
+
+  </view>
+<!-- container end  -->
