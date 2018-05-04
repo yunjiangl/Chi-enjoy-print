@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.zx.share.platform.constants.UserSourceEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,24 +89,25 @@ public class RegisterController extends BaseController {
 			@ApiParam("年龄") @RequestParam("age") Integer age, @ApiParam("性别") @RequestParam("grad") Integer grad,
 			HttpServletRequest request) throws Exception {
 		servletPath = request.getServletPath();
-		UserCache userCache = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER); // 得到当前登录用户
+		//UserCache userCache = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER); // 得到当前登录用户
 
 		ZxUser user = new ZxUser();
-
-		user.setId(userCache.getId());
+		String userCode = UserSourceEnum.ZX_USER_SOURCE_WECHAT.label+"0000";
+		//user.setId(userCache.getId());
+		user.setUserCode(userCode);
 		user.setMobile(mobile);
 		user.setNickname(name);
 		user.setRegisterTime(new Date());
 		user.setUserType(type);
-		user.setAge(age);
-		user.setWechatId(wechatId);
-		user.setProvince(province);
-		user.setCity(city);
-		user.setArea(area);
+		//user.setAge(age);
+		//user.setWechatId(wechatId);
+		//user.setProvince(province);
+		//user.setCity(city);
+		//user.setArea(area);
 		user.setPassword(password);
 		user.setUserStatus(2);
 
-		userService.update(user);
+		userService.insert(user);
 
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
 		return resopnseBean;

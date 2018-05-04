@@ -19,6 +19,8 @@ public interface UserService {
 
 	Integer save(UserRequestBean bean);
 
+	Integer insert(ZxUser zxUser);
+
 	Integer update(UserRequestBean bean);
 
 	/**

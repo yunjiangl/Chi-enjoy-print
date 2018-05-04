@@ -81,7 +81,12 @@ Page({
               wx.showToast({
                 title: '成功',
                 icon: 'success',
-                duration: 2000
+                duration: 2000,
+                success:function(){
+                  wx.navigateTo({
+                    url: '../vip-login/vip-login',
+                  })
+                }
               })
             }
           })

@@ -1,26 +1,28 @@
 package com.zx.share.platform.wechat.service.impl;
 
-import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.service.MemcachedService;
-import com.zx.share.platform.common.service.TokenCacheService;
-import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.constants.OCSKeys;
 import com.zx.share.platform.util.StringUtil;
-import com.zx.share.platform.util.response.DefaultResopnseBean;
-import com.zx.share.platform.vo.user.UserRequestBean;
-import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.vo.wechat.request.UserAttorneyDomain;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
 import com.zx.share.platform.vo.wechat.response.AttorneyDetailsBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.common.service.TokenCacheService;
+import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.vo.user.UserRequestBean;
+import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.service.SmsService;
 import com.zx.share.platform.wechat.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -61,6 +63,11 @@ public class UserServiceImpl implements UserService {
 		userSaveBean.setOpenId(bean.getOpenId());
 		userSaveBean.setPortrait(bean.getHeadImgUrl());
 		return userMapper.update(userSaveBean);
+	}
+
+	@Override
+	public Integer insert(ZxUser zxUser) {
+		return userMapper.insert(zxUser);
 	}
 
 	/**
@@ -186,7 +193,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDetailsBean details(String userCode) {
 		String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
-		Object obj = null;//memcachedService.getAndTouch(key, OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
+		Object obj = memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
 		UserDetailsBean resultBean = null;
 		if(obj==null){
 			resultBean = userMapper.findByCode(userCode);
@@ -196,7 +203,7 @@ public class UserServiceImpl implements UserService {
 				attorney.setDomainList(domains);
 				resultBean.setAttorney(attorney);
 			}
-			memcachedService.set(key, OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
+			memcachedService.set(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
 		}else{
 			 resultBean = (UserDetailsBean)obj;
 		}
