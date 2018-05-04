@@ -1,7 +1,7 @@
 
 //获取应用实例
 var app = getApp()
-var api = 'http://47.94.103.214:10001/wechat/login'
+//var api = 'http://47.94.103.214:10001/wechat/login'
 Page({
   data: {
     phone: '',
@@ -57,18 +57,9 @@ Page({
         },
         success: function (response) {
           // console.log(response.data.data);
-          if (response.data.code == 200) {
-            app.data.userInfo = response.data.data;
-            console.log(getApp().data.userInfo);
-            wx.navigateTo({
-              url: '../lawyerIndex/lawyerIndex',
-              success: function (res) {
-                console.log(res.code);
-              },
-              fail: function (res) { },
-              complete: function (res) { },
-            });
-          }
+          
+          app.LoginRes(response)
+          
         },
        fail: function (res) { 
          console.log(res);
@@ -101,34 +92,7 @@ Page({
       success: function (res) {
         wx.login({
           success: function (loginres) {
-            wx.request({
-              url: getApp().data.api + getApp().data.urlWechatLogin,
-              data: {
-                appId: '',
-                code: loginres.code,
-                iv: res.iv,
-                encryptedData: res.encryptedData
-              },
-              method: 'GET',
-              header: {
-                //'content-type': 'X-ACCESS-TOKEN'
-              },
-              success: function (response) {
-                // console.log(response.data.data);
-                if (response.data.code==200){
-                  app.data.userInfo = response.data.data;
-                  console.log(getApp().data.userInfo);
-                  wx.navigateTo({
-                    url: '../lawyerIndex/lawyerIndex',
-                    success: function (res) {
-                      console.log(res.code);
-                    },
-                    fail: function (res) { },
-                    complete: function (res) { },
-                  });
-                }
-              }
-            })
+            app.wxLogin(res, loginres)
           }
         })
       }

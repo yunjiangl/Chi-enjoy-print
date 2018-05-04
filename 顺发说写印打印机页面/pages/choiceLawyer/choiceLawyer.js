@@ -1,4 +1,5 @@
 // pages/choiceLawyer/choiceLawyer.js
+var app = getApp()
 Page({
 
   /**
@@ -6,6 +7,43 @@ Page({
    */
   data: {
   printInfo:null,
+  page: 0,
+  pageSize: 10,
+  lawyerList:[],
+  },
+
+  /**
+  * 获取数据
+  */
+  getData: function () {
+    var that = this;
+    that.setData({
+      page: that.data.page + 1
+    })
+    wx.request({
+      url: app.data.api + app.data.urlPrinterAttorney,
+      method: 'GET',
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
+      data: {
+        page: that.data.page,
+        pageSize: that.data.pageSize,
+        code: that.data.printInfo.code
+      },
+      success: function (res) {
+        var list = that.data.lawyerList;
+        console.log(res)
+        for (var i = 0; i < res.data.data.content.length; i++) {
+          list.push(res.data.data.content[i])
+        }
+        that.setData({
+          lawyerList: list
+        })
+        console.log(that.data.lawyerList)
+      }
+
+    })
   },
 
   /**
@@ -18,6 +56,7 @@ Page({
     this.setData({
       printInfo: printInfo
     })
+    this.getData()
   },
 
   /**
