@@ -1,12 +1,18 @@
-// pages/lawyerMessageNotify/lawyerMessageNotify.js
+// pages/deviceOwner/deviceOwner.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    pageBackgroundColor: '#999'
   
+  },
+  chageBackgroundColor: function () {
+    var bgColor = this.data.pageBackgroundColor == '#3798fb' ? '#999' : '#3798fb';
+    //设置背景颜色数据
+    this.setData({
+      pageBackgroundColor: bgColor
+    });
   },
 
   /**
@@ -14,19 +20,6 @@ Page({
    */
   onLoad: function (options) {
   
-  },
-
-  look:function(){
-    wx.navigateTo({
-      url: '../lawyerSeeMessage/lawyerSeeMessage',
-    })
-  },
-  chageBackgroundColor:function(){
-    var bgColor = this.data.pageBackgroundColor == '#3798fb' ? '#999' : '#3798fb';
-    //设置背景颜色数据
-    this.setData({
-      pageBackgroundColor:bgColor
-    });
   },
 
   /**

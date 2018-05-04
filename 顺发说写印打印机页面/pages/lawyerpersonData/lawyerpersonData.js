@@ -23,13 +23,13 @@ Page({
   //设备
   device: function () {
     wx.navigateTo({
-      url: '../lawyerTransactionOrder/lawyerTransactionOrder',
+      url: '../deviceOwner/deviceOwner',
     })
   },
   //如何使用
   why: function () {
     wx.navigateTo({
-      url: '../lawyerTransactionOrder/lawyerTransactionOrder',
+      url: '../howuse/howuse',
     })
   },
   //清楚缓存

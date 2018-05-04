@@ -46,7 +46,7 @@ Page({
     } else {
       // 这里修改成跳转的页面  
       wx.request({
-        url: getApp().data.api + getApp().data.urlLogin,
+        url: getApp().data.api + getApp().data.urlLogin, // 后台对该方法没有实现
         data: {
           mobile: this.data.phone,
           pwd: this.data.password,

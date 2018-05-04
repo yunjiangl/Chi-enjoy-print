@@ -9,7 +9,7 @@
     <view>值守人联系电话 {{printInfo.managerPhone}}</view>
   </view>
   <view>和打印机管理的律师</view>
-  <view wx:for='{{lawyerList}}'>
+  <view wx:for='{{lawyerList}}' bindtap='lawyerInfo' data-idx='{{index}}'>
     <!-- list start  -->
     <view class='list'>
 
@@ -22,9 +22,7 @@
 
           <view class='lawyer'>{{item.nickName}}</view>
           <view class='details'>
-            <view class='lawyer-details'>征地拆迁</view>
-            <view class='lawyer-details'>征地拆迁</view>
-            <view class='lawyer-details'>征地拆迁</view>
+            <view class='lawyer-details' wx:for='{{item.attorney.domainList}}' wx:for-item="domain">{{domain}}</view>
           </view>
 
         </view>

@@ -1,7 +1,7 @@
 //app.js
 App({
   data: {
-    api: 'http://123.206.42.162:10001/',
+    api: 'http://127.0.0.1:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: null,// 用户类型，1为普通用户，2为律师用户
