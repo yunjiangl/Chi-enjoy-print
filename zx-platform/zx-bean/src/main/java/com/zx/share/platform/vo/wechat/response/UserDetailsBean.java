@@ -46,6 +46,8 @@ public class UserDetailsBean implements Serializable {
     @ApiModelProperty("律师信息")
     private AttorneyDetailsBean attorney;
 
+    private String password;
+
     public String getProvince() {
         return province;
     }
@@ -164,5 +166,13 @@ public class UserDetailsBean implements Serializable {
 
     public void setPortrait(String portrait) {
         this.portrait = portrait;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

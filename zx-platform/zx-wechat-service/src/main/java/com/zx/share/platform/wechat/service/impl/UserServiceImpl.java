@@ -222,4 +222,15 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findByMobile(mobile);
 	}
 
+	@Override
+	public UserDetailsBean findByMobilePwd(String mobile,String pwd) {
+		UserDetailsBean bean = userMapper.findByMobile(mobile);
+		if(bean!=null && StringUtil.isNotBlank(bean.getPassword())){
+			if(bean.getPassword().equals(pwd)){
+				return bean;
+			}
+		}
+		return null;
+	}
+
 }

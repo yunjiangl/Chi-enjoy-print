@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.vo.WxLoginResponseVo;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.service.LoginService;
@@ -23,6 +24,9 @@ public class LoginServiceImpl implements LoginService {
     public WxLoginResponseVo login(String mobile, String pwd) {
 
         UserDetailsBean bean = userService.findByMobile(mobile);
+        if(bean==null || StringUtil.isBlank(pwd) ){
+            return null;
+        }
         WxLoginResponseVo loginResultBean = new WxLoginResponseVo();
         loginResultBean.setAccessToken(bean.getAccessToken());
         loginResultBean.setMobile(bean.getMobile());

@@ -53,4 +53,5 @@ public interface UserService {
 
 	UserDetailsBean findByMobile(String mobile);
 
+	UserDetailsBean findByMobilePwd(String mobile,String pwd);
 }

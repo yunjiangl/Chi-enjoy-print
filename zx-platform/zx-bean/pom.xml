@@ -69,6 +69,22 @@
 		</dependency>
 
 		<dependency>
+			<groupId>bcpkix-jdk15on-154</groupId>
+			<artifactId>bcpkix-jdk15on-154</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/bcpkix-jdk15on-154.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>tls_sig_api</groupId>
+			<artifactId>tls_sig_api</artifactId>
+			<version>2.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/../lib/tls_sig_api.jar</systemPath>
+		</dependency>
+
+		<dependency>
 			<groupId>bcprov-jdk15on-154</groupId>
 			<artifactId>bcprov-jdk15on-154</artifactId>
 			<version>2.5.0</version>
@@ -105,7 +121,6 @@
 			<artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
 			<version>1.0.4</version>
 		</dependency>
-
 	</dependencies>
 
 </project>
