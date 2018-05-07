@@ -3,6 +3,7 @@ package com.zx.share.platform.wechat.api.controller;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.WxLoginResponseVo;
+import com.zx.share.platform.vo.user.LoginRequesVo;
 import com.zx.share.platform.wechat.service.LoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,10 +43,10 @@ public class LoginController extends BaseController {
     @ApiOperation(value = "login", notes = "login")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<WxLoginResponseVo> login(@RequestParam String mobile,@RequestParam String pwd, HttpServletRequest request) {
+    public DefaultResopnseBean<WxLoginResponseVo> login(LoginRequesVo bean, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<WxLoginResponseVo> resopnseBean = new DefaultResopnseBean<>();
-        WxLoginResponseVo loginResponseVo = loginService.login(mobile,pwd);
+        WxLoginResponseVo loginResponseVo = loginService.login(bean.getMobile(),bean.getPwd());
         if(loginResponseVo==null){
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_USER_ERROR_LONGIN);
         }else{

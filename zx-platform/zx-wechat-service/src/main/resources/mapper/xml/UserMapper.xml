@@ -159,4 +159,10 @@
     <select id="findMaxId" resultType="java.lang.Long">
         select max(id) from zx_user where user_code like #{code,jdbcType=VARCHAR}
     </select>
+
+    <select id="findByMobile" resultMap="userDetailsBean">
+        select user_type,user_status,user_code,username,mobile,union_id,open_id,age,wechat_id,portrait,city,area,gen,province from zx_user where mobile=#{mobile,jdbcType=VARCHAR} limit 1
+
+    </select>
+
 </mapper>

@@ -50,4 +50,7 @@ public interface UserService {
 	UserDetailsBean details(String userCode);
 
 	String findMaxId(String userCode);
+
+	UserDetailsBean findByMobile(String mobile);
+
 }

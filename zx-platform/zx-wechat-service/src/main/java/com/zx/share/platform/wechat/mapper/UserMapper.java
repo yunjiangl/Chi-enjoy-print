@@ -42,6 +42,8 @@ public interface UserMapper extends PlatFormMapper<ZxUser> {
 
     UserDetailsBean findByCode(@Param("code") String code);
 
+    UserDetailsBean findByMobile(@Param("mobile") String mobile);
+
     AttorneyDetailsBean findByAttorney(@Param("code") String code);
 
     List<String> findByAttorneyDomains(@Param("code") String code);
