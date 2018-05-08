@@ -15,7 +15,8 @@ public enum OrderStatusEnum {
     ZX_ORDER_STATUS_PAYERROR(4,"支付失败"),
     ZX_ORDER_STATUS_PAYSUCCESS(5,"支付成功"),
     ZX_ORDER_STATUS_PRINTER_OK(7,"打印成功"),
-    ZX_ORDER_STATUS_PRINTER_ERROR(8,"打印失败");
+    ZX_ORDER_STATUS_PRINTER_ERROR(8,"打印失败"),
+    ZX_ORDER_STATUS_PRINTER(9,"发送到打印机");
 
     public int code;
     public String label;
