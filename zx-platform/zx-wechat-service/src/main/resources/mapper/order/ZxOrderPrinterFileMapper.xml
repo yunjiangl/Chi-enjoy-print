@@ -11,5 +11,9 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="create_id" jdbcType="BIGINT" property="createId" />
   </resultMap>
+
+  <select id="getOrderFile" resultMap="BaseResultMap">
+    select * from zx_order_printer_file where order_code=#{0}
+  </select>
   
 </mapper>

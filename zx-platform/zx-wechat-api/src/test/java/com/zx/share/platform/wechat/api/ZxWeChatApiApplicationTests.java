@@ -39,11 +39,11 @@ public class ZxWeChatApiApplicationTests {
 		mb.setUsername("fglovezzr@163.com"); // 设置发件人邮箱的用户名
 		mb.setPassword("fg201314zzr"); // 设置发件人邮箱的密码，需将*号改成正确的密码
 		mb.setFrom("fglovezzr@163.com"); // 设置发件人的邮箱
-		mb.setTo("2315631905@qq.com"); // 设置收件人的邮箱
+		mb.setTo("exqooo@print.epsonconnect.com"); // 设置收件人的邮箱
 		mb.setSubject(UUID.randomUUID().toString()); // 设置邮件的主题
-		mb.setContent("本邮件中包含附件，请检查！"); // 设置邮件的正文
+		mb.setContent(""); // 设置邮件的正文
 
-		mb.attachFile("/Users/fenggang/Desktop/other/cert/apiclient_cert.p12"); // 往邮件中添加附件
+		mb.attachFile("/Users/fenggang/Documents/1524209545257.jpg"); // 往邮件中添加附件
 
 		SendMail sm = new SendMail();
 		System.out.println("正在发送邮件...");

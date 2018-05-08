@@ -98,8 +98,6 @@ public class PayController extends BaseController {
         return null;
     }
 
-
-
     @ApiOperation(value = "手动支付后回调接口", notes = "支付后回调接口")
     @RequestMapping(value = "/manual/callback")
     @ResponseBody

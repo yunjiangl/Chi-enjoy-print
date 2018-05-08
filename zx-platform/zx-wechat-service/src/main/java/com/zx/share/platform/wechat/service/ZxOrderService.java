@@ -77,4 +77,16 @@ public interface ZxOrderService {
 	List<ZxOrder> attorney(Map<String, Object> param);
 	
 	ZxOrder orderInfo(String code);
+
+	/**
+	 * 打印回调方法
+	 */
+	void orderCallBack();
+
+	/**
+	 * 打印订单文件
+	 * @param code
+	 * @return
+	 */
+	boolean printer(String code);
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -182,6 +183,20 @@ public class OrderController extends BaseController {
 		ZxOrder data = zxOrderService.orderInfo(code);
 		DefaultResopnseBean<ZxOrder> resopnseBean = new DefaultResopnseBean<ZxOrder>();
 		resopnseBean.setData(data);
+		return resopnseBean;
+	}
+
+	@ApiOperation(value = "打印订单文件", notes = "打印订单文件")
+	@RequestMapping(value = "/printer/{code}", method = RequestMethod.GET)
+	@ResponseBody
+	public DefaultResopnseBean<Object> printer(@ApiParam("订单code") @PathVariable("code") String code,
+												  HttpServletRequest request) {
+		servletPath = request.getServletPath();
+		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+		boolean result = zxOrderService.printer(code);
+		if(!result){
+			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，请联系管理员");
+		}
 		return resopnseBean;
 	}
 }

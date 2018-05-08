@@ -1,10 +1,7 @@
 package com.zx.share.platform.util.email;
 
 
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Properties;
-import java.util.Vector;
+import java.util.*;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
@@ -95,5 +92,29 @@ public class SendMail {
             return false;
         }
         return true;
+    }
+
+    public static boolean sendEmail(String path){
+        MailBean mb = new MailBean();
+        mb.setHost("smtp.163.com"); // 设置SMTP主机(163)，若用126，则设为：smtp.126.com
+        mb.setUsername("fglovezzr@163.com"); // 设置发件人邮箱的用户名
+        mb.setPassword("fg201314zzr"); // 设置发件人邮箱的密码，需将*号改成正确的密码
+        mb.setFrom("fglovezzr@163.com"); // 设置发件人的邮箱
+        mb.setTo("exqooo@print.epsonconnect.com"); // 设置收件人的邮箱
+        mb.setSubject(UUID.randomUUID().toString()); // 设置邮件的主题
+        mb.setContent(""); // 设置邮件的正文
+
+        mb.attachFile(path); // 往邮件中添加附件
+
+        SendMail sm = new SendMail();
+        System.out.println("正在发送邮件...");
+        // 发送邮件
+        if (sm.sendMail(mb)){
+            System.out.println("发送成功!");
+            return true;
+        }else{
+            System.out.println("发送失败!");
+            return false;
+        }
     }
 }

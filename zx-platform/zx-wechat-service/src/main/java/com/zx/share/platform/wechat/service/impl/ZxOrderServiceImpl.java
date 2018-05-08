@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.service.impl;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.zx.share.platform.util.email.SendMail;
+import com.zx.share.platform.util.email.StoreMail;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -324,6 +327,74 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			zxOrder.setZxFileManagerCDE(zxFileManagerCDEMapper.selectByPrimaryKey(cde));
 		}
 		return zxOrder;
+	}
+
+	@Override
+	public synchronized void orderCallBack() {
+		try {
+			//获取带确认打印成功的订单code
+			List<Map<String,Object>> list = StoreMail.emailInbox();
+
+			if(list!=null && !list.isEmpty()){
+				for (Map<String,Object> map :list) {
+
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public synchronized boolean printer(String code) {
+
+		//TODO 判断打印订单状态集合是否有该订单
+
+		String fileTypeAB = "4";//ab类文件
+		String fileTypeCDE = "5";//cde类文件
+		OrderResultBean orderResultBean = zxOrderMapper.getOrderCode(code);
+		List<ZxOrderPrinterFile> list = zxOrderPrinterFileMapper.getOrderFile(code);
+		if(list!=null && !list.isEmpty()){
+			for (ZxOrderPrinterFile file:list) {
+				FileResultBean bean = null;
+				if(fileTypeAB.equals(file.getFileType())){
+					bean = zxFileManagerABMapper.detailsab(file.getFileCode());
+				}else if(fileTypeCDE.equals(file.getFileType())){
+					bean = zxFileManagerABMapper.detailscde(file.getFileCode());
+				}
+
+				String path = this.getFilePath(bean);
+				if(StringUtil.isBlank(path)){
+					return false;
+				}
+
+				File fileEntity = new File(path);
+				if(!fileEntity.isFile()){
+					return false;
+				}
+				if(SendMail.sendEmail(path)){
+					//TODO 写入打印订单状态集合
+
+
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+
+	private String getFilePath(FileResultBean bean){
+		if(bean==null){
+			return null;
+		}
+		String filePath = bean.getFileUrl();
+		if(StringUtil.isBlank(filePath)){
+			return null;
+		}
+		return filePath;
 	}
 
 }
