@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 /**
  * Created by fenggang on 18/3/5.
@@ -40,14 +41,17 @@ public class PayController extends BaseController {
     @ApiOperation(value = "支付下单接口", notes = "支付下单接口")
     @RequestMapping(value = "/account",method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<String> accountPay(@ApiParam("订单code")@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response){
+    public DefaultResopnseBean<Map<String,Object>> accountPay(@ApiParam("订单code")@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
-        DefaultResopnseBean<String> resopnseBean = new DefaultResopnseBean<>();
-        UserCache user = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
-        if(user==null){
-            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
-            return resopnseBean;
-        }
+        DefaultResopnseBean<Map<String,Object>> resopnseBean = new DefaultResopnseBean<>();
+//        UserCache user = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+//        if(user==null){
+//            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+//            return resopnseBean;
+//        }
+        Map<String,Object> map = zxOrderService.payUnifiedorder(code,"测试","oCdck0Y35dqWOzGfI36fmbUkXLKE","111.85.159.16");
+
+        resopnseBean.setData(map);
         return resopnseBean;
     }
 

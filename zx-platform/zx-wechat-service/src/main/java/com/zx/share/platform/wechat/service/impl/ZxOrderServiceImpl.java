@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -85,12 +86,12 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Transactional(readOnly = false)
 	@Override
-	public Map<String, Object> payUnifiedorder(String orderCode) {
+	public Map<String, Object> payUnifiedorder(String orderCode,String body,String openId,String ip) {
 		ZxOrder zxOrder = zxOrderMapper.findByOrderCode(orderCode);
 		if (zxOrder != null) {
 			Date date = new Date();
-			Map<String, Object> payMap = weCharPayService.payUnifiedorder("", "", zxOrder.getOrderAmount().intValue(),
-					"ip", orderCode, "openid", "JSAPI");
+			Map<String, Object> payMap = weCharPayService.payUnifiedorder(body, JSON.toJSONString(zxOrder), zxOrder.getOrderAmount().intValue(),
+					ip, orderCode, openId, "JSAPI");
 
 			ZxOrderPay orderPay = new ZxOrderPay();
 			orderPay.setCreateTime(date);
@@ -103,9 +104,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			zxOrder.setStatus(OrderStatusEnum.ZX_ORDER_STATUS_USERPAYING.code);
 			zxOrder.setUpdateId(zxOrder.getOrderUserId());
 			zxOrder.setUpdateTime(date);
+			return payMap;
 
 		}
-		return null;
+		return new HashMap<>();
 	}
 
 	@Override

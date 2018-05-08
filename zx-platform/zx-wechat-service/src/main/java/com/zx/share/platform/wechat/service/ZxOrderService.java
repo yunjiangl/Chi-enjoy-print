@@ -30,7 +30,7 @@ public interface ZxOrderService {
 	 * @param orderCode
 	 * @return
 	 */
-	Map<String, Object> payUnifiedorder(String orderCode);
+	Map<String, Object> payUnifiedorder(String orderCode,String body,String openId,String ip);
 
 	/**
 	 * 手动支付回调

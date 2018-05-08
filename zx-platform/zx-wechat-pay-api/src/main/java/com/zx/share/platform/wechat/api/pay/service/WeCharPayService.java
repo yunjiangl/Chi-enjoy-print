@@ -31,14 +31,14 @@ public interface WeCharPayService {
 
     /**
      * 统一下单
-     * @param body
-     * @param detail
-     * @param total_fee
+     * @param body 商品描述
+     * @param detail 商品详情
+     * @param total_fee   标价金额(单位分)
      * @param ip
-     * @param out_trade_no
+     * @param out_trade_no 商户订单号
      * @param openid
-     * @param trade_type
+     * @param trade_type 交易类型   JSAPI
      * @return
      */
-    public Map<String, Object> payUnifiedorder(String body, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type);
+    Map<String, Object> payUnifiedorder(String body, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type);
 }

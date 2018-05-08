@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.zx.share.platform.constants.UserSourceEnum;
 import com.zx.share.platform.util.CodeBuilderUtil;
+import com.zx.share.platform.util.StringUtil;
+import com.zx.share.platform.vo.user.UserResultBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,14 +98,16 @@ public class RegisterController extends BaseController {
                                             @ApiParam("openid") @RequestParam("openid") String openid,
                                             HttpServletRequest request) throws Exception {
         servletPath = request.getServletPath();
-        //UserCache userCache = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER); // 得到当前登录用户
-
         ZxUser user = new ZxUser();
-        String userCode = UserSourceEnum.ZX_USER_SOURCE_WECHAT.label + "0000";
-        String id = userService.findMaxId(userCode);
 
-        //user.setId(userCache.getId());
-        user.setUserCode(CodeBuilderUtil.userCode(UserSourceEnum.ZX_USER_SOURCE_WECHAT.label, "0000", id));
+        UserResultBean bean = userService.findByOpenId(openid);
+        if( StringUtil.isNotBlank(openid) && bean!=null && StringUtil.isNotBlank(bean.getOpenId())){
+            user.setUserCode(bean.getUserCode());
+        }else{
+            String userCode = UserSourceEnum.ZX_USER_SOURCE_WECHAT.label + "0000";
+            String id = userService.findMaxId(userCode);
+            user.setUserCode(CodeBuilderUtil.userCode(UserSourceEnum.ZX_USER_SOURCE_WECHAT.label, "0000", id));
+        }
         user.setMobile(mobile);
         user.setNickname(name);
         user.setRegisterTime(new Date());

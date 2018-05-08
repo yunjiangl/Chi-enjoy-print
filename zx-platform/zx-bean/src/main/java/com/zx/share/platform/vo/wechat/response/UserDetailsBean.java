@@ -47,6 +47,7 @@ public class UserDetailsBean implements Serializable {
     private AttorneyDetailsBean attorney;
 
     private String password;
+    private Long id;
 
     public String getProvince() {
         return province;
@@ -174,5 +175,13 @@ public class UserDetailsBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

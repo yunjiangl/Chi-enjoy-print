@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,7 +40,7 @@ public class LoginController extends BaseController {
     @ApiOperation(value = "login", notes = "login")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public DefaultResopnseBean<WxLoginResponseVo> login(LoginRequesVo bean, HttpServletRequest request) {
+    public DefaultResopnseBean<WxLoginResponseVo> login(@RequestBody LoginRequesVo bean, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<WxLoginResponseVo> resopnseBean = new DefaultResopnseBean<>();
         WxLoginResponseVo loginResponseVo = loginService.login(bean.getMobile(),bean.getPwd());

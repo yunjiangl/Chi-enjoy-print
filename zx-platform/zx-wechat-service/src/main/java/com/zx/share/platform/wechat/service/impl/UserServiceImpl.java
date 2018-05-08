@@ -67,7 +67,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer insert(ZxUser zxUser) {
-		return userMapper.insert(zxUser);
+		UserDetailsBean bean = userMapper.findByCode(zxUser.getUserCode());
+		if(bean!=null && StringUtil.isNotBlank(bean.getOpenId())){
+			zxUser.setUserCode(bean.getUserCode());
+			zxUser.setId(bean.getId());
+			return userMapper.updateByPrimaryKeySelective(zxUser);
+		}else {
+			return userMapper.insert(zxUser);
+		}
 	}
 
 	/**

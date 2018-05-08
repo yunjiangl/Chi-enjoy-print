@@ -48,6 +48,14 @@
 		</dependency>
 		<!-- 缓存相关依赖 结束 -->
 
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
 		<!-- common -->
 		<dependency>
 			<groupId>commons-lang</groupId>
