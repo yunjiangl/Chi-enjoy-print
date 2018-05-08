@@ -41,6 +41,19 @@ Page({
       url: '../choice/choice',
     })
   },
+  choiceB: function () {
+    wx.navigateTo({
+      url: '../choice/choice',
+    })
+  },
+  choiceC: function () {
+    wx.showModal({
+      content: '暂不支持该功能',
+      success: function (res) {
+        console.log(res.confirm);
+      }
+    })
+  },
   uploadImg:function(){
     wx.chooseImage({
       count: 9, // 默认9
