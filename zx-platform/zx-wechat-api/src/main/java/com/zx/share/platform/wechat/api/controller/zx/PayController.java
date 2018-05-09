@@ -65,6 +65,7 @@ public class PayController extends BaseController {
         resultMap.put("signType","MD5");
         resultMap.put("nonceStr", RandomStringGenerator.getRandomStringByLength(32));
         resultMap.put("paySign", Signature.getSign(resultMap, "yangquanheyizhijiakeji3535694802"));
+        resultMap.put("payCode",map.get("prepay_id"));
 
         resopnseBean.setData(resultMap);
         return resopnseBean;
@@ -117,10 +118,13 @@ public class PayController extends BaseController {
     @RequestMapping(value = "/manual/callback")
     @ResponseBody
     public DefaultResopnseBean<Object> manual(@ApiParam("订单code")@RequestParam("code") String code,
-                                              @ApiParam("订单状态")@RequestParam("status") String status,
+                                              @ApiParam("订单状态")@RequestParam("status") Integer status,
+                                              @ApiParam("支付code")@RequestParam("prepayId") String prepayId,
+                                              @ApiParam("错误信息，没有为空")@RequestParam("error") String error,
                                               HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
-
-        return null;
+        DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+        zxOrderService.manualCallback(code,prepayId,status,error);
+        return resopnseBean;
     }
 }

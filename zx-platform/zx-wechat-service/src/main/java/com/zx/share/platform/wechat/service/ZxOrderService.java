@@ -89,4 +89,12 @@ public interface ZxOrderService {
 	 * @return
 	 */
 	boolean printer(String code);
+
+	/**
+	 * 支付回调
+	 * @param orderCode
+	 * @param payCode
+	 * @param status
+	 */
+	void manualCallback(String orderCode,String payCode,Integer status,String error);
 }

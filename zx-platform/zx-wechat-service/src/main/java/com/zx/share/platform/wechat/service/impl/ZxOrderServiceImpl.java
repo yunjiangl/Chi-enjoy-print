@@ -48,6 +48,9 @@ import com.zx.share.platform.wechat.mapper.order.ZxOrderPayMapper;
 import com.zx.share.platform.wechat.mapper.order.ZxOrderPrinterFileMapper;
 import com.zx.share.platform.wechat.service.ZxOrderService;
 
+/**
+ * @author fenggang
+ */
 @Service
 public class ZxOrderServiceImpl implements ZxOrderService {
 
@@ -99,15 +102,21 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 			ZxOrderPay orderPay = new ZxOrderPay();
 			orderPay.setCreateTime(date);
+			orderPay.setPayTime(date);
 			orderPay.setPayStatus(PayStatusEnum.ZX_PAY_STATUS_USERPAYING.code);
 			orderPay.setCreateId(zxOrder.getOrderUserId());
 			orderPay.setOrderId(zxOrder.getId());
-			orderPay.setPayCode("");
+			orderPay.setPayCode(payMap.get("prepay_id")+"");
+			zxOrderPayMapper.insert(orderPay);
 
 			zxOrder.setPayCode(orderPay.getPayCode());
+			zxOrder.setPayTime(orderPay.getPayTime());
 			zxOrder.setStatus(OrderStatusEnum.ZX_ORDER_STATUS_USERPAYING.code);
 			zxOrder.setUpdateId(zxOrder.getOrderUserId());
 			zxOrder.setUpdateTime(date);
+
+			zxOrderMapper.updateByPrimaryKeySelective(zxOrder);
+
 			return payMap;
 
 		}
@@ -278,7 +287,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Override
 	public int cancel(String orderCode) {
-		return zxOrderMapper.updateOrderStatus(orderCode, OrderStatusEnum.ZX_ORDER_STATUS_CLOSE.code);
+		return zxOrderMapper.updateOrderStatus(orderCode,null,null, OrderStatusEnum.ZX_ORDER_STATUS_CLOSE.code);
 	}
 
 	@Override
@@ -401,6 +410,30 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public void manualCallback(String orderCode, String payCode, Integer status,String error) {
+		ZxOrder zxOrder = zxOrderMapper.findByOrderCode(orderCode);
+		if (zxOrder != null) {
+			ZxOrderPay orderPay = new ZxOrderPay();
+			orderPay.setCreateTime(new Date());
+			orderPay.setPayTime(orderPay.getCreateTime());
+			orderPay.setPayStatus(status);
+			orderPay.setCreateId(zxOrder.getOrderUserId());
+			orderPay.setOrderId(zxOrder.getId());
+			orderPay.setPayCode(payCode);
+			orderPay.setError(error);
+
+			zxOrderPayMapper.insert(orderPay);
+			zxOrder.setPayCode(orderPay.getPayCode());
+			zxOrder.setPayTime(orderPay.getPayTime());
+			zxOrder.setStatus(status);
+			zxOrder.setUpdateId(zxOrder.getOrderUserId());
+			zxOrder.setUpdateTime(orderPay.getCreateTime());
+
+			zxOrderMapper.updateByPrimaryKeySelective(zxOrder);
+		}
 	}
 
 	private String getFilePath(FileResultBean bean){

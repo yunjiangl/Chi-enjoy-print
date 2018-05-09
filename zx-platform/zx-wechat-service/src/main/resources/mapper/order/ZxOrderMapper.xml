@@ -84,7 +84,7 @@
 
 	<select id="findByOrderCode" resultMap="baseResultMap">
 		select
-		order_code,status,order_amount,order_num,pay_time,pay_code,pay_id from
+		id,order_code,status,order_amount,order_num,pay_time,pay_code,pay_id from
 		zx_order
 		where order_code = #{0,jdbcType=VARCHAR}
 	</select>
@@ -96,7 +96,7 @@
 	</select>
 
 	<update id="updateOrderStatus">
-		update zx_order set status=#{1,jdbcType=INTEGER}
+		update zx_order set status=#{3,jdbcType=INTEGER},pay_code = #{1},pay_time=#{2}
 		where order_code =
 		#{0,jdbcType=VARCHAR}
 	</update>

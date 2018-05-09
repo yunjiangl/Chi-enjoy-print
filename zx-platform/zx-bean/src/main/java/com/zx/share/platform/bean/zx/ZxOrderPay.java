@@ -48,5 +48,8 @@ public class ZxOrderPay extends IdEntity {
     @Column(name = "update_id")
     private Long updateId;
 
+    @Column(name = "error")
+    private String error;
+
     private static final long serialVersionUID = 1L;
 }
