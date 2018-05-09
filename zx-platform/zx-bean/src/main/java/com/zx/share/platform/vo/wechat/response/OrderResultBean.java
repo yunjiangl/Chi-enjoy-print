@@ -103,15 +103,20 @@ public class OrderResultBean implements Serializable {
     public void setFile(OrderFileBean file) {
         this.file = file;
     }
- public String getStatusName() {
+
+    public String getStatusName() {
         return statusName;
     }
 
     public void setStatusName(String statusName) {
-        this.statusName = statusName;    public Double getOrderAmount() {
+        this.statusName = statusName;
+    }
+
+    public Double getOrderAmount() {
         return orderAmount;
     }
 
     public void setOrderAmount(Double orderAmount) {
         this.orderAmount = orderAmount;
-    }}
+    }
+}
