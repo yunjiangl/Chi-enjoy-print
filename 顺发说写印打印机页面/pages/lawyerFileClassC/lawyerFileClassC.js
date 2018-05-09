@@ -17,11 +17,29 @@ Page({
       fileInfoList: [],
       fileInfo:[],
       fileType:5 ,//根据lawyerFourFileList.js中的fileType定义
-      ids:[]
+      ids:[],
+      userType:null,
+      userCode:null,
+      managerCode:null
     
   },
   getData: function () {
     var that = this;
+  //  console.log(app.data.userInfo.userCode);
+    var userType = app.data.userInfo.userType;
+    var userCode = app.data.userInfo.userCode;
+    that.userType = userType;
+    if(that.userType==1){
+      that.userCode = app.data.userInfo.userCode;
+      that.managerCode =0;
+    }
+    if (that.userType == 2){
+      that.managerCode = app.data.userInfo.userCode;
+      that.userCode =0;
+    }
+  //  console.log(that.userCode);
+  //  console.log(that.managerCode);
+   // console.log(that.userType);
     wx.request({
       url: app.data.api + 'file/m/c/page',
       method: 'GET',
@@ -32,19 +50,29 @@ Page({
         pageSize: that.data.pagesize
       },
       success: function (res) {
-        console.log(res)
+        console.log(res);
+        console.log(that.userCode);
         var list = [];
-        //console.log(res.data.data.content);
+        console.log(res.data.data.content[0]);
         for (var i = 0; i < res.data.data.content.length; i++) {
-          if (res.data.data.content[i].fileNum==null){
-            res.data.data.content[i].fileNum=0;
+          if (that.userCode == res.data.data.content[i].userCode){
+            if (res.data.data.content[i].fileNum == null) {
+              res.data.data.content[i].fileNum = 0;
+            }
+            list.push(res.data.data.content[i]);
           }
-          list.push(res.data.data.content[i]);
+          if (that.managerCode == res.data.data.content[i].managerCode){
+            if (res.data.data.content[i].fileNum == null) {
+              res.data.data.content[i].fileNum = 0;
+            }
+            list.push(res.data.data.content[i]);
+          }
         }
         that.setData({
-          fileInfoList: list
+          fileInfoList: list,
+          userType: app.data.userInfo.userType,
         })
-       // console.log(list[0])
+       // console.log(that.data.fileInfoList);
       }
     })
   },
@@ -118,6 +146,30 @@ Page({
             })
           }
         } 
+      })
+    }
+  },
+  fasong: function(){
+    var that = this;
+    var ids = [];
+    if (that.data.fileInfo <= 0) {
+      wx.showModal({
+        content: '请选择需要设置的文件',
+        success: function (res) {
+          console.log(res.confirm);
+        }
+      })
+    } else {
+      for (var i in that.data.fileInfo) {
+        console.log(that.data.fileInfo[i].id);
+        ids.push(that.data.fileInfo[i].id);
+      }
+      //console.log(ids[0]);
+      that.setData({
+        ids: ids
+      })
+      wx.navigateTo({
+        url: '../lawyerSettingCosts/lawyerSettingCosts',
       })
     }
   },

@@ -8,22 +8,22 @@
     <view class='line_border' wx:for='{{fileInfoList}}'>
     <view class='word' >
     
-      <!--left start  -->
-      <view class='left'>
+          <!--left start  -->
+                <view class='left'>
 
-          <image class='wordpng' src='../images/word.png' />
-          <view class='WordAndDate'>
-            <text>{{item.fileName}}</text>
-            <view class='PageDate'>{{item.fileNum}}页 {{item.createtime}}</view> 
-          </view>
-      </view>
-      <!--left end  -->
+                    <image class='wordpng' src='../images/word.png' />
+                      <view class='WordAndDate'>
+                        <text>{{item.fileName}}</text>
+                        <view class='PageDate'>{{item.fileNum}}页 {{item.createTime}}</view> 
+                      </view>
+                </view>
+          <!--left end  -->
       <!--right start  -->
-        <view class='right'>    
-            <checkbox color='#3798FB' value="{{index}}" />         
-        </view>
+                      <view class='right'>    
+                          <checkbox color='#3798FB' value="{{index}}" />         
+                      </view>
       <!--right end  -->
-    </view>
+      </view>
     <!--word end  -->
     </view>
     </checkbox-group>
@@ -31,10 +31,17 @@
   <!--content  -->
 
   <!--footer start  -->
+  <view wx:if="{{userType==2}}">
     <view class='footer'>
-        <button size='mini' hover-class='ohter-button-hover' type='default' bindtap="deleteFile">删除文件</button>
-        <button size='mini' hover-class='ohter-button-hover' type='primary' bindtap="choiceCustomer">发送客户</button>
+      <button size='mini' hover-class='ohter-button-hover' type='default' bindtap="deleteFile">删除文件</button>
+      <button size='mini' hover-class='ohter-button-hover' type='primary' bindtap="choiceCustomer">发送客户</button>
     </view>
+  </view>
+  <view wx:if="{{userType==1}}">
+    <view class='footer'>
+      <button size='mini' hover-class='ohter-button-hover' class='userType_01' type='primary' bindtap="fasong">设置费用</button>
+    </view>
+  </view>
   <!--footer end  -->
 
   </view>

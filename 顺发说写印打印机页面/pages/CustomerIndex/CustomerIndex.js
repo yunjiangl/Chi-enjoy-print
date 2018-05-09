@@ -47,11 +47,8 @@ Page({
     })
   },
   choiceC: function () {
-    wx.showModal({
-      content: '暂不支持该功能',
-      success: function (res) {
-        console.log(res.confirm);
-      }
+    wx.navigateTo({
+      url: '../lawyerFileClassC/lawyerFileClassC',
     })
   },
   uploadImg:function(){
