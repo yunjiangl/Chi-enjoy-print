@@ -10,6 +10,7 @@ Page({
     navbar: ['待付款', '待打印', '已完成'],
     currentTab: 3,
     orderList: [],
+    msg: '',
     orderStart: '',//订单状态
     page: 1, // 当前页
     pageSize: 10 // 页面数据大小
@@ -42,7 +43,7 @@ Page({
     var orderInfo = that.data.orderList[e.currentTarget.dataset.idx]
     if (orderInfo.status == 1) {
       wx.navigateTo({
-        url: '../printCost/printCost?orderAmount=' + orderInfo.orderAmount,
+        url: '../printCost/printCost?orderAmount=' + orderInfo.orderAmount + "&orderCode=" + orderInfo.orderCode,
       })
     } else if (orderInfo.status == 5) {
       wx.showToast({
@@ -65,7 +66,7 @@ Page({
         'X-ACCESS-TOKEN': app.data.userInfo.accessToken
       },
       data: {
-        userCode: 'wechat00000000000',//app.data.userCode, // 用户唯一标识
+        userCode: app.data.userCode, // 用户唯一标识
         status: that.data.orderStart, // 订单的状态
         page: that.data.page, // 第几页
         pageSize: that.data.pageSize, // 每页显示的数据
@@ -73,12 +74,19 @@ Page({
       success: function (res) {
         app.loginCheck(res)
         var list = that.data.orderList;
-        for (var i = 0; i < res.data.data.content.length; i++) {
-          list.push(res.data.data.content[i])
+        if (res.data.data.content.length == 0) {
+          that.setData({
+            msg: '没有信息哦哦'
+          })
+        } else {
+          for (var i = 0; i < res.data.data.content.length; i++) {
+            list.push(res.data.data.content[i])
+          }
+          that.setData({
+            orderList: list,
+            msg:''
+          })
         }
-        that.setData({
-          orderList: list
-        })
       }
     })
   },
