@@ -19,6 +19,7 @@ public class OrderQueryBean extends PageRequestBean {
     private Integer userType;
     @ApiModelProperty(value = "订单状态")
     private Integer orderStatus;
+    @ApiModelProperty(value = "用户code")
     private String userCode;
 
     public void setOrderType(Integer orderType) {

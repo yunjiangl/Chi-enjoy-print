@@ -1,339 +1,59 @@
 <!--container start  -->
-  <view class='container'>
+<view class='container'>
 
-    <!--top start  -->
-    <view class='top'>
-      <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab ==index ? 'active' : '' }}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
-    </view>
-    <!--top end  -->
+  <!--top start  -->
+  <view class='top'>
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab ==index ? 'active' : '' }}" wx:key="unique" bindtap='navbarTap'>{{item}}</text>
+  </view>
+  <!--top end  -->
 
-    <!-- 待付款 start -->
-    <view hidden='{{currentTab!=0}}'>
-    
-      <!-- list start  -->
-        <view class='list' bindtap='setprint' >
 
-          <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='word' src='../images/word.png' />
 
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
+  <!-- list start  -->
+  <view class='list' bindtap='setprint'>
 
-          <view class='rt' bindtap='goCost' ><text>待付款</text></view>
-
+    <!--list-until start -->
+    <view class='list-until' wx:for="{{orderList}}">
+      <view class='tt'>
+        <image wx:if="{{item.file.suffix == 'doc'}}" class='word' src='../images/word.png' />
+        <image wx:elif="{{item.file.suffix == 'docx'}}" class='pdf' src='../images/word.png' />
+        <image wx:elif="{{item.file.suffix == 'pdf'}}" class='pdf' src='../images/pdf.png' />
+        <image wx:elif="{{item.file.suffix == 'xls'}}" class='excel' src='../images/excel.png' />
+        <image wx:elif="{{item.file.suffix == 'xlsx'}}" class='excel' src='../images/excel.png' />
+        <view class='cr'>
+          <text>{{item.file.fileName}}</text>
+          <view class='page'>{{item.file.printerNum}}份
+            <tt></tt>{{item.file.paperColcor}}
+            <tt></tt>{{item.file.paperType}}
+            <tt></tt>全部页面({{item.file.filePaper}}页)</view>
         </view>
 
-          <view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='pdf' src='../images/pdf.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待付款</text></view>
-
-        </view>
-
-          <view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
+        <view class='rt' data-idx='{{index}}' bindtap='goCost'>
+          <text wx:if="{{item.status == 1}}">待付款</text>
+          <text wx:elif="{{item.status == 5}}">待打印</text>
+          <text wx:elif="{{item.status == 7}}">已完成</text>
         </view>
 
       </view>
-      <!--list-until end  -->
 
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='excel' src='../images/excel.png' />
+      <view class='line'></view>
 
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待付款</text></view>
-        </view>
-        
-          <view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
+      <view class='bm'>
+        <image class='icon2' src='../images/address.png' />
+        <text>{{item.printerAddress}}</text>
       </view>
-      <!--list-until end  -->
-
-        </view>
-      <!-- list end  -->
 
     </view>
-    <!--待付款 end  -->
-
-    <!-- 待打印 start  -->
-    <view hidden='{{currentTab!=1}}'>
-    
-      <!-- list start  -->
-        <view class='list'>
-
-          <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='word' src='../images/word.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待打印</text></view>
-        </view>
-<view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='pdf' src='../images/pdf.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待打印</text></view>
-        </view>
-
-<view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='excel' src='../images/excel.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待打印</text></view>
-        </view>
-        
-<view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-        </view>
-      <!-- list end  -->
-    
-    </view>
-    <!-- 待打印 end  -->
-
-    <!-- 已完成 start  -->
-    <view hidden='{{currentTab!=2}}'>
-    
-      <!-- list start  -->
-        <view class='list'>
-
-          <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='word' src='../images/word.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt fh'><text>已完成</text></view>
-
-        </view>
-
-          <view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='pdf' src='../images/pdf.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt fh'><text>已完成</text></view>
-
-        </view>
-
-          <view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='excel' src='../images/excel.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt fh'><text>已完成</text></view>
-        </view>
-        
-          <view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-        </view>
-      <!-- list end  -->
-
-    </view>
-    <!-- 已完成 end  -->
-
-<!--currentTab!=3 start  -->
-<view hidden='{{currentTab!=3}}'>
-
- <!--list start  -->
-    <view class='list'>
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='word' src='../images/word.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待付款</text></view>
-        </view>
-<view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='pdf' src='../images/pdf.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt fh'><text>已完成</text></view>
-        </view>
-
-<view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-      <!--list-until start -->
-      <view class='list-until'>
-        <view class='tt'>
-          <image class='excel' src='../images/excel.png' />
-
-          <view class='cr'>
-            <text>打印机使用操作说明</text>
-            <view class='page'>1份<tt></tt>黑白<tt></tt>A4<tt></tt>全部页面(12页)</view>
-          </view>
-
-          <view class='rt'><text>待打印</text></view>
-        </view>
-        
-<view class='line'></view>
-
-        <view class='bm'>
-          <image class='icon2' src='../images/address.png' />
-          <text>北京市昌平区回龙观金域国际中心B座</text>
-        </view>
-
-      </view>
-      <!--list-until end  -->
-
-    </view>
-    <!--list end  -->
-
-</view>
-<!--currentTab!=3 end  -->
+    <!--list-until end  -->
 
   </view>
+  <!-- list end  -->
+
+
+
+
+
+</view>
 <!--container end  -->
-<import src="../../template/tabBar.wxml"/>
-<template is="tabBar" data="{{tabBar:bindData.tabBar}}"/>
+<import src="../../template/tabBar.wxml" />
+<template is="tabBar" data="{{tabBar:bindData.tabBar}}" />

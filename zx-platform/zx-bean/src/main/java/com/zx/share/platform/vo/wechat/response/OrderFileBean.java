@@ -16,6 +16,8 @@ public class OrderFileBean implements Serializable {
 
     @ApiModelProperty(value = "文件名称")
     private String fileName;
+    @ApiModelProperty(value = "文件后缀")
+    private String suffix;
     @ApiModelProperty(value = "文件页数")
     private String filePaper;
     @ApiModelProperty(value = "打印数量")
@@ -73,5 +75,13 @@ public class OrderFileBean implements Serializable {
 
     public void setPaperUsage(String paperUsage) {
         this.paperUsage = paperUsage;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
     }
 }

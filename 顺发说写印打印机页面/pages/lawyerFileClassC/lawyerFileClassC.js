@@ -152,6 +152,7 @@ Page({
   fasong: function(){
     var that = this;
     var ids = [];
+	    var fileInfo = JSON.stringify(that.data.fileInfo);
     if (that.data.fileInfo <= 0) {
       wx.showModal({
         content: '请选择需要设置的文件',
@@ -169,11 +170,11 @@ Page({
         ids: ids
       })
       wx.navigateTo({
-        url: '../lawyerSettingCosts/lawyerSettingCosts',
+        // url: '../lawyerSettingCosts/lawyerSettingCosts',
+        url: '../lawyerSettingCosts/lawyerSettingCosts?fileInfo=' + fileInfo + '&userCode=' + that.data.userCode + "&fileType=" + that.data.fileType
       })
     }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

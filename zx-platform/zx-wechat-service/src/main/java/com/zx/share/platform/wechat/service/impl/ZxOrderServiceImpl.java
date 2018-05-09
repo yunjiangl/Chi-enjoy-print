@@ -467,6 +467,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 				}
 
 				if(bean!=null){
+					orderFileBean.setSuffix(bean.getFileName().substring(bean.getFileName().lastIndexOf(".") + 1));
 					orderFileBean.setFileName(bean.getFileName());
 					orderFileBean.setFilePaper(bean.getFileNum()+"");
 					orderFileBean.setPrinterNum(file.getPrinterNum()+"");

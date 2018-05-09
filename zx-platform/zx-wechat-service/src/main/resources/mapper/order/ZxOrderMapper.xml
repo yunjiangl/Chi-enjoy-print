@@ -35,6 +35,7 @@
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
 		<result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode" />
+		<result column="order_amount" jdbcType="DOUBLE" property="orderAmount" />
 	</resultMap>
 
 	<resultMap type="com.zx.share.platform.bean.zx.ZxOrder" id="lawyer"
@@ -104,9 +105,12 @@
 	<select id="page" resultMap="orderResultBean"
 		parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
 		select
-		order_code,status,order_num,create_time,printer_code,order_user_code
+		order_code,status,order_num,create_time,printer_code,order_user_code,order_amount
 		from zx_order
 		<where>
+			<if test="userCode != null and userCode.trim() != ''">
+				AND order_user_code = #{userCode}
+			</if>
 			<if test="orderStatus!=null and orderStatus!=''">
 				AND status = #{orderStatus}
 			</if>
@@ -124,6 +128,9 @@
 		parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
 		select count(1) from zx_order
 		<where>
+			<if test="userCode != null and userCode.trim() != ''">
+				AND order_user_code = #{userCode}
+			</if>
 			<if test="orderStatus!=null and orderStatus!=''">
 				AND status = #{orderStatus}
 			</if>

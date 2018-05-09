@@ -25,6 +25,8 @@ public class OrderResultBean implements Serializable {
     private String statusName;
     @ApiModelProperty(value = "订单编号")
     private String orderNum;
+    @ApiModelProperty(value = "订单金额")
+    private Double orderAmount;
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
     @ApiModelProperty(value = "打印机code")
@@ -108,5 +110,13 @@ public class OrderResultBean implements Serializable {
 
     public void setStatusName(String statusName) {
         this.statusName = statusName;
+    }
+
+    public Double getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(Double orderAmount) {
+        this.orderAmount = orderAmount;
     }
 }

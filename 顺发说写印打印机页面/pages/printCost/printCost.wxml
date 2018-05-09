@@ -3,15 +3,15 @@
   <!--top start  -->
     <view class='top'>
 
-      <text class='print'>打印服务费</text>
-      <text class='money'>68元</text>
+      <text class='print'>打印订单费用</text>
+      <text class='money'>{{orderAmount}}元</text>
 
     </view>
   <!--top end  -->
 
 <!-- btn start  -->
   <view class='btn'>
-      <button type='default' size='default' loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">去结算</button>
+      <button type='default' size='default' loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="clearing" hover-class="other-button-hover">去结算</button>
     </view>
 <!-- btn end  -->
 

@@ -137,8 +137,9 @@ public class OrderController extends BaseController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<PageResponseBean<OrderResultBean>> list(
-			@ApiParam("用户类型") @RequestParam("type") Integer type,
-			@ApiParam("订单状态") @RequestParam("status") Integer status,
+			@ApiParam(value = "用户类型") @RequestParam(name = "type",required = false) Integer type,
+			@ApiParam(value = "用户code") @RequestParam(name = "userCode", required = true) String userCode,
+			@ApiParam(value = "订单状态") @RequestParam(name = "status", required = false) Integer status,
 			@ApiParam("第几页") @RequestParam("page") Integer page,
 			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -149,6 +150,7 @@ public class OrderController extends BaseController {
 		queryBean.setPageSize(pageSize);
 		queryBean.setOrderStatus(status);
 		queryBean.setUserType(type);
+		queryBean.setUserCode(userCode);
 		PageResponseBean<OrderResultBean> pageResponseBean = zxOrderService.page(queryBean);
 		resopnseBean.setData(pageResponseBean);
 		return resopnseBean;

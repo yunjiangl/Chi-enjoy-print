@@ -73,6 +73,7 @@ Page({
         pageSize: that.data.pageSize
       },
       success: function (res) {
+        app.loginCheck(res)
         var list = that.data.fileInfoList;
         for (var i = 0; i < res.data.data.content.length; i++) {
           list.push(res.data.data.content[i])
