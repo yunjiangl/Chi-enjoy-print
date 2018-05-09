@@ -13,6 +13,7 @@
 		<result column="user_code" jdbcType="VARCHAR" property="userCode" />
 		<result column="manager_code" jdbcType="VARCHAR" property="managerCode" />
 		<result column="abstracts" jdbcType="VARCHAR" property="abstracts" />
+		<result column="create_time" jdbcType="DATE" property="createTime" />
 	</resultMap>
 
 	<select id="pageListab" resultMap="fileResultBean"
@@ -43,7 +44,7 @@
 	<select id="pageListcde" resultMap="fileResultBean"
 		parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
 		select
-		file_code,file_num,id,file_num,file_name,category_code,user_code,manager_code from
+		file_code,file_num,id,file_num,create_time,file_name,category_code,user_code,manager_code from
 		zx_file_manager_cde WHERE 1=1
 		<if test="categoryCode!=null and categoryCode!=''">
 			AND category_code = #{categoryCode}

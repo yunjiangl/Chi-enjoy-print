@@ -5,6 +5,7 @@ App({
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: null,// 用户类型，1为普通用户，2为律师用户
+	  userCode:null
     },
     urlWechatLogin: "wechat/login",
     urlLogin: 'login',
@@ -85,6 +86,7 @@ App({
       that.data.userCode = data.data.data.userCode;
       that.data.userInfo.userType = data.data.data.userType;
       that.data.userInfo.accessToken = data.data.data.accessToken;
+	  that.data.userInfo.userCode=data.data.data.userCode;
     }
   },
 
