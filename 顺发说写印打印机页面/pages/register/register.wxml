@@ -37,7 +37,7 @@
     </view>
     <checkbox-group bindchange="checkboxChange">
       <label class="checkbox">
-        <checkbox color='#3798FB' checked="{{items2.checked}}" />用户已阅读并同意《
+        <checkbox color='#3798FB' checked="{{items2.checked}}" name="checkOk"/>用户已阅读并同意《
         <view class='xieyi' bindtap='xieyi'>用户注册协议</view>》
       </label>
     </checkbox-group>
