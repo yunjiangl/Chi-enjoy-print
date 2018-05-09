@@ -31,5 +31,12 @@ public interface PrinterService {
     PageResponseBean<UserDetailsBean> attorneyPage(PrinterQueryBean queryBean);
     
     ZxPrinterManager prinerInfo(String code);
+
+    /**
+     * 根据设备物主查询打印机设备
+     * @param createId
+     * @return
+     */
+    List<PrinterResultBean> findByName(Long createId);
     
 }

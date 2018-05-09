@@ -14,7 +14,7 @@ import java.util.List;
  * @author fenggang
  * @date 18/3/19
  */
-//@Repository
+@Repository
 public interface PrinterMapper extends PlatFormMapper<ZxPrinterManager> {
 
     List<PrinterResultBean> all();
@@ -32,4 +32,11 @@ public interface PrinterMapper extends PlatFormMapper<ZxPrinterManager> {
 
     List<String> attorneyPage(PrinterQueryBean bean);
     Integer attorneyPageCount(PrinterQueryBean bean);
+
+    /**
+     * 根据设备物主查询打印机设备
+     * @param createId
+     * @return
+     */
+    List<PrinterResultBean> findByName(Long createId);
 }

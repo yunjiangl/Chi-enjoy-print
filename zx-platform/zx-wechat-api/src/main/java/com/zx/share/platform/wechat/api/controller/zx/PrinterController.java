@@ -1,6 +1,6 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -51,11 +51,29 @@ public class PrinterController extends BaseController {
 	@ApiOperation(value = "所有打印机接口", notes = "所有打印机接口")
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	@ResponseBody
-	public DefaultResopnseBean<List<PrinterResultBean>> all(HttpServletRequest request) {
+	public DefaultResopnseBean<List<List<PrinterResultBean>>> all(HttpServletRequest request) {
 		servletPath = request.getServletPath();
-		DefaultResopnseBean<List<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
-		List<PrinterResultBean> resultBeanList = printerService.all();
-		resopnseBean.setData(resultBeanList);
+		DefaultResopnseBean<List<List<PrinterResultBean>>> resopnseBean = new DefaultResopnseBean<>();
+		//List<PrinterResultBean> resultBeanList = printerService.all();
+		//将查询出来的数据根据设备物主名进行分组
+		List<PrinterResultBean> dataList = printerService.all();//查询出来的所有数据
+		PrinterResultBean dataItem; // 数据库中查询到的每条记录
+		Map<String, List<PrinterResultBean>> resultMap= new HashMap<String, List<PrinterResultBean>>(); // 最终要的结果
+		for(int i=0;i<dataList.size();i++){
+			dataItem = dataList.get(i);
+			if(resultMap.containsKey(dataItem.getCreateId())){
+				resultMap.get(dataItem.getCreateId()).add(dataItem);
+			}else{
+				List<PrinterResultBean> list = new ArrayList<PrinterResultBean>();
+				list.add(dataItem);
+				resultMap.put(dataItem.getCreateId(),list);
+			}
+		}
+		//map集合转List集合，将map的value存入List
+		List<List<PrinterResultBean>> mapValuesList = new ArrayList<List<PrinterResultBean>>(resultMap.values());
+
+
+		resopnseBean.setData(mapValuesList);
 		return resopnseBean;
 	}
 
@@ -180,6 +198,18 @@ public class PrinterController extends BaseController {
 			resopnseBean.setCode(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code);
 			resopnseBean.setMessage(ErrorsEnum.SYSTEM_CUSTOM_ERROR.label);
 		}
+
+		return resopnseBean;
+	}
+
+	@ApiOperation(value = "根据物主查询打印机", notes = "根据物主查询打印机")
+	@RequestMapping(value = "/find/{createId}", method = RequestMethod.GET)
+	@ResponseBody
+	public DefaultResopnseBean<List<PrinterResultBean>> findByName(@ApiParam("物主createId") @PathVariable("createId") Long createId,
+			HttpServletRequest request) {
+		DefaultResopnseBean<List<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
+		List<PrinterResultBean> pageResultBean=printerService.findByName(createId);
+		resopnseBean.setData(pageResultBean);
 
 		return resopnseBean;
 	}

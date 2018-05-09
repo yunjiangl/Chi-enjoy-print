@@ -1,4 +1,5 @@
 // pages/lawyerChoiceOwner/lawyerChoiceOwner.js
+var app = getApp();
 Page({
 
   /**
@@ -7,12 +8,34 @@ Page({
   data: {
   
   },
-
+  managerOn:function(e){
+    var createId = e.currentTarget.dataset.key
+    console.log(createId);
+    wx.navigateTo({
+      url: '../lawyerChoicePrinter/lawyerChoicePrinter?createId=' + createId
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+
+    wx.request({
+      url: app.data.api + app.data.urlPrinterAll,
+      data: {
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        console.log(res.data.data)
+        that.setData({
+          details: res.data.data,
+        })
+      }
+    })
+    
   },
 
   /**
