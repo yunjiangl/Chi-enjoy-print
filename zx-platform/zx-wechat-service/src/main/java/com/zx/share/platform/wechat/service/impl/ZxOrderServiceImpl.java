@@ -106,10 +106,12 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			orderPay.setPayStatus(PayStatusEnum.ZX_PAY_STATUS_USERPAYING.code);
 			orderPay.setCreateId(zxOrder.getOrderUserId());
 			orderPay.setOrderId(zxOrder.getId());
+			orderPay.setOrderCode(zxOrder.getOrderCode());
 			orderPay.setPayCode(payMap.get("prepay_id")+"");
 			zxOrderPayMapper.insert(orderPay);
 
 			zxOrder.setPayCode(orderPay.getPayCode());
+			zxOrder.setPayType("wechat");
 			zxOrder.setPayTime(orderPay.getPayTime());
 			zxOrder.setStatus(OrderStatusEnum.ZX_ORDER_STATUS_USERPAYING.code);
 			zxOrder.setUpdateId(zxOrder.getOrderUserId());
@@ -422,6 +424,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			orderPay.setPayStatus(status);
 			orderPay.setCreateId(zxOrder.getOrderUserId());
 			orderPay.setOrderId(zxOrder.getId());
+			orderPay.setOrderCode(zxOrder.getOrderCode());
 			orderPay.setPayCode(payCode);
 			orderPay.setError(error);
 
@@ -429,6 +432,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			zxOrder.setPayCode(orderPay.getPayCode());
 			zxOrder.setPayTime(orderPay.getPayTime());
 			zxOrder.setStatus(status);
+			zxOrder.setPayType("wechat");
 			zxOrder.setUpdateId(zxOrder.getOrderUserId());
 			zxOrder.setUpdateTime(orderPay.getCreateTime());
 

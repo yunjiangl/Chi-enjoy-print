@@ -84,7 +84,7 @@
 
 	<select id="findByOrderCode" resultMap="baseResultMap">
 		select
-		id,order_code,status,order_amount,order_num,pay_time,pay_code,pay_id from
+		id,order_code,status,order_amount,order_num,pay_time,pay_code,pay_id,order_user_code from
 		zx_order
 		where order_code = #{0,jdbcType=VARCHAR}
 	</select>
