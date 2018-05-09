@@ -20,10 +20,11 @@ App({
     urlUploadUserimg: 'upload/file/userimg',//上传认证图片
     urlDictionaryAList: 'dictionary/a/list', // a文件分类
     urlFileMAPage: 'file/m/a/page',//a文件分页
-    urlOrderSave: 'order/save',//保存订单信息
+    urlOrderSave: 'order/save',//保存订单信息 
     urlDomainList: 'dictionary/domain/list',//律师领域
     urlPrinterNearby: 'printer/nearby', // 附近的打印机
     urlPrinterAttorney: "printer/attorney", // 打印机关联律师
+    urlOrderList: "order/list", // 订单列表
   },
 
   // 微信登录
