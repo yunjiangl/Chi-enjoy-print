@@ -11,6 +11,9 @@ Page({
   clearing: function () { 
     var that = this
     app.payAction(that.data.orderCode, app.data.userInfo.openId)
+    wx.navigateTo({
+      url: '../printOrders/printOrders',
+    })
   },
   /**
    * 生命周期函数--监听页面加载

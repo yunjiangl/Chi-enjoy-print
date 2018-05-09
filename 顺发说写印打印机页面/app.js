@@ -27,7 +27,6 @@ App({
     urlPrinterNearby: 'printer/nearby', // 附近的打印机
     urlPrinterAttorney: "printer/attorney", // 打印机关联律师
     urlOrderList: "order/list", // 订单列表
-    urlUserDetails: 'user/details', // 获取用户信息
   },
 
   // 微信登录
@@ -89,6 +88,7 @@ App({
       that.data.userCode = data.data.data.userCode;
       that.data.userInfo.userType = data.data.data.userType;
       that.data.userInfo.accessToken = data.data.data.accessToken;
+      that.data.userInfo.userCode = data.data.data.userCode;
       that.data.userInfo.openId = data.data.data.openId;
     }
   },
@@ -121,7 +121,8 @@ App({
     wx.request({
       url: that.data.api + 'pay/account',
       data: {
-        code: orderCode
+        code: orderCode,
+        openId: openId
       },
       method: 'GET',
       header: {

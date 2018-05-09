@@ -23,6 +23,11 @@ public class PageResponseBean<T> implements Serializable {
   @ApiModelProperty(value = "返回数据内容")
   private List<T> content;
   /**
+   * 返回数据分组内容
+   */
+  @ApiModelProperty(value = "返回数据分组内容")
+  private List<List<T>> dataPacket;
+  /**
    * 总条目数
    */
   @ApiModelProperty(value = "总条目数")
@@ -65,6 +70,14 @@ public class PageResponseBean<T> implements Serializable {
     this.first = bean.getPage() == 1;
     this.number = bean.getPage();
     this.numberOfElements = bean.getPageSize();
+  }
+
+  public List<List<T>> getDataPacket() {
+    return dataPacket;
+  }
+
+  public void setDataPacket(List<List<T>> dataPacket) {
+    this.dataPacket = dataPacket;
   }
 
   public List<T> getContent() {

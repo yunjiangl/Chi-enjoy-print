@@ -46,8 +46,10 @@ Page({
         url: '../printCost/printCost?orderAmount=' + orderInfo.orderAmount + "&orderCode=" + orderInfo.orderCode,
       })
     } else if (orderInfo.status == 5) {
-      wx.showToast({
-        title: '请使用首页"扫码打印"打印功能，扫描打印机二维码进行打印',
+      wx.showModal({
+        title: '',
+        content: '请使用首页"扫码打印"打印功能，扫描打印机二维码进行打印',
+        showCancel: false
       })
     }
   },
