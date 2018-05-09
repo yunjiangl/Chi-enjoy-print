@@ -1,5 +1,7 @@
 package com.zx.share.platform.vo.wechat.response;
 
+import com.zx.share.platform.bean.zx.ZxOrderPrinterFile;
+import com.zx.share.platform.vo.wechat.request.OrderFileSaveBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,8 +19,8 @@ public class OrderResultBean implements Serializable {
 
     @ApiModelProperty(value = "订单code")
     private String orderCode;
-    @ApiModelProperty(value = "")
-    private Integer status;
+    @ApiModelProperty(value = "订单状态")
+    private String status;
     @ApiModelProperty(value = "订单编号")
     private String orderNum;
     @ApiModelProperty(value = "创建时间")
@@ -28,6 +30,12 @@ public class OrderResultBean implements Serializable {
     @ApiModelProperty(value = "订单用户")
     private String orderUserCode;
 
+    @ApiModelProperty(value = "打印机地址")
+    private String printerAddress;
+
+    @ApiModelProperty(value = "打印文件")
+    private OrderFileBean file;
+
     public String getOrderCode() {
         return orderCode;
     }
@@ -36,11 +44,11 @@ public class OrderResultBean implements Serializable {
         this.orderCode = orderCode;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -74,5 +82,21 @@ public class OrderResultBean implements Serializable {
 
     public void setOrderUserCode(String orderUserCode) {
         this.orderUserCode = orderUserCode;
+    }
+
+    public String getPrinterAddress() {
+        return printerAddress;
+    }
+
+    public void setPrinterAddress(String printerAddress) {
+        this.printerAddress = printerAddress;
+    }
+
+    public OrderFileBean getFile() {
+        return file;
+    }
+
+    public void setFile(OrderFileBean file) {
+        this.file = file;
     }
 }

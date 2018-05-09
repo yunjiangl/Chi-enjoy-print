@@ -10,6 +10,10 @@
     <result column="file_type" jdbcType="VARCHAR" property="fileType" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="create_id" jdbcType="BIGINT" property="createId" />
+    <result column="printer_num" jdbcType="INTEGER" property="printerNum" />
+    <result column="paper_type" jdbcType="BIGINT" property="paperType" />
+    <result column="paper_colcor" jdbcType="BIGINT" property="paperColcor" />
+    <result column="paper_usage" jdbcType="BIGINT" property="paperUsage" />
   </resultMap>
 
   <select id="getOrderFile" resultMap="BaseResultMap">

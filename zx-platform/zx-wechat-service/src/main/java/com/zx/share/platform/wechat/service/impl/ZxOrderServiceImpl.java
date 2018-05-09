@@ -11,6 +11,7 @@ import java.util.Map;
 import com.alibaba.fastjson.JSON;
 import com.zx.share.platform.util.email.SendMail;
 import com.zx.share.platform.util.email.StoreMail;
+import com.zx.share.platform.vo.wechat.response.OrderFileBean;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -284,6 +285,20 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	public PageResponseBean<OrderResultBean> page(OrderQueryBean queryBean) {
 		Integer count = zxOrderMapper.pageCount(queryBean);
 		List<OrderResultBean> resultBeans = zxOrderMapper.page(queryBean);
+		if(resultBeans!=null && !resultBeans.isEmpty()){
+			for (OrderResultBean bean:resultBeans) {
+				ZxPrinterManager printerManager = new ZxPrinterManager();
+				printerManager.setPrinterCode(bean.getPrinterCode());
+				ZxPrinterManager zxPrinterManager = printerMapper.selectOne(printerManager);
+				if(zxPrinterManager!=null){
+					bean.setPrinterAddress(zxPrinterManager.getAddress());
+				}
+
+				//文件信息
+				OrderFileBean orderFileBean = this.getOrderFileBean(bean.getOrderCode());
+				bean.setFile(orderFileBean);
+			}
+		}
 		PageResponseBean<OrderResultBean> pageResponseBean = new PageResponseBean<>(queryBean, count);
 		pageResponseBean.setContent(resultBeans);
 		return pageResponseBean;
@@ -395,6 +410,35 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 			return null;
 		}
 		return filePath;
+	}
+
+	private OrderFileBean getOrderFileBean(String code){
+		OrderFileBean orderFileBean = new OrderFileBean();
+
+		String fileTypeAB = "4";//ab类文件
+		String fileTypeCDE = "5";//cde类文件
+		List<ZxOrderPrinterFile> list = zxOrderPrinterFileMapper.getOrderFile(code);
+		if(list!=null && !list.isEmpty()){
+			for (ZxOrderPrinterFile file:list) {
+				FileResultBean bean = null;
+				if(fileTypeAB.equals(file.getFileType())){
+					bean = zxFileManagerABMapper.detailsab(file.getFileCode());
+				}else if(fileTypeCDE.equals(file.getFileType())){
+					bean = zxFileManagerABMapper.detailscde(file.getFileCode());
+				}
+
+				if(bean!=null){
+					orderFileBean.setFileName(bean.getFileName());
+					orderFileBean.setFilePaper(bean.getFileNum()+"");
+					orderFileBean.setPrinterNum(file.getPrinterNum()+"");
+					orderFileBean.setPaperColcor(dictionaryMapper.selectByPrimaryKey(file.getPaperColcor()).getName());
+					orderFileBean.setPaperType(dictionaryMapper.selectByPrimaryKey(file.getPaperType()).getName());
+					orderFileBean.setPaperUsage(dictionaryMapper.selectByPrimaryKey(file.getPaperUsage()).getName());
+					return orderFileBean;
+				}
+			}
+		}
+		return orderFileBean;
 	}
 
 }
