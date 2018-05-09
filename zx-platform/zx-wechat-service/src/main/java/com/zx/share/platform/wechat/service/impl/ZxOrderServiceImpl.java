@@ -293,6 +293,8 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 				if(zxPrinterManager!=null){
 					bean.setPrinterAddress(zxPrinterManager.getAddress());
 				}
+				//订单状态
+				bean.setStatusName(OrderStatusEnum.getLabel(bean.getStatus()));
 
 				//文件信息
 				OrderFileBean orderFileBean = this.getOrderFileBean(bean.getOrderCode());

@@ -6,6 +6,9 @@ import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
+import com.zx.share.platform.wechat.api.pay.payapi.CreditCardPay;
+import com.zx.share.platform.wechat.api.pay.util.RandomStringGenerator;
+import com.zx.share.platform.wechat.api.pay.util.Signature;
 import com.zx.share.platform.wechat.service.ZxOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -38,20 +42,31 @@ public class PayController extends BaseController {
     @Autowired
     private ZxOrderService zxOrderService;
 
+    final String body = "智享打印-打印费用";
+
     @ApiOperation(value = "支付下单接口", notes = "支付下单接口")
-    @RequestMapping(value = "/account",method = RequestMethod.POST)
+    @RequestMapping(value = "/account",method = RequestMethod.GET)
     @ResponseBody
-    public DefaultResopnseBean<Map<String,Object>> accountPay(@ApiParam("订单code")@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response){
+    public DefaultResopnseBean<Map<String,Object>> accountPay(@ApiParam("订单code")@RequestParam("code") String code,
+                                                              HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
         DefaultResopnseBean<Map<String,Object>> resopnseBean = new DefaultResopnseBean<>();
-//        UserCache user = (UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
-//        if(user==null){
-//            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
-//            return resopnseBean;
-//        }
-        Map<String,Object> map = zxOrderService.payUnifiedorder(code,"测试","oCdck0Y35dqWOzGfI36fmbUkXLKE","111.85.159.16");
+        UserCache user = new UserCache();//(UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        user.setOpenId("oCdck0Y35dqWOzGfI36fmbUkXLKE");
+        if(user==null){
+            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+            return resopnseBean;
+        }
+        Map<String,Object> map = zxOrderService.payUnifiedorder(code,body,user.getOpenId(),"172.21.2.15");
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("appId",map.get("appid").toString());
+        resultMap.put("package","prepay_id="+map.get("prepay_id").toString());
+        resultMap.put("timeStamp",""+System.currentTimeMillis());
+        resultMap.put("signType","MD5");
+        resultMap.put("nonceStr", RandomStringGenerator.getRandomStringByLength(32));
+        resultMap.put("paySign", Signature.getSign(resultMap, "yangquanheyizhijiakeji3535694802"));
 
-        resopnseBean.setData(map);
+        resopnseBean.setData(resultMap);
         return resopnseBean;
     }
 
@@ -101,7 +116,9 @@ public class PayController extends BaseController {
     @ApiOperation(value = "手动支付后回调接口", notes = "支付后回调接口")
     @RequestMapping(value = "/manual/callback")
     @ResponseBody
-    public DefaultResopnseBean<Object> manual(HttpServletRequest request, HttpServletResponse response){
+    public DefaultResopnseBean<Object> manual(@ApiParam("订单code")@RequestParam("code") String code,
+                                              @ApiParam("订单状态")@RequestParam("status") String status,
+                                              HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
 
         return null;

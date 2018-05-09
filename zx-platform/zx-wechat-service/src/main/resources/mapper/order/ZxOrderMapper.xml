@@ -84,7 +84,7 @@
 
 	<select id="findByOrderCode" resultMap="baseResultMap">
 		select
-		order_code,status,order_num,pay_time,pay_code,pay_status from
+		order_code,status,order_amount,order_num,pay_time,pay_code,pay_id from
 		zx_order
 		where order_code = #{0,jdbcType=VARCHAR}
 	</select>
@@ -113,7 +113,7 @@
 			<if test="userType!=null and userType==1">
 				AND order_user_code = #{userCode}
 			</if>
-			<if test="userType!=null and userType!=2">
+			<if test="userType!=null and userType==2">
 				AND attorney_code = #{userCode}
 			</if>
 		</where>

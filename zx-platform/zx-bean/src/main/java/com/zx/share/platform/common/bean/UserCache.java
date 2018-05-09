@@ -21,6 +21,7 @@ public class UserCache implements Serializable {
 	private Integer userType;
 	private String name;
 	private String permissions;
+	private String openId;
 
 
 }
