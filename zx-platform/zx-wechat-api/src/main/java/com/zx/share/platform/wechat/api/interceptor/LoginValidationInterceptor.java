@@ -6,6 +6,7 @@ import com.zx.share.platform.common.service.SercurityService;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.exception.BusinessException;
 import com.zx.share.platform.util.annotation.ACSPermissions;
+import com.zx.share.platform.vo.WxLoginResponseVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,27 +43,19 @@ public class LoginValidationInterceptor extends HandlerInterceptorAdapter {
 			if (path.indexOf("null") >= 0) {
 				throwException(ErrorsEnum.SYSTEM_REQUEST_URL_ERROR.code, ErrorsEnum.SYSTEM_REQUEST_URL_ERROR.label);
 			}
-			if (acsPermissions != null) {
-				// 1、判断是否允许匿名访问
-				if (acsPermissions.loginStatus()) {
-					return true;
-				} else {
-					// 2、判断用户是否登录
-					if (request.getMethod().equals("OPTIONS")) {
-						return true;
-					}
-					if (request.getServletPath().equals("/error")) {
-						throw new BusinessException(ErrorsEnum.SYSTEM_ERROR);
-					}
-					logger.info("接口【{}】请求开始登录验证", request.getServletPath());
-					sercurityService.sessionValidation(request);
-					UserCache user = sercurityService.getUserToken(request);
-					logger.info("用户【" + user.getName() + "】操作了接口：【{}】", request.getServletPath());
-
-					request.setAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER, user);
-
-				}
+			// 2、判断用户是否登录
+			if (request.getMethod().equals("OPTIONS")) {
+				return true;
 			}
+			if (request.getServletPath().equals("/error")) {
+				throw new BusinessException(ErrorsEnum.SYSTEM_ERROR);
+			}
+			logger.info("接口【{}】请求开始登录验证", request.getServletPath());
+			sercurityService.sessionValidation(request);
+			WxLoginResponseVo user = sercurityService.getUserToken(request);
+			logger.info("用户【" + user.getNickName() + "】操作了接口：【{}】", request.getServletPath());
+
+			request.setAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER, user);
 			return true;
 		}
 		return super.preHandle(request, response, handler);
