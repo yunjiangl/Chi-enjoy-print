@@ -27,6 +27,11 @@ App({
     urlPrinterNearby: 'printer/nearby', // 附近的打印机
     urlPrinterAttorney: "printer/attorney", // 打印机关联律师
     urlOrderList: "order/list", // 订单列表
+    urlPrinterAll: 'printer/all',//所有打印机
+    urlPrinterMy: 'printer/my',//所有打印机
+    urlPrinterFind: 'printer/find/',//物主打印机
+    urlPrinterApply: 'printer/apply/',//加入申请
+    urlPrinterInfo: 'printer/info/',//打印机详情
   },
 
   // 微信登录
