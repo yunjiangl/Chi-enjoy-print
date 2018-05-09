@@ -2,6 +2,7 @@ package com.zx.share.platform.wechat.api.controller;
 
 import com.zx.share.platform.common.service.SercurityService;
 import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.exception.NeedLoginException;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.WxLoginResponseVo;
 import com.zx.share.platform.vo.user.LoginRequesVo;
@@ -37,6 +38,11 @@ public class LoginController extends BaseController {
     public DefaultResopnseBean<Object> logout(HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+        try {
+            sercurityService.cleanSession(request);
+        } catch (NeedLoginException e) {
+            resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
+        }
         return resopnseBean;
     }
 
