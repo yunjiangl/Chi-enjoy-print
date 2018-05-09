@@ -34,6 +34,17 @@ public class PrinterResultBean implements Serializable {
     private String managerName;
     @ApiModelProperty(value = "管理员电话")
     private String managerPhone;
+    @ApiModelProperty(value = "物主id")
+    private String createId;
+
+
+    public String getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(String createId) {
+        this.createId = createId;
+    }
 
     public String getCode() {
         return code;
