@@ -5,6 +5,7 @@ App({
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: null,// 用户类型，1为普通用户，2为律师用户
+	  userCode:null
     },
     urlWechatLogin: "wechat/login",
     urlLogin: 'login',
@@ -86,6 +87,7 @@ App({
       that.data.userCode = data.data.data.userCode;
       that.data.userInfo.userType = data.data.data.userType;
       that.data.userInfo.accessToken = data.data.data.accessToken;
+	  that.data.userInfo.userCode=data.data.data.userCode;
     }
   },
 
@@ -110,5 +112,74 @@ App({
         })
       }
     })
+  },
+  //支付调用接口
+  payAction: function (orderCode, openId) {
+    var that = this;
+    wx.request({
+      url: that.data.api + 'pay/account',
+      data: {
+        code: orderCode
+      },
+      method: 'GET',
+      header: {
+
+      },
+      success: function (data) {
+        console.log(data);
+        wx.requestPayment({
+          timeStamp: data.data.data.timeStamp,
+          nonceStr: data.data.data.nonceStr,
+          package: data.data.data.package,
+          signType: data.data.data.signType,
+          paySign: data.data.data.paySign,
+          success: function (response) {
+            console.log(response);
+          },
+          fail: function (response) {
+            console.log(response);
+          },
+          complete: function (response) {
+            console.log(response);
+            var status = 4;
+            if (response.errMsg == 'requestPayment:ok') {
+              status = 5;
+            }
+            wx.request({
+              url: that.data.api + 'pay/manual/callback',
+              data: {
+                code: orderCode,
+                status: status,
+                prepayId: data.data.data.payCode,
+                error: response.errMsg
+              },
+              method: 'POST',
+              header: {
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              success: function (res) {
+                console.log(res);
+              }
+            })
+          }
+        })
+      }
+    })
+  },
+
+  //判断登录状态
+  loginCheck: function (res) {
+    if (res.data.code == 400) {
+      wx.getUserInfo({
+        success: function (res) {
+          // console.log(res);
+          wx.login({
+            success: function (loginres) {
+              that.wxLogin(res, loginres)
+            }
+          })
+        }
+      });
+    }
   }
 })

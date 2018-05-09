@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.mapper.order;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 
 	OrderResultBean getOrderCode(String orderCode);
 
-	int updateOrderStatus(String orderCode, Integer status);
+	int updateOrderStatus(String orderCode, String payCode, Date date, Integer status);
 
 	List<OrderResultBean> page(OrderQueryBean queryBean);
 
@@ -34,4 +35,5 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 	List<ZxOrder> attorney(Map<String, Object> param);
 
 	ZxOrder selectByCode(String code);
+
 }

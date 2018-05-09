@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by fenggang on 18/3/9.
@@ -34,8 +35,18 @@ public class FileResultBean implements Serializable {
     private String managerCode;
     @ApiModelProperty(value = "文件摘要")
     private String abstracts;
+    @ApiModelProperty(value = "创建时间")
+    private Date createTime;
+    
+    public Date getCreateTime() {
+		return createTime;
+	}
 
-    public String getFileCode() {
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getFileCode() {
         return fileCode;
     }
 

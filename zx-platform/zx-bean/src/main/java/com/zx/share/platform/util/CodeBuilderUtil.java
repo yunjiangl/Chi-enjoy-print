@@ -66,6 +66,7 @@ public class CodeBuilderUtil {
      * @return
      */
     public static synchronized String orderCOde(String userCode){
+        userCode = userCode.replace("wechat","");
         String date = DateUtil.DATE_FORMAT_TIME.format(new Date());
         String randomCode = random(1000,9999);
         return userCode+date+randomCode;

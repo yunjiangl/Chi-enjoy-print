@@ -20,7 +20,9 @@ public class OrderResultBean implements Serializable {
     @ApiModelProperty(value = "订单code")
     private String orderCode;
     @ApiModelProperty(value = "订单状态")
-    private String status;
+    private Integer status;
+    @ApiModelProperty(value = "订单状态名称")
+    private String statusName;
     @ApiModelProperty(value = "订单编号")
     private String orderNum;
     @ApiModelProperty(value = "订单金额")
@@ -46,11 +48,11 @@ public class OrderResultBean implements Serializable {
         this.orderCode = orderCode;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -101,12 +103,15 @@ public class OrderResultBean implements Serializable {
     public void setFile(OrderFileBean file) {
         this.file = file;
     }
+ public String getStatusName() {
+        return statusName;
+    }
 
-    public Double getOrderAmount() {
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;    public Double getOrderAmount() {
         return orderAmount;
     }
 
     public void setOrderAmount(Double orderAmount) {
         this.orderAmount = orderAmount;
-    }
-}
+    }}

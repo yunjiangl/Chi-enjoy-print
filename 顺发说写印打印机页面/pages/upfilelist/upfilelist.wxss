@@ -8,28 +8,29 @@ page{
   box-sizing: border-box;
   color: #333;
   height: 100%;
+  font-size: 28rpx;
 }
 .content{
   background: #fff;
   width: 100%;
   color: #333;
-  padding: 20rpx 0rpx 40rpx 0rpx; 
-  border-bottom: 1px solid #e0e0e0;
+  padding: 10rpx 0rpx 30rpx 0rpx; 
+}
+.line_border{
+  margin: 30rpx 0;
+  border-bottom: 1px solid #e0e0e0;  
+  padding-bottom: 30rpx;
 }
 .word{
   width: 85%;
   display: flex;
   margin: 40rpx 0 0 40rpx;
-}
-.line{
-  height: 1px;
-  background: #e0e0e0;
-  margin: 30rpx 0 0 40rpx;
+  justify-content: space-between;
 }
 .WordAndDate{
   flex-direction: row;
   margin-left: 30rpx; 
-  margin-top: 10rpx;
+  margin-top: 40rpx;
   width: 80%;
   line-height: 30rpx;
 }
@@ -39,7 +40,7 @@ page{
 }
 .PageDate{
   color: #999;
-  margin-top: 20rpx;
+  margin-top: 24rpx;
 }
 .pdf{
   width: 128rpx;
@@ -48,4 +49,10 @@ page{
 .excel{
   width: 116rpx;
   height: 132rpx;
+}
+.left{
+   display: flex; 
+}
+.right{
+  margin-top: 58rpx;
 }

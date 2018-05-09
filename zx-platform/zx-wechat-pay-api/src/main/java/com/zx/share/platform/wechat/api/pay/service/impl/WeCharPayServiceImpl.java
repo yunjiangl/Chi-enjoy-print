@@ -83,6 +83,7 @@ public class WeCharPayServiceImpl implements WeCharPayService {
 
     @Override
     public Map<String, Object> payUnifiedorder(String body, String detail, int total_fee, String ip, String out_trade_no, String openid, String trade_type) {
+        out_trade_no = out_trade_no.replaceAll("wechat","");
         return creditCardPay.payUnifiedorder(body,detail,total_fee,ip,out_trade_no,openid,trade_type);
     }
 }

@@ -3,47 +3,31 @@
   
   <!--content start  -->
   <view class='content'>
-
+  <checkbox-group class="radio-group" bindchange="radioChange">
     <!--word start  -->
-    <view class='word' bindtap='turn'>
-      <image class='wordpng' src='../images/word.png' />
-
-      <view class='WordAndDate'>
-        <text>打印机使用操作说明.doc</text>
-        <view class='PageDate'>13页 2017-12-18 12:30</view>
-      </view>
-
-    </view>
-    <!--word end  -->
-
-<view class='line'></view>
-
-    <!--pdf start  -->
-      <view class='word'>
-      <image class='pdf' src='../images/pdf.png' />
-
-      <view class='WordAndDate'>
-        <text>打印机使用操作说明.pdf</text>
-        <view class='PageDate'>13页 2017-12-18 12:30</view>
-      </view>
-
-    </view> 
-    <!--pdf end  -->
-
-<view class='line'></view>
-
-    <!--excel start  -->
-      <view class='word'>
-      <image class='excel' src='../images/excel.png' />
-
-      <view class='WordAndDate'>
-        <text>打印机使用操作说明电饭锅电饭锅的非官方大哥的非官方的是豆腐干豆腐.doc</text>
-        <view class='PageDate'>13页 2017-12-18 12:30</view>
-      </view>
-
-    </view> 
-    <!--excel end  -->
+    <view class='line_border' wx:for='{{fileInfoList}}'>
+    <view class='word ' >
     
+          <!--left start  -->
+            <view class='left'>
+
+                <image class='wordpng' src='../images/word.png' />
+                  <view class='WordAndDate' bindtap='fasong'>
+                    <text>{{item.fileName}}</text>
+                    <view class='PageDate'>{{item.fileNum}}页 {{item.createTime}}</view> 
+                  </view>
+            </view>
+          <!--left end  -->
+          <!--right start  -->
+            <!--  <view class='right'>    
+                  <checkbox color='#3798FB' value="{{index}}" />         
+              </view> -->
+          <!--right end  -->
+
+      </view>
+    <!--word end  -->
+    </view>
+    </checkbox-group>
   </view>
   <!--content  -->
 
