@@ -170,11 +170,11 @@ Page({
         ids: ids
       })
       wx.navigateTo({
-       // url: '../lawyerSettingCosts/lawyerSettingCosts',
-	           url: '../lawyerSettingCosts/lawyerSettingCosts?fileInfo=' + fileInfo + '&userCode=' + that.data.userCode + "&fileType=" + that.data.fileType,
+        // url: '../lawyerSettingCosts/lawyerSettingCosts',
+        url: '../lawyerSettingCosts/lawyerSettingCosts?fileInfo=' + fileInfo + '&userCode=' + that.data.userCode + "&fileType=" + that.data.fileType
+      })
     }
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
