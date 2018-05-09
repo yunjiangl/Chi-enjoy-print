@@ -88,9 +88,12 @@ Page({
     })
   },
   fasong: function(){
+	var that = this;
+    var fileInfo = JSON.stringify(that.data.fileInfo);
     console.log("asdasd");
     wx.navigateTo({
-      url: '../lawyerSettingCosts/lawyerSettingCosts',
+      //url: '../lawyerSettingCosts/lawyerSettingCosts',
+	        url: '../lawyerSettingCosts/lawyerSettingCosts?fileInfo=' + fileInfo + '&userCode=' + that.data.userCode + "&fileType=" + that.data.fileType,
     })
   },
   /**
