@@ -3,9 +3,9 @@ package com.zx.share.platform.common.service;
 import com.alibaba.fastjson.JSONObject;
 import com.zx.share.platform.common.bean.MySession;
 import com.zx.share.platform.common.bean.SessionConfig;
-import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.exception.NeedLoginException;
+import com.zx.share.platform.vo.WxLoginResponseVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class SercurityService {
 	@Resource
 	MemcachedService memUtils;
 
-	public String saveSession(HttpServletRequest request, HttpServletResponse response, UserCache user) {
+	public String saveSession(HttpServletRequest request, HttpServletResponse response, WxLoginResponseVo user) {
 
 //		Cookie[] cookies = request.getCookies();
 		String sessionId = request.getSession().getId();
@@ -77,10 +77,10 @@ public class SercurityService {
 		return session;
 	}
 
-	public UserCache getUserToken(HttpServletRequest request) throws NeedLoginException {
+	public WxLoginResponseVo getUserToken(HttpServletRequest request) throws NeedLoginException {
 		MySession session = getSession(request);
 		Object obj = session.getAttribute(SessionConfig.DEFAULT_OPERATOR_REQUEST_ATTRIBUTE_NAME);
-		return JSONObject.parseObject(obj.toString(), UserCache.class);
+		return JSONObject.parseObject(obj.toString(), WxLoginResponseVo.class);
 	}
 
 	public void sessionValidation(HttpServletRequest request) throws NeedLoginException {
@@ -122,7 +122,7 @@ public class SercurityService {
 	 * com.idailycar.ops.service.SercurityService#refreshSession(com.idailycar.ops.domain.Operator,
 	 * javax.servlet.http.HttpServletRequest)
 	 */
-	public void refreshSession(UserCache user, HttpServletRequest request) throws NeedLoginException {
+	public void refreshSession(WxLoginResponseVo user, HttpServletRequest request) throws NeedLoginException {
 
 		// 找到当前session
 		MySession session = getSession(request);

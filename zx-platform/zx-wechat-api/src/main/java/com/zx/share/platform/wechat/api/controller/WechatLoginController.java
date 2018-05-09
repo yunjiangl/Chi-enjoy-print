@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.api.controller;
 
+import com.zx.share.platform.common.service.SercurityService;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.constants.UserSourceEnum;
 import com.zx.share.platform.util.CodeBuilderUtil;
@@ -46,6 +47,8 @@ public class WechatLoginController extends BaseController{
     private UserService userService;
     @Autowired
     private WeChatConfig weChatConfig;
+    @Autowired
+    private SercurityService sercurityService;
 
     @ApiOperation(value = "微信小程序微信登录接口", notes = "微信小程序微信登录接口")
     @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
@@ -134,7 +137,7 @@ public class WechatLoginController extends BaseController{
         //放入返回对象
         responseData.setData(loginResultBean);
         //登录信息写入缓存
-
+        sercurityService.saveSession(request,null,loginResultBean);
         return responseData;
     }
 
@@ -203,6 +206,7 @@ public class WechatLoginController extends BaseController{
         responseData.setData(loginResultBean);
 
         //登录信息写入缓存
+        sercurityService.saveSession(request,null,loginResultBean);
 
         return responseData;
     }

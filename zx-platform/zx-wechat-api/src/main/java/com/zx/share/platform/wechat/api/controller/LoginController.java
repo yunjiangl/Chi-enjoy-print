@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.api.controller;
 
+import com.zx.share.platform.common.service.SercurityService;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.WxLoginResponseVo;
@@ -27,6 +28,8 @@ public class LoginController extends BaseController {
 
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private SercurityService sercurityService;
 
     @ApiOperation(value = "logout", notes = "logout")
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -49,6 +52,7 @@ public class LoginController extends BaseController {
         }else{
             resopnseBean.setData(loginResponseVo);
         }
+        sercurityService.saveSession(request,null,loginResponseVo);
         return resopnseBean;
     }
 }

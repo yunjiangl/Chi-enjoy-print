@@ -13,7 +13,8 @@ Page({
     info: {
       mobile: '',
       userType: ''
-    }
+    },
+    disabled:true
   },
 
   radioChange: function (e) {
@@ -25,7 +26,18 @@ Page({
   },
 
   checkboxChange: function (e) {
-    // console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    if(e.detail.value.length>0){
+      console.log("ok");
+      this.setData({
+        disabled: false
+      });
+    }else{
+      console.log("no");
+      this.setData({
+        disabled:true
+      });;
+    }
   },
 
   formBindsubmit: function (e) {

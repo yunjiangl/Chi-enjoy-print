@@ -8,24 +8,9 @@ Page({
   data: {
     orderAmount: null
   },
-  clearing: function () {
+  clearing: function () { 
     var that = this
-    wx.request({
-      url: app.data.api + app.data.urlUserDetails,
-      method: 'GET',
-      header:{
-        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
-      },
-      data:{
-        code: app.data.userCode
-      },
-      success:function(res){
-        console.log(res)
-        app.loginCheck(res)
-        app.payAction(that.data.orderCode, res.data.data.openId)
-      }
-    })
-    
+    app.payAction(that.data.orderCode, app.data.userInfo.openId)
   },
   /**
    * 生命周期函数--监听页面加载
