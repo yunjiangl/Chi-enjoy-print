@@ -171,7 +171,7 @@ App({
 
   //判断登录状态
   loginCheck: function (res) {
-    if (res.data.code == 400) {
+    if (res.data.code == 400 || res.data.code == 600 ) {
       wx.getUserInfo({
         success: function (res) {
           // console.log(res);
