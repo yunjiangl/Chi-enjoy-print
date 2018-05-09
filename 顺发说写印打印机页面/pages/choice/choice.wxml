@@ -6,12 +6,43 @@
 
   <!--top start  -->
   <view class='top'>
- <!-- <map longitude='{{longitude}}' latitude='{{latitude}}' ></map>  -->
-      <view class='address' bindtap="getLocation" formType="submit">
+ <!-- <map longitude='{{longitude}}' latitude='{{latitude}}' ></map> bindtap="getLocation"  -->
+      <view class='address' bindtap="translate" formType="submit">
          <image src='../images/address.png' />
-          <label>{{address}}</label> 
+            <label wx:if='{{hideAddress}}' class=''>{{address}}</label>   
+           <label>{{province}} {{city}} {{county}}</label>  
          <!-- <label><input class="page-body-form-value" type="text" value="{{location.longitude}}" name="longitude"></input></label> -->
       </view>
+      <!-- page start  -->
+            <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
+              <view class="animation-element" catchtap="nono">
+                  <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+                  <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
+                    <view class="line"></view> 
+
+                  <picker-view indicator-style = "height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
+                  <!--省-->
+                  <picker-view-column>
+                    <view wx:for="{{provinces}}" wx:for-item="sheng" wx:key="">
+                      {{sheng.name}}
+                    </view>
+                  </picker-view-column>
+                  <!--地级市-->
+                  <picker-view-column>
+                    <view wx:for="{{citys}}" wx:key="">
+                      {{item.name}}
+                    </view>
+                  </picker-view-column>
+                  <!--区县-->
+                  <picker-view-column>
+                    <view wx:for="{{countys}}" wx:key="">
+                      {{item.name}}
+                    </view>
+                  </picker-view-column>
+                  </picker-view>
+              </view>
+            </view>
+          <!--page end  -->
 
         <view class='search' >
         <image src='../images/search.png' />
@@ -29,7 +60,7 @@
       <label class='lable'> > </label>
     </view>
 
-   <view class='line'></view>
+   <!-- <view class='line'></view> -->
 
   </view>
   <!--list end  -->
