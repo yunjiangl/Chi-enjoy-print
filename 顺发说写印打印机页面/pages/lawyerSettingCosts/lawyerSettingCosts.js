@@ -165,6 +165,7 @@ Page({
               fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
             },
             success: function (res) {
+              app.loginCheck(res)
               console.log('保存订单结果' + res)
             }
           })

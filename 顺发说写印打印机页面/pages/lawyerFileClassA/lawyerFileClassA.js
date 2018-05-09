@@ -102,7 +102,7 @@ Page({
         'X-ACCESS-TOKEN': app.data.userInfo.accessToken
       },
       success: function (data) {
-
+        app.loginCheck(res)
         that.setData({
           navbar: data.data.data[0].list,
           listNavBar: data.data.data[0].list[0].list,

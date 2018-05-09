@@ -71,7 +71,7 @@ Page({
         pageSize: that.data.pageSize, // 每页显示的数据
       },
       success: function (res) {
-        console.log(res)
+        app.loginCheck(res)
         var list = that.data.orderList;
         for (var i = 0; i < res.data.data.content.length; i++) {
           list.push(res.data.data.content[i])
