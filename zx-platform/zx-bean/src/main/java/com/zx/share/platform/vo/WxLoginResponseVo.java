@@ -32,6 +32,7 @@ public class WxLoginResponseVo implements Serializable {
 	private Integer userType;
     @ApiModelProperty("用户状态（1-微信刚登陆，2-绑定手机号）")
     private Integer userStatus;
+    private String openId;
 
     public WxLoginResponseVo() {
     }
@@ -111,5 +112,13 @@ public class WxLoginResponseVo implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 }

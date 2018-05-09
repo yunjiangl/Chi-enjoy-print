@@ -48,11 +48,12 @@ public class PayController extends BaseController {
     @RequestMapping(value = "/account",method = RequestMethod.GET)
     @ResponseBody
     public DefaultResopnseBean<Map<String,Object>> accountPay(@ApiParam("订单code")@RequestParam("code") String code,
+                                                              @ApiParam("订单code")@RequestParam("openId") String openId,
                                                               HttpServletRequest request, HttpServletResponse response){
         servletPath = request.getServletPath();
         DefaultResopnseBean<Map<String,Object>> resopnseBean = new DefaultResopnseBean<>();
         UserCache user = new UserCache();//(UserCache)request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
-        user.setOpenId("oCdck0Y35dqWOzGfI36fmbUkXLKE");
+        user.setOpenId(openId);
         if(user==null){
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
             return resopnseBean;

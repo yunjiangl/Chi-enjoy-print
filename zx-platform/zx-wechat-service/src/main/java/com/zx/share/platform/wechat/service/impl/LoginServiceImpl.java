@@ -35,6 +35,7 @@ public class LoginServiceImpl implements LoginService {
         loginResultBean.setHeadImageUrl(bean.getPortrait());
         loginResultBean.setUserType(bean.getUserType());
         loginResultBean.setUserStatus(bean.getUserStatus());
+        loginResultBean.setOpenId(bean.getOpenId());
         loginResultBean.setNickName(bean.getNickName());
         return loginResultBean;
     }
