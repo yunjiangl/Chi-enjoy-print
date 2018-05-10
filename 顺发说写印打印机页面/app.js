@@ -1,4 +1,5 @@
 //app.js
+var countNum =1;
 App({
   data: {
     api: 'http://127.0.0.1:10001/',
@@ -61,8 +62,9 @@ App({
     var that = this
     if (data.data.code == 400 || data.data.code == 600) {
       console.log("登录失败")
-      that.data.count = that.data.count+1;
-      if (that.data.count == 4) {
+      countNum = countNum + 1;
+     
+      if (countNum == 4) {
         wx.redirectTo({
           url: '../vip-login/vip-login'
         })

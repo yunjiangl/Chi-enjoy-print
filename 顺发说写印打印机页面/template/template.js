@@ -60,7 +60,7 @@ function tabbarinit(userType) {
         "selectedIconPath": "../images/icon/4.png"
       },
       {
-        "pagePath": "../personalCenter/personalCenter",
+        "pagePath": "../lawyerpersonData/lawyerpersonData",
         "text": "个人中心",
         "iconPath": "../images/person.png",
         "selectedIconPath": "../images/icon/5.png"

@@ -235,6 +235,9 @@ Page({
       },
       header: {
         'content-type': 'application/json' // 默认值
+        ,
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+        
       },
       success: function (res) {
         var list1 = new Array();
@@ -305,9 +308,11 @@ Page({
       },
       header: {
         'content-type': 'application/json' // 默认值
+        ,
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
       },
       success: function (res) {
-
+        console.log(res)
         var item;
         if (res.data.data.gen == '男') {
           item = [

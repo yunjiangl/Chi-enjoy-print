@@ -51,7 +51,7 @@ Page({
           mobile: this.data.phone,
           pwd: this.data.password,
         },
-        method: 'GET',
+        method: 'POST',
         header: {
           "X-ACCESS-TOKEN": getApp().data.userInfo.accessToken
         },
