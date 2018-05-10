@@ -40,6 +40,12 @@ public class LoginServiceImpl implements LoginService {
         if(StringUtil.isNotBlank(bean.getIsLock()) && StringUtil.isNotBlank(bean.getUserType()) && bean.getUserType()==2 && bean.getIsLock()!=1){
             loginResultBean.setUserType(1);
         }
+
+        if(StringUtil.isNotBlank(bean.getIsLock())  && bean.getIsLock()!=1){
+            loginResultBean.setIsLock(3);
+        }else{
+            loginResultBean.setIsLock(1);
+        }
         return loginResultBean;
     }
 }
