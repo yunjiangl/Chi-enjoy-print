@@ -4,7 +4,7 @@
 
 </map>
 <!-- cover start  -->
-<view class='cover'>
+<view class='cover' wx:if="{{flag}}">
 
   <!-- cover_01 start  -->
   <!-- <view class='cover_01'> -->

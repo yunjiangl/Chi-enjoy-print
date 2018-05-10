@@ -43,7 +43,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-
+        getApp().loginCheck(res)
         if (res.data.code == 200) {
           // 验证码正确
           wx.request({
@@ -67,6 +67,7 @@ Page({
               grad: that.data.grad
             },
             success: function (e) {
+              getApp().loginCheck(res)
               console.log(that.data.userType);
               if (that.data.userType == 1) {
                 wx.redirectTo({
