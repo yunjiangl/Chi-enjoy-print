@@ -134,6 +134,10 @@ public class WechatLoginController extends BaseController{
         loginResultBean.setUserStatus(userResultBean.getUserStatus());
         loginResultBean.setOpenId(userResultBean.getOpenId());
         loginResultBean.setNickName(userResultBean.getUsername());
+        if(StringUtil.isNotBlank(userResultBean.getIsLock()) && StringUtil.isNotBlank(userResultBean.getUserType()) && userResultBean.getUserType()==2 && userResultBean.getIsLock()!=1){
+            loginResultBean.setUserType(1);
+        }
+
         //放入返回对象
         responseData.setData(loginResultBean);
         //登录信息写入缓存
@@ -202,6 +206,9 @@ public class WechatLoginController extends BaseController{
         loginResultBean.setUserType(userResultBean.getUserType());
         loginResultBean.setUserStatus(userResultBean.getUserStatus());
         loginResultBean.setOpenId(userResultBean.getOpenId());
+        if(StringUtil.isNotBlank(userResultBean.getIsLock()) && StringUtil.isNotBlank(userResultBean.getUserType()) && userResultBean.getUserType()==2 && userResultBean.getIsLock()!=1){
+            loginResultBean.setUserType(1);
+        }
         //放入返回对象
         responseData.setData(loginResultBean);
 

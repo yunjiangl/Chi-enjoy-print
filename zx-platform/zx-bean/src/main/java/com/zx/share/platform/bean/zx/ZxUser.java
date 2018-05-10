@@ -100,7 +100,7 @@ public class ZxUser extends IdEntity {
     private String area;
 	
 	@Column(name = "is_lock")
-    private Boolean isLock;
+    private Integer isLock;
 	
 	@Column(name = "gen")
     private String gen;

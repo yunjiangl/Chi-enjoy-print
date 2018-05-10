@@ -23,6 +23,7 @@ public class UserResultBean implements Serializable {
     private String portrait;
     private Integer userType;
     private Integer userStatus;
+    private Integer isLock;
 
     public String getUserCode() {
         return userCode;
@@ -94,5 +95,13 @@ public class UserResultBean implements Serializable {
 
     public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
+    }
+
+    public Integer getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(Integer isLock) {
+        this.isLock = isLock;
     }
 }

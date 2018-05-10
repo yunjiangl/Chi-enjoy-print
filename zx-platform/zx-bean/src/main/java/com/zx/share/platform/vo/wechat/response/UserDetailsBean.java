@@ -48,6 +48,7 @@ public class UserDetailsBean implements Serializable {
 
     private String password;
     private Long id;
+    private Integer isLock;
 
     public String getProvince() {
         return province;
@@ -183,5 +184,13 @@ public class UserDetailsBean implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(Integer isLock) {
+        this.isLock = isLock;
     }
 }

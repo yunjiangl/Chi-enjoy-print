@@ -61,7 +61,8 @@ var vm = new Vue({
         q:{
             username: null,
             useStatus: null,
-			userType:2
+			userType:2,
+            idLock:null
         },
 		showList: true,
 		title: null,
@@ -80,12 +81,12 @@ var vm = new Vue({
 		},
         checkOk:function(){
             var url = "user/check" ;
-            vm.user.userType=2;
+            vm.user.isLock=1;
             vm.checkUpdate(url);
 		},
         checkNo:function(){
             var url = "user/check" ;
-            vm.user.userType=1;
+            vm.user.isLock=2;
             vm.checkUpdate(url);
         },
 		checkUpdate:function(url){

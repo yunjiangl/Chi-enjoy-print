@@ -121,6 +121,9 @@ public class RegisterController extends BaseController {
         //user.setArea(area);
         user.setPassword(password);
         user.setUserStatus(2);
+        if(StringUtil.isNotBlank(type) && type==2){
+            user.setIsLock(0);
+        }
 
         userService.insert(user);
 
