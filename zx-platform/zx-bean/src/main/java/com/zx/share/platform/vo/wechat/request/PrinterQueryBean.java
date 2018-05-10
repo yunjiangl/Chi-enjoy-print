@@ -28,6 +28,7 @@ public class PrinterQueryBean extends PageRequestBean {
     private String province;
     private String city;
     private String area;
+    private String query;
 
 
     @ApiModelProperty(value = "开始经度")
@@ -134,5 +135,13 @@ public class PrinterQueryBean extends PageRequestBean {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 }
