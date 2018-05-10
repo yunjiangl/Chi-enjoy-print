@@ -48,7 +48,8 @@ public class LoginValidationInterceptor extends HandlerInterceptorAdapter {
 				return true;
 			}
 			if (request.getServletPath().equals("/error")) {
-				throw new BusinessException(ErrorsEnum.SYSTEM_ERROR);
+//				throw new BusinessException(ErrorsEnum.SYSTEM_ERROR);
+				return true;
 			}
 			logger.info("接口【{}】请求开始登录验证", request.getServletPath());
 			sercurityService.sessionValidation(request);

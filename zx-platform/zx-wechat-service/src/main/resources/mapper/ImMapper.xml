@@ -17,6 +17,7 @@
                 AND chat.user_code=#{userCode}
             </if>
         </where>
+        limit #{currentSize},#{pageSize}
     </select>
 
     <select id="pageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.user.ImRequestBean">

@@ -94,7 +94,7 @@ public class WechatLoginController extends BaseController{
             userSaveBean.setUserType(1);
             userService.save(userSaveBean);
 
-            userResultBean = new UserResultBean();
+            userResultBean = userService.findByOpenId(appletUserInfo.getOpenId());
 
         }else {
             //每次登录都更新sessionKey，头像和用户名
