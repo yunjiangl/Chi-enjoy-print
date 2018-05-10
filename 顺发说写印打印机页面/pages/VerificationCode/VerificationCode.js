@@ -60,11 +60,13 @@ Page({
               password: that.data.password,
               province: that.data.province,
               city: that.data.city,
-              area: '11',
+              area: '',
               name: that.data.name,
-              wechatId: '11',
-              age: '11',
-              grad: that.data.grad
+              wechatId: '',
+              age: '',
+              grad: that.data.grad,
+              openid:getApp().data.userInfo.openId,
+              unionid:''
             },
             success: function (e) {
               getApp().loginCheck(res)
