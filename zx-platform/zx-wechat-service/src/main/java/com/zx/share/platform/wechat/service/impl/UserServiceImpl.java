@@ -51,12 +51,18 @@ public class UserServiceImpl implements UserService {
 	@Transactional(readOnly = false)
 	@Override
 	public Integer save(UserRequestBean bean) {
+		if(StringUtil.isNotBlank(bean.getUserType()) && bean.getUserType()==1){
+			bean.setIsLock(1);
+		}
 		return userMapper.save(bean);
 	}
 
 	@Transactional(readOnly = false)
 	@Override
 	public Integer update(UserRequestBean bean) {
+		if(StringUtil.isNotBlank(bean.getUserType()) && bean.getUserType()==1){
+			bean.setIsLock(1);
+		}
 		UserUpdateBean userSaveBean = new UserUpdateBean();
 		userSaveBean.setUserCode(bean.getUserCode());
 		userSaveBean.setUnionId(bean.getUnionId());
@@ -67,6 +73,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer insert(ZxUser zxUser) {
+		if(StringUtil.isNotBlank(zxUser.getUserType()) && zxUser.getUserType()==1){
+			zxUser.setIsLock(1);
+		}
 		UserDetailsBean bean = userMapper.findByCode(zxUser.getUserCode());
 		if(bean!=null && StringUtil.isNotBlank(bean.getOpenId())){
 			zxUser.setUserCode(bean.getUserCode());

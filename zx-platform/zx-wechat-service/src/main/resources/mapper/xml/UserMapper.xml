@@ -60,7 +60,8 @@
             city,
             portrait,
             user_type,
-            user_status
+            user_status,
+            is_lock
         )
         values(
             #{userCode},
@@ -71,7 +72,8 @@
             #{city},
             #{headImgUrl},
             #{userType},
-            #{userStatus}
+            #{userStatus},
+            #{isLock}
         )
     </insert>
 
