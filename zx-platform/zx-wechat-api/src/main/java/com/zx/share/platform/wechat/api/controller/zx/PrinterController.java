@@ -98,12 +98,18 @@ public class PrinterController extends BaseController {
 	@ResponseBody
 	public DefaultResopnseBean<List<PrinterResultBean>> nearby(
 			@ApiParam("经度") @RequestParam("longitude") Double longitude,
-			@ApiParam("纬度") @RequestParam("latitude") Double latitude, HttpServletRequest request) {
+			@ApiParam("纬度") @RequestParam("latitude") Double latitude,
+			@ApiParam("省") @RequestParam("province") String province,
+			@ApiParam("市") @RequestParam("city") String city,
+			@ApiParam("区") @RequestParam("area") String area,HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<List<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		PrinterQueryBean queryBean = new PrinterQueryBean();
 		queryBean.setLatitude(latitude);
 		queryBean.setLongitude(longitude);
+		queryBean.setProvince(province);
+		queryBean.setCity(city);
+		queryBean.setArea(area);
 		List<PrinterResultBean> resultBeanList = printerService.nearby(queryBean);
 		resopnseBean.setData(resultBeanList);
 		return resopnseBean;

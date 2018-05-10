@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 
+import com.zx.share.platform.wechat.service.UserService;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,8 @@ public class PrinterServiceImpl implements PrinterService {
     private PrinterMapper printerMapper;
     @Autowired
     private MemcachedService memcachedService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public List<PrinterResultBean> all() {
@@ -101,7 +104,8 @@ public class PrinterServiceImpl implements PrinterService {
         if(userList!=null && !userList.isEmpty()){
             for (String userCode:userList) {
                 String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
-                UserDetailsBean resultBean = (UserDetailsBean)memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
+                UserDetailsBean resultBean = userService.details(userCode);//(UserDetailsBean)memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
+
                 resultBeans.add(resultBean);
             }
         }
