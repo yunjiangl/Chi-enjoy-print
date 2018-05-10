@@ -51,9 +51,10 @@ Page({
           mobile: this.data.phone,
           pwd: this.data.password,
         },
-        method: 'GET',
+        method: 'POST',
         header: {
-          "X-ACCESS-TOKEN": getApp().data.userInfo.accessToken
+          "X-ACCESS-TOKEN": getApp().data.userInfo.accessToken,
+          "content-type": "application/x-www-form-urlencoded",
         },
         success: function (response) {
           // console.log(response.data.data);

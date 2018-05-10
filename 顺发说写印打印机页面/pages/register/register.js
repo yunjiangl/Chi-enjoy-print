@@ -14,7 +14,7 @@ Page({
       mobile: '',
       userType: ''
     },
-    disabled:true
+    disabled:false
   },
 
   radioChange: function (e) {
