@@ -1,3 +1,4 @@
+var template = require('../../template/template.js');
 // pages/lawyerpersonData/lawyerpersonData.js
 var app=getApp();
 Page({
@@ -7,6 +8,12 @@ Page({
    */
   data: {
     cache: '10.00M'
+  },
+  //完善资料
+  ImprovingPersonalData: function () {
+    wx.navigateTo({
+      url: '../lawyerConsummatePersonData/lawyerConsummatePersonData',
+    })
   },
   // 成交订单
   order: function () {
@@ -59,6 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    template.tabbar("tabBar", 4, this, app.data.userInfo.userType);
     wx.getStorage({
       key: 'key',
       success: function (res) {
@@ -87,7 +95,7 @@ Page({
         code: app.data.userCode
       },
       header: {
-        'content-type': 'application/json' // 默认值
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
       },
       success: function (res) {
         console.log(res.data.data.nickName)

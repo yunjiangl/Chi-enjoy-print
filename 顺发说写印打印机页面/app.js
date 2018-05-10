@@ -1,5 +1,5 @@
 //app.js
-var countNum = 1;
+var countNum =1;
 App({
   data: {
     // api: 'http://123.206.42.162:10001/',
@@ -63,7 +63,7 @@ App({
     var that = this
     if (data.data.code != 200) {
       console.log("登录失败")
-      countNum = countNum+1;
+      countNum = countNum + 1;
       if (countNum == 4) {
         wx.redirectTo({
           url: '../vip-login/vip-login'
