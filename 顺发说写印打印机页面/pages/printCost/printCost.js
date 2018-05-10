@@ -8,7 +8,7 @@ Page({
   data: {
     orderAmount: null
   },
-  clearing: function () { 
+  clearing: function () {
     var that = this
     app.payAction(that.data.orderCode, app.data.userInfo.openId)
     wx.navigateTo({
@@ -19,10 +19,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var orderAmount = this.keepTwoDecimalFull(options.orderAmount)
     this.setData({
-      orderAmount: options.orderAmount,
+      orderAmount: orderAmount,
       orderCode: options.orderCode
     })
+  },
+  //四舍五入保留2位小数（不够位数，则用0替补）
+  keepTwoDecimalFull: function (num) {
+    var result = parseFloat(num);
+    if (isNaN(result)) {
+      return false;
+    }
+    result = Math.round(num) / 100;
+    var s_x = result.toString();
+    var pos_decimal = s_x.indexOf('.');
+    if (pos_decimal < 0) {
+      pos_decimal = s_x.length;
+      s_x += '.';
+    }
+    while (s_x.length <= pos_decimal + 2) {
+      s_x += '0';
+    }
+    return s_x;
   },
 
   /**

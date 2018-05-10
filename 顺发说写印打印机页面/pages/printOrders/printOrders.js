@@ -59,6 +59,13 @@ Page({
     })
   },
 
+  goMap:function(e){
+    var that = this
+    wx.navigateTo({
+        url: '../map/map?printCode=' + that.data.orderList[e.currentTarget.dataset.idx].printerCode,
+    })
+  },
+
   getData: function () {
     var that = this
     wx.request({
@@ -74,6 +81,7 @@ Page({
         pageSize: that.data.pageSize, // 每页显示的数据
       },
       success: function (res) {
+        console.log(res)
         app.loginCheck(res)
         var list = that.data.orderList;
         if (res.data.data.content.length == 0) {

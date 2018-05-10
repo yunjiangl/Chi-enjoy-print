@@ -11,22 +11,24 @@
 
   {{msg}}
   <!-- list start  -->
-  <view class='list' >
+  <view class='list'>
 
     <!--list-until start -->
-    <view class='list-until' wx:for="{{orderList}}" bindtap='goCost' data-idx='{{index}}'>
-      <view class='tt'>
+    <view class='list-until' wx:for="{{orderList}}">
+      <view class='tt'  bindtap='goCost' data-idx='{{index}}'>
         <image wx:if="{{item.file.suffix == 'doc'}}" class='word' src='../images/word.png' />
         <image wx:elif="{{item.file.suffix == 'docx'}}" class='pdf' src='../images/word.png' />
         <image wx:elif="{{item.file.suffix == 'pdf'}}" class='pdf' src='../images/pdf.png' />
         <image wx:elif="{{item.file.suffix == 'xls'}}" class='excel' src='../images/excel.png' />
         <image wx:elif="{{item.file.suffix == 'xlsx'}}" class='excel' src='../images/excel.png' />
         <view class='cr'>
-          <text>{{item.file.fileName}}</text>
-          <view class='page'>{{item.file.printerNum}}份
-            <tt></tt>{{item.file.paperColcor}}
-            <tt></tt>{{item.file.paperType}}
-            <tt></tt>全部页面({{item.file.filePaper}}页)</view>
+          <text wx:if="{{item.file.fileName != null}}">{{item.file.fileName}}</text>
+          <view class='page'>
+            <text wx:if="{{item.file.printerNum != null}}">{{item.file.printerNum}}份</text>
+            <text wx:if="{{item.file.paperColcor != null}}">    {{item.file.paperColcor}}</text>
+            <text wx:if="{{item.file.paperType != null}}">    {{item.file.paperType}}</text>
+            <text wx:if="{{item.file.filePaper != null}}">    全部页面({{item.file.filePaper}}页)</text>
+          </view>
         </view>
 
         <view class='rt'>
@@ -39,9 +41,9 @@
 
       <view class='line'></view>
 
-      <view class='bm'>
+      <view class='bm' bindtap='goMap' data-idx='{{index}}'>
         <image class='icon2' src='../images/address.png' />
-        <text>{{item.printerAddress}}</text>
+        <text wx:if="{{item.printerAddress != null}}">{{item.printerAddress}}</text>
       </view>
 
     </view>

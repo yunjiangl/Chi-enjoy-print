@@ -1,24 +1,22 @@
-
+var app = getApp()
 Page({
   data: {
     scale: 14,
-
     markPoints: [],
     markers: [],
-
     controls: [
     ],
     circles: [],
-
     showView: true,
     // imgUrl: '../images/triangle_01.png'
-
     val: null,
     blackmoney: null,
     colormoney: null,
     costs: false,
     lat: null,
-    lon: null
+    lon: null,
+    flag:true,
+
   },
 
   //点击显示
@@ -52,6 +50,77 @@ Page({
         costs: options.costs
       })
     }
+    if (!(Object.prototype.toString.call(options.printCode) === '[object Undefined]')) {
+      wx.getSystemInfo({
+        success: function (res) {
+          //设置map高度，根据当前设备宽高满屏显示
+          _this.setData({
+            view: {
+              Height: res.windowHeight
+            }
+          })
+        }
+      })
+
+      wx.getLocation({
+        type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+        success: function (res) {
+          var a = res.latitude;
+          var b = res.longitude;
+          wx.request({
+            url: app.data.api + app.data.urlPrinterInfo + options.printCode,
+            header: {
+              'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
+            },
+            method: 'GET',
+            success: function (aa) {
+              console.log(aa)
+              //var that=this;
+              console.log(aa.data.data);
+              _this.setData({
+                lat: a + 0.05519,
+                lon: b + 0.0162,
+                val: aa.data.data
+              });
+              //markers解决
+              var _mapMarkers = [],
+                _markPoints = [];
+                _markPoints.push({
+                  latitude: aa.data.data.longitude,
+                  longitude: aa.data.data.latitude
+                });
+
+                _mapMarkers.push({
+                  id: 1,
+                  latitude: aa.data.data.longitude,
+                  longitude: aa.data.data.latitude,
+                  title: aa.data.data.name,
+                  width: 40,
+                  height: 40,
+                  iconPath: "../images/my.png"
+                })
+
+              // console.log(_mapMarkers)
+              _this.setData({
+                latitude: res.latitude,
+                longitude: res.longitude,
+                markers: _mapMarkers,
+                markPoints: _markPoints,
+              })
+            }
+          })
+        }
+      })
+     
+      _this.setData({
+        flag: false
+      })
+      return 
+    }else {
+      _this.setData({
+        flag: true
+      })
+    }
     wx.getSystemInfo({
       success: function (res) {
         //设置map高度，根据当前设备宽高满屏显示
@@ -59,16 +128,11 @@ Page({
           view: {
             Height: res.windowHeight
           }
-
         })
-
-
-
       }
     })
 
     wx.getLocation({
-
       type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       success: function (res) {
         var a = res.latitude;
@@ -76,10 +140,9 @@ Page({
         console.log(a);
         console.log(b);
         wx.request({
-
           url: 'http://123.206.42.162:10001/printer/nearby',
           header: {
-            'X-ACCESS-TOKEN': null,
+            'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
           },
           data: {
             longitude: a,
@@ -98,7 +161,6 @@ Page({
             var _mapMarkers = [],
               _markPoints = [];
             for (var i = 0; i < aa.data.data.length; i++) {
-
               _markPoints.push({
                 latitude: aa.data.data[i].longitude,
                 longitude: aa.data.data[i].latitude
@@ -138,7 +200,7 @@ Page({
 
           url: 'http://123.206.42.162:10001/dictionary/get',
           header: {
-            'X-ACCESS-TOKEN': null,
+            'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
           },
           data: {
             code: 'paper_colour_black'
@@ -156,7 +218,7 @@ Page({
 
           url: 'http://123.206.42.162:10001/dictionary/get',
           header: {
-            'X-ACCESS-TOKEN': null,
+            'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
           },
           data: {
             code: 'paper_colour_colours'
