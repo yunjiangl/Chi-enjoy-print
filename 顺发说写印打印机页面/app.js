@@ -1,7 +1,7 @@
 //app.js
 App({
   data: {
-    api: 'http://127.0.0.1:10001/',
+    api: 'http://123.206.42.162:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: null,// 用户类型，1为普通用户，2为律师用户
@@ -59,6 +59,8 @@ App({
         url: '../vip-login/vip-login'
       })
     } else if (data.data.code == 200) {
+      //先赋值openId
+      that.data.userInfo.openId = data.data.data.openId;
       // 如果用户刚刚使用微信登录
       if (data.data.data.userStatus == 1) {
         wx.redirectTo({
@@ -89,7 +91,7 @@ App({
       that.data.userInfo.userType = data.data.data.userType;
       that.data.userInfo.accessToken = data.data.data.accessToken;
 	    that.data.userInfo.userCode=data.data.data.userCode;
-      that.data.userInfo.openId = data.data.data.openId;
+      console.log(data.data.data.accessToken);
     }
   },
 
