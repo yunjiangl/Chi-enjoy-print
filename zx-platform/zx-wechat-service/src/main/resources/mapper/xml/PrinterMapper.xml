@@ -14,11 +14,13 @@
         <result column="manager_phone" property="managerPhone" jdbcType="VARCHAR"/>
         <result column="longitude" property="longitude" />
         <result column="latitude" property="latitude" />
+        <result column="create_id" property="createId" />
+
     </resultMap>
 
 
     <sql id="selectSql">
-        printer_code,name,province,city,area,address,manager_name,manager_phone,longitude,latitude
+        printer_code,name,province,city,area,address,manager_name,manager_phone,longitude,latitude,create_id
     </sql>
 
     <select id="all" resultMap="printerResultBean">
@@ -66,5 +68,8 @@
     <select id="attorneyPageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select count(1) from zx_user_printer where printer_code = #{printerCode}
     </select>
-
+    <select id="findByName" resultMap="printerResultBean" parameterType="long">
+        select <include refid="selectSql"/> from zx_printer_manager
+        WHERE create_id = #{createId}
+    </select>
 </mapper>

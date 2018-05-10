@@ -50,11 +50,12 @@ Page({
         pageSize: that.data.pagesize
       },
       success: function (res) {
-        console.log(res);
-        console.log(that.userCode);
+      //  console.log(res);
+       // console.log(that.userCode);
         var list = [];
-        console.log(res.data.data.content[0]);
+       // console.log(res.data.data.content[0].uuserCode);
         for (var i = 0; i < res.data.data.content.length; i++) {
+         // console.log(res.data.data.content[i].userCode);
           if (that.userCode == res.data.data.content[i].userCode){
             if (res.data.data.content[i].fileNum == null) {
               res.data.data.content[i].fileNum = 0;
@@ -153,6 +154,9 @@ Page({
     var that = this;
     var ids = [];
 	    var fileInfo = JSON.stringify(that.data.fileInfo);
+      console.log(fileInfo);
+      console.log(that.data.userCode);
+      console.log(that.data.fileType);
     if (that.data.fileInfo <= 0) {
       wx.showModal({
         content: '请选择需要设置的文件',

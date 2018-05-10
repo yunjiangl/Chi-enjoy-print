@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
      public DefaultResopnseBean<Object> login(HttpServletRequest request, HttpServletResponse response){
 
 
-         sercurityService.saveSession(request,response,new UserCache());
+//         sercurityService.saveSession(request,response,new UserCache());
          return null;
      }
 

@@ -1,4 +1,5 @@
 // pages/printCost/printCost.js
+var app = getApp()
 Page({
 
   /**
@@ -7,25 +8,20 @@ Page({
   data: {
     orderAmount: null
   },
-  clearing: function () {
-    wx.requestPayment({
-      'timeStamp': '',
-      'nonceStr': '',
-      'package': '',
-      'signType': 'MD5',
-      'paySign': '',
-      'success': function (res) {
-      },
-      'fail': function (res) {
-      }
+  clearing: function () { 
+    var that = this
+    app.payAction(that.data.orderCode, app.data.userInfo.openId)
+    wx.navigateTo({
+      url: '../printOrders/printOrders',
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setDate({
-      orderAmount: options.orderAmount
+    this.setData({
+      orderAmount: options.orderAmount,
+      orderCode: options.orderCode
     })
   },
 

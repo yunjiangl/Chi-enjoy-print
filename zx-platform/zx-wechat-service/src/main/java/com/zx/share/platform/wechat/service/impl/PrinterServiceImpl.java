@@ -1,11 +1,14 @@
 package com.zx.share.platform.wechat.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.zx.share.platform.wechat.service.UserService;
+
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +35,6 @@ public class PrinterServiceImpl implements PrinterService {
     private PrinterMapper printerMapper;
     @Autowired
     private MemcachedService memcachedService;
-    @Autowired
-    private UserService userService;
 
     @Override
     public List<PrinterResultBean> all() {
@@ -68,8 +69,26 @@ public class PrinterServiceImpl implements PrinterService {
     public PageResponseBean<PrinterResultBean> my(PrinterQueryBean queryBean) {
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
+
+        //将查询出来的数据根据设备物主名进行分组
+        //List<PrinterResultBean> dataList = printerService.all();//查询出来的所有数据
+        PrinterResultBean dataItem; // 数据库中查询到的每条记录
+        Map<String, List<PrinterResultBean>> resultMap= new HashMap<String, List<PrinterResultBean>>(); // 最终要的结果
+        for(int i=0;i<resultBeans.size();i++){
+            dataItem = resultBeans.get(i);
+            if(resultMap.containsKey(dataItem.getCreateId())){
+                resultMap.get(dataItem.getCreateId()).add(dataItem);
+            }else{
+                List<PrinterResultBean> list = new ArrayList<PrinterResultBean>();
+                list.add(dataItem);
+                resultMap.put(dataItem.getCreateId(),list);
+            }
+        }
+        //map集合转List集合，将map的value存入List
+        List<List<PrinterResultBean>> mapValuesList = new ArrayList<List<PrinterResultBean>>(resultMap.values());
+
         PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
-        pageResponseBean.setContent(resultBeans);
+        pageResponseBean.setDataPacket(mapValuesList);
         return pageResponseBean;
     }
 
@@ -81,11 +100,8 @@ public class PrinterServiceImpl implements PrinterService {
         List<UserDetailsBean> resultBeans = new ArrayList<>();
         if(userList!=null && !userList.isEmpty()){
             for (String userCode:userList) {
-//                String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
-//                UserDetailsBean resultBean = (UserDetailsBean)memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
-//                resultBeans.add(resultBean);
-
-                UserDetailsBean resultBean = userService.details(userCode);
+                String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
+                UserDetailsBean resultBean = (UserDetailsBean)memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
                 resultBeans.add(resultBean);
             }
         }
@@ -101,4 +117,14 @@ public class PrinterServiceImpl implements PrinterService {
 		return printerMapper.selectOne(record);
 	}
 
+    /**
+     * 根据设备物主查询打印机设备
+     *
+     * @param createId
+     * @return
+     */
+    @Override
+    public List<PrinterResultBean> findByName(Long createId) {
+        return printerMapper.findByName(createId);
+    }
 }

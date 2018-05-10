@@ -1,91 +1,28 @@
 <!-- container start -->
   <view class='container'>
 
+    <view wx:for='{{details}}' wx:for-index="idx" wx:for-item="ins">
     <!-- choice start -->
       <view class='choice'>
 
         <!-- address start -->
           <view class='address'>
-            <view>贵阳市花溪区国际影城3楼</view>
-            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
+            <view>{{ins.name}}</view>
+            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>{{ins.code}}</label></view>
           </view>
         <!-- address end -->
 
         <!-- btn start  -->
             <view class='btn'>
-                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+                <button type='primary' bindtap='toJoin' data-key='{{ins.code}}' hover-class="other-button-hover" size='mini'>加入</button>
+                <button type='default' bindtap='look' data-key='{{ins.code}}' hover-class="other-button-hover" class='button' size='mini'>查看</button>
             </view>
         <!-- btn end  -->
 
       </view>
     <!-- choice end -->
 
-        <view class='line'></view>
-
-        <!-- choice start -->
-      <view class='choice'>
-
-        <!-- address start -->
-          <view class='address'>
-            <view>贵阳市花溪区国际影城3楼</view>
-            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
-          </view>
-        <!-- address end -->
-
-        <!-- btn start  -->
-            <view class='btn'>
-                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-            </view>
-        <!-- btn end  -->
-
-      </view>
-    <!-- choice end -->
-
-        <view class='line'></view>
-
-        <!-- choice start -->
-      <view class='choice'>
-
-        <!-- address start -->
-          <view class='address'>
-            <view>贵阳市花溪区国际影城3楼</view>
-            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
-          </view>
-        <!-- address end -->
-
-        <!-- btn start  -->
-            <view class='btn'>
-                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-            </view>
-        <!-- btn end  -->
-
-      </view>
-    <!-- choice end -->
-
-        <view class='line'></view>
-
-        <!-- choice start -->
-      <view class='choice'>
-
-        <!-- address start -->
-          <view class='address'>
-            <view>贵阳市花溪区国际影城3楼</view>
-            <view class='number'><label style='margin-right:5px;'>设备编码: </label><label>000 001</label></view>
-          </view>
-        <!-- address end -->
-
-        <!-- btn start  -->
-            <view class='btn'>
-                <button type='primary' hover-class="other-button-hover" size='mini'>加入</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-            </view>
-        <!-- btn end  -->
-
-      </view>
-    <!-- choice end -->
-
+        <view class='line' wx:if='{{(idx+1)!=details.length}}'></view>
+</view>
   </view>
 <!-- container end -->

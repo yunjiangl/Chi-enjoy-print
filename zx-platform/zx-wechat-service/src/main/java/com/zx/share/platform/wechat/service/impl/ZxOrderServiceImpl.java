@@ -237,9 +237,9 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 				zxOrderSaveBean.setPrinterAmount(ZxOrderPrinterFileSaveBean.getFilePaper().doubleValue()
 						* Double.parseDouble(paperType.getValue()) * Double.parseDouble(paperColcor.getValue())
 						* Double.parseDouble(paperUsage.getValue()));
-				zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getServiceAmount() + zxOrderSaveBean.getPrinterAmount());
-				zxOrderSaveBean.setStatus(0); // 0这个状态应该是未支付
-
+				zxOrderSaveBean.setStatus(1);
+				zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getPrinterAmount() + zxOrderSaveBean.getServiceAmount());
+				zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getOrderAmount()*100);
 				orderRecordList.add(zxOrderSaveBean);
 
 				ZxOrderPrinterFileSaveBean.setFileCode(fileCodes[i]);

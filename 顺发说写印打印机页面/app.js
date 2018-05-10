@@ -1,13 +1,14 @@
 //app.js
 App({
   data: {
-    api: 'http://123.206.42.162:10001/',
+    api: 'http://127.0.0.1:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: null,// 用户类型，1为普通用户，2为律师用户
-	    userCode:null,
-      openId:null
+      userCode: null,
+      openId: null
     },
+    count:0,
     urlWechatLogin: "wechat/login",
     urlLogin: 'login',
     userCode: 'wechat00000000000',//登录成功后，存储用户code
@@ -27,6 +28,11 @@ App({
     urlPrinterNearby: 'printer/nearby', // 附近的打印机
     urlPrinterAttorney: "printer/attorney", // 打印机关联律师
     urlOrderList: "order/list", // 订单列表
+    urlPrinterAll: 'printer/all',//所有打印机
+    urlPrinterMy: 'printer/my',//所有打印机
+    urlPrinterFind: 'printer/find/',//物主打印机
+    urlPrinterApply: 'printer/apply/',//加入申请
+    urlPrinterInfo: 'printer/info/',//打印机详情
   },
 
   // 微信登录
@@ -53,11 +59,25 @@ App({
   // 登录success之后的操作
   LoginRes: function (data) {
     var that = this
-    if (data.data.code == 300) {
+    if (data.data.code == 400 || data.data.code == 600) {
       console.log("登录失败")
-      wx.redirectTo({
-        url: '../vip-login/vip-login'
-      })
+      that.data.count = that.data.count+1;
+      if (that.data.count == 4) {
+        wx.redirectTo({
+          url: '../vip-login/vip-login'
+        })
+      }else{
+        wx.getUserInfo({
+          success: function (res) {
+            // console.log(res);
+            wx.login({
+              success: function (loginres) {
+                that.wxLogin(res, loginres)
+              }
+            })
+          }
+        })
+      }
     } else if (data.data.code == 200) {
       //先赋值openId
       that.data.userInfo.openId = data.data.data.openId;
@@ -123,11 +143,12 @@ App({
     wx.request({
       url: that.data.api + 'pay/account',
       data: {
-        code: orderCode
+        code: orderCode,
+        openId: openId
       },
       method: 'GET',
       header: {
-
+        "X-ACCESS-TOKEN": that.data.userInfo.accessToken
       },
       success: function (data) {
         console.log(data);
@@ -159,7 +180,8 @@ App({
               },
               method: 'POST',
               header: {
-                "content-type": "application/x-www-form-urlencoded"
+                "content-type": "application/x-www-form-urlencoded",
+                "X-ACCESS-TOKEN": that.data.userInfo.accessToken
               },
               success: function (res) {
                 console.log(res);

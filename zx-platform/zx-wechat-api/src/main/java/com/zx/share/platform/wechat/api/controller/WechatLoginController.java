@@ -64,13 +64,13 @@ public class WechatLoginController extends BaseController{
         //获取sessionKey
         WxAppletAuthVo wxAppletAuthVo = weChatLoginService.getAppletSessionKey(weChatConfig.getLoginAppId(), weChatConfig.getLoginAppSecret(), code, GrantType.AUTHORIZATION_CODE);
         if (wxAppletAuthVo == null) {
-            responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "授权码无效/访问微信验证服务器失败");
+            responseData.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN.code, "授权码无效/访问微信验证服务器失败");
             return responseData;
         }
         //获取用户信息
         WeChatUserInfoVo appletUserInfo = weChatLoginService.getAppletUserInfo(encryptedData, iv, wxAppletAuthVo.getSessionKey());
         if (appletUserInfo == null) {
-            responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "获取微信用户信息失败");
+            responseData.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN.code, "获取微信用户信息失败");
             return responseData;
         }
 
@@ -119,7 +119,7 @@ public class WechatLoginController extends BaseController{
 
         //如果用户创建失败
         if(userResultBean==null){
-            responseData.jsonFill(ErrorsEnum.SYSTEM_BUSINESS_ERROR);
+            responseData.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
             return responseData;
         }
 
@@ -152,7 +152,7 @@ public class WechatLoginController extends BaseController{
         DefaultResopnseBean<WxLoginResponseVo> responseData = new DefaultResopnseBean<>();
         WeChatOAuthVo weChatOAuthVo = weChatLoginService.getAccessToken(weChatConfig.getLoginAppId(), weChatConfig.getLoginAppSecret(), code, GrantType.AUTHORIZATION_CODE);
         if (null == weChatOAuthVo) {
-            responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "微信OAuth失败");
+            responseData.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN.code, "微信OAuth失败");
             return responseData;
         }
 
@@ -162,7 +162,7 @@ public class WechatLoginController extends BaseController{
             //获取微信用户信息
             WeChatUserInfoVo appletUserInfo = weChatLoginService.getUserInfo(weChatOAuthVo.getAccessToken(), weChatOAuthVo.getOpenId());
             if (null == appletUserInfo) {
-                responseData.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code, "获取微信用户信息失败");
+                responseData.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN.code, "获取微信用户信息失败");
                 return responseData;
             }
             UserRequestBean userSaveBean = new UserRequestBean();
@@ -188,7 +188,7 @@ public class WechatLoginController extends BaseController{
 
         //如果用户创建失败
         if(userResultBean==null){
-            responseData.jsonFill(ErrorsEnum.SYSTEM_BUSINESS_ERROR);
+            responseData.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
             return responseData;
         }
 

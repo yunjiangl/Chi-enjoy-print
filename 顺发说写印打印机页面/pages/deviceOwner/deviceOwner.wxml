@@ -12,32 +12,32 @@
       </view>
     <!--top end  -->
     <!--content start  -->
-      <view class='content'>
+      <view class='content' wx:for='{{details}}' wx:for-index="idx" wx:for-item="ins">
 
       <!--device-owner start  -->
         <view class='device-owner'>
           <view>
             <label>设备物主:</label>
-            <label>张亮</label>
+            <label>{{ins[idx].managerName}}</label>
           </view>
-          <view>山西省阳泉市城区</view>
+          <view>{{ins[idx].province}}{{ins[idx].city}}{{ins[idx].area}}</view>
         </view>
       <!--device-owner end  -->
       
       <!-- li start -->
-        <view class='li'>
-
+        <view class='li' wx:for='{{details[idx]}}' wx:for-item="in" wx:for-index="is">
+        
           <view>
-            <view class='address'>金域国际二层</view>
-            <view><label>设备编码:</label>000 001</view>
+            <view class='address'>{{in.name}}</view>
+            <view><label>设备编码:</label>{{in.code}}</view>
           </view>
 
           <!-- btn start -->
             <view class='btn'>
               <view></view>
               <view>
-                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
+                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='quit' size='mini' data-key='{{in.code}}'>退出</button>
+                <button type='default' hover-class="other-button-hover" class='button' size='mini' data-key='{{in.code}}' bindtap='look'>查看</button>
               </view>
             </view>
             <!-- btn end -->
@@ -47,93 +47,15 @@
 
         <view class='line'></view>
 
-      <!-- li start -->
-        <view class='li'>
-
-          <view>
-            <view>金域国际二层</view>
-            <view><label>设备编码:</label>000 001</view>
-          </view>
-
-          <!-- btn start -->
-            <view class='btn'>
-              <view></view>
-              <view>
-                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-              </view>
-            </view>
-            <!-- btn end -->
-
-        </view>
-      <!-- li end -->
-
-        <view class='line'></view>
-
-      <!-- li start -->
-        <view class='li'>
-
-          <view>
-            <view>金域国际二层</view>
-            <view><label>设备编码:</label>000 001</view>
-          </view>
-
-          <!-- btn start -->
-            <view class='btn'>
-              <view></view>
-              <view>
-                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-              </view>
-            </view>
-            <!-- btn end -->
-
-        </view>
-      <!-- li end -->
-
-      </view>
-    <!--content end  -->
-
-        <!--content start  -->
-      <view class='content'>
-
-      <!--device-owner start  -->
-        <view class='device-owner'>
-          <view>
-            <label>设备物主:</label>
-            <label>张亮</label>
-          </view>
-          <view>山西省阳泉市城区</view>
-        </view>
-      <!--device-owner end  -->
       
-      <!-- li start -->
-        <view class='li'>
-
-          <view>
-            <view>金域国际二层</view>
-            <view><label>设备编码:</label>000 001</view>
-          </view>
-
-          <!-- btn start -->
-            <view class='btn'>
-              <view></view>
-              <view>
-                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>退出</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-              </view>
-            </view>
-            <!-- btn end -->
-
-        </view>
-      <!-- li end -->
 
       </view>
     <!--content end  -->
+
 
         <!--footer start  -->
       <view class='footer'>
-          <button type='default' size='default' hover-class="other-button-hover" bindtap='showModal'>确定发送</button>
+          <button type='default' size='default' hover-class="other-button-hover" bindtap='toJoin'>申请加入</button>
       </view>
     <!--footer end  -->
 

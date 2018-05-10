@@ -20,32 +20,15 @@
   <!-- list start  -->
   <view class='list'>
 
-    <view class='list-unit'>
-      <label class='label'>张亮</label>
-      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
+    <view wx:for='{{details}}' wx:for-index="idx" wx:for-item="ins">
+    <view class='list-unit' bindtap='managerOn' data-key='{{ins[idx].createId}}'>
+      <label class='label'>{{ins[idx].managerName}}</label>
+      <label class='lable'>{{ins[idx].province}}{{ins[idx].city}}{{ins[idx].area}} <tt></tt> ></label>
     </view>
 
-   <view class='line'></view>
-
-    <view class='list-unit'>
-      <label class='label'>张亮</label>
-      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
+    <view class='line' wx:if='{{(idx+1)!=details.length}}'></view>
     </view>
-
-   <view class='line'></view>
-
-    <view class='list-unit'>
-      <label class='label'>张亮</label>
-      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
-    </view>
-
-   <view class='line'></view>
-
-    <view class='list-unit'>
-      <label class='label'>张亮</label>
-      <label class='lable'>金域国际中心二层 <tt></tt> ></label>
-    </view>
-
+    
   </view>
   <!--list end  -->
 

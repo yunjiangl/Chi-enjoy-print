@@ -53,7 +53,7 @@ Page({
         },
         method: 'GET',
         header: {
-          //'content-type': 'X-ACCESS-TOKEN'
+          "X-ACCESS-TOKEN": getApp().data.userInfo.accessToken
         },
         success: function (response) {
           // console.log(response.data.data);
