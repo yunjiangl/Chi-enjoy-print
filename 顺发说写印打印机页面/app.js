@@ -6,7 +6,8 @@ App({
     api: 'http://127.0.0.1:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
-      userType: null,// 用户类型，1为普通用户，2为律师用户
+      userType: null,// 用户类型，1为普通用户，2为律师用户（为2后isLock没有用），
+      isLock: null,//1,通过，3为律师未通过和正在审核中
       userCode: null,
       openId: null
     },
