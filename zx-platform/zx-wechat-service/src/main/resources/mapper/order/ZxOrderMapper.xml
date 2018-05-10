@@ -109,7 +109,7 @@
 		from zx_order
 		<where>
 			<if test="userCode != null and userCode.trim() != ''">
-				AND order_user_code = #{userCode}
+
 			</if>
 			<if test="orderStatus!=null and orderStatus!=''">
 				AND status = #{orderStatus}
@@ -118,7 +118,7 @@
 				AND order_user_code = #{userCode}
 			</if>
 			<if test="userType!=null and userType==2">
-				AND attorney_code = #{userCode}
+				AND (attorney_code = #{userCode} OR order_user_code = #{userCode})
 			</if>
 		</where>
 		limit #{currentSize},#{pageSize}
@@ -129,7 +129,7 @@
 		select count(1) from zx_order
 		<where>
 			<if test="userCode != null and userCode.trim() != ''">
-				AND order_user_code = #{userCode}
+
 			</if>
 			<if test="orderStatus!=null and orderStatus!=''">
 				AND status = #{orderStatus}
@@ -138,7 +138,7 @@
 				AND order_user_code = #{userCode}
 			</if>
 			<if test="userType!=null and userType!=2">
-				AND attorney_code = #{userCode}
+				AND (attorney_code = #{userCode} OR order_user_code = #{userCode})
 			</if>
 		</where>
 	</select>
