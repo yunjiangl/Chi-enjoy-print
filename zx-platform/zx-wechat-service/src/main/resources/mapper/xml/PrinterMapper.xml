@@ -68,8 +68,8 @@
     </select>
 
     <select id="nearby" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
-        select <include refid="selectSql"/> from zx_printer_manager
-        <where>
+        select <include refid="selectSql"/> from zx_printer_manager where 1=1
+
             <if test="userCode!=null and userCode!=''">
                 AND user_code = #{userCode}
             </if>
@@ -91,7 +91,6 @@
             <if test="query!=null and query!=''">
                 AND name LIKE concat('%',#{query},'%')
             </if>
-        </where>
     </select>
 
     <select id="attorneyPage" resultType="java.lang.String" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">

@@ -29,12 +29,12 @@ Page({
     address: '',//地址  
     printList: null, // 附近打印机列表
     show: show,
-    provinces: provinces,
-    citys: citys,
-    countys: countys,
+    provinces: null,
+    citys: null,
+    countys: null,
     value: [0, 0, 0],
-    
-    hideAddress:true
+    hideAddress:true,
+    name:null
   },
   //获取经纬度
   getLocation: function (e) {
@@ -92,6 +92,44 @@ Page({
     })
 
   },
+  xuanze: function(){
+    var that=this;
+    console.log("测试");
+    var province = that.data.province;
+    var city = that.data.city;
+    var area=that.data.county;
+    var name=that.data.name;
+    wx.request({
+      url: app.data.api + app.data.urlPrinterNearby,
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
+      method: 'GET',
+      data: {
+        province: province,
+        city: city,
+        area: area,
+        name:name
+      },
+      success: function (resdata) {
+          console.log(resdata);
+        that.setData({
+          printList: resdata.data.data
+        })
+      }
+    })
+
+
+  },
+  sousuo: function(e){
+    var that=this;
+    //console.log(e.detail.value)
+    that.setData({
+      name: e.detail.value
+    })
+    //console.log("name"+that.data.name);
+    
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -124,9 +162,13 @@ Page({
               method: 'GET',
               data: {
                 longitude: res.longitude,
-                latitude: res.latitude
+                latitude: res.latitude,
+                name: that.data.name
               },
               success: function (resdata) {
+               // console.log(res.latitude),
+               //  console.log(res.longitude),
+                console.log(resdata);
                 that.setData({
                   address: address,
                   printList: resdata.data.data
@@ -204,12 +246,13 @@ Page({
   },
   //隐藏弹窗浮层
   hiddenFloatView(e) {
+    var that=this;
     console.log(e);
     moveY = 200;
     show = true;
     t = 0;
     animationEvents(this, moveY, show);
-
+    that.xuanze();
   },
 
   choiceLawyer: function (e) {
