@@ -25,6 +25,11 @@ public class PrinterQueryBean extends PageRequestBean {
     @ApiModelProperty(value = "打印机code")
     private String printerCode;
 
+    private String province;
+    private String city;
+    private String area;
+    private String query;
+
 
     @ApiModelProperty(value = "开始经度")
     private Double startLongitude;
@@ -106,5 +111,37 @@ public class PrinterQueryBean extends PageRequestBean {
 
     public void setEndLatitude(Double endLatitude) {
         this.endLatitude = endLatitude;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 }

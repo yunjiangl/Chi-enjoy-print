@@ -19,6 +19,9 @@ logout:function(){
   
   wx.request({
     url: app.data.api + app.data.urlLogout,
+    header: {
+      "X-ACCESS-TOKEN": that.data.userInfo.accessToken
+    },
     success: function (res) {
       console.log('退出');
       wx.showToast({
@@ -56,16 +59,17 @@ logout:function(){
    */
   onShow: function () {
     var that = this
+    console.log(app.data.userInfo)
     wx.request({
       url: app.data.api + app.data.urlUserDetails,
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
       data: {
         code: app.data.userCode
       },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
       success: function (res) {
-        console.log(res.data.data.nickName)
+        console.log(res.data.data)
         that.setData({
           details: res.data.data
         })

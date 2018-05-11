@@ -75,7 +75,7 @@ page{
   margin: 0px 0 0 20px;
 }
 .footer{
-  margin:  80px 20px 0 20px;
+  margin:  50px 20px 50px 20px;
 }
 button[type="default"] {
 color:#fff;

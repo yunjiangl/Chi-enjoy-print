@@ -154,16 +154,16 @@ Page({
       getProvinceData(that);
     });
 
-    that.setData({
-      details: res.data.data,
-      items: item,
-      sex: res.data.data.gen,
-      province: res.data.data.province,
-      city: res.data.data.city,
-      county: res.data.data.area,
-      firstPerson: res.data.data.attorney.workYear
+    // that.setData({
+    //   details: res.data.data,
+    //   items: item,
+    //   sex: res.data.data.gen,
+    //   province: res.data.data.province,
+    //   city: res.data.data.city,
+    //   county: res.data.data.area,
+    //   firstPerson: res.data.data.attorney.workYear
 
-    })
+    // })
 
   },
 

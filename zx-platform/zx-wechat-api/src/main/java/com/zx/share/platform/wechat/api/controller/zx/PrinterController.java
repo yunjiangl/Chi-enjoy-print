@@ -97,13 +97,21 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/nearby", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<List<PrinterResultBean>> nearby(
+			@ApiParam("查询内容") @RequestParam("query") String query,
 			@ApiParam("经度") @RequestParam("longitude") Double longitude,
-			@ApiParam("纬度") @RequestParam("latitude") Double latitude, HttpServletRequest request) {
+			@ApiParam("纬度") @RequestParam("latitude") Double latitude,
+			@ApiParam("省") @RequestParam("province") String province,
+			@ApiParam("市") @RequestParam("city") String city,
+			@ApiParam("区") @RequestParam("area") String area,HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<List<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		PrinterQueryBean queryBean = new PrinterQueryBean();
 		queryBean.setLatitude(latitude);
 		queryBean.setLongitude(longitude);
+		queryBean.setProvince(province);
+		queryBean.setCity(city);
+		queryBean.setArea(area);
+		queryBean.setQuery(query);
 		List<PrinterResultBean> resultBeanList = printerService.nearby(queryBean);
 		resopnseBean.setData(resultBeanList);
 		return resopnseBean;
@@ -113,13 +121,25 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<PageResponseBean<PrinterResultBean>> query(
+			@ApiParam("查询内容") @RequestParam("query") String query,
 			@ApiParam("第几页") @RequestParam("page") Integer page,
-			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize, HttpServletRequest request) {
+			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
+			@ApiParam("经度") @RequestParam("longitude") Double longitude,
+			@ApiParam("纬度") @RequestParam("latitude") Double latitude,
+			@ApiParam("省") @RequestParam("province") String province,
+			@ApiParam("市") @RequestParam("city") String city,
+			@ApiParam("区") @RequestParam("area") String area, HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		PrinterQueryBean queryBean = new PrinterQueryBean();
 		queryBean.setPage(page);
 		queryBean.setPageSize(pageSize);
+		queryBean.setQuery(query);
+		queryBean.setLatitude(latitude);
+		queryBean.setLongitude(longitude);
+		queryBean.setProvince(province);
+		queryBean.setCity(city);
+		queryBean.setArea(area);
 		PageResponseBean<PrinterResultBean> pageResultBean = printerService.query(queryBean);
 		resopnseBean.setData(pageResultBean);
 		return resopnseBean;

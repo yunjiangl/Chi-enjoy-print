@@ -1,10 +1,13 @@
 //app.js
+var countNum =1;
 App({
   data: {
+    // api: 'http://123.206.42.162:10001/',
     api: 'http://127.0.0.1:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
-      userType: null,// 用户类型，1为普通用户，2为律师用户
+      userType: null,// 用户类型，1为普通用户，2为律师用户（为2后isLock没有用），
+      isLock: null,//1,通过，3为律师未通过和正在审核中
       userCode: null,
       openId: null
     },
@@ -59,10 +62,10 @@ App({
   // 登录success之后的操作
   LoginRes: function (data) {
     var that = this
-    if (data.data.code == 400 || data.data.code == 600) {
+    if (data.data.code != 200) {
       console.log("登录失败")
-      that.data.count = that.data.count+1;
-      if (that.data.count == 4) {
+      countNum = countNum + 1;
+      if (countNum == 4) {
         wx.redirectTo({
           url: '../vip-login/vip-login'
         })

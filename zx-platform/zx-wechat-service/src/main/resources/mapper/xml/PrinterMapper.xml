@@ -38,6 +38,18 @@
         <if test="latitude!=null and latitude!=''">
             AND latitude BETWEEN #{startLatitude} AND #{endLatitude}
         </if>
+        <if test="province!=null and province!=''">
+            AND province=#{province}
+        </if>
+        <if test="city!=null and city!=''">
+            AND city=#{city}
+        </if>
+        <if test="area!=null and area!=''">
+            AND area=#{area}
+        </if>
+        <if test="query!=null and query!=''">
+            AND name LIKE concat('%',#{query},'%')
+        </if>
 
         limit #{currentSize},#{pageSize}
     </select>
@@ -57,16 +69,74 @@
 
     <select id="nearby" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select <include refid="selectSql"/> from zx_printer_manager
+        <where>
+            <if test="userCode!=null and userCode!=''">
+                AND user_code = #{userCode}
+            </if>
+            <if test="longitude!=null and longitude!=''">
+                AND longitude BETWEEN #{startLongitude} AND #{endLongitude}
+            </if>
+            <if test="latitude!=null and latitude!=''">
+                AND latitude BETWEEN #{startLatitude} AND #{endLatitude}
+            </if>
+            <if test="province!=null and province!=''">
+                AND province=#{province}
+            </if>
+            <if test="city!=null and city!=''">
+                AND city=#{city}
+            </if>
+            <if test="area!=null and area!=''">
+                AND area=#{area}
+            </if>
+            <if test="query!=null and query!=''">
+                AND name LIKE concat('%',#{query},'%')
+            </if>
+        </where>
     </select>
 
     <select id="attorneyPage" resultType="java.lang.String" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select user_code from zx_user_printer where printer_code = #{printerCode}
-
+        <if test="longitude!=null and longitude!=''">
+            AND longitude BETWEEN #{startLongitude} AND #{endLongitude}
+        </if>
+        <if test="latitude!=null and latitude!=''">
+            AND latitude BETWEEN #{startLatitude} AND #{endLatitude}
+        </if>
+        <if test="province!=null and province!=''">
+            AND province=#{province}
+        </if>
+        <if test="city!=null and city!=''">
+            AND city=#{city}
+        </if>
+        <if test="area!=null and area!=''">
+            AND area=#{area}
+        </if>
+        <if test="query!=null and query!=''">
+            AND name LIKE concat('%',#{query},'%')
+        </if>
         limit #{currentSize},#{pageSize}
     </select>
 
     <select id="attorneyPageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select count(1) from zx_user_printer where printer_code = #{printerCode}
+        <if test="longitude!=null and longitude!=''">
+            AND longitude BETWEEN #{startLongitude} AND #{endLongitude}
+        </if>
+        <if test="latitude!=null and latitude!=''">
+            AND latitude BETWEEN #{startLatitude} AND #{endLatitude}
+        </if>
+        <if test="province!=null and province!=''">
+            AND province=#{province}
+        </if>
+        <if test="city!=null and city!=''">
+            AND city=#{city}
+        </if>
+        <if test="area!=null and area!=''">
+            AND area=#{area}
+        </if>
+        <if test="query!=null and query!=''">
+            AND name LIKE concat('%',#{query},'%')
+        </if>
     </select>
     <select id="findByName" resultMap="printerResultBean" parameterType="long">
         select <include refid="selectSql"/> from zx_printer_manager

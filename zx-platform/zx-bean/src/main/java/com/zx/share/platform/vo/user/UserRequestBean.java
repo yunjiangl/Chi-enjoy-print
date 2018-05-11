@@ -27,6 +27,7 @@ public class UserRequestBean implements Serializable {
     private Integer userType;
     private Integer userStatus;
     private Long id;
+    private Integer isLock;
 
     public Long getId() {
         return id;
@@ -140,4 +141,11 @@ public class UserRequestBean implements Serializable {
         this.userStatus = userStatus;
     }
 
+    public Integer getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(Integer isLock) {
+        this.isLock = isLock;
+    }
 }
