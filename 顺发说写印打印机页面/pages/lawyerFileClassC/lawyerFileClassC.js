@@ -25,7 +25,7 @@ Page({
   },
   getData: function () {
     var that = this;
-  //  console.log(app.data.userInfo.userCode);
+    console.log(app.data.userInfo.openId);
     var userType = app.data.userInfo.userType;
     var userCode = app.data.userInfo.userCode;
     that.userType = userType;
