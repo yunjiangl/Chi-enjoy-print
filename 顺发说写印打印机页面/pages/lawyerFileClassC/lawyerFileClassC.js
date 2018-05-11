@@ -49,8 +49,11 @@ Page({
         page: that.data.page,
         pageSize: that.data.pagesize
       },
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
       success: function (res) {
-      //  console.log(res);
+       console.log(res);
        // console.log(that.userCode);
         var list = [];
        // console.log(res.data.data.content[0].uuserCode);
