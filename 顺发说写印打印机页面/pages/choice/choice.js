@@ -98,7 +98,6 @@ Page({
     var province = that.data.province;
     var city = that.data.city;
     var area=that.data.county;
-    var name=that.data.name;
     wx.request({
       url: app.data.api + app.data.urlPrinterNearby,
       header: {
@@ -109,7 +108,6 @@ Page({
         province: province,
         city: city,
         area: area,
-        name:name
       },
       success: function (resdata) {
           console.log(resdata);
@@ -128,7 +126,22 @@ Page({
       name: e.detail.value
     })
     //console.log("name"+that.data.name);
-    
+    wx.request({
+      url: app.data.api + app.data.urlPrinterNearby,
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
+      method: 'GET',
+      data: {
+        query:that.data.name
+      },
+      success: function (resdata) {
+        console.log(resdata);
+        that.setData({
+          printList: resdata.data.data
+        })
+      }
+    })
   },
 
   /**
@@ -162,8 +175,7 @@ Page({
               method: 'GET',
               data: {
                 longitude: res.longitude,
-                latitude: res.latitude,
-                name: that.data.name
+                latitude: res.latitude
               },
               success: function (resdata) {
                // console.log(res.latitude),
