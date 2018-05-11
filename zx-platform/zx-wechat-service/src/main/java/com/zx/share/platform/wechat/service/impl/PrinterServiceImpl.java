@@ -46,7 +46,7 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public PageResponseBean<PrinterResultBean> page(PrinterQueryBean queryBean) {
-
+        queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
         PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
@@ -56,11 +56,13 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public List<PrinterResultBean> nearby(PrinterQueryBean queryBean) {
+        queryBean.calculate();
         return printerMapper.nearby(queryBean);
     }
 
     @Override
     public PageResponseBean<PrinterResultBean> query(PrinterQueryBean queryBean) {
+        queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
         PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
@@ -70,6 +72,7 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public PageResponseBean<PrinterResultBean> my(PrinterQueryBean queryBean) {
+        queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
 
@@ -97,6 +100,7 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public PageResponseBean<UserDetailsBean> attorneyPage(PrinterQueryBean queryBean) {
+        queryBean.calculate();
         List<String> userList = printerMapper.attorneyPage(queryBean);
         Integer count = printerMapper.attorneyPageCount(queryBean);
         PageResponseBean<UserDetailsBean> pageResponseBean = new PageResponseBean<>(queryBean,count);

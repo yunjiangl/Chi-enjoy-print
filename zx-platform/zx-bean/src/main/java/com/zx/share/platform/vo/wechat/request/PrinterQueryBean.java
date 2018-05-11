@@ -1,6 +1,7 @@
 package com.zx.share.platform.vo.wechat.request;
 
 import com.zx.share.platform.common.bean.PageRequestBean;
+import com.zx.share.platform.util.StringUtil;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -143,5 +144,17 @@ public class PrinterQueryBean extends PageRequestBean {
 
     public void setQuery(String query) {
         this.query = query;
+    }
+
+    public void calculate(){
+        if(StringUtil.isNotBlank(latitude)){
+            setStartLatitude(latitude-0.003);
+            setEndLatitude(latitude+0.003);
+        }
+        if(StringUtil.isNotBlank(longitude)){
+            setStartLongitude(longitude-0.003);
+            setEndLongitude(longitude+0.003);
+        }
+
     }
 }
