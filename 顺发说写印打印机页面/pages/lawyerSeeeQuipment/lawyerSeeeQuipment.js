@@ -30,6 +30,7 @@ Page({
               //printer/apply/
             },
             header: {
+              'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
               'content-type': 'application/json' // 默认值
             },
             success: function (res) {
@@ -75,6 +76,7 @@ Page({
     data: {
     },
     header: {
+      'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
       'content-type': 'application/json' // 默认值
     },
     success: function (res) {

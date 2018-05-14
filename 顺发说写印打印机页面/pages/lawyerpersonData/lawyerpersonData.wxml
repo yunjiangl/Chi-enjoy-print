@@ -11,6 +11,7 @@
           <view class='name-vip'>
             <view>{{details.nickName}}</view>
             <view class='vip'>{{details.userType === 1 ? '普通用户' : '律师'}}</view>
+            <view class='vip'>{{details.isLock === 2 ? '已认证' : '待认证'}}</view>
           </view>
 
         </view>
