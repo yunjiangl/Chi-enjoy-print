@@ -52,4 +52,16 @@ public class ImController extends BaseController {
         return resopnseBean;
     }
 
+    @ApiOperation(value = "添加对话信息", notes = "添加对话信息")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultResopnseBean<Boolean> list(
+            @ApiParam(value = "用户Code") @RequestParam(name = "userCode", required = false) String userCode,
+            @ApiParam(value = "律师Code") @RequestParam(name = "code", required = false) String code,
+            HttpServletRequest request) throws Exception {
+        servletPath = request.getServletPath();
+        imService.add(code,userCode);
+        return new DefaultResopnseBean<>();
+    }
+
 }

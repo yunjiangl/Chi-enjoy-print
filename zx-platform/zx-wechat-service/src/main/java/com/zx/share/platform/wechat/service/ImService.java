@@ -13,4 +13,6 @@ import com.zx.share.platform.vo.user.ImResponseBean;
 public interface ImService {
 
     PageResponseBean<ImResponseBean> page(ImRequestBean bean);
+
+    Integer add(String code,String userCode);
 }

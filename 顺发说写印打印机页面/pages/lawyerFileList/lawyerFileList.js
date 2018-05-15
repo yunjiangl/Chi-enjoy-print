@@ -6,11 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
-
-
-
-
     query: null,
     code: null,
     page: 0,

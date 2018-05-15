@@ -51,7 +51,7 @@ jwtconfig:
         header: token
 
 # 文件上传路径
-filePath: /home/zx-platform/file
+filePath: /home/file
 
 
 logging:

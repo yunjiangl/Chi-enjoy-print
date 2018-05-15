@@ -228,4 +228,8 @@
 		zx_order.order_code =
 		#{code}
 	</select>
+
+	<update id="updateOrderStatus">
+		update zx_order set status=#{1} where order_code=#{0}
+	</update>
 </mapper>
