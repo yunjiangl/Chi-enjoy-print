@@ -4,6 +4,7 @@ import com.zx.share.platform.common.bean.SessionConfig;
 import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
+import com.zx.share.platform.vo.WxLoginResponseVo;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
@@ -40,7 +41,7 @@ public class UserController extends BaseController {
     public DefaultResopnseBean<UserDetailsBean> info(HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<UserDetailsBean> resopnseBean = new DefaultResopnseBean<>();
-        UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        WxLoginResponseVo user = (WxLoginResponseVo) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if (user == null) {
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
         }
@@ -75,7 +76,7 @@ public class UserController extends BaseController {
                                               @ApiParam("用户code") @RequestParam("userCode") String userCode, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
-        UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        WxLoginResponseVo user = (WxLoginResponseVo) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if (user == null) {
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
         }
@@ -118,7 +119,7 @@ public class UserController extends BaseController {
                                                      @ApiParam("领域（多个领域之间用英文逗号分隔）") @RequestParam("domains") String domains, HttpServletRequest request) {
         servletPath = request.getServletPath();
         DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
-        UserCache user = (UserCache) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
+        WxLoginResponseVo user = (WxLoginResponseVo) request.getAttribute(SessionConfig.DEFAULT_REQUEST_DRUG_USER);
         if (user == null) {
             resopnseBean.jsonFill(ErrorsEnum.SYSTEM_NOT_LOGIN);
         }
