@@ -8,8 +8,8 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
-        <result column="arae" property="area" jdbcType="VARCHAR"/>
-        <result column="address" property="name" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="manager_name" property="managerName" jdbcType="VARCHAR"/>
         <result column="manager_phone" property="managerPhone" jdbcType="VARCHAR"/>
         <result column="longitude" property="longitude" />
@@ -68,8 +68,8 @@
     </select>
 
     <select id="nearby" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
-        select <include refid="selectSql"/> from zx_printer_manager
-        <where>
+        select <include refid="selectSql"/> from zx_printer_manager where 1=1
+
             <if test="userCode!=null and userCode!=''">
                 AND user_code = #{userCode}
             </if>
@@ -91,7 +91,6 @@
             <if test="query!=null and query!=''">
                 AND name LIKE concat('%',#{query},'%')
             </if>
-        </where>
     </select>
 
     <select id="attorneyPage" resultType="java.lang.String" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">

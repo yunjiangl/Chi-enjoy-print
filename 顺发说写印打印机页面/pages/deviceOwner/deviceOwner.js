@@ -57,6 +57,7 @@ Page({
       pageSize:100
     },
     header: {
+      'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
       'content-type': 'application/json' // 默认值
     },
     success: function (res) {

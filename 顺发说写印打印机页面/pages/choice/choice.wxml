@@ -17,7 +17,7 @@
             <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444">
               <view class="animation-element" catchtap="nono">
                   <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
-                  <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
+                  <text class="right-bt" catchtap="hiddenFloatView" data-id="666" >确定</text>
                     <view class="line"></view> 
 
                   <picker-view indicator-style = "height: 50rpx;" value="{{value}}" bindchange="bindChange" catchtap="nono">
@@ -45,8 +45,8 @@
           <!--page end  -->
 
         <view class='search' >
-        <image src='../images/search.png' />
-          <input class='input' confirm-type="search" placeholder='搜索您选择的打印机'> </input>
+        <image src='../images/search.png' bindtap='ss'/>
+          <input class='input' confirm-type="search" placeholder='搜索您选择的打印机' bindinput='sousuo'> </input>
         </view>
         
   </view>
@@ -56,8 +56,11 @@
   <view class='list' wx:for='{{printList}}'>
 
     <view class='list-unit' data-idx='{{index}}' bindtap='choiceLawyer'>
-      <label class='label'>{{item.name}}</label>
-      <label class='lable'> > </label>
+      <view class='item'>
+        <view class='item_name'>{{item.name}}</view>
+        <view class='item_city'>{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
+      </view>
+      <view class='lable'> > </view>
     </view>
 
    <!-- <view class='line'></view> -->

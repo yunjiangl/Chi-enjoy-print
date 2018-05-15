@@ -70,6 +70,7 @@ Page({
          },
          method:'POST',
          header: {
+           'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
            'content-type': 'application/x-www-form-urlencoded' // 默认值
          },
          success: function (res) {
@@ -144,6 +145,7 @@ Page({
         code: app.data.userCode
       },
       header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {

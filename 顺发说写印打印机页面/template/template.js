@@ -16,7 +16,7 @@ function tabbarinit(userType) {
       },
       {
         "pagePath": "../historyConsultant/historyConsultant",
-        "text": "历史质询",
+        "text": "历史咨询",
         "iconPath": "../images/Historical.png",
         "selectedIconPath": "../images/icon/3.png"
       },
@@ -49,7 +49,7 @@ function tabbarinit(userType) {
       },
       {
         "pagePath": "../historyConsultant/historyConsultant",
-        "text": "历史质询",
+        "text": "历史咨询",
         "iconPath": "../images/Historical.png",
         "selectedIconPath": "../images/icon/3.png"
       },

@@ -126,6 +126,7 @@ Page({
       },
       method: 'POST',
       header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
         'content-type': 'application/x-www-form-urlencoded' // 默认值
       },
       success: function (res) {
@@ -333,7 +334,7 @@ Page({
           province: res.data.data.province,
           city: res.data.data.city,
           county: res.data.data.area,
-          firstPerson: res.data.data.attorney.workYear
+         // firstPerson: res.data.data.attorney.workYear
 
         })
 

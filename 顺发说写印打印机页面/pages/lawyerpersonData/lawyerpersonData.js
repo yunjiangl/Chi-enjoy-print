@@ -101,7 +101,7 @@ Page({
         console.log(res.data.data.nickName)
         that.setData({
           details: res.data.data,
-          showView: (res.data.data.userType == "1" ? false:true )
+          showView: (res.data.data.details.isLock == "2" ? false:true )
         })
       }
     })
