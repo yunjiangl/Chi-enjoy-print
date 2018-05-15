@@ -121,14 +121,14 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<PageResponseBean<PrinterResultBean>> query(
-			@ApiParam("查询内容") @RequestParam("query") String query,
-			@ApiParam("第几页") @RequestParam("page") Integer page,
-			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,
-			@ApiParam("经度") @RequestParam("longitude") Double longitude,
-			@ApiParam("纬度") @RequestParam("latitude") Double latitude,
-			@ApiParam("省") @RequestParam("province") String province,
-			@ApiParam("市") @RequestParam("city") String city,
-			@ApiParam("区") @RequestParam("area") String area, HttpServletRequest request) {
+			@ApiParam("查询内容") @RequestParam(value = "query" ,required = false) String query,
+			@ApiParam("第几页") @RequestParam(value = "page") Integer page,
+			@ApiParam("每页多少条") @RequestParam(value = "pageSize") Integer pageSize,
+			@ApiParam("经度") @RequestParam(value = "longitude" ,required = false) Double longitude,
+			@ApiParam("纬度") @RequestParam(value = "latitude" ,required = false) Double latitude,
+			@ApiParam("省") @RequestParam(value = "province" ,required = false) String province,
+			@ApiParam("市") @RequestParam(value = "city" ,required = false) String city,
+			@ApiParam("区") @RequestParam(value = "area" ,required = false) String area, HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		PrinterQueryBean queryBean = new PrinterQueryBean();

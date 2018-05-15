@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.zx.share.platform.common.service.MemcachedService;
 import com.zx.share.platform.util.email.SendMail;
 import com.zx.share.platform.util.email.StoreMail;
 import com.zx.share.platform.vo.wechat.response.OrderFileBean;
@@ -80,6 +81,9 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Autowired
 	private UserMapper userMapper;
+
+	@Autowired
+	private MemcachedService memcachedService;
 
 	@Override
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> list(Map<String, Object> params) {
@@ -403,8 +407,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 				}
 				if(SendMail.sendEmail(path)){
 					//TODO 写入打印订单状态集合
-
-
+					String orderCodes = memcachedService.get("zx_platform_order")+"";
+					if(orderCodes.indexOf(orderResultBean.getOrderCode())<0){
+						memcachedService.set("zx_platform_order",60*60*24*100,orderCodes+","+orderResultBean.getOrderCode());
+					}
 					return true;
 				}else{
 					return false;
@@ -438,6 +444,11 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 			zxOrderMapper.updateByPrimaryKeySelective(zxOrder);
 		}
+	}
+
+	@Override
+	public void updateOrderStatus(String code, Integer status) {
+
 	}
 
 	private String getFilePath(FileResultBean bean){

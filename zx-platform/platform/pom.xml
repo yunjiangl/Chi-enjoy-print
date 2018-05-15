@@ -203,6 +203,55 @@
 			<artifactId>zx-bean</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>bcprov-ext-jdk15on-154</groupId>
+			<artifactId>bcprov-ext-jdk15on-154</artifactId>
+			<version>154</version>
+		</dependency>
+
+		<dependency>
+			<groupId>bcpkix-jdk15on-154</groupId>
+			<artifactId>bcpkix-jdk15on-154</artifactId>
+			<version>154</version>
+		</dependency>
+
+		<dependency>
+			<groupId>tls_sig_api</groupId>
+			<artifactId>tls_sig_api</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>bcprov-jdk15on-154</groupId>
+			<artifactId>bcprov-jdk15on-154</artifactId>
+			<version>154</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aspose-cells-8.5.2</groupId>
+			<artifactId>aspose-cells-8.5.2</artifactId>
+			<version>8.5.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aspose-words-15.8.0-jdk16</groupId>
+			<artifactId>aspose-words-15.8.0-jdk16</artifactId>
+			<version>15.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>itextpdf-5.5.9</groupId>
+			<artifactId>itextpdf-5.5.9</artifactId>
+			<version>5.5.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
+			<version>1.0.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -264,7 +313,7 @@
 					<!--</execution>-->
 				<!--</executions>-->
 				<configuration>
-					<imageName>x_springboot/image</imageName>
+					<imageName>platform/image</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<resources>
 						<resource>
@@ -275,6 +324,21 @@
 					</resources>
 				</configuration>
 				<!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>/Users/fenggang/Documents/workspace/wjuxiang/Chi-enjoy-print/zx-platform/lib</directory>
+							<targetPath>BOOT-INF/lib</targetPath>
+							<filtering>true</filtering>
+							<includes>
+								<include>*.jar</include>
+							</includes> </resource>
+					</webResources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

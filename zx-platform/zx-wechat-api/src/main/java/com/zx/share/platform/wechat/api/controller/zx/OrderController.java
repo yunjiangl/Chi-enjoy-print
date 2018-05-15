@@ -8,9 +8,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zx.share.platform.common.service.MemcachedService;
 import com.zx.share.platform.constants.ErrorsEnum;
+import com.zx.share.platform.constants.OrderStatusEnum;
+import com.zx.share.platform.util.StringUtil;
+import com.zx.share.platform.util.email.StoreMail;
 import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +53,8 @@ public class OrderController extends BaseController {
 
 	@Autowired
 	private TokenCacheService tokenCacheService;
+	@Autowired
+	private MemcachedService memcachedService;
 
 	@ApiOperation(value = "保存订单信息接口", notes = "保存订单信息接口")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -204,5 +211,47 @@ public class OrderController extends BaseController {
 			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，请联系管理员");
 		}
 		return resopnseBean;
+	}
+
+	public void emailCallBack(){
+		String codes = memcachedService.get("zx_platform_order")+"";
+		try {
+			if(StringUtil.isNotBlank(codes)){
+				StringBuffer mCode = new StringBuffer(",");
+				List<Map<String,Object>> emailList = StoreMail.emailInbox();
+				String[] codeList = codes.split(",");
+				for (String code:codeList) {
+					if(StringUtil.isNotBlank(code)){
+						continue;
+					}
+					int count = 0;
+					if(emailList!=null && !emailList.isEmpty()){
+						for (Map<String,Object> map:emailList) {
+							String content = map.get("content")+"";
+							System.out.println(content);
+							if(content.indexOf(code)>=0){
+								count = 1;
+								if(map.get("subject").toString().indexOf("成功打印")>=0){
+									zxOrderService.updateOrderStatus(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER_OK.code);
+									break;
+								}else if(map.get("subject").toString().indexOf("成功打印")>=0){
+									zxOrderService.updateOrderStatus(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER.code);
+									break;
+								}else{
+									zxOrderService.updateOrderStatus(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER_ERROR.code);
+									break;
+								}
+							}
+						}
+					}
+					if(count==0){
+						mCode.append(code+",");
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

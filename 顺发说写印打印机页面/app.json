@@ -1,5 +1,8 @@
 {
   "pages": [
+
+    "pages/talking/talking",
+
     "pages/loginLoading/loginLoading",
     "pages/lawyerIndex/lawyerIndex",
     "pages/index/index",

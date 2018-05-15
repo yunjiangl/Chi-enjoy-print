@@ -1,0 +1,44 @@
+<!-- container start  -->
+  <view class='container'>
+    <!-- top start  -->
+      <view class='top'>
+        经过聊天窗口、微信等告知您收款账户而您向其付款的都有风险！后果自负。
+      </view>
+      <view class='time'>9:20 PM</view>
+    <!-- top end  -->
+    <!--content start  -->
+      <view class='content'>
+
+        <view class='talking one'>
+          <image src='../images/social-qq.png' />
+          <label>打印机使用方法？</label>
+        </view>
+
+        <view class='talking two'>
+          <label>首先连接好打印机，连接好</label>
+          <image src='../images/social-qq.png' />
+        </view>  
+
+        <view class='talking one'>
+          <image src='../images/social-qq.png' />
+          <label>打印机使用方法？</label>
+        </view>
+
+        <view class='talking two'>
+          <label>希望能帮助到您</label>
+          <image src='../images/social-qq.png' />
+        </view>  
+
+      </view>
+    <!--content end  -->
+    <!-- footer start  -->
+    <view class='footer'>
+      <!-- <view class='nav'> -->
+        <input value='' />
+        <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">发送</button>
+      <!-- </view> -->
+    </view>
+    <!--footer end  -->
+  </view>
+<!-- container end  -->

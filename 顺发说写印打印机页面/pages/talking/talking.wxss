@@ -1,0 +1,76 @@
+page{
+  background: #f5f5f5;
+}
+.container{
+  padding: 0px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 28rpx;
+}
+.top{
+  border-radius: 20rpx;
+  width: 70%;
+  margin: 40rpx auto;
+  background: #d2d2d2;
+  padding: 10rpx 20rpx;
+  margin-bottom: 60rpx;
+}
+.time{
+  width: 30%;
+  margin: 40rpx auto;
+  text-align: center;
+}
+.content{
+  padding: 0 30rpx;
+}
+.content image{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 100rpx;
+}
+.talking{
+   display: flex;
+   margin: 20rpx 0 40rpx 0;
+}
+.talking label{
+  padding: 10rpx 20rpx 0 20rpx;
+  border-radius: 8rpx;
+}
+.one label{
+  background: #fff;
+  margin-left: 20rpx;
+}
+.one{
+  display: flex;
+  justify-content: flex-start;
+}
+.two{
+  display: flex;
+  justify-content: flex-end;
+  color: #fff;
+}
+.two label{
+  background: #0096d5;
+  margin-right: 20rpx;
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+.footer input{
+  width: 80%;
+  height: 3rem;
+  min-height: 3rem;
+  border-radius: 8rpx;
+  background: #ececec;
+}
+.footer button{
+  width: 20%;
+  border-radius: 0;
+  border: none;
+}

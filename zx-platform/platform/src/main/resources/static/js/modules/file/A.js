@@ -70,7 +70,7 @@ var vm = new Vue({
     methods: {
         getCategory: function(){
             //加载菜单树
-            $.get(baseURL + "zx/ab/dictionary/list/zx_file_type_b", function(r){
+            $.get(baseURL + "zx/ab/dictionary/list/zx_file_type_a", function(r){
                 ztree = $.fn.zTree.init($("#categoryTree"), setting, r.list);
                 var node = ztree.getNodeByParam("id", vm.category.parentId);
                 ztree.selectNode(node);

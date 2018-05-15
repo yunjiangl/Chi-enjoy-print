@@ -126,22 +126,37 @@ Page({
       name: e.detail.value
     })
     //console.log("name"+that.data.name);
-    wx.request({
-      url: app.data.api + app.data.urlPrinterNearby,
-      header: {
-        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
-      },
-      method: 'GET',
-      data: {
-        query:that.data.name
-      },
-      success: function (resdata) {
-        console.log(resdata);
-        that.setData({
-          printList: resdata.data.data
-        })
-      }
-    })
+  },
+  ss: function(){
+    var that = this;
+    var name=that.data.name;
+    console.log(name);
+    console.log("测试一");
+    if(name==null&&name==''){
+      wx.showModal({
+        content: '请输入查询的内容',
+        success: function (res) {
+         // console.log(res.confirm);
+        }
+      })
+    }else{
+      wx.request({
+        url: app.data.api + app.data.urlPrinterNearby,
+        header: {
+          'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+        },
+        method: 'GET',
+        data: {
+          query: name
+        },
+        success: function (resdata) {
+          console.log(resdata);
+          that.setData({
+            printList: resdata.data.data
+          })
+        }
+      })
+    }
   },
 
   /**
@@ -165,8 +180,9 @@ Page({
             longitude: res.longitude
           },
           success: function (addressRes) {
-            console.log(addressRes)
+            //console.log(addressRes)
             var address = addressRes.result.formatted_addresses.recommend;
+           // console.log(address)
             wx.request({
               url: app.data.api + app.data.urlPrinterNearby,
               header: {
@@ -180,17 +196,18 @@ Page({
               success: function (resdata) {
                // console.log(res.latitude),
                //  console.log(res.longitude),
-                console.log(resdata);
+               console.log(resdata.data.data);
                 that.setData({
                   address: address,
                   printList: resdata.data.data
                 })
+              //  console.log(that.data.address)
               }
             })
 
           },
           fail: function (r) {
-            console.log(r)
+           //console.log(r)
           }
         })
       }
