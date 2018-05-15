@@ -12,7 +12,7 @@ Page({
   look: function (e) {
     var code = e.currentTarget.dataset.key
     wx.navigateTo({
-      url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code=' + code,
+      url: '../lawyerSeeeQuipment1/lawyerSeeeQuipment1?code=' + code,
     })
 
   },
@@ -25,6 +25,21 @@ Page({
       content: '确定退出该设备，不做该设备的线上管理员了吗？',
       success: function (res) {
         if (res.confirm) {
+
+          wx.request({
+            url: app.data.api + app.data.urlPrinterOut+index,
+            data: {
+             // code:index
+            },
+            header: {
+              'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
+              'content-type': 'application/json' // 默认值
+            },
+            success: function (res) {
+              console.log(res)
+              
+            }
+          })
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')

@@ -1,0 +1,62 @@
+<!--container start  -->
+  <view class='container'>
+
+    <!--content start  -->
+    <view class='content'>
+
+      <!--message start -->
+      <view class='message'>
+      
+        <view class='li'>
+          <label>设 备 编 码</label>
+          <label>{{details.printerCode}}</label>
+        </view>
+
+        <view class='li'>
+          <label>设 备 物 主</label>
+          <label>{{details.managerName}}</label>
+        </view>
+
+        <view class='li'>
+          <label>设 备 地 址</label>
+          <label>{{details.address}}</label>
+        </view>
+
+        <view class='li'>
+          <label>详 细 地 址</label>
+          <label>{{details.province}}{{details.city}}{{details.area}}</label>
+        </view>
+
+        <view class='li'>
+          <label>线下管理员</label>
+          <label>{{details.managerName}}</label>
+        </view>
+
+        <view class='li'>
+          <label>管理员电话</label>
+          <label>{{details.managerPhone}}</label>
+        </view>
+
+      </view>
+      <!--message end  -->
+
+          <!-- <view class='line'></view> -->
+
+      <!--btn start  -->
+        <!-- <view class='btn'>
+        <view></view>
+
+            <view class='button'>
+            
+            <button type='primary' bindtap='toJoin' data-key='{{details.printerCode}}' hover-class="other-button-hover" size='mini'>加入</button>
+
+            </view>
+
+        </view> -->
+      <!--btn end  -->
+
+    </view>  
+    <!--conten end  -->
+
+  </view>
+<!--container end  -->
