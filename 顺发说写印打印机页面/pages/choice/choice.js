@@ -132,7 +132,7 @@ Page({
     var name=that.data.name;
     console.log(name);
     console.log("测试一");
-    if(name==null){
+    if(name==null&&name==''){
       wx.showModal({
         content: '请输入查询的内容',
         success: function (res) {
@@ -182,6 +182,7 @@ Page({
           success: function (addressRes) {
             //console.log(addressRes)
             var address = addressRes.result.formatted_addresses.recommend;
+           // console.log(address)
             wx.request({
               url: app.data.api + app.data.urlPrinterNearby,
               header: {
@@ -200,6 +201,7 @@ Page({
                   address: address,
                   printList: resdata.data.data
                 })
+              //  console.log(that.data.address)
               }
             })
 

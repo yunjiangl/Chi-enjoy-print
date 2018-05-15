@@ -58,7 +58,7 @@
     <view class='list-unit' data-idx='{{index}}' bindtap='choiceLawyer'>
       <view class='item'>
         <view class='item_name'>{{item.name}}</view>
-        <view class='item_city'>{{item.province}} {{item.city}} {{item.area}}</view>
+        <view class='item_city'>{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
       </view>
       <view class='lable'> > </view>
     </view>
