@@ -45,7 +45,7 @@
           <!--page end  -->
 
         <view class='search' >
-        <image src='../images/search.png' />
+        <image src='../images/search.png' bindtap='ss'/>
           <input class='input' confirm-type="search" placeholder='搜索您选择的打印机' bindinput='sousuo'> </input>
         </view>
         

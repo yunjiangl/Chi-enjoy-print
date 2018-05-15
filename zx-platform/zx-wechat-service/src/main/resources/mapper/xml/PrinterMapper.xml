@@ -9,7 +9,7 @@
         <result column="province" property="province" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
         <result column="arae" property="area" jdbcType="VARCHAR"/>
-        <result column="address" property="name" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="manager_name" property="managerName" jdbcType="VARCHAR"/>
         <result column="manager_phone" property="managerPhone" jdbcType="VARCHAR"/>
         <result column="longitude" property="longitude" />
