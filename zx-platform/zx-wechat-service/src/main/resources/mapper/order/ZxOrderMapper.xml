@@ -229,7 +229,7 @@
 		#{code}
 	</select>
 
-	<update id="updateOrderStatus">
+	<update id="updateOrderStatus1">
 		update zx_order set status=#{1} where order_code=#{0}
 	</update>
 </mapper>

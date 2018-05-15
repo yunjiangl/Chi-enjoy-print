@@ -98,5 +98,5 @@ public interface ZxOrderService {
 	 */
 	void manualCallback(String orderCode,String payCode,Integer status,String error);
 
-	void updateOrderStatus(String code,Integer status);
+	void updateOrderStatus1(String code,Integer status);
 }

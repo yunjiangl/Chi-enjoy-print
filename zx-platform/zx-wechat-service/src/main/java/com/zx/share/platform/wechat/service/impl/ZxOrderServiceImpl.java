@@ -386,6 +386,9 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 		String fileTypeAB = "4";//ab类文件
 		String fileTypeCDE = "5";//cde类文件
 		OrderResultBean orderResultBean = zxOrderMapper.getOrderCode(code);
+		if(orderResultBean.getStatus()>6){
+			return false;
+		}
 		List<ZxOrderPrinterFile> list = zxOrderPrinterFileMapper.getOrderFile(code);
 		if(list!=null && !list.isEmpty()){
 			for (ZxOrderPrinterFile file:list) {
@@ -405,16 +408,30 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 				if(!fileEntity.isFile()){
 					return false;
 				}
-				if(SendMail.sendEmail(path)){
-					//TODO 写入打印订单状态集合
+
+				//多份重复发送
+				if(file.getPrinterNum()>1){
+					for (int i=0;i<file.getPrinterNum();i++){
+						SendMail.sendEmail(path);
+					}
 					String orderCodes = memcachedService.get("zx_platform_order")+"";
 					if(orderCodes.indexOf(orderResultBean.getOrderCode())<0){
 						memcachedService.set("zx_platform_order",60*60*24*100,orderCodes+","+orderResultBean.getOrderCode());
 					}
-					return true;
 				}else{
-					return false;
+
+					if(SendMail.sendEmail(path)){
+						//TODO 写入打印订单状态集合
+						String orderCodes = memcachedService.get("zx_platform_order")+"";
+						if(orderCodes.indexOf(orderResultBean.getOrderCode())<0){
+							memcachedService.set("zx_platform_order",60*60*24*100,orderCodes+","+orderResultBean.getOrderCode());
+						}
+						return true;
+					}else{
+						return false;
+					}
 				}
+
 			}
 		}
 		return false;
@@ -447,8 +464,8 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 	}
 
 	@Override
-	public void updateOrderStatus(String code, Integer status) {
-
+	public void updateOrderStatus1(String code, Integer status) {
+		zxOrderMapper.updateOrderStatus1(code,status);
 	}
 
 	private String getFilePath(FileResultBean bean){

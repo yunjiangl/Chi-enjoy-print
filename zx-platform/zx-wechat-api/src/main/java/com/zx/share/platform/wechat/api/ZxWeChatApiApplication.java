@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.request.async.DeferredResult;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -26,6 +27,7 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
  * @author fenggang
  */
 @EnableSwagger2
+@EnableScheduling
 @SpringBootApplication
 @MapperScan(basePackages = "com.zx.share.platform.wechat.mapper")
 @ComponentScan(basePackages = {"com.zx.share.platform.bean","com.zx.share.platform.common.service","com.zx.share.platform.wechat"})
