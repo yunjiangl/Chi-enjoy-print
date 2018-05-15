@@ -9,7 +9,8 @@ App({
       userType: null,// 用户类型，1为普通用户，2为律师用户（为2后isLock没有用），
       isLock: null,//1,通过，3为律师未通过和正在审核中
       userCode: null,
-      openId: null
+      openId: null,
+      userName:null
     },
     count:0,
     urlWechatLogin: "wechat/login",
@@ -114,6 +115,7 @@ App({
       that.data.userInfo.userType = data.data.data.userType;
       that.data.userInfo.accessToken = data.data.data.accessToken;
 	    that.data.userInfo.userCode=data.data.data.userCode;
+      that.data.userInfo.userName = data.data.data.nickName;
       console.log(data.data.data.accessToken);
     }
   },
@@ -134,7 +136,7 @@ App({
         // console.log(res);
         wx.login({
           success: function (loginres) {
-            that.wxLogin(res, loginres)
+            // that.wxLogin(res, loginres)
           }
         })
       }
