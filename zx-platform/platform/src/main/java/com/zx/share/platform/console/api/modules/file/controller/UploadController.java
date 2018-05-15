@@ -23,7 +23,7 @@ import java.io.*;
 @RequestMapping("/upload")
 public class UploadController extends AbstractController {
 
-    private final String UPLOAD_TYPE_A = "/Users/fenggang/a/";//A类文件
+    private final String UPLOAD_TYPE_A = "/home/file/";//A类文件
 
     /**
      * 单条数据展示
