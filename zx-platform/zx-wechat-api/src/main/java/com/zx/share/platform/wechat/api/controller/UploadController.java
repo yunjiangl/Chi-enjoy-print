@@ -101,7 +101,7 @@ public class UploadController {
 
 		//UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
 		//上传文件路径
-		String filePath="F://images//";
+		String filePath="F://images//"+userCode+"//";
 
 		return uploadService.addImg(multipartFile,filePath);
 	}
