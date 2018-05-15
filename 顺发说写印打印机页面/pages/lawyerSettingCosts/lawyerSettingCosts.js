@@ -9,14 +9,12 @@ Page({
 
     items1: [
       { name: '12', value: '单面', checked: 'true' },
-      { name: '13', value: '双面' },
     ],
     items2: [
       { checked: 'true' },
     ],
     items3: [
       { name: '10', value: '黑白', checked: 'true' },
-      { name: '11', value: '彩色' },
     ],
     printerNum: 1, // 打印数量，默认为1
     paperUsage: null,//范围
@@ -197,24 +195,9 @@ Page({
 
 
   },
-  // 获取打印机code，目前写死，之后需要调整
+  // 获取打印机code
   getPrinterCode: function () {
-    // console.log("获得打印机code")
-    // var that = this
-    // this.setData({
-    //   order: {
-    //     customerCode: that.data.order.customerCode,// 客户code
-    //     attorneyCode: that.data.order.attorneyCode, // 律师code
-    //     printerCode: '1561563', // 打印机code
-    //     fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
-    //     paperType: that.data.order.paperType, // 纸张类型
-    //     printerNum: that.data.order.printerNum, // 打印数量
-    //     paperColcor: that.data.order.paperColcor, // 纸张颜色
-    //     paperUsage: that.data.order.paperUsage, // 纸张使用
-    //     serviceAmout: that.data.order.serviceAmout, // 服务费
-    //     fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
-    //   }
-    // })
+
     wx: wx.navigateTo({
       url: '../map/map?costs=true',
       success: function (res) { },
@@ -222,15 +205,19 @@ Page({
       complete: function (res) { },
     })
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // 在页面加载时就设置order的律师code
     this.getLawyerCode()
-    // 把接收到的字符串转换成json对象
-    var fileInfo = JSON.parse(options.fileInfo);
 
+    if (!(Object.prototype.toString.call(options.fileInfo) === '[object Undefined]')) {
+      // 把接收到的字符串转换成json对象
+      var fileInfo = JSON.parse(options.fileInfo);
+    }
+   
     var fileCodes = '' // 文件code
     var filePaper = null // 页数
     var fileNames = []

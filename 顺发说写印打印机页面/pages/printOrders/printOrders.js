@@ -43,7 +43,7 @@ Page({
     var orderInfo = that.data.orderList[e.currentTarget.dataset.idx]
     if (orderInfo.status == 1) {
       wx.navigateTo({
-        url: '../printCost/printCost?orderAmount=' + orderInfo.orderAmount + "&orderCode=" + orderInfo.orderCode,
+        url: '../printCost/printCost?orderAmount=' + orderInfo.serviceAmount + "&orderCode=" + orderInfo.orderCode,
       })
     } else if (orderInfo.status == 5) {
       wx.showModal({

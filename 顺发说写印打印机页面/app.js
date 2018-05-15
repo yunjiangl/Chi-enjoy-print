@@ -198,6 +198,7 @@ App({
 
   //判断登录状态
   loginCheck: function (res) {
+    var that = this
     if (res.data.code == 400 || res.data.code == 600 ) {
       wx.getUserInfo({
         success: function (res) {
