@@ -50,3 +50,17 @@ page{
   background: #e0e0e0;
   margin: 15px 0px;
 }
+.li{
+  display: flex;
+  margin: 20rpx 0; 
+}
+.li label{
+  margin-right: 20rpx;
+  width: 30%;
+}
+.li_right{
+  width: 70%;
+}
+.relation{
+  margin-top: 40rpx;
+}

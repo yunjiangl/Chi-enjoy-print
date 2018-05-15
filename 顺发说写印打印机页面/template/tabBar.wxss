@@ -22,5 +22,5 @@
 }
 /*当前字体颜色*/
 .tabBartext{
-  color:red;
+  color:#3f9cfb;
 }
