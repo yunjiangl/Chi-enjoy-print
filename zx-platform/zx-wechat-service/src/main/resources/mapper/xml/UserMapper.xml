@@ -55,6 +55,7 @@
             user_code,
             open_id,
             username,
+            nickname,
             age,
             province,
             city,
@@ -66,6 +67,7 @@
         values(
             #{userCode},
             #{openId},
+            #{nickName},
             #{nickName},
             #{sex},
             #{province},

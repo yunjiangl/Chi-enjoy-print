@@ -35,6 +35,23 @@ public class ImServiceImpl implements ImService {
     public PageResponseBean<ImResponseBean> page(ImRequestBean bean) {
         Integer count = imMapper.pageCount(bean);
         List<ImResponseBean> list = imMapper.page(bean);
+        if(list!=null && !list.isEmpty()){
+            for (ImResponseBean imBean:list) {
+                UserDetailsBean user = userService.details(imBean.getUserCode());
+                if(user!=null){
+                    imBean.setUserId(user.getId());
+                    imBean.setUserName(user.getNickName());
+                    imBean.setUserPortrait(user.getPortrait());
+                }
+                UserDetailsBean attorney = userService.details(imBean.getAttorneyCode());
+                if(attorney!=null){
+                    imBean.setAttorneyId(attorney.getId());
+                    imBean.setAttorneyName(attorney.getNickName());
+                    imBean.setAttorneyPortrait(attorney.getPortrait());
+                }
+            }
+        }
+
         PageResponseBean<ImResponseBean> responseBean = new PageResponseBean<>(bean,count);
         responseBean.setContent(list);
         return responseBean;
