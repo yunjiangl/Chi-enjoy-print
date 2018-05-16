@@ -63,6 +63,11 @@ Page({
       }
     })
   },
+  ImportFile: function(){
+    wx.navigateTo({
+      url: '../ImportFile/ImportFile',
+    })
+  },
   // 扫二维码
   scanCode:function(){
     wx.scanCode({
@@ -72,6 +77,6 @@ Page({
     })
   },
   onLoad: function () {
-    template.tabbar("tabBar", 0, this, app.data.userInfo.userType)//0表示第一个tabbar
+    template.tabbar("tabBar", 0, this, app.data.userInfo.userType, app.data.userInfo.isLock)//0表示第一个tabbar
   },
 })

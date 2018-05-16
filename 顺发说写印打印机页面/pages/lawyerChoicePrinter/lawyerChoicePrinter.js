@@ -31,7 +31,12 @@ Page({
               wx.showToast({
                 title: '已提交申请',
                 icon: 'success',
-                duration: 2000
+                duration: 2000,
+                success:function(){
+                  wx.navigateTo({
+                    url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code=' + code,
+                  })
+                }
               })
             }
           })

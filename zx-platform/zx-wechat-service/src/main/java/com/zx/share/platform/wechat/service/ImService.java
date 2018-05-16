@@ -14,5 +14,5 @@ public interface ImService {
 
     PageResponseBean<ImResponseBean> page(ImRequestBean bean);
 
-    Integer add(String code,String userCode);
+    Integer add(String code,String userCode,String text);
 }

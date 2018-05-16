@@ -1,5 +1,7 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
+import com.zx.share.platform.common.service.MemcachedService;
+import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.user.ImRequestBean;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fenggang on 18/5/7.
@@ -31,6 +35,8 @@ public class ImController extends BaseController {
 
     @Autowired
     private ImService imService;
+    @Autowired
+    private MemcachedService memcachedService;
 
     @ApiOperation(value = "对话列表", notes = "对话列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -56,12 +62,50 @@ public class ImController extends BaseController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     @ResponseBody
     public DefaultResopnseBean<Boolean> list(
+            @ApiParam(value = "1-客户，2-律师") @RequestParam(name = "type", required = false) String type,
+            @ApiParam(value = "对话内容") @RequestParam(name = "msg", required = false) String msg,
             @ApiParam(value = "用户Code") @RequestParam(name = "userCode", required = false) String userCode,
             @ApiParam(value = "律师Code") @RequestParam(name = "code", required = false) String code,
             HttpServletRequest request) throws Exception {
         servletPath = request.getServletPath();
-        imService.add(code,userCode);
+        this._list(type,msg,userCode,code);
         return new DefaultResopnseBean<>();
+    }
+
+    private synchronized void _list(String type,String msg,String userCode,String code){
+        String text = memcachedService.get(userCode+"-"+code+"-"+type)+"";
+        memcachedService.set(userCode+"-"+code+"-"+type,60*60,text+"____"+msg);
+        imService.add(code,userCode,msg);
+    }
+
+    @ApiOperation(value = "查询对话", notes = "查询对话")
+    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    @ResponseBody
+    public DefaultResopnseBean<List<String>> msg(
+            @ApiParam(value = "1-客户，2-律师") @RequestParam(name = "type", required = false) String type,
+            @ApiParam(value = "用户Code") @RequestParam(name = "userCode", required = false) String userCode,
+            @ApiParam(value = "律师Code") @RequestParam(name = "code", required = false) String code,
+            HttpServletRequest request) throws Exception {
+        servletPath = request.getServletPath();
+
+        DefaultResopnseBean<List<String>> resopnseBean = new DefaultResopnseBean<>();
+        resopnseBean.setData(this._msg(type,userCode,code));
+        return resopnseBean;
+    }
+
+    private synchronized List<String> _msg(String type,String userCode,String code){
+        List<String> list = new ArrayList<>();
+        String text = memcachedService.get(userCode+"-"+code+"-"+type)+"";
+        if(StringUtil.isNotBlank(text)){
+            String txt[] = text.split("____");
+            for (String str:txt) {
+                if(StringUtil.isNotBlank(txt)){
+                    list.add(str);
+                }
+            }
+        }
+        memcachedService.delete(userCode+"-"+code+"-"+type);
+        return list;
     }
 
 }

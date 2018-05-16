@@ -2,9 +2,9 @@
   <view class='container'>
     
     <!--top start  -->
-      <view class='top'>
+      <view class='top' bindtap='getPrinterCode'>
          <view class='lt'>
-            <text>请选择打印机</text>
+            <text>{{printerAddress}}</text>
           </view>
         <view class='rt'> > </view>
       </view>
@@ -30,8 +30,9 @@
           <view class='font'>份数</view>
           <view class='a4 update'>
               
-              <view class='minus'>-</view>
-              <view class='add'>+</view>
+              <view class='minus' bindtap='minus'>-</view>
+              <text>{{printerNum}}</text>
+              <view class='add' bindtap='add'>+</view>
 
           </view>
 
@@ -84,7 +85,7 @@
         <view class='list'>
 
           <view class='font'>纸张</view>
-          <view class='a4'>所有页面(共2页)</view>
+          <view class='a4'>所有页面(共{{order.printerNum}}页)</view>
 
         </view>
       <!-- list end  -->        
@@ -97,10 +98,10 @@
 
         <view class='total'>
         <text>合计</text>
-        <text>2页共计<text style='color:#f00;'>0.4元</text></text>
+        <text>{{order.printerNum}}页共计<text style='color:#f00;'>{{orderAmout}}元</text></text>
         </view>
 
-        <view class='finish'>
+        <view class='finish' bindtap='finish'>
           <text>确认打印</text>
         </view>
 

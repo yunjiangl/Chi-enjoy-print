@@ -44,7 +44,7 @@ public class UploadServiceImpl implements UploadService {
             targetFile.mkdirs();
         }
 
-        String fileURL = this._getFilePath(filePath, file.getUserId().toString()) + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
+        String fileURL = this._getFilePath(filePath, file.getUserCode()) + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
 
         try {
 

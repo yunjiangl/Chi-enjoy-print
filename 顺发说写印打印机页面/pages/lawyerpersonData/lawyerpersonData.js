@@ -70,7 +70,7 @@ Page({
     wx.getStorage({
       key: 'key',
       success: function (res) {
-        console.log(res.data)
+       //console.log(res.data)
       },
       fail: function () { },
       complete: function () { }
@@ -101,7 +101,7 @@ Page({
         console.log(res.data.data.nickName)
         that.setData({
           details: res.data.data,
-          showView: (res.data.data.details.isLock == "2" ? false:true )
+          showView: (res.data.data.isLock == "2" ? false:true )
         })
       }
     })

@@ -1,6 +1,10 @@
 {
   "pages": [
+
+   
+
     "pages/loginLoading/loginLoading",
+    "pages/talking/talking",
     "pages/lawyerIndex/lawyerIndex",
     "pages/index/index",
     "pages/lawyerpersonData/lawyerpersonData",
@@ -26,6 +30,7 @@
     "pages/lawyerSearchOrders/lawyerSearchOrders",
     "pages/lawyerSearch/lawyerSearch",
     "pages/lawyerSeeeQuipment/lawyerSeeeQuipment",
+    "pages/lawyerSeeeQuipment1/lawyerSeeeQuipment1",
     "pages/lawyerFileClassC/lawyerFileClassC",
     "pages/lawyerFileClassB/lawyerFileClassB",
     "pages/lawyerFileClassA/lawyerFileClassA",

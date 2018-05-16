@@ -94,7 +94,7 @@ Page({
           }
           that.setData({
             orderList: list,
-            msg:''
+            msg: ''
           })
         }
       }
@@ -106,7 +106,7 @@ Page({
    */
   onLoad: function (options) {
     // 加载导航栏
-    template.tabbar("tabBar", 3, this, app.data.userInfo.userType)//0表示第一个tabbar
+    template.tabbar("tabBar", 3, this, app.data.userInfo.userType, app.data.userInfo.isLock)//0表示第一个tabbar
     this.getData()
 
   },

@@ -43,6 +43,7 @@ public class UploadController {
 	 */
 	@RequestMapping(value = "/e", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
 	@ApiOperation(value = "e上传文件", notes = "用户上传手机照片")
+	@ResponseBody
 	public DefaultResopnseBean<Object> fileUploadE(
 			@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile,
 			@ApiParam(value = "用户code", required = true) String userCode,
@@ -59,6 +60,7 @@ public class UploadController {
 		file.setCategoryId(127L);
 		file.setCategoryCode("zx_file_type_e");
 		file.setUserCode(userCode);
+		file.setFileNum(1);
 
 		return uploadService.add(file, multipartFile);
 	}
@@ -103,7 +105,7 @@ public class UploadController {
 
 		//UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
 		//上传文件路径
-		String filePath="F://images//";
+		String filePath="F://images//"+userCode+"//";
 
 		return uploadService.addImg(multipartFile,filePath);
 	}

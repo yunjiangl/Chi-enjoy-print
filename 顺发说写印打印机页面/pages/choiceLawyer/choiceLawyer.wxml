@@ -1,14 +1,36 @@
 <!--container start  -->
 <view class='container'>
-  <view>
+  <view class=''>
     打印设备信息
-    <view>打印机编码 {{printInfo.code}}</view>
-    <view>打印机地址 {{printInfo.province}}{{printInfo.city}}{{printInfo.area}}</view>
-    <view>详细地址 {{printInfo.name}}</view>
-    <view>打印机值守人 {{printInfo.managerName}}</view>
-    <view>值守人联系电话 {{printInfo.managerPhone}}</view>
+
+    <view class='li'>
+      <label>打印机编码</label>
+      <label class='li_right'>{{printInfo.code}}</label>
+    </view>
+    
+    <view class='li'>
+      <label>打印机地址</label>
+      <label class='li_right'>{{printInfo.province}}{{printInfo.city}}{{printInfo.area}}</label>
+    </view>
+
+    <view class='li'>
+      <label>详细地址</label>
+      <label class='li_right'>{{printInfo.name}}</label>
+    </view>
+
+    <view class='li'>
+      <label>打印机值守人</label>
+      <label class='li_right'>{{printInfo.managerName}}</label>
+    </view>
+
+    <view class='li'>
+      <label>值守人电话</label>
+      <label class='li_right'>{{printInfo.managerPhone}}</label>
+    </view>
+
   </view>
-  <view>和打印机管理的律师</view>
+
+  <view class='relation'>和打印机关联的律师</view>
   <view wx:for='{{lawyerList}}' bindtap='lawyerInfo' data-idx='{{index}}'>
     <!-- list start  -->
     <view class='list'>

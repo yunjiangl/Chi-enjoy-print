@@ -44,7 +44,7 @@ logout:function(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    template.tabbar("tabBar", 4, this, app.data.userInfo.userType)//0表示第一个tabbar
+    template.tabbar("tabBar", 4, this, app.data.userInfo.userType, app.data.userInfo.isLock)//0表示第一个tabbar
   },
 
   /**

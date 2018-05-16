@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function (options) {
     
-    template.tabbar("tabBar", 2, this, app.data.userInfo.userType)//0表示第一个tabbar
+    template.tabbar("tabBar", 2, this, app.data.userInfo.userType, app.data.userInfo.isLock)//0表示第一个tabbar
   },
 
   /**

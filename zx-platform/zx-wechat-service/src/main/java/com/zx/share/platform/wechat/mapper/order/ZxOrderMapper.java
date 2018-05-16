@@ -36,6 +36,7 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 
 	ZxOrder selectByCode(String code);
 
-	Integer updateOrderStatus(String code,Integer status);
+
+	Integer updateOrderStatus1(String code,Integer status);
 
 }
