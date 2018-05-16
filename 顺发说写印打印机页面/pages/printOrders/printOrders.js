@@ -94,7 +94,7 @@ Page({
           }
           that.setData({
             orderList: list,
-            msg:''
+            msg: ''
           })
         }
       }

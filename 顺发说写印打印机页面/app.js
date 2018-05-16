@@ -2,11 +2,11 @@
 var countNum =1;
 App({
   data: {
-     api: 'http://123.206.42.162:10001/',
-   // api: 'http://127.0.0.1:10001/',
+    //  api: 'http://123.206.42.162:10001/',
+   api: 'http://127.0.0.1:10001/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
-      userType: null,// 用户类型，1为普通用户，2为律师用户（），
+      userType: 2,// 用户类型，1为普通用户，2为律师用户（），
       isLock: null,//1,律师认证通过，3为律师认证未通过和正在审核中
       userCode: null,
       openId: null,
@@ -87,30 +87,30 @@ App({
       //先赋值openId
       that.data.userInfo.openId = data.data.data.openId;
       // 如果用户刚刚使用微信登录
-      if (data.data.data.userStatus == 1) {
-        wx.redirectTo({
-          url: '../register/register'
-        })
+      // if (data.data.data.userStatus == 1) {
+      //   wx.redirectTo({
+      //     url: '../register/register'
+      //   })
 
-      } else {
-        // 判断用户类型
+      // } else {
+      //   // 判断用户类型
 
-        if (data.data.data.userType == 2) {
-          console.log("我是律师")
-          //跳转到律师首页
-          wx.redirectTo({
-            url: "../lawyerIndex/lawyerIndex"
-          })
+      //   if (data.data.data.userType == 2) {
+      //     console.log("我是律师")
+      //     //跳转到律师首页
+      //     wx.redirectTo({
+      //       url: "../lawyerIndex/lawyerIndex"
+      //     })
 
 
-        } else if (data.data.data.userType == 1) {
-          //跳转到普通用户首页
-          wx.redirectTo({
-            url: '../CustomerIndex/CustomerIndex'
-          })
+      //   } else if (data.data.data.userType == 1) {
+      //     //跳转到普通用户首页
+      //     wx.redirectTo({
+      //       url: '../CustomerIndex/CustomerIndex'
+      //     })
 
-        }
-      }
+      //   }
+      // }
       // 为全局变量赋值
       that.data.userCode = data.data.data.userCode;
       that.data.userInfo.userType = data.data.data.userType;
@@ -138,7 +138,7 @@ App({
         // console.log(res);
         wx.login({
           success: function (loginres) {
-            // that.wxLogin(res, loginres)
+            that.wxLogin(res, loginres)
           }
         })
       }
