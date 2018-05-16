@@ -1,5 +1,6 @@
 package com.zx.share.platform.vo.wechat.response;
 
+import com.zx.share.platform.bean.sys.SysUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -36,7 +37,16 @@ public class PrinterResultBean implements Serializable {
     private String managerPhone;
     @ApiModelProperty(value = "物主id")
     private String createId;
+    @ApiModelProperty(value = "物主")
+    private SysUser sysuser;
 
+    public SysUser getSysuser() {
+        return sysuser;
+    }
+
+    public void setSysuser(SysUser sysuser) {
+        this.sysuser = sysuser;
+    }
 
     public String getCreateId() {
         return createId;

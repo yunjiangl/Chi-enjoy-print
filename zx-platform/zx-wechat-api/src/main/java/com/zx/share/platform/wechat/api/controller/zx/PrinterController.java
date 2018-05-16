@@ -149,13 +149,15 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/my", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<PageResponseBean<PrinterResultBean>> my(
-			@ApiParam("第几页") @RequestParam("page") Integer page,
-			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize, HttpServletRequest request) {
+			@ApiParam("用户code") @RequestParam("userCode") String userCode,
+			/*@ApiParam("第几页") @RequestParam("page") Integer page,*/
+			/*@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,*/ HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		PrinterQueryBean queryBean = new PrinterQueryBean();
-		queryBean.setPage(page);
-		queryBean.setPageSize(pageSize);
+		//queryBean.setPage(page);
+		//queryBean.setPageSize(pageSize);
+		queryBean.setUserCode(userCode);
 		PageResponseBean<PrinterResultBean> pageResultBean = printerService.my(queryBean);
 		resopnseBean.setData(pageResultBean);
 		return resopnseBean;
@@ -195,11 +197,12 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/apply/{code}", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<Object> printApply(@ApiParam("打印机code") @PathVariable("code") String code,
+												  @ApiParam("用户code") @RequestParam("userCode") String userCode,
 			HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<Object>();
 
-		if (!zxUserPrinterApplyService.add(code, request)) {
+		if (!zxUserPrinterApplyService.add(userCode,code, request)) {
 			resopnseBean.setCode(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code);
 			resopnseBean.setMessage(ErrorsEnum.SYSTEM_CUSTOM_ERROR.label);
 		}

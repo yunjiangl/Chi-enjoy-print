@@ -3,8 +3,8 @@ var countNum = 1;
 var countNum = 1;
 App({
   data: {
-    //  api: 'http://123.206.42.162:10001/',
-    api: 'http://127.0.0.1:10001/',
+    //api: 'http://127.0.0.1:10001/',
+    api: 'http://ng.name168.cn/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: 2,// 用户类型，1为普通用户，2为律师用户（），
@@ -42,7 +42,7 @@ App({
     urlPrinterOut: 'printer/out/',//打印机详情
     urlUploadFileE: 'upload/file/e', // 用户上传照片  
     urlDictionaryGet: 'dictionary/get',//获取字典信息
-    urlOrderPrinter:'order/printer/',// 打印订单文件
+    urlOrderPrinter: 'order/printer/',// 打印订单文件
   },
 
   // 微信登录
@@ -92,60 +92,33 @@ App({
       //先赋值openId
       that.data.userInfo.openId = data.data.data.openId;
       // 如果用户刚刚使用微信登录
-      // if (data.data.data.userStatus == 1) {
-      //   wx.redirectTo({
-      //     url: '../register/register'
-      //   })
-      // 如果用户刚刚使用微信登录
-      if (data.data.data.userStatus == 1) {
+      wx.redirectTo({
+        url: '../register/register'
+      })
+    } else {
+      // 判断用户类型
+      if (data.data.data.userType == 2) {
+        console.log("我是律师")
+        //跳转到律师首页
         wx.redirectTo({
-          url: '../register/register'
+          url: "../lawyerIndex/lawyerIndex"
         })
-
-        // } else {
-        //   // 判断用户类型
-      } else {
-        // 判断用户类型
-
-        //   if (data.data.data.userType == 2) {
-        //     console.log("我是律师")
-        //     //跳转到律师首页
-        //     wx.redirectTo({
-        //       url: "../lawyerIndex/lawyerIndex"
-        //     })
-        if (data.data.data.userType == 2) {
-          console.log("我是律师")
-          //跳转到律师首页
-          wx.redirectTo({
-            url: "../lawyerIndex/lawyerIndex"
-          })
-
-
-          //   } else if (data.data.data.userType == 1) {
-          //     //跳转到普通用户首页
-          //     wx.redirectTo({
-          //       url: '../CustomerIndex/CustomerIndex'
-          //     })
-        } else if (data.data.data.userType == 1) {
-          //跳转到普通用户首页
-          wx.redirectTo({
-            url: '../CustomerIndex/CustomerIndex'
-          })
-
-          //   }
-          // }
-        }
+      } else if (data.data.data.userType == 1) {
+        //跳转到普通用户首页
+        wx.redirectTo({
+          url: '../CustomerIndex/CustomerIndex'
+        })
       }
-      // 为全局变量赋值
-      that.data.userCode = data.data.data.userCode;
-      that.data.userInfo.userType = data.data.data.userType;
-      that.data.userInfo.isLock = data.data.data.isLock;
-      that.data.userInfo.accessToken = data.data.data.accessToken;
-      that.data.userInfo.userCode = data.data.data.userCode;
-      that.data.userInfo.userCode = data.data.data.userCode;
-      that.data.userInfo.userName = data.data.data.nickName;
-      console.log(data.data.data.accessToken);
     }
+    // 为全局变量赋值
+    that.data.userCode = data.data.data.userCode;
+    that.data.userInfo.userType = data.data.data.userType;
+    that.data.userInfo.isLock = data.data.data.isLock;
+    that.data.userInfo.accessToken = data.data.data.accessToken;
+    that.data.userInfo.userCode = data.data.data.userCode;
+    that.data.userInfo.userCode = data.data.data.userCode;
+    that.data.userInfo.userName = data.data.data.nickName;
+    console.log(data.data.data.accessToken);
   },
 
   onLaunch: function () {

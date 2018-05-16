@@ -14,7 +14,7 @@
 
         <view class='li'>
           <label>设 备 物 主</label>
-          <label>{{details.managerName}}</label>
+          <label>{{details.sysUser.username}}</label>
         </view>
 
         <view class='li'>

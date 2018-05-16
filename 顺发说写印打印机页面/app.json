@@ -1,16 +1,16 @@
 {
   "pages": [
+    "pages/loginLoading/loginLoading",
     "pages/lawyerIndex/lawyerIndex",
     "pages/index/index",
-    "pages/lawyerpersonData/lawyerpersonData",
-    "pages/lawyerTransactionOrder/lawyerTransactionOrder",
-    "pages/personalCenter/personalCenter",
     "pages/talking/talking",
+    "pages/lawyerpersonData/lawyerpersonData",
+    "pages/personalCenter/personalCenter",
     "pages/lawyerSeeMessage/lawyerSeeMessage",
     "pages/deviceOwner/deviceOwner",
     "pages/lawyerMessageNotify/lawyerMessageNotify",
     "pages/lawyerChoiceOwner/lawyerChoiceOwner",
-    
+    "pages/lawyerTransactionOrder/lawyerTransactionOrder",
     "pages/howuse/howuse",
     "pages/lawyerConsummatePersonData/lawyerConsummatePersonData",
     "pages/improvingPersonalData/improvingPersonalData",
