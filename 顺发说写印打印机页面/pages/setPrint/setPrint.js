@@ -7,14 +7,12 @@ Page({
   data: {
     items1: [
       { name: 'putong', value: '单面', checked: 'true' },
-      { name: 'lvshi', value: '双面' },
     ],
     items2: [
       { checked: 'true' },
     ],
     items3: [
       { name: 'putong', value: '黑白', checked: 'true' },
-      { name: 'lvshi', value: '彩色' },
     ],
   
   },

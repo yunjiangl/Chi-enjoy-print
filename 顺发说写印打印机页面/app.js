@@ -36,6 +36,7 @@ App({
     urlPrinterFind: 'printer/find/',//物主打印机
     urlPrinterApply: 'printer/apply/',//加入申请
     urlPrinterInfo: 'printer/info/',//打印机详情
+    urlUploadFileUserimg: 'upload/file/userimg', // 用户上传照片
   },
 
   // 微信登录

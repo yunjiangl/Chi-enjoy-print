@@ -2,10 +2,7 @@ package com.zx.share.platform.wechat.service.impl;
 
 import com.zx.share.platform.bean.zx.ZxFileManagerCDE;
 import com.zx.share.platform.constants.ErrorsEnum;
-import com.zx.share.platform.util.DateUtil;
-import com.zx.share.platform.util.Excel2Pdf;
-import com.zx.share.platform.util.GetPdfpage;
-import com.zx.share.platform.util.Word2PdfUtil;
+import com.zx.share.platform.util.*;
 import com.zx.share.platform.util.file.FileUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.wechat.service.UploadService;
@@ -17,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -94,15 +92,16 @@ public class UploadServiceImpl implements UploadService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        List<ZxFileManagerCDE> list =  CDEFileMapper.selectAll();
 
         file.setFileName(multipartFile.getOriginalFilename());
         file.setFileUrl(fileURL);
-
+        file.setFileCode(CodeBuilderUtil.fileCode(file.getCategoryCode(),String.valueOf(list.get(list.size()-1).getId() + 1)));
         file.setCreateTime(new Date());
 
         CDEFileMapper.insertSelective(file);
 
-        return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, null);
+        return new DefaultResopnseBean<Object>(ErrorsEnum.SUCCESS.label, ErrorsEnum.SUCCESS.code, file.getFileCode());
     }
 
     //按照类型，年月日区分文件夹

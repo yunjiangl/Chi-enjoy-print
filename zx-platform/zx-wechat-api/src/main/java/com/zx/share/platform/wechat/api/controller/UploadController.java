@@ -42,21 +42,23 @@ public class UploadController {
 	 * @Description: 上传文件
 	 */
 	@RequestMapping(value = "/e", consumes = "multipart/*", headers = "content-type=multipart/form-data", method = RequestMethod.POST)
-	@ApiOperation(value = "e上传文件", notes = "用户上传文件")
+	@ApiOperation(value = "e上传文件", notes = "用户上传手机照片")
 	public DefaultResopnseBean<Object> fileUploadE(
 			@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile,
-			@ApiParam(value = "管理员id", required = true) Long managerId,
+			@ApiParam(value = "用户code", required = true) String userCode,
 			@ApiParam(value = "摘要", required = true) String abstracts, HttpServletRequest request) throws Exception {
 
 		ZxFileManagerCDE file = new ZxFileManagerCDE();
 
-		UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
+		//UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
 
-		file.setCreateId(userCache.getId());
-		file.setUserId(userCache.getId());
-		file.setManagerId(managerId);
+		//file.setCreateId(userCache.getId());
+		//file.setUserId(userCache.getId());
+		//file.setManagerId(managerId);
 		file.setAbstracts(abstracts);
-		file.setCategoryId(16L);
+		file.setCategoryId(127L);
+		file.setCategoryCode("zx_file_type_e");
+		file.setUserCode(userCode);
 
 		return uploadService.add(file, multipartFile);
 	}
