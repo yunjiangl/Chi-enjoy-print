@@ -1,18 +1,39 @@
 // pages/lawyerTransactionOrder/lawyerTransactionOrder.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    nameOrCode:null,
+    time:null
   },
-
+  getData: function () {
+    var that = this;
+    console.log("测试1")
+    console.log(app.data.userInfo.accessToken);
+    wx.request({
+      url: app.data.api + 'order/attorney',
+      method: 'GET',
+      data: {
+        nameOrCode: that.data.nameOrCode,
+        time: that.data.time
+      },
+      header: {
+        'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that=this;
+    that.getData();
   },
 
   /**
