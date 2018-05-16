@@ -219,7 +219,7 @@ public class UserServiceImpl implements UserService {
 				attorney.setDomainList(domains);
 				resultBean.setAttorney(attorney);
 			}
-			memcachedService.set(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
+			//memcachedService.set(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY,resultBean);
 		}else{
 			 resultBean = (UserDetailsBean)obj;
 		}

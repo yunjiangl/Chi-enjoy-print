@@ -28,4 +28,16 @@
             </if>
         </where>
     </select>
+    <insert id="insertMsg" parameterType="com.zx.share.platform.bean.zx.UserChatMsg">
+        INSERT INTO t_user_chat_msg(user_id,user_code,chat_user_id,chat_user_code,chat_time,msg)
+        VALUES (
+        #{userId},
+        #{userCode},
+        #{chatUserId},
+        #{chatUserCode},
+        #{chatTime},
+        #{msg}
+        )
+
+    </insert>
 </mapper>

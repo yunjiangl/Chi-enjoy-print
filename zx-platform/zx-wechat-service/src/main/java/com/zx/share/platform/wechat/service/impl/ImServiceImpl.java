@@ -1,6 +1,7 @@
 package com.zx.share.platform.wechat.service.impl;
 
 import com.zx.share.platform.bean.zx.UserChat;
+import com.zx.share.platform.bean.zx.UserChatMsg;
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.user.ImRequestBean;
@@ -40,7 +41,8 @@ public class ImServiceImpl implements ImService {
     }
 
     @Override
-    public Integer add(String code, String userCode) {
+    public Integer add(String code, String userCode,String text) {
+
         UserDetailsBean attorney = userService.details(code);
 
         UserDetailsBean user = userService.details(userCode);
@@ -50,6 +52,19 @@ public class ImServiceImpl implements ImService {
         userChat.setUserCode(user.getUserCode());
         userChat.setUserId(user.getId());
         userChat.setChatUserId(attorney.getId());
-        return imMapper.insert(userChat);
+        UserChatMsg msg = new UserChatMsg();
+        msg.setChatTime(new Date());
+        msg.setChatUserCode(attorney.getUserCode());
+        msg.setUserCode(user.getUserCode());
+        msg.setUserId(user.getId());
+        msg.setChatUserId(attorney.getId());
+        msg.setMsg(text);
+        try{
+            imMapper.insert(userChat);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return imMapper.insertMsg(msg);
     }
 }
