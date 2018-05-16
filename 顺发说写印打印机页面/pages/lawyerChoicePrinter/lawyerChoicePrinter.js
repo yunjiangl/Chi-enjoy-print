@@ -21,13 +21,14 @@ Page({
             url: app.data.api + app.data.urlPrinterApply + code,
             method: 'GET',
             data: {
-              //printer/apply/
+              userCode: app.data.userCode
             },
             header: {
               'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
               'content-type': 'application/json' // 默认值
             },
             success: function (res) {
+              console.log(res)
               wx.showToast({
                 title: '已提交申请',
                 icon: 'success',

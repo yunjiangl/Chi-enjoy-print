@@ -33,11 +33,12 @@ public class ZxUserPrinterServiceImpl implements ZxUserPrinterService {
 	public boolean update(String code, HttpServletRequest request) {
 
 		try {
-			UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
+			//UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
 			ZxUserPrinter record = new ZxUserPrinter();
 			record.setPrinterCode(code);
-			record.setUserCode(userCache.getUserCode());
+			//record.setUserCode(userCache.getUserCode());
 			ZxUserPrinter zxUserPrinter = zxUserPrinterMapper.selectOne(record);
+			System.out.println(zxUserPrinter.getUserCode());
 			zxUserPrinterMapper.delete(zxUserPrinter);
 			zxUserPrinter.setStatus(0);
 

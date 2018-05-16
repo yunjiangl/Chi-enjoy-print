@@ -38,21 +38,23 @@ Page({
 
   minus: function () {
     var that = this
-    that.setData({
-      printerNum: that.data.printerNum - 1,
-      order: {
-        customerCode: that.data.order.customerCode,// 客户code
-        attorneyCode: that.data.order.attorneyCode, // 律师code
-        printerCode: that.data.order.printerCode, // 打印机code
-        fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
-        paperType: that.data.order.paperType, // 纸张类型
-        printerNum: (that.data.printerNum * that.data.filePaper), // 打印数量
-        paperColcor: that.data.order.paperColcor, // 纸张颜色
-        paperUsage: that.data.order.paperUsage, // 纸张使用
-        serviceAmout: that.data.order.serviceAmout, // 服务费
-        fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
-      }
-    })
+    if (that.data.printerNum > 1) {
+      that.setData({
+        printerNum: that.data.printerNum - 1,
+        order: {
+          customerCode: that.data.order.customerCode,// 客户code
+          attorneyCode: that.data.order.attorneyCode, // 律师code
+          printerCode: that.data.order.printerCode, // 打印机code
+          fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+          paperType: that.data.order.paperType, // 纸张类型
+          printerNum: ((that.data.printerNum - 1) * that.data.filePaper), // 打印数量
+          paperColcor: that.data.order.paperColcor, // 纸张颜色
+          paperUsage: that.data.order.paperUsage, // 纸张使用
+          serviceAmout: that.data.order.serviceAmout, // 服务费
+          fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
+        }
+      })
+    }
   },
 
   add: function () {
@@ -65,7 +67,7 @@ Page({
         printerCode: that.data.order.printerCode, // 打印机code
         fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
         paperType: that.data.order.paperType, // 纸张类型
-        printerNum: (that.data.printerNum * that.data.filePaper), // 打印数量
+        printerNum: ((that.data.printerNum + 1) * that.data.filePaper), // 打印数量
         paperColcor: that.data.order.paperColcor, // 纸张颜色
         paperUsage: that.data.order.paperUsage, // 纸张使用
         serviceAmout: that.data.order.serviceAmout, // 服务费
@@ -205,7 +207,7 @@ Page({
       complete: function (res) { },
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -217,7 +219,7 @@ Page({
       // 把接收到的字符串转换成json对象
       var fileInfo = JSON.parse(options.fileInfo);
     }
-   
+
     var fileCodes = '' // 文件code
     var filePaper = null // 页数
     var fileNames = []

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.zx.share.platform.common.service.MemcachedService;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.constants.OrderStatusEnum;
+import com.zx.share.platform.util.CodeBuilderUtil;
 import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.email.StoreMail;
 import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
@@ -89,7 +90,7 @@ public class OrderController extends BaseController {
 		orderSaveBean.setPaperUsage(paperUsage);
 		orderSaveBean.setPaperType(paperType);
 		orderSaveBean.setFileType(fileType);
-		zxOrderService.saveOrder(orderSaveBean);
+		resopnseBean.setData(zxOrderService.saveOrder(orderSaveBean));
 		return resopnseBean;
 	}
 

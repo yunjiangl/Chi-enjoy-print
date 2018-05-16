@@ -53,7 +53,7 @@ public interface ZxOrderService {
 	 * 
 	 * @return
 	 */
-	int saveOrder(OrderSaveBean orderSaveBean);
+	String saveOrder(OrderSaveBean orderSaveBean);
 
 	/**
 	 * 订单打印文件修改

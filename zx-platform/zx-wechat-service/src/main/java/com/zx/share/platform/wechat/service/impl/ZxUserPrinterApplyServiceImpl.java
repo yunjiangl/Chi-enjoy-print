@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
+import com.zx.share.platform.wechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,22 +35,25 @@ public class ZxUserPrinterApplyServiceImpl implements ZxUserPrinterApplyService 
 
 	@Autowired
 	private TokenCacheService tokenCacheService;
+	@Autowired
+	private UserService userService;
 
 	@Override
-	public boolean add(String code, HttpServletRequest request) {
+	public boolean add( String userCode,String code, HttpServletRequest request) {
 
 		ZxPrinterManager printer = printerService.prinerInfo(code);
 
 		ZxUserPrinterApply printerApply = new ZxUserPrinterApply();
 
 		try {
-			UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
-			
-			printerApply.setUserId(userCache.getId());
+			//UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
+			UserDetailsBean userDetailsBean= userService.details(userCode);
+			printerApply.setUserId(userDetailsBean.getId());
 			printerApply.setPrinterId(printer.getId());
 			printerApply.setCreateTime(new Date());
 			printerApply.setStatus(0);
-			printerApply.setCreateId(userCache.getId());
+			//printerApply.setCreateId(userCache.getId());
+			printerApply.setCreateId(userDetailsBean.getId());
 			zxUserPrinterApplyMapper.insertSelective(printerApply);
 			return true;
 		} catch (Exception e) {
