@@ -18,9 +18,14 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: "与"+this.data.userTwo+"对话中"
+      title: "与" + getApp().data.userInfo.userType == 2 ? options.attorneyName : options.userName+"对话中"
     });
-    
+    this.setData({
+      userTwo: options.attorneyName,
+      userTwoCode: options.attorneyCode,
+      user: options.userName,
+      userCode: options.userCode
+    })
   },
 
   /**

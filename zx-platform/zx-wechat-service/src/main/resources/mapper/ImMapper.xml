@@ -57,6 +57,6 @@
     </insert>
 
     <update id="updateChatTime">
-        UPDATE t_user_chat SET chat_time=now() WHERE user_code=#{0} AND chat_user_code=#{1}
+        UPDATE t_user_chat SET chat_time=now() WHERE user_code=#{userCode} AND chat_user_code=#{chatUserCode}
     </update>
 </mapper>
