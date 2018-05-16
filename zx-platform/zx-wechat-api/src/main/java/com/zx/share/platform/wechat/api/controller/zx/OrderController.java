@@ -15,6 +15,7 @@ import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.email.StoreMail;
 import com.zx.share.platform.vo.wechat.request.OrderSaveBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -206,6 +207,11 @@ public class OrderController extends BaseController {
 												  HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+		String codes = memcachedService.get("zx_platform_order")+"";
+		if(codes.indexOf(code)>=0){
+			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，不能重复发送打印请求");
+			return resopnseBean;
+		}
 		boolean result = zxOrderService.printer(code);
 		if(!result){
 			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，请联系管理员");
@@ -213,7 +219,12 @@ public class OrderController extends BaseController {
 		return resopnseBean;
 	}
 
+	@Scheduled(cron = "0 0/1 * * * ?")
 	public void emailCallBack(){
+		this._emailCallBack();
+	}
+
+	private synchronized void _emailCallBack(){
 		String codes = memcachedService.get("zx_platform_order")+"";
 		try {
 			if(StringUtil.isNotBlank(codes)){
@@ -232,13 +243,13 @@ public class OrderController extends BaseController {
 							if(content.indexOf(code)>=0){
 								count = 1;
 								if(map.get("subject").toString().indexOf("成功打印")>=0){
-									zxOrderService.updateOrderStatus(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER_OK.code);
+									zxOrderService.updateOrderStatus1(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER_OK.code);
 									break;
 								}else if(map.get("subject").toString().indexOf("成功打印")>=0){
-									zxOrderService.updateOrderStatus(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER.code);
+									zxOrderService.updateOrderStatus1(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER.code);
 									break;
 								}else{
-									zxOrderService.updateOrderStatus(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER_ERROR.code);
+									zxOrderService.updateOrderStatus1(code, OrderStatusEnum.ZX_ORDER_STATUS_PRINTER_ERROR.code);
 									break;
 								}
 							}
@@ -248,6 +259,7 @@ public class OrderController extends BaseController {
 						mCode.append(code+",");
 					}
 				}
+				memcachedService.set("zx_platform_order",60*60*24*100,mCode.toString());
 			}
 
 		} catch (Exception e) {

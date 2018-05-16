@@ -37,6 +37,7 @@ public class FileResultBean implements Serializable {
     private String abstracts;
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
+    private Integer printerNum;
     
     public Date getCreateTime() {
 		return createTime;
@@ -117,7 +118,12 @@ public class FileResultBean implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-    
-    
+
+    public Integer getPrinterNum() {
+        return printerNum;
+    }
+
+    public void setPrinterNum(Integer printerNum) {
+        this.printerNum = printerNum;
+    }
 }

@@ -4,10 +4,20 @@
       <view class='top'>
         经过聊天窗口、微信等告知您收款账户而您向其付款的都有风险！后果自负。
       </view>
-      <view class='time'>9:20 PM</view>
+      <!-- <view class='time'>9:20 PM</view> -->
     <!-- top end  -->
     <!--content start  -->
-      <view class='content'>
+     <view class="content" wx:for="{{list}}">
+      <view wx:if="{{item.type == 'one'}}" class='talking {{item.type}}'>
+          <image src='../images/social-qq.png' />
+          <label>{{item.value}}</label>
+        </view>
+      <view wx:if="{{item.type == 'two'}}" class='talking {{item.type}}'>
+          <label>{{item.value}}</label>
+          <image src='../images/social-qq.png' />
+        </view>
+    </view>  
+       <!-- <view class='content'>
 
         <view class='talking one'>
           <image src='../images/social-qq.png' />
@@ -29,14 +39,14 @@
           <image src='../images/social-qq.png' />
         </view>  
 
-      </view>
+      </view>  -->
     <!--content end  -->
     <!-- footer start  -->
     <view class='footer'>
       <!-- <view class='nav'> -->
-        <input value='' />
+        <input value='' bindinput='inputBind' value='{{value}}'/>
         <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">发送</button>
+        disabled="{{disabled}}" bindtap="sendBtn" hover-class="other-button-hover">发送</button>
       <!-- </view> -->
     </view>
     <!--footer end  -->

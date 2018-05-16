@@ -38,7 +38,9 @@ public class ZxUserPrinterServiceImpl implements ZxUserPrinterService {
 			record.setPrinterCode(code);
 			record.setUserCode(userCache.getUserCode());
 			ZxUserPrinter zxUserPrinter = zxUserPrinterMapper.selectOne(record);
+			zxUserPrinterMapper.delete(zxUserPrinter);
 			zxUserPrinter.setStatus(0);
+
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
