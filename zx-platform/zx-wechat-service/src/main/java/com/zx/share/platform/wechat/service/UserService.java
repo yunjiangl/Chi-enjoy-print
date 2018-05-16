@@ -54,4 +54,7 @@ public interface UserService {
 	UserDetailsBean findByMobile(String mobile);
 
 	UserDetailsBean findByMobilePwd(String mobile,String pwd);
+
+	Integer updateIpLoginTime(Long userId,String ip);
+	Integer updateIpLoginTime(String userCode,String ip);
 }
