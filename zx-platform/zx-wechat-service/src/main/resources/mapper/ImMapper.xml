@@ -4,28 +4,43 @@
 
     <resultMap id="baseResultMap" type="com.zx.share.platform.vo.user.ImResponseBean">
         <result column="user_code" property="userCode"/>
-        <result column="id" property="userId"/>
-        <result column="portrait" property="portrait"/>
-        <result column="username" property="userName"/>
-        <result column="chat_time" property="usertimeCode"/>
+        <result column="chat_user_code" property="attorneyCode"/>
+        <result column="chat_time" property="time"/>
     </resultMap>
 
     <select id="page" resultMap="baseResultMap" parameterType="com.zx.share.platform.vo.user.ImRequestBean">
-        SELECT chat.chat_time,u.* FROM t_user_chat chat JOIN zx_user u ON u.id=chat.chat_user_id
+        SELECT chat.* FROM t_user_chat chat
         <where>
-            <if test="userCode!=null and userCode!=''">
-                AND chat.user_code=#{userCode}
+            <if test="userType!=null and userType==2">
+                <if test="userCode!=null and userCode!=''">
+                    AND chat.chat_user_code=#{userCode}
+                </if>
+            </if>
+            <if test="userType!=null and userType==1">
+                <if test="userCode!=null and userCode!=''">
+                    AND chat.user_code=#{userCode}
+                </if>
             </if>
         </where>
+        ORDER BY chat.chat_time DESC
         limit #{currentSize},#{pageSize}
     </select>
 
     <select id="pageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.user.ImRequestBean">
-        SELECT count(1) FROM t_user_chat chat JOIN zx_user u ON u.id=chat.chat_user_id
+        SELECT count(1) FROM t_user_chat chat
         <where>
-            <if test="userCode!=null and userCode!=''">
-                AND chat.user_code=#{userCode}
+
+            <if test="userType!=null and userType==2">
+                <if test="userCode!=null and userCode!=''">
+                    AND chat.chat_user_code=#{userCode}
+                </if>
             </if>
+            <if test="userType!=null and userType==1">
+                <if test="userCode!=null and userCode!=''">
+                    AND chat.user_code=#{userCode}
+                </if>
+            </if>
+
         </where>
     </select>
     <insert id="insertMsg" parameterType="com.zx.share.platform.bean.zx.UserChatMsg">
@@ -40,4 +55,8 @@
         )
 
     </insert>
+
+    <update id="updateChatTime">
+        UPDATE t_user_chat SET chat_time=now() WHERE user_code=#{userCode} AND chat_user_code=#{chatUserCode}
+    </update>
 </mapper>

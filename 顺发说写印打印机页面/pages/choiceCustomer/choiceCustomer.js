@@ -7,7 +7,7 @@ Page({
    */
   data: {
     fileInfo: null,
-    userCode: 'wechat00000000000', // 所要发送文件的客户，这个后面应该改为动态的
+    userCode: '', // 所要发送文件的客户，这个后面应该改为动态的
     fileType: null,
     order: {
       customerCode: null,// 客户code
@@ -22,11 +22,48 @@ Page({
       fileType: null,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
     }
   },
+  getData: function () {
+    var that = this;
+    //请求接口获取数据展示
+    wx.request({
+      url: getApp().data.api + "im/list",
+      method: "GET",
+      header: {
+        'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken
+      },
+      data: {
+        type: getApp().data.userInfo.userType,
+        userCode: getApp().data.userInfo.userCode
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.data.code == 200) {
+          that.setData({
+            list: res.data.data.content,
+            type: getApp().data.userInfo.userType
+          });
+        }
+      }
+    })
 
+  },
+  btnView: function (e) {
+    var viewId = e.target.id;
+    var viewDataSet = e.currentTarget.dataset;
+    var userCode = viewDataSet.user;
+    var attorneyCode = viewDataSet.attorney;
+    var userName = viewDataSet.username;
+    var attorneyName = viewDataSet.attorneyname;
+    console.log(userCode)
+    this.setData({
+      userCode: userCode
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getData()
 
     // 把接收到的字符串转换成json对象
     var dictionaryInfo = JSON.parse(options.fileInfo);
@@ -36,7 +73,8 @@ Page({
       fileType: options.fileType
     })
   },
-  choice: function () {
+  choice: function (e) {
+    this.btnView(e)
     var that = this;
     // 把要传递的json对象转换成字符串
     var fileInfo = JSON.stringify(that.data.fileInfo);

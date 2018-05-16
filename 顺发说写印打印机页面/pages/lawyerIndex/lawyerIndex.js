@@ -99,7 +99,7 @@ Page({
           success: function (res) {
             var data = JSON.parse(res.data);
             console.log(data)
-            wx.redirectTo({
+            wx.navigateTo({
                 url: '../setPrint/setPrint?fileCode=' + data.data
             })
           }

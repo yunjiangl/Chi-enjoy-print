@@ -140,8 +140,8 @@ public class ZxOrderServiceImpl implements ZxOrderService {
     }
 
     @Override
-    public int saveOrder(OrderSaveBean orderSaveBean) {
-        int result = 0;
+    public String saveOrder(OrderSaveBean orderSaveBean) {
+        String result;
         if (StringUtil.isBlank(orderSaveBean.getOrderCode())) {
             result = this.save(orderSaveBean);
         } else {
@@ -155,7 +155,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
      * @Description: 保存订单
      */
     @Transactional
-    private int save(OrderSaveBean orderSaveBean) {
+    private String save(OrderSaveBean orderSaveBean) {
 
         // 获取打印机信息
         ZxPrinterManager printerRecord = new ZxPrinterManager();
@@ -276,16 +276,16 @@ public class ZxOrderServiceImpl implements ZxOrderService {
             }
             orderPrinterFileRecordList.addAll(orderPrinterFileRecordMap.values());
             zxOrderPrinterFileMapper.insertList(orderPrinterFileRecordList);
-            return 1;
+            return orderRecordList.get(0).getOrderCode();
         }
 
-        return 0;
+        return null;
     }
 
-    private int update(OrderSaveBean orderSaveBean) {
+    private String update(OrderSaveBean orderSaveBean) {
         // 获取历史订单
 
-        return 0;
+        return null;
     }
 
     @Override

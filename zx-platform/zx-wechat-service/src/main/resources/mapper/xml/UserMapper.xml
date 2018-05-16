@@ -18,7 +18,8 @@
         <id column="id" property="id"/>
         <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
         <result column="open_id" property="openId" jdbcType="VARCHAR"/>
-        <result column="username" property="nickName" jdbcType="VARCHAR"/>
+        <result column="username" property="userName" jdbcType="VARCHAR"/>
+        <result column="nickname" property="nickName" jdbcType="VARCHAR"/>
         <result column="gen" property="gen" jdbcType="VARCHAR"/>
         <result column="wechat_id" property="weChatId" jdbcType="VARCHAR"/>
         <result column="city" property="city" jdbcType="VARCHAR"/>
@@ -43,11 +44,11 @@
     </resultMap>
 
     <select id="findByUnionId" resultMap="userResultBean">
-        select is_lock,id,user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
+        select nickname,is_lock,id,user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where union_id=#{0,jdbcType=VARCHAR}
     </select>
 
     <select id="findByOpenId" resultMap="userResultBean">
-        select user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where open_id=#{0,jdbcType=VARCHAR}
+        select nickname,user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where open_id=#{0,jdbcType=VARCHAR}
     </select>
 
     <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
@@ -55,6 +56,7 @@
             user_code,
             open_id,
             username,
+            nickname,
             age,
             province,
             city,
@@ -66,6 +68,7 @@
         values(
             #{userCode},
             #{openId},
+            #{nickName},
             #{nickName},
             #{sex},
             #{province},
@@ -150,7 +153,7 @@
     </update>
 
     <select id="findByCode" resultMap="userDetailsBean">
-        select is_lock,id,user_type,user_status,user_code,username,mobile,union_id,open_id,age,wechat_id,portrait,city,area,gen,province from zx_user where user_code=#{code,jdbcType=VARCHAR} limit 1
+        select nickname,is_lock,id,user_type,user_status,user_code,username,mobile,union_id,open_id,age,wechat_id,portrait,city,area,gen,province from zx_user where user_code=#{code,jdbcType=VARCHAR} limit 1
 
     </select>
 
@@ -167,8 +170,12 @@
     </select>
 
     <select id="findByMobile" resultMap="userDetailsBean">
-        select is_lock,id,user_type,user_status,user_code,username,mobile,union_id,password,open_id,age,wechat_id,portrait,city,area,gen,province from zx_user where mobile=#{mobile,jdbcType=VARCHAR} limit 1
+        select nickname,is_lock,id,user_type,user_status,user_code,username,mobile,union_id,password,open_id,age,wechat_id,portrait,city,area,gen,province from zx_user where mobile=#{mobile,jdbcType=VARCHAR} limit 1
 
     </select>
 
+    <update id="updateIpLoginTime">
+        INSERT INTO sys_user_login(user_id,login_ip,login_time,user_type)
+        VALUES (#{userId},#{ip},now(),2)
+    </update>
 </mapper>

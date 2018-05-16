@@ -11,4 +11,5 @@ import com.zx.share.platform.vo.WxLoginResponseVo;
 public interface LoginService {
 
     WxLoginResponseVo login(String mobile,String pwd);
+    WxLoginResponseVo login(String mobile,String pwd,String ip);
 }

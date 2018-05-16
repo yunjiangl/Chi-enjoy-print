@@ -35,7 +35,24 @@ Page({
     },
     printerAddress: '请选择打印机',
   },
-
+  //四舍五入保留2位小数（不够位数，则用0替补）
+  keepTwoDecimalFull: function (num) {
+    var result = parseFloat(num);
+    if (isNaN(result)) {
+      return false;
+    }
+    result = Math.round(num) / 100;
+    var s_x = result.toString();
+    var pos_decimal = s_x.indexOf('.');
+    if (pos_decimal < 0) {
+      pos_decimal = s_x.length;
+      s_x += '.';
+    }
+    while (s_x.length <= pos_decimal + 2) {
+      s_x += '0';
+    }
+    return s_x;
+  },
   finish: function () {
     var that = this
     if (that.data.order.printerCode == null) {
@@ -102,7 +119,7 @@ Page({
           serviceAmout: that.data.order.serviceAmout, // 服务费
           fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
         },
-        orderAmout: (that.data.order.printerNum - 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout,
+        orderAmout: that.keepTwoDecimalFull((that.data.order.printerNum - 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout) ,
       })
     }
   },
@@ -123,7 +140,7 @@ Page({
         serviceAmout: that.data.order.serviceAmout, // 服务费
         fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       },
-      orderAmout: (that.data.order.printerNum + 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout,
+      orderAmout: that.keepTwoDecimalFull((that.data.order.printerNum + 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout) ,
     })
   },
   // 获取打印机code
@@ -143,7 +160,7 @@ Page({
     var that = this
     that.getAumot()
     this.setData({
-      orderAmout: that.data.order.printerNum * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout,
+      orderAmout: that.keepTwoDecimalFull(that.data.order.printerNum * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout),
       order: {
         customerCode: app.data.userInfo.userCode,// 客户code
         attorneyCode: '', // 律师code

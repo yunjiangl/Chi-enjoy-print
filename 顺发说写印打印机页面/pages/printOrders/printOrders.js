@@ -43,7 +43,7 @@ Page({
     var orderInfo = that.data.orderList[e.currentTarget.dataset.idx]
     if (orderInfo.status == 1) {
       wx.navigateTo({
-        url: '../printCost/printCost?orderAmount=' + orderInfo.serviceAmount + "&orderCode=" + orderInfo.orderCode,
+        url: '../printCost/printCost?orderAmount=' + orderInfo.orderAmount + "&orderCode=" + orderInfo.orderCode,
       })
     } else if (orderInfo.status == 5) {
       wx.showModal({
@@ -84,7 +84,7 @@ Page({
         console.log(res)
         app.loginCheck(res)
         var list = that.data.orderList;
-        if (res.data.data.content.length == 0) {
+        if (res.data.data.content.length == 0 && that.data.orderList == []) {
           that.setData({
             msg: '没有信息哦哦'
           })

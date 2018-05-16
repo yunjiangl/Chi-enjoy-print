@@ -85,8 +85,7 @@ public class OrderController extends BaseController {
 		orderSaveBean.setPaperUsage(paperUsage);
 		orderSaveBean.setPaperType(paperType);
 		orderSaveBean.setFileType(fileType);
-		zxOrderService.saveOrder(orderSaveBean);
-		resopnseBean.setData(CodeBuilderUtil.orderCOde(orderSaveBean.getCustomerCode()));
+		resopnseBean.setData(zxOrderService.saveOrder(orderSaveBean));
 		return resopnseBean;
 	}
 

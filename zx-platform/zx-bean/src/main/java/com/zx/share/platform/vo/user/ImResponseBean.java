@@ -12,8 +12,12 @@ public class ImResponseBean implements Serializable {
 
     private String userCode;
     private Long userId;
-    private String portrait;
     private String userName;
+    private String userPortrait;
+    private String attorneyCode;
+    private Long attorneyId;
+    private String attorneyPortrait;
+    private String attorneyName;
     private String time;
 
     public String getUserCode() {
@@ -32,14 +36,6 @@ public class ImResponseBean implements Serializable {
         this.userId = userId;
     }
 
-    public String getPortrait() {
-        return portrait;
-    }
-
-    public void setPortrait(String portrait) {
-        this.portrait = portrait;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -54,5 +50,45 @@ public class ImResponseBean implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getUserPortrait() {
+        return userPortrait;
+    }
+
+    public void setUserPortrait(String userPortrait) {
+        this.userPortrait = userPortrait;
+    }
+
+    public String getAttorneyCode() {
+        return attorneyCode;
+    }
+
+    public void setAttorneyCode(String attorneyCode) {
+        this.attorneyCode = attorneyCode;
+    }
+
+    public Long getAttorneyId() {
+        return attorneyId;
+    }
+
+    public void setAttorneyId(Long attorneyId) {
+        this.attorneyId = attorneyId;
+    }
+
+    public String getAttorneyPortrait() {
+        return attorneyPortrait;
+    }
+
+    public void setAttorneyPortrait(String attorneyPortrait) {
+        this.attorneyPortrait = attorneyPortrait;
+    }
+
+    public String getAttorneyName() {
+        return attorneyName;
+    }
+
+    public void setAttorneyName(String attorneyName) {
+        this.attorneyName = attorneyName;
     }
 }

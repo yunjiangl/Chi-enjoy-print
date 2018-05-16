@@ -32,7 +32,7 @@
         </view>
 
         <view class='rt'>
-          <text wx:if="{{item.status == 1}}">待付款</text>
+          <text wx:if="{{item.status == 1 || item.status == 4}}">待付款</text>
           <text wx:elif="{{item.status == 5}}">待打印</text>
           <text wx:elif="{{item.status == 7}}">已完成</text>
         </view>

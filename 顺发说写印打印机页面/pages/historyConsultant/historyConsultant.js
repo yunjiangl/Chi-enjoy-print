@@ -15,7 +15,8 @@ Page({
    */
   onLoad: function (options) {
     
-    template.tabbar("tabBar", 2, this, app.data.userInfo.userType, app.data.userInfo.isLock)//0表示第一个tabbar
+    template.tabbar("tabBar", 2, this, app.data.userInfo.userType, app.data.userInfo.isLock);//0表示第一个tabbar
+    this.getData();
   },
 
   /**
@@ -65,5 +66,46 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  getData:function(){
+    var that = this;
+    //请求接口获取数据展示
+    wx.request({
+      url: getApp().data.api + "im/list",
+      method: "GET",
+      header: {
+        'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken
+      },
+      data: {
+        type: getApp().data.userInfo.userType,
+        userCode: getApp().data.userInfo.userCode
+      },
+      success: function (res) {
+        console.log(res);
+        if(res.data.code==200){
+          that.setData({
+            list:res.data.data.content,
+            type:getApp().data.userInfo.userType
+          });
+        }
+      }
+    })
+
+  },
+  btnView: function (e) {
+    var viewId = e.target.id;
+    var viewDataSet = e.currentTarget.dataset;
+    var userCode = viewDataSet.user;
+    var attorneyCode = viewDataSet.attorney;
+    var userName = viewDataSet.username;
+    var attorneyName = viewDataSet.attorneyname;
+    console.log(userCode); 
+    console.log(attorneyCode); 
+    console.log(userName); 
+    console.log(attorneyName); 
+    wx.redirectTo({
+      url: '../talking/talking?userCode=' + userCode + '&attorneyCode=' + attorneyCode + '&userName=' + userName + '&attorneyName=' + attorneyName
+    })
   }
 })

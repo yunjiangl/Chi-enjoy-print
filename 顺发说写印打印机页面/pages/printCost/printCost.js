@@ -20,6 +20,7 @@ Page({
    */
   onLoad: function (options) {
     var orderAmount = this.keepTwoDecimalFull(options.orderAmount)
+    console.log(options.orderAmount)
     this.setData({
       orderAmount: orderAmount,
       orderCode: options.orderCode
