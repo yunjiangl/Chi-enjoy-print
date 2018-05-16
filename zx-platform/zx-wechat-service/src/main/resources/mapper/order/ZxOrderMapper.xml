@@ -46,7 +46,16 @@
 		</association>
 		<association property="sysUser"
 			javaType="com.zx.share.platform.bean.sys.SysUser">
-			<result column="real_name" jdbcType="VARCHAR" property="realName" />
+			<result column="username" jdbcType="VARCHAR" property="username" />
+		</association>
+		<association property="zxPrinterManager"
+			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+			<result column="address" property="address" jdbcType="VARCHAR" />
+			<result column="manager_name" property="managerName" jdbcType="VARCHAR" />
+			<result column="manager_phone" property="managerPhone"
+				jdbcType="VARCHAR" />
+			<result column="printer_code" property="printerCode" jdbcType="VARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
 		</association>
 	</resultMap>
 
@@ -58,7 +67,7 @@
 		</association>
 		<association property="sysUser"
 			javaType="com.zx.share.platform.bean.sys.SysUser">
-			<result column="real_name" jdbcType="VARCHAR" property="realName" />
+			<result column="username" jdbcType="VARCHAR" property="username" />
 		</association>
 		<association property="zxPrinterManager"
 			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
@@ -145,13 +154,16 @@
 
 	<select id="attorney" resultMap="lawyer">
 		SELECT
+		zx_printer_manager.printer_code,
+		zx_printer_manager.name,
+		zx_printer_manager.manager_name,
 		zx_order.pay_time,
 		zx_order.order_num,
 		zx_order.order_amount,
 		zx_user.nickname,
 		zx_order.printer_code,
 		zx_order.order_code,
-		sys_user.real_name,
+		sys_user.username,
 		zx_order.pay_type,
 		zx_order.service_amount,
 		zx_order.printer_amount,
@@ -168,27 +180,28 @@
 		zx_printer_manager.id
 		INNER
 		JOIN sys_user ON
-		zx_printer_manager.create_id = sys_user.id
+		zx_printer_manager.create_id = sys_user.user_id
 		WHERE
 		zx_order.attorney_id =
 		#{attorneyId}
-		<where>
+		and 1=1
+		
 			<if test="nameOrCode != null and nameOrCode.trim() != ''">
-				AND sys_user.real_name LIKE
+				AND sys_user.username LIKE
 				concat('%',#{nameOrCode},'%')
 				OR
 				zx_order.printer_code LIKE
 				concat('%',#{nameOrCode},'%')
 			</if>
 			<if test="time != null">
-				AND zx_order.pay_time LIKE concat('%',#{time},'%')
+				AND zx_order.pay_time  &gt; #{time}
 			</if>
 			<if test="time == null">
 				AND DATE_FORMAT(zx_order.pay_time,'%Y%m') =
 				DATE_FORMAT(CURDATE(
 				),'%Y%m')
 			</if>
-		</where>
+		
 	</select>
 
 	<select id="selectByCode" resultMap="orderInfo">
