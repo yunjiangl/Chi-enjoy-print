@@ -175,7 +175,7 @@
     </select>
 
     <update id="updateIpLoginTime">
-        INTEGER INTO sys_user_login(user_id,login_ip,login_time,user_type)
-        VALUES (#{0},#{1},now(),2)
+        INSERT INTO sys_user_login(user_id,login_ip,login_time,user_type)
+        VALUES (#{userId},#{ip},now(),2)
     </update>
 </mapper>
