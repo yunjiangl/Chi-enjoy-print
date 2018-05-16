@@ -9,7 +9,7 @@
     </resultMap>
 
     <select id="page" resultMap="baseResultMap" parameterType="com.zx.share.platform.vo.user.ImRequestBean">
-        SELECT chat.* FROM t_user_chat chat
+        SELECT chat.user_code,chat.chat_user_code,DATE_FORMAT(chat.chat_time,'%Y-%m-%d') chat_time FROM t_user_chat chat
         <where>
             <if test="userType!=null and userType==2">
                 <if test="userCode!=null and userCode!=''">
