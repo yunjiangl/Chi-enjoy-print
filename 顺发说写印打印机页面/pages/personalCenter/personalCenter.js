@@ -20,7 +20,7 @@ logout:function(){
   wx.request({
     url: app.data.api + app.data.urlLogout,
     header: {
-      "X-ACCESS-TOKEN": that.data.userInfo.accessToken
+      "X-ACCESS-TOKEN": getApp().data.userInfo.accessToken
     },
     success: function (res) {
       console.log('退出');

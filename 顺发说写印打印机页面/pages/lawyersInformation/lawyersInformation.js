@@ -66,5 +66,21 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  imBtn:function(){
+    console.log(this.data.lawyerInfo);
+    var userCode = getApp().data.userInfo.userCode;
+    var attorneyCode = this.data.lawyerInfo.userCode;
+    var userName = getApp().data.userInfo.userName;
+    var attorneyName = this.data.lawyerInfo.nickName;
+    console.log(userCode);
+    console.log(attorneyCode);
+    console.log(userName);
+    console.log(attorneyName);
+    wx.navigateTo({
+      url: '../talking/talking?userCode=' + userCode + '&attorneyCode=' + attorneyCode + '&userName=' + userName + '&attorneyName=' + attorneyName
+    })
   }
+
 })

@@ -5,22 +5,22 @@
         <view class='top'>
 
           <view class='search'>
-            <image src='../images/search.png' />
-            <input class='input' confirm-type="search" placeholder='搜索您咨询的法律案件'> </input>
+            <image src='../images/search.png' bindtap='ss' />
+            <input class='input' confirm-type="search" placeholder='输入物主名/设备编号' bindinput='sousuo'> </input>
           </view>
 
         </view>
         <!-- top end  -->
 
         <!-- content start -->
-          <view class='content'>
+          <view class='content' wx:for='{{zxoder}}'>
 
             <!-- dateAndMoney start -->
                <view class='dateAndMoney'>
                   
                   <view class='money'>
-                    <view>2018年01月</view>
-                    <view><label class='income'>收入: ￥300</label><label class='warn'>*具体收入与物主商店</label></view>
+                    <view>{{timeone}}</view>
+                    <view><label class='income'>收入: ￥{{item.serviceAmount}}</label><label class='warn'>*具体收入与物主商店</label></view>
                   </view>
 
                   <!--date start -->
@@ -49,8 +49,8 @@
 
                 <!-- owner(物主) start -->
                 <view class='owner'>
-                  <view><label>设备物主: </label><label>张亮</label></view>
-                  <view><label>设备编号:</label><label>000 001</label></view>
+                  <view><label>设备物主: </label><label>{{item.sysUser.username}}</label></view>
+                  <view><label>设备编号:</label><label>{{item.printerCode}}</label></view>
                 </view>
                 <!-- owner end  -->
 
@@ -60,65 +60,11 @@
                   <view class='customer'>
 
                     <view class='nameDate'>
-                      <view><label>客户:</label><label>郭晓敏</label></view>
-                      <view class='yearDate'>2018-01-29 12:23:30</view>
+                      <view><label>客户:</label><label>{{item.zxPrinterManager.managerName}}</label></view>
+                      <view class='yearDate'>{{item.payTime}}</view>
                     </view>
 
-                    <view class='customerMoner'>￥300.00</view>
-                  </view>
-                  <!-- customer end  -->
-
-              </view>
-            <!--list end  -->
-
-            <!--list start -->
-              <view class='list'>
-
-                <!-- owner(物主) start -->
-                <view class='owner'>
-                  <view><label>设备物主: </label><label>张亮</label></view>
-                  <view><label>设备编号:</label><label>000 001</label></view>
-                </view>
-                <!-- owner end  -->
-
-                  <view class='line'></view>
-
-                <!-- customer(客户) start  -->
-                  <view class='customer'>
-
-                    <view class='nameDate'>
-                      <view><label>客户:</label><label>郭晓敏</label></view>
-                      <view class='yearDate'>2018-01-29 12:23:30</view>
-                    </view>
-
-                    <view class='customerMoner'>￥300.00</view>
-                  </view>
-                  <!-- customer end  -->
-
-              </view>
-            <!--list end  -->
-
-            <!--list start -->
-              <view class='list'>
-
-                <!-- owner(物主) start -->
-                <view class='owner'>
-                  <view><label>设备物主: </label><label>张亮</label></view>
-                  <view><label>设备编号:</label><label>000 001</label></view>
-                </view>
-                <!-- owner end  -->
-
-                  <view class='line'></view>
-
-                <!-- customer(客户) start  -->
-                  <view class='customer'>
-
-                    <view class='nameDate'>
-                      <view><label>客户:</label><label>郭晓敏</label></view>
-                      <view class='yearDate'>2018-01-29 12:23:30</view>
-                    </view>
-
-                    <view class='customerMoner'>￥300.00</view>
+                    <view class='customerMoner'>￥{{item.serviceAmount}}</view>
                   </view>
                   <!-- customer end  -->
 

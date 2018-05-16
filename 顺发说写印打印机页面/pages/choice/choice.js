@@ -132,7 +132,7 @@ Page({
     var name=that.data.name;
     console.log(name);
     console.log("测试一");
-    if(name==null&&name==''){
+    if (name == null ||name==''){
       wx.showModal({
         content: '请输入查询的内容',
         success: function (res) {

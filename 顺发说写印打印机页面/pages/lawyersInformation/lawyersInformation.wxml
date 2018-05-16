@@ -89,7 +89,7 @@
 
   <!--btn start  -->
   <view class='btn'>
-    <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="default" hover-class="other-button-hover">向他咨询</button>
+    <button type="default" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="imBtn" >向他咨询</button>
   </view>
   <!--btn end  -->
 

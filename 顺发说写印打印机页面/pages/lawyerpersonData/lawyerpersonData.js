@@ -88,7 +88,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this
+    var that = this;
+    //console.log(app.data.userCode);
     wx.request({
       url: app.data.api + app.data.urlUserDetails,
       data: {
@@ -98,7 +99,7 @@ Page({
         'X-ACCESS-TOKEN': app.data.userInfo.accessToken
       },
       success: function (res) {
-        console.log(res.data.data.nickName)
+        console.log(res)
         that.setData({
           details: res.data.data,
           showView: (res.data.data.isLock == "2" ? false:true )

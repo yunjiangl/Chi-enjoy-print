@@ -1,4 +1,5 @@
 // pages/talking/talking.js
+var lodingTime='';
 Page({
 
   /**
@@ -18,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: "与" + getApp().data.userInfo.userType == 2 ? options.attorneyName : options.userName+"对话中"
+      title: "与" + getApp().data.userInfo.userType == 2 ? options.userName : options.attorneyName+"对话中"
     });
     this.setData({
       userTwo: options.attorneyName,
@@ -39,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.msgInterval();
+    this.msgInterval(lodingTime);
   },
 
   /**
@@ -53,7 +54,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    clearInterval(lodingTime);
   },
 
   /**
@@ -83,7 +84,7 @@ Page({
   },
   msgInterval : function(){
     var that = this;
-    setInterval(function () {
+    lodingTime=setInterval(function () {
       var valueList = that.data.list;
       
       //请求接口获取数据展示
