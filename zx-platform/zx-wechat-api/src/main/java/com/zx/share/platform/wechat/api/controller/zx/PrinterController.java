@@ -149,6 +149,7 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/my", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<PageResponseBean<PrinterResultBean>> my(
+			@ApiParam("用户code") @RequestParam("userCode") String userCode,
 			@ApiParam("第几页") @RequestParam("page") Integer page,
 			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize, HttpServletRequest request) {
 		servletPath = request.getServletPath();
@@ -156,6 +157,7 @@ public class PrinterController extends BaseController {
 		PrinterQueryBean queryBean = new PrinterQueryBean();
 		queryBean.setPage(page);
 		queryBean.setPageSize(pageSize);
+		queryBean.setUserCode(userCode);
 		PageResponseBean<PrinterResultBean> pageResultBean = printerService.my(queryBean);
 		resopnseBean.setData(pageResultBean);
 		return resopnseBean;

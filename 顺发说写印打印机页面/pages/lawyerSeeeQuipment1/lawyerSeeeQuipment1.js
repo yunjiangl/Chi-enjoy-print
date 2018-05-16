@@ -38,7 +38,7 @@ Page({
 
 
     var that = this
-
+    
     wx.request({
       url: app.data.api + app.data.urlPrinterInfo + that.data.code,
       data: {
@@ -51,6 +51,7 @@ Page({
         console.log(res.data.data)
         that.setData({
           details: res.data.data,
+
         })
       }
     })

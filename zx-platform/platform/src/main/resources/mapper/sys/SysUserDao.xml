@@ -62,7 +62,8 @@
 	<select id="queryByUserName" resultType="com.zx.share.platform.bean.sys.SysUser">
 		select * from sys_user where username = #{username}
 	</select>
-	
+
+
 	<insert id="save" parameterType="com.zx.share.platform.bean.sys.SysUser" useGeneratedKeys="true" keyProperty="userId">
 		insert into sys_user
 		(

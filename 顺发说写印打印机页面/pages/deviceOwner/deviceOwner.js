@@ -11,8 +11,9 @@ Page({
   //查看
   look: function (e) {
     var code = e.currentTarget.dataset.key
+   
     wx.navigateTo({
-      url: '../lawyerSeeeQuipment1/lawyerSeeeQuipment1?code=' + code,
+      url: '../lawyerSeeeQuipment1/lawyerSeeeQuipment1?code=' + code ,
     })
 
   },
@@ -76,7 +77,7 @@ Page({
       'content-type': 'application/json' // 默认值
     },
     success: function (res) {
-      console.log(that.data)
+      console.log(res.data)
       that.setData({
         details: res.data.data.dataPacket,
       })

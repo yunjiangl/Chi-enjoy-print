@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 
+import com.zx.share.platform.bean.sys.SysUser;
+import com.zx.share.platform.wechat.mapper.SysUserDao;
 import com.zx.share.platform.wechat.service.UserService;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,8 @@ public class PrinterServiceImpl implements PrinterService {
     private MemcachedService memcachedService;
     @Autowired
     private UserService userService;
+    @Autowired
+    SysUserDao sysUserDao;
 
     @Override
     public List<PrinterResultBean> all() {
@@ -72,6 +76,7 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public PageResponseBean<PrinterResultBean> my(PrinterQueryBean queryBean) {
+
         queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
@@ -83,10 +88,13 @@ public class PrinterServiceImpl implements PrinterService {
         for(int i=0;i<resultBeans.size();i++){
             dataItem = resultBeans.get(i);
             if(resultMap.containsKey(dataItem.getCreateId())){
+                dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
                 resultMap.get(dataItem.getCreateId()).add(dataItem);
             }else{
+                dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
                 List<PrinterResultBean> list = new ArrayList<PrinterResultBean>();
                 list.add(dataItem);
+
                 resultMap.put(dataItem.getCreateId(),list);
             }
         }
@@ -121,8 +129,9 @@ public class PrinterServiceImpl implements PrinterService {
 	public ZxPrinterManager prinerInfo(String code) {
 		ZxPrinterManager record = new ZxPrinterManager();
 		record.setPrinterCode(code);
-		
-		return printerMapper.selectOne(record);
+        ZxPrinterManager record2 = printerMapper.selectOne(record);
+        record2.setSysUser(sysUserDao.queryByUserId(record2.getCreateId()));
+		return record2;
 	}
 
     /**

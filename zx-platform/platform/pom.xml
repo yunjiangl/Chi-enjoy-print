@@ -205,7 +205,7 @@
 		</dependency>
 
 
-		<dependency>
+		<!--<dependency>
 			<groupId>bcprov-ext-jdk15on-154</groupId>
 			<artifactId>bcprov-ext-jdk15on-154</artifactId>
 			<version>154</version>
@@ -245,7 +245,7 @@
 			<groupId>itextpdf-5.5.9</groupId>
 			<artifactId>itextpdf-5.5.9</artifactId>
 			<version>5.5.9</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
@@ -348,6 +348,7 @@
 			<id>public</id>
 			<name>aliyun nexus</name>
 			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+
 			<releases>
 				<enabled>true</enabled>
 			</releases>
