@@ -6,6 +6,7 @@ import com.zx.share.platform.bean.zx.UserChatMsg;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 import com.zx.share.platform.vo.user.ImRequestBean;
 import com.zx.share.platform.vo.user.ImResponseBean;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface ImMapper extends PlatFormMapper<UserChat> {
     Integer pageCount(ImRequestBean bean);
 
     Integer insertMsg(UserChatMsg bean);
+
+    Integer updateChatTime(@Param("userCode") String userCode,@Param("chatUserCode") String chatUserCode);
 }

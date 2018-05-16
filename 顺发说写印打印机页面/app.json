@@ -1,11 +1,12 @@
 {
   "pages": [
+
     "pages/loginLoading/loginLoading",
-    
     "pages/lawyerIndex/lawyerIndex",
+    "pages/index/index",
+
     "pages/lawyerpersonData/lawyerpersonData",
     "pages/lawyerTransactionOrder/lawyerTransactionOrder",
-    "pages/index/index",
     "pages/personalCenter/personalCenter",
     "pages/talking/talking",
     "pages/lawyerSeeMessage/lawyerSeeMessage",

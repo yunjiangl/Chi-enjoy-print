@@ -249,4 +249,18 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public Integer updateIpLoginTime(Long userId, String ip) {
+		return userMapper.updateIpLoginTime(userId,ip);
+	}
+
+	@Override
+	public Integer updateIpLoginTime(String userCode, String ip) {
+		UserDetailsBean user = userMapper.findByCode(userCode);
+		if(user!=null){
+			return this.updateIpLoginTime(user.getId(),ip);
+		}
+		return 0;
+	}
+
 }

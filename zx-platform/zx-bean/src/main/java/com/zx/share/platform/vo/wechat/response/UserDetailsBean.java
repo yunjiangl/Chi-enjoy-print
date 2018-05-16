@@ -22,6 +22,8 @@ public class UserDetailsBean implements Serializable {
     private String mobile;
     @ApiModelProperty("昵称")
     private String nickName;
+    @ApiModelProperty("昵称")
+    private String userName;
     @ApiModelProperty("性别")
     private String gen;
     @ApiModelProperty("年龄")
@@ -192,5 +194,13 @@ public class UserDetailsBean implements Serializable {
 
     public void setIsLock(Integer isLock) {
         this.isLock = isLock;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
