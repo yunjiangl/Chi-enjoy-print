@@ -63,6 +63,11 @@ Page({
       }
     })
   },
+  ImportFile: function(){
+    wx.navigateTo({
+      url: '../ImportFile/ImportFile',
+    })
+  },
   // 扫二维码
   scanCode:function(){
     wx.scanCode({

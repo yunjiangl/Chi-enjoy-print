@@ -173,7 +173,7 @@ public class OrderController extends BaseController {
 			HttpServletRequest request) throws Exception {
 		servletPath = request.getServletPath();
 		UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
-
+		System.out.println(userCache);
 		Map<String, Object> param = new HashMap<>();
 		param.put("nameOrCode", nameOrCode);
 		param.put("time", time);

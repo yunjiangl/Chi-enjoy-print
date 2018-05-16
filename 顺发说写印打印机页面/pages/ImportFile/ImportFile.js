@@ -13,6 +13,11 @@ Page({
       url: '/pages/upfilelist/upfilelist',
     })
   },
+  updileList: function(){
+    wx.navigateTo({
+      url: '../upfilelist/upfilelist',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

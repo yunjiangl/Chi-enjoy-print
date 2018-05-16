@@ -66,11 +66,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    template.tabbar("tabBar", 4, this, app.data.userInfo.userType, app.data.userInfo.isLock);
+    template.tabbar("tabBar", 4, this, app.data.userInfo.userType);
     wx.getStorage({
       key: 'key',
       success: function (res) {
-        console.log(res.data)
+       //console.log(res.data)
       },
       fail: function () { },
       complete: function () { }
@@ -101,7 +101,7 @@ Page({
         console.log(res.data.data.nickName)
         that.setData({
           details: res.data.data,
-          showView: (res.data.data.isLock == "1" ? true:false )
+          showView: (res.data.data.isLock == "2" ? false:true )
         })
       }
     })
