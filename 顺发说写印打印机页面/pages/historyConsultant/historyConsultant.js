@@ -95,11 +95,11 @@ Page({
   },
   btnView: function (e) {
     var viewId = e.target.id;
-    var viewDataSet = e.target.dataset;
+    var viewDataSet = e.currentTarget.dataset;
     var userCode = viewDataSet.user;
     var attorneyCode = viewDataSet.attorney;
-    var userName = viewDataSet.userName;
-    var attorneyName = viewDataSet.attorneyName;
+    var userName = viewDataSet.username;
+    var attorneyName = viewDataSet.attorneyname;
     console.log(userCode); 
     console.log(attorneyCode); 
     console.log(userName); 
