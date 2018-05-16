@@ -76,10 +76,10 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public PageResponseBean<PrinterResultBean> my(PrinterQueryBean queryBean) {
+        List<String> list1=printerMapper.findPCByUserCode(queryBean.getUserCode());
 
-        queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
-        List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
+        List<PrinterResultBean> resultBeans = printerMapper.pageTwo(list1);
 
         //将查询出来的数据根据设备物主名进行分组
         //List<PrinterResultBean> dataList = printerService.all();//查询出来的所有数据

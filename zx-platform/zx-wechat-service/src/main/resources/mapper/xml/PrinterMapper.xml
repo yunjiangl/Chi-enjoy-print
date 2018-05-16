@@ -29,7 +29,7 @@
 
     <select id="page" resultMap="printerResultBean" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select <include refid="selectSql"/> from zx_printer_manager where 1=1
-        <if test="userCode!=null and userCode!=''">
+        <if test="printerCode!=null and printerCode!=''">
             AND printer_code = #{printerCode}
         </if>
         <if test="longitude!=null and longitude!=''">
@@ -54,10 +54,20 @@
         limit #{currentSize},#{pageSize}
     </select>
 
+    <select id="pageTwo" resultMap="printerResultBean" parameterType="java.util.List">
+        select <include refid="selectSql"/> from zx_printer_manager where 1=1
+
+            AND printer_code IN
+            <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+
+    </select>
+
     <select id="pageCount" resultType="java.lang.Integer" parameterType="com.zx.share.platform.vo.wechat.request.PrinterQueryBean">
         select count(1) from zx_printer_manager where 1=1
-        <if test="userCode!=null and userCode!=''">
-            AND user_code = #{userCode}
+        <if test="printerCode!=null and printerCode!=''">
+            AND printer_code = #{printerCode}
         </if>
         <if test="longitude!=null and longitude!=''">
             AND longitude BETWEEN #{startLongitude} AND #{endLongitude}
@@ -140,5 +150,9 @@
     <select id="findByName" resultMap="printerResultBean" parameterType="long">
         select <include refid="selectSql"/> from zx_printer_manager
         WHERE create_id = #{createId}
+    </select>
+
+    <select id="findPCByUserCode" resultType="string" parameterType="string">
+        SELECT printer_code FROM zx_user_printer WHERE user_code=#{userCode}
     </select>
 </mapper>

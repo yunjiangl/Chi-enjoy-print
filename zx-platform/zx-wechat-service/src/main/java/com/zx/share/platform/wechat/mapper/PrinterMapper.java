@@ -4,6 +4,7 @@ import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.common.mapper.PlatFormMapper;
 import com.zx.share.platform.vo.wechat.request.PrinterQueryBean;
 import com.zx.share.platform.vo.wechat.response.PrinterResultBean;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public interface PrinterMapper extends PlatFormMapper<ZxPrinterManager> {
     List<PrinterResultBean> all();
 
     List<PrinterResultBean> page(PrinterQueryBean bean);
+    List<PrinterResultBean> pageTwo( List<String> bean);
     Integer pageCount(PrinterQueryBean bean);
 
     List<PrinterResultBean> nearby(PrinterQueryBean bean);
@@ -39,4 +41,10 @@ public interface PrinterMapper extends PlatFormMapper<ZxPrinterManager> {
      * @return
      */
     List<PrinterResultBean> findByName(Long createId);
+
+    /**
+     * 根据用户code 查询关联的打印机code
+     *
+     */
+    List<String> findPCByUserCode(String userCode);
 }

@@ -13,7 +13,7 @@ import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
  */
 public interface ZxUserPrinterApplyService {
 	
-	public boolean add(String code,HttpServletRequest request);
+	public boolean add(String userCode,String code,HttpServletRequest request);
 	
 	public int update(ZxUserPrinterApply zxUserPrinterApply);
 	

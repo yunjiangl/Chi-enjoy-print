@@ -19,6 +19,7 @@ Page({
   },
   //退出
   quit: function (e) {
+    var that = this
     var bgColor = this.data.pageBackgroundColor == '#3798fb' ? '#999' : '#3798fb';
     var index = e.currentTarget.dataset.key
     console.log(index)
@@ -26,18 +27,52 @@ Page({
       content: '确定退出该设备，不做该设备的线上管理员了吗？',
       success: function (res) {
         if (res.confirm) {
-
+         
+          
           wx.request({
             url: app.data.api + app.data.urlPrinterOut+index,
             data: {
              // code:index
             },
             header: {
-              'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
+              'X-ACCESS-TOKEN':app.data.userInfo.accessToken,
               'content-type': 'application/json' // 默认值
             },
             success: function (res) {
-              console.log(res)
+              wx.showToast({
+                title: '退出成功',
+                icon: 'success',
+                duration: 500
+              })
+              that.setData({
+                details: "",
+              })
+              wx.showLoading({
+                title: '数据加载中',
+              })
+              
+              wx.request({
+                url: app.data.api + app.data.urlPrinterMy,
+                data: {
+                  //page:0,
+                  //pageSize:100,
+                  userCode: 'wechat00000000022'
+                },
+                header: {
+                  'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
+                  'content-type': 'application/json' // 默认值
+                },
+                success: function (res) {
+                  
+                  console.log(res.data)
+                  that.setData({
+                    details: res.data.data.dataPacket,
+                  })
+                  setTimeout(function () {
+                    wx.hideLoading()
+                  }, 2000)
+                }
+              })
               
             }
           })
@@ -69,8 +104,9 @@ Page({
   wx.request({
     url: app.data.api + app.data.urlPrinterMy,
     data: {
-      page:0,
-      pageSize:100
+      //page:0,
+      //pageSize:100,
+      userCode: 'wechat00000000022'
     },
     header: {
       'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
