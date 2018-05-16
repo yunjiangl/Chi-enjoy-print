@@ -3,6 +3,7 @@ package com.zx.share.platform.wechat.service.impl;
 import com.zx.share.platform.bean.zx.UserChat;
 import com.zx.share.platform.bean.zx.UserChatMsg;
 import com.zx.share.platform.bean.zx.ZxUser;
+import com.zx.share.platform.util.StringUtil;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.user.ImRequestBean;
 import com.zx.share.platform.vo.user.ImResponseBean;
@@ -40,13 +41,13 @@ public class ImServiceImpl implements ImService {
                 UserDetailsBean user = userService.details(imBean.getUserCode());
                 if(user!=null){
                     imBean.setUserId(user.getId());
-                    imBean.setUserName(user.getNickName());
+                    imBean.setUserName(user.getUserName()+(StringUtil.isNotBlank(user.getNickName())?"("+user.getNickName()+")":""));
                     imBean.setUserPortrait(user.getPortrait());
                 }
                 UserDetailsBean attorney = userService.details(imBean.getAttorneyCode());
                 if(attorney!=null){
                     imBean.setAttorneyId(attorney.getId());
-                    imBean.setAttorneyName(attorney.getNickName());
+                    imBean.setAttorneyName(attorney.getUserName()+(StringUtil.isNotBlank(attorney.getNickName())?"("+attorney.getNickName()+")":""));
                     imBean.setAttorneyPortrait(attorney.getPortrait());
                 }
             }
@@ -79,6 +80,7 @@ public class ImServiceImpl implements ImService {
         try{
             imMapper.insert(userChat);
         }catch (Exception e){
+            imMapper.updateChatTime(msg.getUserCode(),msg.getChatUserCode());
             e.printStackTrace();
         }
 

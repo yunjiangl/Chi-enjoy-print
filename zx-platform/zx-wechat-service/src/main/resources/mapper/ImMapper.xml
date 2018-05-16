@@ -22,6 +22,7 @@
                 </if>
             </if>
         </where>
+        ORDER BY chat.chat_time DESC
         limit #{currentSize},#{pageSize}
     </select>
 
@@ -54,4 +55,8 @@
         )
 
     </insert>
+
+    <update id="updateChatTime">
+        UPDATE t_user_chat SET chat_time=now() WHERE user_code=#{0} AND chat_user_code=#{1}
+    </update>
 </mapper>

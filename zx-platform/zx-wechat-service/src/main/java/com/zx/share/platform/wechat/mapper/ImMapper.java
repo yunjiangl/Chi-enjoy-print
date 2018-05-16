@@ -23,4 +23,6 @@ public interface ImMapper extends PlatFormMapper<UserChat> {
     Integer pageCount(ImRequestBean bean);
 
     Integer insertMsg(UserChatMsg bean);
+
+    Integer updateChatTime(String userCode,String chatUserCode);
 }
