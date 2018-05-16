@@ -145,7 +145,6 @@ Page({
   },
   // 获取打印机code
   getPrinterCode: function () {
-
     wx: wx.navigateTo({
       url: '../map/map?costs=true',
       success: function (res) { },

@@ -1,5 +1,6 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,9 @@ import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.wechat.request.OrderQueryBean;
 import com.zx.share.platform.vo.wechat.response.OrderResultBean;
+import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
+import com.zx.share.platform.wechat.service.UserService;
 import com.zx.share.platform.wechat.service.ZxOrderService;
 
 import io.swagger.annotations.Api;
@@ -57,6 +60,8 @@ public class OrderController extends BaseController {
 	private TokenCacheService tokenCacheService;
 	@Autowired
 	private MemcachedService memcachedService;
+	@Autowired
+	private UserService userService;
 
 	@ApiOperation(value = "保存订单信息接口", notes = "保存订单信息接口")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -169,17 +174,23 @@ public class OrderController extends BaseController {
 	@RequestMapping(value = "/attorney", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<List<ZxOrder>> attorney(
+			@ApiParam(value = "用户code") @RequestParam(name = "userCode", required = true) String userCode,
 			@ApiParam(value = "设备物主/设备编码") @RequestParam(name = "nameOrCode", required = false) String nameOrCode,
-			@ApiParam(value = "订单完成时间") @RequestParam(name = "time", required = false) Date time,
+			@ApiParam(value = "订单完成时间") @RequestParam(name = "timeo", required = false) String timeo,
 			HttpServletRequest request) throws Exception {
 		servletPath = request.getServletPath();
-		UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
-		System.out.println(userCache);
+		//UserCache userCache = tokenCacheService.getCacheUser(request); // 得到当前登录用户
+		//System.out.println(userCache);
+		UserDetailsBean userDetailsBean= userService.details(userCode);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		Date time=null;
+		if(timeo!=null) {
+			time=sdf.parse(timeo);
+		}
 		Map<String, Object> param = new HashMap<>();
 		param.put("nameOrCode", nameOrCode);
 		param.put("time", time);
-		param.put("attorneyId", userCache.getId());
-
+		param.put("attorneyId", userDetailsBean.getId());
 		List<ZxOrder> data = zxOrderService.attorney(param);
 
 		DefaultResopnseBean<List<ZxOrder>> resopnseBean = new DefaultResopnseBean<List<ZxOrder>>();

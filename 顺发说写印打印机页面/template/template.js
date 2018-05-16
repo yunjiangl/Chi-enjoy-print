@@ -1,7 +1,7 @@
 //初始化数据
 function tabbarinit(userType) {
-  
   if (userType == 1) {
+    
     return [
       {
         "pagePath": "../CustomerIndex/CustomerIndex",
@@ -35,7 +35,7 @@ function tabbarinit(userType) {
       }
     ]
   } else if (userType == 2) {
-   // console.log("测试" + userType);
+    //console.log("测试" + userType);
     return [
       {
         "pagePath": "../lawyerIndex/lawyerIndex",

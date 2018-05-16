@@ -41,15 +41,28 @@ Page({
   goCost: function (e) {
     var that = this
     var orderInfo = that.data.orderList[e.currentTarget.dataset.idx]
-    if (orderInfo.status == 1) {
+    if (orderInfo.status == 1 || orderInfo.status == 4) {
       wx.navigateTo({
         url: '../printCost/printCost?orderAmount=' + orderInfo.orderAmount + "&orderCode=" + orderInfo.orderCode,
       })
     } else if (orderInfo.status == 5) {
       wx.showModal({
         title: '',
-        content: '请使用首页"扫码打印"打印功能，扫描打印机二维码进行打印',
+        content: '正在将文件发送至打印机',
         showCancel: false
+      })
+      wx.request({
+        url: app.data.api + app.data.urlOrderPrinter + orderInfo.orderCode,
+        method: "GET",
+        header: {
+          'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+        },
+        success:function(res){
+          console.log(res)
+          wx.redirectTo({
+            url: '../printOrders/printOrders',
+          })
+        }
       })
     }
   },
