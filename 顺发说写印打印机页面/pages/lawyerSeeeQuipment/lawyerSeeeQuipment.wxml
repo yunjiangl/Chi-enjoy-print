@@ -48,7 +48,7 @@
 
             <view class='button'>
             
-            <button type='primary' bindtap='toJoin' data-key='{{details.printerCode}}' hover-class="other-button-hover" size='mini'>加入</button>
+            <button type='primary' bindtap='toJoin' data-key='{{details.printerCode}}' hover-class="other-button-hover" size='mini'>{{type1}}</button>
 
             </view>
 
