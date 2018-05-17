@@ -13,14 +13,14 @@
         <!-- top end  -->
 
         <!-- content start -->
-          <view class='content' wx:for='{{zxoder}}'>
+          <view class='content'>
 
             <!-- dateAndMoney start -->
                <view class='dateAndMoney'>
                   
                   <view class='money'>
                     <view>{{timeone}}</view>
-                    <view><label class='income'>收入: ￥{{item.serviceAmount}}</label><label class='warn'>*具体收入与物主商店</label></view>
+                    <view><label class='income'>收入: ￥{{count}}</label><label class='warn'>*具体收入与物主商店</label></view>
                   </view>
 
                   <!--date start -->
@@ -45,7 +45,7 @@
             <!-- dateAndMoner end  -->
 
             <!--list start -->
-              <view class='list'>
+              <view class='list' wx:for='{{zxoder}}'>
 
                 <!-- owner(物主) start -->
                 <view class='owner'>

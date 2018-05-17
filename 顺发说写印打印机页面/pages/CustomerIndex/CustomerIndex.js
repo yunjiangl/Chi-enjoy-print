@@ -51,15 +51,33 @@ Page({
       url: '../lawyerFileClassC/lawyerFileClassC',
     })
   },
-  uploadImg:function(){
+  uploadImg: function () {
     wx.chooseImage({
-      count: 9, // 默认9
+      count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths)
+        wx.uploadFile({
+          url: app.data.api + app.data.urlUploadFileE,
+          filePath: tempFilePaths[0],
+          name: 'multipartFile',
+          header: {
+            'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+          },
+          formData: {
+            'abstracts': '用户上传手机图片', // 摘要
+            'userCode': app.data.userInfo.userCode,//用户code
+          },
+          success: function (res) {
+            var data = JSON.parse(res.data);
+            console.log(data)
+            wx.navigateTo({
+              url: '../setPrint/setPrint?fileCode=' + data.data
+            })
+          }
+        })
       }
     })
   },
@@ -79,4 +97,9 @@ Page({
   onLoad: function () {
     template.tabbar("tabBar", 0, this, app.data.userInfo.userType, app.data.userInfo.isLock)//0表示第一个tabbar
   },
+  default: function () {
+    wx.navigateTo({    //保留当前页面，跳转到应用内的某个页面（最多打开5个页面，之后按钮就没有响应的）
+      url: "/pages/map/map"
+    })
+  }
 })

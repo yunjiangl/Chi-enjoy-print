@@ -118,13 +118,13 @@
 		from zx_order
 		<where>
 			<if test="userCode != null and userCode.trim() != ''">
-
+				AND order_user_code = #{userCode}
 			</if>
 			<if test="orderStatus!=null and orderStatus!=''">
 				AND status = #{orderStatus}
 			</if>
 			<if test="userType!=null and userType==1">
-				AND order_user_code = #{userCode}
+
 			</if>
 			<if test="userType!=null and userType==2">
 				AND (attorney_code = #{userCode} OR order_user_code = #{userCode})
