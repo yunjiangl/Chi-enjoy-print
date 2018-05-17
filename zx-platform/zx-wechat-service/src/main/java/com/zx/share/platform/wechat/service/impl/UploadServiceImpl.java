@@ -93,7 +93,7 @@ public class UploadServiceImpl implements UploadService {
             e.printStackTrace();
         }
         List<ZxFileManagerCDE> list = CDEFileMapper.selectAll();
-        if (file.getFileName() != null) {
+        if (file.getFileName() == null) {
             file.setFileName(multipartFile.getOriginalFilename());
         }
         file.setFileUrl(fileURL);
