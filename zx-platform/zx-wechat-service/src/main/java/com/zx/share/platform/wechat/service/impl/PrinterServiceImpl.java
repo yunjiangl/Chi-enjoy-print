@@ -53,7 +53,7 @@ public class PrinterServiceImpl implements PrinterService {
         queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
-        PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
+        PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean, count);
         pageResponseBean.setContent(resultBeans);
         return pageResponseBean;
     }
@@ -69,39 +69,42 @@ public class PrinterServiceImpl implements PrinterService {
         queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
         List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
-        PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
+        PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean, count);
         pageResponseBean.setContent(resultBeans);
         return pageResponseBean;
     }
 
     @Override
     public PageResponseBean<PrinterResultBean> my(PrinterQueryBean queryBean) {
-        List<String> list1=printerMapper.findPCByUserCode(queryBean.getUserCode());
+        List<String> printerCodeList = printerMapper.findPCByUserCode(queryBean.getUserCode());
         //queryBean.calculate();
-        Integer count = printerMapper.pageCount(queryBean);
-        List<PrinterResultBean> resultBeans = printerMapper.pageTwo(list1);
-        //List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
+//        Integer count = printerMapper.pageCount(queryBean);
+        Map<String, List<PrinterResultBean>> resultMap = new HashMap<String, List<PrinterResultBean>>(); // 最终要的结果
+        if (printerCodeList != null && !printerCodeList.isEmpty()) {
+            List<PrinterResultBean> resultBeans = printerMapper.pageTwo(printerCodeList);
+//List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
 
-        //将查询出来的数据根据设备物主名进行分组
-        //List<PrinterResultBean> dataList = printerService.all();//查询出来的所有数据
-        PrinterResultBean dataItem; // 数据库中查询到的每条记录
-        Map<String, List<PrinterResultBean>> resultMap= new HashMap<String, List<PrinterResultBean>>(); // 最终要的结果
-        for(int i=0;i<resultBeans.size();i++){
-            dataItem = resultBeans.get(i);
-            if(resultMap.containsKey(dataItem.getCreateId())){
-                dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
-                resultMap.get(dataItem.getCreateId()).add(dataItem);
-            }else{
-                dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
-                List<PrinterResultBean> list = new ArrayList<PrinterResultBean>();
-                list.add(dataItem);
-                resultMap.put(dataItem.getCreateId(),list);
+            //将查询出来的数据根据设备物主名进行分组
+            //List<PrinterResultBean> dataList = printerService.all();//查询出来的所有数据
+            PrinterResultBean dataItem; // 数据库中查询到的每条记录
+            for (int i = 0; i < resultBeans.size(); i++) {
+                dataItem = resultBeans.get(i);
+                if (resultMap.containsKey(dataItem.getCreateId())) {
+                    dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
+                    resultMap.get(dataItem.getCreateId()).add(dataItem);
+                } else {
+                    dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
+                    List<PrinterResultBean> list = new ArrayList<PrinterResultBean>();
+                    list.add(dataItem);
+                    resultMap.put(dataItem.getCreateId(), list);
+                }
             }
         }
+
         //map集合转List集合，将map的value存入List
         List<List<PrinterResultBean>> mapValuesList = new ArrayList<List<PrinterResultBean>>(resultMap.values());
 
-        PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
+        PageResponseBean<PrinterResultBean> pageResponseBean = new PageResponseBean<>(queryBean, 0);
         pageResponseBean.setDataPacket(mapValuesList);
         return pageResponseBean;
     }
@@ -111,11 +114,11 @@ public class PrinterServiceImpl implements PrinterService {
         queryBean.calculate();
         List<String> userList = printerMapper.attorneyPage(queryBean);
         Integer count = printerMapper.attorneyPageCount(queryBean);
-        PageResponseBean<UserDetailsBean> pageResponseBean = new PageResponseBean<>(queryBean,count);
+        PageResponseBean<UserDetailsBean> pageResponseBean = new PageResponseBean<>(queryBean, count);
         List<UserDetailsBean> resultBeans = new ArrayList<>();
-        if(userList!=null && !userList.isEmpty()){
-            for (String userCode:userList) {
-                String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY+userCode;
+        if (userList != null && !userList.isEmpty()) {
+            for (String userCode : userList) {
+                String key = OCSKeys.ZX_USER_DETAILS_CACHE_KEY + userCode;
                 UserDetailsBean resultBean = userService.details(userCode);//(UserDetailsBean)memcachedService.getAndTouch(key,OCSKeys.ZX_USER_DETAILS_CACHE_KEY_EXP_KEY);
 
                 resultBeans.add(resultBean);
@@ -125,14 +128,14 @@ public class PrinterServiceImpl implements PrinterService {
         return pageResponseBean;
     }
 
-	@Override
-	public ZxPrinterManager prinerInfo(String code) {
-		ZxPrinterManager record = new ZxPrinterManager();
-		record.setPrinterCode(code);
+    @Override
+    public ZxPrinterManager prinerInfo(String code) {
+        ZxPrinterManager record = new ZxPrinterManager();
+        record.setPrinterCode(code);
         ZxPrinterManager record2 = printerMapper.selectOne(record);
         record2.setSysUser(sysUserDao.queryByUserId(record2.getCreateId()));
         return record2;
-	}
+    }
 
     /**
      * 根据设备物主查询打印机设备
@@ -145,28 +148,28 @@ public class PrinterServiceImpl implements PrinterService {
         return printerMapper.findByName(createId);
     }
 
-	@Override
-	public Integer updateByStatus(long id) {
-		// TODO Auto-generated method stub
-		return printerMapper.updateByStatus(id);
-	}
-	
-	@Override
-	public Integer updateByStatus2(long id) {
-		// TODO Auto-generated method stub
-		return printerMapper.updateByStatus2(id);
-	}
+    @Override
+    public Integer updateByStatus(long id) {
+        // TODO Auto-generated method stub
+        return printerMapper.updateByStatus(id);
+    }
 
-	@Override
-	public ZxPrinterManager selectByPcode(String Pcode) {
-		// TODO Auto-generated method stub
-		return printerMapper.selectByPcode(Pcode);
-	}
+    @Override
+    public Integer updateByStatus2(long id) {
+        // TODO Auto-generated method stub
+        return printerMapper.updateByStatus2(id);
+    }
 
-	@Override
-	public Integer insertByCode(long userId, long pId, String Ucode,
-			String Pcode) {
-		// TODO Auto-generated method stub
-		return printerMapper.insertByCode(userId, pId, Ucode, Pcode);
-	}
+    @Override
+    public ZxPrinterManager selectByPcode(String Pcode) {
+        // TODO Auto-generated method stub
+        return printerMapper.selectByPcode(Pcode);
+    }
+
+    @Override
+    public Integer insertByCode(long userId, long pId, String Ucode,
+                                String Pcode) {
+        // TODO Auto-generated method stub
+        return printerMapper.insertByCode(userId, pId, Ucode, Pcode);
+    }
 }

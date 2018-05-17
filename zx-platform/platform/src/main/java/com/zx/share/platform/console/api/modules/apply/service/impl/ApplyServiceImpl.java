@@ -1,9 +1,6 @@
 package com.zx.share.platform.console.api.modules.apply.service.impl;
 
-import com.zx.share.platform.bean.zx.ZxUser;
-import com.zx.share.platform.bean.zx.ZxUserAttorney;
-import com.zx.share.platform.bean.zx.ZxUserPrinter;
-import com.zx.share.platform.bean.zx.ZxUserPrinterApply;
+import com.zx.share.platform.bean.zx.*;
 import com.zx.share.platform.console.api.modules.apply.dao.ApplyDao;
 import com.zx.share.platform.console.api.modules.apply.service.ApplyService;
 import com.zx.share.platform.console.api.modules.printer.service.PrinterService;
@@ -13,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.print.attribute.standard.PrinterMakeAndModel;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +28,7 @@ public class ApplyServiceImpl implements ApplyService {
     @Autowired
     private PrinterService printerService;
     @Autowired
-    private UserService UserService;
+    private UserService userService;
 
     @Override
     public ZxUserPrinterApply queryObject(Long userId) {
@@ -82,6 +80,14 @@ public class ApplyServiceImpl implements ApplyService {
         if(StringUtil.isNotBlank(bean.getStatus())&& bean.getStatus()==1){
             ZxUserPrinterApply apply = queryObject(bean.getId());
             BeanUtils.copyProperties(apply,bean);
+            ZxPrinterManager printer = printerService.queryObject(bean.getPrinterId());
+            if(printer!=null){
+                bean.setPrinterCode(printer.getPrinterCode());
+            }
+            ZxUser user = userService.queryObject(bean.getUserId());
+            if(user!=null){
+                bean.setUserCode(user.getUserCode());
+            }
             applyDao.saveApply(bean);
         }
     }
