@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.util.response.PageResponseBean;
@@ -20,6 +21,7 @@ import com.zx.share.platform.vo.wechat.request.PrinterQueryBean;
 import com.zx.share.platform.vo.wechat.response.PrinterResultBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
+import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.service.PrinterService;
 import com.zx.share.platform.wechat.service.ZxUserPrinterApplyService;
 import com.zx.share.platform.wechat.service.ZxUserPrinterService;
@@ -47,6 +49,9 @@ public class PrinterController extends BaseController {
 
 	@Autowired
 	private ZxUserPrinterService zxUserPrinterService;
+	
+	@Autowired
+	private UserMapper userMapper;
 
 	@ApiOperation(value = "所有打印机接口", notes = "所有打印机接口")
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -149,15 +154,13 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/my", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<PageResponseBean<PrinterResultBean>> my(
-			@ApiParam("用户code") @RequestParam("userCode") String userCode,
-			/*@ApiParam("第几页") @RequestParam("page") Integer page,*/
-			/*@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize,*/ HttpServletRequest request) {
+			@ApiParam("第几页") @RequestParam("page") Integer page,
+			@ApiParam("每页多少条") @RequestParam("pageSize") Integer pageSize, HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<PageResponseBean<PrinterResultBean>> resopnseBean = new DefaultResopnseBean<>();
 		PrinterQueryBean queryBean = new PrinterQueryBean();
-		//queryBean.setPage(page);
-		//queryBean.setPageSize(pageSize);
-		queryBean.setUserCode(userCode);
+		queryBean.setPage(page);
+		queryBean.setPageSize(pageSize);
 		PageResponseBean<PrinterResultBean> pageResultBean = printerService.my(queryBean);
 		resopnseBean.setData(pageResultBean);
 		return resopnseBean;
@@ -197,12 +200,11 @@ public class PrinterController extends BaseController {
 	@RequestMapping(value = "/apply/{code}", method = RequestMethod.GET)
 	@ResponseBody
 	public DefaultResopnseBean<Object> printApply(@ApiParam("打印机code") @PathVariable("code") String code,
-												  @ApiParam("用户code") @RequestParam("userCode") String userCode,
 			HttpServletRequest request) {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<Object>();
 
-		if (!zxUserPrinterApplyService.add(userCode,code, request)) {
+		if (!zxUserPrinterApplyService.add(code, request)) {
 			resopnseBean.setCode(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code);
 			resopnseBean.setMessage(ErrorsEnum.SYSTEM_CUSTOM_ERROR.label);
 		}
@@ -236,4 +238,31 @@ public class PrinterController extends BaseController {
 
 		return resopnseBean;
 	}
+	 @ApiOperation(value = "消息通知通过", notes = "消息通知通过")
+		@RequestMapping(value = "/updateByStatus", method = RequestMethod.GET)
+		@ResponseBody
+		public Integer updateByStatus(@RequestParam("id") long id) {
+			
+			
+			return printerService.updateByStatus(id);
+		}
+	 @ApiOperation(value = "消息通知拒绝", notes = "消息通知拒绝")
+		@RequestMapping(value = "/updateByStatus2", method = RequestMethod.GET)
+		@ResponseBody
+		public Integer updateByStatus2(@RequestParam("id") long id) {
+			
+			
+			return printerService.updateByStatus2(id);
+		}
+	 @ApiOperation(value = "消息通知成功zxUserPrinter添加纪录", notes = "消息通知成功zxUserPrinter添加纪录")
+		@RequestMapping(value = "/insertByCode", method = RequestMethod.GET)
+		@ResponseBody
+		public Integer insertByCode(@RequestParam("uCode") String uCode,
+									@RequestParam("pCode") String pCode) {
+		 	ZxPrinterManager zxPrinterManager=printerService.selectByPcode(pCode);
+		 	Long id1=zxPrinterManager.getId();
+		 	ZxUser zxUser=userMapper.selectByUcode(uCode);
+		 	Long id2=zxUser.getId();
+			return printerService.insertByCode(id2, id1, uCode, pCode);
+		}
 }

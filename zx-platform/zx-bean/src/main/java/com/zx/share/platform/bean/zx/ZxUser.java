@@ -8,8 +8,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.IdEntity;
-
+import com.zx.share.platform.bean.sys.SysDictionary;
+import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.sys.SysUserLogin;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -113,5 +115,11 @@ public class ZxUser extends IdEntity {
 	private ZxUserAttorneyDomain zxUserAttorneyDomain;
 	@Transient
 	private SysUserLogin userLogin;
+	@Transient
+	private ZxPrinterManager zxPrinterManager;
+	@Transient
+	private ZxUserPrinterApply zxUserPrinterApply;
+	@Transient
+	private SysUser sysUser;
 
 }

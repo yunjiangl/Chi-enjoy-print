@@ -7,6 +7,7 @@ import com.zx.share.platform.vo.wechat.request.UserAttorneyDomain;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
 import com.zx.share.platform.vo.wechat.response.AttorneyDetailsBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import com.zx.share.platform.vo.user.UserResultBean;
 import com.zx.share.platform.wechat.mapper.UserMapper;
 import com.zx.share.platform.wechat.service.SmsService;
 import com.zx.share.platform.wechat.service.UserService;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -250,17 +252,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Integer updateIpLoginTime(Long userId, String ip) {
-		return userMapper.updateIpLoginTime(userId,ip);
+	public List<ZxUser> newsSelect(String name) {
+		// TODO Auto-generated method stub
+		return userMapper.newsSelect(name);
 	}
 
 	@Override
-	public Integer updateIpLoginTime(String userCode, String ip) {
-		UserDetailsBean user = userMapper.findByCode(userCode);
-		if(user!=null){
-			return this.updateIpLoginTime(user.getId(),ip);
-		}
-		return 0;
+	public ZxUser codeSelect(String code) {
+		// TODO Auto-generated method stub
+		return userMapper.codeSelect(code);
+	}
+
+	@Override
+	public ZxUser selectByUcode(String Ucode) {
+		// TODO Auto-generated method stub
+		return userMapper.selectByUcode(Ucode);
 	}
 
 }

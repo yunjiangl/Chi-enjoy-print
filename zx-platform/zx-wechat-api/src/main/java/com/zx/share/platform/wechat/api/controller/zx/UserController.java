@@ -1,19 +1,27 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
+import java.util.List;
+
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.bean.SessionConfig;
 import com.zx.share.platform.common.bean.UserCache;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.WxLoginResponseVo;
+import com.zx.share.platform.vo.user.UserRequestBean;
 import com.zx.share.platform.vo.wechat.request.UserUpdateBean;
+import com.zx.share.platform.vo.wechat.response.OrderResultBean;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import com.zx.share.platform.wechat.api.controller.BaseController;
 import com.zx.share.platform.wechat.service.UserService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -145,5 +153,23 @@ public class UserController extends BaseController {
         userService.update(updateBean);
         return resopnseBean;
     }
+    
+    
+    @ApiOperation(value = "获取消息通知", notes = "获取消息通知")
+	@RequestMapping(value = "/newsSelect", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ZxUser> newsSelect(@RequestParam("name") String name) {
+		
+		
+		return userService.newsSelect(name);
+	}
+    @ApiOperation(value = "单行获取消息通知", notes = "单行获取消息通知")
+	@RequestMapping(value = "/codeSelect", method = RequestMethod.GET)
+	@ResponseBody
+	public ZxUser codeSelect(@RequestParam("code") String code) {
+		
+		
+		return userService.codeSelect(code);
+	}
 
 }

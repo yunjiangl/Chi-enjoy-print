@@ -49,6 +49,11 @@ public interface UserMapper extends PlatFormMapper<ZxUser> {
     List<String> findByAttorneyDomains(@Param("code") String code);
 
     Long findMaxId(@Param("code") String code);
-    Integer updateIpLoginTime(@Param("userId") Long userId, @Param("ip") String ip);
+    
+    List<ZxUser> newsSelect(@Param("name") String name);
+    
+    ZxUser codeSelect(@Param("code") String code);
+    
+    ZxUser selectByUcode(@Param("Ucode") String Ucode);
 
 }

@@ -8,9 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 
-import com.zx.share.platform.bean.sys.SysUser;
-import com.zx.share.platform.wechat.mapper.SysUserDao;
+
+
+
 import com.zx.share.platform.wechat.service.UserService;
+
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,8 +42,6 @@ public class PrinterServiceImpl implements PrinterService {
     private MemcachedService memcachedService;
     @Autowired
     private UserService userService;
-    @Autowired
-    SysUserDao sysUserDao;
 
     @Override
     public List<PrinterResultBean> all() {
@@ -76,10 +76,9 @@ public class PrinterServiceImpl implements PrinterService {
 
     @Override
     public PageResponseBean<PrinterResultBean> my(PrinterQueryBean queryBean) {
-        List<String> list1=printerMapper.findPCByUserCode(queryBean.getUserCode());
-
+        queryBean.calculate();
         Integer count = printerMapper.pageCount(queryBean);
-        List<PrinterResultBean> resultBeans = printerMapper.pageTwo(list1);
+        List<PrinterResultBean> resultBeans = printerMapper.page(queryBean);
 
         //将查询出来的数据根据设备物主名进行分组
         //List<PrinterResultBean> dataList = printerService.all();//查询出来的所有数据
@@ -88,13 +87,10 @@ public class PrinterServiceImpl implements PrinterService {
         for(int i=0;i<resultBeans.size();i++){
             dataItem = resultBeans.get(i);
             if(resultMap.containsKey(dataItem.getCreateId())){
-                dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
                 resultMap.get(dataItem.getCreateId()).add(dataItem);
             }else{
-                dataItem.setSysuser(sysUserDao.queryByUserId(Long.parseLong(dataItem.getCreateId())));
                 List<PrinterResultBean> list = new ArrayList<PrinterResultBean>();
                 list.add(dataItem);
-
                 resultMap.put(dataItem.getCreateId(),list);
             }
         }
@@ -129,9 +125,8 @@ public class PrinterServiceImpl implements PrinterService {
 	public ZxPrinterManager prinerInfo(String code) {
 		ZxPrinterManager record = new ZxPrinterManager();
 		record.setPrinterCode(code);
-        ZxPrinterManager record2 = printerMapper.selectOne(record);
-        record2.setSysUser(sysUserDao.queryByUserId(record2.getCreateId()));
-		return record2;
+		
+		return printerMapper.selectOne(record);
 	}
 
     /**
@@ -144,4 +139,29 @@ public class PrinterServiceImpl implements PrinterService {
     public List<PrinterResultBean> findByName(Long createId) {
         return printerMapper.findByName(createId);
     }
+
+	@Override
+	public Integer updateByStatus(long id) {
+		// TODO Auto-generated method stub
+		return printerMapper.updateByStatus(id);
+	}
+	
+	@Override
+	public Integer updateByStatus2(long id) {
+		// TODO Auto-generated method stub
+		return printerMapper.updateByStatus2(id);
+	}
+
+	@Override
+	public ZxPrinterManager selectByPcode(String Pcode) {
+		// TODO Auto-generated method stub
+		return printerMapper.selectByPcode(Pcode);
+	}
+
+	@Override
+	public Integer insertByCode(long userId, long pId, String Ucode,
+			String Pcode) {
+		// TODO Auto-generated method stub
+		return printerMapper.insertByCode(userId, pId, Ucode, Pcode);
+	}
 }

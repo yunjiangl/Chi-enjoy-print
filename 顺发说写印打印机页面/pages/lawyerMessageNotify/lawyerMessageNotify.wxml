@@ -1,80 +1,36 @@
 <!-- container start -->
-    <view class='container'>
+<view class='container'>
 
-        <!-- message start -->
-          <view class='message'>
-             
-             <!-- owner物主 start -->
-            <view class='owner'>
-                <view>物主张亮亮邀请您成为设备000 001的线上管理员，请注意查看。</view>
-                <view class='date'>2018-01-26 16:59:20</view>
-            </view>
-            <!-- owner物主 end-->
+  <!-- message start -->
+  <view class='message'>
 
-              <view class='line'></view>
+    <!-- owner物主 start -->
+    <view class='owner' wx:for="{{newsSelect}}" wx:key="" data-valList='{{valList}}' bindtap='getVal' wx:for-item="valList">
+      <view>物主{{valList.sysUser.username}}邀请您成为设备{{valList.zxPrinterManager.printerCode}}的线上管理员，请注意查看。</view>
 
-            <!-- btn start -->
-            <view class='btn'>
-              <view></view>
-              <view>
-                <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini'>接受</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini' bindtap='look'>查看</button>
-              </view>
-            </view>
-            <!-- btn end -->
+      <view class='date'>{{valList.zxUserPrinterApply.createTime}}</view>
+      
 
-          </view>
-        <!-- message end -->
-
-        <!-- message start -->
-          <view class='message'>
-             
-             <!-- owner物主 start -->
-            <view class='owner'>
-                <view>物主张亮亮邀请您成为设备000 001的线上管理员，请注意查看。</view>
-                <view class='date'>2018-01-26 16:59:20</view>
-            </view>
-            <!-- owner物主 end-->
-
-              <view class='line'></view>
-
-            <!-- btn start -->
-            <view class='btn'>
-              <view></view>
-              <view>
-                <button type='primary' hover-class="other-button-hover" size='mini'>接受</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-              </view>
-            </view>
-            <!-- btn end -->
-
-          </view>
-        <!-- message end -->
-
-        <!-- message start -->
-          <view class='message'>
-             
-             <!-- owner物主 start -->
-            <view class='owner'>
-                <view>物主张亮亮邀请您成为设备000 001的线上管理员，请注意查看。</view>
-                <view class='date'>2018-01-26 16:59:20</view>
-            </view>
-            <!-- owner物主 end-->
-
-              <view class='line'></view>
-
-            <!-- btn start -->
-            <view class='btn'>
-              <view></view>
-              <view>
-                <button type='primary' hover-class="other-button-hover" size='mini'>接受</button>
-                <button type='default' hover-class="other-button-hover" class='button' size='mini'>查看</button>
-              </view>
-            </view>
-            <!-- btn end -->
-
-          </view>
-        <!-- message end -->
-
+      <view class='btn'>
+        <view></view>
+        <view>
+          <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini' data-aa="{{valList.zxPrinterManager.printerCode}}"  data-hi="{{valList.zxUserPrinterApply.id}}">接受</button>
+          <button type='default' hover-class="other-button-hover" data-hi="{{valList.zxPrinterManager.printerCode}}" class='button' size='mini' bindtap='look'>查看</button>
+        </view>
+      </view>
+  <view class='line'></view>
     </view>
+
+    <!-- owner物主 end-->
+
+
+
+    <!-- btn start -->
+
+    <!-- btn end -->
+
+  </view>
+  <!-- message end -->
+
+</view>
 <!-- container end -->

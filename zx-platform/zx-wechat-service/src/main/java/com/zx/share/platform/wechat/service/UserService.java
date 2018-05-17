@@ -1,5 +1,9 @@
 package com.zx.share.platform.wechat.service;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.vo.user.UserRequestBean;
@@ -54,7 +58,10 @@ public interface UserService {
 	UserDetailsBean findByMobile(String mobile);
 
 	UserDetailsBean findByMobilePwd(String mobile,String pwd);
-
-	Integer updateIpLoginTime(Long userId,String ip);
-	Integer updateIpLoginTime(String userCode,String ip);
+	
+	List<ZxUser> newsSelect(String name);
+	
+	ZxUser codeSelect(String code);
+	
+	ZxUser selectByUcode(String Ucode);
 }

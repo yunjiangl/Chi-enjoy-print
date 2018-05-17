@@ -4,10 +4,11 @@
     <!--content start  -->
     <view class='content'>
 
+      
       <!--top start -->
         <view class='top'>
-          <view>物主张亮亮邀请您成为设备 000 001的线上管理员，请注意查看。</view>
-          <view class='date'>2018-01-26 16:59:20</view>
+          <view>物主{{news.sysUser.username}}邀请您成为设备{{news.zxPrinterManager.printerCode}}的线上管理员，请注意查看{{id1}}。</view>
+          <view class='date'>{{news.zxUserPrinterApply.createTime}}</view>
         </view>
       <!--top end  -->
 
@@ -18,32 +19,32 @@
       
         <view class='li'>
           <label>设 备 编 码</label>
-          <label>000 001</label>
+          <label>{{news.zxPrinterManager.printerCode}}</label>
         </view>
 
         <view class='li'>
           <label>设 备 物 主</label>
-          <label>张亮亮</label>
+          <label>{{news.sysUser.username}}</label>
         </view>
 
         <view class='li'>
           <label>设 备 地 址</label>
-          <label>山西省阳泉市平定县</label>
+          <label>{{news.zxPrinterManager.province}}{{news.zxPrinterManager.city}}{{news.zxPrinterManager.area}}</label>
         </view>
 
         <view class='li'>
           <label>详 细 地 址</label>
-          <label>贵州省遵义市平安街大学生创新创业园</label>
+          <label>{{news.zxPrinterManager.address}}</label>
         </view>
 
         <view class='li'>
           <label>线下管理员</label>
-          <label>熊壮壮</label>
+          <label>{{news.zxPrinterManager.managerName}}</label>
         </view>
 
         <view class='li'>
           <label>管理员电话</label>
-          <label>187 **** ****</label>
+          <label>{{news.zxPrinterManager.managerPhone}}</label>
         </view>
 
       </view>
@@ -57,8 +58,8 @@
 
             <view class='button'>
             
-            <button type='primary' hover-class="other-button-hover" size='mini'>接受</button>
-            <button type='default' size='mini' hover-class='ohter-button-hover'>拒绝</button>
+            <button type='primary' hover-class="other-button-hover"  data-hi="{{news.zxUserPrinterApply.id}}" size='mini' data-aa="{{news.zxPrinterManager.printerCode}}"  bindtap='chageBackgroundColor'>接受</button>
+            <button type='default' size='mini' hover-class='ohter-button-hover' data-hi="{{news.zxUserPrinterApply.id}}" bindtap='newsReject'>拒绝</button>
 
             </view>
 

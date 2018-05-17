@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.zx.share.platform.bean.sys.SysUser;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.zx.share.platform.bean.IdEntity;
@@ -25,7 +26,9 @@ import lombok.EqualsAndHashCode;
 public class ZxPrinterManager extends IdEntity {
 
 	private static final long serialVersionUID = -8281307186982140914L;
-
+	
+	@Column(name = "id")
+    private Long id;
 	@NotEmpty
 	@Column(name = "printer_code")
 	private String printerCode;

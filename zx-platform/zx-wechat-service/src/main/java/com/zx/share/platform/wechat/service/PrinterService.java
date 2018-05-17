@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zx.share.platform.bean.zx.ZxPrinterManager;
 import com.zx.share.platform.util.response.PageResponseBean;
 import com.zx.share.platform.vo.wechat.request.PrinterQueryBean;
@@ -38,5 +40,13 @@ public interface PrinterService {
      * @return
      */
     List<PrinterResultBean> findByName(Long createId);
+    
+    Integer updateByStatus(long id);
+    
+    Integer updateByStatus2(long id);
+    
+    ZxPrinterManager selectByPcode(String Pcode);
+    
+    Integer insertByCode(long userId,long pId,String Ucode,String Pcode);
     
 }
