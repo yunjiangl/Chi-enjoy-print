@@ -196,11 +196,11 @@
 			<if test="time != null">
 				AND zx_order.pay_time  &gt; #{time}
 			</if>
-			<if test="time == null">
+<!-- 			<if test="time == null">
 				AND DATE_FORMAT(zx_order.pay_time,'%Y%m') =
 				DATE_FORMAT(CURDATE(
 				),'%Y%m')
-			</if>
+			</if> -->
 		
 	</select>
 
