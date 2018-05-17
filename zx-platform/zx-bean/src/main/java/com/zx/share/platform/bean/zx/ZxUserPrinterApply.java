@@ -40,6 +40,15 @@ public class ZxUserPrinterApply extends IdEntity {
 
 	@Column(name = "check_id")
 	private Long checkId;
+
+	@Transient
+	private String userCode;
+
+	@Transient
+	private String checkCode;
+
+	@Transient
+	private String printerCode;
 	
 	@Transient
 	private ZxUser zxUser;
