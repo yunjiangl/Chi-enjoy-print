@@ -9,16 +9,23 @@
       <view>物主{{valList.sysUser.username}}邀请您成为设备{{valList.zxPrinterManager.printerCode}}的线上管理员，请注意查看。</view>
 
       <view class='date'>{{valList.zxUserPrinterApply.createTime}}</view>
-      
+
 
       <view class='btn'>
         <view></view>
-        <view>
-          <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini' data-aa="{{valList.zxPrinterManager.printerCode}}"  data-hi="{{valList.zxUserPrinterApply.id}}">接受</button>
+        <view wx:if="{{valList.zxUserPrinterApply.status==0}}"> 
+        
+          <view>
+          <button type='primary' hover-class="other-button-hover" style='background-color:{{pageBackgroundColor}}' bindtap='chageBackgroundColor' size='mini' data-aa="{{valList.zxPrinterManager.printerCode}}" data-hi="{{valList.zxUserPrinterApply.id}}">接受</button>
           <button type='default' hover-class="other-button-hover" data-hi="{{valList.zxPrinterManager.printerCode}}" class='button' size='mini' bindtap='look'>查看</button>
         </view>
+        
+        </view>
+        <view type='primary' style='background-color:grey' size='mini' hover-class="other-button-hover" wx:if="{{valList.zxUserPrinterApply.status==1}}">已接受 </view>
+        <view type='primary' style='background-color:grey' size='mini' hover-class="other-button-hover" wx:if="{{valList.zxUserPrinterApply.status==2}}">已拒绝 </view>
+        
       </view>
-  <view class='line'></view>
+      <view class='line'></view>
     </view>
 
     <!-- owner物主 end-->

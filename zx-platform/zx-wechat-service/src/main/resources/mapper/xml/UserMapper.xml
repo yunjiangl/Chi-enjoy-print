@@ -261,7 +261,6 @@ WHERE
 zx_user.id = zx_user_printer_apply.user_id AND
 zx_user_printer_apply.printer_id = zx_printer_manager.id AND
 zx_printer_manager.create_id = sys_user.create_user_id AND
-zx_user_printer_apply.`status`=0 AND
 zx_user.username = #{name}
 		
 	</select>
