@@ -16,7 +16,7 @@ App({
     count: 0,
     urlWechatLogin: "wechat/login",
     urlLogin: 'login',
-    userCode: 'wechat00000000000',//登录成功后，存储用户code
+    //userCode: 'wechat00000000000',//登录成功后，存储用户code
     urlLogout: 'logout',
     urlForGetPasswordCode: 'forgetpassword/code',
     urlForGetPasswordVerification: 'forgetpassword/verification',
@@ -103,8 +103,9 @@ App({
           url: '../CustomerIndex/CustomerIndex'
         })
       }
-    }
+    
     // 为全局变量赋值
+    console.log(data.data.data);
     that.data.userCode = data.data.data.userCode;
     that.data.userInfo.userType = data.data.data.userType;
     that.data.userInfo.isLock = data.data.data.isLock;
@@ -112,7 +113,7 @@ App({
     that.data.userInfo.userCode = data.data.data.userCode;
     that.data.userInfo.userCode = data.data.data.userCode;
     that.data.userInfo.userName = data.data.data.nickName;
-    console.log(data.data.data.accessToken);
+    }
   },
 
   onLaunch: function () {

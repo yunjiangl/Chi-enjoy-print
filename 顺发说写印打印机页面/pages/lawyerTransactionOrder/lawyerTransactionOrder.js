@@ -12,14 +12,15 @@ Page({
     zxoder:null,
     nameOrCode:null,
     time:null,
-    userCode:null
+    userCode:null,
+    count:0
   },
   getData: function () {
     var that = this;
     var userCode = app.data.userInfo.userCode;
     console.log(userCode);
-    console.log("测试1");
-    console.log(app.data.userCode)
+    //console.log("测试1");
+    //console.log(app.data.userCode)
     //console.log(app.data.userInfo.accessToken);
     wx.request({
       url: app.data.api + 'order/attorney',
@@ -32,16 +33,19 @@ Page({
       },
       success: function (res) {
         var list = [];
-        //console.log(res.data.data.length)
+        var count=0;
+        console.log(res.data.data)
         for (var i = 0; i < res.data.data.length; i++) {
           list.push(res.data.data[i]);
+          count=count+res.data.data[i].serviceAmount;
         }
         //console.log(list)
         that.setData({
           zxoder:list,
-          userCode: userCode
+          userCode: userCode,
+          count:count
         })
-        console.log(that.data.zxoder)
+       // console.log(that.data.zxoder)
       }
     })
   },
@@ -81,13 +85,14 @@ Page({
             wx.showModal({
               content: '没有查询的内容',
               success: function (res) {
-                // console.log(res.confirm);
+                //console.log(res.confirm);
               }
             })
+          }else{
+            that.setData({
+              zxoder: resdata.data.data
+            })
           }
-          that.setData({
-            printList: resdata.data.data
-          })
         }
       })
     }
@@ -108,8 +113,13 @@ Page({
           timeo:time
         },
         success: function (resdata) {
-          console.log(resdata.data.data.length);
-          if(resdata.data.data.length==0){
+          //console.log(resdata.data.data);
+          if(resdata.data.data.length>0){
+            that.setData({
+              zxoder: resdata.data.data
+            })
+           // console.log(that.data.zxoder);
+          }else{
             wx.showModal({
               content: '没有查询的内容',
               success: function (res) {
@@ -117,9 +127,7 @@ Page({
               }
             })
           }
-          that.setData({
-            printList: resdata.data.data
-          })
+
         }
       })
   },
@@ -130,7 +138,7 @@ Page({
     var that=this;
     that.getData();
     var time = util.formatTime(new Date());
-    console.log(time)
+    //console.log(time)
     // 再通过setData更改Page()里面的data，动态更新页面的数据  
     this.setData({
       timeone: time

@@ -187,12 +187,13 @@ public class OrderController extends BaseController {
 		if(timeo!=null) {
 			time=sdf.parse(timeo);
 		}
+		//System.out.println(userDetailsBean.getId());
+		//System.out.println(time);
 		Map<String, Object> param = new HashMap<>();
 		param.put("nameOrCode", nameOrCode);
 		param.put("time", time);
 		param.put("attorneyId", userDetailsBean.getId());
 		List<ZxOrder> data = zxOrderService.attorney(param);
-
 		DefaultResopnseBean<List<ZxOrder>> resopnseBean = new DefaultResopnseBean<List<ZxOrder>>();
 		resopnseBean.setData(data);
 		return resopnseBean;
