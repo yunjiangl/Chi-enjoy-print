@@ -35,7 +35,7 @@ Page({
                 duration: 2000,
                 success:function(){
                   wx.navigateTo({
-                    url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code=' + code,
+                    url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code=' + code+'&type=申请中',
                   })
                 }
               })
@@ -51,7 +51,7 @@ Page({
   look: function (e) {
     var code = e.currentTarget.dataset.key
     wx.navigateTo({
-      url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code='+code,
+      url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code=' + code + '&type=加入',
     })
 
    },

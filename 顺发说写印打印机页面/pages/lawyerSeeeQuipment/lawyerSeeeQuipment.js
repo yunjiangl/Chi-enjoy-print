@@ -39,6 +39,9 @@ Page({
                 icon: 'success',
                 duration: 2000
               })
+              wx.navigateTo({
+                url: '../lawyerSeeeQuipment/lawyerSeeeQuipment?code=' + code + '&type=加入',
+              })
             }
           })
         } else if (res.cancel) {
@@ -51,8 +54,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    console.log(e)
   this.setData({
       code: e.code,
+      type1:e.type
     })
   },
 
