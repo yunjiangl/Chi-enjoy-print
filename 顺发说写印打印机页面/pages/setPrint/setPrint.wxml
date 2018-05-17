@@ -97,8 +97,8 @@
       <view class='footer'>
 
         <view class='total'>
-        <text>合计</text>
-        <text>{{order.printerNum}}页共计<text style='color:#f00;'>{{orderAmout}}元</text></text>
+        <!--<text>合计</text>
+        <text>{{order.printerNum}}页共计<text style='color:#f00;'>{{orderAmout}}元</text></text>-->
         </view>
 
         <view class='finish' bindtap='finish'>

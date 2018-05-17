@@ -236,14 +236,18 @@ public class ZxOrderServiceImpl implements ZxOrderService {
                 zxOrderSaveBean.setOrderNum(orderNum);
                 zxOrderSaveBean.setOrderUserCode(customerResultBean.getUserCode());
                 zxOrderSaveBean.setOrderUserId(customerResultBean.getId());
-                // zxOrderSaveBean.setPrinterAmount(printerAmount);打印费用，不知道一张纸多少钱
                 zxOrderSaveBean.setPrinterCode(printeResultBean.getPrinterCode());
                 zxOrderSaveBean.setPrinterId(printeResultBean.getId());
                 zxOrderSaveBean.setServiceAmount(orderSaveBean.getServiceAmout());
                 zxOrderSaveBean.setPrinterAmount(ZxOrderPrinterFileSaveBean.getFilePaper().doubleValue()
                         * Double.parseDouble(paperType.getValue()) * Double.parseDouble(paperColcor.getValue())
                         * Double.parseDouble(paperUsage.getValue()));
-                zxOrderSaveBean.setStatus(1);
+                if ("paper_colour_colours".equals(paperColcor.getCode())) {
+                    zxOrderSaveBean.setStatus(5);
+                } else {
+                    zxOrderSaveBean.setStatus(1);
+                }
+
                 zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getPrinterAmount() + zxOrderSaveBean.getServiceAmount());
                 //zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getOrderAmount() / 100);
                 orderRecordList.add(zxOrderSaveBean);
@@ -251,7 +255,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
                 ZxOrderPrinterFileSaveBean.setFileCode(fileCodes[i]);
                 if (!StringUtil.isBlank(attorneyResultBean)) {
                     ZxOrderPrinterFileSaveBean.setCreateId(attorneyResultBean.getId());
-                } else{
+                } else {
                     ZxOrderPrinterFileSaveBean.setCreateId(customerResultBean.getId());
                 }
 

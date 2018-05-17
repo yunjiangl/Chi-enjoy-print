@@ -6,10 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderAmout: null,
-    colcorAmout: 2,
-    userageAmout: 2,
-    typeAmout: 1,
     items1: [
       { name: 'putong', value: '单面', checked: 'true' },
     ],
@@ -30,28 +26,10 @@ Page({
       printerNum: 1, // 打印数量
       paperColcor: 10, // 纸张颜色
       paperUsage: 12, // 纸张使用
-      serviceAmout: null, // 服务费
+      serviceAmout: 0, // 服务费
       fileType: null,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
     },
     printerAddress: '请选择打印机',
-  },
-  //四舍五入保留2位小数（不够位数，则用0替补）
-  keepTwoDecimalFull: function (num) {
-    var result = parseFloat(num);
-    if (isNaN(result)) {
-      return false;
-    }
-    result = Math.round(num) / 100;
-    var s_x = result.toString();
-    var pos_decimal = s_x.indexOf('.');
-    if (pos_decimal < 0) {
-      pos_decimal = s_x.length;
-      s_x += '.';
-    }
-    while (s_x.length <= pos_decimal + 2) {
-      s_x += '0';
-    }
-    return s_x;
   },
   finish: function () {
     var that = this
@@ -93,7 +71,7 @@ Page({
         success: function (res) {
           app.loginCheck(res)
           console.log('保存订单结果' + res.data.data)
-          app.payAction(res.data.data, app.data.userInfo.openId)
+          //app.payAction(res.data.data, app.data.userInfo.openId)
           wx.redirectTo({
             url: '../printOrders/printOrders'
           })
@@ -119,7 +97,7 @@ Page({
           serviceAmout: that.data.order.serviceAmout, // 服务费
           fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
         },
-        orderAmout: that.keepTwoDecimalFull((that.data.order.printerNum - 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout) ,
+       // orderAmout: that.keepTwoDecimalFull((that.data.order.printerNum - 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout),
       })
     }
   },
@@ -140,7 +118,7 @@ Page({
         serviceAmout: that.data.order.serviceAmout, // 服务费
         fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
       },
-      orderAmout: that.keepTwoDecimalFull((that.data.order.printerNum + 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout) ,
+     // orderAmout: that.keepTwoDecimalFull((that.data.order.printerNum + 1) * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout),
     })
   },
   // 获取打印机code
@@ -157,9 +135,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    that.getAumot()
     this.setData({
-      orderAmout: that.keepTwoDecimalFull(that.data.order.printerNum * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout),
+     // orderAmout: that.keepTwoDecimalFull(that.data.order.printerNum * that.data.colcorAmout * that.data.userageAmout * that.data.typeAmout),
       order: {
         customerCode: app.data.userInfo.userCode,// 客户code
         attorneyCode: '', // 律师code
