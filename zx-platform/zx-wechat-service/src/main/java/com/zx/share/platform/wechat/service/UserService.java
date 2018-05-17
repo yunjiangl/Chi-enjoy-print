@@ -60,8 +60,12 @@ public interface UserService {
 	UserDetailsBean findByMobilePwd(String mobile,String pwd);
 	
 	List<ZxUser> newsSelect(String name);
-	
+
 	ZxUser codeSelect(String code);
-	
+
 	ZxUser selectByUcode(String Ucode);
+
+
+	Integer updateIpLoginTime(Long userId,String ip);
+	Integer updateIpLoginTime(String userCode,String ip);
 }

@@ -23,6 +23,12 @@ public interface PrinterMapper extends PlatFormMapper<ZxPrinterManager> {
 
     List<PrinterResultBean> page(PrinterQueryBean bean);
     Integer pageCount(PrinterQueryBean bean);
+    List<PrinterResultBean> pageTwo( List<String> bean);
+    /**
+     -     * 根据用户code 查询关联的打印机code
+     -     *
+     -     */
+   List<String> findPCByUserCode(String userCode);
 
     List<PrinterResultBean> nearby(PrinterQueryBean bean);
 
