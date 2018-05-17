@@ -1,6 +1,9 @@
 package com.zx.share.platform.wechat.api.controller.zx;
 
 
+import java.util.List;
+
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.common.bean.SessionConfig;
 import com.zx.share.platform.constants.ErrorsEnum;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
@@ -147,7 +150,22 @@ public class UserController extends BaseController {
         userService.update(updateBean);
         return resopnseBean;
     }
-    
+    @ApiOperation(value = "获取消息通知", notes = "获取消息通知")
+	@RequestMapping(value = "/newsSelect", method = RequestMethod.GET)
+	@ResponseBody
+	public List<ZxUser> newsSelect(@RequestParam("name") String name) {
+		
+		
+		return userService.newsSelect(name);
+	}
+    @ApiOperation(value = "单行获取消息通知", notes = "单行获取消息通知")
+	@RequestMapping(value = "/codeSelect", method = RequestMethod.GET)
+	@ResponseBody
+	public ZxUser codeSelect(@RequestParam("code") String code) {
+		
+		
+		return userService.codeSelect(code);
+	}
 
 
 }
