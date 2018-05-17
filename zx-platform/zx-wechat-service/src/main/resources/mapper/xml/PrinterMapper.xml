@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zx.share.platform.wechat.mapper.PrinterMapper">
+	<resultMap id="zxPrinterManager" type="com.zx.share.platform.bean.zx.ZxPrinterManager">
+		<result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="printer_code" property="code" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="manager_name" property="managerName" jdbcType="VARCHAR"/>
+        <result column="manager_phone" property="managerPhone" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="create_id" property="createId" />
 
+    </resultMap>
+    
+    <resultMap id="zxUserPrinter" type="com.zx.share.platform.bean.zx.ZxUserPrinter">
+		<result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="printer_id" property="printerId" jdbcType="BIGINT"/>
+        <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+        <result column="printer_code" property="printerCode" jdbcType="VARCHAR"/>
+        
+
+    </resultMap>
 
     <resultMap id="printerResultBean" type="com.zx.share.platform.vo.wechat.response.PrinterResultBean">
         <result column="printer_code" property="code" jdbcType="VARCHAR"/>
@@ -17,7 +41,14 @@
         <result column="create_id" property="createId" />
 
     </resultMap>
+	
+	<resultMap id="apply" type="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="printer_id" property="printerId" jdbcType="BIGINT"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
 
+    </resultMap>
 
     <sql id="selectSql">
         printer_code,name,province,city,area,address,manager_name,manager_phone,longitude,latitude,create_id
@@ -155,4 +186,18 @@
     <select id="findPCByUserCode" resultType="string" parameterType="string">
         SELECT printer_code FROM zx_user_printer WHERE user_code=#{userCode}
     </select>
+    <update id="updateByStatus">
+    	UPDATE zx_user_printer_apply SET status = '1' WHERE id = #{id}
+    </update>
+    <update id="updateByStatus2">
+    	UPDATE zx_user_printer_apply SET status = '2' WHERE id = #{id}
+    </update>
+    
+    <select id="selectByPcode" resultType="zxPrinterManager" parameterType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+    	select * from zx_printer_manager where printer_code=#{Pcode}
+    </select>
+    
+    <insert id="insertByCode">
+    	insert into zx_user_printer(user_id,printer_id,user_code,printer_code) values(#{userId},#{pId},#{Ucode},#{Pcode})
+    </insert>
 </mapper>
