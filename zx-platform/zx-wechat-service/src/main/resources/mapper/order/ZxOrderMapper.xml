@@ -36,6 +36,7 @@
 		<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
 		<result column="order_user_code" jdbcType="VARCHAR" property="orderUserCode" />
 		<result column="order_amount" jdbcType="DOUBLE" property="orderAmount" />
+		<result column="service_amount" jdbcType="DOUBLE" property="serviceAmount" />
 	</resultMap>
 
 	<resultMap type="com.zx.share.platform.bean.zx.ZxOrder" id="lawyer"
@@ -114,7 +115,7 @@
 	<select id="page" resultMap="orderResultBean"
 		parameterType="com.zx.share.platform.vo.wechat.request.OrderQueryBean">
 		select
-		order_code,status,order_num,create_time,printer_code,order_user_code,order_amount
+		order_code,status,order_num,create_time,printer_code,order_user_code,order_amount,service_amount
 		from zx_order
 		<where>
 			<if test="userCode != null and userCode.trim() != ''">

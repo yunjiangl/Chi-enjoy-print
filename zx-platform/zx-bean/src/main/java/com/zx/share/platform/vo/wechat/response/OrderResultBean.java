@@ -33,7 +33,8 @@ public class OrderResultBean implements Serializable {
     private String printerCode;
     @ApiModelProperty(value = "订单用户")
     private String orderUserCode;
-
+    @ApiModelProperty(value = "服务金额")
+    private Double serviceAmount;
     @ApiModelProperty(value = "打印机地址")
     private String printerAddress;
 
@@ -118,5 +119,13 @@ public class OrderResultBean implements Serializable {
 
     public void setOrderAmount(Double orderAmount) {
         this.orderAmount = orderAmount;
+    }
+
+    public Double getServiceAmount() {
+        return serviceAmount;
+    }
+
+    public void setServiceAmount(Double serviceAmount) {
+        this.serviceAmount = serviceAmount;
     }
 }

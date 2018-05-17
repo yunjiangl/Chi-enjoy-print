@@ -154,7 +154,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
      * @Title: save
      * @Description: 保存订单
      */
-    @Transactional
+    //@Transactional
     private String save(OrderSaveBean orderSaveBean) {
 
         // 获取打印机信息
@@ -238,8 +238,8 @@ public class ZxOrderServiceImpl implements ZxOrderService {
                 zxOrderSaveBean.setOrderUserId(customerResultBean.getId());
                 zxOrderSaveBean.setPrinterCode(printeResultBean.getPrinterCode());
                 zxOrderSaveBean.setPrinterId(printeResultBean.getId());
-                zxOrderSaveBean.setServiceAmount(orderSaveBean.getServiceAmout());
-                zxOrderSaveBean.setPrinterAmount(ZxOrderPrinterFileSaveBean.getFilePaper().doubleValue()
+                zxOrderSaveBean.setServiceAmount(orderSaveBean.getServiceAmout() * 100);
+                zxOrderSaveBean.setPrinterAmount(100 * ZxOrderPrinterFileSaveBean.getFilePaper().doubleValue()
                         * Double.parseDouble(paperType.getValue()) * Double.parseDouble(paperColcor.getValue())
                         * Double.parseDouble(paperUsage.getValue()));
                 if ("paper_colour_colours".equals(paperColcor.getCode())) {
@@ -248,8 +248,10 @@ public class ZxOrderServiceImpl implements ZxOrderService {
                     zxOrderSaveBean.setStatus(1);
                 }
 
+
                 zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getPrinterAmount() + zxOrderSaveBean.getServiceAmount());
-                //zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getOrderAmount() / 100);
+               // zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getOrderAmount() * 100);
+
                 orderRecordList.add(zxOrderSaveBean);
 
                 ZxOrderPrinterFileSaveBean.setFileCode(fileCodes[i]);

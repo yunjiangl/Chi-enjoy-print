@@ -61,6 +61,7 @@ public class UploadController {
 		file.setCategoryCode("zx_file_type_e");
 		file.setUserCode(userCode);
 		file.setFileNum(1);
+		file.setFileName("导入的图片");
 
 		return uploadService.add(file, multipartFile);
 	}

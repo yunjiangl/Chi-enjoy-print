@@ -92,11 +92,12 @@ public class UploadServiceImpl implements UploadService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<ZxFileManagerCDE> list =  CDEFileMapper.selectAll();
-
-        file.setFileName(multipartFile.getOriginalFilename());
+        List<ZxFileManagerCDE> list = CDEFileMapper.selectAll();
+        if (file.getFileName() != null) {
+            file.setFileName(multipartFile.getOriginalFilename());
+        }
         file.setFileUrl(fileURL);
-        file.setFileCode(CodeBuilderUtil.fileCode(file.getCategoryCode(),String.valueOf(list.get(list.size()-1).getId() + 1)));
+        file.setFileCode(CodeBuilderUtil.fileCode(file.getCategoryCode(), String.valueOf(list.get(list.size() - 1).getId() + 1)));
         file.setCreateTime(new Date());
 
         CDEFileMapper.insertSelective(file);
@@ -114,7 +115,7 @@ public class UploadServiceImpl implements UploadService {
     }
 
     /**
-     * @param filePath 文件保存路径
+     * @param filePath      文件保存路径
      * @param multipartFile
      * @Title: add
      * @Description: 添加用户照片
@@ -123,7 +124,7 @@ public class UploadServiceImpl implements UploadService {
     public DefaultResopnseBean<Object> addImg(MultipartFile multipartFile, String filePath) {
         // 获得文件后缀
         String suffix = multipartFile.getOriginalFilename()
-                .substring(multipartFile.getOriginalFilename().lastIndexOf(".") );
+                .substring(multipartFile.getOriginalFilename().lastIndexOf("."));
         //生成唯一id
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         // 判断文件夹是否存在
@@ -131,7 +132,7 @@ public class UploadServiceImpl implements UploadService {
         if (!targetFile.exists()) {
             targetFile.mkdirs();
         }
-        String fileURL = filePath+uuid+suffix;
+        String fileURL = filePath + uuid + suffix;
 
         try {
             // 文件上传

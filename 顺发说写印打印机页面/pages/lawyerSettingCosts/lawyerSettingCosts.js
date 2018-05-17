@@ -135,46 +135,66 @@ Page({
     for (var i in this.data.fileNames) {
       msg += this.data.fileNames[i]
     }
-    console.log(that.data.order)
-    wx.showModal({
-      title: '发送到：' + that.data.order.customerCode,
-      content: '律师服务费：' + that.data.order.serviceAmout + msg,
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-          // 向服务端发送订单数据保存订单
-          wx.request({
-            url: app.data.api + app.data.urlOrderSave,
-            method: 'POST',
-
-            header: {
-              "Content-Type":
-              "application/x-www-form-urlencoded",
-              'X-ACCESS-TOKEN': app.data.userInfo.accessToken
-            },
-            data: {
-              customerCode: that.data.order.customerCode,// 客户code
-              attorneyCode: that.data.order.attorneyCode, // 律师code
-              printerCode: that.data.order.printerCode, // 打印机code
-              fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
-              paperType: that.data.order.paperType, // 纸张类型
-              printerNum: that.data.printerNum, // 打印数量
-              paperColcor: that.data.order.paperColcor, // 纸张颜色
-              paperUsage: that.data.order.paperUsage, // 纸张使用
-              serviceAmout: that.data.order.serviceAmout, // 服务费
-              fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
-            },
-            success: function (res) {
-              app.loginCheck(res)
-              console.log('保存订单结果' + res)
-            }
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-          // 取消保存订单信息
+    if (that.data.order.printerCode == null) {
+      wx.showModal({
+        title: '错误',
+        content: '请选择打印机',
+        success: function (res) {
+          if (res.confirm) {
+            that.getPrinterCode()
+          }
         }
-      }
-    })
+      })
+    } else if (that.data.order.serviceAmout == null) { 
+      wx.showModal({
+        title: '错误',
+        content: '请输入服务费',
+        success: function (res) {
+          if (res.confirm) {
+          }
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '发送到：' + that.data.order.customerCode,
+        content: '律师服务费：' + that.data.order.serviceAmout + '文件：' + msg,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            // 向服务端发送订单数据保存订单
+            wx.request({
+              url: app.data.api + app.data.urlOrderSave,
+              method: 'POST',
+
+              header: {
+                "Content-Type":
+                "application/x-www-form-urlencoded",
+                'X-ACCESS-TOKEN': app.data.userInfo.accessToken
+              },
+              data: {
+                customerCode: that.data.order.customerCode,// 客户code
+                attorneyCode: that.data.order.attorneyCode, // 律师code
+                printerCode: that.data.order.printerCode, // 打印机code
+                fileCodes: that.data.order.fileCodes, // 文件code(多个文件中间用英文逗号分隔)
+                paperType: that.data.order.paperType, // 纸张类型
+                printerNum: that.data.printerNum, // 打印数量
+                paperColcor: that.data.order.paperColcor, // 纸张颜色
+                paperUsage: that.data.order.paperUsage, // 纸张使用
+                serviceAmout: that.data.order.serviceAmout, // 服务费
+                fileType: that.data.order.fileType,// 文件类型(在字典数据库没有变动的情况下，4为ab类文件，5为cde类文件)
+              },
+              success: function (res) {
+                app.loginCheck(res)
+                console.log('保存订单结果' + res)
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+            // 取消保存订单信息
+          }
+        }
+      })
+    }
   },
   // 获取律师的code
   getLawyerCode: function () {
