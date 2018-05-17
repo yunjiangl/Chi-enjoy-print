@@ -85,13 +85,14 @@ Page({
             wx.showModal({
               content: '没有查询的内容',
               success: function (res) {
-                // console.log(res.confirm);
+                //console.log(res.confirm);
               }
             })
+          }else{
+            that.setData({
+              zxoder: resdata.data.data
+            })
           }
-          that.setData({
-            zxoder: resdata.data.data
-          })
         }
       })
     }
