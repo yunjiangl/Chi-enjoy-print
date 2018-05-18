@@ -106,7 +106,7 @@ Page({
     data: {
       //page:0,
       //pageSize:100,
-      userCode: 'wechat00000000022'
+      userCode: app.data.userInfo.userCode
     },
     header: {
       'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
