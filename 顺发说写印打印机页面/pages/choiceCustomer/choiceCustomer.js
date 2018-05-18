@@ -32,7 +32,7 @@ Page({
         'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken
       },
       data: {
-        type: getApp().data.userInfo.userType,
+        userType: getApp().data.userInfo.userType,
         userCode: getApp().data.userInfo.userCode
       },
       success: function (res) {

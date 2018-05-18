@@ -14,9 +14,9 @@ import java.util.*;
  */
 public class StoreMail {
 
-    final static String USER = "fglovezzr@163.com"; // 用户名
-    final static String PASSWORD = "fg201314zzr"; // 密码
-    public final static String MAIL_SERVER_HOST = "pop3.163.com"; // 邮箱服务器
+    final static String USER = "fengg@exqoo.com"; // 用户名
+    final static String PASSWORD = "A123456b"; // 密码
+    public final static String MAIL_SERVER_HOST = "pop3.exqoo.com"; // 邮箱服务器
 
     public static List<Map<String,Object>> emailInbox() throws Exception {
         List<Map<String,Object>> result = new ArrayList<>();

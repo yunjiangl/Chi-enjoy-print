@@ -8,13 +8,13 @@
 
   <!-- content start -->
   <view class='content'>
-    <checkbox-group class="radio-group" bindchange="radioChange">
+    <radio-group class="radio-group" bindchange="radioChange">
       <view wx:for='{{fileInfoList}}'>
         <!-- list start -->
         <view class='list'>
 
           <view class='left' bindtap='downloadDocument'>
-            <checkbox value="{{index}}" />
+            <radio value="{{index}}" />
             <view class='text' data-abstracts='{{item.abstracts}}' bindtap="abstractsInfo">{{item.fileName}}</view>
 
           </view>
@@ -27,7 +27,7 @@
         <view class='line'></view>
 
       </view>
-    </checkbox-group>
+    </radio-group>
   </view>
   <!-- content end -->
   <button class="loginBtn next" type="primary" bindtap="choiceCustomer">发送给客户</button>

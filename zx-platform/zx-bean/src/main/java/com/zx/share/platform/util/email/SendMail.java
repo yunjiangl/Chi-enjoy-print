@@ -1,10 +1,13 @@
 package com.zx.share.platform.util.email;
 
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.*;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.imageio.ImageIO;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -76,8 +79,23 @@ public class SendMail {
                     MimeBodyPart mbpFile = new MimeBodyPart();
                     fileName = efile.nextElement().toString();
                     FileDataSource fds = new FileDataSource(fileName);
+                    boolean bcheck = true;
+                    try {
+                        BufferedImage image = ImageIO.read(fds.getInputStream());
+                        if(image==null){
+                            bcheck = false;
+                        }
+                    } catch (IOException e) {
+                        bcheck = false;
+                        e.printStackTrace();
+                    }
                     mbpFile.setDataHandler(new DataHandler(fds));
-                    mbpFile.setFileName(toChinese(fds.getName()));
+                    if(bcheck){
+                        mbpFile.setFileName(toChinese("打印图片.jpg"));
+                    }else{
+
+                        mbpFile.setFileName(toChinese(fds.getName()));
+                    }
                     mp.addBodyPart(mbpFile);
                 }
                 System.out.println("添加成功");
@@ -94,14 +112,14 @@ public class SendMail {
         return true;
     }
 
-    public static boolean sendEmail(String path){
+    public static boolean sendEmail(String path,String code){
         MailBean mb = new MailBean();
-        mb.setHost("smtp.163.com"); // 设置SMTP主机(163)，若用126，则设为：smtp.126.com
-        mb.setUsername("fglovezzr@163.com"); // 设置发件人邮箱的用户名
-        mb.setPassword("fg201314zzr"); // 设置发件人邮箱的密码，需将*号改成正确的密码
-        mb.setFrom("fglovezzr@163.com"); // 设置发件人的邮箱
+        mb.setHost("smtp.exqoo.com"); // 设置SMTP主机(163)，若用126，则设为：smtp.126.com
+        mb.setUsername("fengg@exqoo.com"); // 设置发件人邮箱的用户名
+        mb.setPassword("A123456b"); // 设置发件人邮箱的密码，需将*号改成正确的密码
+        mb.setFrom("fengg@exqoo.com"); // 设置发件人的邮箱
         mb.setTo("exqooo@print.epsonconnect.com"); // 设置收件人的邮箱
-        mb.setSubject(UUID.randomUUID().toString()); // 设置邮件的主题
+        mb.setSubject("打印测试"+code); // 设置邮件的主题
         mb.setContent(""); // 设置邮件的正文
 
         mb.attachFile(path); // 往邮件中添加附件

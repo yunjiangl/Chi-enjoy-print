@@ -13,7 +13,7 @@
   <!-- <view class="{{showView?'hide':'show'}} coverList" > -->
   <!-- ||(valList.latitude>=(lon-0.0324)&&valList.longitude>=(lat-0.11038))  -->
   <view class='showAddress' wx:for="{{val}}" wx:key="" data-valList='{{valList}}' bindtap='getVal' wx:for-item="valList">
-    <view wx:if="{{(valList.latitude<=lon&&valList.longitude<=lat) & valList.latitude>=lon-0.0324&&valList.longitude>=lat-0.11038}}">
+    <view >
     
       
       <view>{{valList.name}}</view>

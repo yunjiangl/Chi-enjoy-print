@@ -90,6 +90,7 @@ Page({
       data: {
         userCode: app.data.userCode, // 用户唯一标识
         status: that.data.orderStart, // 订单的状态
+        type:getApp().data.userInfo.userType,
         page: that.data.page, // 第几页
         pageSize: that.data.pageSize, // 每页显示的数据
       },

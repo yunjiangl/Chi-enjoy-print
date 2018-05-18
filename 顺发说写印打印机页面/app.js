@@ -2,8 +2,8 @@
 var countNum = 1;
 App({
   data: {
-    //api: 'http://127.0.0.1:10001/',
-    api: 'http://127.0.0.1:10001/',
+    // api: 'http://127.0.0.1:10001/',
+    api: 'http://114.115.172.162:8081/',
     userInfo: {
       accessToken: null, // 登录之后系统返回的X-ACCESS-TOKEN
       userType: 2,// 用户类型，1为普通用户，2为律师用户（），
@@ -90,19 +90,26 @@ App({
     } else if (data.data.code == 200) {
       //先赋值openId
       that.data.userInfo.openId = data.data.data.openId;
-      // 判断用户类型
-      if (data.data.data.userType == 2) {
-        console.log("我是律师")
-        //跳转到律师首页
+      if(data.data.data.userStatus==1){
         wx.redirectTo({
-          url: "../lawyerIndex/lawyerIndex"
+          url: '../register/register'
         })
-      } else if (data.data.data.userType == 1) {
-        //跳转到普通用户首页
-        wx.redirectTo({
-          url: '../CustomerIndex/CustomerIndex'
-        })
+      }else{
+        // 判断用户类型
+        if (data.data.data.userType == 2) {
+          console.log("我是律师")
+          //跳转到律师首页
+          wx.redirectTo({
+            url: "../lawyerIndex/lawyerIndex"
+          })
+        } else if (data.data.data.userType == 1) {
+          //跳转到普通用户首页
+          wx.redirectTo({
+            url: '../CustomerIndex/CustomerIndex'
+          })
+        }
       }
+      
     
     // 为全局变量赋值
     console.log(data.data.data);

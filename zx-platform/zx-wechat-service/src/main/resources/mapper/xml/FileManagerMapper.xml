@@ -19,7 +19,7 @@
 
 	<select id="pageListab" resultMap="fileResultBean"
 		parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
-		select file_code,file_num,file_name,category_code,abstracts from
+		select file_code,file_num,file_url,file_name,category_code,abstracts from
 		zx_file_manager_ab WHERE 1=1
 		<if test="categoryCode!=null and categoryCode!=''">
 			AND category_code = #{categoryCode}
@@ -45,7 +45,7 @@
 	<select id="pageListcde" resultMap="fileResultBean"
 		parameterType="com.zx.share.platform.vo.wechat.request.FileQueryBean">
 		select
-		file_code,file_num,id,file_num,create_time,file_name,category_code,user_code,manager_code from
+		file_code,file_num,id,file_num,file_url,create_time,file_name,category_code,user_code,manager_code from
 		zx_file_manager_cde WHERE 1=1
 		<if test="categoryCode!=null and categoryCode!=''">
 			AND category_code = #{categoryCode}
@@ -69,13 +69,13 @@
 	</select>
 
 	<select id="detailsab" resultMap="fileResultBean">
-		select id,file_code,file_num,file_name,category_code,abstracts from
+		select id,file_code,file_url,file_num,file_name,category_code,abstracts from
 		zx_file_manager_ab where file_code = #{code}
 	</select>
 
 	<select id="detailscde" resultMap="fileResultBean">
 		select
-		id,file_code,file_num,file_name,category_code,user_code,manager_code,abstracts
+		id,file_code,file_num,file_url,file_name,category_code,user_code,manager_code,abstracts
 		from zx_file_manager_cde where file_code = #{code}
 	</select>
 	

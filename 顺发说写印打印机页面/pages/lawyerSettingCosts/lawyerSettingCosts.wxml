@@ -96,7 +96,7 @@
     <!-- settingCosts start -->
       <view class='settingCosts'>
         <label>设置打印服务费</label>
-        <label class='costs'><label><input type='text' bindinput='serviceAmout' placeholder='输入费用'></input></label><label class='m'>￥</label></label>
+        <label class='costs'><label><input type='number' bindinput='serviceAmout' placeholder='输入费用'></input></label><label class='m'>￥</label></label>
       </view>
     <!-- settingCosts end -->
 

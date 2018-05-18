@@ -221,10 +221,10 @@ public class OrderController extends BaseController {
 		servletPath = request.getServletPath();
 		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
 		String codes = memcachedService.get("zx_platform_order")+"";
-		if(codes.indexOf(code)>=0){
-			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，不能重复发送打印请求");
-			return resopnseBean;
-		}
+//		if(codes.indexOf(code)>=0){
+//			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，不能重复发送打印请求");
+//			return resopnseBean;
+//		}
 		boolean result = zxOrderService.printer(code);
 		if(!result){
 			resopnseBean.jsonFill(ErrorsEnum.SYSTEM_CUSTOM_ERROR.code,"打印出错，请联系管理员");
@@ -245,7 +245,7 @@ public class OrderController extends BaseController {
 				List<Map<String,Object>> emailList = StoreMail.emailInbox();
 				String[] codeList = codes.split(",");
 				for (String code:codeList) {
-					if(StringUtil.isNotBlank(code)){
+					if(StringUtil.isBlank(code) || code.length()<10){
 						continue;
 					}
 					int count = 0;

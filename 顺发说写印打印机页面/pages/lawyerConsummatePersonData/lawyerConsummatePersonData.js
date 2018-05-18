@@ -402,7 +402,10 @@ function upload(page, path, num) {
       url: app.data.api + app.data.urlUploadUserimg,
       filePath: path[0],
       name: 'multipartFile',
-      header: { "content-type": "multipart/form-data" },
+      header: {
+         "content-type": "multipart/form-data",
+         'X-ACCESS-TOKEN': getApp().data.userInfo.accessToken
+      },
       formData: {
         //和服务器约定的token, 一般也可以放在header中
         //'session_token': wx.getStorageSync('session_token')

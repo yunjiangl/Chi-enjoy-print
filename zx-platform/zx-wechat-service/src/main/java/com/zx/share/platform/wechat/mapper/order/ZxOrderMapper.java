@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.zx.share.platform.vo.wechat.request.OrderQueryBean;
 import com.zx.share.platform.vo.wechat.response.OrderResultBean;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.zx.share.platform.bean.zx.ZxOrder;
@@ -37,6 +38,6 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 	ZxOrder selectByCode(String code);
 
 
-	Integer updateOrderStatus1(String code,Integer status);
+	Integer updateOrderStatus1(@Param("code") String code, @Param("status")Integer status);
 
 }

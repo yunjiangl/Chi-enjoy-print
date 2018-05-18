@@ -249,7 +249,7 @@ public class ZxOrderServiceImpl implements ZxOrderService {
                 }
 
 
-                zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getPrinterAmount() + zxOrderSaveBean.getServiceAmount());
+                zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getServiceAmount());
                // zxOrderSaveBean.setOrderAmount(zxOrderSaveBean.getOrderAmount() * 100);
 
                 orderRecordList.add(zxOrderSaveBean);
@@ -425,15 +425,16 @@ public class ZxOrderServiceImpl implements ZxOrderService {
                 //多份重复发送
                 if (file.getPrinterNum() > 1) {
                     for (int i = 0; i < file.getPrinterNum(); i++) {
-                        SendMail.sendEmail(path);
+                        SendMail.sendEmail(path,code);
                     }
                     String orderCodes = memcachedService.get("zx_platform_order") + "";
                     if (orderCodes.indexOf(orderResultBean.getOrderCode()) < 0) {
                         memcachedService.set("zx_platform_order", 60 * 60 * 24 * 100, orderCodes + "," + orderResultBean.getOrderCode());
                     }
+                    return true;
                 } else {
 
-                    if (SendMail.sendEmail(path)) {
+                    if (SendMail.sendEmail(path,code)) {
                         //TODO 写入打印订单状态集合
                         String orderCodes = memcachedService.get("zx_platform_order") + "";
                         if (orderCodes.indexOf(orderResultBean.getOrderCode()) < 0) {

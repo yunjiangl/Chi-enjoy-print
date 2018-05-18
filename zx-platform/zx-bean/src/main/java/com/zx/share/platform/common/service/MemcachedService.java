@@ -6,6 +6,9 @@ import com.zx.share.platform.constants.OCSKeys;
 import com.zx.share.platform.vo.wechat.response.UserDetailsBean;
 import net.spy.memcached.MemcachedClient;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,8 +22,9 @@ import java.util.Map;
 @Service("memcachedService")
 public class MemcachedService {
 
-	@Resource
 	private MemcachedClient memcachedClient;
+
+
 
 	/**
 	 * 设置缓存
@@ -30,7 +34,7 @@ public class MemcachedService {
 	 * @param value：值
 	 */
 	public void set(String key, int exprieTime, Object value) {
-		memcachedClient.set(key, exprieTime, value);
+		JedisService.set(key, value.toString(), exprieTime);
 	}
 
 	/**
@@ -39,7 +43,8 @@ public class MemcachedService {
 	 * @param key
 	 */
 	public void delete(String key) {
-		memcachedClient.delete(key);
+		//memcachedClient.delete(key);
+		JedisService.del(key);
 	}
 
 	/**
@@ -49,8 +54,10 @@ public class MemcachedService {
 	 * @return
 	 */
 	public Object get(String key) {
-		return memcachedClient.get(key);
+//		return memcachedClient.get(key);
+		return JedisService.get(key);
 	}
+
 
 	/**
 	 * 获得缓存中的数据并重置其过期时间.
@@ -59,9 +66,9 @@ public class MemcachedService {
 	 * @param exprieTime
 	 */
 	public Object getAndTouch(String key, int exprieTime) {
-		Object value = memcachedClient.get(key);
+		Object value = this.get(key);
 		if (value != null) {
-			memcachedClient.set(key, exprieTime, value);
+			this.set(key, exprieTime, value.toString());
 		}
 		return value;
 	}

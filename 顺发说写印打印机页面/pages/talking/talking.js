@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: "与" + getApp().data.userInfo.userType == 2 ? options.userName : options.attorneyName+"对话中"
+      title: "与" + (getApp().data.userInfo.userType == 2 ? options.userName : options.attorneyName)+"对话中"
     });
     this.setData({
       userTwo: options.attorneyName,

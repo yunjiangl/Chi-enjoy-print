@@ -140,13 +140,13 @@ Page({
         console.log(a);
         console.log(b);
         wx.request({
-          url: 'http://123.206.42.162:10001/printer/nearby',
+          url: app.data.api+'printer/nearby',
           header: {
             'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
           },
           data: {
-            longitude: a,
-            latitude: b
+            longitude: b,
+            latitude: a
           },
           method: 'GET',
           success: function (aa) {
@@ -198,7 +198,7 @@ Page({
 
         wx.request({
 
-          url: 'http://123.206.42.162:10001/dictionary/get',
+          url: app.data.api+'dictionary/get',
           header: {
             'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
           },
@@ -216,7 +216,7 @@ Page({
 
         wx.request({
 
-          url: 'http://123.206.42.162:10001/dictionary/get',
+          url: app.data.api+'dictionary/get',
           header: {
             'X-ACCESS-TOKEN': app.data.userInfo.accessToken,
           },

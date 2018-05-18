@@ -13,56 +13,56 @@
         <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
         <result column="is_lock" property="isLock"/>
     </resultMap>
-    
+
     <resultMap id="Map" type="com.zx.share.platform.bean.zx.ZxUser">
-		<id column="id" jdbcType="BIGINT" property="id" />
-		<result column="user_code" jdbcType="VARCHAR" property="userCode" />
-		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
-		<result column="password" jdbcType="VARCHAR" property="password" />
-		<result column="nickname" jdbcType="VARCHAR" property="nickname" />
-		<result column="portrait" jdbcType="VARCHAR" property="portrait" />
-		<result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
-		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-		<result column="open_id" jdbcType="VARCHAR" property="openId" />
-		<result column="union_id" jdbcType="VARCHAR" property="unionId" />
-		<result column="user_type" jdbcType="INTEGER" property="userType" />
-		<result column="province" jdbcType="VARCHAR" property="province" />
-		<result column="city" jdbcType="VARCHAR" property="city" />
-		<result column="area" jdbcType="VARCHAR" property="area" />
-		<result column="addres" jdbcType="VARCHAR" property="address" />
-		<result column="age" jdbcType="INTEGER" property="age" />
-		<result column="wechat_id" jdbcType="VARCHAR" property="wechatId" />
-		<result column="is_lock" jdbcType="VARCHAR" property="isLock" />
-		<result column="gen" jdbcType="VARCHAR" property="gen" />
-		<association property="zxPrinterManager"
-			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
-			<result column="id" jdbcType="BIGINT" property="id" />
-			<result column="name" jdbcType="VARCHAR" property="name" />
-			<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
-			<result column="province" jdbcType="VARCHAR" property="province" />
-			<result column="city" jdbcType="VARCHAR" property="city" />
-			<result column="area" jdbcType="VARCHAR" property="area" />
-			<result column="address" jdbcType="VARCHAR" property="address" />
-			<result column="manager_name" jdbcType="VARCHAR" property="managerName" />
-			<result column="manager_phone" jdbcType="VARCHAR" property="managerPhone" />
-			<result column="status" jdbcType="VARCHAR" property="status" />
-		</association>
-		<association property="zxUserPrinterApply"
-			javaType="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
-			<result column="id" jdbcType="BIGINT" property="id" />
-			<result column="user_id" jdbcType="BIGINT" property="userId" />
-			<result column="printer_id" jdbcType="BIGINT" property="printerId" />
-			<result column="status" jdbcType="INTEGER" property="status" />
-			<result column="create_time" jdbcType="VARCHAR" property="createTime" />
-		</association>
-		<association property="sysUser"
-			javaType="com.zx.share.platform.bean.sys.SysUser">
-			<result column="username" jdbcType="VARCHAR" property="username" />
-			<result column="createUserId" jdbcType="BIGINT" property="createUserId" />
-		</association>
-		
-	</resultMap>
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_code" jdbcType="VARCHAR" property="userCode"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="portrait" jdbcType="VARCHAR" property="portrait"/>
+        <result column="register_time" jdbcType="TIMESTAMP" property="registerTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="open_id" jdbcType="VARCHAR" property="openId"/>
+        <result column="union_id" jdbcType="VARCHAR" property="unionId"/>
+        <result column="user_type" jdbcType="INTEGER" property="userType"/>
+        <result column="province" jdbcType="VARCHAR" property="province"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="addres" jdbcType="VARCHAR" property="address"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="wechat_id" jdbcType="VARCHAR" property="wechatId"/>
+        <result column="is_lock" jdbcType="VARCHAR" property="isLock"/>
+        <result column="gen" jdbcType="VARCHAR" property="gen"/>
+        <association property="zxPrinterManager"
+                     javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
+            <result column="id" jdbcType="BIGINT" property="id"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="printer_code" jdbcType="VARCHAR" property="printerCode"/>
+            <result column="province" jdbcType="VARCHAR" property="province"/>
+            <result column="city" jdbcType="VARCHAR" property="city"/>
+            <result column="area" jdbcType="VARCHAR" property="area"/>
+            <result column="address" jdbcType="VARCHAR" property="address"/>
+            <result column="manager_name" jdbcType="VARCHAR" property="managerName"/>
+            <result column="manager_phone" jdbcType="VARCHAR" property="managerPhone"/>
+            <result column="status" jdbcType="VARCHAR" property="status"/>
+        </association>
+        <association property="zxUserPrinterApply"
+                     javaType="com.zx.share.platform.bean.zx.ZxUserPrinterApply">
+            <result column="id" jdbcType="BIGINT" property="id"/>
+            <result column="user_id" jdbcType="BIGINT" property="userId"/>
+            <result column="printer_id" jdbcType="BIGINT" property="printerId"/>
+            <result column="status" jdbcType="INTEGER" property="status"/>
+            <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+        </association>
+        <association property="sysUser"
+                     javaType="com.zx.share.platform.bean.sys.SysUser">
+            <result column="username" jdbcType="VARCHAR" property="username"/>
+            <result column="createUserId" jdbcType="BIGINT" property="createUserId"/>
+        </association>
+
+    </resultMap>
 
     <resultMap id="userDetailsBean" type="com.zx.share.platform.vo.wechat.response.UserDetailsBean">
         <id column="id" property="id"/>
@@ -101,7 +101,8 @@
         select nickname,user_type,user_status,user_code,username,mobile,union_id,open_id,password from zx_user where open_id=#{0,jdbcType=VARCHAR}
     </select>
 
-    <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean"  keyProperty="id" useGeneratedKeys="true">
+    <insert id="save" parameterType="com.zx.share.platform.vo.user.UserRequestBean" keyProperty="id"
+            useGeneratedKeys="true">
         insert into zx_user(
             user_code,
             open_id,
@@ -191,9 +192,9 @@
     </insert>
     <insert id="saveAttorneyDomain" parameterType="java.util.List">
         insert into zx_user_attorney_domain(user_id,user_code,domain_code)
-         values
+        values
         <foreach collection="list" item="bean" separator=",">
-        (#{bean.userId},#{bean.userCode},#{bean.domainCode})
+            (#{bean.userId},#{bean.userCode},#{bean.domainCode})
 
         </foreach>
     </insert>
@@ -228,9 +229,9 @@
         INSERT INTO sys_user_login(user_id,login_ip,login_time,user_type)
         VALUES (#{userId},#{ip},now(),2)
     </update>
-    
+
     <select id="newsSelect" resultType="com.zx.share.platform.bean.zx.ZxUser"
-		resultMap="Map">
+            resultMap="Map">
 		SELECT
 zx_printer_manager.printer_code,
 zx_printer_manager.latitude,
@@ -264,10 +265,10 @@ zx_printer_manager.create_id = sys_user.create_user_id AND
 zx_user.username = #{name}
 		
 	</select>
-	
-	
-	<select id="codeSelect" resultType="com.zx.share.platform.bean.zx.ZxUser"
-		resultMap="Map">
+
+
+    <select id="codeSelect" resultType="com.zx.share.platform.bean.zx.ZxUser"
+            resultMap="Map">
 		SELECT
 zx_printer_manager.printer_code,
 zx_printer_manager.latitude,
@@ -301,9 +302,9 @@ zx_printer_manager.create_id = sys_user.create_user_id AND
 zx_user_printer_apply.`status`=0 AND
 zx_printer_manager.printer_code = #{code}
 	</select>
-	
-	<select id="selectByUcode" resultType="com.zx.share.platform.bean.zx.ZxUser"
-		resultMap="Map">
+
+    <select id="selectByUcode" resultType="com.zx.share.platform.bean.zx.ZxUser"
+            resultMap="Map">
 		select * from zx_user where user_code=#{Ucode}
 	</select>
 </mapper>

@@ -2,7 +2,7 @@
   <view class='container'>
 
   <view class="list" wx:for="{{list}}">
-      <view wx:if="{{type == 1}}" class='list-until' data-user="{{item.userCode}}" data-attorney="{{item.attorneyCode}}" data-username="{{item.userName}}" data-attorneyname="{{item.attorneyName}}" catchtap='btnView'>
+      <view wx:if="{{type == 2}}" class='list-until' data-user="{{item.userCode}}" data-attorney="{{item.attorneyCode}}" data-username="{{item.userName}}" data-attorneyname="{{item.attorneyName}}" catchtap='btnView'>
           <view class='lt'>
             <view class='photo'>
               <image class='head-photo' src='{{item.userPortrait}}' />
@@ -18,7 +18,7 @@
           <text class='dt'>{{item.time}}</text>
         </view>
       </view>
-      <view wx:if="{{type == 2}}" class='list-until' data-user="{{item.userCode}}" data-attorney="{{item.attorneyCode}}" data-userName="{{item.userName}}" data-attorneyName="{{item.attorneyName}}" catchtap='btnView'>
+      <view wx:if="{{type == 1}}" class='list-until' data-user="{{item.userCode}}" data-attorney="{{item.attorneyCode}}" data-userName="{{item.userName}}" data-attorneyName="{{item.attorneyName}}" catchtap='btnView'>
           <view class='lt'>
             <view class='photo'>
               <image class='head-photo' src='{{item.attorneyPortrait}}' />

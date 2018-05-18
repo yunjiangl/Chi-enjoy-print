@@ -6,12 +6,15 @@ import com.zx.share.platform.util.*;
 import com.zx.share.platform.util.file.FileUtil;
 import com.zx.share.platform.util.response.DefaultResopnseBean;
 import com.zx.share.platform.wechat.service.UploadService;
+import javafx.scene.image.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Date;
 import java.util.List;
@@ -43,8 +46,25 @@ public class UploadServiceImpl implements UploadService {
         if (!targetFile.exists()) {
             targetFile.mkdirs();
         }
-
-        String fileURL = this._getFilePath(filePath, file.getUserCode()) + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
+        // 获得文件后缀
+        String suffix = multipartFile.getOriginalFilename()
+                .substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1);
+        boolean bcheck = true;
+        try {
+            BufferedImage image = ImageIO.read(multipartFile.getInputStream());
+            if(image==null){
+                bcheck = false;
+            }
+        } catch (IOException e) {
+            bcheck = false;
+            e.printStackTrace();
+        }
+        String fileURL = "";
+        if(bcheck){
+            fileURL = this._getFilePath(filePath, file.getUserCode()) + UUID.randomUUID().toString()+"."+suffix;
+        }else{
+            fileURL = this._getFilePath(filePath, file.getUserCode()) + multipartFile.getOriginalFilename(); // 获得文件上传之后的路径
+        }
 
         try {
 
@@ -65,8 +85,8 @@ public class UploadServiceImpl implements UploadService {
             // 文件上传完毕
 
             // 获得文件后缀
-            String suffix = multipartFile.getOriginalFilename()
-                    .substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1);
+//            String suffix = multipartFile.getOriginalFilename()
+//                    .substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1);
 
             // 读取pdf文件打印页数
             if ("pdf".equals(suffix)) {
@@ -108,7 +128,7 @@ public class UploadServiceImpl implements UploadService {
     //按照类型，年月日区分文件夹
     private String _getFilePath(String filePath, String userId) {
         StringBuffer newFilePath = new StringBuffer(filePath + userId + File.separator);
-        newFilePath.append(File.separator + DateUtil.getDateString(new Date()));
+        newFilePath.append(DateUtil.getDateString(new Date()));
         newFilePath.append(File.separator);
         FileUtil.isExistDir(newFilePath.toString());
         return newFilePath.toString();
