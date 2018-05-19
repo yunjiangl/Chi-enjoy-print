@@ -45,6 +45,14 @@ public class OrderController {
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> list(@RequestParam Map<String, Object> params) {
 		return zxOrderService.list(params);
 	}
+	@RequestMapping(value = "/lawyer/page", method = RequestMethod.GET)
+	public DefaultResopnseBean<PageResponseBean<ZxOrder>> lawyer(@RequestParam Map<String, Object> params) {
+		return zxOrderService.lawyer(params);
+	}
+
+	public void upload(){
+
+	}
 
 	/**
 	 * 导出

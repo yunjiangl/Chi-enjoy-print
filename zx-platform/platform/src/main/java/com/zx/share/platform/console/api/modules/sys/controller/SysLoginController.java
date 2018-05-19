@@ -4,11 +4,14 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.zx.share.platform.bean.sys.SysUser;
 import com.zx.share.platform.bean.sys.SysUserLogin;
+import com.zx.share.platform.bean.zx.ZxUser;
 import com.zx.share.platform.console.api.common.utils.R;
 import com.zx.share.platform.console.api.common.utils.ShiroUtils;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserLoginService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserService;
 import com.zx.share.platform.console.api.modules.sys.service.SysUserTokenService;
+import com.zx.share.platform.console.api.modules.user.service.UserService;
+import com.zx.share.platform.util.StringUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -44,6 +47,8 @@ public class SysLoginController extends AbstractController {
 	private SysUserTokenService sysUserTokenService;
 	@Autowired
 	private SysUserLoginService sysUserLoginService;
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 验证码
@@ -69,37 +74,54 @@ public class SysLoginController extends AbstractController {
 	 * 登录
 	 */
 	@RequestMapping(value = "/sys/login", method = RequestMethod.POST)
-	public Map<String, Object> login(String username, String password, HttpServletRequest request)throws IOException {
+	public Map<String, Object> login(String username, String password,Integer loginType, HttpServletRequest request)throws IOException {
 		//本项目已实现，前后端完全分离，但页面还是跟项目放在一起了，所以还是会依赖session
 		//如果想把页面单独放到nginx里，实现前后端完全分离，则需要把验证码注释掉(因为不再依赖session了)
 //		String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
 //		if(!captcha.equalsIgnoreCase(kaptcha)){
 //			return R.error("验证码不正确");
 //		}
+		if(StringUtil.isNotBlank(loginType) && loginType==1){
+			//用户信息
+			SysUser user = sysUserService.queryByUserName(username);
 
-		//用户信息
-		SysUser user = sysUserService.queryByUserName(username);
+			//账号不存在、密码错误
+			if(user == null || !user.getPassword().equals(new Sha256Hash(password, user.getSalt()).toHex())) {
+				return R.error("账号或密码不正确");
+			}
 
-		//账号不存在、密码错误
-		if(user == null || !user.getPassword().equals(new Sha256Hash(password, user.getSalt()).toHex())) {
-			return R.error("账号或密码不正确");
+			//账号锁定
+			if(user.getStatus() == 0){
+				return R.error("账号已被锁定,请联系管理员");
+			}
+
+			SysUserLogin userLogin = new SysUserLogin();
+			userLogin.setUserId(user.getUserId());
+			userLogin.setLoginTime(new Date());
+			userLogin.setUserType(1);
+			userLogin.setLoginIp(this.getIpAdrress(request));
+			sysUserLoginService.update(userLogin);
+
+			//生成token，并保存到数据库
+			R r = sysUserTokenService.createToken(user.getUserId());
+			return r;
+		}else{
+			R r = new R();
+			try{
+				ZxUser user = userService.queryByMobile(username);
+				if(user!=null && user.getUserType()==2){
+					r.put("token",user.getId());
+				}else{
+					r = R.error("账号或密码不正确");
+				}
+
+			}catch (Exception e){
+				r = R.error("账号或密码不正确");
+			}
+
+			return r;
 		}
 
-		//账号锁定
-		if(user.getStatus() == 0){
-			return R.error("账号已被锁定,请联系管理员");
-		}
-
-		SysUserLogin userLogin = new SysUserLogin();
-		userLogin.setUserId(user.getUserId());
-		userLogin.setLoginTime(new Date());
-		userLogin.setUserType(1);
-		userLogin.setLoginIp(this.getIpAdrress(request));
-		sysUserLoginService.update(userLogin);
-
-		//生成token，并保存到数据库
-		R r = sysUserTokenService.createToken(user.getUserId());
-		return r;
 	}
 
 

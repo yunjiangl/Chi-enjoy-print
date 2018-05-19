@@ -24,6 +24,8 @@ public interface ZxOrderService {
 	 */
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> list(Map<String, Object> param);
 
+	DefaultResopnseBean<PageResponseBean<ZxOrder>> lawyer(Map<String, Object> param);
+
 	/**
 	 * 
 	 * @Title: orderInfo
@@ -35,5 +37,8 @@ public interface ZxOrderService {
 	Integer selectSum();
 
 	public List<SysDictionary> paperInfo(Long[] Ids);
+
+
+	void upload(String orderCode,String pathUrl);
 
 }

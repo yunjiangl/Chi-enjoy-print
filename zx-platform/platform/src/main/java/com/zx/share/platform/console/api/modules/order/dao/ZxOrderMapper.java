@@ -3,6 +3,8 @@ package com.zx.share.platform.console.api.modules.order.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.zx.share.platform.bean.zx.ZxOrderPrinterFile;
+import com.zx.share.platform.vo.wechat.response.FileResultBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -26,5 +28,12 @@ public interface ZxOrderMapper extends PlatFormMapper<ZxOrder> {
 	
 	
 	Integer selectSum();
+
+	String getOrderPrinterFilePath(String orderCode);
+
+	List<ZxOrderPrinterFile> getOrderFile(String code);
+
+	FileResultBean detailsab(String code);
+	FileResultBean detailscde(String code);
 
 }

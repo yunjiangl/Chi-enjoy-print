@@ -87,6 +87,7 @@
 	</select>
 	<select id="queryList" resultMap="orderList">
 		SELECT
+		zx_order.order_code,
 		zx_order.id,
 		zx_order.pay_time,
 		zx_order.order_num,
@@ -126,6 +127,9 @@
 			<if test="lawyerName != null and lawyerName.trim() != ''">
 				and lawyer.nickname like
 				concat('%',#{lawyerName},'%')
+			</if>
+			<if test="lawyerId != null and lawyerId != ''">
+				and lawyer.id =#{lawyerId}
 			</if>
 			<if
 				test="time1 != null and time2 != null and time1.trim() != '' and time2.trim() != ''">
@@ -172,4 +176,48 @@
 		#{id}
 	</select>
 
+	<resultMap id="fileResultBean"
+			   type="com.zx.share.platform.vo.wechat.response.FileResultBean">
+		<result column="id" jdbcType="BIGINT" property="id" />
+		<result column="file_code" jdbcType="VARCHAR" property="fileCode" />
+		<result column="file_name" jdbcType="VARCHAR" property="fileName" />
+		<result column="category_code" jdbcType="VARCHAR" property="categoryCode" />
+		<result column="file_url" jdbcType="VARCHAR" property="fileUrl" />
+		<result column="file_num" jdbcType="INTEGER" property="fileNum" />
+		<result column="user_code" jdbcType="VARCHAR" property="userCode" />
+		<result column="manager_code" jdbcType="VARCHAR" property="managerCode" />
+		<result column="abstracts" jdbcType="VARCHAR" property="abstracts" />
+		<result column="create_time" jdbcType="DATE" property="createTime" />
+		<result column="printer_num" jdbcType="INTEGER" property="printerNum"/>
+	</resultMap>
+
+	<select id="detailsab" resultMap="fileResultBean">
+		select id,file_code,file_url,file_num,file_name,category_code,abstracts from
+		zx_file_manager_ab where file_code = #{code}
+	</select>
+
+	<select id="detailscde" resultMap="fileResultBean">
+		select
+		id,file_code,file_num,file_url,file_name,category_code,user_code,manager_code,abstracts
+		from zx_file_manager_cde where file_code = #{code}
+	</select>
+
+	<resultMap id="fileBaseResultMap" type="com.zx.share.platform.bean.zx.ZxOrderPrinterFile">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="order_id" jdbcType="BIGINT" property="orderId" />
+		<result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+		<result column="file_id" jdbcType="BIGINT" property="fileId" />
+		<result column="file_code" jdbcType="VARCHAR" property="fileCode" />
+		<result column="file_type" jdbcType="VARCHAR" property="fileType" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_id" jdbcType="BIGINT" property="createId" />
+		<result column="printer_num" jdbcType="INTEGER" property="printerNum" />
+		<result column="paper_type" jdbcType="BIGINT" property="paperType" />
+		<result column="paper_colcor" jdbcType="BIGINT" property="paperColcor" />
+		<result column="paper_usage" jdbcType="BIGINT" property="paperUsage" />
+	</resultMap>
+
+	<select id="getOrderFile" resultMap="fileBaseResultMap">
+		select * from zx_order_printer_file where order_code=#{0}
+	</select>
 </mapper>

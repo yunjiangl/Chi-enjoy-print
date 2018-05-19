@@ -31,58 +31,72 @@ $(window).on('resize', function() {
 
 //注册菜单组件
 Vue.component('menuItem',menuItem);
-
+var loginType = localStorage.getItem("loginType");
+var mainType = "lawyerMain.html";
+if(loginType!=undefined && loginType!=null && loginType==1){
+    mainType = "main.html";
+}
 var vm = new Vue({
 	el:'#rrapp',
 	data:{
 		user:{},
 		menuList:{},
-		main:"main.html",
+		main:mainType,
 		password:'',
 		newPassword:'',
         navTitle:"欢迎页"
 	},
 	methods: {
 		getMenuList: function () {
-			$.getJSON(baseURL + "sys/menu/nav", function(r){
-				vm.menuList = r.menuList;
-                window.permissions = r.permissions;
-			});
+			if(loginType!=undefined && loginType!=null && loginType==1){
+
+                $.getJSON(baseURL + "sys/menu/nav", function(r){
+                    vm.menuList = r.menuList;
+                    window.permissions = r.permissions;
+                });
+			}
 		},
 		getUser: function(){
-			$.getJSON(baseURL + "sys/user/info", function(r){
-				vm.user = r.user;
-			});
+            if(loginType!=undefined && loginType!=null && loginType==1){
+
+                $.getJSON(baseURL + "sys/user/info", function(r){
+                    vm.user = r.user;
+                });
+            }
 		},
 		updatePassword: function(){
-			layer.open({
-				type: 1,
-				skin: 'layui-layer-molv',
-				title: "修改密码",
-				area: ['550px', '270px'],
-				shadeClose: false,
-				content: jQuery("#passwordLayer"),
-				btn: ['修改','取消'],
-				btn1: function (index) {
-					var data = "password="+vm.password+"&newPassword="+vm.newPassword;
-					$.ajax({
-						type: "POST",
-					    url: baseURL + "sys/user/password",
-					    data: data,
-					    dataType: "json",
-					    success: function(r){
-							if(r.code == 0){
-								layer.close(index);
-								layer.alert('修改成功', function(){
-									location.reload();
-								});
-							}else{
-								layer.alert(r.msg);
-							}
-						}
-					});
-	            }
-			});
+
+            if(loginType!=undefined && loginType!=null && loginType==1){
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-molv',
+                    title: "修改密码",
+                    area: ['550px', '270px'],
+                    shadeClose: false,
+                    content: jQuery("#passwordLayer"),
+                    btn: ['修改','取消'],
+                    btn1: function (index) {
+                        var data = "password="+vm.password+"&newPassword="+vm.newPassword;
+                        $.ajax({
+                            type: "POST",
+                            url: baseURL + "sys/user/password",
+                            data: data,
+                            dataType: "json",
+                            success: function(r){
+                                if(r.code == 0){
+                                    layer.close(index);
+                                    layer.alert('修改成功', function(){
+                                        location.reload();
+                                    });
+                                }else{
+                                    layer.alert(r.msg);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+
 		},
         logout: function () {
             $.ajax({

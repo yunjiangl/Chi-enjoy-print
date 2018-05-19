@@ -79,4 +79,54 @@ public class UploadController extends AbstractController {
         return R.ok().put("pageNum",pageNum).put("fileURL",fileURL);
     }
 
+    @RequestMapping("/lawyer/file")
+    public R lawyer(@RequestParam(name = "file", required = true) MultipartFile file,
+                   @RequestParam(name = "type", required = true) String type,
+                   @RequestParam(name = "userId", required = true) Long userId) {
+        File targetFile = new File(UPLOAD_TYPE_A+userId);
+        // 判断文件夹是否存在
+        if (!targetFile.exists()) {
+            targetFile.mkdirs();
+        }
+        String fileURL = FileUtil.getFilePath(UPLOAD_TYPE_A,userId+"") + file.getOriginalFilename(); // 获得文件上传之后的路径
+        Integer pageNum = 0;
+        try {
+            // 文件上传
+            FileOutputStream fos = new FileOutputStream(fileURL);
+            FileInputStream fs = (FileInputStream) file.getInputStream();
+            byte[] buffer = new byte[1024];
+            int len = 0;
+            while ((len = fs.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+            }
+
+            fos.close();
+            fs.close();
+            // 文件上传完毕
+            // 获得文件后缀
+            String suffix = file.getOriginalFilename()
+                    .substring(file.getOriginalFilename().lastIndexOf(".") + 1);
+            // 读取pdf文件打印页数
+            if ("pdf".equals(suffix)) {
+                pageNum = (GetPdfpage.getPdfPage(fileURL));
+            }
+
+            // 读取word文件打印页数
+            if ("doc".equals(suffix) || "docx".equals(suffix)) {
+                pageNum = (GetPdfpage.getPdfPage(Word2PdfUtil.doc2pdf(fileURL)));
+            }
+
+            // 读取Excel文件打印页数
+            if("xls".equals(suffix)||"xlsx".equals(suffix)) {
+                pageNum = (GetPdfpage.getPdfPage(Excel2Pdf.excel2pdf(fileURL)));
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return R.ok().put("pageNum",pageNum).put("fileURL",fileURL);
+    }
+
 }
