@@ -41,4 +41,6 @@ public interface ZxOrderService {
 
 	void upload(String orderCode,String pathUrl);
 
+	void lawyerUpdate(String filePath,String orderCode);
+
 }

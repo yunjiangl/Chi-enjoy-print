@@ -1,13 +1,14 @@
 package com.zx.share.platform.console.api.modules.order.service.impl;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.zx.share.platform.bean.zx.ZxOrderPrinterFile;
+import com.zx.share.platform.console.api.modules.order.dao.ZxOrderPrinterFileMapper;
+import com.zx.share.platform.util.CodeBuilderUtil;
 import com.zx.share.platform.util.email.SendMail;
 import com.zx.share.platform.vo.wechat.response.FileResultBean;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,9 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Autowired
 	private ZxFileManagerCDEMapper zxFileManagerCDEMapper;
+
+	@Autowired
+	private ZxOrderPrinterFileMapper zxOrderPrinterFileMapper;
 
 	@Override
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> lawyer(Map<String, Object> param) {
@@ -166,9 +170,51 @@ public class ZxOrderServiceImpl implements ZxOrderService {
 
 	@Override
 	public void upload(String orderCode, String pathUrl) {
+
+	}
+
+	@Override
+	public void lawyerUpdate(String filePath, String orderCode) {
 		//TODO  获取订单详情
+		ZxOrder order= new ZxOrder();
+		order.setOrderCode(orderCode);
+		ZxOrder zxOrder = zxOrderMapper.selectOne(order);
+		FileResultBean fileResultBean = zxOrderMapper.detailsab(orderCode);
 		//TODO  保存到C类文件
+		ZxFileManagerCDE zxFileManagerCDE = new ZxFileManagerCDE();
+		BeanUtils.copyProperties(filePath,zxFileManagerCDE);
+		//律师
+		zxFileManagerCDE.setManagerCode(zxOrder.getAttorneyCode());
+		zxFileManagerCDE.setManagerId(zxOrder.getAttorneyId());
+		//客户
+		zxFileManagerCDE.setUserCode(zxOrder.getOrderUserCode());
+		zxFileManagerCDE.setUserId(zxOrder.getOrderUserId());
+		zxFileManagerCDE.setCreateId(zxOrder.getAttorneyId());
+		zxFileManagerCDE.setCreateTime(new Date());
+		zxFileManagerCDE.setFileCode(UUID.randomUUID().toString());
+
+		zxFileManagerCDEMapper.insert(zxFileManagerCDE);
+
 		//TODO  更改订单文件类型
+		ZxOrderPrinterFile zxOrderPrinterFile = new ZxOrderPrinterFile();
+		List<ZxOrderPrinterFile> printerFiles = zxOrderMapper.getOrderFile(orderCode);
+		if(printerFiles!=null &&!printerFiles.isEmpty()){
+			for (ZxOrderPrinterFile printerFile:printerFiles) {
+				zxOrderPrinterFile.setId(printerFile.getId());
+				zxOrderPrinterFile.setCreateId(zxOrder.getAttorneyId());
+				zxOrderPrinterFile.setFileCode(zxFileManagerCDE.getFileCode());
+				zxOrderPrinterFile.setFileId(zxFileManagerCDE.getId());
+				zxOrderPrinterFile.setCreateTime(new Date());
+				zxOrderPrinterFile.setFilePaper(zxFileManagerCDE.getFileNum());
+				zxOrderPrinterFile.setOrderCode(orderCode);
+				zxOrderPrinterFile.setOrderId(zxOrder.getId());
+				zxOrderPrinterFile.setFileType("5");
+				zxOrderPrinterFile.setPaperColcor(printerFile.getPaperColcor());
+				zxOrderPrinterFile.setPaperType(printerFile.getPaperType());
+
+				zxOrderPrinterFileMapper.updateByPrimaryKeySelective(zxOrderPrinterFile);
+			}
+		}
 	}
 
 }

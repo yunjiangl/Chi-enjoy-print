@@ -49,9 +49,11 @@ public class OrderController {
 	public DefaultResopnseBean<PageResponseBean<ZxOrder>> lawyer(@RequestParam Map<String, Object> params) {
 		return zxOrderService.lawyer(params);
 	}
-
-	public void upload(){
-
+	@RequestMapping(value = "/lawyer/update", method = RequestMethod.GET)
+	public DefaultResopnseBean<Object> lawyerUpdate(String filePath,String orderCode){
+		DefaultResopnseBean<Object> resopnseBean = new DefaultResopnseBean<>();
+		zxOrderService.lawyerUpdate(filePath,orderCode);
+		return resopnseBean;
 	}
 
 	/**

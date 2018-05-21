@@ -107,11 +107,27 @@ var vm = new Vue({
             vm.code=code;
             vm.showList = false;
             vm.title = "上传文件";
-			vm.url = "xx";
+			vm.url = "";
         },
         saveOrUpdate:function(){
         	vm.showList = true;
             console.log( vm.code+"\n"+vm.url);
+            $.ajax({
+                type: "GET",
+                url: baseURL + "zx/order/lawyer/update?filePath="+vm.url+"&orderCode="+vm.code,
+                data: {
+
+				},
+                success: function (r) {
+                    if (r.code === 200) {
+                        alert('操作成功', function () {
+                            vm.reload();
+                        });
+                    } else {
+                        alert(r.msg);
+                    }
+                }
+            });
 		},
         uploadFile: function (e) {
             var formData = new FormData();

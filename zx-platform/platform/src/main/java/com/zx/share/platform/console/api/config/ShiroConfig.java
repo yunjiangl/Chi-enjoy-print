@@ -70,6 +70,7 @@ public class ShiroConfig {
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/zx/order/lawyer/**", "anon");
+        filterMap.put("/order/lawyer/**", "anon");
         filterMap.put("/upload/lawyer/file","anon");
         filterMap.put("/", "anon");
         filterMap.put("/**", "oauth2");

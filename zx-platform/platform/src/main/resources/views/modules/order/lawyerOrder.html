@@ -32,21 +32,21 @@
 <div id="rrapp" v-cloak>
 	<div v-show="showList">
 		<div class="grid-btn">
-			<div class="form-group col-sm-1">
-				<input type="text" class="form-control" v-model="q.printCode" @keyup.enter="query" placeholder="设备编码">
-			</div>
-			<div class="form-group col-sm-1">
-				<input type="text" class="form-control" v-model="q.printName" @keyup.enter="query" placeholder="设备物主">
-			</div>
-			<div class="form-group col-sm-1">
-				<input type="text" class="form-control" v-model="q.lawyerName" @keyup.enter="query" placeholder="律师用户名">
-			</div>
-			<div class="form-group col-sm-1s">
-				 <input class="layui-input" v-model="q.time1" placeholder="创建时间" name="start" id="start">
-       			 <lable>至</lable>
-   				 <input class="layui-input" placeholder="创建时间" name="end" id="end">
-   				 <a class="btn btn-default" @click="query">查询</a>
-			</div>
+			<!--<div class="form-group col-sm-1">-->
+				<!--<input type="text" class="form-control" v-model="q.printCode" @keyup.enter="query" placeholder="设备编码">-->
+			<!--</div>-->
+			<!--<div class="form-group col-sm-1">-->
+				<!--<input type="text" class="form-control" v-model="q.printName" @keyup.enter="query" placeholder="设备物主">-->
+			<!--</div>-->
+			<!--<div class="form-group col-sm-1">-->
+				<!--<input type="text" class="form-control" v-model="q.lawyerName" @keyup.enter="query" placeholder="律师用户名">-->
+			<!--</div>-->
+			<!--<div class="form-group col-sm-1s">-->
+				 <!--<input class="layui-input" v-model="q.time1" placeholder="创建时间" name="start" id="start">-->
+       			 <!--<lable>至</lable>-->
+   				 <!--<input class="layui-input" placeholder="创建时间" name="end" id="end">-->
+   				 <!--<a class="btn btn-default" @click="query">查询</a>-->
+			<!--</div>-->
 			<a class="btn btn-default" @click="download">下载</a>
 			<a class="btn btn-default" @click="uploadView">上传</a>
 		</div>
