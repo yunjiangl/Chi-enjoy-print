@@ -50,23 +50,23 @@ public class AppBeanFactary {
         return sessionConfig;
     }
 
-    @Bean
-    MemcachedClient memcachedClient() throws IOException {
-        MemcachedClient memcachedClient = null;
-        if (memcachedConfig.isNeedAuth()) {
-            AuthDescriptor ad =
-                    new AuthDescriptor(new String[] {"PLAIN"}, new PlainCallbackHandler(memcachedConfig.getUsername(), memcachedConfig.getPassword()));
-            memcachedClient =
-                    new MemcachedClient(new ConnectionFactoryBuilder().setProtocol(ConnectionFactoryBuilder.Protocol.BINARY).setAuthDescriptor(ad).build(),
-                            AddrUtil.getAddresses(memcachedConfig.getServers()));
-        } else {
-            memcachedClient =
-                    new MemcachedClient(new ConnectionFactoryBuilder().setProtocol(ConnectionFactoryBuilder.Protocol.BINARY).build(), AddrUtil.getAddresses(memcachedConfig
-                            .getServers()));
-        }
-
-        return memcachedClient;
-    }
+//    @Bean
+//    MemcachedClient memcachedClient() throws IOException {
+//        MemcachedClient memcachedClient = null;
+//        if (memcachedConfig.isNeedAuth()) {
+//            AuthDescriptor ad =
+//                    new AuthDescriptor(new String[] {"PLAIN"}, new PlainCallbackHandler(memcachedConfig.getUsername(), memcachedConfig.getPassword()));
+//            memcachedClient =
+//                    new MemcachedClient(new ConnectionFactoryBuilder().setProtocol(ConnectionFactoryBuilder.Protocol.BINARY).setAuthDescriptor(ad).build(),
+//                            AddrUtil.getAddresses(memcachedConfig.getServers()));
+//        } else {
+//            memcachedClient =
+//                    new MemcachedClient(new ConnectionFactoryBuilder().setProtocol(ConnectionFactoryBuilder.Protocol.BINARY).build(), AddrUtil.getAddresses(memcachedConfig
+//                            .getServers()));
+//        }
+//
+//        return memcachedClient;
+//    }
 
     /**
      * 注册跨域支持过滤器
