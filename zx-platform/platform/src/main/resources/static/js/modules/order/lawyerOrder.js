@@ -2,7 +2,7 @@ $(function () {
     $("#jqGrid").jqGrid({
         url: baseURL + 'zx/order/lawyer/page?lawyerId='+localStorage.getItem("token"),
         datatype: "json",
-        colModel: [			
+        colModel: [
 			{ label: '订单号', name: 'orderNum', width: 45, key: true },
 			{ label: '设备物主', name: 'sysUser.username', width: 75 },
 			{ label: '设备编号', name: 'printerCode', width: 90 },
@@ -180,7 +180,7 @@ var vm = new Vue({
         download: function () {
             var userId = getSelectedRow();
             if (userId == null) {
-                return;
+
             }
         },
 	}
@@ -213,6 +213,7 @@ function orderInfo(id){
 		}
 	});
 }
+
 
 /**
  * 获取纸张value

@@ -65,6 +65,7 @@ public class ShiroConfig {
         filterMap.put("/**/*.html", "anon");
         filterMap.put("/v2/**", "anon");
         filterMap.put("/fonts/**", "anon");
+        filterMap.put("/zx/order/export", "anon");
         filterMap.put("/plugins/**", "anon");
         filterMap.put("/swagger/**", "anon");
         filterMap.put("/favicon.ico", "anon");
@@ -74,6 +75,8 @@ public class ShiroConfig {
         filterMap.put("/upload/lawyer/file","anon");
         filterMap.put("/", "anon");
         filterMap.put("/**", "oauth2");
+
+
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;
