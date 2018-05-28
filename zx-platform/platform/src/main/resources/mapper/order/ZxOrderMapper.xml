@@ -46,6 +46,7 @@
 		<association property="zxPrinterManager"
 			javaType="com.zx.share.platform.bean.zx.ZxPrinterManager">
 			<result column="printer_code" jdbcType="VARCHAR" property="printerCode" />
+			<result column="manager_name" jdbcType="VARCHAR" property="managerName" />
 		</association>
 	</resultMap>
 
@@ -96,6 +97,7 @@
 		zx_user.nickname,
 		lawyer.nickname AS lawyer_nickname,
 		zx_printer_manager.printer_code,
+		zx_printer_manager.manager_name,
 		zx_order.order_amount,
 		zx_order.service_amount,
 		zx_order.printer_amount,

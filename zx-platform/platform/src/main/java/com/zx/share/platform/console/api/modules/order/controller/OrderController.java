@@ -91,14 +91,15 @@ public class OrderController {
 		listName.add("订单费用");
 		listName.add("打印费");
 		listName.add("服务费");
-		listName.add("律师code");
-		listName.add("用户code");
+		listName.add("律师");
+		listName.add("用户");
 		listName.add("支付id");
 		listName.add("支付时间");
 		listName.add("支付方式");
 		listName.add("设备编号");
-		/*listName.add("设备物主");
 		listName.add("线上管理员");
+		/*listName.add("设备物主");
+
 		listName.add("客户");
 		listName.add("打印费");
 		listName.add("服务费");
@@ -158,7 +159,8 @@ public class OrderController {
 			if (zxOrder.getPayType()!=null &&zxOrder.getPayType() !="")
 			ExpostExcel.row.createCell((short) 10).setCellValue(zxOrder.getPayType());//支付类型
 			ExpostExcel.row.createCell((short) 11).setCellValue(zxOrder.getPrinterCode());//打印机code
-			ExpostExcel.cell = ExpostExcel.row.createCell((short) 12);
+			ExpostExcel.row.createCell((short) 12).setCellValue(zxOrder.getZxPrinterManager().getManagerName());//设备管理员
+			ExpostExcel.cell = ExpostExcel.row.createCell((short) 13);
 
 		}
 
