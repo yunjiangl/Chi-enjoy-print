@@ -3,6 +3,7 @@ package com.zx.share.platform.console.api.modules.order.controller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -82,7 +83,7 @@ public class OrderController {
 		 */
 
 	@RequestMapping(value = "/export", method = RequestMethod.GET)
-	public void export(HttpServletResponse response) {
+	public void export(HttpServletResponse response) throws ParseException{
 		List<String> listName = new ArrayList<>();
 		listName.add("订单编号");
 		listName.add("订单状态");
@@ -96,7 +97,6 @@ public class OrderController {
 		listName.add("支付时间");
 		listName.add("支付方式");
 		listName.add("设备编号");
-		listName.add("导出时间");
 		/*listName.add("设备物主");
 		listName.add("线上管理员");
 		listName.add("客户");
@@ -120,17 +120,42 @@ public class OrderController {
 			ExpostExcel.row = ExpostExcel.hssfShee.createRow((int) i + 1);
 			ZxOrder zxOrder=zxOrderList.get(i);
 			//Member stu = (Member) list.get(i);
+			String createTime=zxOrder.getCreateTime().toString();
+			SimpleDateFormat sdf1= new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+			SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			System.out.println(sdf2.format(sdf1.parse(createTime)));
 			// 第四步，创建单元格，并设置值
 			ExpostExcel.row.createCell((short) 0).setCellValue(zxOrder.getOrderNum());//订单编号
-			ExpostExcel.row.createCell((short) 1).setCellValue(zxOrder.getStatus());//订单状态
-			//row.createCell((short) 2).setCellValue(zxOrder.getCreateTime());//下单时间
+			String sta="";
+			switch (zxOrder.getStatus()){
+				case 0:
+					sta="支付失败";
+					break;
+				case 1:
+					sta="未支付";
+					break;
+				case 2:
+					sta="支付成功";
+					break;
+				case 3:
+					sta="退款成功";
+					break;
+
+			}
+			ExpostExcel.row.createCell((short) 1).setCellValue(sta);//订单状态
+			ExpostExcel.row.createCell((short) 2).setCellValue(sdf2.format(sdf1.parse(createTime)));//下单时间
+			ExpostExcel.row.setRowStyle(ExpostExcel.style);
 			ExpostExcel.row.createCell((short) 3).setCellValue(zxOrder.getOrderAmount());//订单费用
 			ExpostExcel.row.createCell((short) 4).setCellValue(zxOrder.getPrinterAmount());//打印费
 			ExpostExcel.row.createCell((short) 5).setCellValue(zxOrder.getServiceAmount());//服务费
-			//row.createCell((short) 6).setCellValue(zxOrder.getAttorneyCode());//律师code
-			//row.createCell((short) 7).setCellValue(zxOrder.getOrderUserCode());//用户code
-			//row.createCell((short) 8).setCellValue(zxOrder.getPayId());//支付id
-			ExpostExcel.row.createCell((short) 9).setCellValue(zxOrder.getPayTime());//支付时间
+			ExpostExcel.row.createCell((short) 6).setCellValue(zxOrder.getLawyer().getNickname());//律师code
+			ExpostExcel.row.createCell((short) 7).setCellValue(zxOrder.getZxUser().getNickname());//用户code
+			if (zxOrder.getPayId()!=null)
+			ExpostExcel.row.createCell((short) 8).setCellValue(zxOrder.getPayId());//支付id
+			if (zxOrder.getPayTime()!=null)
+			ExpostExcel.row.createCell((short) 9).setCellValue(sdf2.format(sdf1.parse(zxOrder.getPayTime().toString())));//支付时间
+			ExpostExcel.row.setRowStyle(ExpostExcel.style);
+			if (zxOrder.getPayType()!=null &&zxOrder.getPayType() !="")
 			ExpostExcel.row.createCell((short) 10).setCellValue(zxOrder.getPayType());//支付类型
 			ExpostExcel.row.createCell((short) 11).setCellValue(zxOrder.getPrinterCode());//打印机code
 			ExpostExcel.cell = ExpostExcel.row.createCell((short) 12);

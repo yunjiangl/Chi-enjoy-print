@@ -67,7 +67,7 @@ public class AppBeanFactary {
         return sessionConfig;
     }
 
-    @Bean
+   /* @Bean
     MemcachedClient memcachedClient() throws IOException {
         MemcachedClient memcachedClient = null;
         if (memcachedConfig.isNeedAuth()) {
@@ -84,7 +84,7 @@ public class AppBeanFactary {
 
         return memcachedClient;
     }
-
+*/
     /**
      * 注册跨域支持过滤器
      */

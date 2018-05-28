@@ -89,6 +89,8 @@
 		SELECT
 		zx_order.order_code,
 		zx_order.id,
+		zx_order.pay_id,
+		zx_order.create_time,
 		zx_order.pay_time,
 		zx_order.order_num,
 		zx_user.nickname,
