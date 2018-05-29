@@ -21,22 +21,25 @@
 
       <view class='main_01_left' bindtap='uploadImg'>
         <view class='photo-Print'>
+          
           <text class='print'>照片打印</text>
-          <text class='photo-file'>打印手机相机中的照片</text>
-        </view>
-        <view class='photo-image'>
+          <text class='photo-file'>打印手机相册中的图片</text>
           <image src='../images/main_01_left.png'></image>
+          
         </view>
       </view>
-
-      <view class='main_01_right' bindtap='mainRight'>
+<!--bindtap='mainRight' 文档打印  -->
+      <view class='main_01_right' bindtap='choiceB'>
         <view class='photo-Print'>
-          <text class='print'>文档打印</text>
-          <text class='photo-file pf'>您曾打印或导入的文件</text>
-        </view>
-        <view class='photo-image' style='line-height: 138px;'>
-          <image src='../images/main_01_right.png'></image>
-        </view>
+
+            <view class='print'>为客户书写和打印</view>
+            <view class='photo-file'>合同文书</view>
+            <view class='me_print'>
+                <view class='photo-file tishi'>并提示签约要点</view>
+                <image src='../images/main_03.png'></image>
+            </view>
+            
+          </view>
       </view>
     </view>
     <!--main_01 end -->
@@ -46,6 +49,7 @@
 
       <view class='text_02'>
         <text>为客户查找、收集、整理、打印和我有关的法律规定，最高法院，最高检察院规定</text>
+        <view class='main_02_tishi'>并指点迷津</view>
       </view>
       <view class='image_02'>
         <image src='../images/lawyer-main_02.png'></image>
@@ -54,11 +58,34 @@
     </view>
     <!--main_02 end  -->
 
+    <!--main_04 start  -->
+    <view class='main_02'>
+
+      <view class='text_04' bindtap='choiceC'>
+        <text>为客户书写和打印诉讼或其他法律文书</text>
+        <view class='main_02_tishi'>并提示文书要点</view>
+      </view>
+      <view class='image_02'>
+        <image src='../images/lawyer-main_04.png'></image>
+      </view>
+
+    </view>
+    <!--main_04 end  -->
+
     <!--main_03 start  -->
     <view class='main_02 m_02'>
 
       <view class='text_03' bindtap='choiceB'>
-        <text>为客户书写和打印合同书</text>
+
+        <view>
+          <view>为客户书写和打印合</view>
+          <view>信访，督办，检举，控告类文书</view>
+        </view>
+        <view class='main_02_tishi'>
+          <view>落款明确代书的律师姓名</view> 
+          <view>并经网络向有关部门呈交</view> 
+        </view>
+
       </view>
       <view class='image_03 i02'>
         <image src='../images/lawyer-main_03.png'></image>
@@ -67,18 +94,27 @@
     </view>
     <!--main_03 end  -->
 
-    <!--main_04 start  -->
-    <view class='main_02'>
+    <!--main_03 start  -->
+    <view class='main_02 m_02'>
 
-      <view class='text_04' bindtap='choiceC'>
-        <text>为客户书写和打印诉讼或其他法律文书</text>
+      <view class='text_03' bindtap='choiceB'>
+
+        <view>
+          <view>为客户书写和打印合</view>
+          <view>信访，督办，检举，控告类文书</view>
+        </view>
+        <view class='main_02_tishi'>
+          <view>落款明确代书的律师姓名</view> 
+          <view>并经网络向有关部门呈交</view> 
+        </view>
+
       </view>
-      <view class='image_02'>
-        <image src='../images/lawyer-main_04.png'></image>
+      <view class='image_03 i02'>
+        <image src='../images/lawyer-main_03.png'></image>
       </view>
 
     </view>
-    <!--main_04 end  -->
+    <!--main_03 end  -->    
 
     <!-- footer start  -->
     <view class='footer'>

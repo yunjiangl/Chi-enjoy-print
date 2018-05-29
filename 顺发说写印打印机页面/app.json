@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/loginLoading/loginLoading",
+    "pages/CustomerIndex/CustomerIndex",
     "pages/lawyerIndex/lawyerIndex",
+    
+    "pages/loginLoading/loginLoading",
     "pages/talking/talking",
     "pages/index/index",
     "pages/lawyerpersonData/lawyerpersonData",
@@ -32,7 +34,6 @@
     "pages/lawyerFileClassB/lawyerFileClassB",
     "pages/lawyerFileClassA/lawyerFileClassA",
     "pages/setting/document/download/download",
-    "pages/CustomerIndex/CustomerIndex",
     "pages/map/map",
     "pages/search/search",
     "pages/choiceLawyer/choiceLawyer",

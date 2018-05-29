@@ -2,7 +2,6 @@ page{
   background: #f5f5f5;
 }
 .container {
-  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -10,13 +9,14 @@ page{
   padding:0px 0;
   color: #333;
   background: #f5f5f5;
+  height: 2000rpx;
+  overflow: hidden; 
 } 
 .slide-image{
   width: 100%;
   height: 150px;
 }
 .content{
-  height: 624px;
   display: flex; 
   flex-direction: column;
   align-items: center;
@@ -24,13 +24,11 @@ page{
   box-sizing: border-box;
   padding:0px 10px;
   background: #f5f5f5;
-  margin-bottom: 20rpx;
 }
 .main_01{
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 240rpx;
   margin-top: 22rpx;
 }
 .main_01_left,.main_01_right{
@@ -39,85 +37,111 @@ page{
   padding: 20rpx;
   flex-direction: row;
   display: flex;
-  font-size: 14px;
-
-  
+  font-size: 28rpx;
   justify-content: center;
-  color: #999;
+  overflow: hidden;
 }
 .photo-Print{
-  margin-top: 20px;
-  width: 50%;
-}
+  width: 92%;
+} 
 .photo-image{
-  line-height: 120px;
+  line-height: 240rpx;
 }
 .print{
   display: block;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 28rpx;
   color: #333;
+  margin-bottom: 10rpx;
 }
 .main_01_right{
-  margin: 0 0px 0 5px;
+  margin: 0 0px 0 10rpx;
 }
 .main_01_left{
   margin: 0 5px 0 0px;
 }
 .main_01_left image{
-  width: 36px;
-  height: 31px;
-  margin-left: 10px;
+  width: 50px;
+  height: 44px;
+  margin-top: 20rpx;
+  float: right;
 }
 .main_01_right image{
   width: 36px;
-  height: 45px;
-  margin-left: 15px;
+  height: 35px;
+  margin-left: 10rpx; 
+  margin-top: 20rpx;
+}
+.tishi{
+  color: #3798fb;
+  font-size: 22rpx;
+}
+.me_print{
+  display: flex;
+  margin-top: 10rpx;
+}
+.photo-file{
+  font-size: 24rpx;
 }
 /* main_02  */
 .main_02{
-  margin: 20px 10px 20px 10px;
+  margin: 40rpx 20rpx 0px 20rpx;
   display: flex; 
   width: 100%;
-  font-size: 14px;
+  font-size: 28rpx;
   color: #333;
-  height: 120px;
+  height: 240rpx;
   background: #fff;
 }
 .image_02{
-  line-height: 150px;
+  line-height: 300rpx;
+  margin-right: 20rpx;
 }
 .text_02{
   width: 70%;
-  margin: 25px 17px 20px 20px;
+  margin: 50rpx 24rpx 40rpx 40rpx;
+  line-height: 40rpx;
 }
 .main_02 image{
   width: 50px;
   height: 50px;
 }
+
+.main_02_tishi{
+  color: #3798fb;
+  text-align: center;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+}
+
 .text_03{
-  line-height: 120px;
-  width: 67%;
-  margin: 0px 30px 20px 20px;
+  width: 65%;
+  margin: 40rpx 70rpx 405px 40rpx;
+  text-align: center;
 }
 .image_03{
-  line-height: 150px;
+  line-height: 340rpx;
+  margin-right: 20rpx;
 }
 .text_04{
   width: 65%;
-  margin: 35px 35px 20px 20px;
+  margin: 70rpx 70rpx 405px 40rpx;
+}
+.i02 image{
+  width: 60px;
+  height: 60px;
 }
 .footer{
   width: 100%;
   display: flex;
-  margin-bottom: 50px;
   justify-content:center;
+  margin-top: 60rpx;
 }
 .footer image{
   width: 20px;
-  padding-top: 10px;
-  margin-right: 8px;
-  height: 20px;
+  padding-top: 20rpx;
+  margin-right: 16rpx;
+  height: 40rpx;
 }
 .btn-left{
   margin-right: 20rpx;
@@ -128,9 +152,9 @@ page{
 
 button[size='mini']{
   display: flex;
-  font-size: 14px;
+  font-size: 28rpx;
   width: 100%;
-  line-height: 40px;
+  line-height: 80rpx;
 }
 button[type='default']{
   color: #fff;
