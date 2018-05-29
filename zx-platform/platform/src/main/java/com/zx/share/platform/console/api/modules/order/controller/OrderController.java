@@ -133,13 +133,13 @@ public class OrderController {
 					sta="支付失败";
 					break;
 				case 1:
-					sta="未支付";
+					sta="待付款";
 					break;
 				case 2:
-					sta="支付成功";
+					sta="已完成";
 					break;
-				case 3:
-					sta="退款成功";
+				case 5:
+					sta="待打印";
 					break;
 
 			}

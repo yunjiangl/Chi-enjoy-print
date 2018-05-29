@@ -118,7 +118,7 @@ public class SendMail {
         mb.setUsername("fengg@exqoo.com"); // 设置发件人邮箱的用户名
         mb.setPassword("A123456b"); // 设置发件人邮箱的密码，需将*号改成正确的密码
         mb.setFrom("fengg@exqoo.com"); // 设置发件人的邮箱
-        mb.setTo("exqooo@print.epsonconnect.com"); // 设置收件人的邮箱
+        mb.setTo("admin456@print.epsonconnect.com"); // 设置收件人的邮箱
         mb.setSubject("打印测试"+code); // 设置邮件的主题
         mb.setContent(""); // 设置邮件的正文
 
