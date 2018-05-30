@@ -24,7 +24,7 @@ page{
   font-size: 14px  
 }  
 .loginLab font{
-  margin-left: 16px;
+  margin-left: 18px;
 }
 .inputText {  
   flex: block;   

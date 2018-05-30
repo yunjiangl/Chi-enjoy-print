@@ -99,8 +99,8 @@
           <view>信访，督办，检举，控告类文书</view>
         </view>
         <view class='main_02_tishi'>
-          <view>落款明确代书的律师姓名</view> 
-          <view>并经网络向有关部门呈交</view> 
+          <view>落款不写代书的律师姓名</view> 
+          <view>不经网络向有关部门呈交</view> 
         </view>
       </view> 
       <view class='image_03 i02'>
@@ -109,8 +109,6 @@
       
     </view>
     <!--main_03 end  -->
-  </view>
-  <!--conten end  -->
 
     <!-- footer start  -->
       <view class='footer'>
@@ -131,6 +129,9 @@
       </view>
     <!-- footer end  -->
 
+  </view>
+  <!--content end  -->
+  
 </view>
 <!-- container end  -->
 

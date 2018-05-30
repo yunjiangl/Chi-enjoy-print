@@ -205,17 +205,17 @@ App({
   loginCheck: function (res) {
     var that = this
 
-    // if (res.data.code == 400 || res.data.code == 600) {
-    //   wx.getUserInfo({
-    //     success: function (res) {
-    //       // console.log(res);
-    //       wx.login({
-    //         success: function (loginres) {
-    //           that.wxLogin(res, loginres)
-    //         }
-    //       })
-    //     }
-    //   });
-    // }
+    if (res.data.code == 400 || res.data.code == 600) {
+      wx.getUserInfo({
+        success: function (res) {
+          // console.log(res);
+          wx.login({
+            success: function (loginres) {
+              that.wxLogin(res, loginres)
+            }
+          })
+        }
+      });
+    }
   }
 })

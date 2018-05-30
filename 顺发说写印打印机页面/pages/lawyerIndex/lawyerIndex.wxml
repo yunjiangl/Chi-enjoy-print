@@ -104,8 +104,8 @@
           <view>信访，督办，检举，控告类文书</view>
         </view>
         <view class='main_02_tishi'>
-          <view>落款明确代书的律师姓名</view> 
-          <view>并经网络向有关部门呈交</view> 
+          <view>落款不写代书的律师姓名</view> 
+          <view>不经网络向有关部门呈交</view> 
         </view>
 
       </view>
@@ -134,7 +134,8 @@
     <!-- footer end  -->
 
   </view>
-  <!--conten end  -->
+  <!--content end  -->
+  
 </view>
 <!-- container end  -->
 <import src="../../template/tabBar.wxml" />

@@ -135,8 +135,9 @@ page{
   width: 100%;
   display: flex;
   justify-content:center;
-  margin-top: 60rpx;
-}
+  margin-top: 40rpx;
+  margin-bottom: 160rpx;
+} 
 .footer image{
   width: 20px;
   padding-top: 20rpx;

@@ -44,10 +44,10 @@ page{
   font-size: 14px  
 }  
 .loginLab tt{
-  margin-left: 7px;
+  margin-left: 2px;
 }
 .loginLab font{
-  margin-left: 28px;
+  margin-left: 23px;
 }
 .inputText {  
   flex: block;  
