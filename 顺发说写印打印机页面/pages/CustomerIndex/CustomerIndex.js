@@ -18,6 +18,9 @@ Page({
       },{
         link:'pages/index/index',
         url:'../images/index03.png'
+      }, {
+        link: 'pages/index/index',
+        url: '../images/index04.png'
       }
     ],
     // 是否出现焦点
