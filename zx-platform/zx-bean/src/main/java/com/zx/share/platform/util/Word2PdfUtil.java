@@ -15,7 +15,7 @@ public class Word2PdfUtil {
 
 		try {
 			long old = System.currentTimeMillis();
-			File file = new File("/home/zx-platform/file/pdf1.pdf"); // 新建一个空白pdf文档
+			File file = new File("H:/pdf1.pdf"); // 新建一个空白pdf文档
 			FileOutputStream os = new FileOutputStream(file);
 			Document doc = new Document(Address); // Address是将要被转化的word文档
 			doc.save(os, SaveFormat.PDF);// 全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF, EPUB, XPS, SWF 相互转换

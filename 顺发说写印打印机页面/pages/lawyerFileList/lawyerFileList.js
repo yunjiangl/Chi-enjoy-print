@@ -41,7 +41,8 @@ Page({
     var fileInfo = JSON.stringify(that.data.fileInfo);
     wx: wx.navigateTo({
       url: '../choiceCustomer/choiceCustomer?fileInfo=' + fileInfo + "&fileType=" + that.data.fileType,
-      success: function (res) { },
+      success: function (res) { 
+      },
       fail: function (res) { },
       complete: function (res) { },
     })

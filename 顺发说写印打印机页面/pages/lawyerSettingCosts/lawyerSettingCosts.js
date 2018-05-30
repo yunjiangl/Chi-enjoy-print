@@ -186,6 +186,16 @@ Page({
               success: function (res) {
                 app.loginCheck(res)
                 console.log('保存订单结果' + res)
+                wx.showToast({
+                  title: '发送成功',
+                  icon: 'success',
+                  duration: 1000,
+                  success: function () {
+                    wx.navigateTo({
+                      url: '../printOrders/printOrders',
+                    })
+                  }
+                })
               }
             })
           } else if (res.cancel) {
