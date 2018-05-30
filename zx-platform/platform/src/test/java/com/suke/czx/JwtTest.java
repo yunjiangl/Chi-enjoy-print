@@ -21,8 +21,9 @@ public class JwtTest {
 
 //        System.out.println(token);
 
-        Word2PdfUtil.doc2pdf("H:/IT软件开发常用英语词汇经典大全.doc","H:/pdf1.pdf");
-
+        Word2PdfUtil.doc2pdf("H:/IT软件开发常用英语词汇经典大全.doc");
+        //String inPath="H:/pdf/IT软件开发常用英语词汇经典大全.doc";
+        //System.out.println(inPath.substring(0,inPath.lastIndexOf("/")));
     }
 
 }

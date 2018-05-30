@@ -26,14 +26,23 @@ public class Word2PdfUtil {
         return result;
     }
 
-    public static void doc2pdf(String inPath, String outPath) {
+    public static void doc2pdf(String inPath) {
         if (!getLicense()) { // 验证License 若不验证则转化出的pdf文档会有水印产生
             return;
         }
         try {
+            String path=inPath.substring(0,inPath.lastIndexOf("/"))+"/pdf";
+            String ids=inPath.substring(inPath.lastIndexOf("/"),inPath.lastIndexOf("."))+".pdf";
+            File file =new File(path);
+//如果文件夹不存在则创建
+            if  (!file .exists()  && !file .isDirectory())
+            {
+                System.out.println("//不存在");
+                file .mkdir();
+            }
             long old = System.currentTimeMillis();
-            File file = new File(outPath); // 新建一个空白pdf文档
-            FileOutputStream os = new FileOutputStream(file);
+            File file1 = new File(path+ids); // 新建一个空白pdf文档
+            FileOutputStream os = new FileOutputStream(file1);
             Document doc = new Document(inPath); // Address是将要被转化的word文档
             doc.save(os, SaveFormat.PDF);// 全面支持DOC, DOCX, OOXML, RTF HTML, OpenDocument, PDF,
             // EPUB, XPS, SWF 相互转换
